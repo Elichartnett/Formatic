@@ -16,6 +16,11 @@ extension NumberFieldWidget {
         return NSFetchRequest<NumberFieldWidget>(entityName: "NumberFieldWidget")
     }
     
-    @NSManaged public var number: Double
+    @NSManaged public var number: String?
     
+    /// NumberFieldWidget  convenience init
+    convenience init(title: String?, number: String?) {
+        self.init(title: title, entity: "NumberFieldWidget")
+        self.number = number
+    }
 }

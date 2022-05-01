@@ -22,6 +22,11 @@ extension MapWidget {
         let set = annotations as? Set<Annotation> ?? []
         return Array(set)
     }
+    
+    /// MapWidget  convenience init
+    convenience init(title: String?) {
+        self.init(title: title, entity: "MapWidget")
+    }
 }
 
 // MARK: Generated accessors for annotations

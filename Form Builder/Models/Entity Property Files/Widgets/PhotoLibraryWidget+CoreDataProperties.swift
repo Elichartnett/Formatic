@@ -22,6 +22,11 @@ extension PhotoLibraryWidget {
         let set = photos as? Set<Photo> ?? []
         return Array(set)
     }
+    
+    /// PhotoLibrary  convenience init
+    convenience init(title: String?) {
+        self.init(title: title, entity: "PhotoLibraryWidget")
+    }
 }
 
 // MARK: Generated accessors for photos

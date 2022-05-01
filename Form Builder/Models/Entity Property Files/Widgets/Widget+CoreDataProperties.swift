@@ -26,7 +26,7 @@ extension Widget {
         self.init(entity: NSEntityDescription.entity(forEntityName: entity, in: DataController.shared.container.viewContext) ?? NSEntityDescription(), insertInto: DataController.shared.container.viewContext)
         self.id = UUID()
         self.title = title
-        self.type = "TextFieldWidget"
+        self.type = entity
     }
 }
 

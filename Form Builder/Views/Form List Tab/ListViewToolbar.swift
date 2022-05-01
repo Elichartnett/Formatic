@@ -34,7 +34,7 @@ struct ListViewToolbar: View {
                 //TODO: Import form functionality
             } label: {
                 HStack {
-                    Image(systemName: "square.and.array.down")
+                    Image(systemName: "square.and.arroy.down")
                     Text("Import template")
                 }
             }

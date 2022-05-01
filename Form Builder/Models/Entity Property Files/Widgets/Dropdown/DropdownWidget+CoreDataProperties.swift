@@ -18,4 +18,8 @@ extension DropdownWidget {
 
     @NSManaged public var dropdownSection: DropdownSectionWidget?
 
+    /// DropdownWidget  convenience init
+    convenience init(title: String?) {
+        self.init(title: title, entity: "DropdownWidget")
+    }
 }

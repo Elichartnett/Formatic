@@ -22,6 +22,11 @@ extension DropdownSectionWidget {
         let set = dropdowns as? Set<DropdownWidget> ?? []
         return Array(set)
     }
+    
+    /// DropdownSectionWidget  convenience init
+    convenience init(title: String?) {
+        self.init(title: title, entity: "DropdownSectionWidget")
+    }
 }
 
 // MARK: Generated accessors for dropdowns

@@ -40,7 +40,7 @@
         <relationship name="annotations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Annotation" inverseName="map" inverseEntity="Annotation"/>
     </entity>
     <entity name="NumberFieldWidget" representedClassName="NumberFieldWidget" parentEntity="Widget" syncable="YES">
-        <attribute name="number" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="number" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES" codeGenerationType="class">
         <attribute name="photo" optional="YES" attributeType="Binary"/>

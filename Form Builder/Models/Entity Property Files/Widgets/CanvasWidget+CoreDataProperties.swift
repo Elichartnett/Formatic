@@ -21,4 +21,8 @@ extension CanvasWidget {
     @NSManaged public var image: Data?
     @NSManaged public var preview: Data?
     
+    /// CanvasWidget  convenience init
+    convenience init(title: String?) {
+        self.init(title: title, entity: "CanvasWidget")
+    }
 }
