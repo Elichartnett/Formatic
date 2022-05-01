@@ -11,7 +11,8 @@ import SwiftUI
 struct EditorViewToolbar: View {
     
     @ObservedObject var form: Form
-    @Binding var showExportView: Bool
+    @Binding var showExportToPDFView: Bool
+    @Binding var showExportToTemplateView: Bool
     
     var body: some View {
         
@@ -46,8 +47,28 @@ struct EditorViewToolbar: View {
             Spacer()
             
             // Export form button
-            Button {
-                showExportView = true
+            Menu {
+                
+                // Export to PDF button
+                Button {
+                    showExportToPDFView = true
+                } label: {
+                    HStack {
+                        Image(systemName: "doc.text.image")
+                        Text("PDF")
+                    }
+                }
+                
+                // Export to template button
+                Button {
+                    showExportToTemplateView = true
+                } label: {
+                    HStack {
+                        Image(systemName: "doc.zipper")
+                        Text("Template")
+                    }
+                }
+
             } label: {
                 HStack {
                     Image(systemName: "square.and.arrow.up")
@@ -63,6 +84,6 @@ struct EditorViewToolbar: View {
 
 struct EditorViewToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        EditorViewToolbar(form: dev.form, showExportView: .constant(false))
+        EditorViewToolbar(form: dev.form, showExportToPDFView: .constant(false), showExportToTemplateView: .constant(false))
     }
 }
