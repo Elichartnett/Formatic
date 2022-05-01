@@ -24,8 +24,8 @@ extension CheckboxSectionWidget {
     }
     
     /// CheckboxSectionWidget  convenience init
-    convenience init(title: String?) {
-        self.init(title: title, entity: "CheckboxSectionWidget")
+    convenience init(title: String?, position: Double) {
+        self.init(title: title, position: position, type: "CheckboxSectionWidget")
     }
 }
 

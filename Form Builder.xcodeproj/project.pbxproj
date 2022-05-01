@@ -16,8 +16,6 @@
 		622A99DC281E0C5000BB5E12 /* Form+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622A99DA281E0C5000BB5E12 /* Form+CoreDataClass.swift */; };
 		6244311F281A130000E21B11 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6244311E281A130000E21B11 /* DataController.swift */; };
 		62443122281A13A400E21B11 /* UTMConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 62443121281A13A400E21B11 /* UTMConversion */; };
-		6244313D281A152A00E21B11 /* TextFieldWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62443127281A152A00E21B11 /* TextFieldWidget+CoreDataClass.swift */; };
-		6244313E281A152A00E21B11 /* TextFieldWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62443128281A152A00E21B11 /* TextFieldWidget+CoreDataProperties.swift */; };
 		6244314D281A152A00E21B11 /* TextEditorWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62443137281A152A00E21B11 /* TextEditorWidget+CoreDataClass.swift */; };
 		6244314E281A152A00E21B11 /* TextEditorWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62443138281A152A00E21B11 /* TextEditorWidget+CoreDataProperties.swift */; };
 		6244314F281A152A00E21B11 /* CanvasWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62443139281A152A00E21B11 /* CanvasWidget+CoreDataClass.swift */; };
@@ -45,6 +43,8 @@
 		6298870A281C791400C34782 /* MapWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62988708281C791400C34782 /* MapWidget+CoreDataProperties.swift */; };
 		62BFAC9528188B97006C8216 /* Form Container.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62BFAC9328188B97006C8216 /* Form Container.xcdatamodeld */; };
 		62E6AB47281E0ED6009F568B /* Form+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E6AB46281E0ED6009F568B /* Form+CoreDataProperties.swift */; };
+		62E6AB4A281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E6AB48281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift */; };
+		62E6AB4B281ECBEA009F568B /* TextFieldWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E6AB49281ECBEA009F568B /* TextFieldWidget+CoreDataProperties.swift */; };
 		62FE6E6C28187058009D41FD /* Form_Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FE6E6B28187058009D41FD /* Form_Builder.swift */; };
 		62FE6E6E28187058009D41FD /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FE6E6D28187058009D41FD /* Home.swift */; };
 		62FE6E7028187059009D41FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62FE6E6F28187059009D41FD /* Assets.xcassets */; };
@@ -60,8 +60,6 @@
 		622A99D6281E06FC00BB5E12 /* CheckboxSectionWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckboxSectionWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		622A99DA281E0C5000BB5E12 /* Form+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6244311E281A130000E21B11 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		62443127281A152A00E21B11 /* TextFieldWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
-		62443128281A152A00E21B11 /* TextFieldWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62443137281A152A00E21B11 /* TextEditorWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextEditorWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		62443138281A152A00E21B11 /* TextEditorWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextEditorWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62443139281A152A00E21B11 /* CanvasWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CanvasWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -89,6 +87,8 @@
 		62988708281C791400C34782 /* MapWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62BFAC9428188B97006C8216 /* Widget.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Widget.xcdatamodel; sourceTree = "<group>"; };
 		62E6AB46281E0ED6009F568B /* Form+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		62E6AB48281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
+		62E6AB49281ECBEA009F568B /* TextFieldWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62FE6E6828187058009D41FD /* Form Builder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Form Builder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62FE6E6B28187058009D41FD /* Form_Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Form_Builder.swift; sourceTree = "<group>"; };
 		62FE6E6D28187058009D41FD /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -178,7 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				622A99CA281E03B700BB5E12 /* Widget+CoreDataClass.swift */,
-				62443127281A152A00E21B11 /* TextFieldWidget+CoreDataClass.swift */,
+				62E6AB48281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift */,
 				6244313B281A152A00E21B11 /* NumberFieldWidget+CoreDataClass.swift */,
 				62443137281A152A00E21B11 /* TextEditorWidget+CoreDataClass.swift */,
 				62443172281A1D4A00E21B11 /* Dropdown */,
@@ -194,7 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				622A99CB281E03B700BB5E12 /* Widget+CoreDataProperties.swift */,
-				62443128281A152A00E21B11 /* TextFieldWidget+CoreDataProperties.swift */,
+				62E6AB49281ECBEA009F568B /* TextFieldWidget+CoreDataProperties.swift */,
 				6244313C281A152A00E21B11 /* NumberFieldWidget+CoreDataProperties.swift */,
 				62443138281A152A00E21B11 /* TextEditorWidget+CoreDataProperties.swift */,
 				6244316F281A1CD600E21B11 /* Dropdown */,
@@ -211,17 +211,18 @@
 			children = (
 				629886F2281B92AA00C34782 /* FormListView.swift */,
 				629886F6281C31C400C34782 /* ListViewToolbar.swift */,
+				629886F5281C319C00C34782 /* Form Editor */,
 			);
 			path = "Form List Tab";
 			sourceTree = "<group>";
 		};
-		629886F5281C319C00C34782 /* Form Editor Tab */ = {
+		629886F5281C319C00C34782 /* Form Editor */ = {
 			isa = PBXGroup;
 			children = (
 				629886F0281B929600C34782 /* FormEditorView.swift */,
 				629886F8281C343500C34782 /* EditorViewToolbar.swift */,
 			);
-			path = "Form Editor Tab";
+			path = "Form Editor";
 			sourceTree = "<group>";
 		};
 		629886FA281C36E700C34782 /* Form */ = {
@@ -283,7 +284,6 @@
 			isa = PBXGroup;
 			children = (
 				62FE6E6D28187058009D41FD /* Home.swift */,
-				629886F5281C319C00C34782 /* Form Editor Tab */,
 				629886F4281C318D00C34782 /* Form List Tab */,
 				629886FA281C36E700C34782 /* Form */,
 			);
@@ -387,6 +387,7 @@
 				629886F3281B92AA00C34782 /* FormListView.swift in Sources */,
 				629886E6281B902800C34782 /* Section+CoreDataClass.swift in Sources */,
 				629886FF281C4DBF00C34782 /* SectionView.swift in Sources */,
+				62E6AB4A281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift in Sources */,
 				62443152281A152A00E21B11 /* NumberFieldWidget+CoreDataProperties.swift in Sources */,
 				62443175281A1F4200E21B11 /* PhotoLibraryWidget+CoreDataClass.swift in Sources */,
 				6244314E281A152A00E21B11 /* TextEditorWidget+CoreDataProperties.swift in Sources */,
@@ -399,10 +400,10 @@
 				6298870A281C791400C34782 /* MapWidget+CoreDataProperties.swift in Sources */,
 				62443150281A152A00E21B11 /* CanvasWidget+CoreDataProperties.swift in Sources */,
 				629886F1281B929600C34782 /* FormEditorView.swift in Sources */,
-				6244313E281A152A00E21B11 /* TextFieldWidget+CoreDataProperties.swift in Sources */,
 				622A99D8281E06FC00BB5E12 /* CheckboxSectionWidget+CoreDataClass.swift in Sources */,
 				622A99CD281E03B700BB5E12 /* Widget+CoreDataProperties.swift in Sources */,
 				6244314F281A152A00E21B11 /* CanvasWidget+CoreDataClass.swift in Sources */,
+				62E6AB4B281ECBEA009F568B /* TextFieldWidget+CoreDataProperties.swift in Sources */,
 				6244311F281A130000E21B11 /* DataController.swift in Sources */,
 				629886FC281C36F700C34782 /* FormView.swift in Sources */,
 				62FE6E6C28187058009D41FD /* Form_Builder.swift in Sources */,
@@ -414,7 +415,6 @@
 				62443167281A1CA000E21B11 /* DropdownSectionWidget+CoreDataClass.swift in Sources */,
 				6244314D281A152A00E21B11 /* TextEditorWidget+CoreDataClass.swift in Sources */,
 				62988709281C791400C34782 /* MapWidget+CoreDataClass.swift in Sources */,
-				6244313D281A152A00E21B11 /* TextFieldWidget+CoreDataClass.swift in Sources */,
 				622A99D5281E05A000BB5E12 /* CheckboxWidget+CoreDataProperties.swift in Sources */,
 				62BFAC9528188B97006C8216 /* Form Container.xcdatamodeld in Sources */,
 				62988701281C57B100C34782 /* Extensions.swift in Sources */,

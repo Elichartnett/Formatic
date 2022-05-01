@@ -24,8 +24,8 @@ extension DropdownSectionWidget {
     }
     
     /// DropdownSectionWidget  convenience init
-    convenience init(title: String?) {
-        self.init(title: title, entity: "DropdownSectionWidget")
+    convenience init(title: String?, position: Double) {
+        self.init(title: title, position: position, type: "DropdownSectionWidget")
     }
 }
 

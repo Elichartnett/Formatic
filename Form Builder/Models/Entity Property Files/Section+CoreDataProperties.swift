@@ -30,8 +30,8 @@ extension Section {
     
     var widgetsArray: [Widget] {
         let set = widgets as? Set<Widget> ?? []
-        return set.sorted { rhs, lhs in
-            rhs.title ?? "" < lhs.title ?? ""
+        return set.sorted { lhs, rhs in
+            lhs.position < rhs.position
         }
     }
 }

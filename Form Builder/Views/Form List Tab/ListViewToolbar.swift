@@ -7,19 +7,21 @@
 
 import SwiftUI
 
+// Tool bar options for list of saved forms
 struct ListViewToolbar: View {
+    
+    @Binding var showNewFormView: Bool
+    @Binding var showImportFormView: Bool
     
     var body: some View {
         
-        // Tool bar options for list of saved forms
         HStack {
             
             Spacer()
             
-            // Create new form
+            // Create new form button
             Button {
-                let _ = Form(title: "title here")
-                DataController.saveMOC()
+                showNewFormView = true
             } label: {
                 HStack {
                     Image(systemName: "plus.circle")
@@ -29,12 +31,12 @@ struct ListViewToolbar: View {
             
             Spacer()
             
-            // Import form
+            // Import form template button
             Button {
-                //TODO: Import form functionality
+                showImportFormView = true
             } label: {
                 HStack {
-                    Image(systemName: "square.and.arroy.down")
+                    Image(systemName: "square.and.arrow.down")
                     Text("Import template")
                 }
             }
@@ -46,6 +48,6 @@ struct ListViewToolbar: View {
 
 struct ListViewToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        ListViewToolbar()
+        ListViewToolbar(showNewFormView: .constant(false), showImportFormView: .constant(false))
     }
 }

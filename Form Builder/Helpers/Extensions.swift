@@ -31,32 +31,32 @@ class DeveloperPreview {
         form.addToSections(section)
         
         // Create TextFieldWidget
-        let textFieldWidget = TextFieldWidget(title: "Text field title", text: "Text field text")
+        let textFieldWidget = TextFieldWidget(title: "Text field title", position: 1, text: "Text field text")
         
         // Create NumberFieldWidget
-        let numberFieldWidget = NumberFieldWidget(title: "Number field title", number: "0.00")
+        let numberFieldWidget = NumberFieldWidget(title: "Number field title", position: 2, number: "0.00")
         
         // Create TextEditorWidget
-        let textEditorWidget = TextEditorWidget(title: "Text editor title", text: "Text editor text")
+        let textEditorWidget = TextEditorWidget(title: "Text editor title", position: 3, text: "Text editor text")
         
         // Create DropdownSectionWidget section
-        let dropdownSection = DropdownSectionWidget(title: "Dropdown section title")
-        let dropdownWidget = DropdownWidget(title: "Dropdown option 1")
+        let dropdownSection = DropdownSectionWidget(title: "Dropdown section title", position: 4)
+        let dropdownWidget = DropdownWidget(title: "Dropdown option 1", position: 1)
         dropdownSection.addToDropdowns(dropdownWidget)
         
         // Create CheckboxSectionWidget
-        let checkboxSection = CheckboxSectionWidget(title: "Checkbox section title")
-        let checkboxWidget = CheckboxWidget(title: "Checkbox option 1")
+        let checkboxSection = CheckboxSectionWidget(title: "Checkbox section title", position: 5)
+        let checkboxWidget = CheckboxWidget(title: "Checkbox option 1", position: 1)
         checkboxSection.addToCheckboxes(checkboxWidget)
         
         // Create MapWidget
-        let mapWidget = MapWidget(title: "Map title")
+        let mapWidget = MapWidget(title: "Map title", position: 6)
         
         // Create PhotoLibraryWidget
-        let photoLibraryWidget = PhotoLibraryWidget(title: "Photo library widget title")
+        let photoLibraryWidget = PhotoLibraryWidget(title: "Photo library widget title", position: 7)
         
         // Create CanvasWidget
-        let canvasWidget = CanvasWidget(title: "Canvas widget title")
+        let canvasWidget = CanvasWidget(title: "Canvas widget title", position: 8)
         
         // Add all widgets to section
         section.addToWidgets(NSSet(array: [textFieldWidget, numberFieldWidget, textEditorWidget, dropdownSection, checkboxSection, mapWidget, photoLibraryWidget, canvasWidget]))

@@ -7,9 +7,10 @@
 
 import SwiftUI
 
+// Displays a form with title and sections
 struct FormView: View {
     
-    @State var form: Form
+    @ObservedObject var form: Form
     
     var body: some View {
         

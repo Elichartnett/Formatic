@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// List of all saved forms with list toolbar
 struct FormListView: View {
     
     @Environment(\.managedObjectContext) var moc
@@ -14,33 +15,32 @@ struct FormListView: View {
     
     @EnvironmentObject var formModel: FormModel
     
+    @State var showNewFormView: Bool = false
+    @State var showImportFormView: Bool = false
     
     var body: some View {
         
         NavigationView {
             
-            VStack {
-                
-                // List of all saved forms
-                List() {
-                    ForEach(forms) { form in
+            List() {
+                ForEach(forms) { form in
+                    NavigationLink {
+                        FormEditorView(form: form)
+                    } label: {
                         Text(form.title ?? "")
-                            .onTapGesture {
-                                formModel.activeForm = form
-                            }
                     }
-                    .onDelete { indexSet in
-                        for index in indexSet {
-                            let form = forms[index]
-                            moc.delete(form)
-                            DataController.saveMOC()
-                        }
+                }
+                .onDelete { indexSet in
+                    for index in indexSet {
+                        let form = forms[index]
+                        moc.delete(form)
+                        DataController.saveMOC()
                     }
                 }
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    ListViewToolbar()
+                    ListViewToolbar(showNewFormView: $showNewFormView, showImportFormView: $showImportFormView)
                 }
             }
         }

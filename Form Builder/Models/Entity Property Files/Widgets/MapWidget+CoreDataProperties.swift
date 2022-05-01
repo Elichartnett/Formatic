@@ -24,8 +24,8 @@ extension MapWidget {
     }
     
     /// MapWidget  convenience init
-    convenience init(title: String?) {
-        self.init(title: title, entity: "MapWidget")
+    convenience init(title: String?, position: Double) {
+        self.init(title: title, position: position, type: "MapWidget")
     }
 }
 

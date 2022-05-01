@@ -17,16 +17,18 @@ extension Widget {
     }
 
     @NSManaged public var id: UUID
+    @NSManaged public var position: Double
     @NSManaged public var title: String?
     @NSManaged public var type: String?
     @NSManaged public var section: Section?
     
     /// Widget convenience init
-    convenience init (title: String?, entity: String) {
-        self.init(entity: NSEntityDescription.entity(forEntityName: entity, in: DataController.shared.container.viewContext) ?? NSEntityDescription(), insertInto: DataController.shared.container.viewContext)
+    convenience init (title: String?, position: Double, type: String) {
+        self.init(entity: NSEntityDescription.entity(forEntityName: type, in: DataController.shared.container.viewContext) ?? NSEntityDescription(), insertInto: DataController.shared.container.viewContext)
         self.id = UUID()
         self.title = title
-        self.type = entity
+        self.position = position
+        self.type = type
     }
 }
 

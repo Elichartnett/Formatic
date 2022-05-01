@@ -7,9 +7,11 @@
 
 import SwiftUI
 
+// Displays form sections with section titles and widgets
 struct SectionView: View {
     
-    @State var section: Section
+    @Environment(\.managedObjectContext) var moc
+    @ObservedObject var section: Section
     
     var body: some View {
         
@@ -17,45 +19,54 @@ struct SectionView: View {
             
             Text(section.title ?? "")
             
-            ForEach(section.widgetsArray) { widget in
-                let widgetType: WidgetType = WidgetType.init(rawValue: widget.type ?? "") ?? .unknown
-                                
-                switch widgetType {
-                case .textFieldWidget:
-                    let textFieldWidget = widget as! TextFieldWidget
-                    Text(textFieldWidget.title ?? "")
-                    Text(textFieldWidget.text ?? "")
+            // Display all widgets in section
+            List() {
+                ForEach(section.widgetsArray) { widget in
+                    let widgetType: WidgetType = WidgetType.init(rawValue: widget.type ?? "") ?? .unknown
                     
-                case .numberFieldWidget:
-                    let numberFieldWidget = widget as! NumberFieldWidget
-                    Text("Number Field")
-                    
-                case .textEditorWidget:
-                    let textEditorWidget = widget as! TextEditorWidget
-                    Text("Text Editor")
-                    
-                case .dropdownSectionWidget:
-                    let dropdownSectionWidget = widget as! DropdownSectionWidget
-                    Text("Dropdown")
-                    
-                case .checkboxSectionWidget:
-                    let checkboxSectionWidget = widget as! CheckboxSectionWidget
-                    Text("Checkbox")
-                    
-                case .mapWidget:
-                    let mapWidget = widget as! MapWidget
-                    Text("Map")
-                    
-                case .photoLibraryWidget:
-                    let photoLibraryWidget = widget as! PhotoLibraryWidget
-                    Text("Photo Library")
-                    
-                case .canvasWidget:
-                    let canvasWidget = widget as! CanvasWidget
-                    Text("Canvas")
-                    
-                case .unknown:
-                    Text("unknown")
+                    switch widgetType {
+                    case .textFieldWidget:
+                        let textFieldWidget = widget as! TextFieldWidget
+                        Text(textFieldWidget.title ?? "")
+                        
+                    case .numberFieldWidget:
+                        let numberFieldWidget = widget as! NumberFieldWidget
+                        Text(numberFieldWidget.title ?? "")
+                        
+                    case .textEditorWidget:
+                        let textEditorWidget = widget as! TextEditorWidget
+                        Text(textEditorWidget.title ?? "")
+                        
+                    case .dropdownSectionWidget:
+                        let dropdownSectionWidget = widget as! DropdownSectionWidget
+                        Text(dropdownSectionWidget.title ?? "")
+                        
+                    case .checkboxSectionWidget:
+                        let checkboxSectionWidget = widget as! CheckboxSectionWidget
+                        Text(checkboxSectionWidget.title ?? "")
+                        
+                    case .mapWidget:
+                        let mapWidget = widget as! MapWidget
+                        Text(mapWidget.title ?? "")
+                        
+                    case .photoLibraryWidget:
+                        let photoLibraryWidget = widget as! PhotoLibraryWidget
+                        Text(photoLibraryWidget.title ?? "")
+                        
+                    case .canvasWidget:
+                        let canvasWidget = widget as! CanvasWidget
+                        Text(canvasWidget.title ?? "")
+                        
+                    case .unknown:
+                        Text("unknown")
+                    }
+                }
+                .onDelete { indexSet in
+                    for index in indexSet {
+                        let widget = section.widgetsArray[index]
+                        moc.delete(widget)
+                        DataController.saveMOC()
+                    }
                 }
             }
         }

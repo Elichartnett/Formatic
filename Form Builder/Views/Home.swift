@@ -11,29 +11,8 @@ struct Home: View {
     
     var body: some View {
         
-        TabView {
-            
-            // First tab - Used to edit a form
-            FormEditorView()
-                .tabItem {
-                    Label {
-                        Text("Editor")
-                    } icon: {
-                        Image(systemName: "gearshape")
-                    }
-                }
-            
-            // Second tab - List of all created forms
-            FormListView()
-                .tabItem {
-                    Label {
-                        Text("Forms")
-                    } icon: {
-                        Image(systemName: "list.bullet")
-                    }
-                }
-            
-        }.tabViewStyle(.automatic)
+        // List of all created forms
+        FormListView()
     }
 }
 
@@ -41,6 +20,5 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Home()
             .environment(\.managedObjectContext, DataController.shared.container.viewContext)
-            .environmentObject(FormModel())
     }
 }
