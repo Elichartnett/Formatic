@@ -40,7 +40,3 @@ extension MapWidget {
     @NSManaged public func removeFromAnnotations(_ values: NSSet)
 
 }
-
-extension MapWidget : Identifiable {
-
-}

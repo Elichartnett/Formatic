@@ -24,7 +24,7 @@ struct FormListView: View {
                 // List of all saved forms
                 List() {
                     ForEach(forms) { form in
-                        Text(form.title)
+                        Text(form.title ?? "")
                             .onTapGesture {
                                 formModel.activeForm = form
                             }

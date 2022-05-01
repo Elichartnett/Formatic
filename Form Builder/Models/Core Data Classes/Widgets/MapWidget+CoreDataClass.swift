@@ -10,6 +10,6 @@ import Foundation
 import CoreData
 
 @objc(MapWidget)
-public class MapWidget: NSManagedObject {
+public class MapWidget: Widget {
 
 }

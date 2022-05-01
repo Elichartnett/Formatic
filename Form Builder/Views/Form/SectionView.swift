@@ -14,12 +14,48 @@ struct SectionView: View {
     var body: some View {
         
         VStack {
+            
+            Text(section.title ?? "")
+            
             ForEach(section.widgetsArray) { widget in
-                if widget is TextFieldWidget {
-                    Text("text field widget")
-                }
-                else {
-                    Text("not text field widget")
+                let widgetType: WidgetType = WidgetType.init(rawValue: widget.type ?? "") ?? .unknown
+                                
+                switch widgetType {
+                case .textFieldWidget:
+                    let textFieldWidget = widget as! TextFieldWidget
+                    Text(textFieldWidget.title ?? "")
+                    Text(textFieldWidget.text ?? "")
+                    
+                case .numberFieldWidget:
+                    let numberFieldWidget = widget as! NumberFieldWidget
+                    Text("Number Field")
+                    
+                case .textEditorWidget:
+                    let textEditorWidget = widget as! TextEditorWidget
+                    Text("Text Editor")
+                    
+                case .dropdownSectionWidget:
+                    let dropdownSectionWidget = widget as! DropdownSectionWidget
+                    Text("Dropdown")
+                    
+                case .checkboxSectionWidget:
+                    let checkboxSectionWidget = widget as! CheckboxSectionWidget
+                    Text("Checkbox")
+                    
+                case .mapWidget:
+                    let mapWidget = widget as! MapWidget
+                    Text("Map")
+                    
+                case .photoLibraryWidget:
+                    let photoLibraryWidget = widget as! PhotoLibraryWidget
+                    Text("Photo Library")
+                    
+                case .canvasWidget:
+                    let canvasWidget = widget as! CanvasWidget
+                    Text("Canvas")
+                    
+                case .unknown:
+                    Text("unknown")
                 }
             }
         }
@@ -28,6 +64,6 @@ struct SectionView: View {
 
 struct SectionView_Previews: PreviewProvider {
     static var previews: some View {
-        SectionView(section: Section(title: "Section title"))
+        SectionView(section: dev.form.sectionsArray.first!)
     }
 }

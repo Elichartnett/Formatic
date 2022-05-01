@@ -11,5 +11,5 @@ import CoreData
 
 @objc(TextFieldWidget)
 public class TextFieldWidget: Widget {
-
+    
 }

@@ -6,8 +6,3 @@
 //
 
 import Foundation
-
-enum WidgetCase {
-    case textField
-    case numberField
-}

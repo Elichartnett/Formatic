@@ -11,24 +11,24 @@
         <attribute name="utmZone" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="map" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MapWidget" inverseName="annotations" inverseEntity="MapWidget"/>
     </entity>
-    <entity name="CanvasWidget" representedClassName="CanvasWidget" syncable="YES">
+    <entity name="CanvasWidget" representedClassName="CanvasWidget" parentEntity="Widget" syncable="YES">
         <attribute name="image" optional="YES" attributeType="Binary" valueTransformerName="NSSecureUnarchiveFromDataTransformer" customClassName="UIImage"/>
         <attribute name="imageView" optional="YES" attributeType="Binary" valueTransformerName="NSSecureUnarchiveFromDataTransformer" customClassName="UIImageView"/>
         <attribute name="pkCanvas" optional="YES" attributeType="Binary" valueTransformerName="NSSecureUnarchiveFromDataTransformer" customClassName="PKCanvas"/>
         <attribute name="preview" optional="YES" attributeType="Binary" valueTransformerName="NSSecureUnarchiveFromDataTransformer" customClassName="UIImage"/>
     </entity>
-    <entity name="CheckboxSectionWidget" representedClassName="CheckboxSectionWidget" syncable="YES">
-        <relationship name="checkboxes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CheckboxWidget" inverseName="section" inverseEntity="CheckboxWidget"/>
+    <entity name="CheckboxSectionWidget" representedClassName="CheckboxSectionWidget" parentEntity="Widget" syncable="YES">
+        <relationship name="checkboxes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CheckboxWidget" inverseName="checkboxSection" inverseEntity="CheckboxWidget"/>
     </entity>
-    <entity name="CheckboxWidget" representedClassName="CheckboxWidget" syncable="YES">
+    <entity name="CheckboxWidget" representedClassName="CheckboxWidget" parentEntity="Widget" syncable="YES">
         <attribute name="checked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CheckboxSectionWidget" inverseName="checkboxes" inverseEntity="CheckboxSectionWidget"/>
+        <relationship name="checkboxSection" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CheckboxSectionWidget" inverseName="checkboxes" inverseEntity="CheckboxSectionWidget"/>
     </entity>
-    <entity name="DropdownSectionWidget" representedClassName="DropdownSectionWidget" syncable="YES">
-        <relationship name="dropdowns" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DropdownWidget" inverseName="section" inverseEntity="DropdownWidget"/>
+    <entity name="DropdownSectionWidget" representedClassName="DropdownSectionWidget" parentEntity="Widget" syncable="YES">
+        <relationship name="dropdowns" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DropdownWidget" inverseName="dropdownSection" inverseEntity="DropdownWidget"/>
     </entity>
-    <entity name="DropdownWidget" representedClassName="DropdownWidget" syncable="YES">
-        <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DropdownSectionWidget" inverseName="dropdowns" inverseEntity="DropdownSectionWidget"/>
+    <entity name="DropdownWidget" representedClassName="DropdownWidget" parentEntity="Widget" syncable="YES">
+        <relationship name="dropdownSection" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DropdownSectionWidget" inverseName="dropdowns" inverseEntity="DropdownSectionWidget"/>
     </entity>
     <entity name="Form" representedClassName="Form" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -36,17 +36,17 @@
         <attribute name="title" attributeType="String"/>
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Section" inverseName="form" inverseEntity="Section"/>
     </entity>
-    <entity name="MapWidget" representedClassName="MapWidget" syncable="YES">
+    <entity name="MapWidget" representedClassName="MapWidget" parentEntity="Widget" syncable="YES">
         <relationship name="annotations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Annotation" inverseName="map" inverseEntity="Annotation"/>
     </entity>
-    <entity name="NumberFieldWidget" representedClassName="NumberFieldWidget" syncable="YES">
+    <entity name="NumberFieldWidget" representedClassName="NumberFieldWidget" parentEntity="Widget" syncable="YES">
         <attribute name="number" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES" codeGenerationType="class">
         <attribute name="photo" optional="YES" attributeType="Binary"/>
         <relationship name="library" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PhotoLibraryWidget" inverseName="photos" inverseEntity="PhotoLibraryWidget"/>
     </entity>
-    <entity name="PhotoLibraryWidget" representedClassName="PhotoLibraryWidget" syncable="YES">
+    <entity name="PhotoLibraryWidget" representedClassName="PhotoLibraryWidget" parentEntity="Widget" syncable="YES">
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="library" inverseEntity="Photo"/>
     </entity>
     <entity name="Section" representedClassName="Section" syncable="YES">
@@ -55,15 +55,16 @@
         <relationship name="form" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Form" inverseName="sections" inverseEntity="Form"/>
         <relationship name="widgets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Widget" inverseName="section" inverseEntity="Widget"/>
     </entity>
-    <entity name="TextEditorWidget" representedClassName="TextEditorWidget" syncable="YES">
+    <entity name="TextEditorWidget" representedClassName="TextEditorWidget" parentEntity="Widget" syncable="YES">
         <attribute name="text" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="TextFieldWidget" representedClassName="TextFieldWidget" syncable="YES">
+    <entity name="TextFieldWidget" representedClassName="TextFieldWidget" parentEntity="Widget" syncable="YES">
         <attribute name="text" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Widget" representedClassName="Widget" syncable="YES">
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="type" attributeType="String"/>
         <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="widgets" inverseEntity="Section"/>
     </entity>
     <elements>
@@ -81,6 +82,6 @@
         <element name="Section" positionX="-9" positionY="99" width="128" height="89"/>
         <element name="TextEditorWidget" positionX="-45" positionY="9" width="128" height="44"/>
         <element name="TextFieldWidget" positionX="-54" positionY="9" width="128" height="44"/>
-        <element name="Widget" positionX="-63" positionY="-18" width="128" height="74"/>
+        <element name="Widget" positionX="-63" positionY="-18" width="128" height="89"/>
     </elements>
 </model>

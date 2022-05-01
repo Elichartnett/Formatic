@@ -17,7 +17,18 @@ extension PreviewProvider {
 class DeveloperPreview {
     
     static let instance = DeveloperPreview()
-    private init() {}
     
-    let form = Form(title: "Form Title")
+    let form: Form
+    let section: Section
+    let textFieldWidget: TextFieldWidget
+    
+    private init() {
+        form = Form(title: "Form title")
+        
+        section = Section(title: "Section title")
+        form.addToSections(section)
+        
+        textFieldWidget = TextFieldWidget(title: "Text field title", text: "Text field text")
+        section.addToWidgets(textFieldWidget)
+    }
 }

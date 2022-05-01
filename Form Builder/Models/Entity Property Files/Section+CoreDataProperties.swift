@@ -21,6 +21,7 @@ extension Section {
     @NSManaged public var widgets: NSSet?
     @NSManaged public var form: Form?
     
+    /// Section convenience init
     convenience init(id: UUID = UUID(), title: String?) {
         self.init(context: DataController.shared.container.viewContext)
         self.id = id

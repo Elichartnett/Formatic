@@ -14,7 +14,7 @@ struct FormView: View {
     var body: some View {
         
         VStack {
-            Text(form.title)
+            Text(form.title ?? "")
             
             ForEach(form.sectionsArray) { section in
                 SectionView(section: section)
