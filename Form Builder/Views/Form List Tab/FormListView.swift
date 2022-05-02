@@ -43,6 +43,9 @@ struct FormListView: View {
                     ListViewToolbar(showNewFormView: $showNewFormView, showImportFormView: $showImportFormView)
                 }
             }
+            .sheet(isPresented: $showNewFormView) {
+                NewFormView(showNewFormView: $showNewFormView)
+            }
         }
         .navigationViewStyle(.stack)
     }

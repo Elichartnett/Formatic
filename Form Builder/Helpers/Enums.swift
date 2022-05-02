@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+// InputBox input type
+enum InputType {
+    case text
+    case password
+}

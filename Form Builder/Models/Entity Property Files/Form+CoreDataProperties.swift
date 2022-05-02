@@ -18,15 +18,17 @@ extension Form {
 
     @NSManaged public var id: UUID?
     @NSManaged public var locked: Bool
+    @NSManaged public var password: String?
     @NSManaged public var title: String?
     @NSManaged public var sections: NSSet?
     
     /// Form convenience init
-    convenience init(id: UUID = UUID(), title: String, locked: Bool = false) {
+    convenience init(id: UUID = UUID(), locked: Bool = false, password: String? = nil, title: String) {
         self.init(context: DataController.shared.container.viewContext)
         self.id = id
-        self.title = title
         self.locked = locked
+        self.password = password
+        self.title = title
     }
     
     var sectionsArray: [Section] {
