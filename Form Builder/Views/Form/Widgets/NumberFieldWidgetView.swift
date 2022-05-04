@@ -26,7 +26,7 @@ struct NumberFieldWidgetView: View {
                     numberFieldWidget.title = title
             }
             
-            InputBox(placeholder: "text", text: $number)
+            InputBox(placeholder: "number", text: $number)
                 .onChange(of: number) { _ in
                     isValid = model.validNumber(number: number, range: range)
                     if isValid {

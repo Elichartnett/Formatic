@@ -47,6 +47,15 @@ struct EditorViewToolbar: View {
             
             Spacer()
             
+            // Save form in managed object context button
+            Button {
+                DataController.saveMOC()
+            } label: {
+                Text("Save")
+            }
+
+            Spacer()
+            
             // Export form button
             Menu {
                 

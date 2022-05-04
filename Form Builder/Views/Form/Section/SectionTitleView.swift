@@ -10,7 +10,7 @@ import SwiftUI
 struct SectionTitleView: View {
     
     @ObservedObject var section: Section
-
+    
     @State var newWidgetType: WidgetType?
     @State var sectionTitle: String = ""
     
@@ -18,13 +18,6 @@ struct SectionTitleView: View {
         
         // Section title and add widget menu
         HStack {
-            
-            InputBox(placeholder: "Section title", text: $sectionTitle)
-                .frame(width: 300)
-                .onChange(of: sectionTitle) { _ in
-                    section.title = sectionTitle
-                    DataController.saveMOC()
-                }
             
             Menu {
                 // Add TextFieldWidget to section
@@ -72,6 +65,13 @@ struct SectionTitleView: View {
             .sheet(item: $newWidgetType) { newWidgetType in
                 NewWidgetView(newWidgetType: $newWidgetType, section: section)
             }
+            
+            TextField("Section title", text: $sectionTitle)
+                .font(Font.title.weight(.semibold))
+                .foregroundColor(.primary)
+                .onChange(of: sectionTitle) { newValue in
+                    section.title = sectionTitle
+                }
         }
         .textCase(.none)
         .onAppear {
