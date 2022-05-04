@@ -8,10 +8,16 @@
 import Foundation
 import SwiftUI
 
-struct InputBoxTitle: ViewModifier {
+struct TitleFrame: ViewModifier {
     func body(content: Content) -> some View {
         content
             .frame(width: 200)
+    }
+}
+
+extension View {
+    func titleFrameStyle() -> some View {
+        modifier(TitleFrame())
     }
 }
 

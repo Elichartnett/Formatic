@@ -10,7 +10,7 @@ import SwiftUI
 struct MapWidgetView: View {
     
     @ObservedObject var mapWidget: MapWidget
-
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }

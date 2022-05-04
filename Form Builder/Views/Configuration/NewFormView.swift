@@ -85,7 +85,7 @@ struct NewFormView: View {
             } label: {
                 VStack {
                     SubmitButton(isValid: $isValid)
-
+                    
                     if !validTitle && !title.isEmpty {
                         Text("Title already in use")
                             .foregroundColor(.red)

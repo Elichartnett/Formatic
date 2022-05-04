@@ -53,7 +53,7 @@ struct EditorViewToolbar: View {
             } label: {
                 Text("Save")
             }
-
+            
             Spacer()
             
             // Export form button
@@ -78,7 +78,7 @@ struct EditorViewToolbar: View {
                         Text("Template")
                     }
                 }
-
+                
             } label: {
                 HStack {
                     Image(systemName: "square.and.arrow.up")

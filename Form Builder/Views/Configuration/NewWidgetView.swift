@@ -45,7 +45,7 @@ struct NewWidgetView: View {
                         type = "Text Editor"
                     }
                 
-            // Will be displayed in case .dropdownSectionWidget
+                // Will be displayed in case .dropdownSectionWidget
             case .dropdownWidget:
                 EmptyView()
                 
@@ -55,7 +55,7 @@ struct NewWidgetView: View {
                         type = "Dropdown Menu"
                     }
                 
-            // Will be displayed in case .checkboxSectionWidget
+                // Will be displayed in case .checkboxSectionWidget
             case .checkboxWidget:
                 EmptyView()
                 

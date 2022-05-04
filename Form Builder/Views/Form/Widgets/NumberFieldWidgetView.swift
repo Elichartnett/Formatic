@@ -21,10 +21,10 @@ struct NumberFieldWidgetView: View {
         HStack {
             
             InputBox(placeholder: "Title", text: $title)
-                .modifier(InputBoxTitle())
+                .titleFrameStyle()
                 .onChange(of: title) { _ in
                     numberFieldWidget.title = title
-            }
+                }
             
             InputBox(placeholder: "number", text: $number)
                 .onChange(of: number) { _ in

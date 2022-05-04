@@ -12,7 +12,7 @@ struct SectionView: View {
     
     @Environment(\.managedObjectContext) var moc
     @ObservedObject var section: Section
-        
+    
     var body: some View {
         // Display all widgets in section
         ForEach(section.widgetsArray) { widget in
