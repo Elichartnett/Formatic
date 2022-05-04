@@ -10,12 +10,12 @@ import SwiftUI
 // Standard submit button label
 struct SubmitButton: View {
     
-    @State var color: Color = .blue
+    @Binding var isValid: Bool
     
     var body: some View {
         
         Rectangle()
-            .fill(color)
+            .fill(isValid ? .blue : .gray)
             .frame(width: 300, height: 100)
             .cornerRadius(10)
             .overlay(
@@ -23,11 +23,14 @@ struct SubmitButton: View {
                     .font(.title)
                     .foregroundColor(.primary)
             )
+            .onChange(of: isValid) { newValue in
+                print("HERE______")
+            }
     }
 }
 
 struct SubmitButton_Previews: PreviewProvider {
     static var previews: some View {
-        SubmitButton()
+        SubmitButton(isValid: .constant(true))
     }
 }

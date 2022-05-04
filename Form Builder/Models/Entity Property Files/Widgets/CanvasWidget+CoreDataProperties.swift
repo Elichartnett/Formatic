@@ -22,7 +22,7 @@ extension CanvasWidget {
     @NSManaged public var preview: Data?
     
     /// CanvasWidget  convenience init
-    convenience init(title: String?, position: Double) {
-        self.init(title: title, position: position, type: "CanvasWidget")
+    convenience init(title: String?, position: Int16) {
+        self.init(title: title, position: position, type: WidgetType.canvasWidget.rawValue)
     }
 }

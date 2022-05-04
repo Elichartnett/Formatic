@@ -29,12 +29,13 @@ struct EditorViewToolbar: View {
                     Text(form.locked == true ? "Locked" : "Unlocked")
                 }
             }
+            .disabled(form.password?.isEmpty ?? true)
             
             Spacer()
             
             // Add section to form button
             Button {
-                form.addToSections(Section(title: "test"))
+                form.addToSections(Section(title: nil))
                 DataController.saveMOC()
             } label: {
                 HStack {

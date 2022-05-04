@@ -17,13 +17,13 @@ extension Widget {
     }
 
     @NSManaged public var id: UUID
-    @NSManaged public var position: Double
+    @NSManaged public var position: Int16
     @NSManaged public var title: String?
     @NSManaged public var type: String?
     @NSManaged public var section: Section?
     
     /// Widget convenience init
-    convenience init (title: String?, position: Double, type: String) {
+    convenience init (title: String?, position: Int16, type: String) {
         self.init(entity: NSEntityDescription.entity(forEntityName: type, in: DataController.shared.container.viewContext) ?? NSEntityDescription(), insertInto: DataController.shared.container.viewContext)
         self.id = UUID()
         self.title = title
@@ -34,16 +34,4 @@ extension Widget {
 
 extension Widget : Identifiable {
 
-}
-
-enum WidgetType: String {
-    case textFieldWidget = "TextFieldWidget"
-    case numberFieldWidget = "NumberFieldWidget"
-    case textEditorWidget = "TextEditorWidget"
-    case dropdownSectionWidget = "DropdownSectionWidget"
-    case checkboxSectionWidget = "CheckboxSectionWidget"
-    case mapWidget = "MapWidget"
-    case photoLibraryWidget = "PhotoLibraryWidget"
-    case canvasWidget = "CanvasWidget"
-    case unknown = "unknown"
 }

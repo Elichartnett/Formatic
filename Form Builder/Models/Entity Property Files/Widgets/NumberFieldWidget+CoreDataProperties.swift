@@ -19,8 +19,8 @@ extension NumberFieldWidget {
     @NSManaged public var number: String?
     
     /// NumberFieldWidget  convenience init
-    convenience init(title: String?, position: Double, number: String?) {
-        self.init(title: title, position: position, type: "NumberFieldWidget")
+    convenience init(title: String?, position: Int16, number: String?) {
+        self.init(title: title, position: position, type: WidgetType.numberFieldWidget.rawValue)
         self.number = number
     }
 }

@@ -13,52 +13,107 @@ struct SectionView: View {
     @Environment(\.managedObjectContext) var moc
     @ObservedObject var section: Section
     
+    @State var newWidgetType: WidgetType?
+    
     var body: some View {
         
         VStack {
             
-            Text(section.title ?? "")
+            HStack {
+                
+                Text(section.title ?? "")
+                
+                Menu {
+                    // Add TextFieldWidget to section
+                    Button("Text Field") {
+                        newWidgetType = .textFieldWidget
+                    }
+                    
+                    // Add NumberFieldWidget to section
+                    Button("Number Field") {
+                        newWidgetType = .numberFieldWidget
+                    }
+                    
+                    // Add TextEditorWidget to section
+                    Button("Text Editor") {
+                        newWidgetType = .textEditorWidget
+                    }
+                    
+                    // Add DropdownSectionWidget to section
+                    Button("Dropdown Menu") {
+                        newWidgetType = .dropdownSectionWidget
+                    }
+                    
+                    // Add CheckboxSectionWidget to section
+                    Button("Checkboxes") {
+                        newWidgetType = .checkboxSectionWidget
+                    }
+                    
+                    // Add MapWidget to section
+                    Button("Map") {
+                        newWidgetType = .mapWidget
+                    }
+                    
+                    // Add PhotoLibraryWidget to section
+                    Button("Photo Library") {
+                        newWidgetType = .photoLibraryWidget
+                    }
+                    
+                    // Add CanvasWidget to section
+                    Button("Canvas") {
+                        newWidgetType = .canvasWidget
+                    }
+                } label: {
+                    Image(systemName: "plus.circle")
+                }
+                .sheet(item: $newWidgetType) { newWidgetType in
+                    NewWidgetView(newWidgetType: $newWidgetType, section: section)
+                }
+            }
             
             // Display all widgets in section
             List() {
                 ForEach(section.widgetsArray) { widget in
-                    let widgetType: WidgetType = WidgetType.init(rawValue: widget.type ?? "") ?? .unknown
+                    let widgetType: WidgetType = WidgetType.init(rawValue: widget.type!)!
                     
                     switch widgetType {
                     case .textFieldWidget:
                         let textFieldWidget = widget as! TextFieldWidget
-                        Text(textFieldWidget.title ?? "")
+                        TextFieldWidgetView(textFieldWidget: textFieldWidget)
                         
                     case .numberFieldWidget:
                         let numberFieldWidget = widget as! NumberFieldWidget
-                        Text(numberFieldWidget.title ?? "")
+                        NumberFieldWidgetView(numberFieldWidget: numberFieldWidget)
                         
                     case .textEditorWidget:
                         let textEditorWidget = widget as! TextEditorWidget
-                        Text(textEditorWidget.title ?? "")
+                        TextEditorWidgetView(textEditorWidget: textEditorWidget)
+                        
+                    case .dropdownWidget:
+                        EmptyView()
                         
                     case .dropdownSectionWidget:
                         let dropdownSectionWidget = widget as! DropdownSectionWidget
-                        Text(dropdownSectionWidget.title ?? "")
+                        DropdownSectionWidgetView(dropdownWidgetSection: dropdownSectionWidget)
+                        
+                    case .checkboxWidget:
+                        EmptyView()
                         
                     case .checkboxSectionWidget:
                         let checkboxSectionWidget = widget as! CheckboxSectionWidget
-                        Text(checkboxSectionWidget.title ?? "")
+                        CheckboxSectionWidgetView(checkboxSectionWidget: checkboxSectionWidget)
                         
                     case .mapWidget:
                         let mapWidget = widget as! MapWidget
-                        Text(mapWidget.title ?? "")
+                        MapWidgetView(mapWidget: mapWidget)
                         
                     case .photoLibraryWidget:
                         let photoLibraryWidget = widget as! PhotoLibraryWidget
-                        Text(photoLibraryWidget.title ?? "")
+                        PhotoLibraryWidgetView(photoLibraryWidget: photoLibraryWidget)
                         
                     case .canvasWidget:
                         let canvasWidget = widget as! CanvasWidget
-                        Text(canvasWidget.title ?? "")
-                        
-                    case .unknown:
-                        Text("unknown")
+                        CanvasWidgetView(canvasWidget: canvasWidget)
                     }
                 }
                 .onDelete { indexSet in
@@ -75,6 +130,6 @@ struct SectionView: View {
 
 struct SectionView_Previews: PreviewProvider {
     static var previews: some View {
-        SectionView(section: dev.form.sectionsArray.first!)
+        SectionView(section: dev.form.sectionsArray.first!, newWidgetType: nil)
     }
 }

@@ -7,8 +7,25 @@
 
 import Foundation
 
-// InputBox input type
+// InputBox input types
 enum InputType {
     case text
     case password
+}
+
+// Widget types
+enum WidgetType: String, Identifiable {
+    
+    var id: RawValue { rawValue }
+    
+    case textFieldWidget = "TextFieldWidget"
+    case numberFieldWidget = "NumberFieldWidget"
+    case textEditorWidget = "TextEditorWidget"
+    case dropdownWidget = "DropdownWidget"
+    case dropdownSectionWidget = "DropdownSectionWidget"
+    case checkboxWidget = "CheckboxWidget"
+    case checkboxSectionWidget = "CheckboxSectionWidget"
+    case mapWidget = "MapWidget"
+    case photoLibraryWidget = "PhotoLibraryWidget"
+    case canvasWidget = "CanvasWidget"
 }

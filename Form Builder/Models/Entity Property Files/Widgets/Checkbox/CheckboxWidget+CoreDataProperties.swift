@@ -20,8 +20,8 @@ extension CheckboxWidget {
     @NSManaged public var checkboxSection: CheckboxSectionWidget?
 
     /// CheckboxWidget  convenience init
-    convenience init(title: String?, position: Double) {
-        self.init(title: title, position: position, type: "CheckboxWidget")
+    convenience init(title: String?, position: Int16) {
+        self.init(title: title, position: position, type: WidgetType.checkboxWidget.rawValue)
         self.checked = false
     }
 }
