@@ -11,22 +11,33 @@ import SwiftUI
 struct FormView: View {
     
     @ObservedObject var form: Form
+    @State var formTitle: String = ""
     
     var body: some View {
         
         VStack {
-            Text(form.title ?? "")
+            InputBox(placeholder: "Form title", text: $formTitle)
+                .frame(width: 300)
+                .onChange(of: formTitle) { _ in
+                    form.title = formTitle
+                }
             
-            ForEach(form.sectionsArray) { section in
-                SectionView(section: section)
+            List {
+                ForEach(form.sectionsArray) { section in
+                    SwiftUI.Section {
+                        SectionView(section: section)
+                    } header: {
+                        SectionTitleView(section: section)
+                    }
+                }
             }
         }
-        
     }
 }
 
 struct FormView_Previews: PreviewProvider {
     static var previews: some View {
         FormView(form: dev.form)
+            .environmentObject(FormModel())
     }
 }

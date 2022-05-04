@@ -13,7 +13,7 @@ struct NumberFieldWidgetView: View {
     @ObservedObject var numberFieldWidget: NumberFieldWidget
     @State var title: String = ""
     @State var number: String = ""
-    var range: ClosedRange<Double>?
+    var range: ClosedRange<Double>? = nil
     @State var isValid: Bool = true
     
     var body: some View {
@@ -21,7 +21,10 @@ struct NumberFieldWidgetView: View {
         HStack {
             
             InputBox(placeholder: "Title", text: $title)
-                .frame(width: 200)
+                .modifier(InputBoxTitle())
+                .onChange(of: title) { _ in
+                    numberFieldWidget.title = title
+            }
             
             InputBox(placeholder: "text", text: $number)
                 .onChange(of: number) { _ in
@@ -31,9 +34,9 @@ struct NumberFieldWidgetView: View {
                     }
                     else {
                         number.removeAll { character in
-                            !character.isNumber && (character != "-" || character != ".")
+                            !character.isNumber && character != "-" && character != "."
                         }
-                    }//negative doesnt show
+                    }
                 }
             
         }
@@ -48,5 +51,6 @@ struct NumberFieldWidgetView: View {
 struct NumberFieldWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         NumberFieldWidgetView(numberFieldWidget: dev.numberFieldWidget)
+            .environmentObject(FormModel())
     }
 }

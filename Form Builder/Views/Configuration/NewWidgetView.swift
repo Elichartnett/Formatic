@@ -11,7 +11,7 @@ import SwiftUI
 struct NewWidgetView: View {
     
     @Binding var newWidgetType: WidgetType?
-    @State var section: Section
+    @ObservedObject var section: Section
     @State var type: String = ""
     @State var title: String = ""
     @State var widget = Widget(title: nil, position: Int16(1), type: WidgetType.textFieldWidget.rawValue)
@@ -82,6 +82,7 @@ struct NewWidgetView: View {
                     .onAppear {
                         type = "Canvas"
                     }
+                
             case .none:
                 EmptyView()
             }
@@ -92,6 +93,6 @@ struct NewWidgetView: View {
 
 struct ConfigureWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        NewWidgetView(newWidgetType: .constant(.textFieldWidget), section: dev.section)
+        NewWidgetView(newWidgetType: .constant(dev.newWidgetType), section: dev.section)
     }
 }

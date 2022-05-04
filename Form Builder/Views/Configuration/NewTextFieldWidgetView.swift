@@ -24,6 +24,7 @@ struct NewTextFieldWidgetView: View {
                 section.addToWidgets(textFieldWidget)
                 DataController.saveMOC()
                 newWidgetType = nil
+                print("Create text field in \(section.title ?? "no title")")
             } label: {
                 SubmitButton(isValid: .constant(true))
             }

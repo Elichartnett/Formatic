@@ -18,7 +18,7 @@ struct TextFieldWidgetView: View {
         HStack {
             
             InputBox(placeholder: "Title", text: $title)
-                .frame(width: 200)
+                .modifier(InputBoxTitle())
                 .onChange(of: title) { _ in
                     textFieldWidget.title = title
             }

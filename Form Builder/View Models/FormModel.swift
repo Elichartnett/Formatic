@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class FormModel: ObservableObject {
-    func validNumber(number: String, range: ClosedRange<Double>?) -> Bool {
+    func validNumber(number: String, range: ClosedRange<Double>? = nil) -> Bool {
         // Check if field only contains nubmers
         if let number = Double(number) {
             // Check if number is in range
@@ -26,8 +26,12 @@ class FormModel: ObservableObject {
                 return true
             }
         }
-        // Not a valid number
         else {
+            // Have only typed negative sign
+            if number == "-" {
+                return true
+            }
+            // Not a valid number
             return false
         }
     }

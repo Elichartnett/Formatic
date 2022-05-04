@@ -23,9 +23,6 @@ struct SubmitButton: View {
                     .font(.title)
                     .foregroundColor(.primary)
             )
-            .onChange(of: isValid) { newValue in
-                print("HERE______")
-            }
     }
 }
 

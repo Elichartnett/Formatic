@@ -27,6 +27,7 @@ struct InputBox: View {
                 SecureField(placeholder, text: $text)
             }
         }
+        .foregroundColor(.primary)
         .padding(.leading)
         .frame(height: 40)
         .overlay(

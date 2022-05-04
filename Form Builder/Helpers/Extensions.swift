@@ -8,6 +8,13 @@
 import Foundation
 import SwiftUI
 
+struct InputBoxTitle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .frame(width: 200)
+    }
+}
+
 extension PreviewProvider {
     static var dev: DeveloperPreview {
         return DeveloperPreview.instance
@@ -20,6 +27,7 @@ class DeveloperPreview {
     
     let form: Form
     let section: Section
+    let newWidgetType: WidgetType
     let textFieldWidget: TextFieldWidget
     let numberFieldWidget: NumberFieldWidget
     let textEditorWidget: TextEditorWidget
@@ -37,6 +45,8 @@ class DeveloperPreview {
         // Add section
         section = Section(title: "Section title")
         form.addToSections(section)
+        
+        newWidgetType = .textFieldWidget
         
         // Create TextFieldWidget
         textFieldWidget = TextFieldWidget(title: "Text field title", position: 1, text: "Text field text")

@@ -43,5 +43,6 @@ struct NewNumberFieldWidgetView: View {
 struct NewNumberFieldView_Previews: PreviewProvider {
     static var previews: some View {
         NewNumberFieldWidgetView(newWidgetType: .constant(.numberFieldWidget), title: .constant(dev.numberFieldWidget.title!), section: dev.section)
+        
     }
 }

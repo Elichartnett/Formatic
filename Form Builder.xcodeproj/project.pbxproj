@@ -27,6 +27,7 @@
 		62294F2D2821EBF600226AF1 /* NewMapWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F2C2821EBF600226AF1 /* NewMapWidgetView.swift */; };
 		62294F2F2821EC0A00226AF1 /* NewPhotoLibraryWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F2E2821EC0A00226AF1 /* NewPhotoLibraryWidgetView.swift */; };
 		62294F312821EC1300226AF1 /* NewCanvasWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F302821EC1300226AF1 /* NewCanvasWidgetView.swift */; };
+		62294F332822F0CC00226AF1 /* SectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F322822F0CC00226AF1 /* SectionTitleView.swift */; };
 		622A99CC281E03B700BB5E12 /* Widget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622A99CA281E03B700BB5E12 /* Widget+CoreDataClass.swift */; };
 		622A99CD281E03B700BB5E12 /* Widget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622A99CB281E03B700BB5E12 /* Widget+CoreDataProperties.swift */; };
 		622A99D0281E053C00BB5E12 /* DropdownWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622A99CE281E053C00BB5E12 /* DropdownWidget+CoreDataClass.swift */; };
@@ -92,6 +93,7 @@
 		62294F2C2821EBF600226AF1 /* NewMapWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMapWidgetView.swift; sourceTree = "<group>"; };
 		62294F2E2821EC0A00226AF1 /* NewPhotoLibraryWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPhotoLibraryWidgetView.swift; sourceTree = "<group>"; };
 		62294F302821EC1300226AF1 /* NewCanvasWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCanvasWidgetView.swift; sourceTree = "<group>"; };
+		62294F322822F0CC00226AF1 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
 		622A99CA281E03B700BB5E12 /* Widget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		622A99CB281E03B700BB5E12 /* Widget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		622A99CE281E053C00BB5E12 /* DropdownWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DropdownWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -172,6 +174,15 @@
 				62294F302821EC1300226AF1 /* NewCanvasWidgetView.swift */,
 			);
 			path = Configuration;
+			sourceTree = "<group>";
+		};
+		62294F342822F0D200226AF1 /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				629886FE281C4DBF00C34782 /* SectionView.swift */,
+				62294F322822F0CC00226AF1 /* SectionTitleView.swift */,
+			);
+			path = Section;
 			sourceTree = "<group>";
 		};
 		6244311C281A12D400E21B11 /* Helpers */ = {
@@ -295,7 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				629886FB281C36F700C34782 /* FormView.swift */,
-				629886FE281C4DBF00C34782 /* SectionView.swift */,
+				62294F342822F0D200226AF1 /* Section */,
 				62988706281C6BF000C34782 /* Widgets */,
 			);
 			path = Form;
@@ -483,6 +494,7 @@
 				62294F12281F8C2800226AF1 /* NumberFieldWidgetView.swift in Sources */,
 				62443150281A152A00E21B11 /* CanvasWidget+CoreDataProperties.swift in Sources */,
 				629886F1281B929600C34782 /* FormEditorView.swift in Sources */,
+				62294F332822F0CC00226AF1 /* SectionTitleView.swift in Sources */,
 				62294F10281F8C1C00226AF1 /* TextFieldWidgetView.swift in Sources */,
 				622A99D8281E06FC00BB5E12 /* CheckboxSectionWidget+CoreDataClass.swift in Sources */,
 				62294F14281F8C3400226AF1 /* TextEditorWidgetView.swift in Sources */,

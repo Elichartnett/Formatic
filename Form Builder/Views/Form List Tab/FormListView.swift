@@ -21,7 +21,6 @@ struct FormListView: View {
     var body: some View {
         
         NavigationView {
-            
             List() {
                 ForEach(forms) { form in
                     NavigationLink {
