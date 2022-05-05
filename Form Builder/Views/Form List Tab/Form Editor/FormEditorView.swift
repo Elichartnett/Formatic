@@ -29,6 +29,7 @@ struct FormEditorView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             FormEditorView(form: dev.form)
+                .environmentObject(FormModel())
         }
         .navigationViewStyle(.stack)
     }

@@ -17,14 +17,16 @@ extension Section {
     }
     
     @NSManaged public var id: UUID
+    @NSManaged public var position: Int16
     @NSManaged public var title: String?
     @NSManaged public var widgets: NSSet?
     @NSManaged public var form: Form?
     
     /// Section convenience init
-    convenience init(id: UUID = UUID(), title: String?) {
+    convenience init(id: UUID = UUID(), position: Int, title: String?) {
         self.init(context: DataController.shared.container.viewContext)
         self.id = id
+        self.position = Int16(position)
         self.title = title
     }
     

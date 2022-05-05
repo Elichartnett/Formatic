@@ -49,7 +49,7 @@ class DeveloperPreview {
         form = Form(title: "Form title")
         
         // Add section
-        section = Section(title: "Section title")
+        section = Section(position: 0, title: "Section title")
         form.addToSections(section)
         
         newWidgetType = .textFieldWidget

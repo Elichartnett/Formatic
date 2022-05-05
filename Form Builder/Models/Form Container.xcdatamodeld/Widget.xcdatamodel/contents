@@ -52,6 +52,7 @@
     </entity>
     <entity name="Section" representedClassName="Section" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="position" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="form" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Form" inverseName="sections" inverseEntity="Form"/>
         <relationship name="widgets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Widget" inverseName="section" inverseEntity="Widget"/>
@@ -81,7 +82,7 @@
         <element name="NumberFieldWidget" positionX="-54" positionY="0" width="128" height="44"/>
         <element name="Photo" positionX="18" positionY="126" width="128" height="59"/>
         <element name="PhotoLibraryWidget" positionX="0" positionY="81" width="128" height="44"/>
-        <element name="Section" positionX="-9" positionY="99" width="128" height="89"/>
+        <element name="Section" positionX="-9" positionY="99" width="128" height="104"/>
         <element name="TextEditorWidget" positionX="-45" positionY="9" width="128" height="44"/>
         <element name="TextFieldWidget" positionX="-54" positionY="9" width="128" height="44"/>
         <element name="Widget" positionX="-63" positionY="-18" width="128" height="104"/>

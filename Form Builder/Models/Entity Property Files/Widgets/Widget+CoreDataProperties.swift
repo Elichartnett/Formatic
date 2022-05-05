@@ -23,11 +23,11 @@ extension Widget {
     @NSManaged public var section: Section?
     
     /// Widget convenience init
-    convenience init (title: String?, position: Int16, type: String) {
+    convenience init (title: String?, position: Int, type: String) {
         self.init(entity: NSEntityDescription.entity(forEntityName: type, in: DataController.shared.container.viewContext) ?? NSEntityDescription(), insertInto: DataController.shared.container.viewContext)
         self.id = UUID()
+        self.position = Int16(position)
         self.title = title
-        self.position = position
         self.type = type
     }
 }

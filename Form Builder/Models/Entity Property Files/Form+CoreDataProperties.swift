@@ -34,7 +34,7 @@ extension Form {
     var sectionsArray: [Section] {
         let set = sections as? Set<Section> ?? []
         return set.sorted { lhs, rhs in
-            lhs.title ?? "" < rhs.title ?? ""
+            lhs.position < rhs.position
         }
     }
 }

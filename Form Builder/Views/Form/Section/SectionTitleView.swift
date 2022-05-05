@@ -64,11 +64,11 @@ struct SectionTitleView: View {
             }
             .sheet(item: $newWidgetType) { newWidgetType in
                 NewWidgetView(newWidgetType: $newWidgetType, section: section)
+                    .font(Font.body)
             }
             
             TextField("Section title", text: $sectionTitle)
                 .font(Font.title.weight(.semibold))
-                .foregroundColor(.primary)
                 .onChange(of: sectionTitle) { newValue in
                     section.title = sectionTitle
                 }

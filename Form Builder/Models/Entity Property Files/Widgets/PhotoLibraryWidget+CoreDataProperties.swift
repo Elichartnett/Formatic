@@ -24,7 +24,7 @@ extension PhotoLibraryWidget {
     }
     
     /// PhotoLibrary  convenience init
-    convenience init(title: String?, position: Int16) {
+    convenience init(title: String?, position: Int) {
         self.init(title: title, position: position, type: WidgetType.photoLibraryWidget.rawValue)
     }
 }

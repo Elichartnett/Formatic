@@ -35,7 +35,7 @@ struct EditorViewToolbar: View {
             
             // Add section to form button
             Button {
-                form.addToSections(Section(title: nil))
+                form.addToSections(Section(position: form.sectionsArray.count, title: nil))
                 DataController.saveMOC()
             } label: {
                 HStack {

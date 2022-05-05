@@ -16,22 +16,28 @@ struct FormView: View {
     var body: some View {
         
         VStack {
-            InputBox(placeholder: "Form title", text: $formTitle)
-                .frame(width: 300)
-                .onChange(of: formTitle) { _ in
-                    form.title = formTitle
-                }
             
             List {
+                
+                SwiftUI.Section {
+                    EmptyView()
+                } header: {
+                    FormTitleView(form: form)
+                }
+                .textCase(.none)
+                .headerProminence(.increased)
+                
                 ForEach(form.sectionsArray) { section in
                     SwiftUI.Section {
                         SectionView(section: section)
                     } header: {
                         SectionTitleView(section: section)
                     }
+                    .headerProminence(.increased)
                 }
             }
         }
+        
     }
 }
 

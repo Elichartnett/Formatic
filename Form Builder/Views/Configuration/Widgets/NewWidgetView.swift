@@ -14,7 +14,6 @@ struct NewWidgetView: View {
     @ObservedObject var section: Section
     @State var type: String = ""
     @State var title: String = ""
-    @State var widget = Widget(title: nil, position: Int16(1), type: WidgetType.textFieldWidget.rawValue)
     
     var body: some View {
         

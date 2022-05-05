@@ -19,7 +19,7 @@ extension TextFieldWidget {
     @NSManaged public var text: String?
     
     /// TextFieldWidget  convenience init
-    convenience init(title: String?, position: Int16, text: String?) {
+    convenience init(title: String?, position: Int, text: String?) {
         self.init(title: title, position: position, type: WidgetType.textFieldWidget.rawValue)
         self.text = text
     }

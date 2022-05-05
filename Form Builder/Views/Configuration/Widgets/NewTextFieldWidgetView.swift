@@ -16,11 +16,13 @@ struct NewTextFieldWidgetView: View {
     @State var text: String = ""
     
     var body: some View {
+        
         VStack {
+            
             InputBox(placeholder: "text", text: $text)
             
             Button {
-                let textFieldWidget = TextFieldWidget(title: title, position: Int16(section.widgetsArray.count), text: text)
+                let textFieldWidget = TextFieldWidget(title: title, position: section.widgetsArray.count, text: text)
                 section.addToWidgets(textFieldWidget)
                 DataController.saveMOC()
                 newWidgetType = nil
