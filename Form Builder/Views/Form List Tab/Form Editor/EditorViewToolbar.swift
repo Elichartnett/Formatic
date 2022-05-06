@@ -14,6 +14,7 @@ struct EditorViewToolbar: View {
     @Binding var showExportToPDFView: Bool
     @Binding var showExportToTemplateView: Bool
     @Binding var showToggleLockView: Bool
+    @Binding var isEditing: Bool
     
     var body: some View {
         
@@ -59,11 +60,13 @@ struct EditorViewToolbar: View {
                 
                 // Enable edit mode to rearrange list of widgets
                 Button {
-                    
+                    withAnimation {
+                        isEditing.toggle()
+                    }
                 } label: {
                     HStack {
                         Image(systemName: "slider.horizontal.3")
-                        EditButton()
+                        Text(isEditing ? "Done" : "Edit")
                     }
                 }
                 .disabled(form.locked)
@@ -121,6 +124,6 @@ struct EditorViewToolbar: View {
 
 struct EditorViewToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        EditorViewToolbar(form: dev.form, showExportToPDFView: .constant(false), showExportToTemplateView: .constant(false), showToggleLockView: .constant(false))
+        EditorViewToolbar(form: dev.form, showExportToPDFView: .constant(false), showExportToTemplateView: .constant(false), showToggleLockView: .constant(false), isEditing: .constant(false))
     }
 }
