@@ -13,6 +13,7 @@ struct FormEditorView: View {
     @ObservedObject var form: Form
     @State var showExportToPDFView: Bool = false
     @State var showExportToTemplateView: Bool = false
+    @State var showToggleLockView: Bool = false
     
     var body: some View {
         
@@ -20,9 +21,12 @@ struct FormEditorView: View {
             FormView(form: form)
                 .toolbar(content: {
                     ToolbarItem(placement: .principal) {
-                        EditorViewToolbar(form: form, showExportToPDFView: $showExportToPDFView, showExportToTemplateView: $showExportToTemplateView)
+                        EditorViewToolbar(form: form, showExportToPDFView: $showExportToPDFView, showExportToTemplateView: $showExportToTemplateView, showToggleLockView: $showToggleLockView)
                     }
             })
+                .sheet(isPresented: $showToggleLockView) {
+                    ToggleLockView(showToggleLockView: $showToggleLockView, form: form)
+                }
         }
     }
 }

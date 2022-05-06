@@ -14,8 +14,6 @@ struct NewFormView: View {
     @Binding var showNewFormView: Bool
     @State var title: String = ""
     @State var password: String = ""
-    @State var showPasswordConfirmation: Bool = false
-    @State var passwordConfirmation: String = ""
     @State var validTitle: Bool = false
     @State var validPassword: Bool = true
     @State var isValid: Bool = false
@@ -41,37 +39,10 @@ struct NewFormView: View {
                     isValid = (validTitle && validPassword)
                 }
             
-            // Optional form password
-            InputBox(placeholder: "Optional password", text: $password, inputType: .password)
-                .onChange(of: password) { _ in
-                    if !password.isEmpty {
-                        withAnimation {
-                            showPasswordConfirmation = true
-                        }
-                    }
-                    else {
-                        withAnimation {
-                            showPasswordConfirmation = false
-                            validPassword = true
-                            passwordConfirmation = ""
-                        }
-                    }
+           PasswordView(validPassword: $validPassword, password: $password)
+                .onChange(of: validPassword) { _ in
                     isValid = (validTitle && validPassword)
                 }
-            
-            // Confirm password if optional password is used on form
-            if showPasswordConfirmation {
-                InputBox(placeholder: "Retype password", text: $passwordConfirmation, inputType: .password)
-                    .onChange(of: passwordConfirmation) { _ in
-                        if passwordConfirmation == password {
-                            validPassword = true
-                        }
-                        else {
-                            validPassword = false
-                        }
-                        isValid = (validTitle && validPassword)
-                    }
-            }
             
             // Submit button - create form and set lock if optional password is used
             Button {

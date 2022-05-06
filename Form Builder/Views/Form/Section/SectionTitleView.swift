@@ -10,6 +10,7 @@ import SwiftUI
 struct SectionTitleView: View {
     
     @ObservedObject var section: Section
+    @Binding var locked: Bool
     
     @State var newWidgetType: WidgetType?
     @State var sectionTitle: String = ""
@@ -73,6 +74,7 @@ struct SectionTitleView: View {
                     section.title = sectionTitle
                 }
         }
+        .disabled(locked)
         .textCase(.none)
         .onAppear {
             sectionTitle = section.title ?? ""
@@ -82,6 +84,6 @@ struct SectionTitleView: View {
 
 struct SectionTitleView_Previews: PreviewProvider {
     static var previews: some View {
-        SectionTitleView(section: dev.section)
+        SectionTitleView(section: dev.section, locked: .constant(dev.form.locked))
     }
 }

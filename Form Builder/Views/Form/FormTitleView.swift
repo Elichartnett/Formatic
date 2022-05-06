@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FormTitleView: View {
     
-    @State var form: Form
+    @ObservedObject var form: Form
     @State var formTitle: String = ""
     
     var body: some View {
@@ -27,6 +27,7 @@ struct FormTitleView: View {
             Rectangle()
                 .frame(height: 1)
         }
+        .disabled(form.locked)
     }
 }
 

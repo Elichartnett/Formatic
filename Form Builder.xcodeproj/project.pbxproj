@@ -29,6 +29,8 @@
 		62294F312821EC1300226AF1 /* NewCanvasWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F302821EC1300226AF1 /* NewCanvasWidgetView.swift */; };
 		62294F332822F0CC00226AF1 /* SectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F322822F0CC00226AF1 /* SectionTitleView.swift */; };
 		62294F3628231D5E00226AF1 /* FormTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F3528231D5E00226AF1 /* FormTitleView.swift */; };
+		62294F3B282580D900226AF1 /* ToggleLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F3A282580D900226AF1 /* ToggleLockView.swift */; };
+		62294F3D282589CE00226AF1 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F3C282589CE00226AF1 /* PasswordView.swift */; };
 		622A99CC281E03B700BB5E12 /* Widget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622A99CA281E03B700BB5E12 /* Widget+CoreDataClass.swift */; };
 		622A99CD281E03B700BB5E12 /* Widget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622A99CB281E03B700BB5E12 /* Widget+CoreDataProperties.swift */; };
 		622A99D0281E053C00BB5E12 /* DropdownWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622A99CE281E053C00BB5E12 /* DropdownWidget+CoreDataClass.swift */; };
@@ -96,6 +98,8 @@
 		62294F302821EC1300226AF1 /* NewCanvasWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCanvasWidgetView.swift; sourceTree = "<group>"; };
 		62294F322822F0CC00226AF1 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
 		62294F3528231D5E00226AF1 /* FormTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTitleView.swift; sourceTree = "<group>"; };
+		62294F3A282580D900226AF1 /* ToggleLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleLockView.swift; sourceTree = "<group>"; };
+		62294F3C282589CE00226AF1 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
 		622A99CA281E03B700BB5E12 /* Widget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		622A99CB281E03B700BB5E12 /* Widget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		622A99CE281E053C00BB5E12 /* DropdownWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DropdownWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				62294F06281F4F5B00226AF1 /* NewFormView.swift */,
+				62294F3C282589CE00226AF1 /* PasswordView.swift */,
 				62294F37282490E600226AF1 /* Widgets */,
 			);
 			path = Configuration;
@@ -308,6 +313,7 @@
 			children = (
 				629886F0281B929600C34782 /* FormEditorView.swift */,
 				629886F8281C343500C34782 /* EditorViewToolbar.swift */,
+				62294F3A282580D900226AF1 /* ToggleLockView.swift */,
 			);
 			path = "Form Editor";
 			sourceTree = "<group>";
@@ -483,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				629886F3281B92AA00C34782 /* FormListView.swift in Sources */,
+				62294F3D282589CE00226AF1 /* PasswordView.swift in Sources */,
 				629886E6281B902800C34782 /* Section+CoreDataClass.swift in Sources */,
 				62294F3628231D5E00226AF1 /* FormTitleView.swift in Sources */,
 				629886FF281C4DBF00C34782 /* SectionView.swift in Sources */,
@@ -531,6 +538,7 @@
 				62294F2B2821EBD900226AF1 /* NewCheckboxSectionWidgetView.swift in Sources */,
 				62294F312821EC1300226AF1 /* NewCanvasWidgetView.swift in Sources */,
 				6244314D281A152A00E21B11 /* TextEditorWidget+CoreDataClass.swift in Sources */,
+				62294F3B282580D900226AF1 /* ToggleLockView.swift in Sources */,
 				62294F0C281F519C00226AF1 /* InputBox.swift in Sources */,
 				62988709281C791400C34782 /* MapWidget+CoreDataClass.swift in Sources */,
 				622A99D5281E05A000BB5E12 /* CheckboxWidget+CoreDataProperties.swift in Sources */,

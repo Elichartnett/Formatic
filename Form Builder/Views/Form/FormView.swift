@@ -27,12 +27,12 @@ struct FormView: View {
             
             ForEach(form.sectionsArray) { section in
                 SwiftUI.Section {
-                    SectionView(section: section)
+                    SectionView(section: section, locked: $form.locked)
                         .onChange(of: section) { newValue in
                             print("changed")
                         }
                 } header: {
-                    SectionTitleView(section: section)
+                    SectionTitleView(section: section, locked: $form.locked)
                 }
                 .headerProminence(.increased)
             }

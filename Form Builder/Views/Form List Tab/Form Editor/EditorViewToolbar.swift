@@ -13,6 +13,7 @@ struct EditorViewToolbar: View {
     @ObservedObject var form: Form
     @Binding var showExportToPDFView: Bool
     @Binding var showExportToTemplateView: Bool
+    @Binding var showToggleLockView: Bool
     
     var body: some View {
         
@@ -21,16 +22,20 @@ struct EditorViewToolbar: View {
             Group {
                 Spacer()
                 
-                // Lock form button
+                // Lock and unlock form button
                 Button {
-                    form.locked.toggle()
+                    if form.locked || (!form.locked && form.password == nil) {
+                        showToggleLockView = true
+                    }
+                    else  {
+                        form.locked = true
+                    }
                 } label: {
                     HStack {
                         Image(systemName: form.locked == true ? "lock" : "lock.open")
                         Text(form.locked == true ? "Locked" : "Unlocked")
                     }
                 }
-                .disabled(form.password?.isEmpty ?? true)
             }
             
             Group {
@@ -107,7 +112,6 @@ struct EditorViewToolbar: View {
                         Text("Export")
                     }
                 }
-                .disabled(form.locked)
                 
                 Spacer()
             }
@@ -117,6 +121,6 @@ struct EditorViewToolbar: View {
 
 struct EditorViewToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        EditorViewToolbar(form: dev.form, showExportToPDFView: .constant(false), showExportToTemplateView: .constant(false))
+        EditorViewToolbar(form: dev.form, showExportToPDFView: .constant(false), showExportToTemplateView: .constant(false), showToggleLockView: .constant(false))
     }
 }

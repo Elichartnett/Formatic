@@ -12,6 +12,7 @@ struct SectionView: View {
     
     @Environment(\.managedObjectContext) var moc    
     @ObservedObject var section: Section
+    @Binding var locked: Bool
     
     var body: some View {
         
@@ -86,7 +87,7 @@ struct SectionView: View {
 
 struct SectionView_Previews: PreviewProvider {
     static var previews: some View {
-        SectionView(section: dev.form.sectionsArray.first!)
+        SectionView(section: dev.form.sectionsArray.first!, locked: .constant(dev.form.locked))
             .environmentObject(FormModel())
     }
 }
