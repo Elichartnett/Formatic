@@ -16,12 +16,14 @@ struct FormEditorView: View {
     
     var body: some View {
         
-        FormView(form: form)
-            .toolbar(content: {
-                ToolbarItem(placement: .principal) {
-                    EditorViewToolbar(form: form, showExportToPDFView: $showExportToPDFView, showExportToTemplateView: $showExportToTemplateView)
-                }
+        VStack {
+            FormView(form: form)
+                .toolbar(content: {
+                    ToolbarItem(placement: .principal) {
+                        EditorViewToolbar(form: form, showExportToPDFView: $showExportToPDFView, showExportToTemplateView: $showExportToTemplateView)
+                    }
             })
+        }
     }
 }
 

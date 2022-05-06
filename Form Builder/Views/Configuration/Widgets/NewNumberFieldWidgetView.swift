@@ -28,7 +28,7 @@ struct NewNumberFieldWidgetView: View {
                 }
             
             Button {
-                let numberFieldWidget = NumberFieldWidget(title: title, position: section.widgetsArray.count, number: number)
+                let numberFieldWidget = NumberFieldWidget(title: title, position: section.widgetsArray.count-1, number: number)
                 section.addToWidgets(numberFieldWidget)
                 DataController.saveMOC()
                 newWidgetType = nil

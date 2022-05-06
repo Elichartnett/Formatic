@@ -10,10 +10,11 @@ import SwiftUI
 // Displays form sections with section titles and widgets
 struct SectionView: View {
     
-    @Environment(\.managedObjectContext) var moc
+    @Environment(\.managedObjectContext) var moc    
     @ObservedObject var section: Section
     
     var body: some View {
+        
         // Display all widgets in section
         ForEach(section.widgetsArray) { widget in
             let widgetType: WidgetType = WidgetType.init(rawValue: widget.type!)!
@@ -58,6 +59,21 @@ struct SectionView: View {
                 CanvasWidgetView(canvasWidget: canvasWidget)
             }
         }
+        .onMove(perform: { indexSet, destination in
+            // Temporary array with new indexes
+            var movedArray = section.widgetsArray
+            movedArray.move(fromOffsets: indexSet, toOffset: destination)
+            
+            // Store new positions in core data
+            for (index, widget) in movedArray.enumerated() {
+                let coreDataWidget = section.widgetsArray.first { coreDataWidget in
+                    coreDataWidget.id == widget.id
+                }
+                coreDataWidget?.position = Int16(index)
+            }
+            section.objectWillChange.send()
+            DataController.saveMOC()
+        })
         .onDelete { indexSet in
             for index in indexSet {
                 let widget = section.widgetsArray[index]

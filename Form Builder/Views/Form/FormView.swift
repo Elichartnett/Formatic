@@ -15,35 +15,40 @@ struct FormView: View {
     
     var body: some View {
         
-        VStack {
+        List {
             
-            List {
-                
+            SwiftUI.Section {
+                EmptyView()
+            } header: {
+                FormTitleView(form: form)
+            }
+            .textCase(.none)
+            .headerProminence(.increased)
+            
+            ForEach(form.sectionsArray) { section in
                 SwiftUI.Section {
-                    EmptyView()
+                    SectionView(section: section)
+                        .onChange(of: section) { newValue in
+                            print("changed")
+                        }
                 } header: {
-                    FormTitleView(form: form)
+                    SectionTitleView(section: section)
                 }
-                .textCase(.none)
                 .headerProminence(.increased)
-                
-                ForEach(form.sectionsArray) { section in
-                    SwiftUI.Section {
-                        SectionView(section: section)
-                    } header: {
-                        SectionTitleView(section: section)
-                    }
-                    .headerProminence(.increased)
-                }
             }
         }
-        
+        .onDisappear {
+            DataController.saveMOC()
+        }
     }
 }
 
 struct FormView_Previews: PreviewProvider {
     static var previews: some View {
-        FormView(form: dev.form)
-            .environmentObject(FormModel())
+        NavigationView {
+            FormView(form: dev.form)
+                .environmentObject(FormModel())
+        }
+        .navigationViewStyle(.stack)
     }
 }

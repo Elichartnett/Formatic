@@ -18,7 +18,6 @@ struct FormTitleView: View {
             TextField("Form title", text: $formTitle)
                 .font(Font.largeTitle.weight(.bold))
                 .onAppear {
-                    print("setting")
                     formTitle = form.title ?? ""
                 }
                 .onChange(of: formTitle) { newValue in
