@@ -23,15 +23,15 @@ struct SectionView: View {
             switch widgetType {
             case .textFieldWidget:
                 let textFieldWidget = widget as! TextFieldWidget
-                TextFieldWidgetView(textFieldWidget: textFieldWidget)
+                TextFieldWidgetView(textFieldWidget: textFieldWidget, locked: $locked)
                 
             case .numberFieldWidget:
                 let numberFieldWidget = widget as! NumberFieldWidget
-                NumberFieldWidgetView(numberFieldWidget: numberFieldWidget)
+                NumberFieldWidgetView(numberFieldWidget: numberFieldWidget, locked: $locked)
                 
             case .textEditorWidget:
                 let textEditorWidget = widget as! TextEditorWidget
-                TextEditorWidgetView(textEditorWidget: textEditorWidget)
+                TextEditorWidgetView(textEditorWidget: textEditorWidget, locked: $locked)
                 
             case .dropdownWidget:
                 EmptyView()

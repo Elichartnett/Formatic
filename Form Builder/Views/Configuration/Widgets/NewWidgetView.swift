@@ -12,36 +12,37 @@ struct NewWidgetView: View {
     
     @Binding var newWidgetType: WidgetType?
     @ObservedObject var section: Section
-    @State var type: String = ""
-    @State var title: String = ""
+    @State var typeTitle: String = ""
+    @State var widgetTitle: String = ""
     
     var body: some View {
         
         VStack {
             
-            Text(type)
+            Text(typeTitle)
                 .font(.title)
                 .bold()
+                .padding(.top)
             
-            InputBox(placeholder: "Title", text: $title)
+            InputBox(placeholder: "Title", text: $widgetTitle)
             
             switch newWidgetType {
             case .textFieldWidget:
-                NewTextFieldWidgetView(newWidgetType: $newWidgetType, title: $title, section: section)
+                NewTextFieldWidgetView(newWidgetType: $newWidgetType, title: $widgetTitle, section: section)
                     .onAppear {
-                        type = "Text Field"
+                        typeTitle = "Text Field"
                     }
                 
             case .numberFieldWidget:
-                NewNumberFieldWidgetView(newWidgetType: $newWidgetType, title: $title, section: section)
+                NewNumberFieldWidgetView(newWidgetType: $newWidgetType, title: $widgetTitle, section: section)
                     .onAppear {
-                        type = "Number Field"
+                        typeTitle = "Number Field"
                     }
                 
             case .textEditorWidget:
-                NewTextEditorWidgetView()
+                NewTextEditorWidgetView(newWidgetType: $newWidgetType, title: $widgetTitle, section: section)
                     .onAppear {
-                        type = "Text Editor"
+                        typeTitle = "Text Editor"
                     }
                 
                 // Will be displayed in case .dropdownSectionWidget
@@ -51,7 +52,7 @@ struct NewWidgetView: View {
             case .dropdownSectionWidget:
                 NewDropdownSectionWidgetView()
                     .onAppear {
-                        type = "Dropdown Menu"
+                        typeTitle = "Dropdown Menu"
                     }
                 
                 // Will be displayed in case .checkboxSectionWidget
@@ -61,25 +62,25 @@ struct NewWidgetView: View {
             case .checkboxSectionWidget:
                 NewCheckboxSectionWidgetView()
                     .onAppear {
-                        type = "Checkboxes"
+                        typeTitle = "Checkboxes"
                     }
                 
             case .mapWidget:
                 NewMapWidgetView()
                     .onAppear {
-                        type = "Map"
+                        typeTitle = "Map"
                     }
                 
             case .photoLibraryWidget:
                 NewPhotoLibraryWidgetView()
                     .onAppear {
-                        type = "Photo Library"
+                        typeTitle = "Photo Library"
                     }
                 
             case .canvasWidget:
                 NewCanvasWidgetView()
                     .onAppear {
-                        type = "Canvas"
+                        typeTitle = "Canvas"
                     }
                 
             case .none:
@@ -92,6 +93,6 @@ struct NewWidgetView: View {
 
 struct ConfigureWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        NewWidgetView(newWidgetType: .constant(dev.newWidgetType), section: dev.section)
+        NewWidgetView(newWidgetType: .constant(.textEditorWidget), section: dev.section)
     }
 }

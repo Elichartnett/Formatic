@@ -10,6 +10,7 @@ import SwiftUI
 struct TextFieldWidgetView: View {
     
     @ObservedObject var textFieldWidget: TextFieldWidget
+    @Binding var locked: Bool
     @State var title: String = ""
     @State var text: String = ""
     
@@ -22,6 +23,7 @@ struct TextFieldWidgetView: View {
                 .onChange(of: title) { _ in
                     textFieldWidget.title = title
                 }
+                .disabled(locked)
             
             InputBox(placeholder: "text", text: $text)
                 .onChange(of: text) { _ in
@@ -37,6 +39,6 @@ struct TextFieldWidgetView: View {
 
 struct TextFieldWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        TextFieldWidgetView(textFieldWidget: dev.textFieldWidget)
+        TextFieldWidgetView(textFieldWidget: dev.textFieldWidget, locked: .constant(false))
     }
 }

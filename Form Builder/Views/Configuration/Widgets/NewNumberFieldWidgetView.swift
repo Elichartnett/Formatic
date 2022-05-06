@@ -24,7 +24,12 @@ struct NewNumberFieldWidgetView: View {
             InputBox(placeholder: "number", text: $number)
                 .foregroundColor(isValid ? .primary : .red)
                 .onChange(of: number) { _ in
-                    isValid = model.validNumber(number: number, range: range)
+                    if number.isEmpty {
+                        isValid = true
+                    }
+                    else {
+                        isValid = model.validNumber(number: number, range: range)
+                    }
                 }
             
             Button {

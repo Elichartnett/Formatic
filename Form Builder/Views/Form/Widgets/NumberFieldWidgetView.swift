@@ -11,6 +11,7 @@ struct NumberFieldWidgetView: View {
     
     @EnvironmentObject var model: FormModel
     @ObservedObject var numberFieldWidget: NumberFieldWidget
+    @Binding var locked: Bool
     @State var title: String = ""
     @State var number: String = ""
     var range: ClosedRange<Double>? = nil
@@ -25,6 +26,7 @@ struct NumberFieldWidgetView: View {
                 .onChange(of: title) { _ in
                     numberFieldWidget.title = title
                 }
+                .disabled(locked)
             
             InputBox(placeholder: "number", text: $number)
                 .onChange(of: number) { _ in
@@ -50,7 +52,7 @@ struct NumberFieldWidgetView: View {
 
 struct NumberFieldWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        NumberFieldWidgetView(numberFieldWidget: dev.numberFieldWidget)
+        NumberFieldWidgetView(numberFieldWidget: dev.numberFieldWidget, locked: .constant(false))
             .environmentObject(FormModel())
     }
 }
