@@ -68,6 +68,7 @@
 		62BAD46F2825CC9100955001 /* UTMConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 62BAD46E2825CC9100955001 /* UTMConversion */; };
 		62BFAC9528188B97006C8216 /* Form Container.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62BFAC9328188B97006C8216 /* Form Container.xcdatamodeld */; };
 		62D7FE952826B5F800FAA815 /* UTMConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 62D7FE942826B5F800FAA815 /* UTMConversion */; };
+		62D7FE992826B8AF00FAA815 /* CheckboxWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D7FE982826B8AF00FAA815 /* CheckboxWidgetView.swift */; };
 		62E6AB47281E0ED6009F568B /* Form+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E6AB46281E0ED6009F568B /* Form+CoreDataProperties.swift */; };
 		62E6AB4A281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E6AB48281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift */; };
 		62E6AB4B281ECBEA009F568B /* TextFieldWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E6AB49281ECBEA009F568B /* TextFieldWidget+CoreDataProperties.swift */; };
@@ -136,6 +137,7 @@
 		62988707281C791400C34782 /* MapWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		62988708281C791400C34782 /* MapWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62BFAC9428188B97006C8216 /* Widget.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Widget.xcdatamodel; sourceTree = "<group>"; };
+		62D7FE982826B8AF00FAA815 /* CheckboxWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxWidgetView.swift; sourceTree = "<group>"; };
 		62E6AB46281E0ED6009F568B /* Form+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62E6AB48281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		62E6AB49281ECBEA009F568B /* TextFieldWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -270,18 +272,11 @@
 			path = Dropdown;
 			sourceTree = "<group>";
 		};
-		6257F5482826253E00E167C4 /* Dropdown */ = {
-			isa = PBXGroup;
-			children = (
-				62294F15281F8C4800226AF1 /* DropdownSectionWidgetView.swift */,
-			);
-			path = Dropdown;
-			sourceTree = "<group>";
-		};
 		6257F5492826254500E167C4 /* Checkbox */ = {
 			isa = PBXGroup;
 			children = (
 				62294F17281F8C6B00226AF1 /* CheckboxSectionWidgetView.swift */,
+				62D7FE982826B8AF00FAA815 /* CheckboxWidgetView.swift */,
 			);
 			path = Checkbox;
 			sourceTree = "<group>";
@@ -355,7 +350,7 @@
 				62294F0F281F8C1C00226AF1 /* TextFieldWidgetView.swift */,
 				62294F11281F8C2800226AF1 /* NumberFieldWidgetView.swift */,
 				62294F13281F8C3400226AF1 /* TextEditorWidgetView.swift */,
-				6257F5482826253E00E167C4 /* Dropdown */,
+				62294F15281F8C4800226AF1 /* DropdownSectionWidgetView.swift */,
 				6257F5492826254500E167C4 /* Checkbox */,
 				62294F19281F8C7700226AF1 /* MapWidgetView.swift */,
 				62294F1B281F8C8C00226AF1 /* PhotoLibraryWidgetView.swift */,
@@ -530,6 +525,7 @@
 				62294F2D2821EBF600226AF1 /* NewMapWidgetView.swift in Sources */,
 				62E6AB47281E0ED6009F568B /* Form+CoreDataProperties.swift in Sources */,
 				62294F1A281F8C7700226AF1 /* MapWidgetView.swift in Sources */,
+				62D7FE992826B8AF00FAA815 /* CheckboxWidgetView.swift in Sources */,
 				629886F9281C343500C34782 /* EditorViewToolbar.swift in Sources */,
 				622A99D1281E053C00BB5E12 /* DropdownWidget+CoreDataProperties.swift in Sources */,
 				629886E1281B8F1000C34782 /* FormModel.swift in Sources */,

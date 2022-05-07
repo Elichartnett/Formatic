@@ -66,6 +66,7 @@ class DeveloperPreview {
         // Create DropdownSectionWidget section
         dropdownSectionWidget = DropdownSectionWidget(title: "Dropdown section title", position: 4)
         let dropdownWidget = DropdownWidget(title: "Dropdown option 1", position: 1)
+        dropdownSectionWidget.selectedDropdown = dropdownWidget
         dropdownSectionWidget.addToDropdowns(dropdownWidget)
         
         // Create CheckboxSectionWidget

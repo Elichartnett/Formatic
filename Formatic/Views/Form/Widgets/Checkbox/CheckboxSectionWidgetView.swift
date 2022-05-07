@@ -12,7 +12,13 @@ struct CheckboxSectionWidgetView: View {
     @ObservedObject var checkboxSectionWidget: CheckboxSectionWidget
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        let rows: [GridItem] = Array(repeating: GridItem(.flexible(minimum: 50, maximum: 100), spacing: nil, alignment: nil), count: 5)
+        LazyHGrid(rows: rows) {
+            ForEach(checkboxSectionWidget.checkboxesArray, id: \.self) { widget in
+                Text("")
+            }
+        }
     }
 }
 

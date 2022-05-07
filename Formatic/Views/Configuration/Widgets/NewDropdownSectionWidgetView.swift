@@ -13,21 +13,22 @@ struct NewDropdownSectionWidgetView: View {
     @Binding var newWidgetType: WidgetType?
     @Binding var title: String
     @State var section: Section
-    @State var numOptions: Int = 1
+    @State var numDropdowns: Int = 1
     @State var localDropdowns: [LocalDropdownWidget] = [LocalDropdownWidget()]
+    @State var isValid: Bool = false
     
     var body: some View {
         
         VStack {
             
             // Scroll wheel picker for selecting number of drop down options
-            Picker("Number of boxes", selection: $numOptions) {
+            Picker("Number of boxes", selection: $numDropdowns) {
                 ForEach(1...20, id: \.self) { index in
                     Text(String(index))
                 }
             }
             .pickerStyle(.wheel)
-            .onChange(of: numOptions) { newVal in
+            .onChange(of: numDropdowns) { newVal in
                 // Number decreased - remove trailing boxes
                 if newVal < localDropdowns.count {
                     withAnimation {
@@ -50,24 +51,37 @@ struct NewDropdownSectionWidgetView: View {
                 ForEach($localDropdowns) { $localDropdown in
                     InputBox(placeholder: "description", text: $localDropdown.title)
                 }
+                .padding()
+                .onChange(of: localDropdowns) { _ in
+                    if localDropdowns.contains(where: { localDropdown in
+                        localDropdown.title.isEmpty
+                    }) {
+                        isValid = false
+                    }
+                    else {
+                        isValid = true
+                    }
+                }
             }
-            .padding(.bottom)
             
             Button {
                 // Create dropdownSectionWidget
-                let dropdownSectionWidget = DropdownSectionWidget(title: title, position: section.widgetsArray.count-1, type: WidgetType.dropdownSectionWidget.rawValue)
-
+                let dropdownSectionWidget = DropdownSectionWidget(title: title, position: section.widgetsArray.count-1)
+                
                 // Append dropdown options to dropdownSectionWidget
                 for (index, localDropdown) in localDropdowns.enumerated() {
-                    let dropdownWidget = DropdownWidget(title: localDropdown.title, position: index, type: WidgetType.dropdownWidget.rawValue)
-                    dropdownSectionWidget.addToDropdowns(dropdownWidget)
+                    if !localDropdown.title.isEmpty {
+                        let dropdownWidget = DropdownWidget(title: localDropdown.title, position: index)
+                        dropdownSectionWidget.addToDropdowns(dropdownWidget)
+                    }
                 }
+                
                 // Append dropdownSectionWidget to form section
                 section.addToWidgets(dropdownSectionWidget)
                 DataController.saveMOC()
                 newWidgetType = nil
             } label: {
-                SubmitButton(isValid: .constant(true))
+                SubmitButton(isValid: $isValid)
             }
             .padding(.bottom)
         }
@@ -75,7 +89,7 @@ struct NewDropdownSectionWidgetView: View {
     }
 }
 
-struct LocalDropdownWidget: Identifiable {
+struct LocalDropdownWidget: Identifiable, Equatable {
     let id: UUID = UUID()
     var title: String = ""
 }

@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 
 extension DropdownSectionWidget {
@@ -16,11 +17,15 @@ extension DropdownSectionWidget {
         return NSFetchRequest<DropdownSectionWidget>(entityName: "DropdownSectionWidget")
     }
     
+    @NSManaged public var selectedDropdown: DropdownWidget?
     @NSManaged public var dropdowns: NSSet?
     
     public var dropdownsArray: [DropdownWidget] {
         let set = dropdowns as? Set<DropdownWidget> ?? []
-        return Array(set)
+        
+        return set.sorted { lhs, rhs in
+            lhs.position < rhs.position
+        }
     }
     
     /// DropdownSectionWidget  convenience init
