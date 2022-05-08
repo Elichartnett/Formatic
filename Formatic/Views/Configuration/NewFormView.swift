@@ -14,6 +14,7 @@ struct NewFormView: View {
     @Binding var showNewFormView: Bool
     @State var title: String = ""
     @State var password: String = ""
+    @State var titleEmpty: Bool = true
     @State var validTitle: Bool = false
     @State var validPassword: Bool = true
     @State var isValid: Bool = false
@@ -28,21 +29,30 @@ struct NewFormView: View {
             // Form title
             InputBox(placeholder: "Title", text: $title)
                 .onChange(of: title) { _ in
-                    if !title.isEmpty && !forms.contains(where: { form in
-                        form.title == title
-                    }) {
-                        validTitle = true
-                    }
-                    else {
-                        validTitle = false
-                    }
                     withAnimation {
-                        isValid = (validTitle && validPassword)
-
+                        if title.isEmpty {
+                            titleEmpty = true
+                        }
+                        else {
+                            titleEmpty = false
+                        }
+                        
+                        if forms.contains(where: { form in
+                            form.title == title
+                        }) {
+                            validTitle = false
+                        }
+                        else {
+                            validTitle = true
+                        }
+                        if !titleEmpty && validTitle {
+                            isValid = true
+                        }
                     }
                 }
             
-           PasswordView(validPassword: $validPassword, password: $password)
+            
+            PasswordView(validPassword: $validPassword, password: $password)
                 .onChange(of: validPassword) { _ in
                     withAnimation {
                         isValid = (validTitle && validPassword)
@@ -59,20 +69,18 @@ struct NewFormView: View {
                 DataController.saveMOC()
                 showNewFormView = false
             } label: {
-                VStack {
-                    SubmitButton(isValid: $isValid)
-                    
-                    if !validTitle && !title.isEmpty {
-                        Text("Title already in use")
-                            .foregroundColor(.red)
-                    }
-                    if !validPassword {
-                        Text("Passwords do not match")
-                            .foregroundColor(.red)
-                    }
-                }
+                SubmitButton(isValid: $isValid)
             }
             .disabled(!(validTitle && validPassword))
+            
+            if !validTitle && !titleEmpty {
+                Text("Title already in use")
+                    .foregroundColor(.red)
+            }
+            if !validPassword {
+                Text("Passwords do not match")
+                    .foregroundColor(.red)
+            }
         }
         .padding(.horizontal)
     }

@@ -41,10 +41,14 @@ struct PasswordView: View {
                 InputBox(placeholder: "Retype password", text: $passwordConfirmation, inputType: .password)
                     .onChange(of: passwordConfirmation) { _ in
                         if passwordConfirmation == password {
-                            validPassword = true
+                            withAnimation {
+                                validPassword = true
+                            }
                         }
                         else {
-                            validPassword = false
+                            withAnimation {
+                                validPassword = false
+                            }
                         }
                     }
             }
