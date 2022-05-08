@@ -21,14 +21,12 @@ struct PasswordView: View {
             // Optional form password
             InputBox(placeholder: "Optional password", text: $password, inputType: .password)
                 .onChange(of: password) { _ in
-                    if !password.isEmpty {
-                        withAnimation {
+                    withAnimation {
+                        if !password.isEmpty {
                             validPassword = false
                             showPasswordConfirmation = true
                         }
-                    }
-                    else {
-                        withAnimation {
+                        else {
                             validPassword = true
                             showPasswordConfirmation = false
                             passwordConfirmation = ""
@@ -40,13 +38,11 @@ struct PasswordView: View {
             if showPasswordConfirmation {
                 InputBox(placeholder: "Retype password", text: $passwordConfirmation, inputType: .password)
                     .onChange(of: passwordConfirmation) { _ in
-                        if passwordConfirmation == password {
-                            withAnimation {
+                        withAnimation {
+                            if passwordConfirmation == password {
                                 validPassword = true
                             }
-                        }
-                        else {
-                            withAnimation {
+                            else {
                                 validPassword = false
                             }
                         }

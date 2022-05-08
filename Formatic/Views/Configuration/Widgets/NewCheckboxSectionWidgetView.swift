@@ -17,7 +17,7 @@ struct NewCheckboxSectionWidgetView: View {
     @State var localCheckboxes: [LocalCheckboxWidget] = [LocalCheckboxWidget()]
     
     var body: some View {
-
+        
         VStack {
             
             // Scroll wheel picker for selecting number of checkboxes
@@ -28,17 +28,15 @@ struct NewCheckboxSectionWidgetView: View {
             }
             .pickerStyle(.wheel)
             .onChange(of: numCheckboxes) { newVal in
-                // Number decreased - remove trailing boxes
-                if newVal < localCheckboxes.count {
-                    withAnimation {
+                withAnimation {
+                    // Number decreased - remove trailing boxes
+                    if newVal < localCheckboxes.count {
                         localCheckboxes.removeSubrange(newVal..<localCheckboxes.count)
                     }
-                }
-                // Number increased - append more boxes
-                else {
-                    let numToAdd = newVal - localCheckboxes.count
-                    for _ in 0..<numToAdd {
-                        withAnimation {
+                    // Number increased - append more boxes
+                    else {
+                        let numToAdd = newVal - localCheckboxes.count
+                        for _ in 0..<numToAdd {
                             localCheckboxes.append(LocalCheckboxWidget())
                         }
                     }
@@ -64,8 +62,10 @@ struct NewCheckboxSectionWidgetView: View {
                 }
                 
                 // Append dropdownSectionWidget to form section
-                section.addToWidgets(checkboxSectionWidget)
-                DataController.saveMOC()
+                withAnimation {
+                    section.addToWidgets(checkboxSectionWidget)
+                    DataController.saveMOC()
+                }
                 newWidgetType = nil
             } label: {
                 SubmitButton(isValid: .constant(true))

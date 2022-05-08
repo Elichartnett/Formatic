@@ -24,13 +24,11 @@ struct NewNumberFieldWidgetView: View {
             InputBox(placeholder: "number", text: $number)
                 .foregroundColor(isValid ? .primary : .red)
                 .onChange(of: number) { _ in
-                    if number.isEmpty {
-                        withAnimation {
+                    withAnimation {
+                        if number.isEmpty {
                             isValid = true
                         }
-                    }
-                    else {
-                        withAnimation {
+                        else {
                             isValid = model.validNumber(number: number, range: range)
                         }
                     }
@@ -38,8 +36,10 @@ struct NewNumberFieldWidgetView: View {
             
             Button {
                 let numberFieldWidget = NumberFieldWidget(title: title, position: section.widgetsArray.count-1, number: number)
-                section.addToWidgets(numberFieldWidget)
-                DataController.saveMOC()
+                withAnimation {
+                    section.addToWidgets(numberFieldWidget)
+                    DataController.saveMOC()
+                }
                 newWidgetType = nil
             } label: {
                 SubmitButton(isValid: $isValid)

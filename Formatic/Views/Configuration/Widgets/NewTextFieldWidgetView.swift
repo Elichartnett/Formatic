@@ -23,8 +23,10 @@ struct NewTextFieldWidgetView: View {
             
             Button {
                 let textFieldWidget = TextFieldWidget(title: title, position: section.widgetsArray.count-1, text: text)
-                section.addToWidgets(textFieldWidget)
-                DataController.saveMOC()
+                withAnimation {
+                    section.addToWidgets(textFieldWidget)
+                    DataController.saveMOC()
+                }
                 newWidgetType = nil
             } label: {
                 SubmitButton(isValid: .constant(true))

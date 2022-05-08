@@ -61,13 +61,16 @@ struct NewFormView: View {
             
             // Submit button - create form and set lock if optional password is used
             Button {
-                let form = Form(title: title)
-                if !password.isEmpty {
-                    form.password = password
-                    form.locked = true
+                withAnimation {
+                    let form = Form(title: title)
+                    if !password.isEmpty {
+                        form.password = password
+                        form.locked = true
+                    }
+                    DataController.saveMOC()
                 }
-                DataController.saveMOC()
                 showNewFormView = false
+                
             } label: {
                 SubmitButton(isValid: $isValid)
             }

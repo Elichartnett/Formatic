@@ -60,9 +60,7 @@ struct EditorViewToolbar: View {
                 
                 // Enable edit mode to rearrange list of widgets
                 Button {
-                    withAnimation {
-                        isEditing.toggle()
-                    }
+                    isEditing.toggle()
                 } label: {
                     HStack {
                         Image(systemName: "slider.horizontal.3")

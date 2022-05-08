@@ -29,17 +29,15 @@ struct NewDropdownSectionWidgetView: View {
             }
             .pickerStyle(.wheel)
             .onChange(of: numDropdowns) { newVal in
-                // Number decreased - remove trailing boxes
-                if newVal < localDropdowns.count {
-                    withAnimation {
+                withAnimation {
+                    // Number decreased - remove trailing boxes
+                    if newVal < localDropdowns.count {
                         localDropdowns.removeSubrange(newVal..<localDropdowns.count)
                     }
-                }
-                // Number increased - append more boxes
-                else {
-                    let numToAdd = newVal - localDropdowns.count
-                    for _ in 0..<numToAdd {
-                        withAnimation {
+                    // Number increased - append more boxes
+                    else {
+                        let numToAdd = newVal - localDropdowns.count
+                        for _ in 0..<numToAdd {
                             localDropdowns.append(LocalDropdownWidget())
                         }
                     }
@@ -53,15 +51,13 @@ struct NewDropdownSectionWidgetView: View {
                 }
                 .padding()
                 .onChange(of: localDropdowns) { _ in
-                    if localDropdowns.contains(where: { localDropdown in
-                        localDropdown.title.isEmpty
-                    }) {
-                        withAnimation {
+                    withAnimation {
+                        if localDropdowns.contains(where: { localDropdown in
+                            localDropdown.title.isEmpty
+                        }) {
                             isValid = false
                         }
-                    }
-                    else {
-                        withAnimation {
+                        else {
                             isValid = true
                         }
                     }
@@ -81,8 +77,10 @@ struct NewDropdownSectionWidgetView: View {
                 }
                 
                 // Append dropdownSectionWidget to form section
-                section.addToWidgets(dropdownSectionWidget)
-                DataController.saveMOC()
+                withAnimation {
+                    section.addToWidgets(dropdownSectionWidget)
+                    DataController.saveMOC()
+                }
                 newWidgetType = nil
             } label: {
                 SubmitButton(isValid: $isValid)

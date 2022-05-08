@@ -9,13 +9,13 @@ import SwiftUI
 
 // In new widget sheet to configure new TextEditorWidget
 struct NewTextEditorWidgetView: View {
-        
+    
     @Binding var newWidgetType: WidgetType?
     @Binding var title: String
     @FocusState var isFocused: Bool
     @State var section: Section
     @State var text: String = ""
-
+    
     var body: some View {
         
         VStack {
@@ -26,7 +26,7 @@ struct NewTextEditorWidgetView: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(isFocused ? .blue : .secondary, lineWidth: 2)
                     )
-                .focused($isFocused)
+                    .focused($isFocused)
                 
                 if text.isEmpty {
                     Text("Start type here...")
@@ -38,8 +38,10 @@ struct NewTextEditorWidgetView: View {
             
             Button {
                 let textEditorWidget = TextEditorWidget(title: title, position: section.widgetsArray.count-1, text: text)
-                section.addToWidgets(textEditorWidget)
-                DataController.saveMOC()
+                withAnimation {
+                    section.addToWidgets(textEditorWidget)
+                    DataController.saveMOC()
+                }
                 newWidgetType = nil
             } label: {
                 SubmitButton(isValid: .constant(true))
