@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6208345828283A2F00DF864F /* CheckboxWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BB28277BFF0067C0A3 /* CheckboxWidget+CoreDataClass.swift */; };
 		62294F07281F4F5B00226AF1 /* NewFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F06281F4F5B00226AF1 /* NewFormView.swift */; };
 		62294F0C281F519C00226AF1 /* InputBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F0B281F519C00226AF1 /* InputBox.swift */; };
 		62294F0E281F61B900226AF1 /* SubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F0D281F61B900226AF1 /* SubmitButton.swift */; };
@@ -61,7 +62,6 @@
 		6298870A281C791400C34782 /* MapWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62988708281C791400C34782 /* MapWidget+CoreDataProperties.swift */; };
 		62A979B628276D9C0067C0A3 /* DropdownWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979B428276D9C0067C0A3 /* DropdownWidget+CoreDataProperties.swift */; };
 		62A979BA28276E080067C0A3 /* DropdownSectionWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979B828276E080067C0A3 /* DropdownSectionWidget+CoreDataProperties.swift */; };
-		62A979BF28277BFF0067C0A3 /* CheckboxWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BB28277BFF0067C0A3 /* CheckboxWidget+CoreDataClass.swift */; };
 		62A979C028277BFF0067C0A3 /* CheckboxWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BC28277BFF0067C0A3 /* CheckboxWidget+CoreDataProperties.swift */; };
 		62A979C128277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BD28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift */; };
 		62A979C228277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BE28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift */; };
@@ -131,9 +131,9 @@
 		62988707281C791400C34782 /* MapWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		62988708281C791400C34782 /* MapWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62A979B428276D9C0067C0A3 /* DropdownWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DropdownWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		62A979B828276E080067C0A3 /* DropdownSectionWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DropdownSectionWidget+CoreDataProperties.swift"; path = "../../../../../DropdownSectionWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		62A979BB28277BFF0067C0A3 /* CheckboxWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CheckboxWidget+CoreDataClass.swift"; path = "../../../../../CheckboxWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
-		62A979BC28277BFF0067C0A3 /* CheckboxWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CheckboxWidget+CoreDataProperties.swift"; path = "../../../../../CheckboxWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		62A979B828276E080067C0A3 /* DropdownSectionWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DropdownSectionWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		62A979BB28277BFF0067C0A3 /* CheckboxWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckboxWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
+		62A979BC28277BFF0067C0A3 /* CheckboxWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckboxWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62A979BD28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckboxSectionWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		62A979BE28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckboxSectionWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62BFAC9428188B97006C8216 /* Widget.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Widget.xcdatamodel; sourceTree = "<group>"; };
@@ -507,7 +507,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62A979BF28277BFF0067C0A3 /* CheckboxWidget+CoreDataClass.swift in Sources */,
 				62A979BA28276E080067C0A3 /* DropdownSectionWidget+CoreDataProperties.swift in Sources */,
 				629886F3281B92AA00C34782 /* FormListView.swift in Sources */,
 				62294F3D282589CE00226AF1 /* PasswordView.swift in Sources */,
@@ -536,6 +535,7 @@
 				629886F1281B929600C34782 /* FormEditorView.swift in Sources */,
 				62294F332822F0CC00226AF1 /* SectionTitleView.swift in Sources */,
 				62294F10281F8C1C00226AF1 /* TextFieldWidgetView.swift in Sources */,
+				6208345828283A2F00DF864F /* CheckboxWidget+CoreDataClass.swift in Sources */,
 				62294F14281F8C3400226AF1 /* TextEditorWidgetView.swift in Sources */,
 				62A979C228277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift in Sources */,
 				62294F2F2821EC0A00226AF1 /* NewPhotoLibraryWidgetView.swift in Sources */,
