@@ -1,6 +1,6 @@
 //
 //  ConfigureWidgetView.swift
-// Formatic
+//  Formatic
 //
 //  Created by Eli Hartnett on 5/3/22.
 //
@@ -60,7 +60,7 @@ struct NewWidgetView: View {
                 EmptyView()
                 
             case .checkboxSectionWidget:
-                NewCheckboxSectionWidgetView()
+                NewCheckboxSectionWidgetView(newWidgetType: $newWidgetType, title: $widgetTitle, section: section)
                     .onAppear {
                         typeTitle = "Checkboxes"
                     }

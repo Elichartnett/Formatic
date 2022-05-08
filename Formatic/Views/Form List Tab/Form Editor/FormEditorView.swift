@@ -1,6 +1,6 @@
 //
 //  FormEditorView.swift
-// Formatic
+//  Formatic
 //
 //  Created by Eli Hartnett on 4/28/22.
 //

@@ -1,6 +1,6 @@
 //
 //  NumberFieldWidgetView.swift
-// Formatic
+//  Formatic
 //
 //  Created by Eli Hartnett on 5/1/22.
 //

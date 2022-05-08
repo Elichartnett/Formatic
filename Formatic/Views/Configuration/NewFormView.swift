@@ -1,6 +1,6 @@
 //
 //  NewFormView.swift
-// Formatic
+//  Formatic
 //
 //  Created by Eli Hartnett on 5/1/22.
 //
@@ -36,12 +36,17 @@ struct NewFormView: View {
                     else {
                         validTitle = false
                     }
-                    isValid = (validTitle && validPassword)
+                    withAnimation {
+                        isValid = (validTitle && validPassword)
+
+                    }
                 }
             
            PasswordView(validPassword: $validPassword, password: $password)
                 .onChange(of: validPassword) { _ in
-                    isValid = (validTitle && validPassword)
+                    withAnimation {
+                        isValid = (validTitle && validPassword)
+                    }
                 }
             
             // Submit button - create form and set lock if optional password is used

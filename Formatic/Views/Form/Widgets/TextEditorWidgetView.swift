@@ -1,6 +1,6 @@
 //
 //  TextEditorWidgetView.swift
-// Formatic
+//  Formatic
 //
 //  Created by Eli Hartnett on 5/1/22.
 //
@@ -21,6 +21,10 @@ struct TextEditorWidgetView: View {
             
             InputBox(placeholder: "Title", text: $title)
                 .titleFrameStyle()
+                .onAppear {
+                    title = textEditorWidget.title ?? ""
+                    text = textEditorWidget.text ?? ""
+                }
                 .onChange(of: title) { _ in
                     textEditorWidget.title = title
                 }
@@ -33,10 +37,10 @@ struct TextEditorWidgetView: View {
                             .stroke(isFocused ? .blue : .secondary, lineWidth: 2)
                     )
                     .frame(height: 200)
-                .focused($isFocused)
-                .onChange(of: text) { _ in
-                    textEditorWidget.text = text
-                }
+                    .focused($isFocused)
+                    .onChange(of: text) { _ in
+                        textEditorWidget.text = text
+                    }
                 
                 if text.isEmpty {
                     Text("Start typing here...")
@@ -45,10 +49,6 @@ struct TextEditorWidgetView: View {
                         .padding(.leading, 5)
                 }
             }
-            .onAppear {
-                title = textEditorWidget.title ?? ""
-                text = textEditorWidget.text ?? ""
-        }
         }
     }
 }

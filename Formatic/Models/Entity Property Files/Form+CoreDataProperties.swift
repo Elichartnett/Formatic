@@ -1,6 +1,6 @@
 //
 //  Form+CoreDataProperties.swift
-// Formatic
+//  Formatic
 //
 //  Created by Eli Hartnett on 4/30/22.
 //
@@ -16,7 +16,7 @@ extension Form {
         return NSFetchRequest<Form>(entityName: "Form")
     }
 
-    @NSManaged public var id: UUID?
+    @NSManaged public var id: UUID
     @NSManaged public var locked: Bool
     @NSManaged public var password: String?
     @NSManaged public var title: String?

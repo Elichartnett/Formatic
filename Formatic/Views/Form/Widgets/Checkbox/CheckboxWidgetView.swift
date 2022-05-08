@@ -9,28 +9,30 @@ import SwiftUI
 
 struct CheckboxWidgetView: View {
     
-    @Binding var checked: Bool
+    @ObservedObject var checkbox: CheckboxWidget
     
     var body: some View {
         
         Button {
             withAnimation {
-                checked.toggle()
+                checkbox.checked.toggle()
+                DataController.saveMOC()
             }
         } label: {
-            if checked {
+            if checkbox.checked {
                 Image(systemName: "checkmark.square.fill")
             }
             else {
                 Image(systemName: "square")
             }
         }
+        .buttonStyle(.plain)
         .foregroundColor(.black)
     }
 }
 
 struct CheckboxWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckboxWidgetView(checked: .constant(false))
+        CheckboxWidgetView(checkbox: dev.checkboxWidget)
     }
 }

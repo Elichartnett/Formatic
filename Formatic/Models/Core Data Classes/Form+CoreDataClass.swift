@@ -1,6 +1,6 @@
 //
 //  Form+CoreDataClass.swift
-// Formatic
+//  Formatic
 //
 //  Created by Eli Hartnett on 4/30/22.
 //

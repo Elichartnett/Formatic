@@ -1,8 +1,8 @@
 //
 //  CheckboxSectionWidget+CoreDataClass.swift
-// Formatic
+//  Formatic
 //
-//  Created by Eli Hartnett on 4/30/22.
+//  Created by Eli Hartnett on 5/7/22.
 //
 //
 

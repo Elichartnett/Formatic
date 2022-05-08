@@ -1,6 +1,6 @@
 //
 //  NewDropdownSectionWidgetView.swift
-// Formatic
+//  Formatic
 //
 //  Created by Eli Hartnett on 5/3/22.
 //
@@ -47,7 +47,7 @@ struct NewDropdownSectionWidgetView: View {
             }
             
             ScrollView {
-                // Drop down options
+                // Configure drop down options
                 ForEach($localDropdowns) { $localDropdown in
                     InputBox(placeholder: "description", text: $localDropdown.title)
                 }
@@ -56,10 +56,14 @@ struct NewDropdownSectionWidgetView: View {
                     if localDropdowns.contains(where: { localDropdown in
                         localDropdown.title.isEmpty
                     }) {
-                        isValid = false
+                        withAnimation {
+                            isValid = false
+                        }
                     }
                     else {
-                        isValid = true
+                        withAnimation {
+                            isValid = true
+                        }
                     }
                 }
             }

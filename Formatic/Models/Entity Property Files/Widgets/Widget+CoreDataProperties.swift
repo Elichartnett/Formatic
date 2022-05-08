@@ -1,6 +1,6 @@
 //
 //  Widget+CoreDataProperties.swift
-// Formatic
+//  Formatic
 //
 //  Created by Eli Hartnett on 4/30/22.
 //
@@ -32,6 +32,6 @@ extension Widget {
     }
 }
 
-extension Widget : Identifiable {
+extension Widget: Identifiable {
 
 }

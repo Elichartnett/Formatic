@@ -1,6 +1,6 @@
 //
 //  NewNumberFieldView.swift
-// Formatic
+//  Formatic
 //
 //  Created by Eli Hartnett on 5/3/22.
 //
@@ -25,10 +25,14 @@ struct NewNumberFieldWidgetView: View {
                 .foregroundColor(isValid ? .primary : .red)
                 .onChange(of: number) { _ in
                     if number.isEmpty {
-                        isValid = true
+                        withAnimation {
+                            isValid = true
+                        }
                     }
                     else {
-                        isValid = model.validNumber(number: number, range: range)
+                        withAnimation {
+                            isValid = model.validNumber(number: number, range: range)
+                        }
                     }
                 }
             

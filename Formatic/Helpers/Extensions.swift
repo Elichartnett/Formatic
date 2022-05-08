@@ -1,6 +1,6 @@
 //
 //  Extensions.swift
-// Formatic
+//  Formatic
 //
 //  Created by Eli Hartnett on 4/29/22.
 //
@@ -37,7 +37,9 @@ class DeveloperPreview {
     let textFieldWidget: TextFieldWidget
     let numberFieldWidget: NumberFieldWidget
     let textEditorWidget: TextEditorWidget
+    let dropdownWidget: DropdownWidget
     let dropdownSectionWidget: DropdownSectionWidget
+    let checkboxWidget: CheckboxWidget
     let checkboxSectionWidget: CheckboxSectionWidget
     let mapWidget: MapWidget
     let photoLibraryWidget: PhotoLibraryWidget
@@ -65,13 +67,13 @@ class DeveloperPreview {
         
         // Create DropdownSectionWidget section
         dropdownSectionWidget = DropdownSectionWidget(title: "Dropdown section title", position: 4)
-        let dropdownWidget = DropdownWidget(title: "Dropdown option 1", position: 1)
+        dropdownWidget = DropdownWidget(title: "Dropdown option 1", position: 0)
         dropdownSectionWidget.selectedDropdown = dropdownWidget
         dropdownSectionWidget.addToDropdowns(dropdownWidget)
         
         // Create CheckboxSectionWidget
         checkboxSectionWidget = CheckboxSectionWidget(title: "Checkbox section title", position: 5)
-        let checkboxWidget = CheckboxWidget(title: "Checkbox option 1", position: 1)
+        checkboxWidget = CheckboxWidget(title: "Checkbox 1", position: 0)
         checkboxSectionWidget.addToCheckboxes(checkboxWidget)
         
         // Create MapWidget

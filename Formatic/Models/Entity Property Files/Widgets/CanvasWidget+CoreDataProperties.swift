@@ -1,6 +1,6 @@
 //
 //  CanvasWidget+CoreDataProperties.swift
-// Formatic
+//  Formatic
 //
 //  Created by Eli Hartnett on 4/27/22.
 //

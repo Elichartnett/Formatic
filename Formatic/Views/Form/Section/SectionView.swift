@@ -1,6 +1,6 @@
 //
 //  SectionView.swift
-// Formatic
+//  Formatic
 //
 //  Created by Eli Hartnett on 4/29/22.
 //
@@ -38,14 +38,14 @@ struct SectionView: View {
                 
             case .dropdownSectionWidget:
                 let dropdownSectionWidget = widget as! DropdownSectionWidget
-                DropdownSectionWidgetView(dropdownWidgetSection: dropdownSectionWidget, locked: $locked)
+                DropdownSectionWidgetView(dropdownSectionWidget: dropdownSectionWidget, locked: $locked)
                 
             case .checkboxWidget:
                 EmptyView()
                 
             case .checkboxSectionWidget:
                 let checkboxSectionWidget = widget as! CheckboxSectionWidget
-                CheckboxSectionWidgetView(checkboxSectionWidget: checkboxSectionWidget)
+                CheckboxSectionWidgetView(checkboxSectionWidget: checkboxSectionWidget, locked: $locked)
                 
             case .mapWidget:
                 let mapWidget = widget as! MapWidget

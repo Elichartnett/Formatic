@@ -1,8 +1,8 @@
 //
 //  DropdownWidget+CoreDataProperties.swift
-// Formatic
+//  Formatic
 //
-//  Created by Eli Hartnett on 4/30/22.
+//  Created by Eli Hartnett on 5/7/22.
 //
 //
 
@@ -17,8 +17,9 @@ extension DropdownWidget {
     }
 
     @NSManaged public var dropdownSection: DropdownSectionWidget?
-    @NSManaged public var sectionWithSelection: DropdownSectionWidget?
+    @NSManaged public var selectedDropdownInverse: DropdownSectionWidget?
 
+    
     /// DropdownWidget  convenience init
     convenience init(title: String?, position: Int) {
         self.init(title: title, position: position, type: WidgetType.dropdownWidget.rawValue)
