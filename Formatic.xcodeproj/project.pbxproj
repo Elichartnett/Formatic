@@ -72,6 +72,11 @@
 		62E6AB47281E0ED6009F568B /* Form+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E6AB46281E0ED6009F568B /* Form+CoreDataProperties.swift */; };
 		62E6AB4A281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E6AB48281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift */; };
 		62E6AB4B281ECBEA009F568B /* TextFieldWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E6AB49281ECBEA009F568B /* TextFieldWidget+CoreDataProperties.swift */; };
+		62E7F87B282EE1E4004A95EF /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E7F87A282EE1E4004A95EF /* LocationManager.swift */; };
+		62E7F87D282EE713004A95EF /* DeveloperPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E7F87C282EE713004A95EF /* DeveloperPreview.swift */; };
+		62F8FE66282CA814005C8D73 /* AddAnnotationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8FE65282CA814005C8D73 /* AddAnnotationsView.swift */; };
+		62F8FE69282DAC9F005C8D73 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8FE68282DAC9F005C8D73 /* MapView.swift */; };
+		62F8FE6B282DAD49005C8D73 /* MapWidgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8FE6A282DAD49005C8D73 /* MapWidgetDetailView.swift */; };
 		62FE6E6C28187058009D41FD /* Formatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FE6E6B28187058009D41FD /* Formatic.swift */; };
 		62FE6E6E28187058009D41FD /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FE6E6D28187058009D41FD /* Home.swift */; };
 		62FE6E7028187059009D41FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62FE6E6F28187059009D41FD /* Assets.xcassets */; };
@@ -141,6 +146,11 @@
 		62E6AB46281E0ED6009F568B /* Form+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62E6AB48281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		62E6AB49281ECBEA009F568B /* TextFieldWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		62E7F87A282EE1E4004A95EF /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		62E7F87C282EE713004A95EF /* DeveloperPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperPreview.swift; sourceTree = "<group>"; };
+		62F8FE65282CA814005C8D73 /* AddAnnotationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnnotationsView.swift; sourceTree = "<group>"; };
+		62F8FE68282DAC9F005C8D73 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		62F8FE6A282DAD49005C8D73 /* MapWidgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWidgetDetailView.swift; sourceTree = "<group>"; };
 		62FE6E6828187058009D41FD /* Formatic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Formatic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62FE6E6B28187058009D41FD /* Formatic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatic.swift; sourceTree = "<group>"; };
 		62FE6E6D28187058009D41FD /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -212,6 +222,8 @@
 				6244311E281A130000E21B11 /* DataController.swift */,
 				629886DA281B578800C34782 /* Enums.swift */,
 				62988700281C57B100C34782 /* Extensions.swift */,
+				62E7F87C282EE713004A95EF /* DeveloperPreview.swift */,
+				62E7F87A282EE1E4004A95EF /* LocationManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -352,11 +364,22 @@
 				62294F13281F8C3400226AF1 /* TextEditorWidgetView.swift */,
 				62294F15281F8C4800226AF1 /* DropdownSectionWidgetView.swift */,
 				6257F5492826254500E167C4 /* Checkbox */,
-				62294F19281F8C7700226AF1 /* MapWidgetView.swift */,
+				62F8FE67282DAC86005C8D73 /* Map */,
 				62294F1B281F8C8C00226AF1 /* PhotoLibraryWidgetView.swift */,
 				62294F1D281F8CAA00226AF1 /* CanvasWidgetView.swift */,
 			);
 			path = Widgets;
+			sourceTree = "<group>";
+		};
+		62F8FE67282DAC86005C8D73 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				62294F19281F8C7700226AF1 /* MapWidgetView.swift */,
+				62F8FE6A282DAD49005C8D73 /* MapWidgetDetailView.swift */,
+				62F8FE65282CA814005C8D73 /* AddAnnotationsView.swift */,
+				62F8FE68282DAC9F005C8D73 /* MapView.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		62FE6E5F28187058009D41FD = {
@@ -532,6 +555,7 @@
 				6298870A281C791400C34782 /* MapWidget+CoreDataProperties.swift in Sources */,
 				62294F12281F8C2800226AF1 /* NumberFieldWidgetView.swift in Sources */,
 				62443150281A152A00E21B11 /* CanvasWidget+CoreDataProperties.swift in Sources */,
+				62F8FE69282DAC9F005C8D73 /* MapView.swift in Sources */,
 				629886F1281B929600C34782 /* FormEditorView.swift in Sources */,
 				62294F332822F0CC00226AF1 /* SectionTitleView.swift in Sources */,
 				62294F10281F8C1C00226AF1 /* TextFieldWidgetView.swift in Sources */,
@@ -547,6 +571,7 @@
 				629886FC281C36F700C34782 /* FormView.swift in Sources */,
 				62FE6E6C28187058009D41FD /* Formatic.swift in Sources */,
 				629886DB281B578800C34782 /* Enums.swift in Sources */,
+				62F8FE66282CA814005C8D73 /* AddAnnotationsView.swift in Sources */,
 				629886F7281C31C400C34782 /* ListViewToolbar.swift in Sources */,
 				62294F202821E83F00226AF1 /* NewWidgetView.swift in Sources */,
 				62294F0E281F61B900226AF1 /* SubmitButton.swift in Sources */,
@@ -555,8 +580,10 @@
 				62294F292821EB9000226AF1 /* NewDropdownSectionWidgetView.swift in Sources */,
 				622A99DC281E0C5000BB5E12 /* Form+CoreDataClass.swift in Sources */,
 				62443167281A1CA000E21B11 /* DropdownSectionWidget+CoreDataClass.swift in Sources */,
+				62E7F87D282EE713004A95EF /* DeveloperPreview.swift in Sources */,
 				62294F1E281F8CAA00226AF1 /* CanvasWidgetView.swift in Sources */,
 				62294F2B2821EBD900226AF1 /* NewCheckboxSectionWidgetView.swift in Sources */,
+				62E7F87B282EE1E4004A95EF /* LocationManager.swift in Sources */,
 				62294F312821EC1300226AF1 /* NewCanvasWidgetView.swift in Sources */,
 				62A979C028277BFF0067C0A3 /* CheckboxWidget+CoreDataProperties.swift in Sources */,
 				62A979C128277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift in Sources */,
@@ -568,6 +595,7 @@
 				62988701281C57B100C34782 /* Extensions.swift in Sources */,
 				629886E7281B902800C34782 /* Section+CoreDataProperties.swift in Sources */,
 				622A99D0281E053C00BB5E12 /* DropdownWidget+CoreDataClass.swift in Sources */,
+				62F8FE6B282DAD49005C8D73 /* MapWidgetDetailView.swift in Sources */,
 				62294F07281F4F5B00226AF1 /* NewFormView.swift in Sources */,
 				622A99CC281E03B700BB5E12 /* Widget+CoreDataClass.swift in Sources */,
 				62294F16281F8C4800226AF1 /* DropdownSectionWidgetView.swift in Sources */,
@@ -702,6 +730,7 @@
 				DEVELOPMENT_TEAM = BMNBE7JVDJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Formatic requests your location to show on the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -731,6 +760,7 @@
 				DEVELOPMENT_TEAM = BMNBE7JVDJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Formatic requests your location to show on the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

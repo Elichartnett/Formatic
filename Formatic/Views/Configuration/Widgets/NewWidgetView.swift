@@ -66,7 +66,7 @@ struct NewWidgetView: View {
                     }
                 
             case .mapWidget:
-                NewMapWidgetView()
+                NewMapWidgetView(newWidgetType: $newWidgetType, title: $widgetTitle, section: section)
                     .onAppear {
                         typeTitle = "Map"
                     }

@@ -22,7 +22,7 @@ struct NewTextFieldWidgetView: View {
             InputBox(placeholder: "text", text: $text)
             
             Button {
-                let textFieldWidget = TextFieldWidget(title: title, position: section.widgetsArray.count-1, text: text)
+                let textFieldWidget = TextFieldWidget(title: title, position: section.widgetsArray.count, text: text)
                 withAnimation {
                     section.addToWidgets(textFieldWidget)
                     DataController.saveMOC()

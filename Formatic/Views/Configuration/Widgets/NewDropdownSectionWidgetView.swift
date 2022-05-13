@@ -66,7 +66,7 @@ struct NewDropdownSectionWidgetView: View {
             
             Button {
                 // Create dropdownSectionWidget
-                let dropdownSectionWidget = DropdownSectionWidget(title: title, position: section.widgetsArray.count-1)
+                let dropdownSectionWidget = DropdownSectionWidget(title: title, position: section.widgetsArray.count)
                 
                 // Append dropdown options to dropdownSectionWidget
                 for (index, localDropdown) in localDropdowns.enumerated() {

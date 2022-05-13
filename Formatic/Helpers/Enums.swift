@@ -10,6 +10,7 @@ import Foundation
 // InputBox input types
 enum InputType {
     case text
+    case number
     case password
 }
 
@@ -28,4 +29,14 @@ enum WidgetType: String, Identifiable {
     case mapWidget = "MapWidget"
     case photoLibraryWidget = "PhotoLibraryWidget"
     case canvasWidget = "CanvasWidget"
+}
+
+// Coordinate types
+enum CoordinateType: String, Identifiable, CaseIterable {
+    
+    var id: RawValue { rawValue}
+    
+    case latLon = "Latitude & Longitude"
+    case utm = "Universal Transverse Mercator (UTM)"
+    case center = "Center"
 }

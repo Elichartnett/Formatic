@@ -37,7 +37,7 @@ struct NewTextEditorWidgetView: View {
             }
             
             Button {
-                let textEditorWidget = TextEditorWidget(title: title, position: section.widgetsArray.count-1, text: text)
+                let textEditorWidget = TextEditorWidget(title: title, position: section.widgetsArray.count, text: text)
                 withAnimation {
                     section.addToWidgets(textEditorWidget)
                     DataController.saveMOC()

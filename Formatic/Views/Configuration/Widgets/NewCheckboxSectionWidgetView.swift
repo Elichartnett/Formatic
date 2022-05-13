@@ -53,7 +53,7 @@ struct NewCheckboxSectionWidgetView: View {
             
             Button {
                 // Create checkboxSectionWidget
-                let checkboxSectionWidget = CheckboxSectionWidget(title: title, position: section.widgetsArray.count-1)
+                let checkboxSectionWidget = CheckboxSectionWidget(title: title, position: section.widgetsArray.count)
                 
                 // Append checkboxes to checkboxSectionWidget
                 for (index, localCheckbox) in localCheckboxes.enumerated() {

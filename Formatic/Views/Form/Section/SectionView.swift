@@ -10,7 +10,7 @@ import SwiftUI
 // Displays form sections with section titles and widgets
 struct SectionView: View {
     
-    @Environment(\.managedObjectContext) var moc    
+    @Environment(\.managedObjectContext) var moc
     @ObservedObject var section: Section
     @Binding var locked: Bool
     
@@ -49,7 +49,15 @@ struct SectionView: View {
                 
             case .mapWidget:
                 let mapWidget = widget as! MapWidget
-                MapWidgetView(mapWidget: mapWidget)
+                ZStack {
+                    NavigationLink {
+                        MapWidgetDetailView(mapWidget: mapWidget, locked: $locked)
+                    } label: {
+                        EmptyView()
+                            .opacity(0)
+                    }
+                    MapWidgetView(mapWidget: mapWidget, locked: $locked)
+                }
                 
             case .photoLibraryWidget:
                 let photoLibraryWidget = widget as! PhotoLibraryWidget
@@ -87,7 +95,9 @@ struct SectionView: View {
 
 struct SectionView_Previews: PreviewProvider {
     static var previews: some View {
-        SectionView(section: dev.form.sectionsArray.first!, locked: .constant(dev.form.locked))
-            .environmentObject(FormModel())
+        VStack {
+            SectionView(section: dev.form.sectionsArray.first!, locked: .constant(dev.form.locked))
+                .environmentObject(FormModel())
+        }
     }
 }

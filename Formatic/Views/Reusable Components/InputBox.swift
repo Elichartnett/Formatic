@@ -10,10 +10,21 @@ import SwiftUI
 // Standard text field
 struct InputBox: View {
     
+    @EnvironmentObject var model: FormModel
     @FocusState var isFocused: Bool
     @State var placeholder: String
     @Binding var text: String
-    @State var inputType: InputType = .text
+    @State var inputType: InputType
+    @Binding var isValid: Bool
+    var numberRange: ClosedRange<Double>?
+    
+    init(placeholder: String, text: Binding<String>, inputType: InputType = .text, isValid: Binding<Bool> = .constant(true), numberRange: ClosedRange<Double>? = nil) {
+        self.placeholder = placeholder
+        self._text = text
+        self.inputType = inputType
+        self._isValid = isValid
+        self.numberRange = numberRange
+    }
     
     var body: some View {
         
@@ -22,6 +33,20 @@ struct InputBox: View {
                 
             case .text:
                 TextField(placeholder, text: $text)
+                
+            case .number:
+                TextField(placeholder, text: $text)
+                    .foregroundColor(isValid ? .primary : .red)
+                    .onChange(of: text) { _ in
+                        withAnimation {
+                            if text.isEmpty {
+                                isValid = true
+                            }
+                            else {
+                                isValid = model.validNumber(number: text, range: numberRange)
+                            }
+                        }
+                    }
                 
             case .password:
                 SecureField(placeholder, text: $text)
