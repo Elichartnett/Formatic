@@ -8,6 +8,7 @@
 import SwiftUI
 import MapKit
 
+// Preview of map shown in form section
 struct MapWidgetView: View {
     
     @ObservedObject var mapWidget: MapWidget
@@ -19,22 +20,20 @@ struct MapWidgetView: View {
         
         HStack {
             InputBox(placeholder: "Title", text: $title)
-                .titleFrameStyle()
+                .titleFrameStyle(locked: $locked)
                 .onChange(of: title) { _ in
                     mapWidget.title = title
                 }
                 .onAppear {
                     title = mapWidget.title ?? ""
                 }
-                .disabled(locked)
             
-            MapView(mapWidget: mapWidget, coordinateRegion: $coordinateRegion)
-                .frame(height: 200)
-                .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(.secondary, lineWidth: 2)
-                )
+            NavigationLink {
+                MapWidgetDetailView(mapWidget: mapWidget, locked: $locked)
+            } label: {
+                MapView(mapWidget: mapWidget, coordinateRegion: $coordinateRegion)
+                    .DetailFrameStyle()
+            }
         }
     }
 }

@@ -33,39 +33,34 @@ struct SectionView: View {
                 let textEditorWidget = widget as! TextEditorWidget
                 TextEditorWidgetView(textEditorWidget: textEditorWidget, locked: $locked)
                 
-            case .dropdownWidget:
-                EmptyView()
-                
             case .dropdownSectionWidget:
                 let dropdownSectionWidget = widget as! DropdownSectionWidget
                 DropdownSectionWidgetView(dropdownSectionWidget: dropdownSectionWidget, locked: $locked)
                 
-            case .checkboxWidget:
+            case .dropdownWidget:
                 EmptyView()
                 
             case .checkboxSectionWidget:
                 let checkboxSectionWidget = widget as! CheckboxSectionWidget
                 CheckboxSectionWidgetView(checkboxSectionWidget: checkboxSectionWidget, locked: $locked)
                 
+            case .checkboxWidget:
+                EmptyView()
+                
             case .mapWidget:
                 let mapWidget = widget as! MapWidget
-                ZStack {
-                    NavigationLink {
-                        MapWidgetDetailView(mapWidget: mapWidget, locked: $locked)
-                    } label: {
-                        EmptyView()
-                            .opacity(0)
-                    }
-                    MapWidgetView(mapWidget: mapWidget, locked: $locked)
-                }
+                MapWidgetView(mapWidget: mapWidget, locked: $locked)
+                
+            case .photoWidget:
+                EmptyView()
                 
             case .photoLibraryWidget:
                 let photoLibraryWidget = widget as! PhotoLibraryWidget
-                PhotoLibraryWidgetView(photoLibraryWidget: photoLibraryWidget)
+                PhotoLibraryWidgetView(photoLibraryWidget: photoLibraryWidget, locked: $locked)
                 
             case .canvasWidget:
                 let canvasWidget = widget as! CanvasWidget
-                CanvasWidgetView(canvasWidget: canvasWidget)
+                CanvasWidgetView(canvasWidget: canvasWidget, locked: $locked)
             }
         }
         .onMove(perform: { indexSet, destination in

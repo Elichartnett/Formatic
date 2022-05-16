@@ -9,6 +9,7 @@ import SwiftUI
 import MapKit
 import UTMConversion
 
+// Full map view to plot annotations with
 struct MapWidgetDetailView: View {
     
     @ObservedObject var mapWidget: MapWidget

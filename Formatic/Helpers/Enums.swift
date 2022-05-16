@@ -22,12 +22,13 @@ enum WidgetType: String, Identifiable {
     case textFieldWidget = "TextFieldWidget"
     case numberFieldWidget = "NumberFieldWidget"
     case textEditorWidget = "TextEditorWidget"
-    case dropdownWidget = "DropdownWidget"
     case dropdownSectionWidget = "DropdownSectionWidget"
-    case checkboxWidget = "CheckboxWidget"
+    case dropdownWidget = "DropdownWidget"
     case checkboxSectionWidget = "CheckboxSectionWidget"
+    case checkboxWidget = "CheckboxWidget"
     case mapWidget = "MapWidget"
     case photoLibraryWidget = "PhotoLibraryWidget"
+    case photoWidget = "PhotoWidget"
     case canvasWidget = "CanvasWidget"
 }
 
@@ -39,4 +40,12 @@ enum CoordinateType: String, Identifiable, CaseIterable {
     case latLon = "Latitude & Longitude"
     case utm = "Universal Transverse Mercator (UTM)"
     case center = "Center"
+}
+
+// Image types
+enum SourceType: String, Identifiable {
+    var id: Self { self }
+    
+    case camera
+    case photoLibrary
 }

@@ -9,6 +9,7 @@ import SwiftUI
 import UTMConversion
 import MapKit
 
+// View to add annoations to a MapWidget
 struct AddAnnotationsView: View {
     
     @ObservedObject var mapWidget: MapWidget

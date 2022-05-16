@@ -8,6 +8,7 @@
 import SwiftUI
 import MapKit
 
+// Shows MapWidget annotations
 struct MapView: View {
     
     @ObservedObject var mapWidget: MapWidget
@@ -15,7 +16,7 @@ struct MapView: View {
     
     var body: some View {
         
-        Map(coordinateRegion: $coordinateRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(.follow), annotationItems: mapWidget.annotationsArray) { annotation in
+        Map(coordinateRegion: $coordinateRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(.none), annotationItems: mapWidget.annotationsArray) { annotation in
             MapMarker(coordinate: CLLocationCoordinate2D(latitude: annotation.latitude, longitude: annotation.longitude))
         }
         .ignoresSafeArea()

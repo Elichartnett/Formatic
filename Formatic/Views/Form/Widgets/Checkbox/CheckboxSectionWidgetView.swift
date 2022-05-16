@@ -17,14 +17,13 @@ struct CheckboxSectionWidgetView: View {
         HStack {
             
             InputBox(placeholder: "Title", text: $title)
-                .titleFrameStyle()
+                .titleFrameStyle(locked: $locked)
                 .onChange(of: title) { _ in
                     checkboxSectionWidget.title = title
                 }
                 .onAppear {
                     title = checkboxSectionWidget.title ?? ""
                 }
-                .disabled(locked)
             
             let columns: [GridItem] = Array(repeating: GridItem(.flexible(minimum: 100, maximum: 150), spacing: 20, alignment: nil), count: 3)
             LazyVGrid(columns: columns, alignment: .leading) {

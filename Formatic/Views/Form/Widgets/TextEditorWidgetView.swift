@@ -20,7 +20,7 @@ struct TextEditorWidgetView: View {
         HStack {
             
             InputBox(placeholder: "Title", text: $title)
-                .titleFrameStyle()
+                .titleFrameStyle(locked: $locked)
                 .onAppear {
                     title = textEditorWidget.title ?? ""
                     text = textEditorWidget.text ?? ""
@@ -28,7 +28,6 @@ struct TextEditorWidgetView: View {
                 .onChange(of: title) { _ in
                     textEditorWidget.title = title
                 }
-                .disabled(locked)
             
             ZStack (alignment: .topLeading) {
                 TextEditor(text: $text)

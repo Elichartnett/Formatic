@@ -26,6 +26,7 @@ class DeveloperPreview {
     let annotation: Annotation
     let coordinateRegion: MKCoordinateRegion
     let photoLibraryWidget: PhotoLibraryWidget
+    let photoWidget: PhotoWidget
     let canvasWidget: CanvasWidget
     
     private init() {
@@ -69,6 +70,8 @@ class DeveloperPreview {
         
         // Create PhotoLibraryWidget
         photoLibraryWidget = PhotoLibraryWidget(title: "Photo library widget title", position: 7)
+        photoWidget = PhotoWidget(title: "Photo title", position: 0, photo: UIImage().jpegData(compressionQuality: 0.1))
+        photoLibraryWidget.addToPhotos(photoWidget)
         
         // Create CanvasWidget
         canvasWidget = CanvasWidget(title: "Canvas widget title", position: 8)

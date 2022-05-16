@@ -22,11 +22,10 @@ struct NumberFieldWidgetView: View {
         HStack {
             
             InputBox(placeholder: "Title", text: $title)
-                .titleFrameStyle()
+                .titleFrameStyle(locked: $locked)
                 .onChange(of: title) { _ in
                     numberFieldWidget.title = title
                 }
-                .disabled(locked)
             
             InputBox(placeholder: "number", text: $number)
                 .onChange(of: number) { _ in

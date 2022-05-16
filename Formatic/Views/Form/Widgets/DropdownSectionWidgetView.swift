@@ -18,14 +18,13 @@ struct DropdownSectionWidgetView: View {
         HStack {
             
             InputBox(placeholder: "Title", text: $title)
-                .titleFrameStyle()
+                .titleFrameStyle(locked: $locked)
                 .onChange(of: title) { _ in
                     dropdownSectionWidget.title = title
                 }
                 .onAppear {
                     title = dropdownSectionWidget.title ?? ""
                 }
-                .disabled(locked)
             
             Spacer()
             

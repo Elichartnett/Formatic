@@ -45,18 +45,13 @@ struct NewWidgetView: View {
                         typeTitle = "Text Editor"
                     }
                 
-                // Will be displayed in case .dropdownSectionWidget
-            case .dropdownWidget:
-                EmptyView()
-                
             case .dropdownSectionWidget:
                 NewDropdownSectionWidgetView(newWidgetType: $newWidgetType, title: $widgetTitle, section: section)
                     .onAppear {
                         typeTitle = "Dropdown Menu"
                     }
-                
-                // Will be displayed in case .checkboxSectionWidget
-            case .checkboxWidget:
+                // Will be displayed in case .dropdownSectionWidget
+            case .dropdownWidget:
                 EmptyView()
                 
             case .checkboxSectionWidget:
@@ -65,6 +60,10 @@ struct NewWidgetView: View {
                         typeTitle = "Checkboxes"
                     }
                 
+                // Will be displayed in case .checkboxSectionWidget
+            case .checkboxWidget:
+                EmptyView()
+                
             case .mapWidget:
                 NewMapWidgetView(newWidgetType: $newWidgetType, title: $widgetTitle, section: section)
                     .onAppear {
@@ -72,13 +71,16 @@ struct NewWidgetView: View {
                     }
                 
             case .photoLibraryWidget:
-                NewPhotoLibraryWidgetView()
+                NewPhotoLibraryWidgetView(newWidgetType: $newWidgetType, title: $widgetTitle, section: section)
                     .onAppear {
                         typeTitle = "Photo Library"
                     }
+                // Will be displayed in case .photoLibraryWidget
+            case .photoWidget:
+                EmptyView()
                 
             case .canvasWidget:
-                NewCanvasWidgetView()
+                NewCanvasWidgetView(newWidgetType: $newWidgetType, title: $widgetTitle, section: section)
                     .onAppear {
                         typeTitle = "Canvas"
                     }
@@ -93,6 +95,6 @@ struct NewWidgetView: View {
 
 struct ConfigureWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        NewWidgetView(newWidgetType: .constant(.textEditorWidget), section: dev.section)
+        NewWidgetView(newWidgetType: .constant(.textFieldWidget), section: dev.section)
     }
 }
