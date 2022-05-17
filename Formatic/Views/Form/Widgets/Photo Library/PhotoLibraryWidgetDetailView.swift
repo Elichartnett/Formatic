@@ -20,9 +20,7 @@ struct PhotoLibraryWidgetDetailView: View {
         ScrollView {
             
             LazyVGrid(columns: columns) {
-                ForEach(pickerResult.sorted(by: { lhs, rhs in
-                    lhs.position < rhs.position
-                })) { photoWidget in
+                ForEach(photoLibraryWidget.photosArray) { photoWidget in
                     VStack {
                         Image(uiImage: UIImage(data: photoWidget.photo ?? Data()) ?? UIImage())
                             .resizable()
@@ -71,6 +69,7 @@ struct PhotoLibraryWidgetDetailView: View {
                         if !photoLibraryWidget.photosArray.contains(where: { photoWidget in
                             photoWidget.id == result.id
                         }) {
+                            result.position = Int16(photoLibraryWidget.photosArray.count)
                             photoLibraryWidget.addToPhotos(result)
                         }
                     }

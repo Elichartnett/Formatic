@@ -25,7 +25,7 @@ struct CanvasWidgetView: View {
                 .disabled(locked)
             
             NavigationLink {
-                CanvasWidgetDetailView()
+                CanvasWidgetDetailView(canvasWidget: canvasWidget)
             } label: {
                 ZStack {
                     Image(uiImage: UIImage(data: canvasWidget.image ?? Data()) ?? UIImage())

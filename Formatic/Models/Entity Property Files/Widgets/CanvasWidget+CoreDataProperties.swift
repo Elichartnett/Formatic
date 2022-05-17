@@ -16,9 +16,8 @@ extension CanvasWidget {
         return NSFetchRequest<CanvasWidget>(entityName: "CanvasWidget")
     }
     
-    @NSManaged public var pkCanvas: Data?
-    @NSManaged public var imageView: Data?
     @NSManaged public var image: Data?
+    @NSManaged public var pkDrawing: Data?
     @NSManaged public var preview: Data?
     
     /// CanvasWidget  convenience init

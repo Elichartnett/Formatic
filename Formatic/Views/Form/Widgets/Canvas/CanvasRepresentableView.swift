@@ -1,78 +1,78 @@
-////
-////  CanvasRepresentableView.swift
-////  Formatic
-////
-////  Created by Eli Hartnett on 5/15/22.
-////
 //
-//import SwiftUI
-//import PencilKit
+//  CanvasRepresentableView.swift
+//  Formatic
 //
-//struct CanvasRepresentable: UIViewRepresentable {
-//    
-//    @Binding var widget: CanvasWidget
-//    var width: CGFloat
-//    let toolPicker = PKToolPicker()
-//    
-//    func makeUIView(context: Context) -> PKCanvasView {
-//        
-//        if widget.PKCanvas == nil {
-//            
-//            // Create canvas
-//            widget.PKCanvas = PKCanvasView()
-//            
-//            // Customize canvas
-//            widget.PKCanvas!.isOpaque = false
-//            widget.PKCanvas!.backgroundColor = .clear
-//            widget.PKCanvas!.minimumZoomScale = 1
-//            widget.PKCanvas!.maximumZoomScale = 5
-//        }
-//        
-//        if widget.imageView == nil {
-//            
-//            // Create image view
-//            widget.imageView = UIImageView(image: widget.image)
-//            
-//            // Customize image view
-//            widget.imageView!.frame.size.width = width * widget.PKCanvas!.zoomScale
-//            widget.imageView!.frame.size.height = width * widget.PKCanvas!.zoomScale
-//            widget.imageView!.contentMode = .scaleAspectFit
-//        }
-//        
-//        widget.PKCanvas!.addSubview(widget.imageView!)
-//        widget.PKCanvas!.sendSubviewToBack(widget.imageView!)
-//        
-//        // Add picker
-//        widget.PKCanvas!.becomeFirstResponder()
-//        widget.PKCanvas!.delegate = context.coordinator
-//        toolPicker.addObserver(widget.PKCanvas!)
-//        toolPicker.setVisible(true, forFirstResponder: widget.PKCanvas!)
-//        
-//        return widget.PKCanvas!
-//    }
-//    
-//    func updateUIView(_ uiView: PKCanvasView, context: Context) {
-//        
-//    }
-//    
-//    func makeCoordinator() -> Coordinator {
-//        return Coordinator(widget: $widget, width: width)
-//    }
-//    
-//    class Coordinator: NSObject, PKCanvasViewDelegate {
-//        
-//        @Binding var widget: CanvasWidget
-//        var width: CGFloat
-//        
-//        init(widget: Binding<CanvasWidget>, width: CGFloat) {
-//            self._widget = widget
-//            self.width = width
-//        }
-//        
-//        // Sends updates from UIView to SwiftUI
-//        func scrollViewDidZoom(_ scrollView: UIScrollView) {
-//            widget.imageView!.frame.size.width = width * widget.PKCanvas!.zoomScale
-//            widget.imageView!.frame.size.height = width * widget.PKCanvas!.zoomScale
-//        }
-//    }
-//}
+//  Created by Eli Hartnett on 5/15/22.
+//
+
+import SwiftUI
+import PencilKit
+
+struct CanvasRepresentable: UIViewRepresentable {
+    
+    @State var canvasWidget: CanvasWidget
+    @State var size: Double
+    @State var canvasView: PKCanvasView = PKCanvasView()
+    let toolPicker: PKToolPicker = PKToolPicker()
+    
+    func makeUIView(context: Context) -> PKCanvasView {
+        
+        // Customize canvas
+        do {
+            try canvasView.drawing = PKDrawing(data: canvasWidget.pkDrawing ?? Data())
+        }
+        catch {
+            print("Failed to import drawing data: \(error)")
+        }
+        canvasView.frame = CGRect(origin: .zero, size: CGSize(width: size, height: size))
+        canvasView.isOpaque = false
+        canvasView.backgroundColor = .clear
+        canvasView.minimumZoomScale = 1
+        canvasView.maximumZoomScale = 5
+        
+        let imageView = UIImageView()
+        imageView.frame = CGRect(origin: .zero, size: CGSize(width: size, height: size))
+        
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(data: canvasWidget.image ?? Data())
+        
+        canvasView.addSubview(imageView)
+        canvasView.sendSubviewToBack(imageView)
+        
+        // Add picker
+        canvasView.becomeFirstResponder()
+        toolPicker.addObserver(canvasView)
+        toolPicker.setVisible(true, forFirstResponder: canvasView)
+        
+        canvasView.delegate = context.coordinator
+        
+        return canvasView
+    }
+    
+    func updateUIView(_ uiView: PKCanvasView, context: Context) {
+         
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(parent: self)
+    }
+    
+    class Coordinator: NSObject, PKCanvasViewDelegate {
+        
+        var parent: CanvasRepresentable
+        
+        init(parent: CanvasRepresentable) {
+            self.parent = parent
+        }
+        
+        func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
+            parent.canvasWidget.pkDrawing = canvasView.drawing.dataRepresentation()
+            DataController.saveMOC()
+        }
+        
+        // Sends updates from UIView to SwiftUI
+        func scrollViewDidZoom(_ scrollView: UIScrollView) {
+//            parent.imageView.frame = CGRect(origin: .zero, size: CGSize(width: parent.size * parent.canvasView.zoomScale, height: parent.size * parent.canvasView.zoomScale))
+        }
+    }
+}

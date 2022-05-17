@@ -6,15 +6,26 @@
 //
 
 import SwiftUI
+import PencilKit
 
 struct CanvasWidgetDetailView: View {
+    
+    @ObservedObject var canvasWidget: CanvasWidget
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        CanvasRepresentable(canvasWidget: canvasWidget, size: min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) - 100)
+            .frame(width: min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) - 100, height: min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) - 100)
+            .border(.black)
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle(canvasWidget.title ?? "")
     }
 }
 
 struct CanvasWidgetDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        CanvasWidgetDetailView()
+        NavigationView {
+            CanvasWidgetDetailView(canvasWidget: dev.canvasWidget)
+        }
+        .navigationViewStyle(.stack)
     }
 }
