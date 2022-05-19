@@ -23,7 +23,6 @@ public class Form: NSManagedObject, Codable {
     public func encode(to encoder: Encoder) throws {
         var formContainer = encoder.container(keyedBy: CodingKeys.self)
         
-        try formContainer.encode(id, forKey: .id)
         try formContainer.encode(locked, forKey: .locked)
         try formContainer.encode(password, forKey: .password)
         try formContainer.encode(title, forKey: .title)
@@ -34,7 +33,7 @@ public class Form: NSManagedObject, Codable {
         self.init(context: DataController.shared.container.viewContext)
         
         let formContainer = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try formContainer.decode(UUID.self, forKey: .id)
+        self.id = UUID()
         self.locked = try formContainer.decode(Bool.self, forKey: .locked)
         self.password = try formContainer.decode(String.self, forKey: .password)
         self.title = try formContainer.decode(String.self, forKey: .title)

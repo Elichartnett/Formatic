@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct TitleFrame: ViewModifier {
     @Binding var locked: Bool
@@ -42,5 +43,11 @@ extension View {
 extension PreviewProvider {
     static var dev: DeveloperPreview {
         return DeveloperPreview.instance
+    }
+}
+
+extension UTType {
+    static var form: UTType {
+        UTType(filenameExtension: "form")!
     }
 }

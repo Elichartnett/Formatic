@@ -49,7 +49,7 @@
 		62443176281A1F4200E21B11 /* PhotoLibraryWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62443174281A1F4200E21B11 /* PhotoLibraryWidget+CoreDataProperties.swift */; };
 		6250E9612831632D00E6E6A0 /* CanvasWidgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E9602831632D00E6E6A0 /* CanvasWidgetDetailView.swift */; };
 		6250E9632831649C00E6E6A0 /* CanvasRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E9622831649C00E6E6A0 /* CanvasRepresentableView.swift */; };
-		6250E97F2835B11600E6E6A0 /* JsonFileDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E97E2835B11600E6E6A0 /* JsonFileDocument.swift */; };
+		6250E97F2835B11600E6E6A0 /* FormaticFileDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E97E2835B11600E6E6A0 /* FormaticFileDocument.swift */; };
 		627736F8282F75BB00F7B107 /* PhotoWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627736F6282F75BB00F7B107 /* PhotoWidget+CoreDataClass.swift */; };
 		627736F9282F75BB00F7B107 /* PhotoWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627736F7282F75BB00F7B107 /* PhotoWidget+CoreDataProperties.swift */; };
 		627736FB282FFA4500F7B107 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627736FA282FFA4500F7B107 /* PhotoPicker.swift */; };
@@ -85,6 +85,7 @@
 		62F8FE66282CA814005C8D73 /* AddAnnotationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8FE65282CA814005C8D73 /* AddAnnotationsView.swift */; };
 		62F8FE69282DAC9F005C8D73 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8FE68282DAC9F005C8D73 /* MapView.swift */; };
 		62F8FE6B282DAD49005C8D73 /* MapWidgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8FE6A282DAD49005C8D73 /* MapWidgetDetailView.swift */; };
+		62FD783B2836DDA200D3949E /* FormaticDocumentTypeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 62FD783A2836DDA200D3949E /* FormaticDocumentTypeIcon.png */; };
 		62FE6E6C28187058009D41FD /* Formatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FE6E6B28187058009D41FD /* Formatic.swift */; };
 		62FE6E6E28187058009D41FD /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FE6E6D28187058009D41FD /* Home.swift */; };
 		62FE6E7028187059009D41FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62FE6E6F28187059009D41FD /* Assets.xcassets */; };
@@ -132,7 +133,8 @@
 		62443174281A1F4200E21B11 /* PhotoLibraryWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoLibraryWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6250E9602831632D00E6E6A0 /* CanvasWidgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWidgetDetailView.swift; sourceTree = "<group>"; };
 		6250E9622831649C00E6E6A0 /* CanvasRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasRepresentableView.swift; sourceTree = "<group>"; };
-		6250E97E2835B11600E6E6A0 /* JsonFileDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonFileDocument.swift; sourceTree = "<group>"; };
+		6250E97E2835B11600E6E6A0 /* FormaticFileDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormaticFileDocument.swift; sourceTree = "<group>"; };
+		6250E9802836CAB400E6E6A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		627736F6282F75BB00F7B107 /* PhotoWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		627736F7282F75BB00F7B107 /* PhotoWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		627736FA282FFA4500F7B107 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		62F8FE65282CA814005C8D73 /* AddAnnotationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnnotationsView.swift; sourceTree = "<group>"; };
 		62F8FE68282DAC9F005C8D73 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		62F8FE6A282DAD49005C8D73 /* MapWidgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWidgetDetailView.swift; sourceTree = "<group>"; };
+		62FD783A2836DDA200D3949E /* FormaticDocumentTypeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FormaticDocumentTypeIcon.png; sourceTree = "<group>"; };
 		62FE6E6828187058009D41FD /* Formatic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Formatic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62FE6E6B28187058009D41FD /* Formatic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatic.swift; sourceTree = "<group>"; };
 		62FE6E6D28187058009D41FD /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -242,7 +245,8 @@
 				62988700281C57B100C34782 /* Extensions.swift */,
 				62E7F87C282EE713004A95EF /* DeveloperPreview.swift */,
 				62E7F87A282EE1E4004A95EF /* LocationManager.swift */,
-				6250E97E2835B11600E6E6A0 /* JsonFileDocument.swift */,
+				6250E97E2835B11600E6E6A0 /* FormaticFileDocument.swift */,
+				62FD783A2836DDA200D3949E /* FormaticDocumentTypeIcon.png */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -457,6 +461,7 @@
 		62FE6E6A28187058009D41FD /* Formatic */ = {
 			isa = PBXGroup;
 			children = (
+				6250E9802836CAB400E6E6A0 /* Info.plist */,
 				62FE6E6B28187058009D41FD /* Formatic.swift */,
 				62FE6E79281874FA009D41FD /* Views */,
 				62FE6E7A281874FE009D41FD /* View Models */,
@@ -575,6 +580,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62FE6E7328187059009D41FD /* Preview Assets.xcassets in Resources */,
+				62FD783B2836DDA200D3949E /* FormaticDocumentTypeIcon.png in Resources */,
 				62FE6E7028187059009D41FD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -629,7 +635,7 @@
 				62294F252821EB7700226AF1 /* NewNumberFieldWidgetView.swift in Sources */,
 				6244311F281A130000E21B11 /* DataController.swift in Sources */,
 				629886FC281C36F700C34782 /* FormView.swift in Sources */,
-				6250E97F2835B11600E6E6A0 /* JsonFileDocument.swift in Sources */,
+				6250E97F2835B11600E6E6A0 /* FormaticFileDocument.swift in Sources */,
 				62FE6E6C28187058009D41FD /* Formatic.swift in Sources */,
 				629886DB281B578800C34782 /* Enums.swift in Sources */,
 				62F8FE66282CA814005C8D73 /* AddAnnotationsView.swift in Sources */,
@@ -794,6 +800,7 @@
 				DEVELOPMENT_TEAM = BMNBE7JVDJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Formatic/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Providing location helps as a reference while adding map pins.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -825,6 +832,7 @@
 				DEVELOPMENT_TEAM = BMNBE7JVDJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Formatic/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Providing location helps as a reference while adding map pins.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

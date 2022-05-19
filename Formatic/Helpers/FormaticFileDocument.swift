@@ -9,9 +9,9 @@ import Foundation
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct JsonFileDocument: FileDocument {
+struct FormaticFileDocument: FileDocument {
     
-    static var readableContentTypes: [UTType] = [.json]
+    static var readableContentTypes: [UTType] = [.form]
     var jsonData: Data
     
     init(jsonData: Data) {

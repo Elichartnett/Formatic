@@ -45,7 +45,7 @@ struct FormListView: View {
             .sheet(isPresented: $showNewFormView) {
                 NewFormView(showNewFormView: $showNewFormView)
             }
-            .fileImporter(isPresented: $showImportFormView, allowedContentTypes: [.json]) { result in
+            .fileImporter(isPresented: $showImportFormView, allowedContentTypes: [.form]) { result in
                 switch result {
                 case .success(let url):
                     showImportFormView = false
@@ -60,6 +60,16 @@ struct FormListView: View {
                 case .failure(let error):
                     print(error)
                 }
+            }
+            .onOpenURL { url in
+                var data = Data()
+                do {
+                    data = try Data(contentsOf: url)
+                }
+                catch {
+                    print("could not get data")
+                }
+                formModel.decodeJsonDataToForm(data: data)
             }
         }
         .navigationViewStyle(.stack)

@@ -32,7 +32,7 @@ public class Widget: NSManagedObject, Codable {
         self.init(context: DataController.shared.container.viewContext)
 
         let widgetContainer = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try widgetContainer.decode(UUID.self, forKey: .id)
+        self.id = UUID()
         self.position = try widgetContainer.decode(Int16.self, forKey: .position)
         self.title = try widgetContainer.decode(String.self, forKey: .title)
         self.type = try widgetContainer.decode(String.self, forKey: .type)

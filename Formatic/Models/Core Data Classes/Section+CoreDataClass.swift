@@ -22,7 +22,6 @@ public class Section: NSManagedObject, Codable {
     public func encode(to encoder: Encoder) throws {
         var sectionContainer = encoder.container(keyedBy: CodingKeys.self)
         
-        try sectionContainer.encode(id, forKey: .id)
         try sectionContainer.encode(position, forKey: .position)
         try sectionContainer.encode(title, forKey: .title)
         try sectionContainer.encode(widgets, forKey: .widgets)
@@ -32,7 +31,7 @@ public class Section: NSManagedObject, Codable {
         self.init(context: DataController.shared.container.viewContext)
         
         let sectionContainer = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try sectionContainer.decode(UUID.self, forKey: .id)
+        self.id = UUID()
         self.position = try sectionContainer.decode(Int16.self, forKey: .position)
         self.title = try sectionContainer.decode(String.self, forKey: .title)
         self.widgets = try sectionContainer.decode(Set<Widget>.self, forKey: .widgets)
