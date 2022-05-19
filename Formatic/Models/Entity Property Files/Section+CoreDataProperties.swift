@@ -19,7 +19,7 @@ extension Section {
     @NSManaged public var id: UUID
     @NSManaged public var position: Int16
     @NSManaged public var title: String?
-    @NSManaged public var widgets: NSSet?
+    @NSManaged public var widgets: Set<Widget>?
     @NSManaged public var form: Form?
     
     /// Section convenience init
@@ -31,10 +31,9 @@ extension Section {
     }
     
     var widgetsArray: [Widget] {
-        let set = widgets as? Set<Widget> ?? []
-        return set.sorted { lhs, rhs in
+        return widgets?.sorted { lhs, rhs in
             lhs.position < rhs.position
-        }
+        } ?? []
     }
 }
 

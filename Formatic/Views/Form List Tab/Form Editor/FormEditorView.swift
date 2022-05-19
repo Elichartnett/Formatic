@@ -10,6 +10,7 @@ import SwiftUI
 // Display form with form tool bar
 struct FormEditorView: View {
     
+    @EnvironmentObject var model: FormModel
     @ObservedObject var form: Form
     @State var showExportToPDFView: Bool = false
     @State var showExportToTemplateView: Bool = false
@@ -25,9 +26,11 @@ struct FormEditorView: View {
                     ToolbarItem(placement: .principal) {
                         EditorViewToolbar(form: form, showExportToPDFView: $showExportToPDFView, showExportToTemplateView: $showExportToTemplateView, showToggleLockView: $showToggleLockView, isEditing: $isEditing)
                     }
-            })
+                })
                 .sheet(isPresented: $showToggleLockView) {
                     ToggleLockView(showToggleLockView: $showToggleLockView, form: form)
+                }
+                .fileExporter(isPresented: $showExportToTemplateView, document: JsonFileDocument(jsonData: model.encodeFormToJsonData(form: form)), contentType: .json, defaultFilename: form.title ?? form.id.uuidString) { result in
                 }
         }
     }

@@ -13,6 +13,7 @@ struct CanvasRepresentable: UIViewRepresentable {
     @State var canvasWidget: CanvasWidget
     @State var size: Double
     @State var canvasView: PKCanvasView = PKCanvasView()
+    let imageView = UIImageView()
     let toolPicker: PKToolPicker = PKToolPicker()
     
     func makeUIView(context: Context) -> PKCanvasView {
@@ -30,9 +31,7 @@ struct CanvasRepresentable: UIViewRepresentable {
         canvasView.minimumZoomScale = 1
         canvasView.maximumZoomScale = 5
         
-        let imageView = UIImageView()
         imageView.frame = CGRect(origin: .zero, size: CGSize(width: size, height: size))
-        
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(data: canvasWidget.image ?? Data())
         
@@ -72,7 +71,7 @@ struct CanvasRepresentable: UIViewRepresentable {
         
         // Sends updates from UIView to SwiftUI
         func scrollViewDidZoom(_ scrollView: UIScrollView) {
-//            parent.imageView.frame = CGRect(origin: .zero, size: CGSize(width: parent.size * parent.canvasView.zoomScale, height: parent.size * parent.canvasView.zoomScale))
+            parent.imageView.frame = CGRect(origin: .zero, size: CGSize(width: parent.size * parent.canvasView.zoomScale, height: parent.size * parent.canvasView.zoomScale))
         }
     }
 }

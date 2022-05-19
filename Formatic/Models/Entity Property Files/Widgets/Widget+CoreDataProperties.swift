@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-extension Widget {
+extension Widget: Identifiable {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Widget> {
         return NSFetchRequest<Widget>(entityName: "Widget")
@@ -24,14 +24,10 @@ extension Widget {
     
     /// Widget convenience init
     convenience init (title: String?, position: Int, type: String) {
-        self.init(entity: NSEntityDescription.entity(forEntityName: type, in: DataController.shared.container.viewContext) ?? NSEntityDescription(), insertInto: DataController.shared.container.viewContext)
+        self.init(context: DataController.shared.container.viewContext)
         self.id = UUID()
         self.position = Int16(position)
         self.title = title
         self.type = type
     }
-}
-
-extension Widget: Identifiable {
-
 }

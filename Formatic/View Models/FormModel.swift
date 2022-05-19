@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 class FormModel: ObservableObject {
+    
     func validNumber(number: String, range: ClosedRange<Double>? = nil) -> Bool {
         // Check if field only contains nubmers
         if let number = Double(number) {
@@ -34,5 +35,17 @@ class FormModel: ObservableObject {
             // Not a valid number
             return false
         }
+    }
+    
+    func encodeFormToJsonData(form: Form) -> Data {
+        let encoder = JSONEncoder()
+        var data = Data()
+        do {
+            data = try encoder.encode(form)
+        }
+        catch {
+            print("Could not encode form to json data")
+        }
+        return data
     }
 }

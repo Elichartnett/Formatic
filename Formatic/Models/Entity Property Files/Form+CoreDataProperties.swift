@@ -20,7 +20,7 @@ extension Form {
     @NSManaged public var locked: Bool
     @NSManaged public var password: String?
     @NSManaged public var title: String?
-    @NSManaged public var sections: NSSet?
+    @NSManaged public var sections: Set<Section>?
     
     /// Form convenience init
     convenience init(id: UUID = UUID(), locked: Bool = false, password: String? = nil, title: String) {
@@ -32,10 +32,9 @@ extension Form {
     }
     
     var sectionsArray: [Section] {
-        let set = sections as? Set<Section> ?? []
-        return set.sorted { lhs, rhs in
+        return sections?.sorted { lhs, rhs in
             lhs.position < rhs.position
-        }
+        } ?? []
     }
 }
 
