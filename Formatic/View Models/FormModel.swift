@@ -48,4 +48,15 @@ class FormModel: ObservableObject {
         }
         return data
     }
+    
+    func decodeJsonDataToForm(data: Data) {
+        let decoder = JSONDecoder()
+        do {
+            let _ = try decoder.decode(Form.self, from: data)
+        }
+        catch {
+            print("Could not decode json data to form")
+            print(error)
+        }
+    }
 }

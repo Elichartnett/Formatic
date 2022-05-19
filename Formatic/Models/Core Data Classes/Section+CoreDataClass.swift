@@ -17,7 +17,6 @@ public class Section: NSManagedObject, Codable {
         case position = "position"
         case title = "title"
         case widgets = "widgets"
-        case form = "form"
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -37,6 +36,5 @@ public class Section: NSManagedObject, Codable {
         self.position = try sectionContainer.decode(Int16.self, forKey: .position)
         self.title = try sectionContainer.decode(String.self, forKey: .title)
         self.widgets = try sectionContainer.decode(Set<Widget>.self, forKey: .widgets)
-        self.form = try sectionContainer.decode(Form.self, forKey: .form)
     }
 }
