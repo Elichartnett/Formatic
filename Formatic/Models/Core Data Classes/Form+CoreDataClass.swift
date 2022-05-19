@@ -23,12 +23,7 @@ public class Form: NSManagedObject, Codable {
         var formContainer = encoder.container(keyedBy: CodingKeys.self)
         
         try formContainer.encode(locked, forKey: .locked)
-        if password != nil {
-            try formContainer.encode(password, forKey: .password)
-        }
-        else {
-            try formContainer.encode("", forKey: .password)
-        }
+        try formContainer.encode(password, forKey: .password)
         try formContainer.encode(title, forKey: .title)
         try formContainer.encode(sections, forKey: .sections)
     }
@@ -39,11 +34,23 @@ public class Form: NSManagedObject, Codable {
         let formContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()
         self.locked = try formContainer.decode(Bool.self, forKey: .locked)
-        self.password = try formContainer.decode(String.self, forKey: .password)
-        if self.password == "" {
-            password = nil
+        if let password = try formContainer.decode(String?.self, forKey: .password) {
+            self.password = password
         }
-        self.title = try formContainer.decode(String.self, forKey: .title)
-        self.sections = try formContainer.decode(Set<Section>.self, forKey: .sections)
+        else {
+            self.password = nil
+        }
+        if let title = try formContainer.decode(String?.self, forKey: .title) {
+            self.title = title
+        }
+        else {
+            self.title = nil
+        }
+        if let sections = try formContainer.decode(Set<Section>?.self, forKey: .sections) {
+            self.sections = sections
+        }
+        else {
+            sections = nil
+        }
     }
 }

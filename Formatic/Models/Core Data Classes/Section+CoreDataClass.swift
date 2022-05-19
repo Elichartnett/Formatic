@@ -32,7 +32,11 @@ public class Section: NSManagedObject, Codable {
         let sectionContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()
         self.position = try sectionContainer.decode(Int16.self, forKey: .position)
-        self.title = try sectionContainer.decode(String.self, forKey: .title)
-        self.widgets = try sectionContainer.decode(Set<Widget>.self, forKey: .widgets)
+        if let title = try sectionContainer.decode(String?.self, forKey: .title) {
+            self.title = title
+        }
+        if let widgets = try sectionContainer.decode(Set<Widget>?.self, forKey: .widgets) {
+            self.widgets = widgets
+        }
     }
 }
