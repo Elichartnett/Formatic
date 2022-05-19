@@ -73,9 +73,7 @@
 		62A979C028277BFF0067C0A3 /* CheckboxWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BC28277BFF0067C0A3 /* CheckboxWidget+CoreDataProperties.swift */; };
 		62A979C128277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BD28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift */; };
 		62A979C228277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BE28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift */; };
-		62BAD46F2825CC9100955001 /* UTMConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 62BAD46E2825CC9100955001 /* UTMConversion */; };
 		62BFAC9528188B97006C8216 /* Form Container.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62BFAC9328188B97006C8216 /* Form Container.xcdatamodeld */; };
-		62D7FE952826B5F800FAA815 /* UTMConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 62D7FE942826B5F800FAA815 /* UTMConversion */; };
 		62D7FE992826B8AF00FAA815 /* CheckboxWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D7FE982826B8AF00FAA815 /* CheckboxWidgetView.swift */; };
 		62E6AB47281E0ED6009F568B /* Form+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E6AB46281E0ED6009F568B /* Form+CoreDataProperties.swift */; };
 		62E6AB4A281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E6AB48281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift */; };
@@ -183,8 +181,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				62443122281A13A400E21B11 /* UTMConversion in Frameworks */,
-				62BAD46F2825CC9100955001 /* UTMConversion in Frameworks */,
-				62D7FE952826B5F800FAA815 /* UTMConversion in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,8 +525,6 @@
 			name = Formatic;
 			packageProductDependencies = (
 				62443121281A13A400E21B11 /* UTMConversion */,
-				62BAD46E2825CC9100955001 /* UTMConversion */,
-				62D7FE942826B5F800FAA815 /* UTMConversion */,
 			);
 			productName = "Form Builder";
 			productReference = 62FE6E6828187058009D41FD /* Formatic.app */;
@@ -562,8 +556,6 @@
 			mainGroup = 62FE6E5F28187058009D41FD;
 			packageReferences = (
 				62443120281A13A400E21B11 /* XCRemoteSwiftPackageReference "UTMConversion" */,
-				62BAD46D2825CC9100955001 /* XCRemoteSwiftPackageReference "UTMConversion" */,
-				62D7FE932826B5F800FAA815 /* XCRemoteSwiftPackageReference "UTMConversion" */,
 			);
 			productRefGroup = 62FE6E6928187058009D41FD /* Products */;
 			projectDirPath = "";
@@ -725,7 +717,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -779,7 +771,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -817,7 +809,7 @@
 				PRODUCT_NAME = Formatic;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -849,7 +841,7 @@
 				PRODUCT_NAME = Formatic;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -885,38 +877,12 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		62BAD46D2825CC9100955001 /* XCRemoteSwiftPackageReference "UTMConversion" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/wtw-software/UTMConversion";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		62D7FE932826B5F800FAA815 /* XCRemoteSwiftPackageReference "UTMConversion" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/wtw-software/UTMConversion";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		62443121281A13A400E21B11 /* UTMConversion */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 62443120281A13A400E21B11 /* XCRemoteSwiftPackageReference "UTMConversion" */;
-			productName = UTMConversion;
-		};
-		62BAD46E2825CC9100955001 /* UTMConversion */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 62BAD46D2825CC9100955001 /* XCRemoteSwiftPackageReference "UTMConversion" */;
-			productName = UTMConversion;
-		};
-		62D7FE942826B5F800FAA815 /* UTMConversion */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 62BAD46D2825CC9100955001 /* XCRemoteSwiftPackageReference "UTMConversion" */;
 			productName = UTMConversion;
 		};
 /* End XCSwiftPackageProductDependency section */
