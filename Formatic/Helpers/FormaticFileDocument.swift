@@ -19,11 +19,10 @@ struct FormaticFileDocument: FileDocument {
     }
     
     init(configuration: ReadConfiguration) throws {
-        jsonData = Data()
+        jsonData = configuration.file.regularFileContents ?? Data()
     }
     
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
         return FileWrapper(regularFileWithContents: jsonData)
     }
-    
 }

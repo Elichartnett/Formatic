@@ -13,7 +13,6 @@ import CoreData
 public class Section: NSManagedObject, Codable {
 
     enum CodingKeys: String, CodingKey {
-        case id = "id"
         case position = "position"
         case title = "title"
         case widgets = "widgets"

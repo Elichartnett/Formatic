@@ -13,7 +13,6 @@ import CoreData
 public class Form: NSManagedObject, Codable {
 
     enum CodingKeys: String, CodingKey {
-        case id = "id"
         case locked = "locked"
         case password = "password"
         case title = "title"
@@ -24,7 +23,12 @@ public class Form: NSManagedObject, Codable {
         var formContainer = encoder.container(keyedBy: CodingKeys.self)
         
         try formContainer.encode(locked, forKey: .locked)
-        try formContainer.encode(password, forKey: .password)
+        if password != nil {
+            try formContainer.encode(password, forKey: .password)
+        }
+        else {
+            try formContainer.encode("", forKey: .password)
+        }
         try formContainer.encode(title, forKey: .title)
         try formContainer.encode(sections, forKey: .sections)
     }
@@ -36,6 +40,9 @@ public class Form: NSManagedObject, Codable {
         self.id = UUID()
         self.locked = try formContainer.decode(Bool.self, forKey: .locked)
         self.password = try formContainer.decode(String.self, forKey: .password)
+        if self.password == "" {
+            password = nil
+        }
         self.title = try formContainer.decode(String.self, forKey: .title)
         self.sections = try formContainer.decode(Set<Section>.self, forKey: .sections)
     }

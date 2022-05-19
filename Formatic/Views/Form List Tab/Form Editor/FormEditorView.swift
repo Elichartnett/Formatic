@@ -30,7 +30,8 @@ struct FormEditorView: View {
                 .sheet(isPresented: $showToggleLockView) {
                     ToggleLockView(showToggleLockView: $showToggleLockView, form: form)
                 }
-                .fileExporter(isPresented: $showExportToTemplateView, document: FormaticFileDocument(jsonData: model.encodeFormToJsonData(form: form)), contentType: .form, defaultFilename: form.title ?? form.id.uuidString) { result in
+                .fileExporter(isPresented: $showExportToTemplateView, document:
+                                FormaticFileDocument(jsonData: model.encodeFormToJsonData(form: form)), contentType: .form, defaultFilename: form.title ?? form.id.uuidString) { result in
                 }
         }
     }

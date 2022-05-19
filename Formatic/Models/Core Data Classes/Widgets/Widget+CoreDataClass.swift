@@ -13,7 +13,6 @@ import CoreData
 public class Widget: NSManagedObject, Codable {
     
     enum CodingKeys: String, CodingKey {
-        case id = "id"
         case position = "position"
         case title = "title"
         case type = "type"
@@ -22,7 +21,6 @@ public class Widget: NSManagedObject, Codable {
     public func encode(to encoder: Encoder) throws {
         var widgetContainer = encoder.container(keyedBy: CodingKeys.self)
         
-        try widgetContainer.encode(id, forKey: .id)
         try widgetContainer.encode(position, forKey: .position)
         try widgetContainer.encode(title, forKey: .title)
         try widgetContainer.encode(type, forKey: .type)
