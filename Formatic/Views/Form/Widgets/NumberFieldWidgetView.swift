@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NumberFieldWidgetView: View {
     
-    @EnvironmentObject var model: FormModel
+    @EnvironmentObject var formModel: FormModel
     @ObservedObject var numberFieldWidget: NumberFieldWidget
     @Binding var locked: Bool
     @State var title: String = ""
@@ -29,7 +29,7 @@ struct NumberFieldWidgetView: View {
             
             InputBox(placeholder: "number", text: $number)
                 .onChange(of: number) { _ in
-                    isValid = model.validNumber(number: number, range: range)
+                    isValid = formModel.validNumber(number: number, range: range)
                     if isValid {
                         numberFieldWidget.number = number
                     }

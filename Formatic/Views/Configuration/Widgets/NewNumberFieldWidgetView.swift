@@ -10,7 +10,7 @@ import SwiftUI
 // In new widget sheet to configure new NumberFieldWidget
 struct NewNumberFieldWidgetView: View {
     
-    @EnvironmentObject var model: FormModel
+    @EnvironmentObject var formModel: FormModel
     
     @Binding var newWidgetType: WidgetType?
     @Binding var title: String
@@ -29,7 +29,7 @@ struct NewNumberFieldWidgetView: View {
                             isValid = true
                         }
                         else {
-                            isValid = model.validNumber(number: number, range: range)
+                            isValid = formModel.validNumber(number: number, range: range)
                         }
                     }
                 }

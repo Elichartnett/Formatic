@@ -14,6 +14,7 @@ struct ToggleLockView: View {
     @State var form: Form
     @State var enteredPassword: String = ""
     @State var validPassword: Bool = false
+    @State var removePassword: Bool = false
     
     var body: some View {
         
@@ -35,22 +36,31 @@ struct ToggleLockView: View {
                 PasswordView(validPassword: $validPassword, password: $enteredPassword)
             }
             
-            Button {
-                // Set up new password
-                if form.password == nil {
-                    form.password = enteredPassword
-                    form.locked = true
+            VStack {
+                if form.password != nil {
+                    Toggle("Remove lock", isOn: $removePassword)
+                        .labelStyle(.titleAndIcon)
                 }
-                // Unlock form
-                else {
-                    form.locked = false
+                Button {
+                    // Set up new password
+                    if form.password == nil {
+                        form.password = enteredPassword
+                        form.locked = true
+                    }
+                    // Unlock form
+                    else {
+                        form.locked = false
+                        if removePassword {
+                            form.password = nil
+                        }
+                    }
+                    DataController.saveMOC()
+                    showToggleLockView = false
+                } label: {
+                    SubmitButton(isValid: $validPassword)
                 }
-                DataController.saveMOC()
-                showToggleLockView = false
-            } label: {
-                SubmitButton(isValid: $validPassword)
+                .disabled(!validPassword)
             }
-            .disabled(!validPassword)
         }
         .padding(.horizontal)
     }

@@ -50,7 +50,8 @@ enum SourceType: String, Identifiable {
     case photoLibrary
 }
 
-enum SharingFormError: Error {
+enum FormError: Error {
+    case fetchError
     case encodeFormToJsonDataError
     case urlToDataError
     case decodeJsonDataToFormError

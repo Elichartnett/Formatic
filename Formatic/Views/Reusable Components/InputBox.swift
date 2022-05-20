@@ -10,7 +10,7 @@ import SwiftUI
 // Standard text field
 struct InputBox: View {
     
-    @EnvironmentObject var model: FormModel
+    @EnvironmentObject var formModel: FormModel
     @FocusState var isFocused: Bool
     @State var placeholder: String
     @Binding var text: String
@@ -43,7 +43,7 @@ struct InputBox: View {
                                 isValid = true
                             }
                             else {
-                                isValid = model.validNumber(number: text, range: numberRange)
+                                isValid = formModel.validNumber(number: text, range: numberRange)
                             }
                         }
                     }

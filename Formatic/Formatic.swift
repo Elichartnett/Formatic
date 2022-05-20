@@ -19,7 +19,6 @@ struct Formatic: App {
                 .environmentObject(FormModel())
                 .onChange(of: scenePhase) { newPhase in
                     switch newPhase {
-
                     case .background:
                         DataController.saveMOC()
                     case .inactive:

@@ -11,6 +11,7 @@ import SwiftUI
 struct SubmitButton: View {
     
     @Binding var isValid: Bool
+    @State var buttonTitle: String = "Submit"
     
     var body: some View {
         
@@ -19,7 +20,7 @@ struct SubmitButton: View {
             .frame(width: 300, height: 100)
             .cornerRadius(10)
             .overlay(
-                Text("Submit")
+                Text(buttonTitle)
                     .font(.title)
                     .foregroundColor(.primary)
             )

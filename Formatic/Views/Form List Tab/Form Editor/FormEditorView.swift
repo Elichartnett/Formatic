@@ -10,17 +10,18 @@ import SwiftUI
 // Display form with form tool bar
 struct FormEditorView: View {
     
-    @EnvironmentObject var model: FormModel
+    @EnvironmentObject var formModel: FormModel
+    
     @ObservedObject var form: Form
     @State var formaticFileDocument: FormaticFileDocument?
-    @State var showExportToPDFView: Bool = false
     @State var exportToTemplate: Bool = false
+    @State var showExportToPDFView: Bool = false
     @State var showExportToTemplateView: Bool = false
     @State var showToggleLockView: Bool = false
     @State var isEditing: Bool = false
     @State var showAlert: Bool = false
     @State var alertTitle: String = ""
-    @State var alertMessage: String = ""
+    @State var alertMessage: String = "Okay"
     
     var body: some View {
         
@@ -35,10 +36,11 @@ struct FormEditorView: View {
                 .onChange(of: exportToTemplate, perform: { _ in
                     if exportToTemplate {
                         do {
-                            formaticFileDocument = try  FormaticFileDocument(jsonData: model.encodeFormToJsonData(form: form))
+                            formaticFileDocument = try  FormaticFileDocument(jsonData: formModel.encodeFormToJsonData(form: form))
                             showExportToTemplateView = true
                         }
                         catch {
+                            alertTitle = "Error exporting form to template"
                             showAlert = true
                         }
                     }

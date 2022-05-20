@@ -45,7 +45,7 @@ class FormModel: ObservableObject {
             return data
         }
         catch {
-            throw SharingFormError.encodeFormToJsonDataError
+            throw FormError.encodeFormToJsonDataError
         }
     }
     
@@ -56,7 +56,7 @@ class FormModel: ObservableObject {
             return form
         }
         catch {
-            throw SharingFormError.decodeJsonDataToFormError
+            throw FormError.decodeJsonDataToFormError
         }
     }
     
@@ -65,36 +65,39 @@ class FormModel: ObservableObject {
             let data = try urlToData(url: url)
             do {
                 let newForm = try decodeJsonDataToForm(data: data)
-                let formsRequest: NSFetchRequest<Form> = Form.fetchRequest()
-                let forms = try DataController.shared.container.viewContext.fetch(formsRequest)
-                if forms.contains(where: { form in
-                    form.title == newForm.title
-                })
-                {
-                    var newTitleFound = false
-                    var index = 1
-                    while !newTitleFound {
-                        let newTitle = "\(newForm.title ?? "") (\(index))"
-                        if !forms.contains(where: { form in
-                            form.title == newTitle
-                        }) {
-                            newTitleFound = true
-                            newForm.title = newTitle
-                        }
-                        else {
-                            index += 1
-                        }
+                do {
+                    let forms = try getForms()
+                    if forms.contains(where: { form in
+                        form.title == newForm.title && form.id != newForm.id
+                    })
+                    {
+                        resolveDuplicateFormName(newForm: newForm, forms: forms)
                     }
+                    DataController.saveMOC()
+                }
+                catch {
+                    throw FormError.fetchError
                 }
             }
             catch {
-                throw SharingFormError.decodeJsonDataToFormError
+                throw FormError.decodeJsonDataToFormError
             }
         }
         catch {
-            throw SharingFormError.urlToDataError
+            throw FormError.urlToDataError
         }
         DataController.saveMOC()
+    }
+    
+    func getForms() throws -> [Form] {
+        let formsRequest: NSFetchRequest<Form> = Form.fetchRequest()
+        do {
+            let forms = try DataController.shared.container.viewContext.fetch(formsRequest)
+            return forms
+        }
+        catch {
+            throw FormError.fetchError
+        }
     }
     
     func urlToData(url: URL) throws -> Data {
@@ -104,7 +107,42 @@ class FormModel: ObservableObject {
             return data
         }
         catch {
-            throw SharingFormError.urlToDataError
+            throw FormError.urlToDataError
+        }
+    }
+    
+    func resolveDuplicateFormName(newForm: Form, forms: [Form]) {
+        var newTitleFound = false
+        var index = 1
+        while !newTitleFound {
+            let newTitle = "\(newForm.title ?? "") (\(index))"
+            if !forms.contains(where: { form in
+                form.title == newTitle
+            }) {
+                newTitleFound = true
+                newForm.title = newTitle
+            }
+            else {
+                index += 1
+            }
+        }
+    }
+    
+    func deleteFormWithIndexSet(indexSet: IndexSet) throws {
+        do {
+            let forms = try getForms()
+            for index in indexSet {
+                let form = forms[index]
+                DataController.shared.container.viewContext.delete(form)
+                
+                for index in index..<forms.count {
+                    forms[index].position = forms[index].position - 1
+                }
+            }
+            DataController.saveMOC()
+        }
+        catch {
+            throw FormError.fetchError
         }
     }
 }

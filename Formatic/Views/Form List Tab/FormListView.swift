@@ -11,14 +11,13 @@ import SwiftUI
 struct FormListView: View {
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.position)]) var forms: FetchedResults<Form>
-    
     @EnvironmentObject var formModel: FormModel
     
     @State var showNewFormView: Bool = false
     @State var showImportFormView: Bool = false
     @State var showAlert: Bool = false
     @State var alertTitle: String = ""
-    @State var alertMessage: String = ""
+    @State var alertButtonTitle: String = "Okay"
     
     var body: some View {
         
@@ -36,11 +35,13 @@ struct FormListView: View {
                     
                 }
                 .onDelete { indexSet in
-                    for index in indexSet {
-                        let form = forms[index]
-                        DataController.shared.container.viewContext.delete(form)
+                    do {
+                        try formModel.deleteFormWithIndexSet(indexSet: indexSet)
                     }
-                    DataController.saveMOC()
+                    catch {
+                        alertTitle = "Error deleting form"
+                        showAlert = true
+                    }
                 }
             }
             .toolbar {
@@ -77,7 +78,7 @@ struct FormListView: View {
                 }
             }
             .alert(alertTitle, isPresented: $showAlert, actions: {
-                Button(alertMessage, role: .cancel) {}
+                Button(alertButtonTitle, role: .cancel) {}
             })
         }
         .navigationViewStyle(.stack)

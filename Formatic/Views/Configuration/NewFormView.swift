@@ -48,6 +48,9 @@ struct NewFormView: View {
                         if !titleEmpty && validTitle {
                             isValid = true
                         }
+                        else {
+                            isValid = false
+                        }
                     }
                 }
             
