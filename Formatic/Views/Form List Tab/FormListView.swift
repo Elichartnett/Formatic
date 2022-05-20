@@ -10,31 +10,37 @@ import SwiftUI
 // List of all saved forms with list toolbar
 struct FormListView: View {
     
-    @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var forms: FetchedResults<Form>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.position)]) var forms: FetchedResults<Form>
     
     @EnvironmentObject var formModel: FormModel
     
     @State var showNewFormView: Bool = false
     @State var showImportFormView: Bool = false
+    @State var showAlert: Bool = false
+    @State var alertTitle: String = ""
+    @State var alertMessage: String = ""
     
     var body: some View {
         
         NavigationView {
-            List() {
+            
+            List {
+                
                 ForEach(forms) { form in
+                    
                     NavigationLink {
                         FormEditorView(form: form)
                     } label: {
                         Text(form.title ?? "")
                     }
+                    
                 }
                 .onDelete { indexSet in
                     for index in indexSet {
                         let form = forms[index]
-                        moc.delete(form)
-                        DataController.saveMOC()
+                        DataController.shared.container.viewContext.delete(form)
                     }
+                    DataController.saveMOC()
                 }
             }
             .toolbar {
@@ -49,28 +55,30 @@ struct FormListView: View {
                 switch result {
                 case .success(let url):
                     showImportFormView = false
-                    var data = Data()
                     do {
-                        data = try Data(contentsOf: url)
+                        try formModel.importForm(url: url)
                     }
                     catch {
-                        print("could not get data")
+                        alertTitle = "Error importing form"
+                        showAlert = true
                     }
-                    formModel.decodeJsonDataToForm(data: data)
-                case .failure(let error):
-                    print(error)
+                case .failure(_):
+                    alertTitle = "Error importing form"
+                    showAlert = true
                 }
             }
             .onOpenURL { url in
-                var data = Data()
                 do {
-                    data = try Data(contentsOf: url)
+                    try formModel.importForm(url: url)
                 }
                 catch {
-                    print("could not get data")
+                    alertTitle = "Error importing form"
+                    showAlert = true
                 }
-                formModel.decodeJsonDataToForm(data: data)
             }
+            .alert(alertTitle, isPresented: $showAlert, actions: {
+                Button(alertMessage, role: .cancel) {}
+            })
         }
         .navigationViewStyle(.stack)
     }

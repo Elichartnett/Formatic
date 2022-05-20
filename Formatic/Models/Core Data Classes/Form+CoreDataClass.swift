@@ -40,6 +40,7 @@ public class Form: NSManagedObject, Codable {
         else {
             self.password = nil
         }
+        self.position = Int16(try DataController.shared.container.viewContext.fetch(NSFetchRequest(entityName: "Form")).count)
         if let title = try formContainer.decode(String?.self, forKey: .title) {
             self.title = title
         }

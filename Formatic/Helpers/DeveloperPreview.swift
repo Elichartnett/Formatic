@@ -32,7 +32,7 @@ class DeveloperPreview {
     private init() {
         
         // Create form
-        form = Form(title: "Form title")
+        form = Form(position: Int16(1), title: "Form title")
         
         // Add section
         section = Section(position: 0, title: "Section title")

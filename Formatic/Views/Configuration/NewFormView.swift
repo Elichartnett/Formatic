@@ -62,7 +62,7 @@ struct NewFormView: View {
             // Submit button - create form and set lock if optional password is used
             Button {
                 withAnimation {
-                    let form = Form(title: title)
+                    let form = Form(position: Int16(forms.count), title: title)
                     if !password.isEmpty {
                         form.password = password
                         form.locked = true

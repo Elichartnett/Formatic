@@ -49,3 +49,9 @@ enum SourceType: String, Identifiable {
     case camera
     case photoLibrary
 }
+
+enum SharingFormError: Error {
+    case encodeFormToJsonDataError
+    case urlToDataError
+    case decodeJsonDataToFormError
+}
