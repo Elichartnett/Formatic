@@ -44,7 +44,8 @@ struct EditorViewToolbar: View {
                 
                 // Add section to form button
                 Button {
-                    form.addToSections(Section(position: form.sectionsArray.count, title: nil))
+                    form.addToSections(Section(position: form.sections?.count ?? 0, title: nil))
+
                     DataController.saveMOC()
                 } label: {
                     HStack {
@@ -60,7 +61,9 @@ struct EditorViewToolbar: View {
                 
                 // Enable edit mode to rearrange list of widgets
                 Button {
-                    isEditing.toggle()
+                    withAnimation {
+                        isEditing.toggle()
+                    }
                 } label: {
                     HStack {
                         Image(systemName: "slider.horizontal.3")

@@ -32,12 +32,6 @@ extension Form {
         self.position = position
         self.title = title
     }
-    
-    var sectionsArray: [Section] {
-        return sections?.sorted { lhs, rhs in
-            lhs.position < rhs.position
-        } ?? []
-    }
 }
 
 // MARK: Generated accessors for sections

@@ -64,19 +64,7 @@ struct SectionView: View {
             }
         }
         .onMove(perform: { indexSet, destination in
-            // Temporary array with new indexes
-            var movedArray = section.widgetsArray
-            movedArray.move(fromOffsets: indexSet, toOffset: destination)
-            
-            // Store new positions in core data
-            for (index, widget) in movedArray.enumerated() {
-                let coreDataWidget = section.widgetsArray.first { coreDataWidget in
-                    coreDataWidget.id == widget.id
-                }
-                coreDataWidget?.position = Int16(index)
-            }
-            section.objectWillChange.send()
-            DataController.saveMOC()
+            formModel.moveWidgetWithIndexSet(section: section, indexSet: indexSet, destination: destination)
         })
         .onDelete { indexSet in
             formModel.deleteWidgetWithIndexSet(section: section, indexSet: indexSet)
@@ -87,7 +75,9 @@ struct SectionView: View {
 struct SectionView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            SectionView(section: dev.form.sectionsArray.first!, locked: .constant(dev.form.locked))
+            SectionView(section: (dev.form.sections?.sorted(by: { lhs, rhs in
+                lhs.position < rhs.position
+            }).first)!, locked: .constant(dev.form.locked))
                 .environmentObject(FormModel())
         }
     }

@@ -25,7 +25,9 @@ struct FormView: View {
             
             List {
                 
-                ForEach(form.sectionsArray) { section in
+                ForEach(form.sections?.sorted(by: { lhs, rhs in
+                    lhs.position < rhs.position
+                }) ?? []) { section in
                     SwiftUI.Section {
                         SectionView(section: section, locked: $form.locked)
                     } header: {

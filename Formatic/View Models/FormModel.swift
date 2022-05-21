@@ -180,12 +180,30 @@ class FormModel: ObservableObject {
             for index in indexSet {
                 let widget = widgets[index]
                 DataController.shared.container.viewContext.delete(widget)
-                
-                for index in index..<widgets.count {
+
+                // Update positions in 
+                for index in index+1..<widgets.count {
                     widgets[index].position = widgets[index].position - 1
                 }
                 DataController.saveMOC()
             }
         }
+    }
+    
+    func moveWidgetWithIndexSet(section: Section, indexSet: IndexSet, destination: Int) {
+        // Create temporary array with moved index
+        var movedArray = section.widgets?.sorted(by: { lhs, rhs in
+            lhs.position < rhs.position
+        })
+        movedArray?.move(fromOffsets: indexSet, toOffset: destination)
+        
+        // Update positions
+        for (index, widget) in movedArray!.enumerated() {
+            let coreDataWidget = section.widgetsArray.first { coreDataWidget in
+                coreDataWidget.id == widget.id
+            }
+            coreDataWidget?.position = Int16(index)
+        }
+        DataController.saveMOC()
     }
 }
