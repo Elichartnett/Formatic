@@ -31,6 +31,7 @@ struct FormTitleView: View {
                 .onChange(of: formTitle) { _ in
                     if !formTitle.isEmpty {
                         form.title = formTitle
+                        lastValidTitle = formTitle
                     }
                 }
                 .onChange(of: isFocused) { _ in
