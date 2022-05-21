@@ -11,23 +11,43 @@ struct FormTitleView: View {
     
     @ObservedObject var form: Form
     @State var formTitle: String = ""
+    @FocusState var isFocused: Bool
+    @State var lastValidTitle: String = ""
+    @State var showAlert: Bool = false
+    @State var alertTitle: String = ""
+    @State var alertMessage: String = "Okay"
     
     var body: some View {
         
         VStack {
+            
             TextField("Form title", text: $formTitle)
-                .font(Font.largeTitle.weight(.bold))
+                .font(.largeTitle.weight(.bold))
+                .focused($isFocused)
                 .onAppear {
                     formTitle = form.title ?? ""
+                    lastValidTitle = formTitle
                 }
-                .onChange(of: formTitle) { newValue in
-                    form.title = formTitle
-            }
+                .onChange(of: formTitle) { _ in
+                    if !formTitle.isEmpty {
+                        form.title = formTitle
+                    }
+                }
+                .onChange(of: isFocused) { _ in
+                    if !isFocused && formTitle.isEmpty {
+                        alertTitle = "Title can not be empty"
+                        showAlert = true
+                        formTitle = lastValidTitle
+                    }
+                }
             
             Rectangle()
                 .frame(height: 1)
         }
         .disabled(form.locked)
+        .alert(alertTitle, isPresented: $showAlert, actions: {
+            Button(alertMessage, role: .cancel) {}
+        })
     }
 }
 

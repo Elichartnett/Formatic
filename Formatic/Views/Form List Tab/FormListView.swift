@@ -35,15 +35,22 @@ struct FormListView: View {
                     
                 }
                 .onDelete { indexSet in
-                    do {
-                        try formModel.deleteFormWithIndexSet(indexSet: indexSet)
-                    }
-                    catch {
-                        alertTitle = "Error deleting form"
-                        showAlert = true
+                    withAnimation {
+                        do {
+                            try formModel.deleteFormWithIndexSet(indexSet: indexSet)
+                        }
+                        catch {
+                            alertTitle = "Error deleting form"
+                            showAlert = true
+                        }
                     }
                 }
             }
+            .overlay(
+                Text("Add a form to get started!")
+                    .opacity(forms.isEmpty ? 1 : 0)
+            )
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     ListViewToolbar(showNewFormView: $showNewFormView, showImportFormView: $showImportFormView)

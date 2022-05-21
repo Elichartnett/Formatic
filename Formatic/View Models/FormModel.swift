@@ -145,4 +145,20 @@ class FormModel: ObservableObject {
             throw FormError.fetchError
         }
     }
+    
+    func deleteWidgetWithIndexSet(section: Section, indexSet: IndexSet) {
+        let widgets = section.widgets?.sorted(by: { lhs, rhs in
+            lhs.position < rhs.position
+        }) ?? []
+
+        for index in indexSet {
+            let widget = widgets[index]
+            DataController.shared.container.viewContext.delete(widget)
+            
+            for index in index..<widgets.count {
+                widgets[index].position = widgets[index].position - 1
+            }
+            DataController.saveMOC()
+        }
+    }
 }

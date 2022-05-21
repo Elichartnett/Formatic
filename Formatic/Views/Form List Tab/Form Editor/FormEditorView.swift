@@ -36,7 +36,7 @@ struct FormEditorView: View {
                 .onChange(of: exportToTemplate, perform: { _ in
                     if exportToTemplate {
                         do {
-                            formaticFileDocument = try  FormaticFileDocument(jsonData: formModel.encodeFormToJsonData(form: form))
+                            formaticFileDocument = try FormaticFileDocument(jsonData: formModel.encodeFormToJsonData(form: form))
                             showExportToTemplateView = true
                         }
                         catch {
@@ -48,7 +48,8 @@ struct FormEditorView: View {
                 .sheet(isPresented: $showToggleLockView) {
                     ToggleLockView(showToggleLockView: $showToggleLockView, form: form)
                 }
-                .fileExporter(isPresented: $showExportToTemplateView, document: formaticFileDocument, contentType: .form, defaultFilename: form.title ?? form.id.uuidString) { result in
+                .fileExporter(isPresented: $showExportToTemplateView, document: formaticFileDocument, contentType: .form, defaultFilename: form.title != "" ? form.title : "Untitled form") { result in
+                    exportToTemplate = false
                 }
                 .alert(alertTitle, isPresented: $showAlert, actions: {
                     Button(alertMessage, role: .cancel) {}

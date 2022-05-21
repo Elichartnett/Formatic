@@ -18,10 +18,12 @@ struct FormaticFileDocument: FileDocument {
         self.jsonData = jsonData
     }
     
+    // decodes .form
     init(configuration: ReadConfiguration) throws {
         jsonData = configuration.file.regularFileContents ?? Data()
     }
     
+    // encodes .form
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
         return FileWrapper(regularFileWithContents: jsonData)
     }

@@ -10,7 +10,7 @@ import SwiftUI
 // Displays form sections with section titles and widgets
 struct SectionView: View {
     
-    @Environment(\.managedObjectContext) var moc
+    @EnvironmentObject var formModel: FormModel
     @ObservedObject var section: Section
     @Binding var locked: Bool
     
@@ -79,11 +79,7 @@ struct SectionView: View {
             DataController.saveMOC()
         })
         .onDelete { indexSet in
-            for index in indexSet {
-                let widget = section.widgetsArray[index]
-                moc.delete(widget)
-                DataController.saveMOC()
-            }
+            formModel.deleteWidgetWithIndexSet(section: section, indexSet: indexSet)
         }
     }
 }

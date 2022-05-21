@@ -15,28 +15,30 @@ struct FormView: View {
     
     var body: some View {
         
-        List {
+        VStack (spacing: 0) {
             
-            SwiftUI.Section {
-                EmptyView()
-            } header: {
-                FormTitleView(form: form)
-            }
-            .textCase(.none)
-            .headerProminence(.increased)
+            FormTitleView(form: form)
+                .padding(.horizontal)
+                .background(
+                    Color(uiColor: .systemGray6)
+                )
             
-            ForEach(form.sectionsArray) { section in
-                SwiftUI.Section {
-                    SectionView(section: section, locked: $form.locked)
-                } header: {
-                    SectionTitleView(section: section, locked: $form.locked)
+            List {
+                
+                ForEach(form.sectionsArray) { section in
+                    SwiftUI.Section {
+                        SectionView(section: section, locked: $form.locked)
+                    } header: {
+                        SectionTitleView(section: section, locked: $form.locked)
+                    }
+                    .headerProminence(.increased)
                 }
-                .headerProminence(.increased)
+            }
+            .onDisappear {
+                DataController.saveMOC()
             }
         }
-        .onDisappear {
-            DataController.saveMOC()
-        }
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
