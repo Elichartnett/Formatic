@@ -11,13 +11,16 @@ import SwiftUI
 struct NewFormView: View {
     
     @FetchRequest(sortDescriptors: []) var forms: FetchedResults<Form>
+    @EnvironmentObject var formModel: FormModel
     @Binding var showNewFormView: Bool
     @State var title: String = ""
     @State var password: String = ""
-    @State var titleEmpty: Bool = true
     @State var validTitle: Bool = false
     @State var validPassword: Bool = true
     @State var isValid: Bool = false
+    @State var showAlert: Bool = false
+    @State var alertTitle: String = ""
+    @State var alertMessage: String = "Okay"
     
     var body: some View {
         
@@ -29,31 +32,22 @@ struct NewFormView: View {
             // Form title
             InputBox(placeholder: "Title", text: $title)
                 .onChange(of: title) { _ in
-                    withAnimation {
-                        if title.isEmpty {
-                            titleEmpty = true
-                        }
-                        else {
-                            titleEmpty = false
-                        }
-                        
-                        if forms.contains(where: { form in
-                            form.title == title
-                        }) {
-                            validTitle = false
-                        }
-                        else {
-                            validTitle = true
-                        }
-                        if !titleEmpty && validTitle {
-                            isValid = true
-                        }
-                        else {
-                            isValid = false
-                        }
+                    do {
+                        validTitle = try formModel.validTitle(title: title)
+                    }
+                    catch {
+                        alertTitle = "Error validating title"
+                        validTitle = false
                     }
                 }
-            
+                .onChange(of: validTitle, perform: { _ in
+                    withAnimation {
+                        isValid = (validTitle && validPassword)
+                    }
+                })
+                .alert(alertTitle, isPresented: $showAlert, actions: {
+                    Button(alertMessage, role: .cancel) {}
+                })
             
             PasswordView(validPassword: $validPassword, password: $password)
                 .onChange(of: validPassword) { _ in
@@ -77,9 +71,9 @@ struct NewFormView: View {
             } label: {
                 SubmitButton(isValid: $isValid)
             }
-            .disabled(!(validTitle && validPassword))
+            .disabled(!(isValid))
             
-            if !validTitle && !titleEmpty {
+            if !validTitle && !title.isEmpty {
                 Text("Title already in use")
                     .foregroundColor(.red)
             }

@@ -38,6 +38,31 @@ class FormModel: ObservableObject {
         }
     }
     
+    func validTitle(title: String) throws -> Bool {
+        try withAnimation {
+            do {
+                let forms = try getForms()
+                
+                if forms.contains(where: { form in
+                    form.title == title
+                }) {
+                    return false
+                }
+                else {
+                    if !title.isEmpty {
+                        return true
+                    }
+                    else {
+                        return false
+                    }
+                }
+            }
+            catch {
+                throw FormError.fetchError
+            }
+        }
+    }
+    
     func encodeFormToJsonData(form: Form) throws -> Data {
         let encoder = JSONEncoder()
         do {
@@ -150,15 +175,17 @@ class FormModel: ObservableObject {
         let widgets = section.widgets?.sorted(by: { lhs, rhs in
             lhs.position < rhs.position
         }) ?? []
-
-        for index in indexSet {
-            let widget = widgets[index]
-            DataController.shared.container.viewContext.delete(widget)
-            
-            for index in index..<widgets.count {
-                widgets[index].position = widgets[index].position - 1
+        
+        withAnimation {
+            for index in indexSet {
+                let widget = widgets[index]
+                DataController.shared.container.viewContext.delete(widget)
+                
+                for index in index..<widgets.count {
+                    widgets[index].position = widgets[index].position - 1
+                }
+                DataController.saveMOC()
             }
-            DataController.saveMOC()
         }
     }
 }

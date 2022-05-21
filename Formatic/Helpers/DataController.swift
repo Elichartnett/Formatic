@@ -24,7 +24,9 @@ class DataController: ObservableObject {
     
     static func saveMOC() {
         do {
-            try DataController.shared.container.viewContext.save()
+            if DataController.shared.container.viewContext.hasChanges {
+                try DataController.shared.container.viewContext.save()
+            }
         }
         catch {
             print("Could not save managed object context: \(error)")

@@ -11,7 +11,7 @@ struct SectionTitleView: View {
     
     @ObservedObject var section: Section
     @Binding var locked: Bool
-    
+    @FocusState var sectionTitleIsFocused: Bool
     @State var newWidgetType: WidgetType?
     @State var sectionTitle: String = ""
     
@@ -69,9 +69,13 @@ struct SectionTitleView: View {
             }
             
             TextField("Section title", text: $sectionTitle)
+                .focused($sectionTitleIsFocused)
                 .font(Font.title.weight(.semibold))
                 .onChange(of: sectionTitle) { newValue in
                     section.title = sectionTitle
+                }
+                .onChange(of: sectionTitleIsFocused) { newValue in
+                    DataController.saveMOC()
                 }
         }
         .disabled(locked)

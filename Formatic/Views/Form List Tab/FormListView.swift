@@ -35,14 +35,12 @@ struct FormListView: View {
                     
                 }
                 .onDelete { indexSet in
-                    withAnimation {
-                        do {
-                            try formModel.deleteFormWithIndexSet(indexSet: indexSet)
-                        }
-                        catch {
-                            alertTitle = "Error deleting form"
-                            showAlert = true
-                        }
+                    do {
+                        try formModel.deleteFormWithIndexSet(indexSet: indexSet)
+                    }
+                    catch {
+                        alertTitle = "Error deleting form"
+                        showAlert = true
                     }
                 }
             }

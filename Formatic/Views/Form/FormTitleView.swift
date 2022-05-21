@@ -11,7 +11,7 @@ struct FormTitleView: View {
     
     @ObservedObject var form: Form
     @State var formTitle: String = ""
-    @FocusState var isFocused: Bool
+    @FocusState var formTitleIsFocused: Bool
     @State var lastValidTitle: String = ""
     @State var showAlert: Bool = false
     @State var alertTitle: String = ""
@@ -23,7 +23,7 @@ struct FormTitleView: View {
             
             TextField("Form title", text: $formTitle)
                 .font(.largeTitle.weight(.bold))
-                .focused($isFocused)
+                .focused($formTitleIsFocused)
                 .onAppear {
                     formTitle = form.title ?? ""
                     lastValidTitle = formTitle
@@ -34,8 +34,8 @@ struct FormTitleView: View {
                         lastValidTitle = formTitle
                     }
                 }
-                .onChange(of: isFocused) { _ in
-                    if !isFocused && formTitle.isEmpty {
+                .onChange(of: formTitleIsFocused) { _ in
+                    if !formTitleIsFocused && formTitle.isEmpty {
                         alertTitle = "Title can not be empty"
                         showAlert = true
                         formTitle = lastValidTitle
