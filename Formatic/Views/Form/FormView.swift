@@ -10,8 +10,15 @@ import SwiftUI
 // Displays a form with title and sections
 struct FormView: View {
     
+    @FetchRequest var sections: FetchedResults<Section>
+    
     @ObservedObject var form: Form
     @State var formTitle: String = ""
+    
+    init(form: Form) {
+        self._sections = FetchRequest<Section>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "form == %@", form))
+        self.form = form
+    }
     
     var body: some View {
         
@@ -25,9 +32,7 @@ struct FormView: View {
             
             List {
                 
-                ForEach(form.sections?.sorted(by: { lhs, rhs in
-                    lhs.position < rhs.position
-                }) ?? []) { section in
+                ForEach(sections) { section in
                     SwiftUI.Section {
                         SectionView(section: section, locked: $form.locked)
                     } header: {

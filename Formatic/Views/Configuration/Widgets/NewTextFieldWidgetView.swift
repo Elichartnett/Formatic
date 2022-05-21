@@ -10,6 +10,8 @@ import SwiftUI
 // In new widget sheet to configure new TextFieldWidget
 struct NewTextFieldWidgetView: View {
     
+    @EnvironmentObject var formModel: FormModel
+    
     @Binding var newWidgetType: WidgetType?
     @Binding var title: String
     @State var section: Section
@@ -22,7 +24,7 @@ struct NewTextFieldWidgetView: View {
             InputBox(placeholder: "text", text: $text)
             
             Button {
-                let textFieldWidget = TextFieldWidget(title: title, position: section.widgetsArray.count, text: text)
+                let textFieldWidget = TextFieldWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), text: text)
                 withAnimation {
                     section.addToWidgets(textFieldWidget)
                     DataController.saveMOC()

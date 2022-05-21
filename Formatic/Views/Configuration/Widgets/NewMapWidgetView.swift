@@ -11,6 +11,8 @@ import SwiftUI
 // In new widget sheet to configure new MapWidget
 struct NewMapWidgetView: View {
     
+    @EnvironmentObject var formModel: FormModel
+    
     @Binding var newWidgetType: WidgetType?
     @Binding var title: String
     @State var section: Section
@@ -18,7 +20,7 @@ struct NewMapWidgetView: View {
     var body: some View {
         
         Button {
-            let mapWidget = MapWidget(title: title, position: section.widgetsArray.count)
+            let mapWidget = MapWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section))
             
             withAnimation {
                 section.addToWidgets(mapWidget)

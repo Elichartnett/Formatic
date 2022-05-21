@@ -10,6 +10,8 @@ import SwiftUI
 // In new widget sheet to configure new CheckboxSectionWidget
 struct NewCheckboxSectionWidgetView: View {
     
+    @EnvironmentObject var formModel: FormModel
+    
     @Binding var newWidgetType: WidgetType?
     @Binding var title: String
     @State var section: Section
@@ -53,7 +55,7 @@ struct NewCheckboxSectionWidgetView: View {
             
             Button {
                 // Create checkboxSectionWidget
-                let checkboxSectionWidget = CheckboxSectionWidget(title: title, position: section.widgetsArray.count)
+                let checkboxSectionWidget = CheckboxSectionWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section))
                 
                 // Append checkboxes to checkboxSectionWidget
                 for (index, localCheckbox) in localCheckboxes.enumerated() {

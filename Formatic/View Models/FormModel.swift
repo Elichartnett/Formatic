@@ -125,6 +125,12 @@ class FormModel: ObservableObject {
         }
     }
     
+    func getWidgetsInSection(section: Section) -> [Widget] {
+        return section.widgets?.sorted(by: { lhs, rhs in
+            lhs.position < rhs.position
+        }) ?? []
+    }
+    
     func urlToData(url: URL) throws -> Data {
         var data = Data()
         do {
@@ -134,6 +140,10 @@ class FormModel: ObservableObject {
         catch {
             throw FormError.urlToDataError
         }
+    }
+    
+    func numberOfWidgetsInSection(section: Section) -> Int {
+        return getWidgetsInSection(section: section).count
     }
     
     func resolveDuplicateFormName(newForm: Form, forms: [Form]) {
@@ -156,11 +166,13 @@ class FormModel: ObservableObject {
     func deleteFormWithIndexSet(indexSet: IndexSet) throws {
         do {
             let forms = try getForms()
+
             for index in indexSet {
                 let form = forms[index]
                 DataController.shared.container.viewContext.delete(form)
-                
-                for index in index..<forms.count {
+
+                // Update positions starting with form after deleted index
+                for index in index+1..<forms.count {
                     forms[index].position = forms[index].position - 1
                 }
             }
@@ -172,16 +184,14 @@ class FormModel: ObservableObject {
     }
     
     func deleteWidgetWithIndexSet(section: Section, indexSet: IndexSet) {
-        let widgets = section.widgets?.sorted(by: { lhs, rhs in
-            lhs.position < rhs.position
-        }) ?? []
+        let widgets = getWidgetsInSection(section: section)
         
         withAnimation {
             for index in indexSet {
                 let widget = widgets[index]
                 DataController.shared.container.viewContext.delete(widget)
 
-                // Update positions in 
+                // Update positions starting with widget after deleted index
                 for index in index+1..<widgets.count {
                     widgets[index].position = widgets[index].position - 1
                 }
@@ -192,17 +202,12 @@ class FormModel: ObservableObject {
     
     func moveWidgetWithIndexSet(section: Section, indexSet: IndexSet, destination: Int) {
         // Create temporary array with moved index
-        var movedArray = section.widgets?.sorted(by: { lhs, rhs in
-            lhs.position < rhs.position
-        })
-        movedArray?.move(fromOffsets: indexSet, toOffset: destination)
+        var widgets = getWidgetsInSection(section: section)
+        widgets.move(fromOffsets: indexSet, toOffset: destination)
         
         // Update positions
-        for (index, widget) in movedArray!.enumerated() {
-            let coreDataWidget = section.widgetsArray.first { coreDataWidget in
-                coreDataWidget.id == widget.id
-            }
-            coreDataWidget?.position = Int16(index)
+        for (index, widget) in widgets.enumerated() {
+            widget.position = Int16(index)
         }
         DataController.saveMOC()
     }

@@ -10,6 +10,8 @@ import SwiftUI
 // In new widget sheet to configure new CanvasWidget
 struct NewCanvasWidgetView: View {
     
+    @EnvironmentObject var formModel: FormModel
+    
     @Binding var newWidgetType: WidgetType?
     @Binding var title: String
     @State var section: Section
@@ -49,7 +51,7 @@ struct NewCanvasWidgetView: View {
             
             Button {
                 withAnimation {
-                    let canvasWidget = CanvasWidget(title: title, position: section.widgetsArray.count)
+                    let canvasWidget = CanvasWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section))
                     if pickerResult.count == 1 {
                         let backgroundPhoto = pickerResult.first?.photo
                         canvasWidget.image = backgroundPhoto

@@ -11,13 +11,21 @@ import SwiftUI
 struct SectionView: View {
     
     @EnvironmentObject var formModel: FormModel
+    @FetchRequest var widgets: FetchedResults<Widget>
+    
     @ObservedObject var section: Section
     @Binding var locked: Bool
+    
+    init(section: Section, locked: Binding<Bool>) {
+        self._widgets = FetchRequest<Widget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "section.id == %@", section))
+        self.section = section
+        self._locked = locked
+    }
     
     var body: some View {
         
         // Display all widgets in section
-        ForEach(section.widgetsArray) { widget in
+        ForEach(widgets) { widget in
             let widgetType: WidgetType = WidgetType.init(rawValue: widget.type!)!
             
             switch widgetType {
@@ -72,13 +80,13 @@ struct SectionView: View {
     }
 }
 
-struct SectionView_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            SectionView(section: (dev.form.sections?.sorted(by: { lhs, rhs in
-                lhs.position < rhs.position
-            }).first)!, locked: .constant(dev.form.locked))
-                .environmentObject(FormModel())
-        }
-    }
-}
+//struct SectionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        VStack {
+//            SectionView(section: (dev.form.sections?.sorted(by: { lhs, rhs in
+//                lhs.position < rhs.position
+//            }).first)!, locked: .constant(dev.form.locked))
+//                .environmentObject(FormModel())
+//        }
+//    }
+//}

@@ -11,6 +11,8 @@ import Combine
 // In new widget sheet to configure new PhotoLibraryWidget
 struct NewPhotoLibraryWidgetView: View {
     
+    @EnvironmentObject var formModel: FormModel
+    
     @Binding var newWidgetType: WidgetType?
     @Binding var title: String
     @State var section: Section
@@ -50,7 +52,7 @@ struct NewPhotoLibraryWidgetView: View {
             }
             
             Button {
-                let photoLibraryWidget = PhotoLibraryWidget(title: title, position: section.widgetsArray.count)
+                let photoLibraryWidget = PhotoLibraryWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section))
                 if pickerResult.count == 1 {
                     photoLibraryWidget.addToPhotos(pickerResult.first!)
                 }

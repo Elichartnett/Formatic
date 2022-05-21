@@ -10,6 +10,8 @@ import SwiftUI
 // In new widget sheet to configure new DropdownSectionWidget
 struct NewDropdownSectionWidgetView: View {
     
+    @EnvironmentObject var formModel: FormModel
+    
     @Binding var newWidgetType: WidgetType?
     @Binding var title: String
     @State var section: Section
@@ -66,7 +68,7 @@ struct NewDropdownSectionWidgetView: View {
             
             Button {
                 // Create dropdownSectionWidget
-                let dropdownSectionWidget = DropdownSectionWidget(title: title, position: section.widgetsArray.count)
+                let dropdownSectionWidget = DropdownSectionWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section))
                 
                 // Append dropdown options to dropdownSectionWidget
                 for (index, localDropdown) in localDropdowns.enumerated() {

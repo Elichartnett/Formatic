@@ -10,6 +10,8 @@ import SwiftUI
 // In new widget sheet to configure new TextEditorWidget
 struct NewTextEditorWidgetView: View {
     
+    @EnvironmentObject var formModel: FormModel
+    
     @Binding var newWidgetType: WidgetType?
     @Binding var title: String
     @FocusState var isFocused: Bool
@@ -37,7 +39,7 @@ struct NewTextEditorWidgetView: View {
             }
             
             Button {
-                let textEditorWidget = TextEditorWidget(title: title, position: section.widgetsArray.count, text: text)
+                let textEditorWidget = TextEditorWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), text: text)
                 withAnimation {
                     section.addToWidgets(textEditorWidget)
                     DataController.saveMOC()

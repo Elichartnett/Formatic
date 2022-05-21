@@ -36,7 +36,7 @@ struct NewNumberFieldWidgetView: View {
             InputBox(placeholder: "number", text: $number, inputType: .number)
             
             Button {
-                let numberFieldWidget = NumberFieldWidget(title: title, position: section.widgetsArray.count, number: number)
+                let numberFieldWidget = NumberFieldWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), number: number)
                 withAnimation {
                     section.addToWidgets(numberFieldWidget)
                     DataController.saveMOC()
