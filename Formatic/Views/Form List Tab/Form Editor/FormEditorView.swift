@@ -15,13 +15,14 @@ struct FormEditorView: View {
     @ObservedObject var form: Form
     @State var formaticFileDocument: FormaticFileDocument?
     @State var exportToTemplate: Bool = false
-    @State var showExportToPDFView: Bool = false
     @State var showExportToTemplateView: Bool = false
     @State var showToggleLockView: Bool = false
     @State var isEditing: Bool = false
     @State var showAlert: Bool = false
     @State var alertTitle: String = ""
     @State var alertMessage: String = "Okay"
+    @State var showShareSheet: Bool = false
+    @State var urls: [Any]?
     
     var body: some View {
         
@@ -30,7 +31,7 @@ struct FormEditorView: View {
                 .environment(\.editMode, .constant(isEditing ? .active : .inactive))
                 .toolbar(content: {
                     ToolbarItem(placement: .principal) {
-                        EditorViewToolbar(form: form, showExportToPDFView: $showExportToPDFView, exportToTemplate: $exportToTemplate, showToggleLockView: $showToggleLockView, isEditing: $isEditing)
+                        EditorViewToolbar(form: form, exportToTemplate: $exportToTemplate, showToggleLockView: $showToggleLockView, isEditing: $isEditing)
                     }
                 })
                 .onChange(of: exportToTemplate, perform: { _ in
@@ -63,6 +64,7 @@ struct FormEditorView_Previews: PreviewProvider {
         NavigationView {
             FormEditorView(form: dev.form)
                 .environmentObject(FormModel())
+                .environment(\.managedObjectContext, DataController.shared.container.viewContext)
         }
         .navigationViewStyle(.stack)
     }

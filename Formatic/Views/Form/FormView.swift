@@ -54,6 +54,7 @@ struct FormView_Previews: PreviewProvider {
         NavigationView {
             FormView(form: dev.form)
                 .environmentObject(FormModel())
+                .environment(\.managedObjectContext, DataController.shared.container.viewContext)
         }
         .navigationViewStyle(.stack)
     }
