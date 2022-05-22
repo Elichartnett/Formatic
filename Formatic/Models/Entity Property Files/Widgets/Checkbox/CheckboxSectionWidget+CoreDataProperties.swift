@@ -17,13 +17,6 @@ extension CheckboxSectionWidget {
     }
 
     @NSManaged public var checkboxes: NSSet?
-
-    public var checkboxesArray: [CheckboxWidget] {
-        let set = checkboxes as? Set<CheckboxWidget> ?? []
-        return set.sorted { lhs, rhs in
-            lhs.position < rhs.position
-        }
-    }
     
     /// CheckboxSectionWidget  convenience init
     convenience init(title: String?, position: Int) {
