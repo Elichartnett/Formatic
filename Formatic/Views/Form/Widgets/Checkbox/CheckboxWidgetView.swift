@@ -10,24 +10,38 @@ import SwiftUI
 struct CheckboxWidgetView: View {
     
     @ObservedObject var checkbox: CheckboxWidget
+    @State var description: String = ""
+    @FocusState var isFocused: Bool
     
     var body: some View {
         
-        Button {
-            withAnimation {
-                checkbox.checked.toggle()
-                DataController.saveMOC()
+        HStack {
+            
+            Button {
+                withAnimation {
+                    checkbox.checked.toggle()
+                    DataController.saveMOC()
+                }
+            } label: {
+                if checkbox.checked {
+                    Image(systemName: "checkmark.square.fill")
+                }
+                else {
+                    Image(systemName: "square")
+                }
             }
-        } label: {
-            if checkbox.checked {
-                Image(systemName: "checkmark.square.fill")
-            }
-            else {
-                Image(systemName: "square")
-            }
+            .buttonStyle(.plain)
+            .foregroundColor(.black)
+            
+            TextField("description", text: $description)
+                .focused($isFocused)
+                .onAppear {
+                    description = checkbox.title ?? ""
+                }
+                .onChange(of: isFocused) { newValue in
+                    DataController.saveMOC()
+                }
         }
-        .buttonStyle(.plain)
-        .foregroundColor(.black)
     }
 }
 

@@ -36,10 +36,7 @@ struct CheckboxSectionWidgetView: View {
             let columns: [GridItem] = Array(repeating: GridItem(.flexible(minimum: 100, maximum: 150), spacing: 20, alignment: nil), count: 3)
             LazyVGrid(columns: columns, alignment: .leading) {
                 ForEach(checkboxes) { checkboxWidget in
-                    HStack {
-                        CheckboxWidgetView(checkbox: checkboxWidget)
-                        Text(checkboxWidget.title ?? "No title")
-                    }
+                    CheckboxWidgetView(checkbox: checkboxWidget)
                 }
             }
             .frame(maxWidth: .infinity)
