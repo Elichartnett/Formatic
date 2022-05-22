@@ -9,9 +9,17 @@ import SwiftUI
 
 struct DropdownSectionWidgetView: View {
     
+    @FetchRequest var dropdowns: FetchedResults<DropdownWidget>
     @ObservedObject var dropdownSectionWidget: DropdownSectionWidget
+    
     @Binding var locked: Bool
     @State var title: String = ""
+    
+    init(dropdownSectionWidget: DropdownSectionWidget, locked: Binding<Bool>) {
+        self._dropdowns = FetchRequest<DropdownWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "dropdownSection == %@", dropdownSectionWidget))
+        self.dropdownSectionWidget = dropdownSectionWidget
+        self._locked = locked
+    }
     
     var body: some View {
         
@@ -31,7 +39,7 @@ struct DropdownSectionWidgetView: View {
             HStack {
 
                 Menu {
-                    ForEach(dropdownSectionWidget.dropdownsArray) { widget in
+                    ForEach(dropdowns) { widget in
                         Button {
                             dropdownSectionWidget.selectedDropdown = widget
                             DataController.saveMOC()

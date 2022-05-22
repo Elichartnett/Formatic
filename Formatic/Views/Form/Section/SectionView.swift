@@ -17,7 +17,7 @@ struct SectionView: View {
     @Binding var locked: Bool
     
     init(section: Section, locked: Binding<Bool>) {
-        self._widgets = FetchRequest<Widget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "section.id == %@", section))
+        self._widgets = FetchRequest<Widget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "section == %@", section))
         self.section = section
         self._locked = locked
     }
@@ -80,13 +80,11 @@ struct SectionView: View {
     }
 }
 
-//struct SectionView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        VStack {
-//            SectionView(section: (dev.form.sections?.sorted(by: { lhs, rhs in
-//                lhs.position < rhs.position
-//            }).first)!, locked: .constant(dev.form.locked))
-//                .environmentObject(FormModel())
-//        }
-//    }
-//}
+struct SectionView_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            SectionView(section: (dev.form.sections!.first)!, locked: .constant(dev.form.locked))
+                .environmentObject(FormModel())
+        }
+    }
+}

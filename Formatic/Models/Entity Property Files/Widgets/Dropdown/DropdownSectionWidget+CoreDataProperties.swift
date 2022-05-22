@@ -20,14 +20,6 @@ extension DropdownSectionWidget {
     @NSManaged public var selectedDropdown: DropdownWidget?
     @NSManaged public var dropdowns: NSSet?
     
-    public var dropdownsArray: [DropdownWidget] {
-        let set = dropdowns as? Set<DropdownWidget> ?? []
-        
-        return set.sorted { lhs, rhs in
-            lhs.position < rhs.position
-        }
-    }
-    
     /// DropdownSectionWidget  convenience init
     convenience init(title: String?, position: Int) {
         self.init(title: title, position: position, type: WidgetType.dropdownSectionWidget.rawValue)
