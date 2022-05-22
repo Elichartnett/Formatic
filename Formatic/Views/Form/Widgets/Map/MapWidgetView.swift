@@ -29,7 +29,7 @@ struct MapWidgetView: View {
                 }
             
             NavigationLink {
-                MapWidgetDetailView(mapWidget: mapWidget, locked: $locked)
+                MapWidgetDetailView(mapWidget: mapWidget)
             } label: {
                 MapView(mapWidget: mapWidget, coordinateRegion: $coordinateRegion)
                     .DetailFrameStyle()

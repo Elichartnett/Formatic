@@ -9,18 +9,25 @@ import SwiftUI
 
 struct PhotoLibraryWidgetDetailView: View {
     
+    @FetchRequest var photoLibrary: FetchedResults<PhotoWidget>
     @ObservedObject var photoLibraryWidget: PhotoLibraryWidget
+    
     @State var sourceType: SourceType?
     @State var showTitles: Bool = false
     let columns: [GridItem] = Array(repeating: GridItem(.adaptive(minimum: 200), spacing: nil, alignment: nil), count: 1)
     @State var pickerResult: [PhotoWidget] = [PhotoWidget]()
+    
+    init(photoLibraryWidget: PhotoLibraryWidget) {
+        self._photoLibrary = FetchRequest(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "photoLibraryWidget == %@", photoLibraryWidget))
+        self.photoLibraryWidget = photoLibraryWidget
+    }
     
     var body: some View {
         
         ScrollView {
             
             LazyVGrid(columns: columns) {
-                ForEach(photoLibraryWidget.photosArray) { photoWidget in
+                ForEach(photoLibrary) { photoWidget in
                     VStack {
                         Image(uiImage: UIImage(data: photoWidget.photo ?? Data()) ?? UIImage())
                             .resizable()
@@ -30,9 +37,6 @@ struct PhotoLibraryWidgetDetailView: View {
                             .opacity(showTitles ? 1 : 0)
                     }
                 }
-            }
-            .onAppear {
-                pickerResult = photoLibraryWidget.photosArray
             }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -65,13 +69,10 @@ struct PhotoLibraryWidgetDetailView: View {
                     }
                 }
                 .onChange(of: pickerResult) { _ in
-                    for result in pickerResult {
-                        if !photoLibraryWidget.photosArray.contains(where: { photoWidget in
-                            photoWidget.id == result.id
-                        }) {
-                            result.position = Int16(photoLibraryWidget.photosArray.count)
-                            photoLibraryWidget.addToPhotos(result)
-                        }
+                    for newPhotoWidget in pickerResult {
+                        newPhotoWidget.position = Int16(photoLibrary.count)
+                        photoLibraryWidget.addToPhotoWidgets(newPhotoWidget)
+                        
                     }
                     DataController.saveMOC()
                 }

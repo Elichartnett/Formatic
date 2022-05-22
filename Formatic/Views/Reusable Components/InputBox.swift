@@ -36,7 +36,6 @@ struct InputBox: View {
                 
             case .number:
                 TextField(placeholder, text: $text)
-                    .foregroundColor(isValid ? .primary : .red)
                     .onChange(of: text) { _ in
                         withAnimation {
                             if text.isEmpty {
@@ -52,7 +51,7 @@ struct InputBox: View {
                 SecureField(placeholder, text: $text)
             }
         }
-        .foregroundColor(.primary)
+        .foregroundColor(isValid ? .primary : .red)
         .padding(.leading)
         .frame(height: 40)
         .overlay(

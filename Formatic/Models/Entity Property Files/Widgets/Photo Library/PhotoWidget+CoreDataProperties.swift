@@ -17,7 +17,7 @@ extension PhotoWidget {
     }
 
     @NSManaged public var photo: Data?
-    @NSManaged public var library: PhotoLibraryWidget?
+    @NSManaged public var photoLibraryWidget: PhotoLibraryWidget?
 
     /// PhotoWidget  convenience init
     convenience init(title: String?, position: Int, photo: Data?) {

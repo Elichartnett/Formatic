@@ -16,7 +16,7 @@ extension CheckboxSectionWidget {
         return NSFetchRequest<CheckboxSectionWidget>(entityName: "CheckboxSectionWidget")
     }
 
-    @NSManaged public var checkboxes: NSSet?
+    @NSManaged public var checkboxWidgets: NSSet?
     
     /// CheckboxSectionWidget  convenience init
     convenience init(title: String?, position: Int) {
@@ -24,19 +24,19 @@ extension CheckboxSectionWidget {
     }
 }
 
-// MARK: Generated accessors for checkboxes
+// MARK: Generated accessors for checkboxWidgets
 extension CheckboxSectionWidget {
 
-    @objc(addCheckboxesObject:)
-    @NSManaged public func addToCheckboxes(_ value: CheckboxWidget)
+    @objc(addCheckboxWidgetsObject:)
+    @NSManaged public func addToCheckboxWidgets(_ value: CheckboxWidget)
 
-    @objc(removeCheckboxesObject:)
-    @NSManaged public func removeFromCheckboxes(_ value: CheckboxWidget)
+    @objc(removeCheckboxWidgetsObject:)
+    @NSManaged public func removeFromCheckboxWidgets(_ value: CheckboxWidget)
 
-    @objc(addCheckboxes:)
-    @NSManaged public func addToCheckboxes(_ values: NSSet)
+    @objc(addCheckboxWidgets:)
+    @NSManaged public func addToCheckboxWidgets(_ values: NSSet)
 
-    @objc(removeCheckboxes:)
-    @NSManaged public func removeFromCheckboxes(_ values: NSSet)
+    @objc(removeCheckboxWidgets:)
+    @NSManaged public func removeFromCheckboxWidgets(_ values: NSSet)
 
 }

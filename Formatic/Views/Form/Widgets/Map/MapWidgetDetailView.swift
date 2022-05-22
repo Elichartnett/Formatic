@@ -13,7 +13,6 @@ import UTMConversion
 struct MapWidgetDetailView: View {
     
     @ObservedObject var mapWidget: MapWidget
-    @Binding var locked: Bool
     @State var coordinateType: CoordinateType = .latLon
     @State var coordinateRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.0902, longitude: -95.7129), span: MKCoordinateSpan(latitudeDelta: 70, longitudeDelta: 70))
     
@@ -22,7 +21,6 @@ struct MapWidgetDetailView: View {
         VStack {
             
             AddAnnotationsView(mapWidget: mapWidget, coordinateType: $coordinateType, coordinateRegion: $coordinateRegion)
-                .disabled(locked)
                 .padding()
             
             ZStack {
@@ -42,6 +40,6 @@ struct MapWidgetDetailView: View {
 
 struct MapWidgetDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MapWidgetDetailView(mapWidget: dev.mapWidget, locked: .constant(false))
+        MapWidgetDetailView(mapWidget: dev.mapWidget)
     }
 }

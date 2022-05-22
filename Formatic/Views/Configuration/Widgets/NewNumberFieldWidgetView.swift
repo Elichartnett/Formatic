@@ -21,8 +21,7 @@ struct NewNumberFieldWidgetView: View {
     
     var body: some View {
         VStack {
-            InputBox(placeholder: "number", text: $number)
-                .foregroundColor(isValid ? .primary : .red)
+            InputBox(placeholder: "number", text: $number, inputType: .number, isValid: $isValid)
                 .onChange(of: number) { _ in
                     withAnimation {
                         if number.isEmpty {
@@ -33,7 +32,6 @@ struct NewNumberFieldWidgetView: View {
                         }
                     }
                 }
-            InputBox(placeholder: "number", text: $number, inputType: .number)
             
             Button {
                 let numberFieldWidget = NumberFieldWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), number: number)

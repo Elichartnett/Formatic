@@ -18,7 +18,7 @@ extension DropdownSectionWidget {
     }
     
     @NSManaged public var selectedDropdown: DropdownWidget?
-    @NSManaged public var dropdowns: NSSet?
+    @NSManaged public var dropdownWidgets: NSSet?
     
     /// DropdownSectionWidget  convenience init
     convenience init(title: String?, position: Int) {
@@ -26,19 +26,19 @@ extension DropdownSectionWidget {
     }
 }
 
-// MARK: Generated accessors for dropdowns
+// MARK: Generated accessors for dropdownWidgets
 extension DropdownSectionWidget {
     
-    @objc(addDropdownsObject:)
-    @NSManaged public func addToDropdowns(_ value: DropdownWidget)
+    @objc(addDropdownWidgetsObject:)
+    @NSManaged public func addToDropdownWidgets(_ value: DropdownWidget)
     
-    @objc(removeDropdownsObject:)
-    @NSManaged public func removeFromDropdowns(_ value: DropdownWidget)
+    @objc(removeDropdownWidgetsObject:)
+    @NSManaged public func removeFromDropdownWidgets(_ value: DropdownWidget)
     
-    @objc(addDropdowns:)
-    @NSManaged public func addToDropdowns(_ values: NSSet)
+    @objc(addDropdownWidgets:)
+    @NSManaged public func addToDropdownWidgets(_ values: NSSet)
     
-    @objc(removeDropdowns:)
-    @NSManaged public func removeFromDropdowns(_ values: NSSet)
+    @objc(removeDropdownWidgets:)
+    @NSManaged public func removeFromDropdownWidgets(_ values: NSSet)
     
 }

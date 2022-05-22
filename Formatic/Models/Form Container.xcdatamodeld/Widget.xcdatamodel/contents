@@ -13,18 +13,18 @@
         <attribute name="preview" optional="YES" attributeType="Binary" valueTransformerName="NSSecureUnarchiveFromDataTransformer" customClassName="UIImage"/>
     </entity>
     <entity name="CheckboxSectionWidget" representedClassName="CheckboxSectionWidget" parentEntity="Widget" syncable="YES">
-        <relationship name="checkboxes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CheckboxWidget" inverseName="checkboxSection" inverseEntity="CheckboxWidget"/>
+        <relationship name="checkboxWidgets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CheckboxWidget" inverseName="checkboxSectionWidget" inverseEntity="CheckboxWidget"/>
     </entity>
     <entity name="CheckboxWidget" representedClassName="CheckboxWidget" parentEntity="Widget" syncable="YES">
         <attribute name="checked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="checkboxSection" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CheckboxSectionWidget" inverseName="checkboxes" inverseEntity="CheckboxSectionWidget"/>
+        <relationship name="checkboxSectionWidget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CheckboxSectionWidget" inverseName="checkboxWidgets" inverseEntity="CheckboxSectionWidget"/>
     </entity>
     <entity name="DropdownSectionWidget" representedClassName="DropdownSectionWidget" parentEntity="Widget" syncable="YES">
-        <relationship name="dropdowns" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DropdownWidget" inverseName="dropdownSection" inverseEntity="DropdownWidget"/>
+        <relationship name="dropdownWidgets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DropdownWidget" inverseName="dropdownSectionWidget" inverseEntity="DropdownWidget"/>
         <relationship name="selectedDropdown" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DropdownWidget" inverseName="selectedDropdownInverse" inverseEntity="DropdownWidget"/>
     </entity>
     <entity name="DropdownWidget" representedClassName="DropdownWidget" parentEntity="Widget" syncable="YES">
-        <relationship name="dropdownSection" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DropdownSectionWidget" inverseName="dropdowns" inverseEntity="DropdownSectionWidget"/>
+        <relationship name="dropdownSectionWidget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DropdownSectionWidget" inverseName="dropdownWidgets" inverseEntity="DropdownSectionWidget"/>
         <relationship name="selectedDropdownInverse" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DropdownSectionWidget" inverseName="selectedDropdown" inverseEntity="DropdownSectionWidget"/>
     </entity>
     <entity name="Form" representedClassName="Form" syncable="YES">
@@ -43,11 +43,11 @@
     </entity>
     <entity name="PhotoLibraryWidget" representedClassName="PhotoLibraryWidget" parentEntity="Widget" syncable="YES">
         <attribute name="showTitles" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PhotoWidget" inverseName="library" inverseEntity="PhotoWidget"/>
+        <relationship name="photoWidgets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PhotoWidget" inverseName="photoLibraryWidget" inverseEntity="PhotoWidget"/>
     </entity>
     <entity name="PhotoWidget" representedClassName="PhotoWidget" parentEntity="Widget" syncable="YES">
         <attribute name="photo" optional="YES" attributeType="Binary"/>
-        <relationship name="library" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PhotoLibraryWidget" inverseName="photos" inverseEntity="PhotoLibraryWidget"/>
+        <relationship name="photoLibraryWidget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PhotoLibraryWidget" inverseName="photoWidgets" inverseEntity="PhotoLibraryWidget"/>
     </entity>
     <entity name="Section" representedClassName="Section" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>

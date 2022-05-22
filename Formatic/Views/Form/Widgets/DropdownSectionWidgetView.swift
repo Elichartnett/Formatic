@@ -16,7 +16,7 @@ struct DropdownSectionWidgetView: View {
     @State var title: String = ""
     
     init(dropdownSectionWidget: DropdownSectionWidget, locked: Binding<Bool>) {
-        self._dropdowns = FetchRequest<DropdownWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "dropdownSection == %@", dropdownSectionWidget))
+        self._dropdowns = FetchRequest<DropdownWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "dropdownSectionWidget == %@", dropdownSectionWidget))
         self.dropdownSectionWidget = dropdownSectionWidget
         self._locked = locked
     }

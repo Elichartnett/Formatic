@@ -16,7 +16,7 @@ extension DropdownWidget {
         return NSFetchRequest<DropdownWidget>(entityName: "DropdownWidget")
     }
 
-    @NSManaged public var dropdownSection: DropdownSectionWidget?
+    @NSManaged public var dropdownSectionWidget: DropdownSectionWidget?
     @NSManaged public var selectedDropdownInverse: DropdownSectionWidget?
 
     

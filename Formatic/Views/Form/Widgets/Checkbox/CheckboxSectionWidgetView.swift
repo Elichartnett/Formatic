@@ -16,7 +16,7 @@ struct CheckboxSectionWidgetView: View {
     @State var title: String = ""
     
     init(checkboxSectionWidget: CheckboxSectionWidget, locked: Binding<Bool>) {
-        self._checkboxes = FetchRequest<CheckboxWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "checkboxSection == %@", checkboxSectionWidget))
+        self._checkboxes = FetchRequest<CheckboxWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "checkboxSectionWidget == %@", checkboxSectionWidget))
         self.checkboxSectionWidget = checkboxSectionWidget
         self._locked = locked
     }

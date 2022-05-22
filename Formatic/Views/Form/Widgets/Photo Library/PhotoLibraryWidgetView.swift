@@ -9,11 +9,14 @@ import SwiftUI
 
 struct PhotoLibraryWidgetView: View {
     
+    @FetchRequest var photoLibrary: FetchedResults<PhotoWidget>
     @ObservedObject var photoLibraryWidget: PhotoLibraryWidget
+    
     @Binding var locked: Bool
     @State var title: String = ""
     
     init(photoLibraryWidget: PhotoLibraryWidget, locked: Binding<Bool>) {
+        self._photoLibrary = FetchRequest(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "photoLibraryWidget == %@", photoLibraryWidget))
         self.photoLibraryWidget = photoLibraryWidget
         self._locked = locked
     }
@@ -36,7 +39,7 @@ struct PhotoLibraryWidgetView: View {
                 PhotoLibraryWidgetDetailView(photoLibraryWidget: photoLibraryWidget)
             } label: {
                 Spacer()
-                Image(uiImage: UIImage(data: (photoLibraryWidget.photosArray.first?.photo) ?? Data()) ?? UIImage())
+                Image(uiImage: UIImage(data: (photoLibrary.first?.photo) ?? Data()) ?? UIImage())
                     .resizable()
                     .scaledToFill()
                     .DetailFrameStyle()

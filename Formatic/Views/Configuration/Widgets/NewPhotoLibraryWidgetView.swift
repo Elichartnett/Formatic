@@ -54,7 +54,7 @@ struct NewPhotoLibraryWidgetView: View {
             Button {
                 let photoLibraryWidget = PhotoLibraryWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section))
                 if pickerResult.count == 1 {
-                    photoLibraryWidget.addToPhotos(pickerResult.first!)
+                    photoLibraryWidget.addToPhotoWidgets(pickerResult.first!)
                 }
                 
                 withAnimation {

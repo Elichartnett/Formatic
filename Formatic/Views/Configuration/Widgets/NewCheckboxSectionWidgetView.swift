@@ -60,7 +60,7 @@ struct NewCheckboxSectionWidgetView: View {
                 // Append checkboxes to checkboxSectionWidget
                 for (index, localCheckbox) in localCheckboxes.enumerated() {
                     let checkboxWidget = CheckboxWidget(title: localCheckbox.title, position: index)
-                    checkboxSectionWidget.addToCheckboxes(checkboxWidget)
+                    checkboxSectionWidget.addToCheckboxWidgets(checkboxWidget)
                 }
                 
                 // Append dropdownSectionWidget to form section

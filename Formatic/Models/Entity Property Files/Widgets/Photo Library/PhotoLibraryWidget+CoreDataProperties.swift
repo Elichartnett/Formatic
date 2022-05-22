@@ -17,14 +17,7 @@ extension PhotoLibraryWidget {
     }
     
     @NSManaged public var showTitles: Bool
-    @NSManaged public var photos: NSSet?
-    
-    public var photosArray: [PhotoWidget] {
-        let set = photos as? Set<PhotoWidget> ?? []
-        return set.sorted { lhs, rhs in
-            lhs.position < rhs.position
-        }
-    }
+    @NSManaged public var photoWidgets: NSSet?
     
     /// PhotoLibrary  convenience init
     convenience init(title: String?, position: Int, showTitles: Bool = false) {
@@ -33,19 +26,19 @@ extension PhotoLibraryWidget {
     }
 }
 
-// MARK: Generated accessors for photos
+// MARK: Generated accessors for photoWidgets
 extension PhotoLibraryWidget {
-    
-    @objc(addPhotosObject:)
-    @NSManaged public func addToPhotos(_ value: PhotoWidget)
-    
-    @objc(removePhotosObject:)
-    @NSManaged public func removeFromPhotos(_ value: PhotoWidget)
-    
-    @objc(addPhotos:)
-    @NSManaged public func addToPhotos(_ values: NSSet)
-    
-    @objc(removePhotos:)
-    @NSManaged public func removeFromPhotos(_ values: NSSet)
-    
+
+    @objc(addPhotoWidgetsObject:)
+    @NSManaged public func addToPhotoWidgets(_ value: PhotoWidget)
+
+    @objc(removePhotoWidgetsObject:)
+    @NSManaged public func removeFromPhotoWidgets(_ value: PhotoWidget)
+
+    @objc(addPhotoWidgets:)
+    @NSManaged public func addToPhotoWidgets(_ values: NSSet)
+
+    @objc(removePhotoWidgets:)
+    @NSManaged public func removeFromPhotoWidgets(_ values: NSSet)
+
 }

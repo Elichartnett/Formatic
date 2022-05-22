@@ -53,12 +53,12 @@ class DeveloperPreview {
         dropdownSectionWidget = DropdownSectionWidget(title: "Dropdown section title", position: 4)
         dropdownWidget = DropdownWidget(title: "Dropdown option 1", position: 0)
         dropdownSectionWidget.selectedDropdown = dropdownWidget
-        dropdownSectionWidget.addToDropdowns(dropdownWidget)
+        dropdownSectionWidget.addToDropdownWidgets(dropdownWidget)
         
         // Create CheckboxSectionWidget
         checkboxSectionWidget = CheckboxSectionWidget(title: "Checkbox section title", position: 5)
         checkboxWidget = CheckboxWidget(title: "Checkbox 1", position: 0)
-        checkboxSectionWidget.addToCheckboxes(checkboxWidget)
+        checkboxSectionWidget.addToCheckboxWidgets(checkboxWidget)
         
         // Create MapWidget
         mapWidget = MapWidget(title: "Map title", position: 6)
@@ -71,7 +71,7 @@ class DeveloperPreview {
         // Create PhotoLibraryWidget
         photoLibraryWidget = PhotoLibraryWidget(title: "Photo library widget title", position: 7)
         photoWidget = PhotoWidget(title: "Photo title", position: 0, photo: UIImage().jpegData(compressionQuality: 0.1))
-        photoLibraryWidget.addToPhotos(photoWidget)
+        photoLibraryWidget.addToPhotoWidgets(photoWidget)
         
         // Create CanvasWidget
         canvasWidget = CanvasWidget(title: "Canvas widget title", position: 8)

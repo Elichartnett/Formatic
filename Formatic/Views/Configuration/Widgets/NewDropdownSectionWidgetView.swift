@@ -74,7 +74,7 @@ struct NewDropdownSectionWidgetView: View {
                 for (index, localDropdown) in localDropdowns.enumerated() {
                     if !localDropdown.title.isEmpty {
                         let dropdownWidget = DropdownWidget(title: localDropdown.title, position: index)
-                        dropdownSectionWidget.addToDropdowns(dropdownWidget)
+                        dropdownSectionWidget.addToDropdownWidgets(dropdownWidget)
                     }
                 }
                 
