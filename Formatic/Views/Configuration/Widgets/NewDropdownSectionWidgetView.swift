@@ -23,13 +23,12 @@ struct NewDropdownSectionWidgetView: View {
         
         VStack {
             
-            // Scroll wheel picker for selecting number of drop down options
-            Picker("Number of boxes", selection: $numDropdowns) {
-                ForEach(1...20, id: \.self) { index in
-                    Text(String(index))
+            Stepper(value: $numDropdowns) {
+                HStack (spacing: 0) {
+                    Text("Number of dropdown options: ")
+                    Text("\(numDropdowns)")
                 }
             }
-            .pickerStyle(.wheel)
             .onChange(of: numDropdowns) { newVal in
                 withAnimation {
                     // Number decreased - remove trailing boxes

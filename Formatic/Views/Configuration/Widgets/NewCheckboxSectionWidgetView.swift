@@ -22,13 +22,12 @@ struct NewCheckboxSectionWidgetView: View {
         
         VStack {
             
-            // Scroll wheel picker for selecting number of checkboxes
-            Picker("Number of boxes", selection: $numCheckboxes) {
-                ForEach(1...20, id: \.self) { index in
-                    Text(String(index))
+            Stepper(value: $numCheckboxes) {
+                HStack (spacing: 0) {
+                    Text("Number of checkboxes: ")
+                    Text("\(numCheckboxes)")
                 }
             }
-            .pickerStyle(.wheel)
             .onChange(of: numCheckboxes) { newVal in
                 withAnimation {
                     // Number decreased - remove trailing boxes
@@ -50,7 +49,8 @@ struct NewCheckboxSectionWidgetView: View {
                 ForEach($localCheckboxes) { $localCheckbox in
                     InputBox(placeholder: "description", text: $localCheckbox.title)
                 }
-                .padding()
+                .padding(.horizontal)
+                .padding(.top, 1)
             }
             
             Button {
