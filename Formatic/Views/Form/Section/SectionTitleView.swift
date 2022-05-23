@@ -63,10 +63,6 @@ struct SectionTitleView: View {
             } label: {
                 Image(systemName: "plus.circle")
             }
-            .sheet(item: $newWidgetType) { newWidgetType in
-                NewWidgetView(newWidgetType: $newWidgetType, section: section)
-                    .font(Font.body)
-            }
             
             TextField("Section title", text: $sectionTitle)
                 .focused($sectionTitleIsFocused)
@@ -82,6 +78,10 @@ struct SectionTitleView: View {
         .textCase(.none)
         .onAppear {
             sectionTitle = section.title ?? ""
+        }
+        .sheet(item: $newWidgetType) { newWidgetType in
+            NewWidgetView(newWidgetType: $newWidgetType, section: section)
+                .font(Font.body)
         }
     }
 }
