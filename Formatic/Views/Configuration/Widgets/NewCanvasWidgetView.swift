@@ -57,7 +57,7 @@ struct NewCanvasWidgetView: View {
                         canvasWidget.image = backgroundPhoto
                     }
                     else {
-                        canvasWidget.image = UIImage().jpegData(compressionQuality: 0.1)
+                        canvasWidget.image = UIImage().jpegData(compressionQuality: 0.5)
                     }
                     
                     section.addToWidgets(canvasWidget)

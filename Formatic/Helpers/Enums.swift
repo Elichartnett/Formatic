@@ -56,3 +56,8 @@ enum FormError: Error {
     case urlToDataError
     case decodeJsonDataToFormError
 }
+
+enum ImageError: Error {
+    case dataToUIImage
+    case getImageFromContext
+}

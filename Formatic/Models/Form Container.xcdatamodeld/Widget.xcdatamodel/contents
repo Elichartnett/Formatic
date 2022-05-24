@@ -47,6 +47,7 @@
     </entity>
     <entity name="PhotoWidget" representedClassName="PhotoWidget" parentEntity="Widget" syncable="YES">
         <attribute name="photo" optional="YES" attributeType="Binary"/>
+        <attribute name="photoThumbnail" optional="YES" attributeType="Binary"/>
         <relationship name="photoLibraryWidget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PhotoLibraryWidget" inverseName="photoWidgets" inverseEntity="PhotoLibraryWidget"/>
     </entity>
     <entity name="Section" representedClassName="Section" syncable="YES">
@@ -80,7 +81,7 @@
         <element name="MapWidget" positionX="-9" positionY="54" width="128" height="44"/>
         <element name="NumberFieldWidget" positionX="-54" positionY="0" width="128" height="44"/>
         <element name="PhotoLibraryWidget" positionX="0" positionY="81" width="128" height="59"/>
-        <element name="PhotoWidget" positionX="18" positionY="126" width="128" height="59"/>
+        <element name="PhotoWidget" positionX="18" positionY="126" width="128" height="74"/>
         <element name="Section" positionX="-9" positionY="99" width="128" height="104"/>
         <element name="TextEditorWidget" positionX="-45" positionY="9" width="128" height="44"/>
         <element name="TextFieldWidget" positionX="-54" positionY="9" width="128" height="44"/>

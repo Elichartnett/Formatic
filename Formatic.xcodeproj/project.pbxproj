@@ -50,6 +50,7 @@
 		6250E9612831632D00E6E6A0 /* CanvasWidgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E9602831632D00E6E6A0 /* CanvasWidgetDetailView.swift */; };
 		6250E9632831649C00E6E6A0 /* CanvasRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E9622831649C00E6E6A0 /* CanvasRepresentableView.swift */; };
 		6250E97F2835B11600E6E6A0 /* FormaticFileDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E97E2835B11600E6E6A0 /* FormaticFileDocument.swift */; };
+		626231FC283B1222007FFA9A /* PhotoWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626231FB283B1222007FFA9A /* PhotoWidgetView.swift */; };
 		627736F8282F75BB00F7B107 /* PhotoWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627736F6282F75BB00F7B107 /* PhotoWidget+CoreDataClass.swift */; };
 		627736F9282F75BB00F7B107 /* PhotoWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627736F7282F75BB00F7B107 /* PhotoWidget+CoreDataProperties.swift */; };
 		627736FB282FFA4500F7B107 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627736FA282FFA4500F7B107 /* PhotoPicker.swift */; };
@@ -133,6 +134,7 @@
 		6250E9622831649C00E6E6A0 /* CanvasRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasRepresentableView.swift; sourceTree = "<group>"; };
 		6250E97E2835B11600E6E6A0 /* FormaticFileDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormaticFileDocument.swift; sourceTree = "<group>"; };
 		6250E9802836CAB400E6E6A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		626231FB283B1222007FFA9A /* PhotoWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoWidgetView.swift; sourceTree = "<group>"; };
 		627736F6282F75BB00F7B107 /* PhotoWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		627736F7282F75BB00F7B107 /* PhotoWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		627736FA282FFA4500F7B107 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 			children = (
 				62294F1B281F8C8C00226AF1 /* PhotoLibraryWidgetView.swift */,
 				627736FF2830569900F7B107 /* PhotoLibraryWidgetDetailView.swift */,
+				626231FB283B1222007FFA9A /* PhotoWidgetView.swift */,
 			);
 			path = "Photo Library";
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				62443176281A1F4200E21B11 /* PhotoLibraryWidget+CoreDataProperties.swift in Sources */,
 				62294F292821EB9000226AF1 /* NewDropdownSectionWidgetView.swift in Sources */,
 				622A99DC281E0C5000BB5E12 /* Form+CoreDataClass.swift in Sources */,
+				626231FC283B1222007FFA9A /* PhotoWidgetView.swift in Sources */,
 				62443167281A1CA000E21B11 /* DropdownSectionWidget+CoreDataClass.swift in Sources */,
 				62E7F87D282EE713004A95EF /* DeveloperPreview.swift in Sources */,
 				62294F1E281F8CAA00226AF1 /* CanvasWidgetView.swift in Sources */,

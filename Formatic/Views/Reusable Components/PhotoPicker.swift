@@ -9,7 +9,9 @@ import SwiftUI
 import PhotosUI
 
 struct PhotoPicker: UIViewControllerRepresentable {
+    
     @Environment(\.presentationMode) var presentationMode
+    
     var selectionLimit: Int
     @Binding var pickerResult: [PhotoWidget]
     
@@ -45,7 +47,7 @@ struct PhotoPicker: UIViewControllerRepresentable {
                             print("Can't load image \(error.localizedDescription)")
                             print(error)
                         } else if let image = newImage as? UIImage {
-                            let photoWidget = PhotoWidget(title: nil, position: self.parent.pickerResult.count, photo: image.jpegData(compressionQuality: 0.1))
+                            let photoWidget = PhotoWidget(title: nil, position: self.parent.pickerResult.count, photoThumbnail: nil, photo: image.jpegData(compressionQuality: 0.5))
                             self.parent.pickerResult.append(photoWidget)
                         }
                     }

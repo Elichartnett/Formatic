@@ -40,7 +40,7 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.editedImage] as? UIImage {
-            self.parent.pickerResult.append(PhotoWidget(title: nil, position: self.parent.pickerResult.count, photo: image.jpegData(compressionQuality: 0.1)))
+            self.parent.pickerResult.append(PhotoWidget(title: nil, position: self.parent.pickerResult.count, photoThumbnail: nil, photo: image.jpegData(compressionQuality: 0.5)))
             picker.dismiss(animated: true)
         }
     }

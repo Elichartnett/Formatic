@@ -12,6 +12,7 @@ class DeveloperPreview {
     
     static let instance = DeveloperPreview()
     
+    let formModel: FormModel = FormModel()
     let form: Form
     let section: Section
     let newWidgetType: WidgetType
@@ -70,7 +71,14 @@ class DeveloperPreview {
         
         // Create PhotoLibraryWidget
         photoLibraryWidget = PhotoLibraryWidget(title: "Photo library widget title", position: 7)
-        photoWidget = PhotoWidget(title: "Photo title", position: 0, photo: UIImage().jpegData(compressionQuality: 0.1))
+        var photoThumbnail = Data()
+        do {
+            photoThumbnail = try formModel.resizeImage(imageData: UIImage().jpegData(compressionQuality: 0.5)!, newSize: CGSize(width: 200, height: 200))
+        }
+        catch {
+            print("Error creating photoThumbnail")
+        }
+        photoWidget = PhotoWidget(title: "Photo title", position: 0, photoThumbnail: photoThumbnail, photo: UIImage().jpegData(compressionQuality: 0.5))
         photoLibraryWidget.addToPhotoWidgets(photoWidget)
         
         // Create CanvasWidget

@@ -16,12 +16,14 @@ extension PhotoWidget {
         return NSFetchRequest<PhotoWidget>(entityName: "PhotoWidget")
     }
 
+    @NSManaged public var photoThumbnail: Data?
     @NSManaged public var photo: Data?
     @NSManaged public var photoLibraryWidget: PhotoLibraryWidget?
 
     /// PhotoWidget  convenience init
-    convenience init(title: String?, position: Int, photo: Data?) {
+    convenience init(title: String?, position: Int, photoThumbnail: Data?, photo: Data?) {
         self.init(title: title, position: position, type: WidgetType.photoWidget.rawValue)
+        self.photoThumbnail = photoThumbnail
         self.photo = photo
     }
 }

@@ -10,12 +10,16 @@ import SwiftUI
 struct PhotoLibraryWidgetDetailView: View {
     
     @FetchRequest var photoLibrary: FetchedResults<PhotoWidget>
+    @EnvironmentObject var formModel: FormModel
     @ObservedObject var photoLibraryWidget: PhotoLibraryWidget
     
+    @GestureState var magnifyBy: Double = 1
+    @State var selectedPhotoWidget: PhotoWidget?
     @State var sourceType: SourceType?
     @State var showTitles: Bool = false
-    let columns: [GridItem] = Array(repeating: GridItem(.adaptive(minimum: 200), spacing: nil, alignment: nil), count: 1)
+    let columns: [GridItem] = [GridItem(.adaptive(minimum: 200), spacing: nil, alignment: nil)]
     @State var pickerResult: [PhotoWidget] = [PhotoWidget]()
+    @State var showTabView: Bool = false
     
     init(photoLibraryWidget: PhotoLibraryWidget) {
         self._photoLibrary = FetchRequest(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "photoLibraryWidget == %@", photoLibraryWidget))
@@ -24,19 +28,48 @@ struct PhotoLibraryWidgetDetailView: View {
     
     var body: some View {
         
-        ScrollView {
-            
-            LazyVGrid(columns: columns) {
-                ForEach(photoLibrary) { photoWidget in
-                    VStack {
-                        Image(uiImage: UIImage(data: photoWidget.photo ?? Data()) ?? UIImage())
-                            .resizable()
-                            .scaledToFit()
-                        
-                        InputBox(placeholder: "Title", text: .constant(""))
-                            .opacity(showTitles ? 1 : 0)
+        ZStack {
+            ScrollView {
+                
+                LazyVGrid(columns: columns) {
+                    ForEach(photoLibrary) { photoWidget in
+                        PhotoWidgetView(photoWidget: photoWidget, showTitle: $showTitles)
+                            .frame(width: 200, height: 200)
+                            .padding()
+                            .onTapGesture {
+                                showTabView = true
+                                selectedPhotoWidget = photoWidget
+                            }
                     }
                 }
+            }
+            
+            if showTabView {
+                TabView(selection: $selectedPhotoWidget, content: {
+                    ForEach(0..<photoLibrary.count, id: \.self) { index in
+                        Image(uiImage: UIImage(data: photoLibrary[index].photo ?? Data()) ?? UIImage())
+                            .resizable()
+                            .scaledToFit()
+                            .padding()
+                            .scaleEffect(magnifyBy)
+                            .gesture(
+                                MagnificationGesture()
+                                    .updating($magnifyBy, body: { currentState, gestureState, transaction in
+                                        gestureState = currentState
+                                    })
+                            )
+                    }
+                })
+                .tabViewStyle(.page)
+                .background(
+                    Rectangle()
+                        .fill(Material.thinMaterial)
+                        .ignoresSafeArea()
+                        .opacity(showTabView ? 1 : 0)
+                        .onTapGesture {
+                            selectedPhotoWidget = nil
+                        }
+                )
             }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -69,16 +102,22 @@ struct PhotoLibraryWidgetDetailView: View {
                     }
                 }
                 .onChange(of: pickerResult) { _ in
-                    for newPhotoWidget in pickerResult {
-                        newPhotoWidget.position = Int16(photoLibrary.count)
-                        photoLibraryWidget.addToPhotoWidgets(newPhotoWidget)
-                        
+                    for photoWidget in pickerResult {
+                        do {
+                            let photoThumbnail = try formModel.resizeImage(imageData: photoWidget.photo!, newSize: CGSize(width: 200, height: 200))
+                            photoWidget.photoThumbnail = photoThumbnail
+                            photoWidget.position = Int16(photoLibrary.count)
+                            photoLibraryWidget.addToPhotoWidgets(photoWidget)
+                        }
+                        catch {
+                            // TODO: alert
+                        }
                     }
                     DataController.saveMOC()
                 }
             }
         })
-        .padding()
+        .padding(.top)
         .sheet(item: $sourceType) { type in
             switch type {
             case .camera:

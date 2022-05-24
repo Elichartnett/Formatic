@@ -44,17 +44,18 @@ struct NewPhotoLibraryWidgetView: View {
                     Text("Take photo")
                 }
             }
-            .onChange(of: pickerResult) { _ in
-                if pickerResult.count == 2 {
-                    pickerResult[0] = pickerResult[1]
-                    pickerResult.remove(at: 1)
-                }
-            }
             
             Button {
                 let photoLibraryWidget = PhotoLibraryWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section))
-                if pickerResult.count == 1 {
-                    photoLibraryWidget.addToPhotoWidgets(pickerResult.first!)
+                if let photoWidget = pickerResult.first {
+                    do {
+                        let photoThumbnail = try formModel.resizeImage(imageData: pickerResult.first!.photo!, newSize: CGSize(width: 200, height: 200))
+                        photoWidget.photoThumbnail = photoThumbnail
+                        photoLibraryWidget.addToPhotoWidgets(photoWidget)
+                    }
+                    catch {
+                        // TODO: alert
+                    }
                 }
                 
                 withAnimation {

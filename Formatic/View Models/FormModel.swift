@@ -166,11 +166,11 @@ class FormModel: ObservableObject {
     func deleteFormWithIndexSet(indexSet: IndexSet) throws {
         do {
             let forms = try getForms()
-
+            
             for index in indexSet {
                 let form = forms[index]
                 DataController.shared.container.viewContext.delete(form)
-
+                
                 // Update positions starting with form after deleted index
                 for index in index+1..<forms.count {
                     forms[index].position = forms[index].position - 1
@@ -190,7 +190,7 @@ class FormModel: ObservableObject {
             for index in indexSet {
                 let widget = widgets[index]
                 DataController.shared.container.viewContext.delete(widget)
-
+                
                 // Update positions starting with widget after deleted index
                 for index in index+1..<widgets.count {
                     widgets[index].position = widgets[index].position - 1
@@ -210,5 +210,14 @@ class FormModel: ObservableObject {
             widget.position = Int16(index)
         }
         DataController.saveMOC()
+    }
+    
+    func resizeImage(imageData: Data, newSize: CGSize) throws -> Data {
+        guard let image = UIImage(data: imageData) else { throw ImageError.dataToUIImage }
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        image.draw(in: CGRect(origin: .zero, size: newSize))
+        guard let resizedImage = UIGraphicsGetImageFromCurrentImageContext() else { throw ImageError.getImageFromContext}
+        UIGraphicsEndImageContext()
+        return resizedImage.jpegData(compressionQuality: 1)!
     }
 }
