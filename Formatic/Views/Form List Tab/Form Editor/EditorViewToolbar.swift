@@ -12,6 +12,7 @@ struct EditorViewToolbar: View {
     
     @ObservedObject var form: Form
     @Binding var exportToTemplate: Bool
+    @Binding var exportToPDF: Bool
     @Binding var showToggleLockView: Bool
     @Binding var isEditing: Bool
     
@@ -89,6 +90,16 @@ struct EditorViewToolbar: View {
                 // Export form button
                 Menu {
                     
+                    // Export to pdf button
+                    Button {
+                        exportToPDF = true
+                    } label: {
+                        HStack {
+                            Image(systemName: "doc.text.image")
+                            Text("PDF")
+                        }
+                    }
+                    
                     // Export to template button
                     Button {
                         exportToTemplate = true
@@ -114,6 +125,6 @@ struct EditorViewToolbar: View {
 
 struct EditorViewToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        EditorViewToolbar(form: dev.form, exportToTemplate: .constant(false), showToggleLockView: .constant(false), isEditing: .constant(false))
+        EditorViewToolbar(form: dev.form, exportToTemplate: .constant(false), exportToPDF: .constant(false), showToggleLockView: .constant(false), isEditing: .constant(false))
     }
 }

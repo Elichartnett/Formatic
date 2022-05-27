@@ -12,7 +12,4 @@ import CoreData
 @objc(TextFieldWidget)
 public class TextFieldWidget: Widget {
 
-    enum CodingKeys: String, CodingKey {
-        case text
-    }
 }

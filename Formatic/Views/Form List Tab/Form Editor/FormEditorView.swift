@@ -15,14 +15,13 @@ struct FormEditorView: View {
     @ObservedObject var form: Form
     @State var formaticFileDocument: FormaticFileDocument?
     @State var exportToTemplate: Bool = false
-    @State var showExportToTemplateView: Bool = false
+    @State var exportToPDF: Bool = false
+    @State var showFileExporter: Bool = false
     @State var showToggleLockView: Bool = false
     @State var isEditing: Bool = false
     @State var showAlert: Bool = false
     @State var alertTitle: String = ""
     @State var alertMessage: String = "Okay"
-    @State var showShareSheet: Bool = false
-    @State var urls: [Any]?
     
     var body: some View {
         
@@ -31,14 +30,23 @@ struct FormEditorView: View {
                 .environment(\.editMode, .constant(isEditing ? .active : .inactive))
                 .toolbar(content: {
                     ToolbarItem(placement: .principal) {
-                        EditorViewToolbar(form: form, exportToTemplate: $exportToTemplate, showToggleLockView: $showToggleLockView, isEditing: $isEditing)
+                        EditorViewToolbar(form: form, exportToTemplate: $exportToTemplate, exportToPDF: $exportToPDF, showToggleLockView: $showToggleLockView, isEditing: $isEditing)
+                    }
+                })
+                .onChange(of: exportToPDF, perform: { _ in
+                    if exportToPDF {
+                        let pdfData = formModel.exportToPDF(form: form)
+                        formaticFileDocument = FormaticFileDocument(documentData: pdfData)
+                        showFileExporter = true
                     }
                 })
                 .onChange(of: exportToTemplate, perform: { _ in
                     if exportToTemplate {
                         do {
-                            formaticFileDocument = try FormaticFileDocument(jsonData: formModel.encodeFormToJsonData(form: form))
-                            showExportToTemplateView = true
+                            let formData = try formModel.encodeFormToJsonData(form: form)
+                            try formModel.decodeJsonDataToForm(data: formData)
+//                            formaticFileDocument = FormaticFileDocument(documentData: formData)
+//                            showFileExporter = true
                         }
                         catch {
                             alertTitle = "Error exporting form to template"
@@ -49,9 +57,9 @@ struct FormEditorView: View {
                 .sheet(isPresented: $showToggleLockView) {
                     ToggleLockView(showToggleLockView: $showToggleLockView, form: form)
                 }
-                .fileExporter(isPresented: $showExportToTemplateView, document: formaticFileDocument, contentType: .form, defaultFilename: form.title != "" ? form.title : "Untitled form") { result in
-                    exportToTemplate = false
-                }
+                .fileExporter(isPresented: $showFileExporter, document: formaticFileDocument, contentType: exportToPDF ? .pdf : .form, defaultFilename: form.title, onCompletion: { result in
+                    exportToPDF = false
+                })
                 .alert(alertTitle, isPresented: $showAlert, actions: {
                     Button(alertMessage, role: .cancel) {}
                 })

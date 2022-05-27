@@ -220,4 +220,33 @@ class FormModel: ObservableObject {
         UIGraphicsEndImageContext()
         return resizedImage.jpegData(compressionQuality: 1)!
     }
+    
+    func exportToPDF(form: Form) -> Data {
+        
+        //Normal with
+        let width: CGFloat = 8.5 * 72.0
+        //Estimate the height of your view
+        let height: CGFloat = 1000
+        let form = FormView(form: form).environment(\.managedObjectContext, DataController.shared.container.viewContext)
+
+        let pdfVC = UIHostingController(rootView: form)
+        pdfVC.view.frame = CGRect(x: 0, y: 0, width: width, height: height)
+
+        //Render the view behind all other views
+        let rootVC = UIApplication.shared.windows.first?.rootViewController
+        rootVC?.addChild(pdfVC)
+        rootVC?.view.insertSubview(pdfVC.view, at: 0)
+
+        //Render the PDF
+        let pdfRenderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: 8.5 * 72.0, height: height))
+
+        let data = pdfRenderer.pdfData(actions: { context in
+            context.beginPage()
+            pdfVC.view.layer.render(in: context.cgContext)
+        })
+        return data
+        
+//        pdfVC.removeFromParent()
+//        pdfVC.view.removeFromSuperview()
+    }
 }

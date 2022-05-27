@@ -1,5 +1,5 @@
 //
-//  JsonFileDocument.swift
+//  FormaticFileDocument.swift
 //  Formatic
 //
 //  Created by Eli Hartnett on 5/18/22.
@@ -11,20 +11,20 @@ import UniformTypeIdentifiers
 
 struct FormaticFileDocument: FileDocument {
     
-    static var readableContentTypes: [UTType] = [.form]
-    var jsonData: Data
+    static var readableContentTypes: [UTType] = [.form, .pdf]
+    var documentData: Data
     
-    init(jsonData: Data) {
-        self.jsonData = jsonData
+    init(documentData: Data) {
+        self.documentData = documentData
     }
     
-    // decodes .form
+    // reads
     init(configuration: ReadConfiguration) throws {
-        jsonData = configuration.file.regularFileContents ?? Data()
+        documentData = configuration.file.regularFileContents ?? Data()
     }
     
-    // encodes .form
+    // writes
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
-        return FileWrapper(regularFileWithContents: jsonData)
+        return FileWrapper(regularFileWithContents: documentData)
     }
 }

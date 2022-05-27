@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 // Displays form sections with section titles and widgets
 struct SectionView: View {
