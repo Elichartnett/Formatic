@@ -29,6 +29,12 @@ extension Section {
         self.position = Int16(position)
         self.title = title
     }
+    
+    var widgetsArray: [Widget] {
+        return widgets?.sorted { lhs, rhs in
+            lhs.position < rhs.position
+        } ?? []
+    }
 }
 
 // MARK: Generated accessors for widgets

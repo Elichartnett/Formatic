@@ -35,24 +35,14 @@ public class Form: NSManagedObject, Codable {
         let formContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()
         self.locked = try formContainer.decode(Bool.self, forKey: .locked)
-        if let password = try formContainer.decode(String?.self, forKey: .password) {
+        if let password =  try formContainer.decode(String?.self, forKey: .password) {
             self.password = password
         }
-        else {
-            self.password = nil
-        }
-        self.position = Int16(try DataController.shared.container.viewContext.fetch(NSFetchRequest(entityName: "Form")).count - 1)
         if let title = try formContainer.decode(String?.self, forKey: .title) {
             self.title = title
         }
-        else {
-            self.title = nil
-        }
         if let sections = try formContainer.decode(Set<Section>?.self, forKey: .sections) {
             self.sections = sections
-        }
-        else {
-            sections = nil
         }
     }
 }

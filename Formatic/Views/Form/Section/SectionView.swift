@@ -26,13 +26,14 @@ struct SectionView: View {
     var body: some View {
         
         // Display all widgets in section
-        ForEach(widgets) { widget in
+        ForEach(section.widgetsArray) { widget in
             let widgetType: WidgetType = WidgetType.init(rawValue: widget.type!)!
             
             switch widgetType {
             case .textFieldWidget:
-                let textFieldWidget = widget as! TextFieldWidget
-                TextFieldWidgetView(textFieldWidget: textFieldWidget, locked: $locked)
+                if let textFieldWidget = widget as? TextFieldWidget {
+                    TextFieldWidgetView(textFieldWidget: textFieldWidget, locked: $locked)
+                }
                 
             case .numberFieldWidget:
                 let numberFieldWidget = widget as! NumberFieldWidget

@@ -35,8 +35,6 @@ public class Widget: NSManagedObject, Codable {
         if let title = try widgetContainer.decode(String?.self, forKey: .title) {
             self.title = title
         }
-        if let type = try widgetContainer.decode(String?.self, forKey: .type) {
-            self.type = type
-        }
+        self.type = try widgetContainer.decode(String.self, forKey: .type)
     }
 }

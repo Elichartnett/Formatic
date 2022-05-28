@@ -44,9 +44,8 @@ struct FormEditorView: View {
                     if exportToTemplate {
                         do {
                             let formData = try formModel.encodeFormToJsonData(form: form)
-                            try formModel.decodeJsonDataToForm(data: formData)
-//                            formaticFileDocument = FormaticFileDocument(documentData: formData)
-//                            showFileExporter = true
+                            formaticFileDocument = FormaticFileDocument(documentData: formData)
+                            showFileExporter = true
                         }
                         catch {
                             alertTitle = "Error exporting form to template"
