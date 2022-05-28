@@ -83,6 +83,7 @@ class FormModel: ObservableObject {
         }
         catch {
             print(error)
+            // TODO: handle error
             throw FormError.decodeJsonDataToFormError
         }
     }
@@ -138,6 +139,7 @@ class FormModel: ObservableObject {
                 let newForm = try decodeJsonDataToForm(data: data)
                 do {
                     let forms = try getForms()
+                    newForm.position = Int16(forms.count - 1)
                     if forms.contains(where: { form in
                         form.title == newForm.title && form.id != newForm.id
                     })

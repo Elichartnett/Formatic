@@ -16,7 +16,6 @@ public class Form: NSManagedObject, Codable {
         case locked = "locked"
         case password = "password"
         case title = "title"
-        case position = "position"
         case sections = "sections"
     }
     

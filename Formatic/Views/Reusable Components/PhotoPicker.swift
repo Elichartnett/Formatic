@@ -45,7 +45,7 @@ struct PhotoPicker: UIViewControllerRepresentable {
                     image.itemProvider.loadObject(ofClass: UIImage.self) { newImage, error in
                         if let error = error {
                             print("Can't load image \(error.localizedDescription)")
-                            print(error)
+                            // TODO: handle error
                         } else if let image = newImage as? UIImage {
                             let photoWidget = PhotoWidget(title: nil, position: self.parent.pickerResult.count, photoThumbnail: nil, photo: image.jpegData(compressionQuality: 0.5))
                             self.parent.pickerResult.append(photoWidget)
@@ -53,6 +53,7 @@ struct PhotoPicker: UIViewControllerRepresentable {
                     }
                 } else {
                     print("Can't load asset")
+                    // TODO: handle error
                 }
             }
             parent.presentationMode.wrappedValue.dismiss()

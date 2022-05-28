@@ -60,7 +60,6 @@ struct FormListView: View {
             .fileImporter(isPresented: $showImportFormView, allowedContentTypes: [.form]) { result in
                 switch result {
                 case .success(let url):
-                    showImportFormView = false
                     do {
                         try formModel.importForm(url: url)
                     }

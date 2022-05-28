@@ -17,6 +17,7 @@ class DataController: ObservableObject {
     private init() {
         container.loadPersistentStores { description, error in
             if let error = error {
+                // TODO: handle error
                 print("Core Data failed to load: \(error)")
             }
         }
@@ -29,6 +30,7 @@ class DataController: ObservableObject {
             }
         }
         catch {
+            // TODO: handle error
             print("Could not save managed object context: \(error)")
         }
     }

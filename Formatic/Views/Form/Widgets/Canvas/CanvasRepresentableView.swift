@@ -23,7 +23,7 @@ struct CanvasRepresentable: UIViewRepresentable {
             try canvasView.drawing = PKDrawing(data: canvasWidget.pkDrawing ?? Data())
         }
         catch {
-            print("Failed to import drawing data: \(error)")
+            // TODO: handle error
         }
         canvasView.frame = CGRect(origin: .zero, size: CGSize(width: size, height: size))
         canvasView.isOpaque = false

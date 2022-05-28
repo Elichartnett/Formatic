@@ -77,6 +77,8 @@ class DeveloperPreview {
         }
         catch {
             print("Error creating photoThumbnail")
+            // TODO: handle error
+
         }
         photoWidget = PhotoWidget(title: "Photo title", position: 0, photoThumbnail: photoThumbnail, photo: UIImage().jpegData(compressionQuality: 0.5))
         photoLibraryWidget.addToPhotoWidgets(photoWidget)
