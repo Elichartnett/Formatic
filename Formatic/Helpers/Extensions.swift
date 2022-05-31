@@ -18,7 +18,7 @@ struct TitleFrame: ViewModifier {
     }
 }
 
-struct DetailViewFrame: ViewModifier {
+struct WidgetViewFrame: ViewModifier {
     func body(content: Content) -> some View {
         content
             .frame(height: 200)
@@ -27,6 +27,7 @@ struct DetailViewFrame: ViewModifier {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(.secondary, lineWidth: 2)
             )
+            .foregroundColor(.black)
     }
 }
 
@@ -35,8 +36,8 @@ extension View {
         modifier(TitleFrame(locked: locked))
     }
     
-    func DetailFrameStyle() -> some View {
-        modifier(DetailViewFrame())
+    func WidgetFrameStyle() -> some View {
+        modifier(WidgetViewFrame())
     }
 }
 

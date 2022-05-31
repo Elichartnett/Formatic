@@ -32,8 +32,8 @@ struct MapWidgetView: View {
                 MapWidgetDetailView(mapWidget: mapWidget)
             } label: {
                 MapView(mapWidget: mapWidget, coordinateRegion: $coordinateRegion)
-                    .DetailFrameStyle()
             }
+            .WidgetFrameStyle()
         }
     }
 }

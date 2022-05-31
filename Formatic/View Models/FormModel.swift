@@ -11,6 +11,10 @@ import CoreData
 
 class FormModel: ObservableObject {
     
+    init() {
+        
+    }
+    
     func validNumber(number: String, range: ClosedRange<Double>? = nil) -> Bool {
         // Check if field only contains nubmers
         if let number = Double(number) {
@@ -270,30 +274,67 @@ class FormModel: ObservableObject {
     
     func exportToPDF(form: Form) -> Data {
         
-        //Normal with
-        let width: CGFloat = 8.5 * 72.0
-        //Estimate the height of your view
-        let height: CGFloat = 1000
-        let form = FormView(form: form).environment(\.managedObjectContext, DataController.shared.container.viewContext)
-
-        let pdfVC = UIHostingController(rootView: form)
-        pdfVC.view.frame = CGRect(x: 0, y: 0, width: width, height: height)
-
-        //Render the view behind all other views
-        let rootVC = UIApplication.shared.windows.first?.rootViewController
-        rootVC?.addChild(pdfVC)
-        rootVC?.view.insertSubview(pdfVC.view, at: 0)
-
-        //Render the PDF
-        let pdfRenderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: 8.5 * 72.0, height: height))
-
+        let pdfView = convertToScrollView(content: FormView(form: form, forPDF: true).environment(\.managedObjectContext, DataController.shared.container.viewContext))
+        pdfView.tag = 1009
+        let size = pdfView.contentSize
+        pdfView.frame = CGRect(x: 0, y: getSafeArea().top, width: size.width, height: size.height)
+        
+//        getRootController().view.insertSubview(pdfView, at: 0)
+//        let rootVC = UIApplication.shared.windows.first?.rootViewController
+//        rootVC?.view.insertSubview(pdfView, at: 0)
+        
+        let pdfRenderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         let data = pdfRenderer.pdfData(actions: { context in
             context.beginPage()
-            pdfVC.view.layer.render(in: context.cgContext)
+            pdfView.layer.render(in: context.cgContext)
+            // Root view fixes map rendering, but messes up if page is long
+//             rootVC?.view.layer.render(in: context.cgContext)
         })
-        return data
         
-//        pdfVC.removeFromParent()
-//        pdfVC.view.removeFromSuperview()
+        getRootController().view.subviews.forEach { view in
+            if view.tag == 1009 {
+                view.removeFromSuperview()
+            }
+        }
+        
+        return data
+    }
+    
+    func convertToScrollView<Content: View>(content: Content) -> UIScrollView {
+        let scrollView = UIScrollView()
+        
+        let hostingController = UIHostingController(rootView: content).view!
+        hostingController.translatesAutoresizingMaskIntoConstraints = false
+        
+        let constraints = [
+            hostingController.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            hostingController.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            hostingController.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            hostingController.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            
+            hostingController.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width)
+        ]
+        
+        scrollView.addSubview(hostingController)
+        scrollView.addConstraints(constraints)
+        scrollView.layoutIfNeeded()
+        
+        return scrollView
+    }
+    
+    func getRootController() -> UIViewController {
+        guard let screen = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return .init() }
+        
+        guard let root = screen.windows.first?.rootViewController else { return .init() }
+        
+        return root
+    }
+    
+    func getSafeArea() -> UIEdgeInsets {
+        guard let screen = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return .zero }
+        
+        guard let safeArea = screen.windows.first?.safeAreaInsets else { return .zero }
+        
+        return safeArea
     }
 }

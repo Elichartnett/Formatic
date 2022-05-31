@@ -26,7 +26,7 @@ struct FormEditorView: View {
     var body: some View {
         
         VStack {
-            FormView(form: form)
+            FormView(form: form, forPDF: false)
                 .environment(\.editMode, .constant(isEditing ? .active : .inactive))
                 .toolbar(content: {
                     ToolbarItem(placement: .principal) {

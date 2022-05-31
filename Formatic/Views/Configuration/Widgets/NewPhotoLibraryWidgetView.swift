@@ -18,6 +18,9 @@ struct NewPhotoLibraryWidgetView: View {
     @State var section: Section
     @State var sourceType: SourceType?
     @State var pickerResult: [PhotoWidget] = [PhotoWidget]()
+    @State var showAlert: Bool = false
+    @State var alertTitle: String = ""
+    @State var alertButtonTitle: String = "Okay"
     
     var body: some View {
         
@@ -54,7 +57,8 @@ struct NewPhotoLibraryWidgetView: View {
                         photoLibraryWidget.addToPhotoWidgets(photoWidget)
                     }
                     catch {
-                        // TODO: alert
+                        alertTitle = "Error importing photo"
+                        showAlert = true
                     }
                 }
                 
@@ -76,6 +80,9 @@ struct NewPhotoLibraryWidgetView: View {
                 PhotoPicker(selectionLimit: 1, pickerResult: $pickerResult)
             }
         }
+        .alert(alertTitle, isPresented: $showAlert, actions: {
+            Button(alertButtonTitle, role: .cancel) {}
+        })
     }
 }
 

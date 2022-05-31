@@ -20,6 +20,9 @@ struct PhotoLibraryWidgetDetailView: View {
     let columns: [GridItem] = [GridItem(.adaptive(minimum: 200), spacing: nil, alignment: nil)]
     @State var pickerResult: [PhotoWidget] = [PhotoWidget]()
     @State var showTabView: Bool = false
+    @State var showAlert: Bool = false
+    @State var alertTitle: String = ""
+    @State var alertButtonTitle: String = "Okay"
     
     init(photoLibraryWidget: PhotoLibraryWidget) {
         self._photoLibrary = FetchRequest(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "photoLibraryWidget == %@", photoLibraryWidget))
@@ -110,7 +113,8 @@ struct PhotoLibraryWidgetDetailView: View {
                             photoLibraryWidget.addToPhotoWidgets(photoWidget)
                         }
                         catch {
-                            // TODO: alert
+                            alertTitle = "Error importing photo"
+                            showAlert = true
                         }
                     }
                     DataController.saveMOC()
@@ -126,6 +130,9 @@ struct PhotoLibraryWidgetDetailView: View {
                 PhotoPicker(selectionLimit: 0, pickerResult: $pickerResult)
             }
         }
+        .alert(alertTitle, isPresented: $showAlert, actions: {
+            Button(alertButtonTitle, role: .cancel) {}
+        })
     }
 }
 

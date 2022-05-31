@@ -35,8 +35,8 @@ struct CanvasWidgetView: View {
                     Image(uiImage: UIImage(data: canvasWidget.preview ?? Data()) ?? UIImage())
                         .resizable()
                 }
-                .DetailFrameStyle()
             }
+            .WidgetFrameStyle()
         }
         .onAppear {
             title = canvasWidget.title ?? ""

@@ -15,6 +15,8 @@ struct CanvasRepresentable: UIViewRepresentable {
     @State var canvasView: PKCanvasView = PKCanvasView()
     let imageView = UIImageView()
     let toolPicker: PKToolPicker = PKToolPicker()
+    @Binding var showAlert: Bool
+    @Binding var alertTitle: String
     
     func makeUIView(context: Context) -> PKCanvasView {
         
@@ -23,7 +25,8 @@ struct CanvasRepresentable: UIViewRepresentable {
             try canvasView.drawing = PKDrawing(data: canvasWidget.pkDrawing ?? Data())
         }
         catch {
-            // TODO: handle error
+            alertTitle = "Error importing canvas"
+            showAlert = true
         }
         canvasView.frame = CGRect(origin: .zero, size: CGSize(width: size, height: size))
         canvasView.isOpaque = false

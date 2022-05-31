@@ -38,13 +38,11 @@ struct PhotoLibraryWidgetView: View {
             NavigationLink {
                 PhotoLibraryWidgetDetailView(photoLibraryWidget: photoLibraryWidget)
             } label: {
-                Spacer()
                 Image(uiImage: UIImage(data: (photoLibrary.first?.photo) ?? Data()) ?? UIImage())
                     .resizable()
                     .scaledToFill()
-                    .DetailFrameStyle()
-                Spacer()
             }
+            .WidgetFrameStyle()
         }
     }
 }

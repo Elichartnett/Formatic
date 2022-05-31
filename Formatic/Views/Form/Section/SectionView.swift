@@ -15,17 +15,19 @@ struct SectionView: View {
     
     @ObservedObject var section: Section
     @Binding var locked: Bool
+    var forPDF: Bool
     
-    init(section: Section, locked: Binding<Bool>) {
+    init(section: Section, locked: Binding<Bool>, forPDF: Bool = false) {
         self._widgets = FetchRequest<Widget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "section == %@", section))
         self.section = section
         self._locked = locked
+        self.forPDF = forPDF
     }
     
     var body: some View {
         
         // Display all widgets in section
-        ForEach(section.widgetsArray) { widget in
+        ForEach(widgets) { widget in
             let widgetType: WidgetType = WidgetType.init(rawValue: widget.type!)!
             
             switch widgetType {
@@ -71,6 +73,10 @@ struct SectionView: View {
                 let canvasWidget = widget as! CanvasWidget
                 CanvasWidgetView(canvasWidget: canvasWidget, locked: $locked)
             }
+            
+            if forPDF && widget != widgets[widgets.count - 1] {
+                Divider()
+            }
         }
         .onMove(perform: { indexSet, destination in
             formModel.moveWidgetWithIndexSet(section: section, indexSet: indexSet, destination: destination)
@@ -78,6 +84,7 @@ struct SectionView: View {
         .onDelete { indexSet in
             formModel.deleteWidgetWithIndexSet(section: section, indexSet: indexSet)
         }
+        
     }
 }
 

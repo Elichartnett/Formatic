@@ -71,9 +71,9 @@ class DeveloperPreview {
         
         // Create PhotoLibraryWidget
         photoLibraryWidget = PhotoLibraryWidget(title: "Photo library widget title", position: 7)
-        var photoThumbnail = Data()
+        var photoThumbnail = UIImage().jpegData(compressionQuality: 0.5)
         do {
-            photoThumbnail = try formModel.resizeImage(imageData: UIImage().jpegData(compressionQuality: 0.5)!, newSize: CGSize(width: 200, height: 200))
+            photoThumbnail = try formModel.resizeImage(imageData: UIImage().jpegData(compressionQuality: 0.5) ?? Data(), newSize: CGSize(width: 200, height: 200))
         }
         catch {
             print("Error creating photoThumbnail")
