@@ -70,11 +70,11 @@ struct FormView: View {
                     }
                 }
                 .padding()
-                .background(Color(uiColor: UIColor.systemGray6))
             }
             
         }
         .navigationBarTitleDisplayMode(.inline)
+        .background(Color(uiColor: UIColor.systemGray6))
         .onDisappear {
             DataController.saveMOC()
         }
