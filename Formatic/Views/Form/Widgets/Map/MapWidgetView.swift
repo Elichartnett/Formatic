@@ -11,10 +11,11 @@ import MapKit
 // Preview of map shown in form section
 struct MapWidgetView: View {
     
+    @EnvironmentObject var formModel: FormModel
     @ObservedObject var mapWidget: MapWidget
     @Binding var locked: Bool
     @State var title: String = ""
-    @State var coordinateRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.0902, longitude: -95.7129), span: MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20))
+    @State var labelWidth: Double = 1
     
     var body: some View {
         
@@ -29,11 +30,27 @@ struct MapWidgetView: View {
                 }
             
             NavigationLink {
-                MapWidgetDetailView(mapWidget: mapWidget)
+                MapWidgetDetailView(mapWidget: mapWidget, coordinateRegion: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: mapWidget.coordinateRegionCenterLat, longitude: mapWidget.coordinateRegionCenterLon), span: MKCoordinateSpan(latitudeDelta: mapWidget.coordinateSpanLatDelta, longitudeDelta: mapWidget.coordinateSpanLonDelta)), labelWidth: labelWidth)
             } label: {
-                MapView(mapWidget: mapWidget, coordinateRegion: $coordinateRegion)
+                GeometryReader { proxy in
+                    Image(uiImage: UIImage(data: mapWidget.widgetViewPreview) ?? UIImage())
+                        .resizable()
+                        .scaledToFit()
+                        .onAppear(perform: {
+                            if mapWidget.widgetViewPreview == Data() {
+                                formModel.updateMapWidgetSnapshot(size: proxy.size, mapWidget: mapWidget)
+                                self.labelWidth = proxy.size.width
+                            }
+                        })
+                        .onChange(of: proxy.size) { _ in
+                            withAnimation {
+                                self.labelWidth = proxy.size.width
+                                formModel.updateMapWidgetSnapshot(size: proxy.size, mapWidget: mapWidget)
+                            }
+                        }
+                }
             }
-            .WidgetFrameStyle()
+            .WidgetPreviewStyle()
         }
     }
 }

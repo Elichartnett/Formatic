@@ -12,9 +12,11 @@ import UTMConversion
 // Full map view to plot annotations with
 struct MapWidgetDetailView: View {
     
+    @EnvironmentObject var formModel: FormModel
     @ObservedObject var mapWidget: MapWidget
     @State var coordinateType: CoordinateType = .latLon
-    @State var coordinateRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.0902, longitude: -95.7129), span: MKCoordinateSpan(latitudeDelta: 70, longitudeDelta: 70))
+    @State var coordinateRegion: MKCoordinateRegion
+    var labelWidth: Double
     
     var body: some View {
         
@@ -35,11 +37,18 @@ struct MapWidgetDetailView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(mapWidget.title ?? "")
+        .onDisappear {
+            withAnimation {
+                formModel.updateMapWidgetSnapshot(size: CGSize(width: labelWidth, height: 200), mapWidget: mapWidget)
+            }
+        }
     }
 }
 
 struct MapWidgetDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MapWidgetDetailView(mapWidget: dev.mapWidget)
+        GeometryReader { proxy in
+            MapWidgetDetailView(mapWidget: dev.mapWidget, coordinateRegion: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: dev.mapWidget.coordinateRegionCenterLat, longitude: dev.mapWidget.coordinateRegionCenterLon), span: MKCoordinateSpan(latitudeDelta: dev.mapWidget.coordinateSpanLatDelta, longitudeDelta: dev.mapWidget.coordinateSpanLonDelta)), labelWidth: 500)
+        }
     }
 }

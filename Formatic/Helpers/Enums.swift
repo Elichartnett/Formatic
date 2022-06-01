@@ -58,6 +58,7 @@ enum FormError: Error {
 }
 
 enum ImageError: Error {
-    case dataToUIImage
-    case getImageFromContext
+    case dataToUIImageError
+    case getImageFromContextError
+    case mapSnapshotError
 }

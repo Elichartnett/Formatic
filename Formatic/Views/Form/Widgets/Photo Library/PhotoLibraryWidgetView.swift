@@ -42,7 +42,7 @@ struct PhotoLibraryWidgetView: View {
                     .resizable()
                     .scaledToFill()
             }
-            .WidgetFrameStyle()
+            .WidgetPreviewStyle()
         }
     }
 }

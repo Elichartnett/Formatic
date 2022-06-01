@@ -5,12 +5,12 @@
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="map" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MapWidget" inverseName="annotations" inverseEntity="MapWidget"/>
+        <relationship name="mapWidget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MapWidget" inverseName="annotations" inverseEntity="MapWidget"/>
     </entity>
     <entity name="CanvasWidget" representedClassName="CanvasWidget" parentEntity="Widget" syncable="YES">
         <attribute name="image" optional="YES" attributeType="Binary" valueTransformerName="NSSecureUnarchiveFromDataTransformer" customClassName="UIImage"/>
         <attribute name="pkDrawing" optional="YES" attributeType="Binary" valueTransformerName="NSSecureUnarchiveFromDataTransformer" customClassName="PKCanvas"/>
-        <attribute name="preview" optional="YES" attributeType="Binary" valueTransformerName="NSSecureUnarchiveFromDataTransformer" customClassName="UIImage"/>
+        <attribute name="widgetViewPreview" optional="YES" attributeType="Binary" valueTransformerName="NSSecureUnarchiveFromDataTransformer" customClassName="UIImage"/>
     </entity>
     <entity name="CheckboxSectionWidget" representedClassName="CheckboxSectionWidget" parentEntity="Widget" syncable="YES">
         <relationship name="checkboxWidgets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CheckboxWidget" inverseName="checkboxSectionWidget" inverseEntity="CheckboxWidget"/>
@@ -36,7 +36,12 @@
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Section" inverseName="form" inverseEntity="Section"/>
     </entity>
     <entity name="MapWidget" representedClassName="MapWidget" parentEntity="Widget" syncable="YES">
-        <relationship name="annotations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Annotation" inverseName="map" inverseEntity="Annotation"/>
+        <attribute name="coordinateRegionCenterLat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="coordinateRegionCenterLon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="coordinateSpanLatDelta" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="coordinateSpanLonDelta" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="widgetViewPreview" optional="YES" attributeType="Binary"/>
+        <relationship name="annotations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Annotation" inverseName="mapWidget" inverseEntity="Annotation"/>
     </entity>
     <entity name="NumberFieldWidget" representedClassName="NumberFieldWidget" parentEntity="Widget" syncable="YES">
         <attribute name="number" optional="YES" attributeType="String"/>
@@ -78,7 +83,7 @@
         <element name="DropdownSectionWidget" positionX="36" positionY="108" width="128" height="59"/>
         <element name="DropdownWidget" positionX="18" positionY="99" width="128" height="59"/>
         <element name="Form" positionX="0" positionY="108" width="128" height="119"/>
-        <element name="MapWidget" positionX="-9" positionY="54" width="128" height="44"/>
+        <element name="MapWidget" positionX="-9" positionY="54" width="128" height="119"/>
         <element name="NumberFieldWidget" positionX="-54" positionY="0" width="128" height="44"/>
         <element name="PhotoLibraryWidget" positionX="0" positionY="81" width="128" height="59"/>
         <element name="PhotoWidget" positionX="18" positionY="126" width="128" height="74"/>

@@ -13,10 +13,17 @@ struct MapView: View {
     
     @ObservedObject var mapWidget: MapWidget
     @Binding var coordinateRegion: MKCoordinateRegion
+    @FetchRequest var annotations: FetchedResults<Annotation>
+    
+    init(mapWidget: MapWidget, coordinateRegion: Binding<MKCoordinateRegion>) {
+        self.mapWidget = mapWidget
+        self._coordinateRegion = coordinateRegion
+        self._annotations = FetchRequest<Annotation>(sortDescriptors: [], predicate: NSPredicate(format: "mapWidget == %@", mapWidget))
+    }
     
     var body: some View {
         
-        Map(coordinateRegion: $coordinateRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(.none), annotationItems: mapWidget.annotationsArray) { annotation in
+        Map(coordinateRegion: $coordinateRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(.none), annotationItems: annotations) { annotation in
             MapMarker(coordinate: CLLocationCoordinate2D(latitude: annotation.latitude, longitude: annotation.longitude))
         }
         .ignoresSafeArea()

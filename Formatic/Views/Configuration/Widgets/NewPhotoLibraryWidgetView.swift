@@ -25,7 +25,10 @@ struct NewPhotoLibraryWidgetView: View {
     var body: some View {
         
         VStack {
-
+            
+            Text("Cover Photo")
+                .font(.title)
+            
             Image(uiImage: UIImage(data: (pickerResult.first?.photo ?? Data())) ?? UIImage())
                 .resizable()
                 .scaledToFit()

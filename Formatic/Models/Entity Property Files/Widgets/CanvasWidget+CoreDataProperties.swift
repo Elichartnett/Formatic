@@ -18,7 +18,7 @@ extension CanvasWidget {
     
     @NSManaged public var image: Data?
     @NSManaged public var pkDrawing: Data?
-    @NSManaged public var preview: Data?
+    @NSManaged public var widgetViewPreview: Data?
     
     /// CanvasWidget  convenience init
     convenience init(title: String?, position: Int) {

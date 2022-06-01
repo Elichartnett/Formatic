@@ -18,7 +18,7 @@ struct TitleFrame: ViewModifier {
     }
 }
 
-struct WidgetViewFrame: ViewModifier {
+struct WidgetPreviewFrame: ViewModifier {
     func body(content: Content) -> some View {
         content
             .frame(height: 200)
@@ -36,8 +36,8 @@ extension View {
         modifier(TitleFrame(locked: locked))
     }
     
-    func WidgetFrameStyle() -> some View {
-        modifier(WidgetViewFrame())
+    func WidgetPreviewStyle() -> some View {
+        modifier(WidgetPreviewFrame())
     }
 }
 

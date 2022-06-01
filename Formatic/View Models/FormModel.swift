@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import CoreData
+import MapKit
 
 class FormModel: ObservableObject {
     
@@ -119,7 +120,7 @@ class FormModel: ObservableObject {
                 case .checkboxWidget:
                     break
                 case .mapWidget:
-                    let mapWidget = MapWidget(title: widget.title, position: Int(widget.position))
+                    let mapWidget = MapWidget(title: widget.title, position: Int(widget.position), coordinateRegionCenterLat: 37.0902, coordinateRegionCenterLon: -95.7129, coordinateSpanLatDelta: 70, coordinateSpanLonDelta: 70)
                     section.addToWidgets(mapWidget)
                 case .photoLibraryWidget:
                     let photoLibraryWidget = PhotoLibraryWidget(title: widget.title, position: Int(widget.position))
@@ -264,10 +265,10 @@ class FormModel: ObservableObject {
     }
     
     func resizeImage(imageData: Data, newSize: CGSize) throws -> Data {
-        guard let image = UIImage(data: imageData) else { throw ImageError.dataToUIImage }
+        guard let image = UIImage(data: imageData) else { throw ImageError.dataToUIImageError }
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
         image.draw(in: CGRect(origin: .zero, size: newSize))
-        guard let resizedImage = UIGraphicsGetImageFromCurrentImageContext() else { throw ImageError.getImageFromContext}
+        guard let resizedImage = UIGraphicsGetImageFromCurrentImageContext() else { throw ImageError.getImageFromContextError}
         UIGraphicsEndImageContext()
         return resizedImage.jpegData(compressionQuality: 1)!
     }
@@ -280,15 +281,11 @@ class FormModel: ObservableObject {
         pdfView.frame = CGRect(x: 0, y: getSafeArea().top, width: size.width, height: size.height)
         
         getRootController().view.insertSubview(pdfView, at: 0)
-//        let rootVC = UIApplication.shared.windows.first?.rootViewController
-//        rootVC?.view.insertSubview(pdfView, at: 0)
         
         let pdfRenderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         let data = pdfRenderer.pdfData(actions: { context in
             context.beginPage()
             pdfView.layer.render(in: context.cgContext)
-            // Root view fixes map rendering, but messes up if page is long
-//             rootVC?.view.layer.render(in: context.cgContext)
         })
         
         getRootController().view.subviews.forEach { view in
@@ -336,5 +333,34 @@ class FormModel: ObservableObject {
         guard let safeArea = screen.windows.first?.safeAreaInsets else { return .zero }
         
         return safeArea
+    }
+    
+    func updateMapWidgetSnapshot(size: CGSize, mapWidget: MapWidget) {
+        let coordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: mapWidget.coordinateRegionCenterLat, longitude: mapWidget.coordinateRegionCenterLon), span: MKCoordinateSpan(latitudeDelta: mapWidget.coordinateSpanLatDelta, longitudeDelta: mapWidget.coordinateSpanLonDelta))
+        let options = MKMapSnapshotter.Options()
+        options.region = coordinateRegion
+        options.size = size
+        
+        let snapShotter = MKMapSnapshotter(options: options)
+        snapShotter.start(with: DispatchQueue.global(qos: .userInitiated)) { snapshot, error in
+            guard error == nil else {
+                return
+            }
+            
+            if let snapshotImage = snapshot?.image, let mapMarker = UIImage(systemName: "mappin.circle.fill")?.withTintColor(.red) {
+                UIGraphicsBeginImageContextWithOptions(snapshotImage.size, true, snapshotImage.scale)
+                snapshotImage.draw(at: CGPoint.zero)
+                
+                for annotation in mapWidget.annotations ?? [] {
+                    if let annotation = annotation as? Annotation {
+                        mapMarker.draw(at: (snapshot?.point(for: CLLocationCoordinate2D(latitude: annotation.latitude, longitude: annotation.longitude)))!)
+                    }
+                }
+                
+                let mapImage = UIGraphicsGetImageFromCurrentImageContext()
+                mapWidget.widgetViewPreview = mapImage?.jpegData(compressionQuality: 0.5) ?? Data()
+                UIGraphicsEndImageContext()
+            }
+        }
     }
 }

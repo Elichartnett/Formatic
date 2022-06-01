@@ -16,16 +16,21 @@ extension MapWidget {
         return NSFetchRequest<MapWidget>(entityName: "MapWidget")
     }
 
-    @NSManaged public var annotations: NSSet?
+    @NSManaged public var coordinateRegionCenterLat: Double
+    @NSManaged public var coordinateRegionCenterLon: Double
+    @NSManaged public var coordinateSpanLatDelta: Double
+    @NSManaged public var coordinateSpanLonDelta: Double
+    @NSManaged public var widgetViewPreview: Data
 
-    public var annotationsArray: [Annotation] {
-        let set = annotations as? Set<Annotation> ?? []
-        return Array(set)
-    }
+    @NSManaged public var annotations: NSSet?
     
     /// MapWidget  convenience init
-    convenience init(title: String?, position: Int) {
+    convenience init(title: String?, position: Int, coordinateRegionCenterLat: Double, coordinateRegionCenterLon: Double, coordinateSpanLatDelta: Double, coordinateSpanLonDelta: Double) {
         self.init(title: title, position: position, type: WidgetType.mapWidget.rawValue)
+        self.coordinateRegionCenterLat = coordinateRegionCenterLat
+        self.coordinateRegionCenterLon = coordinateRegionCenterLon
+        self.coordinateSpanLatDelta = coordinateSpanLatDelta
+        self.coordinateSpanLonDelta = coordinateSpanLonDelta
     }
 }
 

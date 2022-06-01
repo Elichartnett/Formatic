@@ -62,7 +62,7 @@ class DeveloperPreview {
         checkboxSectionWidget.addToCheckboxWidgets(checkboxWidget)
         
         // Create MapWidget
-        mapWidget = MapWidget(title: "Map title", position: 6)
+        mapWidget = MapWidget(title: "Map title", position: 6, coordinateRegionCenterLat: 37.0902, coordinateRegionCenterLon: -95.7129, coordinateSpanLatDelta: 70, coordinateSpanLonDelta: 70)
         annotation = Annotation(context: DataController.shared.container.viewContext)
         annotation.latitude = 0.0
         annotation.longitude = 0.0
