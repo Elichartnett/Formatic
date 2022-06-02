@@ -32,46 +32,55 @@ struct PhotoLibraryWidgetDetailView: View {
     var body: some View {
         
         ZStack {
+    
             ScrollView {
-                
                 LazyVGrid(columns: columns) {
                     ForEach(photoLibrary) { photoWidget in
                         PhotoWidgetView(photoWidget: photoWidget, showTitle: $showTitles)
                             .frame(width: 200, height: 200)
                             .padding()
                             .onTapGesture {
-                                showTabView = true
-                                selectedPhotoWidget = photoWidget
+                                withAnimation {
+                                    showTabView = true
+                                    selectedPhotoWidget = photoWidget
+                                }
                             }
                     }
                 }
             }
             
             if showTabView {
-                TabView(selection: $selectedPhotoWidget, content: {
-                    ForEach(0..<photoLibrary.count, id: \.self) { index in
-                        Image(uiImage: UIImage(data: photoLibrary[index].photo ?? Data()) ?? UIImage())
-                            .resizable()
-                            .scaledToFit()
-                            .padding()
-                            .scaleEffect(magnifyBy)
-                            .gesture(
-                                MagnificationGesture()
-                                    .updating($magnifyBy, body: { currentState, gestureState, transaction in
-                                        gestureState = currentState
-                                    })
-                            )
+                VStack {
+                    Button {
+                        withAnimation {
+                            selectedPhotoWidget = nil
+                            showTabView = false
+                        }
+                    } label: {
+                        Image(systemName: "x.circle.fill")
                     }
-                })
-                .tabViewStyle(.page)
+                    
+                    TabView(selection: $selectedPhotoWidget, content: {
+                        ForEach(0..<photoLibrary.count, id: \.self) { index in
+                            Image(uiImage: UIImage(data: photoLibrary[index].photo ?? Data()) ?? UIImage())
+                                .resizable()
+                                .frame(width: min(UIScreen.main.bounds.width, UIScreen.main.bounds.height), height: min(UIScreen.main.bounds.width, UIScreen.main.bounds.height))
+                                .scaledToFit()
+                                .scaleEffect(magnifyBy)
+                                .gesture(
+                                    MagnificationGesture()
+                                        .updating($magnifyBy, body: { currentState, gestureState, transaction in
+                                            gestureState = currentState
+                                        })
+                                )
+                        }
+                    })
+                    .tabViewStyle(.page)
+                }
                 .background(
                     Rectangle()
                         .fill(Material.thinMaterial)
                         .ignoresSafeArea()
-                        .opacity(showTabView ? 1 : 0)
-                        .onTapGesture {
-                            selectedPhotoWidget = nil
-                        }
                 )
             }
         }

@@ -38,9 +38,13 @@ struct PhotoLibraryWidgetView: View {
             NavigationLink {
                 PhotoLibraryWidgetDetailView(photoLibraryWidget: photoLibraryWidget)
             } label: {
-                Image(uiImage: UIImage(data: (photoLibrary.first?.photo) ?? Data()) ?? UIImage())
-                    .resizable()
-                    .scaledToFill()
+                HStack {
+                    Spacer()
+                    Image(uiImage: UIImage(data: (photoLibrary.first?.photo) ?? Data()) ?? UIImage())
+                        .resizable()
+                        .scaledToFit()
+                    Spacer()
+                }
             }
             .WidgetPreviewStyle()
         }
