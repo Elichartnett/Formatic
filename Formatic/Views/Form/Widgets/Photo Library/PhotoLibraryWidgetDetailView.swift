@@ -37,7 +37,6 @@ struct PhotoLibraryWidgetDetailView: View {
                 LazyVGrid(columns: columns) {
                     ForEach(photoLibrary) { photoWidget in
                         PhotoWidgetView(photoWidget: photoWidget, showTitle: $showTitles)
-                            .frame(width: 200, height: 200)
                             .padding()
                             .onTapGesture {
                                 withAnimation {

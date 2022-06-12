@@ -16,7 +16,7 @@ struct PhotoWidgetView: View {
         LazyVStack {
             Image(uiImage: UIImage(data: photoWidget.photoThumbnail ?? Data()) ?? UIImage())
                 .resizable()
-                .aspectRatio(contentMode: .fit)
+                .scaledToFit()
 
             InputBox(placeholder: "Title", text: .constant(""))
                 .opacity(showTitle ? 1 : 0)
