@@ -44,7 +44,7 @@ struct FormListView: View {
                 }
             }
             .overlay {
-                if !forms.isEmpty {
+                if forms.isEmpty {
                     Text("Add a form to get started!")
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color(uiColor: UIColor.systemGray6))
