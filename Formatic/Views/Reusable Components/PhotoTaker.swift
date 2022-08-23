@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PhotoTaker: UIViewControllerRepresentable {
     
-    @Binding var pickerResult: [PhotoWidget]
+    @Binding var pickerResult: Data
     
     typealias UIViewControllerType = UIImagePickerController
     
@@ -40,7 +40,7 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.editedImage] as? UIImage {
-            self.parent.pickerResult.append(PhotoWidget(title: nil, position: self.parent.pickerResult.count, photoThumbnail: nil, photo: image.jpegData(compressionQuality: 0.5)))
+            self.parent.pickerResult = image.jpegData(compressionQuality: 0.5) ?? Data()
             picker.dismiss(animated: true)
         }
     }

@@ -16,12 +16,12 @@ struct NewCanvasWidgetView: View {
     @Binding var title: String
     @State var section: Section
     @State var sourceType: SourceType?
-    @State var pickerResult: [PhotoWidget] = [PhotoWidget]()
+    @State var pickerResult: Data = Data()
     
     var body: some View {
         
         VStack {
-            Image(uiImage: UIImage(data: (pickerResult.first?.photo ?? Data())) ?? UIImage())
+            Image(uiImage: UIImage(data: pickerResult) ?? UIImage())
                 .resizable()
                 .scaledToFit()
                 .border(.black)
@@ -52,13 +52,7 @@ struct NewCanvasWidgetView: View {
             Button {
                 withAnimation {
                     let canvasWidget = CanvasWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section))
-                    if pickerResult.count == 1 {
-                        let backgroundPhoto = pickerResult.first?.photo
-                        canvasWidget.image = backgroundPhoto
-                    }
-                    else {
-                        canvasWidget.image = UIImage().jpegData(compressionQuality: 0.5)
-                    }
+                        canvasWidget.image = pickerResult
                     
                     section.addToWidgets(canvasWidget)
                     DataController.saveMOC()
@@ -74,7 +68,7 @@ struct NewCanvasWidgetView: View {
             case .camera:
                 PhotoTaker(pickerResult: $pickerResult)
             case .photoLibrary:
-                PhotoPicker(selectionLimit: 1, pickerResult: $pickerResult)
+                PhotoPicker()
             }
         }
     }

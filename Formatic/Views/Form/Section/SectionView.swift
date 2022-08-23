@@ -62,13 +62,6 @@ struct SectionView: View {
                 let mapWidget = widget as! MapWidget
                 MapWidgetView(mapWidget: mapWidget, locked: $locked)
                 
-            case .photoWidget:
-                EmptyView()
-                
-            case .photoLibraryWidget:
-                let photoLibraryWidget = widget as! PhotoLibraryWidget
-                PhotoLibraryWidgetView(photoLibraryWidget: photoLibraryWidget, locked: $locked)
-                
             case .canvasWidget:
                 let canvasWidget = widget as! CanvasWidget
                 CanvasWidgetView(canvasWidget: canvasWidget, locked: $locked)

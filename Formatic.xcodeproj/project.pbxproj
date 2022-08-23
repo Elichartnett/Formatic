@@ -17,7 +17,6 @@
 		62294F16281F8C4800226AF1 /* DropdownSectionWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F15281F8C4800226AF1 /* DropdownSectionWidgetView.swift */; };
 		62294F18281F8C6B00226AF1 /* CheckboxSectionWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F17281F8C6B00226AF1 /* CheckboxSectionWidgetView.swift */; };
 		62294F1A281F8C7700226AF1 /* MapWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F19281F8C7700226AF1 /* MapWidgetView.swift */; };
-		62294F1C281F8C8C00226AF1 /* PhotoLibraryWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F1B281F8C8C00226AF1 /* PhotoLibraryWidgetView.swift */; };
 		62294F1E281F8CAA00226AF1 /* CanvasWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F1D281F8CAA00226AF1 /* CanvasWidgetView.swift */; };
 		62294F202821E83F00226AF1 /* NewWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F1F2821E83F00226AF1 /* NewWidgetView.swift */; };
 		62294F232821EB6500226AF1 /* NewTextFieldWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F222821EB6500226AF1 /* NewTextFieldWidgetView.swift */; };
@@ -26,7 +25,6 @@
 		62294F292821EB9000226AF1 /* NewDropdownSectionWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F282821EB9000226AF1 /* NewDropdownSectionWidgetView.swift */; };
 		62294F2B2821EBD900226AF1 /* NewCheckboxSectionWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F2A2821EBD900226AF1 /* NewCheckboxSectionWidgetView.swift */; };
 		62294F2D2821EBF600226AF1 /* NewMapWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F2C2821EBF600226AF1 /* NewMapWidgetView.swift */; };
-		62294F2F2821EC0A00226AF1 /* NewPhotoLibraryWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F2E2821EC0A00226AF1 /* NewPhotoLibraryWidgetView.swift */; };
 		62294F312821EC1300226AF1 /* NewCanvasWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F302821EC1300226AF1 /* NewCanvasWidgetView.swift */; };
 		62294F332822F0CC00226AF1 /* SectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F322822F0CC00226AF1 /* SectionTitleView.swift */; };
 		62294F3628231D5E00226AF1 /* FormTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F3528231D5E00226AF1 /* FormTitleView.swift */; };
@@ -45,17 +43,11 @@
 		62443151281A152A00E21B11 /* NumberFieldWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6244313B281A152A00E21B11 /* NumberFieldWidget+CoreDataClass.swift */; };
 		62443152281A152A00E21B11 /* NumberFieldWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6244313C281A152A00E21B11 /* NumberFieldWidget+CoreDataProperties.swift */; };
 		62443167281A1CA000E21B11 /* DropdownSectionWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6244315F281A1CA000E21B11 /* DropdownSectionWidget+CoreDataClass.swift */; };
-		62443175281A1F4200E21B11 /* PhotoLibraryWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62443173281A1F4200E21B11 /* PhotoLibraryWidget+CoreDataClass.swift */; };
-		62443176281A1F4200E21B11 /* PhotoLibraryWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62443174281A1F4200E21B11 /* PhotoLibraryWidget+CoreDataProperties.swift */; };
 		6250E9612831632D00E6E6A0 /* CanvasWidgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E9602831632D00E6E6A0 /* CanvasWidgetDetailView.swift */; };
 		6250E9632831649C00E6E6A0 /* CanvasRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E9622831649C00E6E6A0 /* CanvasRepresentableView.swift */; };
 		6250E97F2835B11600E6E6A0 /* FormaticFileDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E97E2835B11600E6E6A0 /* FormaticFileDocument.swift */; };
-		626231FC283B1222007FFA9A /* PhotoWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626231FB283B1222007FFA9A /* PhotoWidgetView.swift */; };
-		627736F8282F75BB00F7B107 /* PhotoWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627736F6282F75BB00F7B107 /* PhotoWidget+CoreDataClass.swift */; };
-		627736F9282F75BB00F7B107 /* PhotoWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627736F7282F75BB00F7B107 /* PhotoWidget+CoreDataProperties.swift */; };
 		627736FB282FFA4500F7B107 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627736FA282FFA4500F7B107 /* PhotoPicker.swift */; };
 		627736FD28300F7D00F7B107 /* PhotoTaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627736FC28300F7D00F7B107 /* PhotoTaker.swift */; };
-		627737002830569900F7B107 /* PhotoLibraryWidgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627736FF2830569900F7B107 /* PhotoLibraryWidgetDetailView.swift */; };
 		629886DB281B578800C34782 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629886DA281B578800C34782 /* Enums.swift */; };
 		629886E1281B8F1000C34782 /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629886E0281B8F1000C34782 /* FormModel.swift */; };
 		629886E6281B902800C34782 /* Section+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629886E2281B902800C34782 /* Section+CoreDataClass.swift */; };
@@ -101,7 +93,6 @@
 		62294F15281F8C4800226AF1 /* DropdownSectionWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownSectionWidgetView.swift; sourceTree = "<group>"; };
 		62294F17281F8C6B00226AF1 /* CheckboxSectionWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxSectionWidgetView.swift; sourceTree = "<group>"; };
 		62294F19281F8C7700226AF1 /* MapWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWidgetView.swift; sourceTree = "<group>"; };
-		62294F1B281F8C8C00226AF1 /* PhotoLibraryWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryWidgetView.swift; sourceTree = "<group>"; };
 		62294F1D281F8CAA00226AF1 /* CanvasWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWidgetView.swift; sourceTree = "<group>"; };
 		62294F1F2821E83F00226AF1 /* NewWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWidgetView.swift; sourceTree = "<group>"; };
 		62294F222821EB6500226AF1 /* NewTextFieldWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTextFieldWidgetView.swift; sourceTree = "<group>"; };
@@ -110,7 +101,6 @@
 		62294F282821EB9000226AF1 /* NewDropdownSectionWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDropdownSectionWidgetView.swift; sourceTree = "<group>"; };
 		62294F2A2821EBD900226AF1 /* NewCheckboxSectionWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCheckboxSectionWidgetView.swift; sourceTree = "<group>"; };
 		62294F2C2821EBF600226AF1 /* NewMapWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMapWidgetView.swift; sourceTree = "<group>"; };
-		62294F2E2821EC0A00226AF1 /* NewPhotoLibraryWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPhotoLibraryWidgetView.swift; sourceTree = "<group>"; };
 		62294F302821EC1300226AF1 /* NewCanvasWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCanvasWidgetView.swift; sourceTree = "<group>"; };
 		62294F322822F0CC00226AF1 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
 		62294F3528231D5E00226AF1 /* FormTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTitleView.swift; sourceTree = "<group>"; };
@@ -128,18 +118,12 @@
 		6244313B281A152A00E21B11 /* NumberFieldWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFieldWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6244313C281A152A00E21B11 /* NumberFieldWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFieldWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6244315F281A1CA000E21B11 /* DropdownSectionWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DropdownSectionWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
-		62443173281A1F4200E21B11 /* PhotoLibraryWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoLibraryWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
-		62443174281A1F4200E21B11 /* PhotoLibraryWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoLibraryWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6250E9602831632D00E6E6A0 /* CanvasWidgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWidgetDetailView.swift; sourceTree = "<group>"; };
 		6250E9622831649C00E6E6A0 /* CanvasRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasRepresentableView.swift; sourceTree = "<group>"; };
 		6250E97E2835B11600E6E6A0 /* FormaticFileDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormaticFileDocument.swift; sourceTree = "<group>"; };
 		6250E9802836CAB400E6E6A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		626231FB283B1222007FFA9A /* PhotoWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoWidgetView.swift; sourceTree = "<group>"; };
-		627736F6282F75BB00F7B107 /* PhotoWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
-		627736F7282F75BB00F7B107 /* PhotoWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		627736FA282FFA4500F7B107 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		627736FC28300F7D00F7B107 /* PhotoTaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTaker.swift; sourceTree = "<group>"; };
-		627736FF2830569900F7B107 /* PhotoLibraryWidgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryWidgetDetailView.swift; sourceTree = "<group>"; };
 		629886DA281B578800C34782 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		629886E0281B8F1000C34782 /* FormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModel.swift; sourceTree = "<group>"; };
 		629886E2281B902800C34782 /* Section+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Section+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -229,7 +213,6 @@
 				62294F282821EB9000226AF1 /* NewDropdownSectionWidgetView.swift */,
 				62294F2A2821EBD900226AF1 /* NewCheckboxSectionWidgetView.swift */,
 				62294F2C2821EBF600226AF1 /* NewMapWidgetView.swift */,
-				62294F2E2821EC0A00226AF1 /* NewPhotoLibraryWidgetView.swift */,
 				62294F302821EC1300226AF1 /* NewCanvasWidgetView.swift */,
 			);
 			path = Widgets;
@@ -324,34 +307,6 @@
 			path = Checkbox;
 			sourceTree = "<group>";
 		};
-		627736F4282F747900F7B107 /* Photo Library */ = {
-			isa = PBXGroup;
-			children = (
-				62443174281A1F4200E21B11 /* PhotoLibraryWidget+CoreDataProperties.swift */,
-				627736F7282F75BB00F7B107 /* PhotoWidget+CoreDataProperties.swift */,
-			);
-			path = "Photo Library";
-			sourceTree = "<group>";
-		};
-		627736F5282F74AC00F7B107 /* Photo Library */ = {
-			isa = PBXGroup;
-			children = (
-				62443173281A1F4200E21B11 /* PhotoLibraryWidget+CoreDataClass.swift */,
-				627736F6282F75BB00F7B107 /* PhotoWidget+CoreDataClass.swift */,
-			);
-			path = "Photo Library";
-			sourceTree = "<group>";
-		};
-		627736FE2830566C00F7B107 /* Photo Library */ = {
-			isa = PBXGroup;
-			children = (
-				62294F1B281F8C8C00226AF1 /* PhotoLibraryWidgetView.swift */,
-				627736FF2830569900F7B107 /* PhotoLibraryWidgetDetailView.swift */,
-				626231FB283B1222007FFA9A /* PhotoWidgetView.swift */,
-			);
-			path = "Photo Library";
-			sourceTree = "<group>";
-		};
 		629886EA281B904000C34782 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,7 +317,6 @@
 				62443172281A1D4A00E21B11 /* Dropdown */,
 				62443171281A1D4500E21B11 /* Checkbox */,
 				62988707281C791400C34782 /* MapWidget+CoreDataClass.swift */,
-				627736F5282F74AC00F7B107 /* Photo Library */,
 				62443139281A152A00E21B11 /* CanvasWidget+CoreDataClass.swift */,
 			);
 			path = Widgets;
@@ -378,7 +332,6 @@
 				6244316F281A1CD600E21B11 /* Dropdown */,
 				62443170281A1CF700E21B11 /* Checkbox */,
 				62988708281C791400C34782 /* MapWidget+CoreDataProperties.swift */,
-				627736F4282F747900F7B107 /* Photo Library */,
 				6244313A281A152A00E21B11 /* CanvasWidget+CoreDataProperties.swift */,
 			);
 			path = Widgets;
@@ -424,7 +377,6 @@
 				62294F15281F8C4800226AF1 /* DropdownSectionWidgetView.swift */,
 				6257F5492826254500E167C4 /* Checkbox */,
 				62F8FE67282DAC86005C8D73 /* Map */,
-				627736FE2830566C00F7B107 /* Photo Library */,
 				6250E95F283161EC00E6E6A0 /* Canvas */,
 			);
 			path = Widgets;
@@ -517,7 +469,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 62FE6E7628187059009D41FD /* Build configuration list for PBXNativeTarget "Formatic" */;
 			buildPhases = (
-				62FCBB5B28556D5700A8319D /* Run SwiftLint */,
 				62FE6E6428187058009D41FD /* Sources */,
 				62FE6E6528187058009D41FD /* Frameworks */,
 				62FE6E6628187058009D41FD /* Resources */,
@@ -583,27 +534,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		62FCBB5B28556D5700A8319D /* Run SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run SwiftLint";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		62FE6E6428187058009D41FD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -613,14 +543,11 @@
 				629886F3281B92AA00C34782 /* FormListView.swift in Sources */,
 				62294F3D282589CE00226AF1 /* PasswordView.swift in Sources */,
 				629886E6281B902800C34782 /* Section+CoreDataClass.swift in Sources */,
-				627737002830569900F7B107 /* PhotoLibraryWidgetDetailView.swift in Sources */,
 				62294F3628231D5E00226AF1 /* FormTitleView.swift in Sources */,
 				629886FF281C4DBF00C34782 /* SectionView.swift in Sources */,
 				62E6AB4A281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift in Sources */,
-				62294F1C281F8C8C00226AF1 /* PhotoLibraryWidgetView.swift in Sources */,
 				62294F272821EB8000226AF1 /* NewTextEditorWidgetView.swift in Sources */,
 				62443152281A152A00E21B11 /* NumberFieldWidget+CoreDataProperties.swift in Sources */,
-				62443175281A1F4200E21B11 /* PhotoLibraryWidget+CoreDataClass.swift in Sources */,
 				62294F18281F8C6B00226AF1 /* CheckboxSectionWidgetView.swift in Sources */,
 				6244314E281A152A00E21B11 /* TextEditorWidget+CoreDataProperties.swift in Sources */,
 				62FE6E6E28187058009D41FD /* Home.swift in Sources */,
@@ -645,7 +572,6 @@
 				6250E9612831632D00E6E6A0 /* CanvasWidgetDetailView.swift in Sources */,
 				627736FD28300F7D00F7B107 /* PhotoTaker.swift in Sources */,
 				62A979C228277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift in Sources */,
-				62294F2F2821EC0A00226AF1 /* NewPhotoLibraryWidgetView.swift in Sources */,
 				622A99CD281E03B700BB5E12 /* Widget+CoreDataProperties.swift in Sources */,
 				6244314F281A152A00E21B11 /* CanvasWidget+CoreDataClass.swift in Sources */,
 				62E6AB4B281ECBEA009F568B /* TextFieldWidget+CoreDataProperties.swift in Sources */,
@@ -660,11 +586,8 @@
 				62294F202821E83F00226AF1 /* NewWidgetView.swift in Sources */,
 				62294F0E281F61B900226AF1 /* SubmitButton.swift in Sources */,
 				62443151281A152A00E21B11 /* NumberFieldWidget+CoreDataClass.swift in Sources */,
-				627736F8282F75BB00F7B107 /* PhotoWidget+CoreDataClass.swift in Sources */,
-				62443176281A1F4200E21B11 /* PhotoLibraryWidget+CoreDataProperties.swift in Sources */,
 				62294F292821EB9000226AF1 /* NewDropdownSectionWidgetView.swift in Sources */,
 				622A99DC281E0C5000BB5E12 /* Form+CoreDataClass.swift in Sources */,
-				626231FC283B1222007FFA9A /* PhotoWidgetView.swift in Sources */,
 				62443167281A1CA000E21B11 /* DropdownSectionWidget+CoreDataClass.swift in Sources */,
 				62E7F87D282EE713004A95EF /* DeveloperPreview.swift in Sources */,
 				62294F1E281F8CAA00226AF1 /* CanvasWidgetView.swift in Sources */,
@@ -676,7 +599,6 @@
 				6244314D281A152A00E21B11 /* TextEditorWidget+CoreDataClass.swift in Sources */,
 				62294F3B282580D900226AF1 /* ToggleLockView.swift in Sources */,
 				62294F0C281F519C00226AF1 /* InputBox.swift in Sources */,
-				627736F9282F75BB00F7B107 /* PhotoWidget+CoreDataProperties.swift in Sources */,
 				62988709281C791400C34782 /* MapWidget+CoreDataClass.swift in Sources */,
 				6250E9632831649C00E6E6A0 /* CanvasRepresentableView.swift in Sources */,
 				62BFAC9528188B97006C8216 /* Form Container.xcdatamodeld in Sources */,

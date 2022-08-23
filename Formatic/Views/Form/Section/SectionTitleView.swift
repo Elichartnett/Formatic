@@ -51,11 +51,6 @@ struct SectionTitleView: View {
                     newWidgetType = .mapWidget
                 }
                 
-                // Add PhotoLibraryWidget to section
-                Button("Photo Library") {
-                    newWidgetType = .photoLibraryWidget
-                }
-                
                 // Add CanvasWidget to section
                 Button("Canvas") {
                     newWidgetType = .canvasWidget

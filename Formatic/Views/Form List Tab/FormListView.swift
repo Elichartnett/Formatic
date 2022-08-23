@@ -32,7 +32,6 @@ struct FormListView: View {
                     } label: {
                         Text(form.title ?? "")
                     }
-                    
                 }
                 .onDelete { indexSet in
                     do {
@@ -45,8 +44,11 @@ struct FormListView: View {
                 }
             }
             .overlay(
-                Text("Add a form to get started!")
-                    .opacity(forms.isEmpty ? 1 : 0)
+                if !forms.isEmpty {
+                    Text("Add a form to get started!")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color(uiColor: UIColor.systemGray6))
+                }
             )
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

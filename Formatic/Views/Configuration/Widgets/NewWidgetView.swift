@@ -70,15 +70,6 @@ struct NewWidgetView: View {
                         typeTitle = "Map"
                     }
                 
-            case .photoLibraryWidget:
-                NewPhotoLibraryWidgetView(newWidgetType: $newWidgetType, title: $widgetTitle, section: section)
-                    .onAppear {
-                        typeTitle = "Photo Library"
-                    }
-                // Will be displayed in case .photoLibraryWidget
-            case .photoWidget:
-                EmptyView()
-                
             case .canvasWidget:
                 NewCanvasWidgetView(newWidgetType: $newWidgetType, title: $widgetTitle, section: section)
                     .onAppear {

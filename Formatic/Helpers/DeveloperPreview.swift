@@ -26,8 +26,6 @@ class DeveloperPreview {
     let mapWidget: MapWidget
     let annotation: Annotation
     let coordinateRegion: MKCoordinateRegion
-    let photoLibraryWidget: PhotoLibraryWidget
-    let photoWidget: PhotoWidget
     let canvasWidget: CanvasWidget
     
     private init() {
@@ -69,24 +67,10 @@ class DeveloperPreview {
         mapWidget.addToAnnotations(annotation)
         coordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.0902, longitude: -95.7129), span: MKCoordinateSpan(latitudeDelta: 70, longitudeDelta: 70))
         
-        // Create PhotoLibraryWidget
-        photoLibraryWidget = PhotoLibraryWidget(title: "Photo library widget title", position: 7)
-        var photoThumbnail = UIImage().jpegData(compressionQuality: 0.5)
-        do {
-            photoThumbnail = try formModel.resizeImage(imageData: UIImage().jpegData(compressionQuality: 0.5) ?? Data(), newSize: CGSize(width: 200, height: 200))
-        }
-        catch {
-            print("Error creating photoThumbnail")
-            // TODO: handle error
-
-        }
-        photoWidget = PhotoWidget(title: "Photo title", position: 0, photoThumbnail: photoThumbnail, photo: UIImage().jpegData(compressionQuality: 0.5))
-        photoLibraryWidget.addToPhotoWidgets(photoWidget)
-        
         // Create CanvasWidget
         canvasWidget = CanvasWidget(title: "Canvas widget title", position: 8)
         
         // Add all widgets to section
-        section.addToWidgets(NSSet(array: [textFieldWidget, numberFieldWidget, textEditorWidget, dropdownSectionWidget, checkboxSectionWidget, mapWidget, photoLibraryWidget, canvasWidget]))
+        section.addToWidgets(NSSet(array: [textFieldWidget, numberFieldWidget, textEditorWidget, dropdownSectionWidget, checkboxSectionWidget, mapWidget, canvasWidget]))
     }
 }

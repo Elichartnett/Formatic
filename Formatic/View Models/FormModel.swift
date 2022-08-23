@@ -122,11 +122,6 @@ class FormModel: ObservableObject {
                 case .mapWidget:
                     let mapWidget = MapWidget(title: widget.title, position: Int(widget.position), coordinateRegionCenterLat: 37.0902, coordinateRegionCenterLon: -95.7129, coordinateSpanLatDelta: 70, coordinateSpanLonDelta: 70)
                     section.addToWidgets(mapWidget)
-                case .photoLibraryWidget:
-                    let photoLibraryWidget = PhotoLibraryWidget(title: widget.title, position: Int(widget.position))
-                    section.addToWidgets(photoLibraryWidget)
-                case .photoWidget:
-                    break
                 case .canvasWidget:
                     let canvasWidget = CanvasWidget(title: widget.title, position: Int(widget.position))
                     section.addToWidgets(canvasWidget)

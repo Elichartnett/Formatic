@@ -27,8 +27,6 @@ enum WidgetType: String, Identifiable {
     case checkboxSectionWidget = "CheckboxSectionWidget"
     case checkboxWidget = "CheckboxWidget"
     case mapWidget = "MapWidget"
-    case photoLibraryWidget = "PhotoLibraryWidget"
-    case photoWidget = "PhotoWidget"
     case canvasWidget = "CanvasWidget"
 }
 
