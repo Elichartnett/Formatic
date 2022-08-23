@@ -43,13 +43,13 @@ struct FormListView: View {
                     }
                 }
             }
-            .overlay(
+            .overlay {
                 if !forms.isEmpty {
                     Text("Add a form to get started!")
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color(uiColor: UIColor.systemGray6))
                 }
-            )
+            }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
