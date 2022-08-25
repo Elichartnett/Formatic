@@ -11,12 +11,14 @@ import SwiftUI
 struct Formatic: App {
     
     @Environment(\.scenePhase) var scenePhase
+    @State var viewContext = DataController.shared.container.viewContext
+    @StateObject var formModel = FormModel()
     
     var body: some Scene {
         WindowGroup {
             Home()
-                .environment(\.managedObjectContext, DataController.shared.container.viewContext)
-                .environmentObject(FormModel())
+                .environment(\.managedObjectContext, viewContext)
+                .environmentObject(formModel)
                 .onChange(of: scenePhase) { newPhase in
                     switch newPhase {
                     case .background:

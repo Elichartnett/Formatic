@@ -254,7 +254,9 @@ class FormModel: ObservableObject {
         
         // Update positions
         for (index, widget) in widgets.enumerated() {
-            widget.position = Int16(index)
+            DispatchQueue.main.async {
+                widget.position = Int16(index)
+            }
         }
         DataController.saveMOC()
     }
