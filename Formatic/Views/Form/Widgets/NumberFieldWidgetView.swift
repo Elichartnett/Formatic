@@ -12,10 +12,19 @@ struct NumberFieldWidgetView: View {
     @EnvironmentObject var formModel: FormModel
     @ObservedObject var numberFieldWidget: NumberFieldWidget
     @Binding var locked: Bool
-    @State var title: String = ""
-    @State var number: String = ""
+    @State var title: String
+    @State var number: String
     var range: ClosedRange<Double>? = nil
     @State var isValid: Bool = true
+    
+    init(numberFieldWidget: NumberFieldWidget, locked: Binding<Bool>, range: ClosedRange<Double>? = nil) {
+        self.numberFieldWidget = numberFieldWidget
+        self._locked = locked
+        self.title = numberFieldWidget.title ?? ""
+        self.number = numberFieldWidget.number ?? ""
+        self.range = range
+        self.isValid = isValid
+    }
     
     var body: some View {
         
@@ -41,11 +50,6 @@ struct NumberFieldWidgetView: View {
                 }
             
         }
-        .onAppear {
-            title = numberFieldWidget.title ?? ""
-            number = numberFieldWidget.number ?? ""
-        }
-        
     }
 }
 

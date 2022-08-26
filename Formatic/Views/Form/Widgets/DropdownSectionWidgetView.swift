@@ -13,12 +13,13 @@ struct DropdownSectionWidgetView: View {
     @ObservedObject var dropdownSectionWidget: DropdownSectionWidget
     
     @Binding var locked: Bool
-    @State var title: String = ""
+    @State var title: String
     
     init(dropdownSectionWidget: DropdownSectionWidget, locked: Binding<Bool>) {
         self._dropdowns = FetchRequest<DropdownWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "dropdownSectionWidget == %@", dropdownSectionWidget))
         self.dropdownSectionWidget = dropdownSectionWidget
         self._locked = locked
+        self._title = State(initialValue: dropdownSectionWidget.title ?? "")
     }
     
     var body: some View {
@@ -29,9 +30,6 @@ struct DropdownSectionWidgetView: View {
                 .titleFrameStyle(locked: $locked)
                 .onChange(of: title) { _ in
                     dropdownSectionWidget.title = title
-                }
-                .onAppear {
-                    title = dropdownSectionWidget.title ?? ""
                 }
             
             Spacer()

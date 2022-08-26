@@ -11,8 +11,15 @@ struct TextFieldWidgetView: View {
     
     @ObservedObject var textFieldWidget: TextFieldWidget
     @Binding var locked: Bool
-    @State var title: String = ""
-    @State var text: String = ""
+    @State var title: String
+    @State var text: String
+    
+    init(textFieldWidget: TextFieldWidget, locked: Binding<Bool>) {
+        self.textFieldWidget = textFieldWidget
+        self._locked = locked
+        self.title = textFieldWidget.title ?? ""
+        self.text = textFieldWidget.text ?? ""
+    }
     
     var body: some View {
         
@@ -29,10 +36,6 @@ struct TextFieldWidgetView: View {
                 .onChange(of: text) { _ in
                     textFieldWidget.text = text
                 }
-        }
-        .onAppear {
-            title = textFieldWidget.title ?? ""
-            text = textFieldWidget.text ?? ""
         }
     }
 }

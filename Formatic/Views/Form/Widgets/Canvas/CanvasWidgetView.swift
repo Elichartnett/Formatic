@@ -10,8 +10,14 @@ import SwiftUI
 struct CanvasWidgetView: View {
     
     @ObservedObject var canvasWidget: CanvasWidget
-    @State var title: String = ""
     @Binding var locked: Bool
+    @State var title: String
+    
+    init(canvasWidget: CanvasWidget, locked: Binding<Bool>) {
+        self.canvasWidget = canvasWidget
+        self._locked = locked
+        self.title = canvasWidget.title ?? ""
+    }
     
     var body: some View {
         
@@ -34,14 +40,11 @@ struct CanvasWidgetView: View {
             }
             .WidgetPreviewStyle()
         }
-        .onAppear {
-            title = canvasWidget.title ?? ""
-        }
     }
 }
 
 struct CanvasWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        CanvasWidgetView(canvasWidget: dev.canvasWidget, title: dev.canvasWidget.title!, locked: .constant(false))
+        CanvasWidgetView(canvasWidget: dev.canvasWidget, locked: .constant(false))
     }
 }

@@ -12,8 +12,15 @@ struct TextEditorWidgetView: View {
     @ObservedObject var textEditorWidget: TextEditorWidget
     @Binding var locked: Bool
     @FocusState var isFocused: Bool
-    @State var title: String = ""
-    @State var text: String = ""
+    @State var title: String
+    @State var text: String
+    
+    init(textEditorWidget: TextEditorWidget, locked: Binding<Bool>) {
+        self.textEditorWidget = textEditorWidget
+        self._locked = locked
+        self.title = textEditorWidget.title ?? ""
+        self.text = textEditorWidget.text ?? ""
+    }
     
     var body: some View {
         

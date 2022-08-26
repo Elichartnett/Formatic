@@ -14,8 +14,14 @@ struct MapWidgetView: View {
     @EnvironmentObject var formModel: FormModel
     @ObservedObject var mapWidget: MapWidget
     @Binding var locked: Bool
-    @State var title: String = ""
+    @State var title: String
     @State var labelWidth: Double = 1
+    
+    init(mapWidget: MapWidget, locked: Binding<Bool>) {
+        self.mapWidget = mapWidget
+        self._locked = locked
+        self.title = mapWidget.title ?? ""
+    }
     
     var body: some View {
         
@@ -24,9 +30,6 @@ struct MapWidgetView: View {
                 .titleFrameStyle(locked: $locked)
                 .onChange(of: title) { _ in
                     mapWidget.title = title
-                }
-                .onAppear {
-                    title = mapWidget.title ?? ""
                 }
             
             NavigationLink {

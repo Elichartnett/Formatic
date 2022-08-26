@@ -30,10 +30,9 @@ struct FormView: View {
                 .padding(.horizontal)
                 .background(Color(uiColor: .systemGray6))
             
-            
             // Display all section in form
             if !forPDF {
-                // List is used for user visibility due to built in support for swipe gestures and lazy loading. Can not be used for pdf because there is no finite height due to lazy loading. Without a finite height, the view is not rendered properly when exporting view as pdf. Can possibly replace this with ImageRenderer in ios 16
+                // List is used for user visibility due to built in support for swipe gestures and lazy loading. Can not be used for pdf because there is no finite height due to lazy loading. Without a finite height, the view is not rendered properly when exporting view as pdf.
                 if sections.isEmpty {
                     Color(uiColor: .systemGray6)
                 }
@@ -79,8 +78,8 @@ struct FormView: View {
                     }
                 }
                 .padding()
+                .background(Color(uiColor: .systemGray6))
             }
-            
         }
         .navigationBarTitleDisplayMode(.inline)
         .onDisappear {

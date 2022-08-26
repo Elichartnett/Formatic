@@ -273,6 +273,7 @@ class FormModel: ObservableObject {
     func exportToPDF(form: Form) -> Data {
         
         let pdfView = convertToScrollView(content: FormView(form: form, forPDF: true).environment(\.managedObjectContext, DataController.shared.container.viewContext))
+        print("created pdf view")
         pdfView.tag = 1009
         let size = pdfView.contentSize
         pdfView.frame = CGRect(x: 0, y: getSafeArea().top, width: size.width, height: size.height)
@@ -290,7 +291,7 @@ class FormModel: ObservableObject {
                 view.removeFromSuperview()
             }
         }
-        
+        print("returning data")
         return data
     }
     
