@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import MapKit
 
 class DeveloperPreview {
@@ -69,6 +70,7 @@ class DeveloperPreview {
         
         // Create CanvasWidget
         canvasWidget = CanvasWidget(title: "Canvas widget title", position: 8)
+        canvasWidget.widgetViewPreview = UIImage(systemName: "photo")?.pngData()
         
         // Add all widgets to section
         section.addToWidgets(NSSet(array: [textFieldWidget, numberFieldWidget, textEditorWidget, dropdownSectionWidget, checkboxSectionWidget, mapWidget, canvasWidget]))

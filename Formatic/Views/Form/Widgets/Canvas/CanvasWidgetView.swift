@@ -27,14 +27,10 @@ struct CanvasWidgetView: View {
             NavigationLink {
                 CanvasWidgetDetailView(canvasWidget: canvasWidget)
             } label: {
-                ZStack {
-                    Image(uiImage: UIImage(data: canvasWidget.image ?? Data()) ?? UIImage())
-                        .resizable()
-                        .scaledToFit()
-                    
-                    Image(uiImage: UIImage(data: canvasWidget.widgetViewPreview ?? Data()) ?? UIImage())
-                        .resizable()
-                }
+                Image(uiImage: UIImage(data: canvasWidget.widgetViewPreview ?? Data()) ?? UIImage())
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .WidgetPreviewStyle()
         }
