@@ -11,12 +11,12 @@ import PencilKit
 struct CanvasRepresentable: UIViewRepresentable {
     
     @State var canvasWidget: CanvasWidget
-    @State var size: Double
     @State var canvasView: PKCanvasView = PKCanvasView()
     let imageView = UIImageView()
     let toolPicker: PKToolPicker = PKToolPicker()
     @Binding var showAlert: Bool
     @Binding var alertTitle: String
+    let width: Double
     
     func makeUIView(context: Context) -> PKCanvasView {
         
@@ -28,13 +28,13 @@ struct CanvasRepresentable: UIViewRepresentable {
             alertTitle = "Error importing canvas"
             showAlert = true
         }
-        canvasView.frame = CGRect(origin: .zero, size: CGSize(width: size, height: size))
+        canvasView.frame = CGRect(origin: .zero, size: CGSize(width: width, height: width))
         canvasView.isOpaque = false
         canvasView.backgroundColor = .clear
         canvasView.minimumZoomScale = 1
         canvasView.maximumZoomScale = 5
         
-        imageView.frame = CGRect(origin: .zero, size: CGSize(width: size, height: size))
+        imageView.frame = CGRect(origin: .zero, size: canvasView.contentSize)
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(data: canvasWidget.image ?? Data())
         
@@ -75,7 +75,9 @@ struct CanvasRepresentable: UIViewRepresentable {
         
         // Sends updates from UIView to SwiftUI
         func scrollViewDidZoom(_ scrollView: UIScrollView) {
-            parent.imageView.frame = CGRect(origin: .zero, size: CGSize(width: parent.size * parent.canvasView.zoomScale, height: parent.size * parent.canvasView.zoomScale))
+            let zoom = parent.canvasView.zoomScale
+            let canvasViewSize = parent.canvasView.contentSize
+            parent.imageView.frame = CGRect(origin: .zero, size: CGSize(width: canvasViewSize.width * zoom, height: canvasViewSize.height * zoom))
         }
     }
 }
