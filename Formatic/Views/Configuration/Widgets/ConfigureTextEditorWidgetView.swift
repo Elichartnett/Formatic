@@ -1,5 +1,5 @@
 //
-//  NewTextEditorView.swift
+//  ConfigureTextEditorView.swift
 //  Formatic
 //
 //  Created by Eli Hartnett on 5/3/22.
@@ -8,11 +8,11 @@
 import SwiftUI
 
 // In new widget sheet to configure new TextEditorWidget
-struct NewTextEditorWidgetView: View {
+struct ConfigureTextEditorWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
-    
-    @Binding var newWidgetType: WidgetType?
+    @Environment(\.dismiss) var dismiss
+
     @Binding var title: String
     @FocusState var isFocused: Bool
     @State var section: Section
@@ -44,7 +44,7 @@ struct NewTextEditorWidgetView: View {
                     section.addToWidgets(textEditorWidget)
                     DataController.saveMOC()
                 }
-                newWidgetType = nil
+                dismiss()
             } label: {
                 SubmitButton(isValid: .constant(true))
             }
@@ -53,8 +53,8 @@ struct NewTextEditorWidgetView: View {
     }
 }
 
-struct NewTextEditorView_Previews: PreviewProvider {
+struct ConfigureTextEditorView_Previews: PreviewProvider {
     static var previews: some View {
-        NewTextEditorWidgetView(newWidgetType: .constant(.textEditorWidget), title: .constant(dev.textEditorWidget.title!), section: dev.section)
+        ConfigureTextEditorWidgetView(title: .constant(dev.textEditorWidget.title!), section: dev.section)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  NewMapWidgetView.swift
+//  ConfigureMapWidgetView.swift
 //  Formatic
 //
 //  Created by Eli Hartnett on 5/3/22.
@@ -9,9 +9,10 @@ import SwiftUI
 import MapKit
 
 // In new widget sheet to configure new MapWidget
-struct NewMapWidgetView: View {
+struct ConfigureMapWidgetView: View {
     @EnvironmentObject var formModel: FormModel
-    @Binding var newWidgetType: WidgetType?
+    @Environment(\.dismiss) var dismiss
+
     @Binding var title: String
     @State var section: Section
     @State var coordinateRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.0902, longitude: -95.7129), span: MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20))
@@ -27,7 +28,7 @@ struct NewMapWidgetView: View {
                     section.addToWidgets(mapWidget)
                     DataController.saveMOC()
                 }
-                newWidgetType = nil
+                dismiss()
             } label: {
                 SubmitButton(isValid: .constant(true))
             }
@@ -36,8 +37,8 @@ struct NewMapWidgetView: View {
     }
 }
 
-struct NewMapWidgetView_Previews: PreviewProvider {
+struct ConfigureMapWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        NewMapWidgetView(newWidgetType: .constant(.mapWidget), title: .constant(dev.mapWidget.title!), section: dev.section)
+        ConfigureMapWidgetView(title: .constant(dev.mapWidget.title!), section: dev.section)
     }
 }

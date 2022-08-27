@@ -1,5 +1,5 @@
 //
-//  NewNumberFieldView.swift
+//  ConfigureNumberFieldView.swift
 //  Formatic
 //
 //  Created by Eli Hartnett on 5/3/22.
@@ -8,11 +8,11 @@
 import SwiftUI
 
 // In new widget sheet to configure new NumberFieldWidget
-struct NewNumberFieldWidgetView: View {
+struct ConfigureNumberFieldWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
-    
-    @Binding var newWidgetType: WidgetType?
+    @Environment(\.dismiss) var dismiss
+
     @Binding var title: String
     @State var section: Section
     @State var number: String = ""
@@ -39,7 +39,7 @@ struct NewNumberFieldWidgetView: View {
                     section.addToWidgets(numberFieldWidget)
                     DataController.saveMOC()
                 }
-                newWidgetType = nil
+                dismiss()
             } label: {
                 SubmitButton(isValid: $isValid)
             }
@@ -48,9 +48,9 @@ struct NewNumberFieldWidgetView: View {
     }
 }
 
-struct NewNumberFieldView_Previews: PreviewProvider {
+struct ConfigureNumberFieldView_Previews: PreviewProvider {
     static var previews: some View {
-        NewNumberFieldWidgetView(newWidgetType: .constant(.numberFieldWidget), title: .constant(dev.numberFieldWidget.title!), section: dev.section)
+        ConfigureNumberFieldWidgetView(title: .constant(dev.numberFieldWidget.title!), section: dev.section)
         
     }
 }

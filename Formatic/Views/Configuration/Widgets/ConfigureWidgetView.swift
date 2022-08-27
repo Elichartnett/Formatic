@@ -8,9 +8,9 @@
 import SwiftUI
 
 // Sheet to configure new widget
-struct NewWidgetView: View {
+struct ConfigureWidgetView: View {
     
-    @Binding var newWidgetType: WidgetType?
+    let newWidgetType: WidgetType
     @ObservedObject var section: Section
     @State var typeTitle: String = ""
     @State var widgetTitle: String = ""
@@ -28,25 +28,25 @@ struct NewWidgetView: View {
             
             switch newWidgetType {
             case .textFieldWidget:
-                NewTextFieldWidgetView(newWidgetType: $newWidgetType, title: $widgetTitle, section: section)
+                ConfigureTextFieldWidgetView(title: $widgetTitle, section: section)
                     .onAppear {
                         typeTitle = "Text Field"
                     }
                 
             case .numberFieldWidget:
-                NewNumberFieldWidgetView(newWidgetType: $newWidgetType, title: $widgetTitle, section: section)
+                ConfigureNumberFieldWidgetView(title: $widgetTitle, section: section)
                     .onAppear {
                         typeTitle = "Number Field"
                     }
                 
             case .textEditorWidget:
-                NewTextEditorWidgetView(newWidgetType: $newWidgetType, title: $widgetTitle, section: section)
+                ConfigureTextEditorWidgetView(title: $widgetTitle, section: section)
                     .onAppear {
                         typeTitle = "Text Editor"
                     }
                 
             case .dropdownSectionWidget:
-                NewDropdownSectionWidgetView(newWidgetType: $newWidgetType, title: $widgetTitle, section: section)
+                ConfigureDropdownSectionWidgetView(title: $widgetTitle, section: section)
                     .onAppear {
                         typeTitle = "Dropdown Menu"
                     }
@@ -55,7 +55,7 @@ struct NewWidgetView: View {
                 EmptyView()
                 
             case .checkboxSectionWidget:
-                NewCheckboxSectionWidgetView(newWidgetType: $newWidgetType, title: $widgetTitle, section: section)
+                ConfigureCheckboxSectionWidgetView(title: $widgetTitle, section: section)
                     .onAppear {
                         typeTitle = "Checkboxes"
                     }
@@ -65,19 +65,16 @@ struct NewWidgetView: View {
                 EmptyView()
                 
             case .mapWidget:
-                NewMapWidgetView(newWidgetType: $newWidgetType, title: $widgetTitle, section: section)
+                ConfigureMapWidgetView(title: $widgetTitle, section: section)
                     .onAppear {
                         typeTitle = "Map"
                     }
                 
             case .canvasWidget:
-                NewCanvasWidgetView(newWidgetType: $newWidgetType, title: $widgetTitle, section: section)
+                ConfigureCanvasWidgetView(title: $widgetTitle, section: section)
                     .onAppear {
                         typeTitle = "Canvas"
                     }
-                
-            case .none:
-                EmptyView()
             }
         }
         .padding(.horizontal)
@@ -86,6 +83,6 @@ struct NewWidgetView: View {
 
 struct ConfigureWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        NewWidgetView(newWidgetType: .constant(.textFieldWidget), section: dev.section)
+        ConfigureWidgetView(newWidgetType: .textFieldWidget, section: dev.section)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  NewCheckboxSectionWidgetView.swift
+//  ConfigureCheckboxSectionWidgetView.swift
 //  Formatic
 //
 //  Created by Eli Hartnett on 5/3/22.
@@ -8,11 +8,11 @@
 import SwiftUI
 
 // In new widget sheet to configure new CheckboxSectionWidget
-struct NewCheckboxSectionWidgetView: View {
+struct ConfigureCheckboxSectionWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
-    
-    @Binding var newWidgetType: WidgetType?
+    @Environment(\.dismiss) var dismiss
+
     @Binding var title: String
     @State var section: Section
     @State var numCheckboxes: Int = 1
@@ -68,7 +68,7 @@ struct NewCheckboxSectionWidgetView: View {
                     section.addToWidgets(checkboxSectionWidget)
                     DataController.saveMOC()
                 }
-                newWidgetType = nil
+                dismiss()
             } label: {
                 SubmitButton(isValid: .constant(true))
             }
@@ -84,8 +84,8 @@ struct LocalCheckboxWidget: Identifiable, Equatable {
     var title: String = ""
 }
 
-struct NewCheckboxSectionWidgetView_Previews: PreviewProvider {
+struct ConfigureCheckboxSectionWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        NewCheckboxSectionWidgetView(newWidgetType: .constant(.checkboxSectionWidget), title: .constant(dev.checkboxSectionWidget.title!), section: dev.section)
+        ConfigureCheckboxSectionWidgetView(title: .constant(dev.checkboxSectionWidget.title!), section: dev.section)
     }
 }

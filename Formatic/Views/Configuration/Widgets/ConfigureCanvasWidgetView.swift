@@ -1,5 +1,5 @@
 //
-//  NewCanvasWidgetView.swift
+//  ConfigureCanvasWidgetView.swift
 //  Formatic
 //
 //  Created by Eli Hartnett on 5/3/22.
@@ -8,11 +8,11 @@
 import SwiftUI
 
 // In new widget sheet to configure new CanvasWidget
-struct NewCanvasWidgetView: View {
+struct ConfigureCanvasWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
-    
-    @Binding var newWidgetType: WidgetType?
+    @Environment(\.dismiss) var dismiss
+
     @Binding var title: String
     @State var section: Section
     @State var sourceType: SourceType?
@@ -57,7 +57,7 @@ struct NewCanvasWidgetView: View {
                     section.addToWidgets(canvasWidget)
                     DataController.saveMOC()
                 }
-                newWidgetType = nil
+                dismiss()
             } label: {
                 SubmitButton(isValid: .constant(true))
                     .padding(.bottom)
@@ -74,8 +74,8 @@ struct NewCanvasWidgetView: View {
     }
 }
 
-struct NewCanvasWidgetView_Previews: PreviewProvider {
+struct ConfigureCanvasWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        NewCanvasWidgetView(newWidgetType: .constant(.canvasWidget), title: .constant(dev.canvasWidget.title!), section: dev.section)
+        ConfigureCanvasWidgetView(title: .constant(dev.canvasWidget.title!), section: dev.section)
     }
 }

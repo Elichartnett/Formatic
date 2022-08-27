@@ -11,9 +11,12 @@ struct DropdownSectionWidgetView: View {
     
     @FetchRequest var dropdowns: FetchedResults<DropdownWidget>
     @ObservedObject var dropdownSectionWidget: DropdownSectionWidget
-    
+    @Environment(\.editMode) var editMode
+
     @Binding var locked: Bool
     @State var title: String
+    
+    @State var reconfigureWidget = false
     
     init(dropdownSectionWidget: DropdownSectionWidget, locked: Binding<Bool>) {
         self._dropdowns = FetchRequest<DropdownWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "dropdownSectionWidget == %@", dropdownSectionWidget))
@@ -59,6 +62,22 @@ struct DropdownSectionWidgetView: View {
             }
             
             Spacer()
+            
+            Button {
+                reconfigureWidget = true
+            } label: {
+                if editMode?.wrappedValue == .active {
+                    Image(systemName: "slider.horizontal.3")
+                        .resizable()
+                        .foregroundColor(.black)
+                        .scaledToFit()
+                        .frame(width: 25, height: 25)
+                }
+            }
+            .disabled(editMode?.wrappedValue == .inactive)
+        }
+        .sheet(isPresented: $reconfigureWidget) {
+            ConfigureDropdownSectionWidgetView(dropdownSectionWidget: dropdownSectionWidget, title: $title, section: dropdownSectionWidget.section!)
         }
     }
 }

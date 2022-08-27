@@ -12,8 +12,13 @@ struct SectionTitleView: View {
     @ObservedObject var section: Section
     @Binding var locked: Bool
     @FocusState var sectionTitleIsFocused: Bool
-    @State var newWidgetType: WidgetType?
+    @State var newWidgetType: WidgetType? {
+        didSet {
+            configureNewWidget = true
+        }
+    }
     @State var sectionTitle: String = ""
+    @State var configureNewWidget = false
     
     var body: some View {
         
@@ -74,8 +79,8 @@ struct SectionTitleView: View {
         .onAppear {
             sectionTitle = section.title ?? ""
         }
-        .sheet(item: $newWidgetType) { newWidgetType in
-            NewWidgetView(newWidgetType: $newWidgetType, section: section)
+        .sheet(isPresented: $configureNewWidget) {
+            ConfigureWidgetView(newWidgetType: newWidgetType!, section: section)
                 .font(Font.body)
         }
     }

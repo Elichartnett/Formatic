@@ -10,6 +10,7 @@ import SwiftUI
 // Displays form sections with section titles and widgets
 struct SectionView: View {
     
+    @Environment(\.editMode) var editMode
     @EnvironmentObject var formModel: FormModel
     @FetchRequest var widgets: FetchedResults<Widget>
     
@@ -77,7 +78,6 @@ struct SectionView: View {
         .onDelete { indexSet in
             formModel.deleteWidgetWithIndexSet(section: section, indexSet: indexSet)
         }
-        
     }
 }
 
