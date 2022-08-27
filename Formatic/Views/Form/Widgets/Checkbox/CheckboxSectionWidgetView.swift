@@ -12,6 +12,9 @@ struct CheckboxSectionWidgetView: View {
     @FetchRequest var checkboxes: FetchedResults<CheckboxWidget>
     @ObservedObject var checkboxSectionWidget: CheckboxSectionWidget
     
+    @Environment(\.editMode) var editMode
+    @State var reconfigureWidget = false
+    
     @Binding var locked: Bool
     @State var title: String
     
@@ -23,6 +26,7 @@ struct CheckboxSectionWidgetView: View {
     }
     
     var body: some View {
+        
         HStack {
             
             InputBox(placeholder: "Title", text: $title)
@@ -38,6 +42,23 @@ struct CheckboxSectionWidgetView: View {
                 }
             }
             .frame(maxWidth: .infinity)
+            
+            Button {
+                reconfigureWidget = true
+            } label: {
+                if editMode?.wrappedValue == .active {
+                    Image(systemName: "slider.horizontal.3")
+                        .resizable()
+                        .foregroundColor(.black)
+                        .scaledToFit()
+                        .frame(width: 25, height: 25)
+                }
+            }
+            .disabled(editMode?.wrappedValue == .inactive)
+        }
+        .sheet(isPresented: $reconfigureWidget) {
+            ConfigureCheckboxSectionWidgetView(checkboxSectionWidget: checkboxSectionWidget, title: $title, section: checkboxSectionWidget.section!)
+                .padding()
         }
     }
 }

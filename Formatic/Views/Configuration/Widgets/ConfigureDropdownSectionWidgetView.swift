@@ -105,9 +105,8 @@ struct ConfigureDropdownSectionWidgetView: View {
             .padding(.bottom)
         }
         .frame(maxHeight: .infinity)
-        .padding()
         .onAppear {
-            // Load existing dropdown
+            // Load existing widget
             if let numDropdownSectionWidgetDropdowns = dropdownSectionWidget?.dropdownWidgets?.count {
                 numDropdowns = numDropdownSectionWidgetDropdowns
                 

@@ -12,11 +12,12 @@ struct ConfigureCheckboxSectionWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
     @Environment(\.dismiss) var dismiss
-
+    
+    @State var checkboxSectionWidget: CheckboxSectionWidget?
     @Binding var title: String
     @State var section: Section
     @State var numCheckboxes: Int = 1
-    @State var localCheckboxes: [LocalCheckboxWidget] = [LocalCheckboxWidget()]
+    @State var localCheckboxes: [LocalCheckboxWidget] = []
     
     var body: some View {
         
@@ -54,20 +55,37 @@ struct ConfigureCheckboxSectionWidgetView: View {
             }
             
             Button {
-                // Create checkboxSectionWidget
-                let checkboxSectionWidget = CheckboxSectionWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section))
-                
-                // Append checkboxes to checkboxSectionWidget
-                for (index, localCheckbox) in localCheckboxes.enumerated() {
-                    let checkboxWidget = CheckboxWidget(title: localCheckbox.title, position: index)
-                    checkboxSectionWidget.addToCheckboxWidgets(checkboxWidget)
+                if checkboxSectionWidget != nil {
+                    let existingArray = (checkboxSectionWidget?.checkboxWidgets as? Set<CheckboxWidget> ?? []).sorted { lhs, rhs in
+                        lhs.position < rhs.position
+                    }
+                    for checkbox in existingArray {
+                        checkboxSectionWidget?.removeFromCheckboxWidgets(checkbox)
+                    }
+                    for (index, localCheckbox) in localCheckboxes.enumerated() {
+                        checkboxSectionWidget?.addToCheckboxWidgets(CheckboxWidget(title: localCheckbox.title, position: index))
+                    }
+                }
+                else {
+                    // Create checkboxSectionWidget
+                    let checkboxSectionWidget = CheckboxSectionWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section))
+                    
+                    // Append checkboxes to checkboxSectionWidget
+                    for (index, localCheckbox) in localCheckboxes.enumerated() {
+                        let checkboxWidget = CheckboxWidget(title: localCheckbox.title, position: index)
+                        checkboxSectionWidget.addToCheckboxWidgets(checkboxWidget)
+                    }
+                    
+                    // Append dropdownSectionWidget to form section
+                    withAnimation {
+                        section.addToWidgets(checkboxSectionWidget)
+                    }
                 }
                 
-                // Append dropdownSectionWidget to form section
                 withAnimation {
-                    section.addToWidgets(checkboxSectionWidget)
                     DataController.saveMOC()
                 }
+                
                 dismiss()
             } label: {
                 SubmitButton(isValid: .constant(true))
@@ -75,6 +93,26 @@ struct ConfigureCheckboxSectionWidgetView: View {
             .padding(.bottom)
         }
         .frame(maxHeight: .infinity)
+        .onAppear {
+            // Load existing widget
+            if let numCheckboxSectionWidgetCheckboxes = checkboxSectionWidget?.checkboxWidgets?.count {
+                numCheckboxes = numCheckboxSectionWidgetCheckboxes
+                
+                var checkboxesArray: [CheckboxWidget] {
+                    let set = checkboxSectionWidget?.checkboxWidgets as? Set<CheckboxWidget> ?? []
+                    return set.sorted { lhs, rhs in
+                        lhs.position < rhs.position
+                    }
+                }
+                
+                for checkbox in checkboxesArray {
+                    localCheckboxes.append(LocalCheckboxWidget(title: checkbox.title ?? ""))
+                }
+            }
+            else {
+                localCheckboxes = [LocalCheckboxWidget()]
+            }
+        }
     }
 }
 
