@@ -29,6 +29,9 @@ struct EditorViewToolbar: View {
                         showToggleLockView = true
                     }
                     else  {
+                        withAnimation {
+                            isEditing = false
+                        }
                         form.locked = true
                     }
                 } label: {

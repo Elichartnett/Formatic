@@ -53,9 +53,15 @@ struct FormEditorView: View {
                         }
                     }
                 })
-                .sheet(isPresented: $showToggleLockView) {
+                .sheet(isPresented: $showToggleLockView, onDismiss: {
+                    if form.locked == true {
+                        withAnimation {
+                            isEditing = false
+                        }
+                    }
+                }, content: {
                     ToggleLockView(showToggleLockView: $showToggleLockView, form: form)
-                }
+                })
                 .fileExporter(isPresented: $showFileExporter, document: formaticFileDocument, contentType: exportToPDF ? .pdf : .form, defaultFilename: form.title, onCompletion: { result in
                     exportToPDF = false
                 })
