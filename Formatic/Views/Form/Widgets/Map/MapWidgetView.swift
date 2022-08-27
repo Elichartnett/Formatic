@@ -17,10 +17,14 @@ struct MapWidgetView: View {
     @State var title: String
     @State var labelWidth: Double = 1
     
+    @Environment(\.editMode) var editMode
+    @State var reconfigureWidget = false
+    @State var widgetViewPreviewSize = CGSize.zero
+
     init(mapWidget: MapWidget, locked: Binding<Bool>) {
         self.mapWidget = mapWidget
         self._locked = locked
-        self.title = mapWidget.title ?? ""
+        self._title = State(initialValue: mapWidget.title ?? "")
     }
     
     var body: some View {
@@ -40,6 +44,7 @@ struct MapWidgetView: View {
                         .resizable()
                         .scaledToFit()
                         .onAppear(perform: {
+                            widgetViewPreviewSize = proxy.size
                             if mapWidget.widgetViewPreview == Data() {
                                 formModel.updateMapWidgetSnapshot(size: proxy.size, mapWidget: mapWidget)
                                 self.labelWidth = proxy.size.width
@@ -54,6 +59,24 @@ struct MapWidgetView: View {
                 }
             }
             .WidgetPreviewStyle()
+            .disabled(editMode?.wrappedValue == .active)
+            
+            Button {
+                reconfigureWidget = true
+            } label: {
+                if editMode?.wrappedValue == .active {
+                    Image(systemName: "slider.horizontal.3")
+                        .resizable()
+                        .foregroundColor(.black)
+                        .scaledToFit()
+                        .frame(width: 25, height: 25)
+                }
+            }
+            .disabled(editMode?.wrappedValue == .inactive)
+        }
+        .sheet(isPresented: $reconfigureWidget) {
+            ConfigureMapWidgetView(mapWidget: mapWidget, title: $title, section: mapWidget.section!, widgetViewPreviewSize: widgetViewPreviewSize)
+                .padding()
         }
     }
 }
