@@ -48,6 +48,13 @@
 		6250E97F2835B11600E6E6A0 /* FormaticFileDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E97E2835B11600E6E6A0 /* FormaticFileDocument.swift */; };
 		627736FB282FFA4500F7B107 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627736FA282FFA4500F7B107 /* PhotoPicker.swift */; };
 		627736FD28300F7D00F7B107 /* PhotoTaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627736FC28300F7D00F7B107 /* PhotoTaker.swift */; };
+		6288C6A328BB03B70081A39D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6A228BB03B70081A39D /* LaunchScreen.storyboard */; };
+		6288C6A728BB06580081A39D /* Privacy Policy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6A628BB06580081A39D /* Privacy Policy.pdf */; };
+		6288C6AB28BB06640081A39D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6A928BB06630081A39D /* logo.png */; };
+		6288C6AC28BB06640081A39D /* logo.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6AA28BB06630081A39D /* logo.svg */; };
+		6288C6AE28BB06680081A39D /* logoAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6AD28BB06680081A39D /* logoAnimation.json */; };
+		6288C6B128BB06F60081A39D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 6288C6B028BB06F60081A39D /* Lottie */; };
+		6288C6B528BB080A0081A39D /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6288C6B428BB080A0081A39D /* LottieView.swift */; };
 		629886DB281B578800C34782 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629886DA281B578800C34782 /* Enums.swift */; };
 		629886E1281B8F1000C34782 /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629886E0281B8F1000C34782 /* FormModel.swift */; };
 		629886E6281B902800C34782 /* Section+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629886E2281B902800C34782 /* Section+CoreDataClass.swift */; };
@@ -124,6 +131,14 @@
 		6250E9802836CAB400E6E6A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		627736FA282FFA4500F7B107 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		627736FC28300F7D00F7B107 /* PhotoTaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTaker.swift; sourceTree = "<group>"; };
+		6288C6A228BB03B70081A39D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6288C6A528BB06530081A39D /* Privacy Policy pages.pages */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Privacy Policy pages.pages"; sourceTree = "<group>"; };
+		6288C6A628BB06580081A39D /* Privacy Policy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Privacy Policy.pdf"; sourceTree = "<group>"; };
+		6288C6A828BB065D0081A39D /* logoAnimation.keyshape */ = {isa = PBXFileReference; lastKnownFileType = file; path = logoAnimation.keyshape; sourceTree = "<group>"; };
+		6288C6A928BB06630081A39D /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		6288C6AA28BB06630081A39D /* logo.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = logo.svg; sourceTree = "<group>"; };
+		6288C6AD28BB06680081A39D /* logoAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = logoAnimation.json; sourceTree = "<group>"; };
+		6288C6B428BB080A0081A39D /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		629886DA281B578800C34782 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		629886E0281B8F1000C34782 /* FormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModel.swift; sourceTree = "<group>"; };
 		629886E2281B902800C34782 /* Section+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Section+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -167,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62443122281A13A400E21B11 /* UTMConversion in Frameworks */,
+				6288C6B128BB06F60081A39D /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +323,19 @@
 			path = Checkbox;
 			sourceTree = "<group>";
 		};
+		6288C6A428BB06420081A39D /* FileAssets */ = {
+			isa = PBXGroup;
+			children = (
+				6288C6A528BB06530081A39D /* Privacy Policy pages.pages */,
+				6288C6A628BB06580081A39D /* Privacy Policy.pdf */,
+				6288C6A828BB065D0081A39D /* logoAnimation.keyshape */,
+				6288C6AD28BB06680081A39D /* logoAnimation.json */,
+				6288C6AA28BB06630081A39D /* logo.svg */,
+				6288C6A928BB06630081A39D /* logo.png */,
+			);
+			path = FileAssets;
+			sourceTree = "<group>";
+		};
 		629886EA281B904000C34782 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,11 +443,14 @@
 			children = (
 				6250E9802836CAB400E6E6A0 /* Info.plist */,
 				62FE6E6B28187058009D41FD /* Formatic.swift */,
+				6288C6A228BB03B70081A39D /* LaunchScreen.storyboard */,
+				6288C6B428BB080A0081A39D /* LottieView.swift */,
 				62FE6E79281874FA009D41FD /* Views */,
 				62FE6E7A281874FE009D41FD /* View Models */,
 				62FE6E7B28187505009D41FD /* Models */,
 				6244311C281A12D400E21B11 /* Helpers */,
 				62FE6E6F28187059009D41FD /* Assets.xcassets */,
+				6288C6A428BB06420081A39D /* FileAssets */,
 				62FE6E7128187059009D41FD /* Preview Content */,
 			);
 			path = Formatic;
@@ -480,6 +512,7 @@
 			name = Formatic;
 			packageProductDependencies = (
 				62443121281A13A400E21B11 /* UTMConversion */,
+				6288C6B028BB06F60081A39D /* Lottie */,
 			);
 			productName = "Form Builder";
 			productReference = 62FE6E6828187058009D41FD /* Formatic.app */;
@@ -511,6 +544,7 @@
 			mainGroup = 62FE6E5F28187058009D41FD;
 			packageReferences = (
 				62443120281A13A400E21B11 /* XCRemoteSwiftPackageReference "UTMConversion" */,
+				6288C6AF28BB06F60081A39D /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 62FE6E6928187058009D41FD /* Products */;
 			projectDirPath = "";
@@ -527,7 +561,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				62FE6E7328187059009D41FD /* Preview Assets.xcassets in Resources */,
+				6288C6A328BB03B70081A39D /* LaunchScreen.storyboard in Resources */,
+				6288C6AB28BB06640081A39D /* logo.png in Resources */,
+				6288C6AE28BB06680081A39D /* logoAnimation.json in Resources */,
+				6288C6A728BB06580081A39D /* Privacy Policy.pdf in Resources */,
 				62FD783B2836DDA200D3949E /* FormaticDocumentTypeIcon.png in Resources */,
+				6288C6AC28BB06640081A39D /* logo.svg in Resources */,
 				62FE6E7028187059009D41FD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -585,6 +624,7 @@
 				629886F7281C31C400C34782 /* ListViewToolbar.swift in Sources */,
 				62294F202821E83F00226AF1 /* ConfigureWidgetView.swift in Sources */,
 				62294F0E281F61B900226AF1 /* SubmitButton.swift in Sources */,
+				6288C6B528BB080A0081A39D /* LottieView.swift in Sources */,
 				62443151281A152A00E21B11 /* NumberFieldWidget+CoreDataClass.swift in Sources */,
 				62294F292821EB9000226AF1 /* ConfigureDropdownSectionWidgetView.swift in Sources */,
 				622A99DC281E0C5000BB5E12 /* Form+CoreDataClass.swift in Sources */,
@@ -734,6 +774,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"Formatic/Preview Content\"";
@@ -748,6 +789,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenView.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -756,7 +798,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Eli-Hartnett.Formatic";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elihartnett.Formatic;
 				PRODUCT_NAME = Formatic;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -769,6 +811,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"Formatic/Preview Content\"";
@@ -783,6 +826,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenView.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -791,7 +835,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Eli-Hartnett.Formatic";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elihartnett.Formatic;
 				PRODUCT_NAME = Formatic;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -831,6 +875,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		6288C6AF28BB06F60081A39D /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -838,6 +890,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 62443120281A13A400E21B11 /* XCRemoteSwiftPackageReference "UTMConversion" */;
 			productName = UTMConversion;
+		};
+		6288C6B028BB06F60081A39D /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6288C6AF28BB06F60081A39D /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 
