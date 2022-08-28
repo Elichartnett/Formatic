@@ -28,20 +28,20 @@ struct PhotoTaker: UIViewControllerRepresentable {
     func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)
     }
-}
-
-class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    var parent: PhotoTaker
-    
-    init(parent: PhotoTaker) {
-        self.parent = parent
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[.editedImage] as? UIImage {
-            self.parent.pickerResult = image.jpegData(compressionQuality: 0.5) ?? Data()
-            picker.dismiss(animated: true)
+    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+        
+        var parent: PhotoTaker
+        
+        init(parent: PhotoTaker) {
+            self.parent = parent
+        }
+        
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            if let image = info[.editedImage] as? UIImage {
+                self.parent.pickerResult = image.jpegData(compressionQuality: 0.5) ?? Data()
+                picker.dismiss(animated: true)
+            }
         }
     }
 }

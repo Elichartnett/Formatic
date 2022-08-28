@@ -83,7 +83,6 @@
 		62F8FE66282CA814005C8D73 /* AddAnnotationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8FE65282CA814005C8D73 /* AddAnnotationsView.swift */; };
 		62F8FE69282DAC9F005C8D73 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8FE68282DAC9F005C8D73 /* MapView.swift */; };
 		62F8FE6B282DAD49005C8D73 /* MapWidgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8FE6A282DAD49005C8D73 /* MapWidgetDetailView.swift */; };
-		62FD783B2836DDA200D3949E /* FormaticDocumentTypeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 62FD783A2836DDA200D3949E /* FormaticDocumentTypeIcon.png */; };
 		62FE6E6C28187058009D41FD /* Formatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FE6E6B28187058009D41FD /* Formatic.swift */; };
 		62FE6E6E28187058009D41FD /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FE6E6D28187058009D41FD /* Home.swift */; };
 		62FE6E7028187059009D41FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62FE6E6F28187059009D41FD /* Assets.xcassets */; };
@@ -168,7 +167,6 @@
 		62F8FE65282CA814005C8D73 /* AddAnnotationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnnotationsView.swift; sourceTree = "<group>"; };
 		62F8FE68282DAC9F005C8D73 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		62F8FE6A282DAD49005C8D73 /* MapWidgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWidgetDetailView.swift; sourceTree = "<group>"; };
-		62FD783A2836DDA200D3949E /* FormaticDocumentTypeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FormaticDocumentTypeIcon.png; sourceTree = "<group>"; };
 		62FE6E6828187058009D41FD /* Formatic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Formatic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62FE6E6B28187058009D41FD /* Formatic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatic.swift; sourceTree = "<group>"; };
 		62FE6E6D28187058009D41FD /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -243,7 +241,6 @@
 				62E7F87C282EE713004A95EF /* DeveloperPreview.swift */,
 				62E7F87A282EE1E4004A95EF /* LocationManager.swift */,
 				6250E97E2835B11600E6E6A0 /* FormaticFileDocument.swift */,
-				62FD783A2836DDA200D3949E /* FormaticDocumentTypeIcon.png */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -565,7 +562,6 @@
 				6288C6AB28BB06640081A39D /* logo.png in Resources */,
 				6288C6AE28BB06680081A39D /* logoAnimation.json in Resources */,
 				6288C6A728BB06580081A39D /* Privacy Policy.pdf in Resources */,
-				62FD783B2836DDA200D3949E /* FormaticDocumentTypeIcon.png in Resources */,
 				6288C6AC28BB06640081A39D /* logo.svg in Resources */,
 				62FE6E7028187059009D41FD /* Assets.xcassets in Resources */,
 			);
@@ -705,7 +701,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -759,7 +755,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -789,7 +785,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenView.storyboard;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -826,7 +822,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenView.storyboard;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;

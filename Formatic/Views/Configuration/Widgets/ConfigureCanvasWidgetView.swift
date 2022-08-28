@@ -68,7 +68,7 @@ struct ConfigureCanvasWidgetView: View {
             case .camera:
                 PhotoTaker(pickerResult: $pickerResult)
             case .photoLibrary:
-                PhotoPicker()
+                PhotoPicker(pickerResult: $pickerResult)
             }
         }
     }
