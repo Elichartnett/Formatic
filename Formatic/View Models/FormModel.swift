@@ -83,7 +83,6 @@ class FormModel: ObservableObject {
         let decoder = JSONDecoder()
         do {
             let form = try decoder.decode(Form.self, from: data)
-            createWidgetsInForm(form: form)
             return form
         }
         catch {
@@ -92,46 +91,7 @@ class FormModel: ObservableObject {
             throw FormError.decodeJsonDataToFormError
         }
     }
-    
-    func createWidgetsInForm(form: Form) {
-        for section in form.sections ?? [] {
-            for widget in section.widgets ?? [] {
-                let widgetType: WidgetType = WidgetType.init(rawValue: widget.type!)!
-                
-                switch widgetType {
-                case .textFieldWidget:
-                    let textFieldWidget = TextFieldWidget(title: widget.title, position: Int(widget.position), text: nil)
-                    section.addToWidgets(textFieldWidget)
-                    
-                case .numberFieldWidget:
-                    let numberFieldWidget = NumberFieldWidget(title: widget.title, position: Int(widget.position), number: nil)
-                    section.addToWidgets(numberFieldWidget)
-                case .textEditorWidget:
-                    let textEditorWidget = TextEditorWidget(title: widget.title, position: Int(widget.position), text: nil)
-                    section.addToWidgets(textEditorWidget)
-                case .dropdownSectionWidget:
-                    let dropdownSectionWidget = DropdownSectionWidget(title: widget.title, position: Int(widget.position))
-                    section.addToWidgets(dropdownSectionWidget)
-                case .dropdownWidget:
-                    break
-                case .checkboxSectionWidget:
-                    let checkboxSectionWidget = CheckboxSectionWidget(title: widget.title, position: Int(widget.position))
-                    section.addToWidgets(checkboxSectionWidget)
-                case .checkboxWidget:
-                    break
-                case .mapWidget:
-                    let mapWidget = MapWidget(title: widget.title, position: Int(widget.position), coordinateRegionCenterLat: 37.0902, coordinateRegionCenterLon: -95.7129, coordinateSpanLatDelta: 70, coordinateSpanLonDelta: 70)
-                    section.addToWidgets(mapWidget)
-                case .canvasWidget:
-                    let canvasWidget = CanvasWidget(title: widget.title, position: Int(widget.position))
-                    section.addToWidgets(canvasWidget)
-                }
-                DataController.shared.container.viewContext.delete(widget)
-            }
-        }
-        DataController.saveMOC()
-    }
-    
+        
     func importForm(url: URL) throws {
         do {
             let data = try urlToData(url: url)

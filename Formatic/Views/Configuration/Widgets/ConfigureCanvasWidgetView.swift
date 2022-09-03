@@ -51,7 +51,7 @@ struct ConfigureCanvasWidgetView: View {
             
             Button {
                 withAnimation {
-                    let canvasWidget = CanvasWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section))
+                    let canvasWidget = CanvasWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), image: pickerResult, pkDrawing: nil, widgetViewPreview: nil)
                         canvasWidget.image = pickerResult
                     
                     section.addToWidgets(canvasWidget)

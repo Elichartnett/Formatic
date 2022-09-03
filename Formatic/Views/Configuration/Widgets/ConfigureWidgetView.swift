@@ -50,7 +50,8 @@ struct ConfigureWidgetView: View {
                     .onAppear {
                         typeTitle = "Dropdown Menu"
                     }
-                // Will be displayed in case .dropdownSectionWidget
+                
+            // Will be handled in section
             case .dropdownWidget:
                 EmptyView()
                 
@@ -60,7 +61,7 @@ struct ConfigureWidgetView: View {
                         typeTitle = "Checkboxes"
                     }
                 
-                // Will be displayed in case .checkboxSectionWidget
+            // Will be handled in section
             case .checkboxWidget:
                 EmptyView()
                 

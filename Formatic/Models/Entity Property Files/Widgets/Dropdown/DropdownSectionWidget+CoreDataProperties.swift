@@ -19,11 +19,6 @@ extension DropdownSectionWidget {
     
     @NSManaged public var selectedDropdown: DropdownWidget?
     @NSManaged public var dropdownWidgets: NSSet?
-    
-    /// DropdownSectionWidget  convenience init
-    convenience init(title: String?, position: Int) {
-        self.init(title: title, position: position, type: WidgetType.dropdownSectionWidget.rawValue)
-    }
 }
 
 // MARK: Generated accessors for dropdownWidgets

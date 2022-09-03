@@ -10,7 +10,15 @@ import Foundation
 import CoreData
 
 @objc(Widget)
-public class Widget: NSManagedObject, Codable {
+public class Widget: NSManagedObject, Encodable {
+    
+    init(entityName: String, context: NSManagedObjectContext, title: String?, position: Int) {
+        super.init(entity: NSEntityDescription.entity(forEntityName: entityName, in: context)!, insertInto: context)
+        
+        self.id = UUID()
+        self.title = title
+        self.position = Int16(position)
+    }
     
     enum CodingKeys: String, CodingKey {
         case position = "position"
@@ -24,17 +32,5 @@ public class Widget: NSManagedObject, Codable {
         try widgetContainer.encode(position, forKey: .position)
         try widgetContainer.encode(title, forKey: .title)
         try widgetContainer.encode(type, forKey: .type)
-    }
-    
-    required public convenience init(from decoder: Decoder) throws {
-        self.init(context: DataController.shared.container.viewContext)
-
-        let widgetContainer = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = UUID()
-        self.position = try widgetContainer.decode(Int16.self, forKey: .position)
-        if let title = try widgetContainer.decode(String?.self, forKey: .title) {
-            self.title = title
-        }
-        self.type = try widgetContainer.decode(String.self, forKey: .type)
     }
 }

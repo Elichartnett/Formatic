@@ -23,15 +23,6 @@ extension MapWidget {
     @NSManaged public var widgetViewPreview: Data
 
     @NSManaged public var annotations: NSSet?
-    
-    /// MapWidget  convenience init
-    convenience init(title: String?, position: Int, coordinateRegionCenterLat: Double, coordinateRegionCenterLon: Double, coordinateSpanLatDelta: Double, coordinateSpanLonDelta: Double) {
-        self.init(title: title, position: position, type: WidgetType.mapWidget.rawValue)
-        self.coordinateRegionCenterLat = coordinateRegionCenterLat
-        self.coordinateRegionCenterLon = coordinateRegionCenterLon
-        self.coordinateSpanLatDelta = coordinateSpanLatDelta
-        self.coordinateSpanLonDelta = coordinateSpanLonDelta
-    }
 }
 
 // MARK: Generated accessors for annotations

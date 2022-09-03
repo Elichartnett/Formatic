@@ -50,14 +50,14 @@ class DeveloperPreview {
         textEditorWidget = TextEditorWidget(title: "Text editor title", position: 3, text: "Text editor text")
         
         // Create DropdownSectionWidget section
-        dropdownSectionWidget = DropdownSectionWidget(title: "Dropdown section title", position: 4)
-        dropdownWidget = DropdownWidget(title: "Dropdown option 1", position: 0)
+        dropdownSectionWidget = DropdownSectionWidget(title: "Dropdown section title", position: 4, selectedDropdown: nil, dropdownWidgets: nil)
+        dropdownWidget = DropdownWidget(title: "Dropdown option 1", position: 0, dropdownSectionWidget: nil, selectedDropdownInverse: nil)
         dropdownSectionWidget.selectedDropdown = dropdownWidget
         dropdownSectionWidget.addToDropdownWidgets(dropdownWidget)
         
         // Create CheckboxSectionWidget
-        checkboxSectionWidget = CheckboxSectionWidget(title: "Checkbox section title", position: 5)
-        checkboxWidget = CheckboxWidget(title: "Checkbox 1", position: 0)
+        checkboxSectionWidget = CheckboxSectionWidget(title: "Checkbox section title", position: 5, checkboxWidgets: nil)
+        checkboxWidget = CheckboxWidget(title: "Checkbox 1", position: 0, checked: true, checkboxSectionWidget: checkboxSectionWidget)
         checkboxSectionWidget.addToCheckboxWidgets(checkboxWidget)
         
         // Create MapWidget
@@ -69,7 +69,7 @@ class DeveloperPreview {
         coordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.0902, longitude: -95.7129), span: MKCoordinateSpan(latitudeDelta: 70, longitudeDelta: 70))
         
         // Create CanvasWidget
-        canvasWidget = CanvasWidget(title: "Canvas widget title", position: 8)
+        canvasWidget = CanvasWidget(title: "Canvas widget title", position: 8, image: nil, pkDrawing: nil, widgetViewPreview: nil)
         canvasWidget.widgetViewPreview = UIImage(systemName: "photo")?.pngData()
         
         // Add all widgets to section

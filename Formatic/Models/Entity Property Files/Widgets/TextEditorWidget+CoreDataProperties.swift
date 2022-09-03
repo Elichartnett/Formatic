@@ -17,10 +17,4 @@ extension TextEditorWidget {
     }
     
     @NSManaged public var text: String?
-    
-    /// TextEditorWidget  convenience init
-    convenience init(title: String?, position: Int, text: String?) {
-        self.init(title: title, position: position, type: WidgetType.textEditorWidget.rawValue)
-        self.text = text
-    }
 }

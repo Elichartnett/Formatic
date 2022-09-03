@@ -18,10 +18,4 @@ extension CheckboxWidget {
 
     @NSManaged public var checked: Bool
     @NSManaged public var checkboxSectionWidget: CheckboxSectionWidget?
-
-    /// CheckboxWidget  convenience init
-    convenience init(title: String?, position: Int) {
-        self.init(title: title, position: position, type: WidgetType.checkboxWidget.rawValue)
-        self.checked = false
-    }
 }

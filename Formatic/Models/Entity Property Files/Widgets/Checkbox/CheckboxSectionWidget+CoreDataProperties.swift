@@ -17,11 +17,6 @@ extension CheckboxSectionWidget {
     }
 
     @NSManaged public var checkboxWidgets: NSSet?
-    
-    /// CheckboxSectionWidget  convenience init
-    convenience init(title: String?, position: Int) {
-        self.init(title: title, position: position, type: WidgetType.checkboxSectionWidget.rawValue)
-    }
 }
 
 // MARK: Generated accessors for checkboxWidgets

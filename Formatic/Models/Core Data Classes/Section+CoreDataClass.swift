@@ -11,7 +11,7 @@ import CoreData
 
 @objc(Section)
 public class Section: NSManagedObject, Codable {
-
+    
     enum CodingKeys: String, CodingKey {
         case position = "position"
         case title = "title"
@@ -35,8 +35,52 @@ public class Section: NSManagedObject, Codable {
         if let title = try sectionContainer.decode(String?.self, forKey: .title) {
             self.title = title
         }
-        if let widgets = try sectionContainer.decode(Set<Widget>?.self, forKey: .widgets) {
-            self.widgets = widgets
+        
+        // Decode widgets
+        let widgetsContainer = try decoder.container(keyedBy: WidgetsKey.self) // Create base container that holds decodable section data
+        var widgetsArrayForType = try widgetsContainer.nestedUnkeyedContainer(forKey: WidgetsKey.widgets) // Container that looks in base container (section) for "widgets" property
+        var widgetsArray = widgetsArrayForType // Create copy - unkeyed container is used to decode a JSON array, and is decoded sequentially (each time you call a decode or nested container method on it, it advances to the next element in the array
+        
+        while(!widgetsArrayForType.isAtEnd) {
+            let widget = try widgetsArrayForType.nestedContainer(keyedBy: WidgetTypeKey.self) // Get container for widget in widgetsArrayForType
+            let type = try widget.decode(WidgetType.self, forKey: WidgetTypeKey.type) // Decode widget and get "type" property
+            switch type {
+            case .textFieldWidget:
+                let textFieldWidget = try widgetsArray.decode(TextFieldWidget.self)
+                textFieldWidget.section = self
+                
+            case .numberFieldWidget:
+                let numberFieldWidget = try widgetsArray.decode(NumberFieldWidget.self)
+                numberFieldWidget.section = self
+
+            case .textEditorWidget:
+                let textEditorWidget = try widgetsArray.decode(TextEditorWidget.self)
+                textEditorWidget.section = self
+
+            case .dropdownSectionWidget:
+                let dropdownSectionWidget = try widgetsArray.decode(DropdownSectionWidget.self)
+                dropdownSectionWidget.section = self
+                
+            // Will be handled in section
+            case .dropdownWidget:
+                break
+
+            case .checkboxSectionWidget:
+                let checkboxSectionWidget = try widgetsArray.decode(CheckboxSectionWidget.self)
+                checkboxSectionWidget.section = self
+                
+            // Will be handled in section
+            case .checkboxWidget:
+                break
+
+            case .mapWidget:
+                let mapWidget = try widgetsArray.decode(MapWidget.self)
+                mapWidget.section = self
+
+            case .canvasWidget:
+                let canvasWidget = try widgetsArray.decode(CanvasWidget.self)
+                canvasWidget.section = self
+            }
         }
     }
 }

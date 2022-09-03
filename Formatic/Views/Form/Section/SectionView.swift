@@ -49,6 +49,7 @@ struct SectionView: View {
                 let dropdownSectionWidget = widget as! DropdownSectionWidget
                 DropdownSectionWidgetView(dropdownSectionWidget: dropdownSectionWidget, locked: $locked)
                 
+            // Will be handled in section
             case .dropdownWidget:
                 EmptyView()
                 
@@ -56,6 +57,7 @@ struct SectionView: View {
                 let checkboxSectionWidget = widget as! CheckboxSectionWidget
                 CheckboxSectionWidgetView(checkboxSectionWidget: checkboxSectionWidget, locked: $locked)
                 
+            // Will be handled in section
             case .checkboxWidget:
                 EmptyView()
                 

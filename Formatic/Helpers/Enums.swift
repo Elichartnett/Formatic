@@ -14,8 +14,20 @@ enum InputType {
     case password
 }
 
+enum WidgetsKey: CodingKey {
+    case widgets
+}
+
+enum CheckboxWidgetsKey: CodingKey {
+    case checkboxWidgets
+}
+
+enum WidgetTypeKey: CodingKey {
+    case type
+}
+
 // Widget types
-enum WidgetType: String, Identifiable {
+enum WidgetType: String, Decodable, Identifiable {
     
     var id: RawValue { rawValue }
     

@@ -73,17 +73,16 @@ struct ConfigureDropdownSectionWidgetView: View {
                         dropdownSectionWidget?.removeFromDropdownWidgets(dropownWidget)
                     }
                     for (index, localDropdown) in localDropdowns.enumerated() {
-                        dropdownSectionWidget?.addToDropdownWidgets(DropdownWidget(title: localDropdown.title, position: index))
+                        dropdownSectionWidget?.addToDropdownWidgets(DropdownWidget(title: localDropdown.title, position: index, dropdownSectionWidget: dropdownSectionWidget, selectedDropdownInverse: nil))
                     }
                 } else {
                     // Create dropdownSectionWidget
-                    dropdownSectionWidget = DropdownSectionWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section))
+                    dropdownSectionWidget = DropdownSectionWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), selectedDropdown: nil, dropdownWidgets: nil)
                     
                     // Append dropdown options to dropdownSectionWidget
                     for (index, localDropdown) in localDropdowns.enumerated() {
                         if !localDropdown.title.isEmpty {
-                            print("index \(index) added")
-                            let dropdownWidget = DropdownWidget(title: localDropdown.title, position: index)
+                            let dropdownWidget = DropdownWidget(title: localDropdown.title, position: index, dropdownSectionWidget: dropdownSectionWidget, selectedDropdownInverse: nil)
                             dropdownSectionWidget!.addToDropdownWidgets(dropdownWidget)
                         }
                     }

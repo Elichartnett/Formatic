@@ -63,16 +63,16 @@ struct ConfigureCheckboxSectionWidgetView: View {
                         checkboxSectionWidget?.removeFromCheckboxWidgets(checkbox)
                     }
                     for (index, localCheckbox) in localCheckboxes.enumerated() {
-                        checkboxSectionWidget?.addToCheckboxWidgets(CheckboxWidget(title: localCheckbox.title, position: index))
+                        checkboxSectionWidget?.addToCheckboxWidgets(CheckboxWidget(title: localCheckbox.title, position: index, checked: false, checkboxSectionWidget: checkboxSectionWidget))
                     }
                 }
                 else {
                     // Create checkboxSectionWidget
-                    let checkboxSectionWidget = CheckboxSectionWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section))
+                    let checkboxSectionWidget = CheckboxSectionWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), checkboxWidgets: nil)
                     
                     // Append checkboxes to checkboxSectionWidget
                     for (index, localCheckbox) in localCheckboxes.enumerated() {
-                        let checkboxWidget = CheckboxWidget(title: localCheckbox.title, position: index)
+                        let checkboxWidget = CheckboxWidget(title: localCheckbox.title, position: index, checked: false, checkboxSectionWidget: nil)
                         checkboxSectionWidget.addToCheckboxWidgets(checkboxWidget)
                     }
                     
