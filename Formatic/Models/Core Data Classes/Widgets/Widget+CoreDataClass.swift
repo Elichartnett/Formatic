@@ -12,6 +12,10 @@ import CoreData
 @objc(Widget)
 public class Widget: NSManagedObject, Encodable {
     
+    private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+    }
+    
     init(entityName: String, context: NSManagedObjectContext, title: String?, position: Int) {
         super.init(entity: NSEntityDescription.entity(forEntityName: entityName, in: context)!, insertInto: context)
         
