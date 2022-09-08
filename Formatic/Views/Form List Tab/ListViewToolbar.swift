@@ -31,13 +31,13 @@ struct ListViewToolbar: View {
             
             Spacer()
             
-            // Import form template button
+            // Import form button
             Button {
                 showImportFormView = true
             } label: {
                 HStack {
                     Image(systemName: "square.and.arrow.down")
-                    Text("Import template")
+                    Text("Import")
                 }
             }
             

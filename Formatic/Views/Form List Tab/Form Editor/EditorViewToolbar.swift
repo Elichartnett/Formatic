@@ -11,7 +11,7 @@ import SwiftUI
 struct EditorViewToolbar: View {
     
     @ObservedObject var form: Form
-    @Binding var exportToTemplate: Bool
+    @Binding var exportToForm: Bool
     @Binding var exportToPDF: Bool
     @Binding var showToggleLockView: Bool
     @Binding var isEditing: Bool
@@ -103,13 +103,13 @@ struct EditorViewToolbar: View {
                         }
                     }
                     
-                    // Export to template button
+                    // Export to form button
                     Button {
-                        exportToTemplate = true
+                        exportToForm = true
                     } label: {
                         HStack {
                             Image(systemName: "doc.zipper")
-                            Text("Template")
+                            Text("Form")
                         }
                     }
                     
@@ -128,6 +128,6 @@ struct EditorViewToolbar: View {
 
 struct EditorViewToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        EditorViewToolbar(form: dev.form, exportToTemplate: .constant(false), exportToPDF: .constant(false), showToggleLockView: .constant(false), isEditing: .constant(false))
+        EditorViewToolbar(form: dev.form, exportToForm: .constant(false), exportToPDF: .constant(false), showToggleLockView: .constant(false), isEditing: .constant(false))
     }
 }
