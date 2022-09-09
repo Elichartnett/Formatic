@@ -15,7 +15,7 @@ struct FormEditorView: View {
     
     @ObservedObject var form: Form
     @State var formaticFileDocument: FormaticFileDocument?
-    @State var exportToTemplate: Bool = false
+    @State var exportToForm: Bool = false
     @State var exportToPDF: Bool = false
     @State var exportToCSV: Bool = false
     @State var showFileExporter: Bool = false
@@ -33,7 +33,7 @@ struct FormEditorView: View {
                 .environment(\.editMode, .constant(isEditing ? .active : .inactive))
                 .toolbar(content: {
                     ToolbarItem(placement: .principal) {
-                        EditorViewToolbar(form: form, exportToTemplate: $exportToTemplate, exportToPDF: $exportToPDF, exportToCSV: $exportToCSV, showToggleLockView: $showToggleLockView, isEditing: $isEditing)
+                        EditorViewToolbar(form: form, exportToForm: $exportToForm, exportToPDF: $exportToPDF, exportToCSV: $exportToCSV, showToggleLockView: $showToggleLockView, isEditing: $isEditing)
                     }
                 })
                 .onChange(of: exportToPDF, perform: { _ in
@@ -44,8 +44,8 @@ struct FormEditorView: View {
                         showFileExporter = true
                     }
                 })
-                .onChange(of: exportToTemplate, perform: { _ in
-                    if exportToTemplate {
+                .onChange(of: exportToForm, perform: { _ in
+                    if exportToForm {
                         exportFormat = .form
                         do {
                             let formData = try formModel.encodeFormToJsonData(form: form)
@@ -53,7 +53,7 @@ struct FormEditorView: View {
                             showFileExporter = true
                         }
                         catch {
-                            alertTitle = "Error exporting form to template"
+                            alertTitle = "Error exporting form"
                             showAlert = true
                         }
                     }
