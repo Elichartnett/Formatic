@@ -118,7 +118,7 @@ struct EditorViewToolbar: View {
                         exportToCSV = true
                     } label: {
                         HStack {
-                            Image (systemName: "doc.text")
+                            Image (systemName: "tablecells")
                             Text("CSV")
                         }
                     }
