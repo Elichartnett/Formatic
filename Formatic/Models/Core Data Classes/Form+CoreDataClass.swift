@@ -10,8 +10,26 @@ import Foundation
 import CoreData
 
 @objc(Form)
-public class Form: NSManagedObject, Codable {
-
+public class Form: NSManagedObject, Codable, CSV {
+    
+    func ToCsv() -> String {
+        var retString = ""
+        retString += "Section Title,Widget Type,Widget Title,Data\n"
+        
+        let allSections = (sections ?? []).sorted { lhs, rhs in
+            lhs.position < rhs.position
+        }
+        
+        for section in allSections {
+            retString += section.ToCsv()
+            retString += "\n\n"
+        }
+        // Remove trailing newline characters
+        retString.remove(at: retString.index(before: retString.endIndex))
+        retString.remove(at: retString.index(before: retString.endIndex))
+        return retString
+    }
+    
     enum CodingKeys: String, CodingKey {
         case locked = "locked"
         case password = "password"

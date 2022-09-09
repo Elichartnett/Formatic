@@ -94,7 +94,7 @@ struct FormView_Previews: PreviewProvider {
             FormView(form: dev.form, forPDF: false)
                 .toolbar(content: {
                     ToolbarItem(placement: .principal) {
-                        EditorViewToolbar(form: dev.form, exportToTemplate: .constant(false), exportToPDF: .constant(false), showToggleLockView: .constant(false), isEditing: .constant(false))
+                        EditorViewToolbar(form: dev.form, exportToTemplate: .constant(false), exportToPDF: .constant(false), exportToCSV: .constant(false), showToggleLockView: .constant(false), isEditing: .constant(false))
                     }
                 })
                 .environmentObject(FormModel())

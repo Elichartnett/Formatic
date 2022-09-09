@@ -11,7 +11,7 @@ import UniformTypeIdentifiers
 
 struct FormaticFileDocument: FileDocument {
     
-    static var readableContentTypes: [UTType] = [.form, .pdf]
+    static var readableContentTypes: [UTType] = [.form, .pdf, .commaSeparatedText]
     var documentData: Data
     
     init(documentData: Data) {

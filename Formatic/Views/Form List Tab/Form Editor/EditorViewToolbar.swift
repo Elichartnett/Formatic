@@ -13,6 +13,7 @@ struct EditorViewToolbar: View {
     @ObservedObject var form: Form
     @Binding var exportToTemplate: Bool
     @Binding var exportToPDF: Bool
+    @Binding var exportToCSV: Bool
     @Binding var showToggleLockView: Bool
     @Binding var isEditing: Bool
     
@@ -113,6 +114,15 @@ struct EditorViewToolbar: View {
                         }
                     }
                     
+                    Button {
+                        exportToCSV = true
+                    } label: {
+                        HStack {
+                            Image (systemName: "doc.zipper")
+                            Text("CSV")
+                        }
+                    }
+                    
                 } label: {
                     HStack {
                         Image(systemName: "square.and.arrow.up")
@@ -128,6 +138,6 @@ struct EditorViewToolbar: View {
 
 struct EditorViewToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        EditorViewToolbar(form: dev.form, exportToTemplate: .constant(false), exportToPDF: .constant(false), showToggleLockView: .constant(false), isEditing: .constant(false))
+        EditorViewToolbar(form: dev.form, exportToTemplate: .constant(false), exportToPDF: .constant(false), exportToCSV: .constant(false), showToggleLockView: .constant(false), isEditing: .constant(false))
     }
 }

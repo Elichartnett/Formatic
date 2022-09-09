@@ -10,7 +10,54 @@ import Foundation
 import CoreData
 
 @objc(DropdownSectionWidget)
-public class DropdownSectionWidget: Widget, Decodable {
+public class DropdownSectionWidget: Widget, Decodable, CSV {
+    
+    func ToCsv() -> String {
+        
+        var dropdownItems = self.dropdownWidgets?.map( {$0 as! DropdownWidget})
+        if dropdownItems != [] {
+            dropdownItems = (dropdownItems)!.sorted { lhs, rhs in
+                lhs.position < rhs.position
+            }
+        }
+        var retString = ""
+        
+        // Add first row (titles)
+        retString += self.type ?? ""
+        retString += ","
+        retString += CsvFormat(self.title ?? "")
+        retString += ",Titles,"
+        for dd in dropdownItems ?? [] {
+            if let ddwidget = dd as? DropdownWidget {
+                retString += CsvFormat(ddwidget.title ?? "")
+                retString += ","
+            }
+        }
+        // Remove trailing comma and add newline character
+        retString.remove(at: retString.index(before: retString.endIndex))
+        retString += "\n"
+        
+        retString += ","                // Blank spot for section title
+        retString += self.type ?? ""
+        retString += ","
+        retString += self.title ?? ""
+        retString += ",Selected,"
+        
+        // Add second row (True/False)
+        for dd in dropdownItems ?? [] {
+            if let ddwidget = dd as? DropdownWidget {
+                if self.selectedDropdown == ddwidget {
+                    retString += "True,"
+                }
+                else {
+                    retString += "False,"
+                }
+            }
+        }
+        // Remove traling comma
+        retString.remove(at: retString.index(before: retString.endIndex))
+        return retString
+    }
     
     /// DropdownSectionWidget  init
     init(title: String?, position: Int, selectedDropdown: DropdownWidget?, dropdownWidgets: NSSet?) {

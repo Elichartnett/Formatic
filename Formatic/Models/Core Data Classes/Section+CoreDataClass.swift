@@ -10,7 +10,61 @@ import Foundation
 import CoreData
 
 @objc(Section)
-public class Section: NSManagedObject, Codable {
+public class Section: NSManagedObject, Codable, CSV {
+    
+    func ToCsv() -> String {
+        var canvasWidgetCount = 0
+        var retString = ""
+        let allWidgets = (widgets ?? []).sorted { lhs, rhs in
+            lhs.position < rhs.position
+        }
+        
+        for item in allWidgets {
+            retString += self.title ?? ""
+            retString += ","
+            let widgetType: WidgetType = WidgetType.init(rawValue: item.type!)!
+            
+            switch widgetType {
+            case .dropdownSectionWidget:
+                if let dropdownSectionWidget = item as? DropdownSectionWidget {
+                    retString += dropdownSectionWidget.ToCsv()
+                }
+            case .textFieldWidget:
+                if let textFieldWidget = item as? TextFieldWidget {
+                    retString += textFieldWidget.ToCsv()
+                }
+            case .checkboxSectionWidget:
+                if let checkboxSectionWidget = item as? CheckboxSectionWidget {
+                    retString += checkboxSectionWidget.ToCsv()
+                }
+            case .mapWidget:
+                if let mapWidget = item as? MapWidget {
+                    retString += mapWidget.ToCsv()
+                }
+            case .numberFieldWidget:
+                if let numberFieldWidget = item as? NumberFieldWidget {
+                    retString += numberFieldWidget.ToCsv()
+                }
+            case .textEditorWidget:
+                if let textEditorWidget = item as? TextEditorWidget {
+                    retString += textEditorWidget.ToCsv()
+                }
+            case .dropdownWidget:
+                break
+            case .checkboxWidget:
+                break
+            case .canvasWidget:
+                canvasWidgetCount += 1
+            }
+            retString += "\n"
+        }
+        // Remove trailing newline character
+        retString.remove(at: retString.index(before: retString.endIndex))
+        if canvasWidgetCount > 0 {
+            retString += "\nCount of canvas widgets in section,(Not Displayed),\(canvasWidgetCount)"
+        }
+        return retString
+    }
     
     enum CodingKeys: String, CodingKey {
         case position = "position"

@@ -37,6 +37,7 @@ struct SectionView: View {
                     TextFieldWidgetView(textFieldWidget: textFieldWidget, locked: $locked)
                 }
                 
+                
             case .numberFieldWidget:
                 let numberFieldWidget = widget as! NumberFieldWidget
                 NumberFieldWidgetView(numberFieldWidget: numberFieldWidget, locked: $locked)

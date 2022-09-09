@@ -10,7 +10,32 @@ import Foundation
 import CoreData
 
 @objc(MapWidget)
-public class MapWidget: Widget, Decodable {
+public class MapWidget: Widget, Decodable, CSV {
+    
+    func ToCsv() -> String {
+        let annotations = self.annotations?.allObjects
+        var retString = ""
+        
+        // Add the first row (section type, title, and headers for annotations)
+        retString += self.type ?? ""
+        retString += ","
+        retString += self.title ?? ""
+        retString += ",Cooridinate,Latitude,Longitude"
+        retString += "\n"
+        
+        // Add remaining lines (each contains annotation name, lattitude, and longitude)
+        for item in annotations ?? [] {
+            if let anno = item as? Annotation {
+                retString += ",,"
+                retString += anno.name ?? ""
+                retString += ","
+                retString += String(anno.latitude) + "," + String(anno.longitude) + "\n"
+            }
+        }
+        // Remove trailing newline character
+        retString.remove(at: retString.index(before: retString.endIndex))
+        return retString
+    }
     
     /// MapWidget  init
     init(title: String?, position: Int, coordinateRegionCenterLat: Double, coordinateRegionCenterLon: Double, coordinateSpanLatDelta: Double, coordinateSpanLonDelta: Double) {
