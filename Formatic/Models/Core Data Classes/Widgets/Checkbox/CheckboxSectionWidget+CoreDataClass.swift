@@ -10,8 +10,39 @@ import Foundation
 import CoreData
 
 @objc(CheckboxSectionWidget)
-public class CheckboxSectionWidget: Widget, Decodable {
+public class CheckboxSectionWidget: Widget, Decodable, CSV {
 
+    func ToCsv() -> String {
+        var checkboxItems = self.checkboxWidgets?.map( {$0 as! CheckboxWidget})
+        if checkboxItems != [] {
+            checkboxItems = (checkboxItems)!.sorted { lhs, rhs in
+                lhs.position < rhs.position
+            }
+        }
+        var retString = ""
+        
+        // For each checkbox, add a row
+        for cb in checkboxItems ?? [] {
+            retString += CsvFormat(self.section?.title ?? "") + ","
+            retString += CsvFormat(self.title ?? "") + ","
+            retString += "Checkbox,"
+            retString += CsvFormat(cb.title ?? "") + ","
+            if cb.checked == true {
+                retString += "True"
+            }
+            else {
+                retString += "False"
+            }
+            retString += ",,,,,,\n" // Add leftover data points
+        }
+        
+        // Remove traling newline character (if retString exists/values exist in dropdown)
+        if retString != "" {
+            retString.remove(at: retString.index(before: retString.endIndex))
+        }
+        return retString
+    }
+    
     /// CheckboxSectionWidget  init
     init(title: String?, position: Int, checkboxWidgets: NSSet?) {
         super.init(entityName: "CheckboxSectionWidget", context: DataController.shared.container.viewContext, title: title, position: position)

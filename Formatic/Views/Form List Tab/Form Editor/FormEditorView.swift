@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 // Display form with form tool bar
 struct FormEditorView: View {
@@ -16,12 +17,14 @@ struct FormEditorView: View {
     @State var formaticFileDocument: FormaticFileDocument?
     @State var exportToForm: Bool = false
     @State var exportToPDF: Bool = false
+    @State var exportToCSV: Bool = false
     @State var showFileExporter: Bool = false
     @State var showToggleLockView: Bool = false
     @State var isEditing: Bool = false
     @State var showAlert: Bool = false
     @State var alertTitle: String = ""
     @State var alertMessage: String = "Okay"
+    @State private var exportFormat: UTType?
     
     var body: some View {
         
@@ -30,11 +33,12 @@ struct FormEditorView: View {
                 .environment(\.editMode, .constant(isEditing ? .active : .inactive))
                 .toolbar(content: {
                     ToolbarItem(placement: .principal) {
-                        EditorViewToolbar(form: form, exportToForm: $exportToForm, exportToPDF: $exportToPDF, showToggleLockView: $showToggleLockView, isEditing: $isEditing)
+                        EditorViewToolbar(form: form, exportToForm: $exportToForm, exportToPDF: $exportToPDF, exportToCSV: $exportToCSV, showToggleLockView: $showToggleLockView, isEditing: $isEditing)
                     }
                 })
                 .onChange(of: exportToPDF, perform: { _ in
                     if exportToPDF {
+                        exportFormat = .pdf
                         let pdfData = formModel.exportToPDF(form: form)
                         formaticFileDocument = FormaticFileDocument(documentData: pdfData)
                         showFileExporter = true
@@ -42,6 +46,7 @@ struct FormEditorView: View {
                 })
                 .onChange(of: exportToForm, perform: { _ in
                     if exportToForm {
+                        exportFormat = .form
                         do {
                             let formData = try formModel.encodeFormToJsonData(form: form)
                             formaticFileDocument = FormaticFileDocument(documentData: formData)
@@ -53,6 +58,14 @@ struct FormEditorView: View {
                         }
                     }
                 })
+                .onChange(of: exportToCSV, perform: { _ in
+                    if exportToCSV {
+                        exportFormat = .commaSeparatedText
+                        let csvData = formModel.exportToCSV(form: form)
+                        formaticFileDocument = FormaticFileDocument(documentData: csvData)
+                        showFileExporter = true
+                    }
+                })
                 .sheet(isPresented: $showToggleLockView, onDismiss: {
                     if form.locked == true {
                         withAnimation {
@@ -62,7 +75,7 @@ struct FormEditorView: View {
                 }, content: {
                     ToggleLockView(showToggleLockView: $showToggleLockView, form: form)
                 })
-                .fileExporter(isPresented: $showFileExporter, document: formaticFileDocument, contentType: exportToPDF ? .pdf : .form, defaultFilename: form.title, onCompletion: { result in
+                .fileExporter(isPresented: $showFileExporter, document: formaticFileDocument, contentType: exportFormat ?? .form, defaultFilename: form.title, onCompletion: { result in
                     exportToPDF = false
                 })
                 .alert(alertTitle, isPresented: $showAlert, actions: {

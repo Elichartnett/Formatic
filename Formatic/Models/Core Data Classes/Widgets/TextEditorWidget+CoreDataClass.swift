@@ -10,8 +10,18 @@ import Foundation
 import CoreData
 
 @objc(TextEditorWidget)
-public class TextEditorWidget: Widget, Decodable {
-
+public class TextEditorWidget: Widget, Decodable, CSV {
+    
+    func ToCsv() -> String {
+        var retString = ""
+        retString += CsvFormat(self.section?.title ?? "") + ","
+        retString += CsvFormat(self.title ?? "") + ","
+        retString += (self.type ?? "") + ","
+        retString += CsvFormat(self.text ?? "") + ","
+        retString += ",,,,,,"
+        return retString
+    }
+    
     /// TextEditorWidget  init
     init(title: String?, position: Int, text: String?) {
         super.init(entityName: "TextEditorWidget", context: DataController.shared.container.viewContext, title: title, position: position)

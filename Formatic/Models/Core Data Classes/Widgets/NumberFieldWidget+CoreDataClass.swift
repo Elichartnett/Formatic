@@ -10,7 +10,18 @@ import Foundation
 import CoreData
 
 @objc(NumberFieldWidget)
-public class NumberFieldWidget: Widget, Decodable {
+public class NumberFieldWidget: Widget, Decodable, CSV {
+    
+    func ToCsv() -> String {
+        var retString = ""
+        retString += CsvFormat(self.section?.title ?? "") + ","
+        retString += CsvFormat(self.title ?? "") + ","
+        retString += (self.type ?? "") + ","
+        retString += CsvFormat(self.number ?? "") + ","
+        retString += ",,,,,,"
+        return retString
+    }
+    
     
     /// NumberFieldWidget  init
     init(title: String?, position: Int, number: String?) {

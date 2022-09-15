@@ -8,9 +8,43 @@
 
 import Foundation
 import CoreData
+import UTMConversion
+import MapKit
 
 @objc(MapWidget)
-public class MapWidget: Widget, Decodable {
+public class MapWidget: Widget, Decodable, CSV {
+    
+    func ToCsv() -> String {
+        let annotations = self.annotations?.allObjects
+        var retString = ""
+        
+        for item in annotations ?? [] {
+            if let anno = item as? Annotation {
+                // Get the UTM version of the coordinate as well
+                let coordinate = CLLocationCoordinate2D(latitude: anno.latitude, longitude: anno.longitude)
+                let utm = coordinate.utmCoordinate()
+                retString += CsvFormat(self.section?.title ?? "") + ","
+                retString += CsvFormat(self.title ?? "") + ","
+                retString += (self.type ?? "") + ","
+                retString += CsvFormat(anno.name ?? "") + ",,"
+                retString += String(anno.latitude) + ","
+                retString += String(anno.longitude) + ","
+                retString += String(utm.easting) + ","
+                retString += String(utm.northing) + ","
+                retString += String(utm.zone) + ","
+                switch utm.hemisphere{
+                case .southern: retString += "Southern"
+                case .northern: retString += "Northern"
+                }
+                retString += "\n"
+            }
+        }
+        // Remove traling newline character (if retString exists/annotations exist in the map)
+        if retString != "" {
+            retString.remove(at: retString.index(before: retString.endIndex))
+        }
+        return retString
+    }
     
     /// MapWidget  init
     init(title: String?, position: Int, coordinateRegionCenterLat: Double, coordinateRegionCenterLon: Double, coordinateSpanLatDelta: Double, coordinateSpanLonDelta: Double) {

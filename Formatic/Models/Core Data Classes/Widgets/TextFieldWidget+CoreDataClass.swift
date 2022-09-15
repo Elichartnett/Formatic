@@ -10,7 +10,19 @@ import Foundation
 import CoreData
 
 @objc(TextFieldWidget)
-public class TextFieldWidget: Widget, Decodable {
+public class TextFieldWidget: Widget, Decodable, CSV {
+    
+    
+    func ToCsv() -> String {
+        var retString = ""
+        retString += CsvFormat(self.section?.title ?? "") + ","
+        retString += CsvFormat(self.title ?? "") + ","
+        retString += (self.type ?? "") + ","
+        retString += CsvFormat(self.text ?? "") + ","
+        retString += ",,,,,,"
+        return retString
+    }
+    
     
     /// TextFieldWidget  init
     init(title: String?, position: Int, text: String?) {

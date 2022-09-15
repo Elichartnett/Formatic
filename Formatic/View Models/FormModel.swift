@@ -255,6 +255,11 @@ class FormModel: ObservableObject {
         return data
     }
     
+    func exportToCSV(form: Form) -> Data {
+        let data = form.ToCsv().data(using: .utf8) ?? "No Form Data".data(using: .utf8)!
+        return data
+    }
+    
     func convertToScrollView<Content: View>(content: Content) -> UIScrollView {
         let scrollView = UIScrollView()
         
