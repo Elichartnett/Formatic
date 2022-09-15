@@ -21,35 +21,25 @@ public class CheckboxSectionWidget: Widget, Decodable, CSV {
         }
         var retString = ""
         
-        // Add first row (titles):
-        retString += self.type ?? ""
-        retString += ","
-        retString += CsvFormat(self.title ?? "")
-        retString += ",Titles,"
+        // For each checkbox, add a row
         for cb in checkboxItems ?? [] {
+            retString += CsvFormat(self.section?.title ?? "") + ","
+            retString += CsvFormat(self.title ?? "") + ","
+            retString += "Dropdown,"
             retString += CsvFormat(cb.title ?? "") + ","
-        }
-        // Remove trailing comma and add newline character
-        retString.remove(at: retString.index(before: retString.endIndex))
-        retString += "\n"
-        
-        retString += ","                // Blank spot for section title
-        retString += self.type ?? ""
-        retString += ","
-        retString += self.title ?? ""
-        retString += ",checked,"
-        
-        // Add second row (True/False)
-        for cb in checkboxItems ?? [] {
             if cb.checked == true {
-                retString += "True,"
+                retString += "True"
             }
             else {
-                retString += "False,"
+                retString += "False"
             }
+            retString += ",,,,,,\n" // Add leftover data points
         }
-        // Remove traling comma
-        retString.remove(at: retString.index(before: retString.endIndex))
+        
+        // Remove traling newline character (if retString exists/values exist in dropdown)
+        if retString != "" {
+            retString.remove(at: retString.index(before: retString.endIndex))
+        }
         return retString
     }
     

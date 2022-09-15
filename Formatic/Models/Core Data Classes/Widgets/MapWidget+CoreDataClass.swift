@@ -8,6 +8,8 @@
 
 import Foundation
 import CoreData
+import UTMConversion
+import MapKit
 
 @objc(MapWidget)
 public class MapWidget: Widget, Decodable, CSV {
@@ -16,24 +18,31 @@ public class MapWidget: Widget, Decodable, CSV {
         let annotations = self.annotations?.allObjects
         var retString = ""
         
-        // Add the first row (section type, title, and headers for annotations)
-        retString += self.type ?? ""
-        retString += ","
-        retString += self.title ?? ""
-        retString += ",Cooridinate,Latitude,Longitude"
-        retString += "\n"
-        
-        // Add remaining lines (each contains annotation name, lattitude, and longitude)
         for item in annotations ?? [] {
             if let anno = item as? Annotation {
-                retString += ",,"
-                retString += anno.name ?? ""
-                retString += ","
-                retString += String(anno.latitude) + "," + String(anno.longitude) + "\n"
+                // Get the UTM version of the coordinate as well
+                let coordinate = CLLocationCoordinate2D(latitude: anno.latitude, longitude: anno.longitude)
+                let utm = coordinate.utmCoordinate()
+                retString += CsvFormat(self.section?.title ?? "") + ","
+                retString += CsvFormat(self.title ?? "") + ","
+                retString += (self.type ?? "") + ","
+                retString += CsvFormat(anno.name ?? "") + ",,"
+                retString += String(anno.latitude) + ","
+                retString += String(anno.longitude) + ","
+                retString += String(utm.easting) + ","
+                retString += String(utm.northing) + ","
+                retString += String(utm.zone) + ","
+                switch utm.hemisphere{
+                case .southern: retString += "Southern"
+                case .northern: retString += "Northern"
+                }
+                retString += "\n"
             }
         }
-        // Remove trailing newline character
-        retString.remove(at: retString.index(before: retString.endIndex))
+        // Remove traling newline character (if retString exists/annotations exist in the map)
+        if retString != "" {
+            retString.remove(at: retString.index(before: retString.endIndex))
+        }
         return retString
     }
     

@@ -20,37 +20,27 @@ public class DropdownSectionWidget: Widget, Decodable, CSV {
                 lhs.position < rhs.position
             }
         }
+        
         var retString = ""
-        
-        // Add first row (titles)
-        retString += self.type ?? ""
-        retString += ","
-        retString += CsvFormat(self.title ?? "")
-        retString += ",Titles,"
+        // For each dropdown, add a row
         for dd in dropdownItems ?? [] {
+            retString += CsvFormat(self.section?.title ?? "") + ","
+            retString += CsvFormat(self.title ?? "") + ","
+            retString += "Checkbox,"
             retString += CsvFormat(dd.title ?? "") + ","
-        }
-        // Remove trailing comma and add newline character
-        retString.remove(at: retString.index(before: retString.endIndex))
-        retString += "\n"
-        
-        retString += ","                // Blank spot for section title
-        retString += self.type ?? ""
-        retString += ","
-        retString += self.title ?? ""
-        retString += ",Selected,"
-        
-        // Add second row (True/False)
-        for dd in dropdownItems ?? [] {
             if self.selectedDropdown == dd {
-                retString += "True,"
+                retString += "True"
             }
             else {
-                retString += "False,"
+                retString += "False"
             }
+            retString += ",,,,,,\n" // Add leftover data points
         }
-        // Remove traling comma
-        retString.remove(at: retString.index(before: retString.endIndex))
+        
+        // Remove traling newline character (if retString exists/values exist in dropdown)
+        if retString != "" {
+            retString.remove(at: retString.index(before: retString.endIndex))
+        }
         return retString
     }
     

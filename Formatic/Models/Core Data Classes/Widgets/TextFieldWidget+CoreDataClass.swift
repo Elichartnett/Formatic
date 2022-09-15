@@ -15,11 +15,11 @@ public class TextFieldWidget: Widget, Decodable, CSV {
     
     func ToCsv() -> String {
         var retString = ""
-        retString += self.type ?? ""
-        retString += ","
-        retString += CsvFormat(self.title ?? "")
-        retString += ","
-        retString += CsvFormat(self.text ?? "")
+        retString += CsvFormat(self.section?.title ?? "") + ","
+        retString += CsvFormat(self.title ?? "") + ","
+        retString += (self.type ?? "") + ","
+        retString += CsvFormat(self.text ?? "") + ","
+        retString += ",,,,,,"
         return retString
     }
     
