@@ -27,9 +27,7 @@ public class CheckboxSectionWidget: Widget, Decodable, CSV {
         retString += CsvFormat(self.title ?? "")
         retString += ",Titles,"
         for cb in checkboxItems ?? [] {
-            if let cbwidget = cb as? CheckboxWidget {
-                retString += CsvFormat(cbwidget.title ?? "") + ","
-            }
+            retString += CsvFormat(cb.title ?? "") + ","
         }
         // Remove trailing comma and add newline character
         retString.remove(at: retString.index(before: retString.endIndex))
@@ -43,13 +41,11 @@ public class CheckboxSectionWidget: Widget, Decodable, CSV {
         
         // Add second row (True/False)
         for cb in checkboxItems ?? [] {
-            if let cbwidget = cb as? CheckboxWidget {
-                if cbwidget.checked == true {
-                    retString += "True,"
-                }
-                else {
-                    retString += "False,"
-                }
+            if cb.checked == true {
+                retString += "True,"
+            }
+            else {
+                retString += "False,"
             }
         }
         // Remove traling comma

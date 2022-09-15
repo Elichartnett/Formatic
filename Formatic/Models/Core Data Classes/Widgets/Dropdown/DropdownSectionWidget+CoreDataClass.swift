@@ -28,10 +28,7 @@ public class DropdownSectionWidget: Widget, Decodable, CSV {
         retString += CsvFormat(self.title ?? "")
         retString += ",Titles,"
         for dd in dropdownItems ?? [] {
-            if let ddwidget = dd as? DropdownWidget {
-                retString += CsvFormat(ddwidget.title ?? "")
-                retString += ","
-            }
+            retString += CsvFormat(dd.title ?? "") + ","
         }
         // Remove trailing comma and add newline character
         retString.remove(at: retString.index(before: retString.endIndex))
@@ -45,13 +42,11 @@ public class DropdownSectionWidget: Widget, Decodable, CSV {
         
         // Add second row (True/False)
         for dd in dropdownItems ?? [] {
-            if let ddwidget = dd as? DropdownWidget {
-                if self.selectedDropdown == ddwidget {
-                    retString += "True,"
-                }
-                else {
-                    retString += "False,"
-                }
+            if self.selectedDropdown == dd {
+                retString += "True,"
+            }
+            else {
+                retString += "False,"
             }
         }
         // Remove traling comma
