@@ -14,7 +14,7 @@ public class Form: NSManagedObject, Codable, CSV {
     
     func ToCsv() -> String {
         var retString = ""
-        retString += "Section Title,Widget Type,Widget Title,Data\n"
+        retString += "Section Title, Widget Title, Widget Type, Widget Data, Selected, Marker Latitude, Marker Longitude, Marker Easting, Marker Northing, Marker Zone, Marker Hemisphere\n"
         
         let allSections = (sections ?? []).sorted { lhs, rhs in
             lhs.position < rhs.position

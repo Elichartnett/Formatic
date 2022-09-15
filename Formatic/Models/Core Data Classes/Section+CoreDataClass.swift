@@ -20,8 +20,6 @@ public class Section: NSManagedObject, Codable, CSV {
         }
         
         for item in allWidgets {
-            retString += self.title ?? ""
-            retString += ","
             let widgetType: WidgetType = WidgetType.init(rawValue: item.type!)!
             
             switch widgetType {
@@ -58,8 +56,10 @@ public class Section: NSManagedObject, Codable, CSV {
             }
             retString += "\n"
         }
-        // Remove trailing newline character
-        retString.remove(at: retString.index(before: retString.endIndex))
+        // Remove trailing newline character IF widgets exist in section
+        if retString != "" {
+            retString.remove(at: retString.index(before: retString.endIndex))
+        }
         if canvasWidgetCount > 0 {
             retString += "\nCount of canvas widgets in section,(Not Displayed),\(canvasWidgetCount)"
         }
