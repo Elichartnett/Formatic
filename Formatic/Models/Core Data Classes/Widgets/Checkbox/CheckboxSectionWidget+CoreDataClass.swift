@@ -25,7 +25,7 @@ public class CheckboxSectionWidget: Widget, Decodable, CSV {
         for cb in checkboxItems ?? [] {
             retString += CsvFormat(self.section?.title ?? "") + ","
             retString += CsvFormat(self.title ?? "") + ","
-            retString += "Dropdown,"
+            retString += "Checkbox,"
             retString += CsvFormat(cb.title ?? "") + ","
             if cb.checked == true {
                 retString += "True"

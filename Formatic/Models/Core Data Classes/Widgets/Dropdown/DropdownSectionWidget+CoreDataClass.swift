@@ -26,7 +26,7 @@ public class DropdownSectionWidget: Widget, Decodable, CSV {
         for dd in dropdownItems ?? [] {
             retString += CsvFormat(self.section?.title ?? "") + ","
             retString += CsvFormat(self.title ?? "") + ","
-            retString += "Checkbox,"
+            retString += "Dropdown,"
             retString += CsvFormat(dd.title ?? "") + ","
             if self.selectedDropdown == dd {
                 retString += "True"
