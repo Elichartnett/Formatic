@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(DropdownSectionWidget)
-public class DropdownSectionWidget: Widget, Decodable, CSV {
+public class DropdownSectionWidget: Widget, Decodable, Csv {
     
     func toCsv() -> String {
         

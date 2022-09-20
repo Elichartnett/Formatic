@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(CheckboxSectionWidget)
-public class CheckboxSectionWidget: Widget, Decodable, CSV {
+public class CheckboxSectionWidget: Widget, Decodable, Csv {
 
     func toCsv() -> String {
         var checkboxItems = self.checkboxWidgets?.map( {$0 as! CheckboxWidget})

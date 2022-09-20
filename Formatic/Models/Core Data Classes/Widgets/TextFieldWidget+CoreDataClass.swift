@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(TextFieldWidget)
-public class TextFieldWidget: Widget, Decodable, CSV {
+public class TextFieldWidget: Widget, Decodable, Csv {
     
     
     func toCsv() -> String {

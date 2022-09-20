@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(Form)
-public class Form: NSManagedObject, Codable, CSV {
+public class Form: NSManagedObject, Codable, Csv {
     
     func toCsv() -> String {
         var retString = ""

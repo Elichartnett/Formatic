@@ -8,6 +8,6 @@
 import Foundation
 
 
-protocol CSV {
+protocol Csv {
     func toCsv() -> String
 }

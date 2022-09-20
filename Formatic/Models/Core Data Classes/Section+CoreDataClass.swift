@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(Section)
-public class Section: NSManagedObject, Codable, CSV {
+public class Section: NSManagedObject, Codable, Csv {
     
     func toCsv() -> String {
         var canvasWidgetCount = 0

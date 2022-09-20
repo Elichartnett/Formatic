@@ -12,7 +12,7 @@ import UTMConversion
 import MapKit
 
 @objc(MapWidget)
-public class MapWidget: Widget, Decodable, CSV {
+public class MapWidget: Widget, Decodable, Csv {
     
     func toCsv() -> String {
         let annotations = self.annotations?.allObjects
