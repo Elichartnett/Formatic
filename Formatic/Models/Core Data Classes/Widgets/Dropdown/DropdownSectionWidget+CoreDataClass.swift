@@ -24,10 +24,10 @@ public class DropdownSectionWidget: Widget, Decodable, CSV {
         var retString = ""
         // For each dropdown, add a row
         for dd in dropdownItems ?? [] {
-            retString += CsvFormat(self.section?.title ?? "") + ","
-            retString += CsvFormat(self.title ?? "") + ","
+            retString += FormModel.csvFormat(self.section?.title ?? "") + ","
+            retString += FormModel.csvFormat(self.title ?? "") + ","
             retString += "Dropdown,"
-            retString += CsvFormat(dd.title ?? "") + ","
+            retString += FormModel.csvFormat(dd.title ?? "") + ","
             if self.selectedDropdown == dd {
                 retString += "True"
             }

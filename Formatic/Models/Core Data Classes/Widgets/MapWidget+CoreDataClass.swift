@@ -23,10 +23,10 @@ public class MapWidget: Widget, Decodable, CSV {
                 // Get the UTM version of the coordinate as well
                 let coordinate = CLLocationCoordinate2D(latitude: anno.latitude, longitude: anno.longitude)
                 let utm = coordinate.utmCoordinate()
-                retString += CsvFormat(self.section?.title ?? "") + ","
-                retString += CsvFormat(self.title ?? "") + ","
+                retString += FormModel.csvFormat(self.section?.title ?? "") + ","
+                retString += FormModel.csvFormat(self.title ?? "") + ","
                 retString += (self.type ?? "") + ","
-                retString += CsvFormat(anno.name ?? "") + ",,"
+                retString += FormModel.csvFormat(anno.name ?? "") + ",,"
                 retString += String(anno.latitude) + ","
                 retString += String(anno.longitude) + ","
                 retString += String(utm.easting) + ","

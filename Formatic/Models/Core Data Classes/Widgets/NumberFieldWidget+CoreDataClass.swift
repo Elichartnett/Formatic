@@ -14,10 +14,10 @@ public class NumberFieldWidget: Widget, Decodable, CSV {
     
     func ToCsv() -> String {
         var retString = ""
-        retString += CsvFormat(self.section?.title ?? "") + ","
-        retString += CsvFormat(self.title ?? "") + ","
+        retString += FormModel.csvFormat(self.section?.title ?? "") + ","
+        retString += FormModel.csvFormat(self.title ?? "") + ","
         retString += (self.type ?? "") + ","
-        retString += CsvFormat(self.number ?? "") + ","
+        retString += FormModel.csvFormat(self.number ?? "") + ","
         retString += ",,,,,,"
         return retString
     }

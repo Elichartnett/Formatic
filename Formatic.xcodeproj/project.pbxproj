@@ -89,7 +89,6 @@
 		62FE6E7028187059009D41FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62FE6E6F28187059009D41FD /* Assets.xcassets */; };
 		62FE6E7328187059009D41FD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62FE6E7228187059009D41FD /* Preview Assets.xcassets */; };
 		72F9420D28C82B3F001E8A2A /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F9420C28C82B3F001E8A2A /* Protocols.swift */; };
-		72F9420F28C9031F001E8A2A /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F9420E28C9031F001E8A2A /* GlobalFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -177,7 +176,6 @@
 		62FE6E6F28187059009D41FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62FE6E7228187059009D41FD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		72F9420C28C82B3F001E8A2A /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		72F9420E28C9031F001E8A2A /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,7 +247,6 @@
 				62E7F87A282EE1E4004A95EF /* LocationManager.swift */,
 				6250E97E2835B11600E6E6A0 /* FormaticFileDocument.swift */,
 				72F9420C28C82B3F001E8A2A /* Protocols.swift */,
-				72F9420E28C9031F001E8A2A /* GlobalFunctions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -640,7 +637,6 @@
 				62294F1E281F8CAA00226AF1 /* CanvasWidgetView.swift in Sources */,
 				62294F2B2821EBD900226AF1 /* ConfigureCheckboxSectionWidgetView.swift in Sources */,
 				62E7F87B282EE1E4004A95EF /* LocationManager.swift in Sources */,
-				72F9420F28C9031F001E8A2A /* GlobalFunctions.swift in Sources */,
 				62294F312821EC1300226AF1 /* ConfigureCanvasWidgetView.swift in Sources */,
 				62A979C028277BFF0067C0A3 /* CheckboxWidget+CoreDataProperties.swift in Sources */,
 				62A979C128277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift in Sources */,
