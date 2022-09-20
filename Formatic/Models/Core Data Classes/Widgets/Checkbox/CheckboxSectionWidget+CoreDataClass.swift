@@ -12,7 +12,7 @@ import CoreData
 @objc(CheckboxSectionWidget)
 public class CheckboxSectionWidget: Widget, Decodable, CSV {
 
-    func ToCsv() -> String {
+    func toCsv() -> String {
         var checkboxItems = self.checkboxWidgets?.map( {$0 as! CheckboxWidget})
         if checkboxItems != [] {
             checkboxItems = (checkboxItems)!.sorted { lhs, rhs in

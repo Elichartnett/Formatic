@@ -256,7 +256,7 @@ class FormModel: ObservableObject {
     }
     
     func exportToCSV(form: Form) -> Data {
-        let data = form.ToCsv().data(using: .utf8) ?? "No Form Data".data(using: .utf8)!
+        let data = form.toCsv().data(using: .utf8) ?? "No Form Data".data(using: .utf8)!
         return data
     }
     

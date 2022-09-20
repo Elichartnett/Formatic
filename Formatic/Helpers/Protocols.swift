@@ -9,5 +9,5 @@ import Foundation
 
 
 protocol CSV {
-    func ToCsv() -> String
+    func toCsv() -> String
 }

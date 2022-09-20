@@ -13,7 +13,7 @@ import CoreData
 public class TextFieldWidget: Widget, Decodable, CSV {
     
     
-    func ToCsv() -> String {
+    func toCsv() -> String {
         var retString = ""
         retString += FormModel.csvFormat(self.section?.title ?? "") + ","
         retString += FormModel.csvFormat(self.title ?? "") + ","

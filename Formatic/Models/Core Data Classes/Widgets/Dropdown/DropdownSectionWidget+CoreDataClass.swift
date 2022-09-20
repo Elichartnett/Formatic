@@ -12,7 +12,7 @@ import CoreData
 @objc(DropdownSectionWidget)
 public class DropdownSectionWidget: Widget, Decodable, CSV {
     
-    func ToCsv() -> String {
+    func toCsv() -> String {
         
         var dropdownItems = self.dropdownWidgets?.map( {$0 as! DropdownWidget})
         if dropdownItems != [] {

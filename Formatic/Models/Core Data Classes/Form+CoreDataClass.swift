@@ -12,7 +12,7 @@ import CoreData
 @objc(Form)
 public class Form: NSManagedObject, Codable, CSV {
     
-    func ToCsv() -> String {
+    func toCsv() -> String {
         var retString = ""
         retString += "Section Title, Widget Title, Widget Type, Widget Data, Selected, Marker Latitude, Marker Longitude, Marker Easting, Marker Northing, Marker Zone, Marker Hemisphere\n"
         
@@ -21,7 +21,7 @@ public class Form: NSManagedObject, Codable, CSV {
         }
         
         for section in allSections {
-            retString += section.ToCsv()
+            retString += section.toCsv()
             retString += "\n\n"
         }
         // Remove trailing newline characters

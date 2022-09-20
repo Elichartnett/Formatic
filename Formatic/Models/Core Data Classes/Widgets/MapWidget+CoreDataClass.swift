@@ -14,7 +14,7 @@ import MapKit
 @objc(MapWidget)
 public class MapWidget: Widget, Decodable, CSV {
     
-    func ToCsv() -> String {
+    func toCsv() -> String {
         let annotations = self.annotations?.allObjects
         var retString = ""
         

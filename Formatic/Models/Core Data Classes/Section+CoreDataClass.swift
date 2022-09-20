@@ -12,7 +12,7 @@ import CoreData
 @objc(Section)
 public class Section: NSManagedObject, Codable, CSV {
     
-    func ToCsv() -> String {
+    func toCsv() -> String {
         var canvasWidgetCount = 0
         var retString = ""
         let allWidgets = (widgets ?? []).sorted { lhs, rhs in
@@ -25,27 +25,27 @@ public class Section: NSManagedObject, Codable, CSV {
             switch widgetType {
             case .dropdownSectionWidget:
                 if let dropdownSectionWidget = item as? DropdownSectionWidget {
-                    retString += dropdownSectionWidget.ToCsv()
+                    retString += dropdownSectionWidget.toCsv()
                 }
             case .textFieldWidget:
                 if let textFieldWidget = item as? TextFieldWidget {
-                    retString += textFieldWidget.ToCsv()
+                    retString += textFieldWidget.toCsv()
                 }
             case .checkboxSectionWidget:
                 if let checkboxSectionWidget = item as? CheckboxSectionWidget {
-                    retString += checkboxSectionWidget.ToCsv()
+                    retString += checkboxSectionWidget.toCsv()
                 }
             case .mapWidget:
                 if let mapWidget = item as? MapWidget {
-                    retString += mapWidget.ToCsv()
+                    retString += mapWidget.toCsv()
                 }
             case .numberFieldWidget:
                 if let numberFieldWidget = item as? NumberFieldWidget {
-                    retString += numberFieldWidget.ToCsv()
+                    retString += numberFieldWidget.toCsv()
                 }
             case .textEditorWidget:
                 if let textEditorWidget = item as? TextEditorWidget {
-                    retString += textEditorWidget.ToCsv()
+                    retString += textEditorWidget.toCsv()
                 }
             case .dropdownWidget:
                 break
