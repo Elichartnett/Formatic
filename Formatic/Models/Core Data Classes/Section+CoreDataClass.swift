@@ -80,7 +80,7 @@ public class Section: NSManagedObject, Codable, Identifiable, Csv {
     }
     
     required public convenience init(from decoder: Decoder) throws {
-        self.init(context: DataController.shared.container.viewContext)
+        self.init(context: DataControllerModel.shared.container.viewContext)
         let sectionContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()
         self.position = try sectionContainer.decode(Int16.self, forKey: .position)

@@ -14,7 +14,7 @@ public class DropdownWidget: Widget, Decodable {
 
     /// DropdownWidget  init
     init(title: String?, position: Int, dropdownSectionWidget: DropdownSectionWidget?, selectedDropdownInverse: DropdownSectionWidget?) {
-        super.init(entityName: "DropdownWidget", context: DataController.shared.container.viewContext, title: title, position: position)
+        super.init(entityName: "DropdownWidget", context: DataControllerModel.shared.container.viewContext, title: title, position: position)
         self.type = WidgetType.dropdownWidget.rawValue
         self.dropdownSectionWidget = dropdownSectionWidget
         self.selectedDropdownInverse = selectedDropdownInverse
@@ -32,7 +32,7 @@ public class DropdownWidget: Widget, Decodable {
     }
     
     required public init(from decoder: Decoder) throws {
-        super.init(entityName: "DropdownWidget", context: DataController.shared.container.viewContext, title: nil, position: 0)
+        super.init(entityName: "DropdownWidget", context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
 
         let dropdownWidgetWidgetContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()

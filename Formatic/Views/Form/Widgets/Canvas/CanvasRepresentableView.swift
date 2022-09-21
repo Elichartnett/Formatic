@@ -71,7 +71,7 @@ struct CanvasRepresentable: UIViewRepresentable {
         func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
             parent.canvasWidget.pkDrawing = canvasView.drawing.dataRepresentation()
             parent.canvasWidget.widgetViewPreview = canvasView.drawing.image(from: CGRect(origin: .zero, size: canvasView.frame.size), scale: UIScreen.main.scale).pngData()
-            DataController.saveMOC()
+            DataControllerModel.saveMOC()
         }
         
         // Sends updates from UIView to SwiftUI

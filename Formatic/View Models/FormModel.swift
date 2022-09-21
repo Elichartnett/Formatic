@@ -100,7 +100,7 @@ class FormModel: ObservableObject {
                     {
                         resolveDuplicateFormName(newForm: newForm, forms: forms)
                     }
-                    DataController.saveMOC()
+                    DataControllerModel.saveMOC()
                 }
                 catch {
                     throw FormError.fetchError
@@ -113,13 +113,13 @@ class FormModel: ObservableObject {
         catch {
             throw FormError.urlToDataError
         }
-        DataController.saveMOC()
+        DataControllerModel.saveMOC()
     }
     
     func getForms() throws -> [Form] {
         let formsRequest: NSFetchRequest<Form> = Form.fetchRequest()
         do {
-            let forms = try DataController.shared.container.viewContext.fetch(formsRequest)
+            let forms = try DataControllerModel.shared.container.viewContext.fetch(formsRequest)
             return forms
         }
         catch {
@@ -170,14 +170,14 @@ class FormModel: ObservableObject {
             
             for index in indexSet {
                 let form = forms[index]
-                DataController.shared.container.viewContext.delete(form)
+                DataControllerModel.shared.container.viewContext.delete(form)
                 
                 // Update positions starting with form after deleted index
                 for index in index+1..<forms.count {
                     forms[index].position = forms[index].position - 1
                 }
             }
-            DataController.saveMOC()
+            DataControllerModel.saveMOC()
         }
         catch {
             throw FormError.fetchError
@@ -190,13 +190,13 @@ class FormModel: ObservableObject {
         withAnimation {
             for index in indexSet {
                 let widget = widgets[index]
-                DataController.shared.container.viewContext.delete(widget)
+                DataControllerModel.shared.container.viewContext.delete(widget)
                 
                 // Update positions starting with widget after deleted index
                 for index in index+1..<widgets.count {
                     widgets[index].position = widgets[index].position - 1
                 }
-                DataController.saveMOC()
+                DataControllerModel.saveMOC()
             }
         }
     }
@@ -212,12 +212,12 @@ class FormModel: ObservableObject {
                 widget.position = Int16(index)
             }
         }
-        DataController.saveMOC()
+        DataControllerModel.saveMOC()
     }
     
     func exportToPdf(form: Form) -> Data {
         
-        let pdfView = convertToScrollView(content: FormView(form: form, forPDF: true).environment(\.managedObjectContext, DataController.shared.container.viewContext))
+        let pdfView = convertToScrollView(content: FormView(form: form, forPDF: true).environment(\.managedObjectContext, DataControllerModel.shared.container.viewContext))
         pdfView.tag = 1009
         let size = pdfView.contentSize
         pdfView.frame = CGRect(x: 0, y: getSafeArea().top, width: size.width, height: size.height)

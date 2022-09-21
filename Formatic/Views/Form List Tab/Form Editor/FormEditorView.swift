@@ -91,7 +91,7 @@ struct FormEditorView_Previews: PreviewProvider {
         NavigationView {
             FormEditorView(form: dev.form)
                 .environmentObject(FormModel())
-                .environment(\.managedObjectContext, DataController.shared.container.viewContext)
+                .environment(\.managedObjectContext, DataControllerModel.shared.container.viewContext)
         }
         .navigationViewStyle(.stack)
     }

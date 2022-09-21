@@ -77,7 +77,7 @@ struct SectionTitleView: View {
                     section.title = sectionTitle
                 }
                 .onChange(of: sectionTitleIsFocused) { newValue in
-                    DataController.saveMOC()
+                    DataControllerModel.saveMOC()
                 }
         }
         .disabled(locked)

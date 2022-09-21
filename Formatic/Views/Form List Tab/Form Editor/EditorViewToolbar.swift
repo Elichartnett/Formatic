@@ -50,7 +50,7 @@ struct EditorViewToolbar: View {
                 Button {
                     form.addToSections(Section(position: form.sections?.count ?? 0, title: nil))
                     
-                    DataController.saveMOC()
+                    DataControllerModel.saveMOC()
                 } label: {
                     HStack {
                         Image(systemName: "plus.circle")
@@ -82,7 +82,7 @@ struct EditorViewToolbar: View {
                 
                 // Save form in managed object context button
                 Button {
-                    DataController.saveMOC()
+                    DataControllerModel.saveMOC()
                 } label: {
                     Text("Save")
                 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct Formatic: App {
     
     @Environment(\.scenePhase) var scenePhase
-    @State var viewContext = DataController.shared.container.viewContext
+    @State var viewContext = DataControllerModel.shared.container.viewContext
     @StateObject var formModel = FormModel()
     
     var body: some Scene {
@@ -22,7 +22,7 @@ struct Formatic: App {
                 .onChange(of: scenePhase) { newPhase in
                     switch newPhase {
                     case .background:
-                        DataController.saveMOC()
+                        DataControllerModel.saveMOC()
                     case .inactive:
                         break
                     case .active:

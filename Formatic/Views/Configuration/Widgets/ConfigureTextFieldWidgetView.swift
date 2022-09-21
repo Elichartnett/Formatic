@@ -26,7 +26,7 @@ struct ConfigureTextFieldWidgetView: View {
                 let textFieldWidget = TextFieldWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), text: text)
                 withAnimation {
                     section.addToWidgets(textFieldWidget)
-                    DataController.saveMOC()
+                    DataControllerModel.saveMOC()
                 }
                 dismiss()
             } label: {

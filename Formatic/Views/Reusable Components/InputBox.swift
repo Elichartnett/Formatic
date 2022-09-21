@@ -60,7 +60,7 @@ struct InputBox: View {
         )
         .focused($isFocused)
         .onChange(of: isFocused) { _ in
-            DataController.saveMOC()
+            DataControllerModel.saveMOC()
         }
     }
 }

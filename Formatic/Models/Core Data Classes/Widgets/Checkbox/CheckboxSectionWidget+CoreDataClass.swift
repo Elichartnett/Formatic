@@ -11,41 +11,10 @@ import CoreData
 
 @objc(CheckboxSectionWidget)
 public class CheckboxSectionWidget: Widget, Decodable, Csv {
-
-    func toCsv() -> String {
-        var checkboxItems = self.checkboxWidgets?.map( {$0 as! CheckboxWidget})
-        if checkboxItems != [] {
-            checkboxItems = (checkboxItems)!.sorted { lhs, rhs in
-                lhs.position < rhs.position
-            }
-        }
-        var retString = ""
-        
-        // For each checkbox, add a row
-        for cb in checkboxItems ?? [] {
-            retString += FormModel.formatAsCsv(self.section?.title ?? "") + ","
-            retString += FormModel.formatAsCsv(self.title ?? "") + ","
-            retString += "Checkbox,"
-            retString += FormModel.formatAsCsv(cb.title ?? "") + ","
-            if cb.checked == true {
-                retString += "True"
-            }
-            else {
-                retString += "False"
-            }
-            retString += ",,,,,,\n" // Add leftover data points
-        }
-        
-        // Remove traling newline character (if retString exists/values exist in dropdown)
-        if retString != "" {
-            retString.remove(at: retString.index(before: retString.endIndex))
-        }
-        return retString
-    }
     
     /// CheckboxSectionWidget  init
     init(title: String?, position: Int, checkboxWidgets: NSSet?) {
-        super.init(entityName: "CheckboxSectionWidget", context: DataController.shared.container.viewContext, title: title, position: position)
+        super.init(entityName: "CheckboxSectionWidget", context: DataControllerModel.shared.container.viewContext, title: title, position: position)
         self.type = WidgetType.checkboxSectionWidget.rawValue
         self.checkboxWidgets = checkboxWidgets
     }
@@ -66,8 +35,8 @@ public class CheckboxSectionWidget: Widget, Decodable, Csv {
     }
     
     required public init(from decoder: Decoder) throws {
-        super.init(entityName: "CheckboxSectionWidget", context: DataController.shared.container.viewContext, title: nil, position: 0)
-
+        super.init(entityName: "CheckboxSectionWidget", context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
+        
         let checkboxSectionWidgetContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()
         self.position = try checkboxSectionWidgetContainer.decode(Int16.self, forKey: .position)
@@ -81,4 +50,36 @@ public class CheckboxSectionWidget: Widget, Decodable, Csv {
             self.addToCheckboxWidgets(checkboxWidget)
         }
     }
+    
+    func toCsv() -> String {
+        var csvString = ""
+        
+        if var checkboxWidgets = self.checkboxWidgets?.map( {$0 as! CheckboxWidget}) {
+            checkboxWidgets = checkboxWidgets.sorted { lhs, rhs in
+                lhs.position < rhs.position
+            }
+            
+            // For each checkbox, add a row
+            for checkboxWidget in checkboxWidgets {
+                csvString += FormModel.formatAsCsv(self.section?.title ?? "") + ","
+                csvString += FormModel.formatAsCsv(self.title ?? "") + ","
+                csvString += "Checkbox,"
+                csvString += FormModel.formatAsCsv(checkboxWidget.title ?? "") + ","
+                if checkboxWidget.checked == true {
+                    csvString += "True"
+                }
+                else {
+                    csvString += "False"
+                }
+                csvString += ",,,,,,\n" // Add leftover data points
+            }
+            
+            // Remove traling newline character (if retString exists/values exist in dropdown)
+            if csvString != "" {
+                csvString.remove(at: csvString.index(before: csvString.endIndex))
+            }
+        }
+        return csvString
+    }
+    
 }

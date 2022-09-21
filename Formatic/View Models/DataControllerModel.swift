@@ -8,9 +8,9 @@
 import Foundation
 import CoreData
 
-class DataController: ObservableObject {
+class DataControllerModel: ObservableObject {
     
-    static let shared = DataController()
+    static let shared = DataControllerModel()
     
     @Published var container = NSPersistentContainer(name: "Form Container")
     
@@ -25,8 +25,8 @@ class DataController: ObservableObject {
     
     static func saveMOC() {
         do {
-            if DataController.shared.container.viewContext.hasChanges {
-                try DataController.shared.container.viewContext.save()
+            if DataControllerModel.shared.container.viewContext.hasChanges {
+                try DataControllerModel.shared.container.viewContext.save()
             }
         }
         catch {

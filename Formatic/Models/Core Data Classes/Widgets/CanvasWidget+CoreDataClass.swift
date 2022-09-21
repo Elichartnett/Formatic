@@ -14,7 +14,7 @@ public class CanvasWidget: Widget, Decodable {
     
     /// CanvasWidget  init
     init(title: String?, position: Int, image: Data?, pkDrawing: Data?, widgetViewPreview: Data?) {
-        super.init(entityName: "CanvasWidget", context: DataController.shared.container.viewContext, title: title, position: position)
+        super.init(entityName: "CanvasWidget", context: DataControllerModel.shared.container.viewContext, title: title, position: position)
         self.type = WidgetType.canvasWidget.rawValue
         self.image = image
         self.pkDrawing = pkDrawing
@@ -40,8 +40,8 @@ public class CanvasWidget: Widget, Decodable {
     }
     
     required public init(from decoder: Decoder) throws {
-        super.init(entityName: "CanvasWidget", context: DataController.shared.container.viewContext, title: nil, position: 0)
-
+        super.init(entityName: "CanvasWidget", context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
+        
         let canvasWidgetContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()
         self.position = try canvasWidgetContainer.decode(Int16.self, forKey: .position)

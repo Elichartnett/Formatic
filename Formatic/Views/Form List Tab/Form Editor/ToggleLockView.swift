@@ -54,7 +54,7 @@ struct ToggleLockView: View {
                             form.password = nil
                         }
                     }
-                    DataController.saveMOC()
+                    DataControllerModel.saveMOC()
                     showToggleLockView = false
                 } label: {
                     SubmitButton(isValid: $validPassword)

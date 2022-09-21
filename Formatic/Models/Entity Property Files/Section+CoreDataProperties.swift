@@ -24,7 +24,7 @@ extension Section {
     
     /// Section convenience init
     convenience init(id: UUID = UUID(), position: Int, title: String?) {
-        self.init(context: DataController.shared.container.viewContext)
+        self.init(context: DataControllerModel.shared.container.viewContext)
         self.id = id
         self.position = Int16(position)
         self.title = title

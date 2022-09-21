@@ -83,7 +83,7 @@ struct ConfigureCheckboxSectionWidgetView: View {
                 }
                 
                 withAnimation {
-                    DataController.saveMOC()
+                    DataControllerModel.saveMOC()
                 }
                 
                 dismiss()

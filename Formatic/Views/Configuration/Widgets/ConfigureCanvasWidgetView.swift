@@ -54,7 +54,7 @@ struct ConfigureCanvasWidgetView: View {
                     canvasWidget.image = pickerResult
                     
                     section.addToWidgets(canvasWidget)
-                    DataController.saveMOC()
+                    DataControllerModel.saveMOC()
                 }
                 dismiss()
             } label: {

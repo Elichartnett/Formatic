@@ -20,7 +20,7 @@ struct CheckboxWidgetView: View {
             Button {
                 withAnimation {
                     checkbox.checked.toggle()
-                    DataController.saveMOC()
+                    DataControllerModel.saveMOC()
                 }
             } label: {
                 if checkbox.checked {
@@ -39,7 +39,7 @@ struct CheckboxWidgetView: View {
                     description = checkbox.title ?? ""
                 }
                 .onChange(of: isFocused) { newValue in
-                    DataController.saveMOC()
+                    DataControllerModel.saveMOC()
                 }
         }
     }

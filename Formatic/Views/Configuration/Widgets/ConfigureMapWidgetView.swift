@@ -42,7 +42,7 @@ struct ConfigureMapWidgetView: View {
                 }
                 
                 withAnimation {
-                    DataController.saveMOC()
+                    DataControllerModel.saveMOC()
                 }
                 dismiss()
             } label: {

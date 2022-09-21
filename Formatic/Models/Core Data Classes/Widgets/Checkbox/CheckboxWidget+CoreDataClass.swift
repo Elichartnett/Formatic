@@ -14,7 +14,7 @@ public class CheckboxWidget: Widget, Decodable {
     
     /// CheckboxWidget  init
     init(title: String?, position: Int, checked: Bool, checkboxSectionWidget: CheckboxSectionWidget?) {
-        super.init(entityName: "CheckboxWidget", context: DataController.shared.container.viewContext, title: title, position: position)
+        super.init(entityName: "CheckboxWidget", context: DataControllerModel.shared.container.viewContext, title: title, position: position)
         self.type = WidgetType.checkboxWidget.rawValue
         self.checked = checked
         self.checkboxSectionWidget = checkboxSectionWidget
@@ -36,7 +36,7 @@ public class CheckboxWidget: Widget, Decodable {
     }
     
     required public init(from decoder: Decoder) throws {
-        super.init(entityName: "CheckboxWidget", context: DataController.shared.container.viewContext, title: nil, position: 0)
+        super.init(entityName: "CheckboxWidget", context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
 
         let checkboxWidgetContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()

@@ -14,7 +14,7 @@ public class NumberFieldWidget: Widget, Decodable, Csv {
     
     /// NumberFieldWidget  init
     init(title: String?, position: Int, number: String?) {
-        super.init(entityName: "NumberFieldWidget", context: DataController.shared.container.viewContext, title: title, position: position)
+        super.init(entityName: "NumberFieldWidget", context: DataControllerModel.shared.container.viewContext, title: title, position: position)
         self.type = WidgetType.numberFieldWidget.rawValue
         self.number = number
     }
@@ -34,7 +34,7 @@ public class NumberFieldWidget: Widget, Decodable, Csv {
     }
     
     required public init(from decoder: Decoder) throws {
-        super.init(entityName: "NumberFieldWidget", context: DataController.shared.container.viewContext, title: nil, position: 0)
+        super.init(entityName: "NumberFieldWidget", context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
 
         let numberFieldWidgetContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()

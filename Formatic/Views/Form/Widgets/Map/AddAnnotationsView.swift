@@ -107,7 +107,7 @@ struct AddAnnotationsView: View {
                 }
                 
                 Button {
-                    let annotation = Annotation(context: DataController.shared.container.viewContext)
+                    let annotation = Annotation(context: DataControllerModel.shared.container.viewContext)
                     annotation.id = UUID()
                     if coordinateType == .latLon {
                         annotation.latitude = Double(latitude)!
@@ -130,7 +130,7 @@ struct AddAnnotationsView: View {
                         annotation.longitude = coordinateRegion.center.longitude
                     }
                     mapWidget.addToAnnotations(annotation)
-                    DataController.saveMOC()
+                    DataControllerModel.saveMOC()
                 } label: {
                     Image(systemName: "plus")
                     Text("Add pin")

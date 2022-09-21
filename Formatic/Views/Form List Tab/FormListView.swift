@@ -94,7 +94,7 @@ struct FormListView: View {
 struct FormListView_Previews: PreviewProvider {
     static var previews: some View {
         FormListView()
-            .environment(\.managedObjectContext, DataController.shared.container.viewContext)
+            .environment(\.managedObjectContext, DataControllerModel.shared.container.viewContext)
             .environmentObject(FormModel())
     }
 }

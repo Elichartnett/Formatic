@@ -14,7 +14,7 @@ public class TextEditorWidget: Widget, Decodable, Csv {
     
     /// TextEditorWidget  init
     init(title: String?, position: Int, text: String?) {
-        super.init(entityName: "TextEditorWidget", context: DataController.shared.container.viewContext, title: title, position: position)
+        super.init(entityName: "TextEditorWidget", context: DataControllerModel.shared.container.viewContext, title: title, position: position)
         self.type = WidgetType.textEditorWidget.rawValue
         self.text = text
     }
@@ -34,7 +34,7 @@ public class TextEditorWidget: Widget, Decodable, Csv {
     }
     
     required public init(from decoder: Decoder) throws {
-        super.init(entityName: "TextEditorWidget", context: DataController.shared.container.viewContext, title: nil, position: 0)
+        super.init(entityName: "TextEditorWidget", context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
 
         let textEditorWidgetContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()

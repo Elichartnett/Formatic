@@ -29,7 +29,7 @@ public class Form: NSManagedObject, Codable, Identifiable, Csv {
     }
     
     required public convenience init(from decoder: Decoder) throws {
-        self.init(context: DataController.shared.container.viewContext)
+        self.init(context: DataControllerModel.shared.container.viewContext)
         
         let formContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()

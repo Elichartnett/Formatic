@@ -93,7 +93,7 @@ struct ConfigureDropdownSectionWidgetView: View {
                 }
                 
                 withAnimation {
-                    DataController.saveMOC()
+                    DataControllerModel.saveMOC()
                 }
                 
                 dismiss()
