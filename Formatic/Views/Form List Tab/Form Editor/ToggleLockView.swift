@@ -1,5 +1,5 @@
 //
-//  FormApp.swift
+//  ToggleLockView.swift
 //  Formatic
 //
 //  Created by Eli Hartnett on 5/6/22.
@@ -12,9 +12,9 @@ struct ToggleLockView: View {
     
     @Binding var showToggleLockView: Bool
     @State var form: Form
-    @State var enteredPassword: String = ""
-    @State var validPassword: Bool = false
-    @State var removePassword: Bool = false
+    @State var enteredPassword = ""
+    @State var validPassword = false
+    @State var removePassword = false
     
     var body: some View {
         

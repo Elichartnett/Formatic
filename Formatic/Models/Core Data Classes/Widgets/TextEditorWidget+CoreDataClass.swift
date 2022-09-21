@@ -12,16 +12,6 @@ import CoreData
 @objc(TextEditorWidget)
 public class TextEditorWidget: Widget, Decodable, Csv {
     
-    func toCsv() -> String {
-        var retString = ""
-        retString += FormModel.csvFormat(self.section?.title ?? "") + ","
-        retString += FormModel.csvFormat(self.title ?? "") + ","
-        retString += (self.type ?? "") + ","
-        retString += FormModel.csvFormat(self.text ?? "") + ","
-        retString += ",,,,,,"
-        return retString
-    }
-    
     /// TextEditorWidget  init
     init(title: String?, position: Int, text: String?) {
         super.init(entityName: "TextEditorWidget", context: DataController.shared.container.viewContext, title: title, position: position)
@@ -56,5 +46,15 @@ public class TextEditorWidget: Widget, Decodable, Csv {
         if let text = try textEditorWidgetContainer.decode(String?.self, forKey: .text) {
             self.text = text
         }
+    }
+    
+    func toCsv() -> String {
+        var csvString = ""
+        csvString += FormModel.formatAsCsv(self.section?.title ?? "") + ","
+        csvString += FormModel.formatAsCsv(self.title ?? "") + ","
+        csvString += (self.type ?? "") + ","
+        csvString += FormModel.formatAsCsv(self.text ?? "") + ","
+        csvString += ",,,,,,"
+        return csvString
     }
 }

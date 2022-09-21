@@ -10,12 +10,17 @@ import SwiftUI
 struct FormTitleView: View {
     
     @ObservedObject var form: Form
-    @State var formTitle: String = ""
+    @State var formTitle: String
     @FocusState var formTitleIsFocused: Bool
-    @State var lastValidTitle: String = ""
-    @State var showAlert: Bool = false
-    @State var alertTitle: String = ""
-    @State var alertMessage: String = "Okay"
+    @State var lastValidTitle = ""
+    @State var showAlert = false
+    @State var alertTitle = ""
+    @State var alertMessage = ""
+    
+    init(form: Form, formTitle: String?) {
+        self.form = form
+        self.formTitle = formTitle ?? ""
+    }
     
     var body: some View {
         
@@ -54,6 +59,6 @@ struct FormTitleView: View {
 
 struct FormTitleView_Previews: PreviewProvider {
     static var previews: some View {
-        FormTitleView(form: dev.form)
+        FormTitleView(form: dev.form, formTitle: dev.form.title)
     }
 }

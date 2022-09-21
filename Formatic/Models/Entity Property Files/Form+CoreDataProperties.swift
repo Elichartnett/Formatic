@@ -48,9 +48,4 @@ extension Form {
 
     @objc(removeSections:)
     @NSManaged public func removeFromSections(_ values: NSSet)
-
-}
-
-extension Form : Identifiable {
-
 }

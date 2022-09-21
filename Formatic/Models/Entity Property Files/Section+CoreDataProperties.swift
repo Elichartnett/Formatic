@@ -47,7 +47,3 @@ extension Section {
     @NSManaged public func removeFromWidgets(_ values: NSSet)
 
 }
-
-extension Section : Identifiable {
-
-}

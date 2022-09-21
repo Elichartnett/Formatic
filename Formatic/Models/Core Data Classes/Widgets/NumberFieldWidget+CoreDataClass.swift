@@ -12,17 +12,6 @@ import CoreData
 @objc(NumberFieldWidget)
 public class NumberFieldWidget: Widget, Decodable, Csv {
     
-    func toCsv() -> String {
-        var retString = ""
-        retString += FormModel.csvFormat(self.section?.title ?? "") + ","
-        retString += FormModel.csvFormat(self.title ?? "") + ","
-        retString += (self.type ?? "") + ","
-        retString += FormModel.csvFormat(self.number ?? "") + ","
-        retString += ",,,,,,"
-        return retString
-    }
-    
-    
     /// NumberFieldWidget  init
     init(title: String?, position: Int, number: String?) {
         super.init(entityName: "NumberFieldWidget", context: DataController.shared.container.viewContext, title: title, position: position)
@@ -57,5 +46,15 @@ public class NumberFieldWidget: Widget, Decodable, Csv {
         if let number = try numberFieldWidgetContainer.decode(String?.self, forKey: .number) {
             self.number = number
         }
+    }
+    
+    func toCsv() -> String {
+        var csvString = ""
+        csvString += FormModel.formatAsCsv(self.section?.title ?? "") + ","
+        csvString += FormModel.formatAsCsv(self.title ?? "") + ","
+        csvString += (self.type ?? "") + ","
+        csvString += FormModel.formatAsCsv(self.number ?? "") + ","
+        csvString += ",,,,,,"
+        return csvString
     }
 }

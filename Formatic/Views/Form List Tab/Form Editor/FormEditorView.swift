@@ -15,33 +15,26 @@ struct FormEditorView: View {
     
     @ObservedObject var form: Form
     @State var formaticFileDocument: FormaticFileDocument?
-    @State var exportToForm: Bool = false
-    @State var exportToPDF: Bool = false
-    @State var exportToCSV: Bool = false
-    @State var showFileExporter: Bool = false
-    @State var showToggleLockView: Bool = false
-    @State var isEditing: Bool = false
-    @State var showAlert: Bool = false
-    @State var alertTitle: String = ""
-    @State var alertMessage: String = "Okay"
-    @State private var exportFormat: UTType?
+    @State var exportToForm = false
+    @State var exportToPDF = false
+    @State var exportToCSV = false
+    @State var showFileExporter = false
+    @State var showToggleLockView = false
+    @State var isEditing = false
+    @State var showAlert = false
+    @State var alertTitle = ""
+    @State var alertMessage = "Okay"
+    @State var exportFormat: UTType?
     
     var body: some View {
         
         VStack {
+            
             FormView(form: form, forPDF: false)
                 .environment(\.editMode, .constant(isEditing ? .active : .inactive))
                 .toolbar(content: {
                     ToolbarItem(placement: .principal) {
                         EditorViewToolbar(form: form, exportToForm: $exportToForm, exportToPDF: $exportToPDF, exportToCSV: $exportToCSV, showToggleLockView: $showToggleLockView, isEditing: $isEditing)
-                    }
-                })
-                .onChange(of: exportToPDF, perform: { _ in
-                    if exportToPDF {
-                        exportFormat = .pdf
-                        let pdfData = formModel.exportToPDF(form: form)
-                        formaticFileDocument = FormaticFileDocument(documentData: pdfData)
-                        showFileExporter = true
                     }
                 })
                 .onChange(of: exportToForm, perform: { _ in
@@ -58,10 +51,18 @@ struct FormEditorView: View {
                         }
                     }
                 })
+                .onChange(of: exportToPDF, perform: { _ in
+                    if exportToPDF {
+                        exportFormat = .pdf
+                        let pdfData = formModel.exportToPdf(form: form)
+                        formaticFileDocument = FormaticFileDocument(documentData: pdfData)
+                        showFileExporter = true
+                    }
+                })
                 .onChange(of: exportToCSV, perform: { _ in
                     if exportToCSV {
                         exportFormat = .commaSeparatedText
-                        let csvData = formModel.exportToCSV(form: form)
+                        let csvData = formModel.exportToCsv(form: form)
                         formaticFileDocument = FormaticFileDocument(documentData: csvData)
                         showFileExporter = true
                     }

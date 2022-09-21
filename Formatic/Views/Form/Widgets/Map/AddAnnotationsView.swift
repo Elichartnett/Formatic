@@ -15,12 +15,10 @@ struct AddAnnotationsView: View {
     @ObservedObject var mapWidget: MapWidget
     @Binding var coordinateType: CoordinateType
     @Binding var coordinateRegion: MKCoordinateRegion
-    
     @State var latitude: String = ""
     @State var longitude: String = ""
     @State var validLatitude: Bool = false
     @State var validLongitude: Bool = false
-    
     @State var easting: String = ""
     @State var northing: String = ""
     @State var zone: String = ""
@@ -41,13 +39,11 @@ struct AddAnnotationsView: View {
         
         VStack {
             
-            Picker(selection: $coordinateType) {
+            Picker("Coordinate type picker", selection: $coordinateType) {
                 ForEach(CoordinateType.allCases) { type in
                     Text(type.rawValue)
                         .tag(type)
                 }
-            } label: {
-                
             }
             .pickerStyle(.segmented)
             

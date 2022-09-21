@@ -14,8 +14,8 @@ struct NumberFieldWidgetView: View {
     @Binding var locked: Bool
     @State var title: String
     @State var number: String
-    var range: ClosedRange<Double>? = nil
     @State var isValid: Bool = true
+    var range: ClosedRange<Double>? = nil
     
     init(numberFieldWidget: NumberFieldWidget, locked: Binding<Bool>, range: ClosedRange<Double>? = nil) {
         self.numberFieldWidget = numberFieldWidget
@@ -38,7 +38,7 @@ struct NumberFieldWidgetView: View {
             
             InputBox(placeholder: "number", text: $number)
                 .onChange(of: number) { _ in
-                    isValid = formModel.validNumber(number: number, range: range)
+                    isValid = formModel.numberIsValid(number: number, range: range)
                     if isValid {
                         numberFieldWidget.number = number
                     }

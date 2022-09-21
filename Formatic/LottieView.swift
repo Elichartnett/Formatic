@@ -8,6 +8,7 @@
 import SwiftUI
 import Lottie
 
+// Launch screen animation
 struct LottieView: UIViewRepresentable {
     
     var name: String

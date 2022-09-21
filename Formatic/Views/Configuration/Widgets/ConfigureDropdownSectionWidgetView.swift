@@ -12,7 +12,6 @@ struct ConfigureDropdownSectionWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
     @Environment(\.dismiss) var dismiss
-    
     @State var dropdownSectionWidget: DropdownSectionWidget?
     @State var localDropdowns: [LocalDropdownWidget] = []
     @Binding var title: String

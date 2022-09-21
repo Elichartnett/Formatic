@@ -1,7 +1,6 @@
 //
-//  FormApp.swift
+//  Home.swift
 //  Formatic
-
 //
 //  Created by Eli Hartnett on 4/26/22.
 //
@@ -12,7 +11,7 @@ struct Home: View {
     
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     @State var time = 0.0
-    @State var launchIsFinished = false
+    @State var finishedLaunching = false
     
     var body: some View {
         
@@ -25,12 +24,12 @@ struct Home: View {
                         time += 0.1
                         if time >= 1.5 {
                             withAnimation {
-                                launchIsFinished = true
+                                finishedLaunching = true
                             }
                             timer.upstream.connect().cancel()
                         }
                     }
-                    .opacity(launchIsFinished == true ? 0 : 1)
+                    .opacity(finishedLaunching == true ? 0 : 1)
             }
     }
 }

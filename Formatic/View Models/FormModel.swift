@@ -12,11 +12,7 @@ import MapKit
 
 class FormModel: ObservableObject {
     
-    init() {
-        
-    }
-    
-    func validNumber(number: String, range: ClosedRange<Double>? = nil) -> Bool {
+    func numberIsValid(number: String, range: ClosedRange<Double>? = nil) -> Bool {
         // Check if field only contains nubmers
         if let number = Double(number) {
             // Check if number is in range
@@ -43,7 +39,7 @@ class FormModel: ObservableObject {
         }
     }
     
-    func validTitle(title: String) throws -> Bool {
+    func titleIsValid(title: String) throws -> Bool {
         try withAnimation {
             do {
                 let forms = try getForms()
@@ -86,12 +82,10 @@ class FormModel: ObservableObject {
             return form
         }
         catch {
-            print(error)
-            // TODO: handle error
             throw FormError.decodeJsonDataToFormError
         }
     }
-        
+    
     func importForm(url: URL) throws {
         do {
             let data = try urlToData(url: url)
@@ -207,7 +201,7 @@ class FormModel: ObservableObject {
         }
     }
     
-    func moveWidgetWithIndexSet(section: Section, indexSet: IndexSet, destination: Int) {
+    func updateWidgetPosition(section: Section, indexSet: IndexSet, destination: Int) {
         // Create temporary array with moved index
         var widgets = getWidgetsInSection(section: section)
         widgets.move(fromOffsets: indexSet, toOffset: destination)
@@ -221,19 +215,9 @@ class FormModel: ObservableObject {
         DataController.saveMOC()
     }
     
-    func resizeImage(imageData: Data, newSize: CGSize) throws -> Data {
-        guard let image = UIImage(data: imageData) else { throw ImageError.dataToUIImageError }
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
-        image.draw(in: CGRect(origin: .zero, size: newSize))
-        guard let resizedImage = UIGraphicsGetImageFromCurrentImageContext() else { throw ImageError.getImageFromContextError}
-        UIGraphicsEndImageContext()
-        return resizedImage.jpegData(compressionQuality: 1)!
-    }
-    
-    func exportToPDF(form: Form) -> Data {
+    func exportToPdf(form: Form) -> Data {
         
         let pdfView = convertToScrollView(content: FormView(form: form, forPDF: true).environment(\.managedObjectContext, DataController.shared.container.viewContext))
-        print("created pdf view")
         pdfView.tag = 1009
         let size = pdfView.contentSize
         pdfView.frame = CGRect(x: 0, y: getSafeArea().top, width: size.width, height: size.height)
@@ -251,32 +235,31 @@ class FormModel: ObservableObject {
                 view.removeFromSuperview()
             }
         }
-        print("returning data")
         return data
     }
     
-    func exportToCSV(form: Form) -> Data {
+    func exportToCsv(form: Form) -> Data {
         let data = form.toCsv().data(using: .utf8) ?? "No Form Data".data(using: .utf8)!
         return data
     }
     
-    static func csvFormat(_ inString: String) -> String {
-        var outString = ""
+    static func formatAsCsv(_ string: String) -> String {
+        var csvString = ""
         
-        if inString.contains("\""){
+        if string.contains("\""){
             // In case user *specifcally* used normal quotes in their text
-            outString = inString.replacingOccurrences(of: "\"", with: "“")
+            csvString = string.replacingOccurrences(of: "\"", with: "“")
         }
         else {
-            outString = inString
+            csvString = string
         }
         
         // Add single quotes in case of commas present in text
-        if outString.contains(",") || inString.contains("\n") {
-            outString = "\"" + outString + "\""
+        if csvString.contains(",") || string.contains("\n") {
+            csvString = "\"" + csvString + "\""
         }
         
-        return outString
+        return csvString
     }
     
     func convertToScrollView<Content: View>(content: Content) -> UIScrollView {

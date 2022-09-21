@@ -12,7 +12,7 @@ import MapKit
 struct ConfigureMapWidgetView: View {
     @EnvironmentObject var formModel: FormModel
     @Environment(\.dismiss) var dismiss
-
+    
     @State var mapWidget: MapWidget?
     @Binding var title: String
     @State var section: Section

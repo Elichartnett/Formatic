@@ -49,7 +49,7 @@ struct EditorViewToolbar: View {
                 // Add section to form button
                 Button {
                     form.addToSections(Section(position: form.sections?.count ?? 0, title: nil))
-
+                    
                     DataController.saveMOC()
                 } label: {
                     HStack {
@@ -94,16 +94,6 @@ struct EditorViewToolbar: View {
                 // Export form button
                 Menu {
                     
-                    // Export to pdf button
-                    Button {
-                        exportToPDF = true
-                    } label: {
-                        HStack {
-                            Image(systemName: "doc.text.image")
-                            Text("PDF")
-                        }
-                    }
-                    
                     // Export to form button
                     Button {
                         exportToForm = true
@@ -111,6 +101,16 @@ struct EditorViewToolbar: View {
                         HStack {
                             Image(systemName: "doc.zipper")
                             Text("Form")
+                        }
+                    }
+                    
+                    // Export to pdf button
+                    Button {
+                        exportToPDF = true
+                    } label: {
+                        HStack {
+                            Image(systemName: "doc.text.image")
+                            Text("PDF")
                         }
                     }
                     

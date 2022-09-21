@@ -12,7 +12,6 @@ struct ConfigureNumberFieldWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
     @Environment(\.dismiss) var dismiss
-
     @Binding var title: String
     @State var section: Section
     @State var number: String = ""
@@ -28,7 +27,7 @@ struct ConfigureNumberFieldWidgetView: View {
                             isValid = true
                         }
                         else {
-                            isValid = formModel.validNumber(number: number, range: range)
+                            isValid = formModel.numberIsValid(number: number, range: range)
                         }
                     }
                 }

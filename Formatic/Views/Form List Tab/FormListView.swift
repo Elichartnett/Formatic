@@ -13,11 +13,11 @@ struct FormListView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.position)]) var forms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel
     
-    @State var showNewFormView: Bool = false
-    @State var showImportFormView: Bool = false
-    @State var showAlert: Bool = false
-    @State var alertTitle: String = ""
-    @State var alertButtonTitle: String = "Okay"
+    @State var showNewFormView = false
+    @State var showImportFormView = false
+    @State var showAlert = false
+    @State var alertTitle = ""
+    @State var alertButtonTitle = "Okay"
     
     var body: some View {
         

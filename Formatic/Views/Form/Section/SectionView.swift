@@ -13,7 +13,6 @@ struct SectionView: View {
     @Environment(\.editMode) var editMode
     @EnvironmentObject var formModel: FormModel
     @FetchRequest var widgets: FetchedResults<Widget>
-    
     @ObservedObject var section: Section
     @Binding var locked: Bool
     var forPDF: Bool
@@ -49,7 +48,7 @@ struct SectionView: View {
                 let dropdownSectionWidget = widget as! DropdownSectionWidget
                 DropdownSectionWidgetView(dropdownSectionWidget: dropdownSectionWidget, locked: $locked)
                 
-            // Will be handled in section
+                // Will be handled in section
             case .dropdownWidget:
                 EmptyView()
                 
@@ -57,7 +56,7 @@ struct SectionView: View {
                 let checkboxSectionWidget = widget as! CheckboxSectionWidget
                 CheckboxSectionWidgetView(checkboxSectionWidget: checkboxSectionWidget, locked: $locked)
                 
-            // Will be handled in section
+                // Will be handled in section
             case .checkboxWidget:
                 EmptyView()
                 
@@ -75,7 +74,7 @@ struct SectionView: View {
             }
         }
         .onMove(perform: { indexSet, destination in
-            formModel.moveWidgetWithIndexSet(section: section, indexSet: indexSet, destination: destination)
+            formModel.updateWidgetPosition(section: section, indexSet: indexSet, destination: destination)
         })
         .onDelete { indexSet in
             formModel.deleteWidgetWithIndexSet(section: section, indexSet: indexSet)

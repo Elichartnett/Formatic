@@ -11,9 +11,7 @@ import SwiftUI
 struct FormView: View {
     
     @FetchRequest var sections: FetchedResults<Section>
-    
     @ObservedObject var form: Form
-    @State var formTitle: String = ""
     var forPDF: Bool
     
     init(form: Form, forPDF: Bool) {
@@ -26,7 +24,7 @@ struct FormView: View {
         
         VStack (spacing: 0) {
             
-            FormTitleView(form: form)
+            FormTitleView(form: form, formTitle: form.title)
                 .padding(.horizontal)
                 .background(Color(uiColor: .systemGray6))
             
@@ -42,7 +40,7 @@ struct FormView: View {
                             SwiftUI.Section {
                                 SectionView(section: section, locked: $form.locked, forPDF: forPDF)
                             } header: {
-                                SectionTitleView(section: section, locked: $form.locked)
+                                SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
                             }
                             .headerProminence(.increased)
                         }
@@ -69,7 +67,7 @@ struct FormView: View {
                                 .background(.white)
                                 .cornerRadius(10)
                             } header: {
-                                SectionTitleView(section: section, locked: $form.locked)
+                                SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
                                     .padding(.top)
                                     .padding(.bottom, 10)
                             }
@@ -98,7 +96,6 @@ struct FormView_Previews: PreviewProvider {
                     }
                 })
                 .environmentObject(FormModel())
-            //                .environment(\.managedObjectContext, DataController.shared.container.viewContext)
         }
         .navigationViewStyle(.stack)
     }

@@ -33,7 +33,7 @@ struct NewFormView: View {
             InputBox(placeholder: "Title", text: $title)
                 .onChange(of: title) { _ in
                     do {
-                        validTitle = try formModel.validTitle(title: title)
+                        validTitle = try formModel.titleIsValid(title: title)
                     }
                     catch {
                         alertTitle = "Error validating title"

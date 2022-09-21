@@ -11,7 +11,6 @@ struct CheckboxSectionWidgetView: View {
     
     @FetchRequest var checkboxes: FetchedResults<CheckboxWidget>
     @ObservedObject var checkboxSectionWidget: CheckboxSectionWidget
-    
     @Environment(\.editMode) var editMode
     @State var reconfigureWidget = false
     

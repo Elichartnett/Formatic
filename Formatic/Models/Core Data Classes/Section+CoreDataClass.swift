@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(Section)
-public class Section: NSManagedObject, Codable, Csv {
+public class Section: NSManagedObject, Codable, Identifiable, Csv {
     
     func toCsv() -> String {
         var canvasWidgetCount = 0
@@ -74,7 +74,6 @@ public class Section: NSManagedObject, Codable, Csv {
     
     public func encode(to encoder: Encoder) throws {
         var sectionContainer = encoder.container(keyedBy: CodingKeys.self)
-        
         try sectionContainer.encode(position, forKey: .position)
         try sectionContainer.encode(title, forKey: .title)
         try sectionContainer.encode(widgets, forKey: .widgets)
@@ -82,7 +81,6 @@ public class Section: NSManagedObject, Codable, Csv {
     
     required public convenience init(from decoder: Decoder) throws {
         self.init(context: DataController.shared.container.viewContext)
-        
         let sectionContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()
         self.position = try sectionContainer.decode(Int16.self, forKey: .position)

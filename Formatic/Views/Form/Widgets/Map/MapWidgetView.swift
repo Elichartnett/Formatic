@@ -12,15 +12,14 @@ import MapKit
 struct MapWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
+    @Environment(\.editMode) var editMode
     @ObservedObject var mapWidget: MapWidget
     @Binding var locked: Bool
     @State var title: String
     @State var labelWidth: Double = 1
-    
-    @Environment(\.editMode) var editMode
     @State var reconfigureWidget = false
     @State var widgetViewPreviewSize = CGSize.zero
-
+    
     init(mapWidget: MapWidget, locked: Binding<Bool>) {
         self.mapWidget = mapWidget
         self._locked = locked

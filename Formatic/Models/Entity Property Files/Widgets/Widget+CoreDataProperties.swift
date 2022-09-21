@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-extension Widget: Identifiable {
+extension Widget {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Widget> {
         return NSFetchRequest<Widget>(entityName: "Widget")

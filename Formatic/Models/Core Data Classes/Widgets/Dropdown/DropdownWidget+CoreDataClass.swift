@@ -28,7 +28,6 @@ public class DropdownWidget: Widget, Decodable {
     
     override public func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
-        
         // dropdownSectionWidget and selectedDropdownInverse set in DropdownSectionWidget and is not encoded here (would cause infinite loop)
     }
     

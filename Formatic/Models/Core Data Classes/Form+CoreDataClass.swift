@@ -10,25 +10,7 @@ import Foundation
 import CoreData
 
 @objc(Form)
-public class Form: NSManagedObject, Codable, Csv {
-    
-    func toCsv() -> String {
-        var retString = ""
-        retString += "Section Title, Widget Title, Widget Type, Widget Data, Selected, Marker Latitude, Marker Longitude, Marker Easting, Marker Northing, Marker Zone, Marker Hemisphere\n"
-        
-        let allSections = (sections ?? []).sorted { lhs, rhs in
-            lhs.position < rhs.position
-        }
-        
-        for section in allSections {
-            retString += section.toCsv()
-            retString += "\n\n"
-        }
-        // Remove trailing newline characters
-        retString.remove(at: retString.index(before: retString.endIndex))
-        retString.remove(at: retString.index(before: retString.endIndex))
-        return retString
-    }
+public class Form: NSManagedObject, Codable, Identifiable, Csv {
     
     enum CodingKeys: String, CodingKey {
         case locked = "locked"
@@ -61,5 +43,23 @@ public class Form: NSManagedObject, Codable, Csv {
         if let sections = try formContainer.decode(Set<Section>?.self, forKey: .sections) {
             self.sections = sections
         }
+    }
+    
+    func toCsv() -> String {
+        var csvString = ""
+        csvString += "Section Title, Widget Title, Widget Type, Widget Data, Selected, Marker Latitude, Marker Longitude, Marker Easting, Marker Northing, Marker Zone, Marker Hemisphere\n"
+        
+        let sections = (sections ?? []).sorted { lhs, rhs in
+            lhs.position < rhs.position
+        }
+                
+        for section in sections {
+            csvString += section.toCsv()
+            csvString += "\n\n"
+        }
+        // Remove trailing newline characters
+        csvString.remove(at: csvString.index(before: csvString.endIndex))
+        csvString.remove(at: csvString.index(before: csvString.endIndex))
+        return csvString
     }
 }

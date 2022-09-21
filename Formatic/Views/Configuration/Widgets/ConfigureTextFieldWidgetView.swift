@@ -12,7 +12,6 @@ struct ConfigureTextFieldWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
     @Environment(\.dismiss) var dismiss
-
     @Binding var title: String
     @State var section: Section
     @State var text: String = ""

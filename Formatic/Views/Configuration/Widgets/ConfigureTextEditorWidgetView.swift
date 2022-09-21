@@ -12,7 +12,6 @@ struct ConfigureTextEditorWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
     @Environment(\.dismiss) var dismiss
-
     @Binding var title: String
     @FocusState var isFocused: Bool
     @State var section: Section

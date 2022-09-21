@@ -9,28 +9,6 @@ import Foundation
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct TitleFrame: ViewModifier {
-    @Binding var locked: Bool
-    func body(content: Content) -> some View {
-        content
-            .frame(width: 200)
-            .disabled(locked)
-    }
-}
-
-struct WidgetPreviewFrame: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .frame(height: 200)
-            .cornerRadius(10)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(.secondary, lineWidth: 2)
-            )
-            .foregroundColor(.black)
-    }
-}
-
 extension View {
     func titleFrameStyle(locked: Binding<Bool>) -> some View {
         modifier(TitleFrame(locked: locked))

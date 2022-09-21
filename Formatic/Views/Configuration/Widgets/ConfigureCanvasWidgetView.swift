@@ -12,7 +12,6 @@ struct ConfigureCanvasWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
     @Environment(\.dismiss) var dismiss
-
     @Binding var title: String
     @State var section: Section
     @State var sourceType: SourceType?
@@ -52,7 +51,7 @@ struct ConfigureCanvasWidgetView: View {
             Button {
                 withAnimation {
                     let canvasWidget = CanvasWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), image: pickerResult, pkDrawing: nil, widgetViewPreview: nil)
-                        canvasWidget.image = pickerResult
+                    canvasWidget.image = pickerResult
                     
                     section.addToWidgets(canvasWidget)
                     DataController.saveMOC()

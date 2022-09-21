@@ -23,10 +23,10 @@ public class CheckboxSectionWidget: Widget, Decodable, Csv {
         
         // For each checkbox, add a row
         for cb in checkboxItems ?? [] {
-            retString += FormModel.csvFormat(self.section?.title ?? "") + ","
-            retString += FormModel.csvFormat(self.title ?? "") + ","
+            retString += FormModel.formatAsCsv(self.section?.title ?? "") + ","
+            retString += FormModel.formatAsCsv(self.title ?? "") + ","
             retString += "Checkbox,"
-            retString += FormModel.csvFormat(cb.title ?? "") + ","
+            retString += FormModel.formatAsCsv(cb.title ?? "") + ","
             if cb.checked == true {
                 retString += "True"
             }

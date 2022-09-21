@@ -17,8 +17,14 @@ struct SectionTitleView: View {
             configureNewWidget = true
         }
     }
-    @State var sectionTitle: String = ""
+    @State var sectionTitle: String
     @State var configureNewWidget = false
+    
+    init(section: Section, locked: Binding<Bool>, sectionTitle: String) {
+        self.section = section
+        self._locked = locked
+        self.sectionTitle = sectionTitle
+    }
     
     var body: some View {
         
@@ -76,9 +82,6 @@ struct SectionTitleView: View {
         }
         .disabled(locked)
         .textCase(.none)
-        .onAppear {
-            sectionTitle = section.title ?? ""
-        }
         .sheet(isPresented: $configureNewWidget) {
             ConfigureWidgetView(newWidgetType: newWidgetType!, section: section)
                 .font(Font.body)
@@ -88,6 +91,6 @@ struct SectionTitleView: View {
 
 struct SectionTitleView_Previews: PreviewProvider {
     static var previews: some View {
-        SectionTitleView(section: dev.section, locked: .constant(dev.form.locked))
+        SectionTitleView(section: dev.section, locked: .constant(dev.form.locked), sectionTitle: dev.section.title ?? "")
     }
 }
