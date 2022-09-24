@@ -12,6 +12,7 @@ struct ConfigureCanvasWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
     @Environment(\.dismiss) var dismiss
+    @State var canvasWidget: CanvasWidget?
     @Binding var title: String
     @State var section: Section
     @State var sourceType: SourceType?
@@ -25,6 +26,11 @@ struct ConfigureCanvasWidgetView: View {
                 .scaledToFit()
                 .border(.black)
                 .padding()
+                .onAppear {
+                    if let imageData = canvasWidget?.image {
+                        pickerResult = imageData
+                    }
+                }
             
             Group {
                 Button {
@@ -49,13 +55,18 @@ struct ConfigureCanvasWidgetView: View {
             }
             
             Button {
-                withAnimation {
-                    let canvasWidget = CanvasWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), image: pickerResult, pkDrawing: nil, widgetViewPreview: nil)
+                if let canvasWidget {
                     canvasWidget.image = pickerResult
-                    
-                    section.addToWidgets(canvasWidget)
-                    DataControllerModel.saveMOC()
                 }
+                else {
+                    withAnimation {
+                        let canvasWidget = CanvasWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), image: pickerResult, pkDrawing: nil, widgetViewPreview: nil)
+                        canvasWidget.image = pickerResult
+                        
+                        section.addToWidgets(canvasWidget)
+                    }
+                }
+                DataControllerModel.saveMOC()
                 dismiss()
             } label: {
                 SubmitButton(isValid: .constant(true))

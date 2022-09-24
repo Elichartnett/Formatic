@@ -9,14 +9,16 @@ import SwiftUI
 
 struct CanvasWidgetView: View {
     
+    @Environment(\.editMode) var editMode
     @ObservedObject var canvasWidget: CanvasWidget
     @Binding var locked: Bool
     @State var title: String
+    @State var reconfigureWidget = false
     
     init(canvasWidget: CanvasWidget, locked: Binding<Bool>) {
         self.canvasWidget = canvasWidget
         self._locked = locked
-        self.title = canvasWidget.title ?? ""
+        self._title = State(initialValue: canvasWidget.title ?? "")
     }
     
     var body: some View {
@@ -45,6 +47,24 @@ struct CanvasWidgetView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .WidgetPreviewStyle()
+            
+            Button {
+                reconfigureWidget = true
+            } label: {
+                if editMode?.wrappedValue == .active {
+                    Image(systemName: "slider.horizontal.3")
+                        .resizable()
+                        .foregroundColor(.black)
+                        .scaledToFit()
+                        .frame(width: 25, height: 25)
+                }
+            }
+            .disabled(editMode?.wrappedValue == .inactive)
+            .buttonStyle(.plain)
+        }
+        .sheet(isPresented: $reconfigureWidget) {
+            ConfigureCanvasWidgetView(canvasWidget: canvasWidget, title: $title, section: canvasWidget.section!)
+                .padding()
         }
     }
 }
