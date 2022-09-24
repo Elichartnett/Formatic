@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 // In new widget sheet to configure new CanvasWidget
 struct ConfigureCanvasWidgetView: View {
@@ -17,6 +18,7 @@ struct ConfigureCanvasWidgetView: View {
     @State var section: Section
     @State var sourceType: SourceType?
     @State var pickerResult: Data = Data()
+    @State var photoPickerItem: PhotosPickerItem?
     
     var body: some View {
         
@@ -33,24 +35,28 @@ struct ConfigureCanvasWidgetView: View {
                 }
             
             Group {
-                Button {
-                    sourceType = .photoLibrary
-                } label: {
-                    Image(systemName: "photo.on.rectangle.angled")
-                    Text("Select photo")
-                }
+                
+                PhotosPicker(
+                    selection: $photoPickerItem,
+                    matching: .images,
+                    photoLibrary: .shared()) {
+                        Image(systemName: "photo.on.rectangle.angled")
+                        Text("Select photo")
+                    }
+                    .onChange(of: photoPickerItem) { newItem in
+                        Task {
+                            // Retrieve selected asset in the form of Data
+                            if let data = try? await newItem?.loadTransferable(type: Data.self) {
+                                pickerResult = data
+                            }
+                        }
+                    }
                 
                 Button {
                     sourceType = .camera
                 } label: {
                     Image(systemName: "camera")
                     Text("Take photo")
-                }
-            }
-            .onChange(of: pickerResult) { _ in
-                if pickerResult.count == 2 {
-                    pickerResult[0] = pickerResult[1]
-                    pickerResult.remove(at: 1)
                 }
             }
             
@@ -78,7 +84,7 @@ struct ConfigureCanvasWidgetView: View {
             case .camera:
                 PhotoTaker(pickerResult: $pickerResult)
             case .photoLibrary:
-                PhotoPicker(pickerResult: $pickerResult)
+                EmptyView()
             }
         }
     }
