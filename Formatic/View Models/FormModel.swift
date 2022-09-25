@@ -173,21 +173,17 @@ class FormModel: ObservableObject {
         }
     }
     
-    func deleteForm(form: Form) throws {
+    func deleteForm(position: Int) throws {
         do {
-            var forms = try getForms()
+            let forms = try getForms()
             
-            let index = forms.firstIndex { savedForm in
-                savedForm.id == form.id
-            }
-            let formIndex = forms.distance(from: forms.startIndex, to: index!)
-            
-            DataControllerModel.shared.container.viewContext.delete(form)
-            forms.remove(at: formIndex)
-            
-            // Update positions starting with form after deleted index
-            for index in formIndex..<forms.count {
-                forms[index].position = forms[index].position - 1
+            withAnimation {
+                DataControllerModel.shared.container.viewContext.delete(forms[position])
+                
+                // Update positions starting with form after deleted index
+                for index in position..<forms.count {
+                    forms[index].position = forms[index].position - 1
+                }
             }
         }
         catch {
@@ -196,32 +192,101 @@ class FormModel: ObservableObject {
     }
     
     func copyForm(form: Form) throws {
-
-        let formCopy = form.copy() as! Form
+        
         do {
-            try resolveDuplicateFormName(newForm: formCopy)
-            formCopy.position = Int16(try getForms().count - 1)
-            DataControllerModel.saveMOC()
+            let forms = try getForms()
+            
+            try withAnimation {
+                for index in Int(form.position + 1)..<forms.count {
+                    forms[index].position = forms[index].position + 1
+                }
+                
+                let formCopy = form.createCopy() as! Form
+                do {
+                    try resolveDuplicateFormName(newForm: formCopy)
+                    formCopy.position = form.position + 1
+                    DataControllerModel.saveMOC()
+                }
+                catch {
+                    throw FormError.copyError
+                }
+            }
         }
         catch {
-            throw FormError.copyError
+            throw FormError.fetchError
         }
     }
     
-    func deleteWidgetWithIndexSet(section: Section, indexSet: IndexSet) {
+    func deleteWidget(section: Section, position: Int) {
         let widgets = getWidgetsInSection(section: section)
         
         withAnimation {
-            for index in indexSet {
-                let widget = widgets[index]
-                DataControllerModel.shared.container.viewContext.delete(widget)
-                
-                // Update positions starting with widget after deleted index
-                for index in index+1..<widgets.count {
-                    widgets[index].position = widgets[index].position - 1
-                }
-                DataControllerModel.saveMOC()
+            DataControllerModel.shared.container.viewContext.delete(widgets[position])
+            for index in position..<widgets.count {
+                widgets[index].position = widgets[index].position - 1
             }
+            DataControllerModel.saveMOC()
+        }
+    }
+    
+    func copyWidget(section: Section, widget: Widget) {
+        let widgets = getWidgetsInSection(section: section)
+        
+        for index in Int(widget.position + 1)..<widgets.count {
+            widgets[index].position = widgets[index].position + 1
+        }
+        
+        let widgetType = WidgetType(rawValue: widget.type!)
+        
+        switch widgetType {
+        case .textFieldWidget:
+            if let widget = widget as? TextFieldWidget {
+                let copy = widget.createCopy() as! TextFieldWidget
+                copy.position = widget.position + 1
+                section.addToWidgets(copy)
+            }
+        case .numberFieldWidget:
+            if let widget = widget as? NumberFieldWidget {
+                let copy = widget.createCopy() as! NumberFieldWidget
+                copy.position = widget.position + 1
+                section.addToWidgets(copy)
+            }
+        case .textEditorWidget:
+            if let widget = widget as? TextEditorWidget {
+                let copy = widget.createCopy() as! TextEditorWidget
+                copy.position = widget.position + 1
+                section.addToWidgets(copy)
+            }
+        case .dropdownSectionWidget:
+            if let widget = widget as? DropdownSectionWidget {
+                let copy = widget.createCopy() as! DropdownSectionWidget
+                copy.position = widget.position + 1
+                section.addToWidgets(copy)
+            }
+        case .dropdownWidget:
+            break
+        case .checkboxSectionWidget:
+            if let widget = widget as? CheckboxSectionWidget {
+                let copy = widget.createCopy() as! CheckboxSectionWidget
+                copy.position = widget.position + 1
+                section.addToWidgets(copy)
+            }
+        case .checkboxWidget:
+            break
+        case .mapWidget:
+            if let widget = widget as? MapWidget {
+                let copy = widget.createCopy() as! MapWidget
+                copy.position = widget.position + 1
+                section.addToWidgets(copy)
+            }
+        case .canvasWidget:
+            if let widget = widget as? CanvasWidget {
+                let copy = widget.createCopy() as! CanvasWidget
+                copy.position = widget.position + 1
+                section.addToWidgets(copy)
+            }
+        default:
+            break
         }
     }
     

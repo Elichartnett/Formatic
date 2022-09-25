@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(CanvasWidget)
-public class CanvasWidget: Widget, Decodable {
+public class CanvasWidget: Widget, Decodable, Copyable {
     
     /// CanvasWidget  init
     init(title: String?, position: Int, image: Data?, pkDrawing: Data?, widgetViewPreview: Data?) {
@@ -59,5 +59,10 @@ public class CanvasWidget: Widget, Decodable {
         if let widgetViewPreview = try canvasWidgetContainer.decode(Data?.self, forKey: .widgetViewPreview) {
             self.widgetViewPreview = widgetViewPreview
         }
+    }
+    
+    func createCopy() -> Any {
+        let copy = CanvasWidget(title: title, position: Int(position), image: image, pkDrawing: pkDrawing, widgetViewPreview: widgetViewPreview)
+        return copy
     }
 }

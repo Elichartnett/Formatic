@@ -30,12 +30,12 @@ struct FormListView: View {
                     NavigationLink {
                         FormEditorView(form: form)
                     } label: {
-                        Text("\(form.title ?? ""), \(form.position)")
+                        Text(form.title ?? "")
                     }
                     .swipeActions {
                         Button {
                             do {
-                                try formModel.deleteForm(form: form)
+                                try formModel.deleteForm(position: Int(form.position))
                             }
                             catch {
                                 

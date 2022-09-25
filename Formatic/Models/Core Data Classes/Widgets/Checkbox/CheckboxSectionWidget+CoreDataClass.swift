@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(CheckboxSectionWidget)
-public class CheckboxSectionWidget: Widget, Decodable, Csv {
+public class CheckboxSectionWidget: Widget, Decodable, Csv, Copyable {
     
     /// CheckboxSectionWidget  init
     init(title: String?, position: Int, checkboxWidgets: NSSet?) {
@@ -82,4 +82,19 @@ public class CheckboxSectionWidget: Widget, Decodable, Csv {
         return csvString
     }
     
+    func createCopy() -> Any {
+        let checkboxWidgetsArray = checkboxWidgets?.allObjects.sorted(by: { lhs, rhs in
+            let lhs = lhs as! CheckboxWidget
+            let rhs = rhs as! CheckboxWidget
+            return lhs.position < rhs.position
+        }) as! [CheckboxWidget]
+        var checkboxWidgetsCopy = [CheckboxWidget]()
+        for widget in checkboxWidgetsArray {
+            let copy = widget.createCopy() as! CheckboxWidget
+            checkboxWidgetsCopy.append(copy)
+        }
+        
+        let copy = CheckboxSectionWidget(title: title, position: Int(position), checkboxWidgets: NSSet(array: checkboxWidgetsCopy))
+        return copy
+    }
 }

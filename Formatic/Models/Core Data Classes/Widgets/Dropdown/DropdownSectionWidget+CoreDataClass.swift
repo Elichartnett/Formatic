@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(DropdownSectionWidget)
-public class DropdownSectionWidget: Widget, Decodable, Csv {
+public class DropdownSectionWidget: Widget, Decodable, Csv, Copyable {
     
     /// DropdownSectionWidget  init
     init(title: String?, position: Int, selectedDropdown: DropdownWidget?, dropdownWidgets: NSSet?) {
@@ -87,5 +87,23 @@ public class DropdownSectionWidget: Widget, Decodable, Csv {
         }
         
         return csvString
+    }
+    
+    func createCopy() -> Any {
+        let selectedDropdownWidgetCopy = selectedDropdown?.createCopy() as? DropdownWidget
+        
+        let dropdownWidgetsArray = dropdownWidgets?.allObjects.sorted(by: { lhs, rhs in
+            let lhs = lhs as! DropdownWidget
+            let rhs = rhs as! DropdownWidget
+            return lhs.position < rhs.position
+        }) as! [DropdownWidget]
+        var dropdownWidgetsCopy = [DropdownWidget]()
+        for widget in dropdownWidgetsArray {
+            let copy = widget.createCopy() as! DropdownWidget
+            dropdownWidgetsCopy.append(copy)
+        }
+        
+        let copy = DropdownSectionWidget(title: title, position: Int(position), selectedDropdown: selectedDropdownWidgetCopy, dropdownWidgets: NSSet(array: dropdownWidgetsCopy))
+        return copy
     }
 }

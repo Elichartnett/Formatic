@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(CheckboxWidget)
-public class CheckboxWidget: Widget, Decodable {
+public class CheckboxWidget: Widget, Decodable, Copyable {
     
     /// CheckboxWidget  init
     init(title: String?, position: Int, checked: Bool, checkboxSectionWidget: CheckboxSectionWidget?) {
@@ -47,5 +47,10 @@ public class CheckboxWidget: Widget, Decodable {
         self.type = try checkboxWidgetContainer.decode(String.self, forKey: .type)
         self.checked = try checkboxWidgetContainer.decode(Bool.self, forKey: .checked)
         // checkboxSectionWidget linked in CheckboxSectionWidget and is not decoded here (would cause infinite loop)
+    }
+    
+    func createCopy() -> Any {
+        let copy = CheckboxWidget(title: title, position: Int(position), checked: checked, checkboxSectionWidget: nil)
+        return copy
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(DropdownWidget)
-public class DropdownWidget: Widget, Decodable {
+public class DropdownWidget: Widget, Decodable, Copyable {
 
     /// DropdownWidget  init
     init(title: String?, position: Int, dropdownSectionWidget: DropdownSectionWidget?, selectedDropdownInverse: DropdownSectionWidget?) {
@@ -42,5 +42,10 @@ public class DropdownWidget: Widget, Decodable {
         }
         self.type = try dropdownWidgetWidgetContainer.decode(String.self, forKey: .type)
         // dropdownSectionWidget and selectedDropdownInverse set in DropdownSectionWidget and is not encoded here (would cause infinite loop)
+    }
+    
+    func createCopy() -> Any {
+        let copy = DropdownWidget(title: title, position: Int(position), dropdownSectionWidget: nil, selectedDropdownInverse: nil)
+        return copy
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(TextFieldWidget)
-public class TextFieldWidget: Widget, Decodable, Csv {
+public class TextFieldWidget: Widget, Decodable, Csv, Copyable {
     
     /// TextFieldWidget  init
     init(title: String?, position: Int, text: String?) {
@@ -56,5 +56,10 @@ public class TextFieldWidget: Widget, Decodable, Csv {
         csvString += FormModel.formatAsCsv(self.text ?? "") + ","
         csvString += ",,,,,,"
         return csvString
+    }
+    
+    func createCopy() -> Any {
+        let copy = TextFieldWidget(title: title, position: Int(position), text: text)
+        return copy
     }
 }

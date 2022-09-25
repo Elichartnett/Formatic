@@ -11,3 +11,7 @@ import Foundation
 protocol Csv {
     func toCsv() -> String
 }
+
+protocol Copyable {
+    func createCopy() -> Any
+}

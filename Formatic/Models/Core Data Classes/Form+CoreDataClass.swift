@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(Form)
-public class Form: NSManagedObject, Codable, Identifiable, Csv, NSCopying {
+public class Form: NSManagedObject, Codable, Identifiable, Csv, Copyable {
     
     enum CodingKeys: String, CodingKey {
         case locked = "locked"
@@ -63,8 +63,18 @@ public class Form: NSManagedObject, Codable, Identifiable, Csv, NSCopying {
         return csvString
     }
     
-    public func copy(with zone: NSZone? = nil) -> Any {
+    func createCopy() -> Any {
         let copy = Form(position: Int(self.position), title: self.title!)
+        copy.locked = locked
+        copy.password = password
+        
+        let sectionsArray = sections?.sorted(by: { lhs, rhs in
+            lhs.position < rhs.position
+        }) ?? []
+        for section in sectionsArray {
+            let sectionCopy = section.createCopy() as! Section
+            copy.addToSections(sectionCopy)
+        }
         return copy
     }
 }

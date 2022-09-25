@@ -12,7 +12,7 @@ import UTMConversion
 import MapKit
 
 @objc(MapWidget)
-public class MapWidget: Widget, Decodable, Csv {
+public class MapWidget: Widget, Decodable, Csv, Copyable {
     
     /// MapWidget  init
     init(title: String?, position: Int, coordinateRegionCenterLat: Double, coordinateRegionCenterLon: Double, coordinateSpanLatDelta: Double, coordinateSpanLonDelta: Double) {
@@ -93,5 +93,11 @@ public class MapWidget: Widget, Decodable, Csv {
         }
         
         return csvString
+    }
+    
+    func createCopy() -> Any {
+        let copy = MapWidget(title: title, position: Int(position), coordinateRegionCenterLat: coordinateRegionCenterLat, coordinateRegionCenterLon: coordinateRegionCenterLon, coordinateSpanLatDelta: coordinateSpanLatDelta, coordinateSpanLonDelta: coordinateSpanLonDelta)
+        copy.annotations = annotations
+        return copy
     }
 }

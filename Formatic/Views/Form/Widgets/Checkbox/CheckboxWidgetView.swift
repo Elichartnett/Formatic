@@ -41,6 +41,9 @@ struct CheckboxWidgetView: View {
                 .onChange(of: isFocused) { newValue in
                     DataControllerModel.saveMOC()
                 }
+                .onChange(of: description) { _ in
+                    checkbox.title = description
+                }
         }
     }
 }
