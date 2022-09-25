@@ -30,16 +30,32 @@ struct FormListView: View {
                     NavigationLink {
                         FormEditorView(form: form)
                     } label: {
-                        Text(form.title ?? "")
+                        Text("\(form.title ?? ""), \(form.position)")
                     }
-                }
-                .onDelete { indexSet in
-                    do {
-                        try formModel.deleteFormWithIndexSet(indexSet: indexSet)
-                    }
-                    catch {
-                        alertTitle = "Error deleting form"
-                        showAlert = true
+                    .swipeActions {
+                        Button {
+                            do {
+                                try formModel.deleteForm(form: form)
+                            }
+                            catch {
+                                
+                            }
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                        .tint(.red)
+                        
+                        Button {
+                            do {
+                                try formModel.copyForm(form: form)
+                            }
+                            catch {
+                                
+                            }
+                        } label: {
+                            Label("Copy", systemImage: "doc.on.doc")
+                        }
+                        .tint(.blue)
                     }
                 }
             }

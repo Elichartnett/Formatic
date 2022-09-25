@@ -65,6 +65,7 @@ enum FormError: Error {
     case encodeFormToJsonDataError
     case urlToDataError
     case decodeJsonDataToFormError
+    case copyError
 }
 
 enum ImageError: Error {

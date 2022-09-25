@@ -98,7 +98,7 @@ class FormModel: ObservableObject {
                         form.title == newForm.title && form.id != newForm.id
                     })
                     {
-                        resolveDuplicateFormName(newForm: newForm, forms: forms)
+                        try resolveDuplicateFormName(newForm: newForm)
                     }
                     DataControllerModel.saveMOC()
                 }
@@ -119,7 +119,10 @@ class FormModel: ObservableObject {
     func getForms() throws -> [Form] {
         let formsRequest: NSFetchRequest<Form> = Form.fetchRequest()
         do {
-            let forms = try DataControllerModel.shared.container.viewContext.fetch(formsRequest)
+            var forms = try DataControllerModel.shared.container.viewContext.fetch(formsRequest)
+            forms = forms.sorted { lhs, rhs in
+                lhs.position < rhs.position
+            }
             return forms
         }
         catch {
@@ -147,40 +150,61 @@ class FormModel: ObservableObject {
         return getWidgetsInSection(section: section).count
     }
     
-    func resolveDuplicateFormName(newForm: Form, forms: [Form]) {
-        var newTitleFound = false
-        var index = 1
-        while !newTitleFound {
-            let newTitle = "\(newForm.title ?? "") (\(index))"
-            if !forms.contains(where: { form in
-                form.title == newTitle
-            }) {
-                newTitleFound = true
-                newForm.title = newTitle
-            }
-            else {
-                index += 1
-            }
-        }
-    }
-    
-    func deleteFormWithIndexSet(indexSet: IndexSet) throws {
+    func resolveDuplicateFormName(newForm: Form) throws {
         do {
             let forms = try getForms()
-            
-            for index in indexSet {
-                let form = forms[index]
-                DataControllerModel.shared.container.viewContext.delete(form)
-                
-                // Update positions starting with form after deleted index
-                for index in index+1..<forms.count {
-                    forms[index].position = forms[index].position - 1
+            var newTitleFound = false
+            var index = 1
+            while !newTitleFound {
+                let newTitle = "\(newForm.title ?? "") (\(index))"
+                if !forms.contains(where: { form in
+                    form.title == newTitle
+                }) {
+                    newTitleFound = true
+                    newForm.title = newTitle
+                }
+                else {
+                    index += 1
                 }
             }
-            DataControllerModel.saveMOC()
         }
         catch {
             throw FormError.fetchError
+        }
+    }
+    
+    func deleteForm(form: Form) throws {
+        do {
+            var forms = try getForms()
+            
+            let index = forms.firstIndex { savedForm in
+                savedForm.id == form.id
+            }
+            let formIndex = forms.distance(from: forms.startIndex, to: index!)
+            
+            DataControllerModel.shared.container.viewContext.delete(form)
+            forms.remove(at: formIndex)
+            
+            // Update positions starting with form after deleted index
+            for index in formIndex..<forms.count {
+                forms[index].position = forms[index].position - 1
+            }
+        }
+        catch {
+            throw FormError.fetchError
+        }
+    }
+    
+    func copyForm(form: Form) throws {
+
+        let formCopy = form.copy() as! Form
+        do {
+            try resolveDuplicateFormName(newForm: formCopy)
+            formCopy.position = Int16(try getForms().count - 1)
+            DataControllerModel.saveMOC()
+        }
+        catch {
+            throw FormError.copyError
         }
     }
     

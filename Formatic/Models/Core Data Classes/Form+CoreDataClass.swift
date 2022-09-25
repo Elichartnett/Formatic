@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(Form)
-public class Form: NSManagedObject, Codable, Identifiable, Csv {
+public class Form: NSManagedObject, Codable, Identifiable, Csv, NSCopying {
     
     enum CodingKeys: String, CodingKey {
         case locked = "locked"
@@ -61,5 +61,10 @@ public class Form: NSManagedObject, Codable, Identifiable, Csv {
         csvString.remove(at: csvString.index(before: csvString.endIndex))
         csvString.remove(at: csvString.index(before: csvString.endIndex))
         return csvString
+    }
+    
+    public func copy(with zone: NSZone? = nil) -> Any {
+        let copy = Form(position: Int(self.position), title: self.title!)
+        return copy
     }
 }
