@@ -12,7 +12,7 @@ struct FormListView: View {
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.position)]) var forms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel
-    
+    @State var searchText = ""
     @State var showNewFormView = false
     @State var showImportFormView = false
     @State var showAlert = false
@@ -59,6 +59,15 @@ struct FormListView: View {
                     }
                 }
             }
+            .searchable(text: $searchText, placement: .navigationBarDrawer)
+            .onChange(of: searchText, perform: { _ in
+                if searchText == "" {
+                    forms.nsPredicate = nil
+                }
+                else {
+                    forms.nsPredicate = NSPredicate(format: "title CONTAINS %@", searchText)
+                }
+            })
             .overlay {
                 if forms.isEmpty {
                     Text("Add a form to get started!")
