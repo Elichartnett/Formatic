@@ -74,6 +74,7 @@ struct DropdownSectionWidgetView: View {
             }
             .disabled(editMode?.wrappedValue == .inactive)
         }
+        .ignoresSafeArea()
         .sheet(isPresented: $reconfigureWidget) {
             ConfigureDropdownSectionWidgetView(dropdownSectionWidget: dropdownSectionWidget, title: $title, section: dropdownSectionWidget.section!)
                 .padding()

@@ -68,7 +68,6 @@ struct SectionView: View {
                     let canvasWidget = widget as! CanvasWidget
                     CanvasWidgetView(canvasWidget: canvasWidget, locked: $locked)
                 }
-
             }
             .swipeActions {
                 Button {
