@@ -25,15 +25,11 @@ struct MapWidgetDetailView: View {
             AddAnnotationsView(mapWidget: mapWidget, coordinateType: $coordinateType, coordinateRegion: $coordinateRegion)
                 .padding()
             
-            ZStack {
-                MapView(mapWidget: mapWidget, coordinateRegion: $coordinateRegion)
-                
-                if coordinateType == .center {
-                    withAnimation {
-                        Image(systemName: "scope")
-                    }
+            MapView(mapWidget: mapWidget, coordinateRegion: $coordinateRegion)
+                .overlay {
+                    Image(systemName: "scope")
+                        .opacity(coordinateType == .center ? 1 : 0)
                 }
-            }
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(mapWidget.title ?? "")

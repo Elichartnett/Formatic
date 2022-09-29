@@ -67,42 +67,32 @@ struct AddAnnotationsView: View {
                 }
                 else if coordinateType == .center {
                     VStack {
-                        
-                        HStack {
-                            VStack {
-                                Text("Latitude:").bold().underline()
-                                Text(formatter.string(from: coordinateRegion.center.latitude as NSNumber)!)
-                            }
-                            VStack {
-                                Text("Longitude").bold().underline()
-                                Text(formatter.string(from: coordinateRegion.center.longitude as NSNumber)!)
-                            }
-                        }
-                        .frame(width: 200)
-                        
-                        HStack {
-                            
-                            VStack {
-                                Text("Easting:").bold().underline()
-                                Text(formatter.string(from: coordinateRegion.center.utmCoordinate().easting as NSNumber)!)
-                            }
-                            
-                            VStack {
-                                Text("Northing").bold().underline()
-                                Text(formatter.string(from: coordinateRegion.center.utmCoordinate().northing as NSNumber)!)
-                            }
-                            
-                            VStack {
-                                Text("Zone").bold().underline()
-                                Text(formatter.string(from: coordinateRegion.center.utmCoordinate().zone as NSNumber)!)
-                            }
-                            
-                            VStack {
-                                Text("Hemisphere").bold().underline()
-                                Text(coordinateRegion.center.utmCoordinate().hemisphere == .northern ? "Northern" : "Southern")
-                            }
-                        }
-                        .frame(width: 400)
+                        Text("Latitude").bold().underline()
+                        Text(formatter.string(from: coordinateRegion.center.latitude as NSNumber)!)
+                    }
+                    VStack {
+                        Text("Longitude").bold().underline()
+                        Text(formatter.string(from: coordinateRegion.center.longitude as NSNumber)!)
+                    }
+                    
+                    VStack {
+                        Text("Easting").bold().underline()
+                        Text(formatter.string(from: coordinateRegion.center.utmCoordinate().easting as NSNumber)!)
+                    }
+                    
+                    VStack {
+                        Text("Northing").bold().underline()
+                        Text(formatter.string(from: coordinateRegion.center.utmCoordinate().northing as NSNumber)!)
+                    }
+                    
+                    VStack {
+                        Text("Zone").bold().underline()
+                        Text(formatter.string(from: coordinateRegion.center.utmCoordinate().zone as NSNumber)!)
+                    }
+                    
+                    VStack {
+                        Text("Hemisphere").bold().underline()
+                        Text(coordinateRegion.center.utmCoordinate().hemisphere == .northern ? "Northern" : "Southern")
                     }
                 }
                 
