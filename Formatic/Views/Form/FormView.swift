@@ -10,6 +10,7 @@ import SwiftUI
 // Displays a form with title and sections
 struct FormView: View {
     
+    @Environment(\.editMode) var editMode
     @FetchRequest var sections: FetchedResults<Section>
     @ObservedObject var form: Form
     var forPDF: Bool
@@ -40,7 +41,17 @@ struct FormView: View {
                             SwiftUI.Section {
                                 SectionView(section: section, locked: $form.locked, forPDF: forPDF)
                             } header: {
-                                SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
+                                HStack {
+                                    SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
+                                    
+                                    Button {
+                                        FormModel.deleteSection(section: section)
+                                    } label: {
+                                        Image(systemName: "trash")
+                                            .customIcon()
+                                            .opacity(editMode?.wrappedValue == .active ? 1 : 0)
+                                    }
+                                }
                             }
                             .headerProminence(.increased)
                         }

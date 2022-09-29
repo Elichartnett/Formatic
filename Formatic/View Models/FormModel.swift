@@ -191,6 +191,10 @@ class FormModel: ObservableObject {
         }
     }
     
+    static func deleteSection(section: Section) {
+        DataControllerModel.shared.container.viewContext.delete(section)
+    }
+    
     func copyForm(form: Form) throws {
         
         do {

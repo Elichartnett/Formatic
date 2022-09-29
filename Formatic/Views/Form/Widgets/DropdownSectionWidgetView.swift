@@ -66,10 +66,7 @@ struct DropdownSectionWidgetView: View {
             } label: {
                 if editMode?.wrappedValue == .active {
                     Image(systemName: "slider.horizontal.3")
-                        .resizable()
-                        .foregroundColor(.black)
-                        .scaledToFit()
-                        .frame(width: 25, height: 25)
+                        .customIcon()
                 }
             }
             .disabled(editMode?.wrappedValue == .inactive)

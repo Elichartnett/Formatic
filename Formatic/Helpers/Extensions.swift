@@ -30,3 +30,13 @@ extension UTType {
         UTType(filenameExtension: "form")!
     }
 }
+
+extension Image {
+    func customIcon() -> some View {
+        return self
+            .resizable()
+            .foregroundColor(.gray)
+            .scaledToFit()
+            .frame(width: 25, height: 25)
+    }
+}
