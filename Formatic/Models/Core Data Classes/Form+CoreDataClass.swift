@@ -8,12 +8,14 @@
 
 import Foundation
 import CoreData
+import CryptoKit
 
 @objc(Form)
 public class Form: NSManagedObject, Codable, Identifiable, Csv, Copyable {
     
     enum CodingKeys: String, CodingKey {
         case locked = "locked"
+        case password = "password"
         case title = "title"
         case sections = "sections"
     }
@@ -24,6 +26,14 @@ public class Form: NSManagedObject, Codable, Identifiable, Csv, Copyable {
         try formContainer.encode(locked, forKey: .locked)
         try formContainer.encode(title, forKey: .title)
         try formContainer.encode(sections, forKey: .sections)
+        
+        if let password {
+            let hash = SHA256.hash(data: title!.data(using: .utf8)!)
+            let key = SymmetricKey(data: hash)
+            let passwordData = password.data(using: .utf8)!
+            let sealedBoxData = try! ChaChaPoly.seal(passwordData, using: key).combined
+            try formContainer.encode(sealedBoxData, forKey: .password)
+        }
     }
     
     required public convenience init(from decoder: Decoder) throws {
@@ -37,6 +47,14 @@ public class Form: NSManagedObject, Codable, Identifiable, Csv, Copyable {
         }
         if let sections = try formContainer.decode(Set<Section>?.self, forKey: .sections) {
             self.sections = sections
+        }
+        
+        if let sealedBoxData = try formContainer.decode(Data?.self, forKey: .password) {
+            let hash = SHA256.hash(data: title!.data(using: .utf8)!)
+            let key = SymmetricKey(data: hash)
+            let sealedBox = try! ChaChaPoly.SealedBox(combined: sealedBoxData)
+            let passwordData = try! ChaChaPoly.open(sealedBox, using: key)
+            self.password = String(data: passwordData, encoding: .utf8)
         }
     }
     
