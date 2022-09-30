@@ -122,7 +122,6 @@ struct EditorViewToolbar: View {
                             Text("CSV")
                         }
                     }
-                    
                 } label: {
                     HStack {
                         Image(systemName: "square.and.arrow.up")

@@ -49,6 +49,7 @@ struct FormEditorView: View {
                             alertTitle = "Error exporting form"
                             showAlert = true
                         }
+                        exportToForm = false
                     }
                 })
                 .onChange(of: exportToPDF, perform: { _ in
@@ -57,6 +58,7 @@ struct FormEditorView: View {
                         let pdfData = formModel.exportToPdf(form: form)
                         formaticFileDocument = FormaticFileDocument(documentData: pdfData)
                         showFileExporter = true
+                        exportToPDF = false
                     }
                 })
                 .onChange(of: exportToCSV, perform: { _ in
@@ -65,6 +67,7 @@ struct FormEditorView: View {
                         let csvData = formModel.exportToCsv(form: form)
                         formaticFileDocument = FormaticFileDocument(documentData: csvData)
                         showFileExporter = true
+                        exportToCSV = false
                     }
                 })
                 .sheet(isPresented: $showToggleLockView, onDismiss: {
@@ -77,7 +80,13 @@ struct FormEditorView: View {
                     ToggleLockView(showToggleLockView: $showToggleLockView, form: form)
                 })
                 .fileExporter(isPresented: $showFileExporter, document: formaticFileDocument, contentType: exportFormat ?? .form, defaultFilename: form.title, onCompletion: { result in
-                    exportToPDF = false
+                    switch result {
+                    case .success(_):
+                        return
+                    case .failure(_):
+                        alertTitle = "Error exporting form"
+                        showAlert = true
+                    }
                 })
                 .alert(alertTitle, isPresented: $showAlert, actions: {
                     Button(alertMessage, role: .cancel) {}
