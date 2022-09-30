@@ -14,7 +14,6 @@ public class Form: NSManagedObject, Codable, Identifiable, Csv, Copyable {
     
     enum CodingKeys: String, CodingKey {
         case locked = "locked"
-        case password = "password"
         case title = "title"
         case sections = "sections"
     }
@@ -23,7 +22,6 @@ public class Form: NSManagedObject, Codable, Identifiable, Csv, Copyable {
         var formContainer = encoder.container(keyedBy: CodingKeys.self)
         
         try formContainer.encode(locked, forKey: .locked)
-        try formContainer.encode(password, forKey: .password)
         try formContainer.encode(title, forKey: .title)
         try formContainer.encode(sections, forKey: .sections)
     }
@@ -34,9 +32,6 @@ public class Form: NSManagedObject, Codable, Identifiable, Csv, Copyable {
         let formContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()
         self.locked = try formContainer.decode(Bool.self, forKey: .locked)
-        if let password =  try formContainer.decode(String?.self, forKey: .password) {
-            self.password = password
-        }
         if let title = try formContainer.decode(String?.self, forKey: .title) {
             self.title = title
         }
