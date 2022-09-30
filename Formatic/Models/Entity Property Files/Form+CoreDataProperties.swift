@@ -17,6 +17,7 @@ extension Form {
     }
     
     @NSManaged public var id: UUID
+    @NSManaged public var dateCreated: Date
     @NSManaged public var locked: Bool
     @NSManaged public var password: String?
     @NSManaged public var position: Int16
@@ -24,9 +25,10 @@ extension Form {
     @NSManaged public var sections: Set<Section>?
     
     /// Form convenience init
-    convenience init(id: UUID = UUID(), locked: Bool = false, password: String? = nil, position: Int, title: String) {
+    convenience init(id: UUID = UUID(), dateCreated: Date = Date(), locked: Bool = false, password: String? = nil, position: Int, title: String) {
         self.init(context: DataControllerModel.shared.container.viewContext)
         self.id = id
+        self.dateCreated = dateCreated
         self.locked = locked
         self.password = password
         self.position = Int16(position)

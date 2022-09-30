@@ -14,6 +14,7 @@ import CryptoKit
 public class Form: NSManagedObject, Codable, Identifiable, Csv, Copyable {
     
     enum CodingKeys: String, CodingKey {
+        case dateCreated = "dateCreated"
         case locked = "locked"
         case password = "password"
         case title = "title"
@@ -23,12 +24,13 @@ public class Form: NSManagedObject, Codable, Identifiable, Csv, Copyable {
     public func encode(to encoder: Encoder) throws {
         var formContainer = encoder.container(keyedBy: CodingKeys.self)
         
+        try formContainer.encode(dateCreated, forKey: .dateCreated)
         try formContainer.encode(locked, forKey: .locked)
         try formContainer.encode(title, forKey: .title)
         try formContainer.encode(sections, forKey: .sections)
         
         if let password {
-            let hash = SHA256.hash(data: title!.data(using: .utf8)!)
+            let hash = SHA256.hash(data: dateCreated.timeIntervalSince1970.description.data(using: .utf8)!)
             let key = SymmetricKey(data: hash)
             let passwordData = password.data(using: .utf8)!
             let sealedBoxData = try! ChaChaPoly.seal(passwordData, using: key).combined
@@ -41,6 +43,7 @@ public class Form: NSManagedObject, Codable, Identifiable, Csv, Copyable {
         
         let formContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()
+        self.dateCreated = try formContainer.decode(Date.self, forKey: .dateCreated)
         self.locked = try formContainer.decode(Bool.self, forKey: .locked)
         if let title = try formContainer.decode(String?.self, forKey: .title) {
             self.title = title
@@ -50,7 +53,7 @@ public class Form: NSManagedObject, Codable, Identifiable, Csv, Copyable {
         }
         
         if let sealedBoxData = try formContainer.decode(Data?.self, forKey: .password) {
-            let hash = SHA256.hash(data: title!.data(using: .utf8)!)
+            let hash = SHA256.hash(data: dateCreated.timeIntervalSince1970.description.data(using: .utf8)!)
             let key = SymmetricKey(data: hash)
             let sealedBox = try! ChaChaPoly.SealedBox(combined: sealedBoxData)
             let passwordData = try! ChaChaPoly.open(sealedBox, using: key)
