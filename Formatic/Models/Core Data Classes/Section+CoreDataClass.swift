@@ -83,7 +83,6 @@ public class Section: NSManagedObject, Codable, Identifiable, Csv, Copyable {
     }
     
     func toCsv() -> String {
-        var canvasWidgetCount = 0
         var retString = ""
         let allWidgets = (widgets ?? []).sorted { lhs, rhs in
             lhs.position < rhs.position
@@ -118,20 +117,21 @@ public class Section: NSManagedObject, Codable, Identifiable, Csv, Copyable {
                     retString += textEditorWidget.toCsv()
                 }
             case .dropdownWidget:
+                // Handled in DropdownSectionWidget
                 break
             case .checkboxWidget:
+                // Handled in CheckboxSectionWidget
                 break
             case .canvasWidget:
-                canvasWidgetCount += 1
+                if let canvasWidget = item as? CanvasWidget {
+                    retString += canvasWidget.toCsv()
+                }
             }
             retString += "\n"
         }
         // Remove trailing newline character IF widgets exist in section
         if retString != "" {
             retString.remove(at: retString.index(before: retString.endIndex))
-        }
-        if canvasWidgetCount > 0 {
-            retString += "\nCount of canvas widgets in section,(Not Displayed),\(canvasWidgetCount)"
         }
         return retString
     }

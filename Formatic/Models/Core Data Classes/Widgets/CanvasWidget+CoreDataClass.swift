@@ -10,8 +10,8 @@ import Foundation
 import CoreData
 
 @objc(CanvasWidget)
-public class CanvasWidget: Widget, Decodable, Copyable {
-    
+public class CanvasWidget: Widget, Decodable, Copyable, Csv {
+
     /// CanvasWidget  init
     init(title: String?, position: Int, image: Data?, pkDrawing: Data?, widgetViewPreview: Data?) {
         super.init(entityName: "CanvasWidget", context: DataControllerModel.shared.container.viewContext, title: title, position: position)
@@ -59,6 +59,15 @@ public class CanvasWidget: Widget, Decodable, Copyable {
         if let widgetViewPreview = try canvasWidgetContainer.decode(Data?.self, forKey: .widgetViewPreview) {
             self.widgetViewPreview = widgetViewPreview
         }
+    }
+    
+    func toCsv() -> String {
+        var csvString = ""
+        csvString += FormModel.formatAsCsv(self.section?.title ?? "") + ","
+        csvString += FormModel.formatAsCsv(self.title ?? "") + ","
+        csvString += (self.type ?? "") + ","
+        csvString += ",,,,,,,"
+        return csvString
     }
     
     func createCopy() -> Any {
