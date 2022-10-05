@@ -16,7 +16,7 @@ struct FormTitleView: View {
     @State var showAlert = false
     @State var alertTitle = ""
     @State var alertButtonTitle: String = "Okay"
-
+    
     init(form: Form, formTitle: String?) {
         self.form = form
         self.formTitle = formTitle ?? ""
