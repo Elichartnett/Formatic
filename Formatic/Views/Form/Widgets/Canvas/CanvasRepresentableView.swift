@@ -20,7 +20,9 @@ struct CanvasRepresentable: UIViewRepresentable {
     func makeUIView(context: Context) -> PKCanvasView {
         // Customize canvas
         do {
-            try canvasView.drawing = PKDrawing(data: canvasWidget.pkDrawing ?? Data())
+            if let pkDrawingData = canvasWidget.pkDrawing {
+                try canvasView.drawing = PKDrawing(data: pkDrawingData)
+            }
         }
         catch {
             DispatchQueue.main.async {
