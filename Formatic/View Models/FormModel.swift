@@ -406,12 +406,16 @@ class FormModel: ObservableObject {
             }
             
             if let snapshotImage = snapshot?.image, let mapMarker = UIImage(systemName: "mappin.circle.fill")?.withTintColor(.red) {
-                UIGraphicsBeginImageContextWithOptions(snapshotImage.size, true, snapshotImage.scale)
+                UIGraphicsBeginImageContextWithOptions(options.size, true, snapshotImage.scale)
                 snapshotImage.draw(at: CGPoint.zero)
                 
                 for annotation in mapWidget.annotations ?? [] {
                     if let annotation = annotation as? Annotation {
-                        mapMarker.draw(at: (snapshot?.point(for: CLLocationCoordinate2D(latitude: annotation.latitude, longitude: annotation.longitude)))!)
+                        if var point = snapshot?.point(for: CLLocationCoordinate2D(latitude: annotation.latitude, longitude: annotation.longitude)) {
+                            point.x -= mapMarker.size.width / 2
+                            point.y -= mapMarker.size.height / 2
+                            mapMarker.draw(at: (point))
+                        }
                     }
                 }
                 
