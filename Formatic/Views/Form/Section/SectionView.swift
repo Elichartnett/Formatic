@@ -62,7 +62,7 @@ struct SectionView: View {
                     
                 case .mapWidget:
                     let mapWidget = widget as! MapWidget
-                    MapWidgetView(mapWidget: mapWidget, locked: $locked)
+                    MapWidgetView(mapWidget: mapWidget, locked: $locked, forPDF: forPDF)
                     
                 case .canvasWidget:
                     let canvasWidget = widget as! CanvasWidget

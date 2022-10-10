@@ -19,17 +19,8 @@ struct Formatic: App {
             Home()
                 .environment(\.managedObjectContext, viewContext)
                 .environmentObject(formModel)
-                .onChange(of: scenePhase) { newPhase in
-                    switch newPhase {
-                    case .background:
-                        DataControllerModel.saveMOC()
-                    case .inactive:
-                        break
-                    case .active:
-                        break
-                    @unknown default:
-                        break
-                    }
+                .onReceive(formModel.timer) { _ in
+                    if viewContext.hasChanges { DataControllerModel.saveMOC() }
                 }
         }
     }

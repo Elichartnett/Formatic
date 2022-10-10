@@ -91,11 +91,6 @@ struct ConfigureDropdownSectionWidgetView: View {
                         section.addToWidgets(dropdownSectionWidget!)
                     }
                 }
-                
-                withAnimation {
-                    DataControllerModel.saveMOC()
-                }
-                
                 dismiss()
             } label: {
                 SubmitButton(isValid: $isValid)

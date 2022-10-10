@@ -12,7 +12,6 @@ import MapKit
 struct ConfigureMapWidgetView: View {
     @EnvironmentObject var formModel: FormModel
     @Environment(\.dismiss) var dismiss
-    
     @State var mapWidget: MapWidget?
     @Binding var title: String
     @State var section: Section
@@ -24,25 +23,33 @@ struct ConfigureMapWidgetView: View {
         VStack {
             Text("Form Preview")
                 .font(.title)
-            Map(coordinateRegion: $coordinateRegion, interactionModes: .all, showsUserLocation: false, userTrackingMode: .none)
-                .WidgetPreviewStyle()
+            
+            Group {
+                if let mapWidget {
+                    MapView(mapWidget: mapWidget, localCoordinateRegion: $coordinateRegion)
+                }
+                else {
+                    Map(coordinateRegion: $coordinateRegion, interactionModes: .all, showsUserLocation: false, userTrackingMode: .none)
+                }
+            }
+            .WidgetPreviewStyle()
+            
             Button {
-                if mapWidget != nil {
-                    mapWidget?.coordinateRegionCenterLat = coordinateRegion.center.latitude
-                    mapWidget?.coordinateRegionCenterLon = coordinateRegion.center.longitude
-                    mapWidget?.coordinateSpanLatDelta = coordinateRegion.span.latitudeDelta
-                    mapWidget?.coordinateSpanLonDelta = coordinateRegion.span.longitudeDelta
-                    formModel.updateMapWidgetSnapshot(size: widgetViewPreviewSize, mapWidget: mapWidget!)
+                if let mapWidget {
+                    mapWidget.coordinateRegionCenterLat = coordinateRegion.center.latitude
+                    mapWidget.coordinateRegionCenterLon = coordinateRegion.center.longitude
+                    mapWidget.coordinateSpanLatDelta = coordinateRegion.span.latitudeDelta
+                    mapWidget.coordinateSpanLonDelta = coordinateRegion.span.longitudeDelta
+                    formModel.updateMapWidgetSnapshot(size: widgetViewPreviewSize, mapWidget: mapWidget)
+                    withAnimation {
+                        section.addToWidgets(mapWidget)
+                    }
                 }
                 else {
                     let mapWidget = MapWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), coordinateRegionCenterLat: coordinateRegion.center.latitude, coordinateRegionCenterLon: coordinateRegion.center.longitude, coordinateSpanLatDelta: coordinateRegion.span.latitudeDelta, coordinateSpanLonDelta: coordinateRegion.span.longitudeDelta)
                     withAnimation {
                         section.addToWidgets(mapWidget)
                     }
-                }
-                
-                withAnimation {
-                    DataControllerModel.saveMOC()
                 }
                 dismiss()
             } label: {

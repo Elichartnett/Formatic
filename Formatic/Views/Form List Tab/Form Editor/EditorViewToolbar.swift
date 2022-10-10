@@ -49,8 +49,6 @@ struct EditorViewToolbar: View {
                 // Add section to form button
                 Button {
                     form.addToSections(Section(position: form.sections?.count ?? 0, title: nil))
-                    
-                    DataControllerModel.saveMOC()
                 } label: {
                     HStack {
                         Image(systemName: "plus.circle")

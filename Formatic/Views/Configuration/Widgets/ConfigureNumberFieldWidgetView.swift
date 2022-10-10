@@ -36,7 +36,6 @@ struct ConfigureNumberFieldWidgetView: View {
                 let numberFieldWidget = NumberFieldWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), number: number)
                 withAnimation {
                     section.addToWidgets(numberFieldWidget)
-                    DataControllerModel.saveMOC()
                 }
                 dismiss()
             } label: {

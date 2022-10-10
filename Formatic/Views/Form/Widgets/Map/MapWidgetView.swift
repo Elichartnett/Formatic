@@ -16,14 +16,17 @@ struct MapWidgetView: View {
     @ObservedObject var mapWidget: MapWidget
     @Binding var locked: Bool
     @State var title: String
-    @State var labelWidth: Double = 1
     @State var reconfigureWidget = false
     @State var widgetViewPreviewSize = CGSize.zero
+    @State var localCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.0902, longitude: -95.7129), span: MKCoordinateSpan(latitudeDelta: 70, longitudeDelta: 70))
+    var forPDF: Bool
     
-    init(mapWidget: MapWidget, locked: Binding<Bool>) {
+    init(mapWidget: MapWidget, locked: Binding<Bool>, forPDF: Bool) {
         self.mapWidget = mapWidget
         self._locked = locked
         self._title = State(initialValue: mapWidget.title ?? "")
+        self.forPDF = forPDF
+        self._localCoordinateRegion = State(initialValue: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: mapWidget.coordinateRegionCenterLat, longitude: mapWidget.coordinateRegionCenterLon), span: MKCoordinateSpan(latitudeDelta: mapWidget.coordinateSpanLatDelta, longitudeDelta: mapWidget.coordinateSpanLonDelta)))
     }
     
     var body: some View {
@@ -36,25 +39,21 @@ struct MapWidgetView: View {
                 }
             
             NavigationLink {
-                MapWidgetDetailView(mapWidget: mapWidget, coordinateRegion: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: mapWidget.coordinateRegionCenterLat, longitude: mapWidget.coordinateRegionCenterLon), span: MKCoordinateSpan(latitudeDelta: mapWidget.coordinateSpanLatDelta, longitudeDelta: mapWidget.coordinateSpanLonDelta)), labelWidth: labelWidth)
+                MapWidgetDetailView(mapWidget: mapWidget, localCoordinateRegion: localCoordinateRegion)
             } label: {
                 GeometryReader { proxy in
-                    Image(uiImage: UIImage(data: mapWidget.widgetViewPreview) ?? UIImage())
-                        .resizable()
-                        .scaledToFit()
-                        .onAppear(perform: {
-                            widgetViewPreviewSize = proxy.size
-                            if mapWidget.widgetViewPreview == Data() {
-                                formModel.updateMapWidgetSnapshot(size: proxy.size, mapWidget: mapWidget)
-                                self.labelWidth = proxy.size.width
-                            }
-                        })
-                        .onChange(of: proxy.size) { _ in
-                            withAnimation {
-                                self.labelWidth = proxy.size.width
+                    if !forPDF {
+                        MapView(mapWidget: mapWidget, localCoordinateRegion: $localCoordinateRegion)
+                            .onAppear {
+                                widgetViewPreviewSize = proxy.size
                                 formModel.updateMapWidgetSnapshot(size: proxy.size, mapWidget: mapWidget)
                             }
-                        }
+                    }
+                    else {
+                        Image(uiImage: UIImage(data: mapWidget.widgetViewPreview) ?? UIImage())
+                            .resizable()
+                            .scaledToFit()
+                    }
                 }
             }
             .WidgetPreviewStyle()
@@ -71,6 +70,8 @@ struct MapWidgetView: View {
             .disabled(editMode?.wrappedValue == .inactive)
         }
         .sheet(isPresented: $reconfigureWidget) {
+            localCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: mapWidget.coordinateRegionCenterLat, longitude: mapWidget.coordinateRegionCenterLon), span: MKCoordinateSpan(latitudeDelta: mapWidget.coordinateSpanLatDelta, longitudeDelta: mapWidget.coordinateSpanLonDelta))
+        } content: {
             ConfigureMapWidgetView(mapWidget: mapWidget, title: $title, section: mapWidget.section!, widgetViewPreviewSize: widgetViewPreviewSize)
                 .padding()
         }
@@ -79,7 +80,7 @@ struct MapWidgetView: View {
 
 struct MapWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        MapWidgetView(mapWidget: dev.mapWidget, locked: .constant(false))
+        MapWidgetView(mapWidget: dev.mapWidget, locked: .constant(false), forPDF: false)
             .previewInterfaceOrientation(.landscapeLeft)
     }
 }

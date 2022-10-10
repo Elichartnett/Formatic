@@ -14,18 +14,23 @@ struct MapWidgetDetailView: View {
     
     @EnvironmentObject var formModel: FormModel
     @ObservedObject var mapWidget: MapWidget
-    @State var coordinateType: CoordinateType = .latLon
-    @State var coordinateRegion: MKCoordinateRegion
-    var labelWidth: Double
+    @State var coordinateType: CoordinateType
+    @State var localCoordinateRegion: MKCoordinateRegion
+    
+    init(mapWidget: MapWidget, coordinateType: CoordinateType = .latLon, localCoordinateRegion: MKCoordinateRegion) {
+        self.mapWidget = mapWidget
+        self.coordinateType = coordinateType
+        self._localCoordinateRegion = State(initialValue: localCoordinateRegion)
+    }
     
     var body: some View {
         
         VStack {
             
-            AddAnnotationsView(mapWidget: mapWidget, coordinateType: $coordinateType, coordinateRegion: $coordinateRegion)
+            AddAnnotationsView(mapWidget: mapWidget, localCoordinateRegion: $localCoordinateRegion, coordinateType: $coordinateType)
                 .padding()
             
-            MapView(mapWidget: mapWidget, coordinateRegion: $coordinateRegion)
+            MapView(mapWidget: mapWidget, localCoordinateRegion: $localCoordinateRegion)
                 .overlay {
                     Image(systemName: "scope")
                         .opacity(coordinateType == .center ? 1 : 0)
@@ -33,18 +38,13 @@ struct MapWidgetDetailView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(mapWidget.title ?? "")
-        .onDisappear {
-            withAnimation {
-                formModel.updateMapWidgetSnapshot(size: CGSize(width: labelWidth, height: 200), mapWidget: mapWidget)
-            }
-        }
     }
 }
 
 struct MapWidgetDetailView_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { proxy in
-            MapWidgetDetailView(mapWidget: dev.mapWidget, coordinateRegion: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: dev.mapWidget.coordinateRegionCenterLat, longitude: dev.mapWidget.coordinateRegionCenterLon), span: MKCoordinateSpan(latitudeDelta: dev.mapWidget.coordinateSpanLatDelta, longitudeDelta: dev.mapWidget.coordinateSpanLonDelta)), labelWidth: 500)
+            MapWidgetDetailView(mapWidget: dev.mapWidget, localCoordinateRegion: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: dev.mapWidget.coordinateRegionCenterLat, longitude: dev.mapWidget.coordinateRegionCenterLon), span: MKCoordinateSpan(latitudeDelta: dev.mapWidget.coordinateSpanLatDelta, longitudeDelta: dev.mapWidget.coordinateSpanLonDelta)))
         }
     }
 }

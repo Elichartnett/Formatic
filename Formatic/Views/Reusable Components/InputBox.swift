@@ -59,9 +59,6 @@ struct InputBox: View {
                 .stroke(isFocused ? .blue : .secondary, lineWidth: 2)
         )
         .focused($isFocused)
-        .onChange(of: isFocused) { _ in
-            DataControllerModel.saveMOC()
-        }
     }
 }
 

@@ -91,9 +91,6 @@ struct FormView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .onDisappear {
-            DataControllerModel.saveMOC()
-        }
     }
 }
 

@@ -41,7 +41,6 @@ struct ConfigureTextEditorWidgetView: View {
                 let textEditorWidget = TextEditorWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), text: text)
                 withAnimation {
                     section.addToWidgets(textEditorWidget)
-                    DataControllerModel.saveMOC()
                 }
                 dismiss()
             } label: {

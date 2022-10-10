@@ -64,7 +64,6 @@ struct NewFormView: View {
                         form.password = password
                         form.locked = true
                     }
-                    DataControllerModel.saveMOC()
                 }
                 showNewFormView = false
                 

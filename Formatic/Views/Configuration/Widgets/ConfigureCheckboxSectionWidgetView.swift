@@ -81,11 +81,6 @@ struct ConfigureCheckboxSectionWidgetView: View {
                         section.addToWidgets(checkboxSectionWidget)
                     }
                 }
-                
-                withAnimation {
-                    DataControllerModel.saveMOC()
-                }
-                
                 dismiss()
             } label: {
                 SubmitButton(isValid: .constant(true))

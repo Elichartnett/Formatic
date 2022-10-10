@@ -72,7 +72,6 @@ struct ConfigureCanvasWidgetView: View {
                         section.addToWidgets(canvasWidget)
                     }
                 }
-                DataControllerModel.saveMOC()
                 dismiss()
             } label: {
                 SubmitButton(isValid: .constant(true))

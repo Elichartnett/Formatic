@@ -41,7 +41,6 @@ struct DropdownSectionWidgetView: View {
                     ForEach(dropdowns) { widget in
                         Button {
                             dropdownSectionWidget.selectedDropdown = widget
-                            DataControllerModel.saveMOC()
                         } label: {
                             HStack {
                                 Text(widget.title!)

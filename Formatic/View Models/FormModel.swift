@@ -12,6 +12,8 @@ import MapKit
 
 class FormModel: ObservableObject {
     
+    @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     func numberIsValid(number: String, range: ClosedRange<Double>? = nil) -> Bool {
         // Check if field only contains nubmers
         if let number = Double(number) {
@@ -100,7 +102,6 @@ class FormModel: ObservableObject {
                     {
                         try resolveDuplicateFormName(newForm: newForm)
                     }
-                    DataControllerModel.saveMOC()
                 }
                 catch {
                     throw FormError.fetchError
@@ -113,7 +114,6 @@ class FormModel: ObservableObject {
         catch {
             throw FormError.urlToDataError
         }
-        DataControllerModel.saveMOC()
     }
     
     func getForms() throws -> [Form] {
@@ -209,7 +209,6 @@ class FormModel: ObservableObject {
                 do {
                     try resolveDuplicateFormName(newForm: formCopy)
                     formCopy.position = form.position + 1
-                    DataControllerModel.saveMOC()
                 }
                 catch {
                     throw FormError.copyError
@@ -229,7 +228,6 @@ class FormModel: ObservableObject {
             for index in position..<widgets.count {
                 widgets[index].position = widgets[index].position - 1
             }
-            DataControllerModel.saveMOC()
         }
     }
     
@@ -305,7 +303,6 @@ class FormModel: ObservableObject {
                 widget.position = Int16(index)
             }
         }
-        DataControllerModel.saveMOC()
     }
     
     func exportToPdf(form: Form) -> Data {

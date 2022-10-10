@@ -12,18 +12,18 @@ import MapKit
 struct MapView: View {
     
     @ObservedObject var mapWidget: MapWidget
-    @Binding var coordinateRegion: MKCoordinateRegion
     @FetchRequest var annotations: FetchedResults<Annotation>
+    @Binding var localCoordinateRegion: MKCoordinateRegion
     
-    init(mapWidget: MapWidget, coordinateRegion: Binding<MKCoordinateRegion>) {
+    init(mapWidget: MapWidget, localCoordinateRegion: Binding<MKCoordinateRegion>) {
         self.mapWidget = mapWidget
-        self._coordinateRegion = coordinateRegion
         self._annotations = FetchRequest<Annotation>(sortDescriptors: [], predicate: NSPredicate(format: "mapWidget == %@", mapWidget))
+        self._localCoordinateRegion = localCoordinateRegion
     }
     
     var body: some View {
         
-        Map(coordinateRegion: $coordinateRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(.none), annotationItems: annotations) { annotation in
+        Map(coordinateRegion: $localCoordinateRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(.none), annotationItems: annotations) { annotation in
             MapMarker(coordinate: CLLocationCoordinate2D(latitude: annotation.latitude, longitude: annotation.longitude))
         }
         .ignoresSafeArea()
@@ -50,6 +50,6 @@ struct MapView: View {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView(mapWidget: dev.mapWidget, coordinateRegion: .constant(dev.coordinateRegion))
+        MapView(mapWidget: dev.mapWidget, localCoordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: dev.mapWidget.coordinateRegionCenterLat, longitude: dev.mapWidget.coordinateRegionCenterLon), span: MKCoordinateSpan(latitudeDelta: dev.mapWidget.coordinateSpanLatDelta, longitudeDelta: dev.mapWidget.coordinateSpanLonDelta))))
     }
 }

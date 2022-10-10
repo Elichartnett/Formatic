@@ -13,8 +13,8 @@ import MapKit
 struct AddAnnotationsView: View {
     
     @ObservedObject var mapWidget: MapWidget
+    @Binding var localCoordinateRegion: MKCoordinateRegion
     @Binding var coordinateType: CoordinateType
-    @Binding var coordinateRegion: MKCoordinateRegion
     @State var latitude: String = ""
     @State var longitude: String = ""
     @State var validLatitude: Bool = false
@@ -68,31 +68,31 @@ struct AddAnnotationsView: View {
                 else if coordinateType == .center {
                     VStack {
                         Text("Latitude").bold().underline()
-                        Text(formatter.string(from: coordinateRegion.center.latitude as NSNumber)!)
+                        Text(formatter.string(from: localCoordinateRegion.center.latitude as NSNumber)!)
                     }
                     VStack {
                         Text("Longitude").bold().underline()
-                        Text(formatter.string(from: coordinateRegion.center.longitude as NSNumber)!)
+                        Text(formatter.string(from: localCoordinateRegion.center.longitude as NSNumber)!)
                     }
                     
                     VStack {
                         Text("Easting").bold().underline()
-                        Text(formatter.string(from: coordinateRegion.center.utmCoordinate().easting as NSNumber)!)
+                        Text(formatter.string(from: localCoordinateRegion.center.utmCoordinate().easting as NSNumber)!)
                     }
                     
                     VStack {
                         Text("Northing").bold().underline()
-                        Text(formatter.string(from: coordinateRegion.center.utmCoordinate().northing as NSNumber)!)
+                        Text(formatter.string(from: localCoordinateRegion.center.utmCoordinate().northing as NSNumber)!)
                     }
                     
                     VStack {
                         Text("Zone").bold().underline()
-                        Text(formatter.string(from: coordinateRegion.center.utmCoordinate().zone as NSNumber)!)
+                        Text(formatter.string(from: localCoordinateRegion.center.utmCoordinate().zone as NSNumber)!)
                     }
                     
                     VStack {
                         Text("Hemisphere").bold().underline()
-                        Text(coordinateRegion.center.utmCoordinate().hemisphere == .northern ? "Northern" : "Southern")
+                        Text(localCoordinateRegion.center.utmCoordinate().hemisphere == .northern ? "Northern" : "Southern")
                     }
                 }
                 
@@ -116,11 +116,10 @@ struct AddAnnotationsView: View {
                         annotation.longitude = longitude
                     }
                     else if coordinateType == .center {
-                        annotation.latitude = coordinateRegion.center.latitude
-                        annotation.longitude = coordinateRegion.center.longitude
+                        annotation.latitude = localCoordinateRegion.center.latitude
+                        annotation.longitude = localCoordinateRegion.center.longitude
                     }
                     mapWidget.addToAnnotations(annotation)
-                    DataControllerModel.saveMOC()
                 } label: {
                     Image(systemName: "plus")
                     Text("Add pin")
@@ -134,6 +133,6 @@ struct AddAnnotationsView: View {
 
 struct AddAnnotationsView_Previews: PreviewProvider {
     static var previews: some View {
-        AddAnnotationsView(mapWidget: dev.mapWidget, coordinateType: .constant(.latLon), coordinateRegion: .constant(dev.coordinateRegion), latitude: String(dev.annotation.latitude), longitude: String(dev.annotation.longitude), validLatitude: true, validLongitude: true, easting: "", northing: "", zone: "", validEasting: true, validNorthing: true, validZone: true)
+        AddAnnotationsView(mapWidget: dev.mapWidget, localCoordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: dev.mapWidget.coordinateRegionCenterLat, longitude: dev.mapWidget.coordinateRegionCenterLon), span: MKCoordinateSpan(latitudeDelta: dev.mapWidget.coordinateSpanLatDelta, longitudeDelta: dev.mapWidget.coordinateSpanLonDelta))), coordinateType: .constant(.latLon), latitude: String(dev.annotation.latitude), longitude: String(dev.annotation.longitude), validLatitude: true, validLongitude: true, easting: "", northing: "", zone: "", validEasting: true, validNorthing: true, validZone: true)
     }
 }
