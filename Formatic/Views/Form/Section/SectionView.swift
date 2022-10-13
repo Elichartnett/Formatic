@@ -16,6 +16,9 @@ struct SectionView: View {
     @ObservedObject var section: Section
     @Binding var locked: Bool
     var forPDF: Bool
+    var moveDisabled: Bool {
+        return locked
+    }
     
     init(section: Section, locked: Binding<Bool>, forPDF: Bool = false) {
         self._widgets = FetchRequest<Widget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "section == %@", section))
@@ -92,7 +95,7 @@ struct SectionView: View {
         .onMove(perform: { indexSet, destination in
             formModel.updateWidgetPosition(section: section, indexSet: indexSet, destination: destination)
         })
-        .moveDisabled(locked)
+        .moveDisabled(moveDisabled)
     }
 }
 
