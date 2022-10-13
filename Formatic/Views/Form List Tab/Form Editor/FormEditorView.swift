@@ -12,7 +12,7 @@ import UniformTypeIdentifiers
 struct FormEditorView: View {
     
     @EnvironmentObject var formModel: FormModel
-    
+    @State var editMode = EditMode.inactive
     @ObservedObject var form: Form
     @State var formaticFileDocument: FormaticFileDocument?
     @State var exportToForm = false
@@ -20,7 +20,6 @@ struct FormEditorView: View {
     @State var exportToCSV = false
     @State var showFileExporter = false
     @State var showToggleLockView = false
-    @State var isEditing = false
     @State var showAlert = false
     @State var alertTitle = ""
     @State var alertMessage = "Okay"
@@ -31,10 +30,10 @@ struct FormEditorView: View {
         VStack {
             
             FormView(form: form, forPDF: false)
-                .environment(\.editMode, .constant(isEditing ? .active : .inactive))
+                .environment(\.editMode, $editMode)
                 .toolbar(content: {
                     ToolbarItem(placement: .principal) {
-                        EditorViewToolbar(form: form, exportToForm: $exportToForm, exportToPDF: $exportToPDF, exportToCSV: $exportToCSV, showToggleLockView: $showToggleLockView, isEditing: $isEditing)
+                        EditorViewToolbar(form: form, exportToForm: $exportToForm, exportToPDF: $exportToPDF, exportToCSV: $exportToCSV, showToggleLockView: $showToggleLockView, editMode: $editMode)
                     }
                 })
                 .onChange(of: exportToForm, perform: { _ in
@@ -73,7 +72,7 @@ struct FormEditorView: View {
                 .sheet(isPresented: $showToggleLockView, onDismiss: {
                     if form.locked == true {
                         withAnimation {
-                            isEditing = false
+                            editMode == .inactive
                         }
                     }
                 }, content: {

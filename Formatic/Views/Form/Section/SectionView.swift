@@ -25,7 +25,7 @@ struct SectionView: View {
     }
     
     var body: some View {
-        
+                
         // Display all widgets in section
         ForEach(widgets) { widget in
             let widgetType: WidgetType = WidgetType.init(rawValue: widget.type!)!
