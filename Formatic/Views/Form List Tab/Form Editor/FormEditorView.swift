@@ -72,7 +72,7 @@ struct FormEditorView: View {
                 .sheet(isPresented: $showToggleLockView, onDismiss: {
                     if form.locked == true {
                         withAnimation {
-                            editMode == .inactive
+                            editMode = .inactive
                         }
                     }
                 }, content: {

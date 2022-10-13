@@ -92,6 +92,7 @@ struct SectionView: View {
         .onMove(perform: { indexSet, destination in
             formModel.updateWidgetPosition(section: section, indexSet: indexSet, destination: destination)
         })
+        .moveDisabled(locked)
     }
 }
 
