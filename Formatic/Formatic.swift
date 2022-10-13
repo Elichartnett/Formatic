@@ -13,6 +13,9 @@ struct Formatic: App {
     @Environment(\.scenePhase) var scenePhase
     @State var viewContext = DataControllerModel.shared.container.viewContext
     @StateObject var formModel = FormModel()
+    @State var alertTitle = ""
+    @State var showAlert = false
+    @State var alertButtonTitle = "Okay"
     
     var body: some Scene {
         WindowGroup {
@@ -20,8 +23,17 @@ struct Formatic: App {
                 .environment(\.managedObjectContext, viewContext)
                 .environmentObject(formModel)
                 .onReceive(formModel.timer) { _ in
-                    if viewContext.hasChanges { DataControllerModel.saveMOC() }
+                    do {
+                        if viewContext.hasChanges { try DataControllerModel.saveMOC() }
+                    }
+                    catch {
+                        alertTitle = "Error saving form"
+                        showAlert = true
+                    }
                 }
+                .alert(alertTitle, isPresented: $showAlert, actions: {
+                    Button(alertButtonTitle, role: .cancel) {}
+                })
         }
     }
 }

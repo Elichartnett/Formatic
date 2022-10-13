@@ -61,6 +61,7 @@ enum SourceType: String, Identifiable {
 }
 
 enum FormError: Error {
+    case saveError
     case fetchError
     case encodeFormToJsonDataError
     case urlToDataError

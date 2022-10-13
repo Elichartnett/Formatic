@@ -16,6 +16,9 @@ struct EditorViewToolbar: View {
     @Binding var exportToCSV: Bool
     @Binding var showToggleLockView: Bool
     @Binding var editMode: EditMode
+    @State var alertTitle = ""
+    @State var showAlert = false
+    @State var alertButtonTitle = "Okay"
     
     var body: some View {
         
@@ -85,7 +88,13 @@ struct EditorViewToolbar: View {
                 
                 // Save form in managed object context button
                 Button {
-                    DataControllerModel.saveMOC()
+                    do {
+                        try DataControllerModel.saveMOC()
+                    }
+                    catch {
+                        alertTitle = "Error saving form"
+                        showAlert = true
+                    }
                 } label: {
                     Text("Save")
                 }
@@ -135,6 +144,9 @@ struct EditorViewToolbar: View {
                 Spacer()
             }
         }
+        .alert(alertTitle, isPresented: $showAlert, actions: {
+            Button(alertButtonTitle, role: .cancel) {}
+        })
     }
 }
 

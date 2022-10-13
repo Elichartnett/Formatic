@@ -23,15 +23,14 @@ class DataControllerModel: ObservableObject {
         }
     }
     
-    static func saveMOC() {
+    static func saveMOC() throws {
         do {
             if DataControllerModel.shared.container.viewContext.hasChanges {
                 try DataControllerModel.shared.container.viewContext.save()
             }
         }
         catch {
-            // TODO: handle error
-            print("Could not save managed object context: \(error)")
+            throw FormError.saveError
         }
     }
 }

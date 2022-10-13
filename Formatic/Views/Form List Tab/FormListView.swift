@@ -42,7 +42,8 @@ struct FormListView: View {
                                         try formModel.deleteForm(position: Int(form.position))
                                     }
                                     catch {
-                                        
+                                        alertTitle = "Error deleting form"
+                                        showAlert = true
                                     }
                                 } label: {
                                     Label("Delete", systemImage: "trash")
@@ -54,7 +55,8 @@ struct FormListView: View {
                                         try formModel.copyForm(form: form)
                                     }
                                     catch {
-                                        
+                                        alertTitle = "Error copying form"
+                                        showAlert = true
                                     }
                                 } label: {
                                     Label("Copy", systemImage: "doc.on.doc")

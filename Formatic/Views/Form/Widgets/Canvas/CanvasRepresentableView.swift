@@ -18,9 +18,9 @@ struct CanvasRepresentable: UIViewRepresentable {
     let width: Double
     
     func makeUIView(context: Context) -> PKCanvasView {
-        // Customize canvas
         do {
             if let pkDrawingData = canvasWidget.pkDrawing {
+                // Load existing canvas
                 try canvasView.drawing = PKDrawing(data: pkDrawingData)
             }
         }
@@ -30,6 +30,7 @@ struct CanvasRepresentable: UIViewRepresentable {
                 showAlert = true
             }
         }
+        // Customize canvas
         canvasView.frame = CGRect(origin: .zero, size: CGSize(width: width, height: width))
         canvasView.isOpaque = false
         canvasView.backgroundColor = .clear
