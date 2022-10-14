@@ -1,13 +1,14 @@
 /* 
-  Localizable.strings
-  Formatic
-
-  Created by Eli Hartnett on 10/13/22.
-  
-*/
+ Localizable.strings
+ Formatic
+ 
+ Created by Eli Hartnett on 10/13/22.
+ 
+ */
 
 "getStartedMessage" = "Add a form to get started!";
 "defaultAlertButtonDismissMessage" = "Okay";
+
 "loadFormsErrorMessage" = "Error loading forms";
 "saveFormErrorMessage" = "Error saving form";
 "deleteFormErrorMessage" = "Error deleting form";
@@ -19,44 +20,54 @@
 "formTitleAlreadyInUseErrorMessage" = "Title already in use";
 "formPasswordDoesNotMatchErrorMessage" = "Passwords do not match";
 "importCanvasErrorMessage" = "Error importing canvas";
-"noSearchResultsMessage" = "No results. Try searching for a different form title.";
-"deleteLabel" = "Delete";
-"copyLabel" = "Copy";
-"importLabel" = "Import";
-"setupLockLabel" = "Setup Lock";
-"removeLockLabel" = "Remove Lock";
-"passwordLabel" = "Password";
-"newSectionLabel" = "New section";
-"lockedLabel" = "Locked";
-"unlockLabel" = "Unlock";
-"unlockedLabel" = "Unlocked";
-"newFormLabel" = "New Form";
-"optionalFormPasswordLabel" = "Optional password";
-"retypeFormPasswordLabel" = "Retype password";
-"doneLabel" = "Done";
-"editLabel" = "Edit";
-"saveLabel" = "Save";
-"exportLabel" = "Export";
+"noSearchResultsMessage" = "No results. Try searching for a different title.";
+"noFormDataErrorMessage" = "No form data";
+
 "formPreviewLabel" = "Form Preview";
 "formLabel" = "Form";
 "formTitleLabel" = "Form Title";
-"noFormDataLabel" = "No form data";
 "sectionTitleLabel" = "Section Title";
 "titleLabel" = "Title";
+"newSectionLabel" = "New Section";
+"newFormLabel" = "New Form";
+
+"deleteLabel" = "Delete";
+"copyLabel" = "Copy";
+"importLabel" = "Import";
+"doneLabel" = "Done";
+"editLabel" = "Edit";
+"saveLabel" = "Save";
+"submitLabel" = "Submit";
+"exportLabel" = "Export";
 "pdfLabel" = "PDF";
 "csvLabel" = "CSV";
+
+"passwordLabel" = "Password";
+"setupLockLabel" = "Setup Lock";
+"removeLockLabel" = "Remove Lock";
+"lockedLabel" = "Locked";
+"unlockLabel" = "Unlock";
+"unlockedLabel" = "Unlocked";
+"optionalFormPasswordLabel" = "Optional password";
+"retypeFormPasswordLabel" = "Retype password";
+
 "textFieldLabel" = "Text Field";
 "textLabel" = "text";
+
 "numberFieldLabel" = "Number Field";
 "numberLabel" = "number";
+
 "textEditorLabel" = "Text Editor";
 "startTypingHereLabel" = "Start typing here...";
+
 "dropdownMenuLabel" = "Dropdown Menu";
 "numberOfDropdownOptionsLabel" = "Number of dropdown options: ";
-"noSelectionLabel" = "No selection";
+
 "checkboxesLabel" = "Checkboxes";
+"noSelectionLabel" = "No selection";
 "numberOfCheckboxesLabel" = "Number of checkboxes: ";
 "descriptionLabel" = "description";
+
 "mapLabel" = "Map";
 "coordinateTypePickerLabel" = "Coordinate type picker";
 "latitudeLabel" = "Latitude";
@@ -68,7 +79,7 @@
 "northernLabel" = "Northern";
 "southernLabel" = "Southern";
 "addPinLabel" = "Add pin";
+
 "canvasLabel" = "Canvas";
 "selectPhotoLabel" = "Select photo";
 "takePhotoLabel" = "Take photo";
-"submitLabel" = "Submit";

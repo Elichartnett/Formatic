@@ -329,7 +329,7 @@ class FormModel: ObservableObject {
     }
     
     func exportToCsv(form: Form) -> Data {
-        let data = form.toCsv().data(using: .utf8) ?? Strings.noFormDataLabel.data(using: .utf8)!
+        let data = form.toCsv().data(using: .utf8) ?? Strings.noFormDataErrorMessage.data(using: .utf8)!
         return data
     }
     
