@@ -11,7 +11,7 @@ import SwiftUI
 struct SubmitButton: View {
     
     @Binding var isValid: Bool
-    @State var buttonTitle: String = "Submit"
+    @State var buttonTitle: String = Strings.submitLabel
     
     var body: some View {
         

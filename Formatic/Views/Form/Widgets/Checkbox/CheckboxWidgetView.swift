@@ -23,16 +23,16 @@ struct CheckboxWidgetView: View {
                 }
             } label: {
                 if checkbox.checked {
-                    Image(systemName: "checkmark.square.fill")
+                    Image(systemName: Strings.filledCheckmarkIconName)
                 }
                 else {
-                    Image(systemName: "square")
+                    Image(systemName: Strings.squareIconName)
                 }
             }
             .buttonStyle(.plain)
             .foregroundColor(.black)
             
-            TextField("description", text: $description)
+            TextField(Strings.descriptionLabel, text: $description)
                 .focused($isFocused)
                 .onAppear {
                     description = checkbox.title ?? ""

@@ -13,7 +13,7 @@ struct CanvasWidgetDetailView: View {
     @ObservedObject var canvasWidget: CanvasWidget
     @State var showAlert: Bool = false
     @State var alertTitle: String = ""
-    @State var alertButtonTitle: String = "Okay"
+    @State var alertButtonDismissMessage: String = Strings.defaultAlertButtonDismissMessage
     let width = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) - 100
     
     var body: some View {
@@ -23,7 +23,7 @@ struct CanvasWidgetDetailView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle(canvasWidget.title ?? "")
             .alert(alertTitle, isPresented: $showAlert, actions: {
-                Button(alertButtonTitle, role: .cancel) {}
+                Button(alertButtonDismissMessage, role: .cancel) {}
             })
     }
 }

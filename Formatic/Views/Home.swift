@@ -18,7 +18,7 @@ struct Home: View {
         // List of all created forms
         FormListView()
             .overlay {
-                LottieView(name: "logoAnimation")
+                LottieView(name: Strings.logoAnimationFileName)
                     .background(Color.white)
                     .onReceive(timer) { _ in
                         time += 0.1

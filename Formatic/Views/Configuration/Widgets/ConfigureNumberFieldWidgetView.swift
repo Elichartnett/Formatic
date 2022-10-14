@@ -20,7 +20,7 @@ struct ConfigureNumberFieldWidgetView: View {
     
     var body: some View {
         VStack {
-            InputBox(placeholder: "number", text: $number, inputType: .number, isValid: $isValid)
+            InputBox(placeholder: Strings.numberLabel, text: $number, inputType: .number, isValid: $isValid)
                 .onChange(of: number) { _ in
                     withAnimation {
                         if number.isEmpty {

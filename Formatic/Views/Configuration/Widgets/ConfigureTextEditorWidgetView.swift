@@ -30,7 +30,7 @@ struct ConfigureTextEditorWidgetView: View {
                     .focused($isFocused)
                 
                 if text.isEmpty {
-                    Text("Start type here...")
+                    Text(Strings.startTypingHereLabel)
                         .foregroundColor(Color(uiColor: UIColor.systemGray3))
                         .padding(.top, 10)
                         .padding(.leading, 5)

@@ -73,6 +73,8 @@
 		62A979C128277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BD28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift */; };
 		62A979C228277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BE28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift */; };
 		62BFAC9528188B97006C8216 /* Form Container.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62BFAC9328188B97006C8216 /* Form Container.xcdatamodeld */; };
+		62D7D87728F86448004C55C9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62D7D87928F86448004C55C9 /* Localizable.strings */; };
+		62D7D87B28F86623004C55C9 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D7D87A28F86623004C55C9 /* Strings.swift */; };
 		62D7FE992826B8AF00FAA815 /* CheckboxWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D7FE982826B8AF00FAA815 /* CheckboxWidgetView.swift */; };
 		62E3FB0028DA13DD00F5FE2B /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E3FAFF28DA13DD00F5FE2B /* ViewModifiers.swift */; };
 		62E6AB47281E0ED6009F568B /* Form+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E6AB46281E0ED6009F568B /* Form+CoreDataProperties.swift */; };
@@ -158,6 +160,8 @@
 		62A979BD28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckboxSectionWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		62A979BE28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckboxSectionWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62BFAC9428188B97006C8216 /* Widget.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Widget.xcdatamodel; sourceTree = "<group>"; };
+		62D7D87828F86448004C55C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		62D7D87A28F86623004C55C9 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		62D7FE982826B8AF00FAA815 /* CheckboxWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxWidgetView.swift; sourceTree = "<group>"; };
 		62E3FAFF28DA13DD00F5FE2B /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		62E6AB46281E0ED6009F568B /* Form+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -243,6 +247,8 @@
 				62E7F87A282EE1E4004A95EF /* LocationManager.swift */,
 				6250E97E2835B11600E6E6A0 /* FormaticFileDocument.swift */,
 				72F9420C28C82B3F001E8A2A /* Protocols.swift */,
+				62D7D87A28F86623004C55C9 /* Strings.swift */,
+				62D7D87928F86448004C55C9 /* Localizable.strings */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -565,6 +571,7 @@
 				6288C6AB28BB06640081A39D /* logo.png in Resources */,
 				6288C6AE28BB06680081A39D /* logoAnimation.json in Resources */,
 				6288C6A728BB06580081A39D /* Privacy Policy.pdf in Resources */,
+				62D7D87728F86448004C55C9 /* Localizable.strings in Resources */,
 				6288C6AC28BB06640081A39D /* logo.svg in Resources */,
 				62FE6E7028187059009D41FD /* Assets.xcassets in Resources */,
 			);
@@ -607,6 +614,7 @@
 				6208345828283A2F00DF864F /* CheckboxWidget+CoreDataClass.swift in Sources */,
 				62294F14281F8C3400226AF1 /* TextEditorWidgetView.swift in Sources */,
 				6250E9612831632D00E6E6A0 /* CanvasWidgetDetailView.swift in Sources */,
+				62D7D87B28F86623004C55C9 /* Strings.swift in Sources */,
 				627736FD28300F7D00F7B107 /* PhotoTaker.swift in Sources */,
 				62A979C228277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift in Sources */,
 				622A99CD281E03B700BB5E12 /* Widget+CoreDataProperties.swift in Sources */,
@@ -653,6 +661,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		62D7D87928F86448004C55C9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				62D7D87828F86448004C55C9 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		62FE6E7428187059009D41FD /* Debug */ = {

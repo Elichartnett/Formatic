@@ -25,14 +25,14 @@ struct TextFieldWidgetView: View {
         
         HStack {
             
-            InputBox(placeholder: "Title", text: $title)
+            InputBox(placeholder: Strings.titleLabel, text: $title)
                 .titleFrameStyle(locked: $locked)
                 .onChange(of: title) { _ in
                     textFieldWidget.title = title
                 }
                 .disabled(locked)
             
-            InputBox(placeholder: "text", text: $text)
+            InputBox(placeholder: Strings.textLabel, text: $text)
                 .onChange(of: text) { _ in
                     textFieldWidget.text = text
                 }

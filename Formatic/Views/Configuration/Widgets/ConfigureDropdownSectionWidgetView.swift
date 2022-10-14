@@ -24,7 +24,7 @@ struct ConfigureDropdownSectionWidgetView: View {
         VStack {
             Stepper(value: $numDropdowns, in: 1...10) {
                 HStack (spacing: 0) {
-                    Text("Number of dropdown options: ")
+                    Text(Strings.numberOfDropdownOptionsLabel)
                     Text("\(numDropdowns)")
                 }
             }
@@ -47,7 +47,7 @@ struct ConfigureDropdownSectionWidgetView: View {
             ScrollView {
                 // Configure drop down options
                 ForEach($localDropdowns) { $localDropdown in
-                    InputBox(placeholder: "description", text: $localDropdown.title)
+                    InputBox(placeholder: Strings.descriptionLabel, text: $localDropdown.title)
                 }
                 .onChange(of: localDropdowns) { _ in
                     withAnimation {

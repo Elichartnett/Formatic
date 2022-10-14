@@ -27,7 +27,7 @@ struct DropdownSectionWidgetView: View {
         
         HStack {
             
-            InputBox(placeholder: "Title", text: $title)
+            InputBox(placeholder: Strings.titleLabel, text: $title)
                 .titleFrameStyle(locked: $locked)
                 .onChange(of: title) { _ in
                     dropdownSectionWidget.title = title
@@ -46,16 +46,16 @@ struct DropdownSectionWidgetView: View {
                                 Text(widget.title!)
                                 Spacer()
                                 if dropdownSectionWidget.selectedDropdown == widget {
-                                    Image(systemName: "checkmark")
+                                    Image(systemName: Strings.checkmarkIconName)
                                 }
                             }
                         }
                     }
                 } label: {
-                    Text("Dropdown Menu:")
+                    Text(Strings.dropdownMenuLabel)
                 }
                 
-                Text(dropdownSectionWidget.selectedDropdown?.title! ?? "No selection")
+                Text(dropdownSectionWidget.selectedDropdown?.title! ?? Strings.noSelectionLabel)
             }
             
             Spacer()
@@ -64,7 +64,7 @@ struct DropdownSectionWidgetView: View {
                 reconfigureWidget = true
             } label: {
                 if editMode?.wrappedValue == .active {
-                    Image(systemName: "slider.horizontal.3")
+                    Image(systemName: Strings.editIconName)
                         .customIcon()
                 }
             }

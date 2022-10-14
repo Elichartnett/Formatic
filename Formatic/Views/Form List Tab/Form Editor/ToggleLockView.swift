@@ -20,13 +20,13 @@ struct ToggleLockView: View {
         
         VStack {
             
-            Text(form.password != nil ? "Unlock" : "Setup Lock")
+            Text(form.password != nil ? Strings.unlockLabel : Strings.setupLockLabel)
                 .font(.title)
                 .bold()
             
             if form.password != nil {
                 // Unlock
-                InputBox(placeholder: "Password", text: $enteredPassword, inputType: .password)
+                InputBox(placeholder: Strings.passwordLabel, text: $enteredPassword, inputType: .password)
                     .onChange(of: enteredPassword) { _ in
                         validPassword = (enteredPassword == form.password)
                     }
@@ -38,7 +38,7 @@ struct ToggleLockView: View {
             
             VStack {
                 if form.password != nil {
-                    Toggle("Remove lock", isOn: $removePassword)
+                    Toggle(Strings.setupLockLabel, isOn: $removePassword)
                         .labelStyle(.titleAndIcon)
                 }
                 Button {

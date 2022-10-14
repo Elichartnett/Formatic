@@ -40,8 +40,8 @@ struct ConfigureCanvasWidgetView: View {
                     selection: $photoPickerItem,
                     matching: .images,
                     photoLibrary: .shared()) {
-                        Image(systemName: "photo.on.rectangle.angled")
-                        Text("Select photo")
+                        Image(systemName: Strings.photoFrameIconName)
+                        Text(Strings.selectPhotoLabel)
                     }
                     .onChange(of: photoPickerItem) { newItem in
                         Task {
@@ -55,8 +55,8 @@ struct ConfigureCanvasWidgetView: View {
                 Button {
                     sourceType = .camera
                 } label: {
-                    Image(systemName: "camera")
-                    Text("Take photo")
+                    Image(systemName: Strings.cameraIconName)
+                    Text(Strings.takePhotoLabel)
                 }
             }
             

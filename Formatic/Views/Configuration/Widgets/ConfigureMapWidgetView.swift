@@ -21,7 +21,7 @@ struct ConfigureMapWidgetView: View {
     var body: some View {
         
         VStack {
-            Text("Form Preview")
+            Text(Strings.formPreviewLabel)
                 .font(.title)
             
             Group {

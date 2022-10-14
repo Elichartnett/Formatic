@@ -39,7 +39,7 @@ struct AddAnnotationsView: View {
         
         VStack {
             
-            Picker("Coordinate type picker", selection: $coordinateType) {
+            Picker(Strings.coordinateTypePickerLabel, selection: $coordinateType) {
                 ForEach(CoordinateType.allCases) { type in
                     Text(type.rawValue)
                         .tag(type)
@@ -49,50 +49,50 @@ struct AddAnnotationsView: View {
             
             HStack {
                 if coordinateType == .latLon {
-                    InputBox(placeholder: "Latitude", text: $latitude, inputType: .number, isValid: $validLatitude, numberRange: -90...90)
-                    InputBox(placeholder: "Logitude", text: $longitude, inputType: .number, isValid: $validLongitude, numberRange: -180...180)
+                    InputBox(placeholder: Strings.latitudeLabel, text: $latitude, inputType: .number, isValid: $validLatitude, numberRange: -90...90)
+                    InputBox(placeholder: Strings.longitudeLabel, text: $longitude, inputType: .number, isValid: $validLongitude, numberRange: -180...180)
                 }
                 else if coordinateType == .utm {
-                    InputBox(placeholder: "Easting", text: $easting, inputType: .number, isValid: $validEasting, numberRange: 166640...833360)
-                    InputBox(placeholder: "Northing", text: $northing, inputType: .number, isValid: $validNorthing, numberRange: 1110400...9334080)
-                    InputBox(placeholder: "Zone", text: $zone, inputType: .number, isValid: $validZone, numberRange: 1...60)
+                    InputBox(placeholder: Strings.eastingLabel, text: $easting, inputType: .number, isValid: $validEasting, numberRange: 166640...833360)
+                    InputBox(placeholder: Strings.northingLabel, text: $northing, inputType: .number, isValid: $validNorthing, numberRange: 1110400...9334080)
+                    InputBox(placeholder: Strings.zoneLabel, text: $zone, inputType: .number, isValid: $validZone, numberRange: 1...60)
                     
-                    Picker("Hemisphere", selection: $hemisphere) {
-                        Text("Northern")
+                    Picker(Strings.hemisphereLabel, selection: $hemisphere) {
+                        Text(Strings.northernLabel)
                             .tag(UTMHemisphere.northern)
-                        Text("Southern")
+                        Text(Strings.southernLabel)
                             .tag(UTMHemisphere.southern)
                     }
                     .pickerStyle(.menu)
                 }
                 else if coordinateType == .center {
                     VStack {
-                        Text("Latitude").bold().underline()
+                        Text(Strings.latitudeLabel).bold().underline()
                         Text(formatter.string(from: localCoordinateRegion.center.latitude as NSNumber)!)
                     }
                     VStack {
-                        Text("Longitude").bold().underline()
+                        Text(Strings.longitudeLabel).bold().underline()
                         Text(formatter.string(from: localCoordinateRegion.center.longitude as NSNumber)!)
                     }
                     
                     VStack {
-                        Text("Easting").bold().underline()
+                        Text(Strings.eastingLabel).bold().underline()
                         Text(formatter.string(from: localCoordinateRegion.center.utmCoordinate().easting as NSNumber)!)
                     }
                     
                     VStack {
-                        Text("Northing").bold().underline()
+                        Text(Strings.northingLabel).bold().underline()
                         Text(formatter.string(from: localCoordinateRegion.center.utmCoordinate().northing as NSNumber)!)
                     }
                     
                     VStack {
-                        Text("Zone").bold().underline()
+                        Text(Strings.zoneLabel).bold().underline()
                         Text(formatter.string(from: localCoordinateRegion.center.utmCoordinate().zone as NSNumber)!)
                     }
                     
                     VStack {
-                        Text("Hemisphere").bold().underline()
-                        Text(localCoordinateRegion.center.utmCoordinate().hemisphere == .northern ? "Northern" : "Southern")
+                        Text(Strings.hemisphereLabel).bold().underline()
+                        Text(localCoordinateRegion.center.utmCoordinate().hemisphere == .northern ? Strings.northernLabel : Strings.southernLabel)
                     }
                 }
                 
@@ -121,8 +121,8 @@ struct AddAnnotationsView: View {
                     }
                     mapWidget.addToAnnotations(annotation)
                 } label: {
-                    Image(systemName: "plus")
-                    Text("Add pin")
+                    Image(systemName: Strings.plusIconName)
+                    Text(Strings.addPinLabel)
                 }
                 .disabled(coordinateType == .latLon ? !(validLatitude && validLongitude) : coordinateType == .utm ? !(validEasting && validNorthing && validZone) : false)
             }

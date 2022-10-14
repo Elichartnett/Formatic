@@ -26,7 +26,7 @@ struct CanvasRepresentable: UIViewRepresentable {
         }
         catch {
             DispatchQueue.main.async {
-                alertTitle = "Error importing canvas"
+                alertTitle = Strings.importCanvasErrorMessage
                 showAlert = true
             }
         }

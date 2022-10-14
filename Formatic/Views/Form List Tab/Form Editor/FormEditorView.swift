@@ -22,7 +22,7 @@ struct FormEditorView: View {
     @State var showToggleLockView = false
     @State var showAlert = false
     @State var alertTitle = ""
-    @State var alertMessage = "Okay"
+    @State var alertButtonDismissMessage = Strings.defaultAlertButtonDismissMessage
     @State var exportFormat: UTType?
     
     var body: some View {
@@ -45,7 +45,7 @@ struct FormEditorView: View {
                             showFileExporter = true
                         }
                         catch {
-                            alertTitle = "Error exporting form"
+                            alertTitle = Strings.exportFormErrorMessage
                             showAlert = true
                         }
                         exportToForm = false
@@ -83,12 +83,12 @@ struct FormEditorView: View {
                     case .success(_):
                         return
                     case .failure(_):
-                        alertTitle = "Error exporting form"
+                        alertTitle = Strings.exportFormErrorMessage
                         showAlert = true
                     }
                 })
                 .alert(alertTitle, isPresented: $showAlert, actions: {
-                    Button(alertMessage, role: .cancel) {}
+                    Button(alertButtonDismissMessage, role: .cancel) {}
                 })
         }
     }

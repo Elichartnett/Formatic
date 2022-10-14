@@ -12,13 +12,21 @@ class DataControllerModel: ObservableObject {
     
     static let shared = DataControllerModel()
     
+    static var failed: Bool?
+    
     @Published var container = NSPersistentContainer(name: "Form Container")
     
     private init() {
+        loadPersistentStores()
+    }
+    
+    func loadPersistentStores() {
         container.loadPersistentStores { description, error in
-            if let error = error {
-                // TODO: handle error
-                print("Core Data failed to load: \(error)")
+            if let _ = error {
+                DataControllerModel.failed = true
+            }
+            else {
+                DataControllerModel.failed = false
             }
         }
     }

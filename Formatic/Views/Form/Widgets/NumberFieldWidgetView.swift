@@ -30,13 +30,13 @@ struct NumberFieldWidgetView: View {
         
         HStack {
             
-            InputBox(placeholder: "Title", text: $title)
+            InputBox(placeholder: Strings.titleLabel, text: $title)
                 .titleFrameStyle(locked: $locked)
                 .onChange(of: title) { _ in
                     numberFieldWidget.title = title
                 }
             
-            InputBox(placeholder: "number", text: $number)
+            InputBox(placeholder: Strings.numberLabel, text: $number)
                 .onChange(of: number) { _ in
                     isValid = formModel.numberIsValid(number: number, range: range)
                     if isValid {

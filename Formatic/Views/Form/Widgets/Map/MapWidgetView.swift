@@ -32,7 +32,7 @@ struct MapWidgetView: View {
     var body: some View {
         
         HStack {
-            InputBox(placeholder: "Title", text: $title)
+            InputBox(placeholder: Strings.titleLabel, text: $title)
                 .titleFrameStyle(locked: $locked)
                 .onChange(of: title) { _ in
                     mapWidget.title = title
@@ -63,7 +63,7 @@ struct MapWidgetView: View {
                 reconfigureWidget = true
             } label: {
                 if editMode?.wrappedValue == .active {
-                    Image(systemName: "slider.horizontal.3")
+                    Image(systemName: Strings.editIconName)
                         .customIcon()
                 }
             }

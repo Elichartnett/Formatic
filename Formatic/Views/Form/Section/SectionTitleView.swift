@@ -33,44 +33,44 @@ struct SectionTitleView: View {
             
             Menu {
                 // Add TextFieldWidget to section
-                Button("Text Field") {
+                Button(Strings.textFieldLabel) {
                     newWidgetType = .textFieldWidget
                 }
                 
                 // Add NumberFieldWidget to section
-                Button("Number Field") {
+                Button(Strings.numberFieldLabel) {
                     newWidgetType = .numberFieldWidget
                 }
                 
                 // Add TextEditorWidget to section
-                Button("Text Editor") {
+                Button(Strings.textEditorLabel) {
                     newWidgetType = .textEditorWidget
                 }
                 
                 // Add DropdownSectionWidget to section
-                Button("Dropdown Menu") {
+                Button(Strings.numberFieldLabel) {
                     newWidgetType = .dropdownSectionWidget
                 }
                 
                 // Add CheckboxSectionWidget to section
-                Button("Checkboxes") {
+                Button(Strings.checkboxesLabel) {
                     newWidgetType = .checkboxSectionWidget
                 }
                 
                 // Add MapWidget to section
-                Button("Map") {
+                Button(Strings.mapLabel) {
                     newWidgetType = .mapWidget
                 }
                 
                 // Add CanvasWidget to section
-                Button("Canvas") {
+                Button(Strings.canvasLabel) {
                     newWidgetType = .canvasWidget
                 }
             } label: {
-                Image(systemName: "plus.circle")
+                Image(systemName: Strings.plusCircleIconName)
             }
             
-            TextField("Section title", text: $sectionTitle)
+            TextField(Strings.sectionTitleLabel, text: $sectionTitle)
                 .focused($sectionTitleIsFocused)
                 .font(Font.title.weight(.semibold))
                 .onChange(of: sectionTitle) { newValue in

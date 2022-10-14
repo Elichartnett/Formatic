@@ -20,7 +20,7 @@ struct ConfigureTextFieldWidgetView: View {
         
         VStack {
             
-            InputBox(placeholder: "text", text: $text)
+            InputBox(placeholder: Strings.textLabel, text: $text)
             
             Button {
                 let textFieldWidget = TextFieldWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), text: text)

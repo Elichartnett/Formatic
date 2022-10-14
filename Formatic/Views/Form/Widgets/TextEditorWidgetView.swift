@@ -26,7 +26,7 @@ struct TextEditorWidgetView: View {
         
         HStack {
             
-            InputBox(placeholder: "Title", text: $title)
+            InputBox(placeholder: Strings.titleLabel, text: $title)
                 .titleFrameStyle(locked: $locked)
                 .onAppear {
                     title = textEditorWidget.title ?? ""
@@ -49,7 +49,7 @@ struct TextEditorWidgetView: View {
                     }
                 
                 if text.isEmpty {
-                    Text("Start typing here...")
+                    Text(Strings.startTypingHereLabel)
                         .foregroundColor(Color(uiColor: UIColor.systemGray3))
                         .padding(.top, 10)
                         .padding(.leading, 5)

@@ -15,7 +15,7 @@ struct FormTitleView: View {
     @State var lastValidTitle = ""
     @State var showAlert = false
     @State var alertTitle = ""
-    @State var alertButtonTitle: String = "Okay"
+    @State var alertButtonDismissMessage: String = Strings.defaultAlertButtonDismissMessage
     
     init(form: Form, formTitle: String?) {
         self.form = form
@@ -26,7 +26,7 @@ struct FormTitleView: View {
         
         VStack {
             
-            TextField("Form title", text: $formTitle)
+            TextField(Strings.formTitleLabel, text: $formTitle)
                 .font(.largeTitle.weight(.bold))
                 .focused($formTitleIsFocused)
                 .onAppear {
@@ -41,7 +41,7 @@ struct FormTitleView: View {
                 }
                 .onChange(of: formTitleIsFocused) { _ in
                     if !formTitleIsFocused && formTitle.isEmpty {
-                        alertTitle = "Title can not be empty"
+                        alertTitle = Strings.emptyFormTitleErrorMessage
                         showAlert = true
                         formTitle = lastValidTitle
                     }
@@ -52,7 +52,7 @@ struct FormTitleView: View {
         }
         .disabled(form.locked)
         .alert(alertTitle, isPresented: $showAlert, actions: {
-            Button(alertButtonTitle, role: .cancel) {}
+            Button(alertButtonDismissMessage, role: .cancel) {}
         })
     }
 }

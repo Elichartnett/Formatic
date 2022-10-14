@@ -18,7 +18,7 @@ struct FormListView: View {
     @State var showImportFormView = false
     @State var showAlert = false
     @State var alertTitle = ""
-    @State var alertButtonTitle = "Okay"
+    @State var alertButtonDismissMessage = "Okay"
     
     var body: some View {
         
@@ -42,11 +42,11 @@ struct FormListView: View {
                                         try formModel.deleteForm(position: Int(form.position))
                                     }
                                     catch {
-                                        alertTitle = "Error deleting form"
+                                        alertTitle = Strings.deleteFormErrorMessage
                                         showAlert = true
                                     }
                                 } label: {
-                                    Label("Delete", systemImage: "trash")
+                                    Label(Strings.deleteLabel, systemImage: Strings.trashIconName)
                                 }
                                 .tint(.red)
                                 
@@ -55,11 +55,11 @@ struct FormListView: View {
                                         try formModel.copyForm(form: form)
                                     }
                                     catch {
-                                        alertTitle = "Error copying form"
+                                        alertTitle = Strings.copyFormErrorMessage
                                         showAlert = true
                                     }
                                 } label: {
-                                    Label("Copy", systemImage: "doc.on.doc")
+                                    Label(Strings.copyLabel, systemImage: Strings.copyIconName)
                                 }
                                 .tint(.blue)
                             }
@@ -76,14 +76,14 @@ struct FormListView: View {
                     })
                     .overlay {
                         if filteredForms.isEmpty {
-                            Text("No results. Try searching for a different form title.")
+                            Text(Strings.noSearchResultsMessage)
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                                 .background(Color(uiColor: UIColor.systemGray6).ignoresSafeArea())
                         }
                     }
                 }
                 else {
-                    Text("Add a form to get started!")
+                    Text(Strings.getStartedMessage)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color(uiColor: UIColor.systemGray6).ignoresSafeArea())
                 }
@@ -104,11 +104,11 @@ struct FormListView: View {
                         try formModel.importForm(url: url)
                     }
                     catch {
-                        alertTitle = "Error importing form"
+                        alertTitle = Strings.importFormErrorMessage
                         showAlert = true
                     }
                 case .failure(_):
-                    alertTitle = "Error importing form"
+                    alertTitle = Strings.importFormErrorMessage
                     showAlert = true
                 }
             }
@@ -117,12 +117,12 @@ struct FormListView: View {
                     try formModel.importForm(url: url)
                 }
                 catch {
-                    alertTitle = "Error importing form"
+                    alertTitle = Strings.importFormErrorMessage
                     showAlert = true
                 }
             }
             .alert(alertTitle, isPresented: $showAlert, actions: {
-                Button(alertButtonTitle, role: .cancel) {}
+                Button(alertButtonDismissMessage, role: .cancel) {}
             })
         }
         .navigationViewStyle(.stack)

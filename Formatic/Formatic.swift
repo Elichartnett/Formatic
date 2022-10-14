@@ -15,7 +15,7 @@ struct Formatic: App {
     @StateObject var formModel = FormModel()
     @State var alertTitle = ""
     @State var showAlert = false
-    @State var alertButtonTitle = "Okay"
+    @State var alertButtonDismissMessage = Strings.defaultAlertButtonDismissMessage
     
     var body: some Scene {
         WindowGroup {
@@ -24,15 +24,19 @@ struct Formatic: App {
                 .environmentObject(formModel)
                 .onReceive(formModel.timer) { _ in
                     do {
+                        if DataControllerModel.failed ?? false {
+                            alertTitle = Strings.loadFormsErrorMessage
+                            showAlert = true
+                        }
                         if viewContext.hasChanges { try DataControllerModel.saveMOC() }
                     }
                     catch {
-                        alertTitle = "Error saving form"
+                        alertTitle = Strings.saveFormErrorMessage
                         showAlert = true
                     }
                 }
                 .alert(alertTitle, isPresented: $showAlert, actions: {
-                    Button(alertButtonTitle, role: .cancel) {}
+                    Button(alertButtonDismissMessage, role: .cancel) {}
                 })
         }
     }

@@ -1,0 +1,74 @@
+/* 
+  Localizable.strings
+  Formatic
+
+  Created by Eli Hartnett on 10/13/22.
+  
+*/
+
+"getStartedMessage" = "Add a form to get started!";
+"defaultAlertButtonDismissMessage" = "Okay";
+"loadFormsErrorMessage" = "Error loading forms";
+"saveFormErrorMessage" = "Error saving form";
+"deleteFormErrorMessage" = "Error deleting form";
+"copyFormErrorMessage" = "Error copying form";
+"importFormErrorMessage" = "Error importing form";
+"exportFormErrorMessage" = "Error exporting form";
+"emptyFormTitleErrorMessage" = "Error renaming form. Title can not be empty";
+"formTitleValidationErrorMessage" = "Error validating title";
+"formTitleAlreadyInUseErrorMessage" = "Title already in use";
+"formPasswordDoesNotMatchErrorMessage" = "Passwords do not match";
+"importCanvasErrorMessage" = "Error importing canvas";
+"noSearchResultsMessage" = "No results. Try searching for a different form title.";
+"deleteLabel" = "Delete";
+"copyLabel" = "Copy";
+"importLabel" = "Import";
+"setupLockLabel" = "Setup Lock";
+"removeLockLabel" = "Remove Lock";
+"passwordLabel" = "Password";
+"newSectionLabel" = "New section";
+"lockedLabel" = "Locked";
+"unlockLabel" = "Unlock";
+"unlockedLabel" = "Unlocked";
+"newFormLabel" = "New Form";
+"optionalFormPasswordLabel" = "Optional password";
+"retypeFormPasswordLabel" = "Retype password";
+"doneLabel" = "Done";
+"editLabel" = "Edit";
+"saveLabel" = "Save";
+"exportLabel" = "Export";
+"formPreviewLabel" = "Form Preview";
+"formLabel" = "Form";
+"formTitleLabel" = "Form Title";
+"noFormDataLabel" = "No form data";
+"sectionTitleLabel" = "Section Title";
+"titleLabel" = "Title";
+"pdfLabel" = "PDF";
+"csvLabel" = "CSV";
+"textFieldLabel" = "Text Field";
+"textLabel" = "text";
+"numberFieldLabel" = "Number Field";
+"numberLabel" = "number";
+"textEditorLabel" = "Text Editor";
+"startTypingHereLabel" = "Start typing here...";
+"dropdownMenuLabel" = "Dropdown Menu";
+"numberOfDropdownOptionsLabel" = "Number of dropdown options: ";
+"noSelectionLabel" = "No selection";
+"checkboxesLabel" = "Checkboxes";
+"numberOfCheckboxesLabel" = "Number of checkboxes: ";
+"descriptionLabel" = "description";
+"mapLabel" = "Map";
+"coordinateTypePickerLabel" = "Coordinate type picker";
+"latitudeLabel" = "Latitude";
+"longitudeLabel" = "Logitude";
+"eastingLabel" = "Easting";
+"northingLabel" = "Northing";
+"zoneLabel" = "Zone";
+"hemisphereLabel" = "Hemisphere";
+"northernLabel" = "Northern";
+"southernLabel" = "Southern";
+"addPinLabel" = "Add pin";
+"canvasLabel" = "Canvas";
+"selectPhotoLabel" = "Select photo";
+"takePhotoLabel" = "Take photo";
+"submitLabel" = "Submit";

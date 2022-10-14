@@ -329,7 +329,7 @@ class FormModel: ObservableObject {
     }
     
     func exportToCsv(form: Form) -> Data {
-        let data = form.toCsv().data(using: .utf8) ?? "No Form Data".data(using: .utf8)!
+        let data = form.toCsv().data(using: .utf8) ?? Strings.noFormDataLabel.data(using: .utf8)!
         return data
     }
     
@@ -402,7 +402,7 @@ class FormModel: ObservableObject {
                 return
             }
             
-            if let snapshotImage = snapshot?.image, let mapMarker = UIImage(systemName: "mappin.circle.fill")?.withTintColor(.red) {
+            if let snapshotImage = snapshot?.image, let mapMarker = UIImage(systemName: Strings.mapPinIconName)?.withTintColor(.red) {
                 UIGraphicsBeginImageContextWithOptions(options.size, true, snapshotImage.scale)
                 snapshotImage.draw(at: CGPoint.zero)
                 

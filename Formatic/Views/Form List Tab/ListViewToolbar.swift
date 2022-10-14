@@ -24,8 +24,8 @@ struct ListViewToolbar: View {
                 showNewFormView = true
             } label: {
                 HStack {
-                    Image(systemName: "plus.circle")
-                    Text("New form")
+                    Image(systemName: Strings.plusCircleIconName)
+                    Text(Strings.newFormLabel)
                 }
             }
             
@@ -36,8 +36,8 @@ struct ListViewToolbar: View {
                 showImportFormView = true
             } label: {
                 HStack {
-                    Image(systemName: "square.and.arrow.down")
-                    Text("Import")
+                    Image(systemName: Strings.importFormIconName)
+                    Text(Strings.importLabel)
                 }
             }
             

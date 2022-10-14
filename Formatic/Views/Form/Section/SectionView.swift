@@ -76,14 +76,14 @@ struct SectionView: View {
                 Button {
                     formModel.deleteWidget(section: section, position: Int(widget.position))
                 } label: {
-                    Label("Delete", systemImage: "trash")
+                    Label(Strings.deleteLabel, systemImage: Strings.trashIconName)
                 }
                 .tint(.red)
                 
                 Button {
                     formModel.copyWidget(section: section, widget: widget)
                 } label: {
-                    Label("Copy", systemImage: "doc.on.doc")
+                    Label(Strings.copyLabel, systemImage: Strings.copyIconName)
                 }
                 .tint(.blue)
             }

@@ -25,7 +25,7 @@ struct ConfigureCheckboxSectionWidgetView: View {
             
             Stepper(value: $numCheckboxes) {
                 HStack (spacing: 0) {
-                    Text("Number of checkboxes: ")
+                    Text(Strings.numberOfCheckboxesLabel)
                     Text("\(numCheckboxes)")
                 }
             }
@@ -48,7 +48,7 @@ struct ConfigureCheckboxSectionWidgetView: View {
             ScrollView {
                 // Configure checkboxes
                 ForEach($localCheckboxes) { $localCheckbox in
-                    InputBox(placeholder: "description", text: $localCheckbox.title)
+                    InputBox(placeholder: Strings.descriptionLabel, text: $localCheckbox.title)
                 }
                 .padding(.horizontal)
                 .padding(.top, 1)

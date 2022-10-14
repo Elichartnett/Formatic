@@ -20,23 +20,23 @@ struct NewFormView: View {
     @State var isValid: Bool = false
     @State var showAlert: Bool = false
     @State var alertTitle: String = ""
-    @State var alertMessage: String = "Okay"
+    @State var alertButtonDismissMessage: String = Strings.defaultAlertButtonDismissMessage
     
     var body: some View {
         
         VStack (spacing: 20) {
             
-            Text("New Form")
+            Text(Strings.newFormLabel)
                 .font(.title)
             
             // Form title
-            InputBox(placeholder: "Title", text: $title)
+            InputBox(placeholder: Strings.titleLabel, text: $title)
                 .onChange(of: title) { _ in
                     do {
                         validTitle = try formModel.titleIsValid(title: title)
                     }
                     catch {
-                        alertTitle = "Error validating title"
+                        alertTitle = Strings.formTitleValidationErrorMessage
                         validTitle = false
                     }
                 }
@@ -46,7 +46,7 @@ struct NewFormView: View {
                     }
                 })
                 .alert(alertTitle, isPresented: $showAlert, actions: {
-                    Button(alertMessage, role: .cancel) {}
+                    Button(alertButtonDismissMessage, role: .cancel) {}
                 })
             
             PasswordView(validPassword: $validPassword, password: $password)
@@ -73,11 +73,11 @@ struct NewFormView: View {
             .disabled(!(isValid))
             
             if !validTitle && !title.isEmpty {
-                Text("Title already in use")
+                Text(Strings.formTitleAlreadyInUseErrorMessage)
                     .foregroundColor(.red)
             }
             if !validPassword {
-                Text("Passwords do not match")
+                Text(Strings.formPasswordDoesNotMatchErrorMessage)
                     .foregroundColor(.red)
             }
         }

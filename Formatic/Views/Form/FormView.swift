@@ -47,7 +47,7 @@ struct FormView: View {
                                     Button {
                                         FormModel.deleteSection(section: section)
                                     } label: {
-                                        Image(systemName: "trash")
+                                        Image(systemName: Strings.trashIconName)
                                             .customIcon()
                                             .opacity(editMode?.wrappedValue == .active ? 1 : 0)
                                     }

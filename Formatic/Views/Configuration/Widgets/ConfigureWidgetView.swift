@@ -24,31 +24,31 @@ struct ConfigureWidgetView: View {
                 .bold()
                 .padding(.top)
             
-            InputBox(placeholder: "Title", text: $widgetTitle)
+            InputBox(placeholder: Strings.titleLabel, text: $widgetTitle)
             
             switch newWidgetType {
             case .textFieldWidget:
                 ConfigureTextFieldWidgetView(title: $widgetTitle, section: section)
                     .onAppear {
-                        typeTitle = "Text Field"
+                        typeTitle = Strings.textFieldLabel
                     }
                 
             case .numberFieldWidget:
                 ConfigureNumberFieldWidgetView(title: $widgetTitle, section: section)
                     .onAppear {
-                        typeTitle = "Number Field"
+                        typeTitle = Strings.numberFieldLabel
                     }
                 
             case .textEditorWidget:
                 ConfigureTextEditorWidgetView(title: $widgetTitle, section: section)
                     .onAppear {
-                        typeTitle = "Text Editor"
+                        typeTitle = Strings.textEditorLabel
                     }
                 
             case .dropdownSectionWidget:
                 ConfigureDropdownSectionWidgetView(title: $widgetTitle, section: section)
                     .onAppear {
-                        typeTitle = "Dropdown Menu"
+                        typeTitle = Strings.dropdownMenuLabel
                     }
                 
                 // Will be handled in section
@@ -58,7 +58,7 @@ struct ConfigureWidgetView: View {
             case .checkboxSectionWidget:
                 ConfigureCheckboxSectionWidgetView(title: $widgetTitle, section: section)
                     .onAppear {
-                        typeTitle = "Checkboxes"
+                        typeTitle = Strings.checkboxesLabel
                     }
                 
                 // Will be handled in section
@@ -68,13 +68,13 @@ struct ConfigureWidgetView: View {
             case .mapWidget:
                 ConfigureMapWidgetView(title: $widgetTitle, section: section)
                     .onAppear {
-                        typeTitle = "Map"
+                        typeTitle = Strings.mapLabel
                     }
                 
             case .canvasWidget:
                 ConfigureCanvasWidgetView(title: $widgetTitle, section: section)
                     .onAppear {
-                        typeTitle = "Canvas"
+                        typeTitle = Strings.canvasLabel
                     }
             }
         }

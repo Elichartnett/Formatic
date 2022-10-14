@@ -25,7 +25,7 @@ struct CanvasWidgetView: View {
         
         HStack {
             
-            InputBox(placeholder: "Title", text: $title)
+            InputBox(placeholder: Strings.titleLabel, text: $title)
                 .titleFrameStyle(locked: $locked)
                 .onChange(of: title) { _ in
                     canvasWidget.title = title
@@ -52,7 +52,7 @@ struct CanvasWidgetView: View {
                 reconfigureWidget = true
             } label: {
                 if editMode?.wrappedValue == .active {
-                    Image(systemName: "slider.horizontal.3")
+                    Image(systemName: Strings.editIconName)
                         .customIcon()
                 }
             }

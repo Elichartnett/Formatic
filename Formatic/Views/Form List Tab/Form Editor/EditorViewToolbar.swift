@@ -18,7 +18,7 @@ struct EditorViewToolbar: View {
     @Binding var editMode: EditMode
     @State var alertTitle = ""
     @State var showAlert = false
-    @State var alertButtonTitle = "Okay"
+    @State var alertButtonDismissMessage = Strings.defaultAlertButtonDismissMessage
     
     var body: some View {
         
@@ -40,8 +40,8 @@ struct EditorViewToolbar: View {
                     }
                 } label: {
                     HStack {
-                        Image(systemName: form.locked == true ? "lock" : "lock.open")
-                        Text(form.locked == true ? "Locked" : "Unlocked")
+                        Image(systemName: form.locked == true ? Strings.lockIconName : Strings.openLockIconName)
+                        Text(form.locked == true ? Strings.lockedLabel : Strings.unlockedLabel)
                     }
                 }
             }
@@ -54,8 +54,8 @@ struct EditorViewToolbar: View {
                     form.addToSections(Section(position: form.sections?.count ?? 0, title: nil))
                 } label: {
                     HStack {
-                        Image(systemName: "plus.circle")
-                        Text("New section")
+                        Image(systemName: Strings.plusCircleIconName)
+                        Text(Strings.newSectionLabel)
                     }
                 }
                 .disabled(form.locked)
@@ -76,8 +76,8 @@ struct EditorViewToolbar: View {
                     }
                 } label: {
                     HStack {
-                        Image(systemName: "slider.horizontal.3")
-                        Text(editMode == .active ? "Done" : "Edit")
+                        Image(systemName: Strings.editIconName)
+                        Text(editMode == .active ? Strings.doneLabel : Strings.editLabel)
                     }
                 }
                 .disabled(form.locked)
@@ -92,11 +92,11 @@ struct EditorViewToolbar: View {
                         try DataControllerModel.saveMOC()
                     }
                     catch {
-                        alertTitle = "Error saving form"
+                        alertTitle = Strings.saveFormErrorMessage
                         showAlert = true
                     }
                 } label: {
-                    Text("Save")
+                    Text(Strings.saveLabel)
                 }
             }
             
@@ -111,8 +111,8 @@ struct EditorViewToolbar: View {
                         exportToForm = true
                     } label: {
                         HStack {
-                            Image(systemName: "doc.zipper")
-                            Text("Form")
+                            Image(systemName: Strings.docZipperIconName)
+                            Text(Strings.formLabel)
                         }
                     }
                     
@@ -121,8 +121,8 @@ struct EditorViewToolbar: View {
                         exportToPDF = true
                     } label: {
                         HStack {
-                            Image(systemName: "doc.text.image")
-                            Text("PDF")
+                            Image(systemName: Strings.docTextImageIconName)
+                            Text(Strings.pdfLabel)
                         }
                     }
                     
@@ -130,14 +130,14 @@ struct EditorViewToolbar: View {
                         exportToCSV = true
                     } label: {
                         HStack {
-                            Image (systemName: "tablecells")
-                            Text("CSV")
+                            Image (systemName: Strings.csvTableIconName)
+                            Text(Strings.csvLabel)
                         }
                     }
                 } label: {
                     HStack {
-                        Image(systemName: "square.and.arrow.up")
-                        Text("Export")
+                        Image(systemName: Strings.exportFormIconName)
+                        Text(Strings.exportLabel)
                     }
                 }
                 
@@ -145,7 +145,7 @@ struct EditorViewToolbar: View {
             }
         }
         .alert(alertTitle, isPresented: $showAlert, actions: {
-            Button(alertButtonTitle, role: .cancel) {}
+            Button(alertButtonDismissMessage, role: .cancel) {}
         })
     }
 }

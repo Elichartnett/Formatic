@@ -35,14 +35,13 @@ struct MapView: View {
             case .authorizedWhenInUse:
                 manager.startUpdatingLocation()
             case .restricted:
-                print("Location restricted")
+                break
             case .denied:
-                print("Location denied")
+                break
             case .notDetermined:
                 manager.requestWhenInUseAuthorization()
-                print("Location not determined")
             @unknown default:
-                fatalError("Unkown default in map")
+                fatalError("Unkown default")
             }
         }
     }
