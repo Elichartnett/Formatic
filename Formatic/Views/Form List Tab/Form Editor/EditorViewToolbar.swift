@@ -24,125 +24,113 @@ struct EditorViewToolbar: View {
         
         HStack {
             
-            Group {
-                Spacer()
-                
-                // Lock and unlock form button
-                Button {
-                    if form.locked || (!form.locked && form.password == nil) {
-                        showToggleLockView = true
-                    }
-                    else  {
-                        withAnimation {
-                            editMode = .inactive
-                        }
-                        form.locked = true
-                    }
-                } label: {
-                    HStack {
-                        Image(systemName: form.locked == true ? Strings.lockIconName : Strings.openLockIconName)
-                        Text(form.locked == true ? Strings.lockedLabel : Strings.unlockedLabel)
-                    }
+            // Lock and unlock form button
+            Button {
+                if form.locked || (!form.locked && form.password == nil) {
+                    showToggleLockView = true
                 }
-            }
-            
-            Group {
-                Spacer()
-                
-                // Add section to form button
-                Button {
-                    form.addToSections(Section(position: form.sections?.count ?? 0, title: nil))
-                } label: {
-                    HStack {
-                        Image(systemName: Strings.plusCircleIconName)
-                        Text(Strings.newSectionLabel)
-                    }
-                }
-                .disabled(form.locked)
-            }
-            
-            Group {
-                Spacer()
-                
-                // Enable edit mode to rearrange list of widgets
-                Button {
+                else  {
                     withAnimation {
-                        if editMode == .active {
-                            editMode = .inactive
-                        }
-                        else {
-                            editMode = .active
-                        }
+                        editMode = .inactive
                     }
-                } label: {
-                    HStack {
-                        Image(systemName: Strings.editIconName)
-                        Text(editMode == .active ? Strings.doneLabel : Strings.editLabel)
+                    form.locked = true
+                }
+            } label: {
+                HStack {
+                    Image(systemName: form.locked == true ? Strings.lockIconName : Strings.openLockIconName)
+                    Text(form.locked == true ? Strings.lockedLabel : Strings.unlockedLabel)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            
+            // Add section to form button
+            Button {
+                form.addToSections(Section(position: form.sections?.count ?? 0, title: nil))
+            } label: {
+                HStack {
+                    Image(systemName: Strings.plusCircleIconName)
+                    Text(Strings.newSectionLabel)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .disabled(form.locked)
+            
+            // Enable edit mode to rearrange list of widgets
+            Button {
+                withAnimation {
+                    if editMode == .active {
+                        editMode = .inactive
+                    }
+                    else {
+                        editMode = .active
                     }
                 }
-                .disabled(form.locked)
+            } label: {
+                HStack {
+                    Image(systemName: Strings.editIconName)
+                    if editMode == .active {
+                        Text(Strings.doneLabel)
+                    }
+                    else {
+                        Text(Strings.editLabel)
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .disabled(form.locked)
+            
+            // Save form in managed object context button
+            Button {
+                do {
+                    try DataControllerModel.saveMOC()
+                }
+                catch {
+                    alertTitle = Strings.saveFormErrorMessage
+                    showAlert = true
+                }
+            } label: {
+                Text(Strings.saveLabel)
             }
             
-            Group {
-                Spacer()
+            // Export form button
+            Menu {
                 
-                // Save form in managed object context button
+                // Export to form button
                 Button {
-                    do {
-                        try DataControllerModel.saveMOC()
-                    }
-                    catch {
-                        alertTitle = Strings.saveFormErrorMessage
-                        showAlert = true
-                    }
-                } label: {
-                    Text(Strings.saveLabel)
-                }
-            }
-            
-            Group {
-                Spacer()
-                
-                // Export form button
-                Menu {
-                    
-                    // Export to form button
-                    Button {
-                        exportToForm = true
-                    } label: {
-                        HStack {
-                            Image(systemName: Strings.docZipperIconName)
-                            Text(Strings.formLabel)
-                        }
-                    }
-                    
-                    // Export to pdf button
-                    Button {
-                        exportToPDF = true
-                    } label: {
-                        HStack {
-                            Image(systemName: Strings.docTextImageIconName)
-                            Text(Strings.pdfLabel)
-                        }
-                    }
-                    
-                    Button {
-                        exportToCSV = true
-                    } label: {
-                        HStack {
-                            Image (systemName: Strings.csvTableIconName)
-                            Text(Strings.csvLabel)
-                        }
-                    }
+                    exportToForm = true
                 } label: {
                     HStack {
-                        Image(systemName: Strings.exportFormIconName)
-                        Text(Strings.exportLabel)
+                        Image(systemName: Strings.docZipperIconName)
+                        Text(Strings.formLabel)
                     }
                 }
                 
-                Spacer()
+                // Export to pdf button
+                Button {
+                    exportToPDF = true
+                } label: {
+                    HStack {
+                        Image(systemName: Strings.docTextImageIconName)
+                        Text(Strings.pdfLabel)
+                    }
+                }
+                
+                Button {
+                    exportToCSV = true
+                } label: {
+                    HStack {
+                        Image (systemName: Strings.csvTableIconName)
+                        Text(Strings.csvLabel)
+                    }
+                }
+            } label: {
+                HStack {
+                    Image(systemName: Strings.exportFormIconName)
+                    Text(Strings.exportLabel)
+                }
             }
+            .frame(maxWidth: .infinity)
+            
         }
         .alert(alertTitle, isPresented: $showAlert, actions: {
             Button(alertButtonDismissMessage, role: .cancel) {}
