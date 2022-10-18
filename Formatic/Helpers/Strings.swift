@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 struct Strings {
     static let getStartedMessage = String(localized: "getStartedMessage")
@@ -45,14 +44,14 @@ struct Strings {
     static let pdfLabel = String(localized: "pdfLabel")
     static let csvLabel = String(localized: "csvLabel")
     
-    static let passwordLabel = String("passwordLabel")
-    static let setupLockLabel = String("setupLockLabel")
-    static let removeLockLabel = String("removeLockLabel")
-    static let lockedLabel = String("lockedLabel")
-    static let unlockLabel = String("unlockLabel")
-    static let unlockedLabel = String("unlockedLabel")
-    static let optionalFormPasswordLabel = String("optionalFormPasswordLabel")
-    static let retypeFormPasswordLabel = String("retypeFormPasswordLabel")
+    static let passwordLabel = String(localized: "passwordLabel")
+    static let setupLockLabel = String(localized: "setupLockLabel")
+    static let removeLockLabel = String(localized: "removeLockLabel")
+    static let lockedLabel = String(localized: "lockedLabel")
+    static let unlockLabel = String(localized: "unlockLabel")
+    static let unlockedLabel = String(localized: "unlockedLabel")
+    static let optionalFormPasswordLabel = String(localized: "optionalFormPasswordLabel")
+    static let retypeFormPasswordLabel = String(localized: "retypeFormPasswordLabel")
     
     static let textFieldLabel = String(localized: "textFieldLabel")
     static let textLabel = String(localized: "textLabel")
