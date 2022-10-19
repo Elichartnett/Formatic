@@ -14,7 +14,7 @@ class DataControllerModel: ObservableObject {
     
     static var failed: Bool?
     
-    @Published var container = NSPersistentContainer(name: "Form Container")
+    @Published var container = NSPersistentContainer(name: Strings.formContainerFileName)
     
     private init() {
         loadPersistentStores()

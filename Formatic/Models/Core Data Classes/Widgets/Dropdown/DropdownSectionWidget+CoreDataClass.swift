@@ -69,7 +69,7 @@ public class DropdownSectionWidget: Widget, Decodable, Csv, Copyable {
             for dropdownWidget in dropdownWidgets {
                 csvString += FormModel.formatAsCsv(self.section?.title ?? "") + ","
                 csvString += FormModel.formatAsCsv(self.title ?? "") + ","
-                csvString += "Dropdown,"
+                csvString += Strings.dropdownMenuLabel + ","
                 csvString += FormModel.formatAsCsv(dropdownWidget.title ?? "") + ","
                 if self.selectedDropdown == dropdownWidget {
                     csvString += "True"
@@ -77,7 +77,9 @@ public class DropdownSectionWidget: Widget, Decodable, Csv, Copyable {
                 else {
                     csvString += "False"
                 }
-                csvString += ",,,,,,\n" // Add leftover data points
+                csvString += String(repeating: ",", count: Strings.mapCSVColumns.filter({ character in
+                    character == ","
+                }).count) + ",\n"
             }
             
             // Remove traling newline character (if csvString/values exist in dropdown)

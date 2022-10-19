@@ -18,7 +18,7 @@ public class NumberFieldWidget: Widget, Decodable, Csv, Copyable {
         self.type = WidgetType.numberFieldWidget.rawValue
         self.number = number
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case position = "position"
         case title = "title"
@@ -35,7 +35,7 @@ public class NumberFieldWidget: Widget, Decodable, Csv, Copyable {
     
     required public init(from decoder: Decoder) throws {
         super.init(entityName: "NumberFieldWidget", context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
-
+        
         let numberFieldWidgetContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()
         self.position = try numberFieldWidgetContainer.decode(Int16.self, forKey: .position)
@@ -52,9 +52,11 @@ public class NumberFieldWidget: Widget, Decodable, Csv, Copyable {
         var csvString = ""
         csvString += FormModel.formatAsCsv(self.section?.title ?? "") + ","
         csvString += FormModel.formatAsCsv(self.title ?? "") + ","
-        csvString += (self.type ?? "") + ","
+        csvString += Strings.numberFieldLabel + ","
         csvString += FormModel.formatAsCsv(self.number ?? "") + ","
-        csvString += ",,,,,,"
+        csvString += String(repeating: ",", count: Strings.mapCSVColumns.filter({ character in
+            character == ","
+        }).count) + ","
         return csvString
     }
     

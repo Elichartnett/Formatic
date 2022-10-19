@@ -72,7 +72,7 @@ public class MapWidget: Widget, Decodable, Csv, Copyable {
                 let utm = coordinate.utmCoordinate()
                 csvString += FormModel.formatAsCsv(self.section?.title ?? "") + ","
                 csvString += FormModel.formatAsCsv(self.title ?? "") + ","
-                csvString += (self.type ?? "") + ","
+                csvString += Strings.mapLabel + ","
                 csvString += FormModel.formatAsCsv(annotation.name ?? "") + ",,"
                 csvString += String(annotation.latitude) + ","
                 csvString += String(annotation.longitude) + ","
@@ -80,8 +80,8 @@ public class MapWidget: Widget, Decodable, Csv, Copyable {
                 csvString += String(utm.northing) + ","
                 csvString += String(utm.zone) + ","
                 switch utm.hemisphere{
-                case .southern: csvString += "Southern"
-                case .northern: csvString += "Northern"
+                case .southern: csvString += Strings.southernLabel
+                case .northern: csvString += Strings.northernLabel
                 }
                 csvString += "\n"
             }

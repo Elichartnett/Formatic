@@ -35,7 +35,7 @@ public class TextFieldWidget: Widget, Decodable, Csv, Copyable {
     
     required public init(from decoder: Decoder) throws {
         super.init(entityName: "TextFieldWidget", context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
-
+        
         let textFieldWidgetContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()
         self.position = try textFieldWidgetContainer.decode(Int16.self, forKey: .position)
@@ -52,9 +52,11 @@ public class TextFieldWidget: Widget, Decodable, Csv, Copyable {
         var csvString = ""
         csvString += FormModel.formatAsCsv(self.section?.title ?? "") + ","
         csvString += FormModel.formatAsCsv(self.title ?? "") + ","
-        csvString += (self.type ?? "") + ","
+        csvString += Strings.textFieldLabel + ","
         csvString += FormModel.formatAsCsv(self.text ?? "") + ","
-        csvString += ",,,,,,"
+        csvString += String(repeating: ",", count: Strings.mapCSVColumns.filter({ character in
+            character == ","
+        }).count) + ","
         return csvString
     }
     

@@ -8,6 +8,8 @@
 import Foundation
 
 struct Strings {
+    static let baseCSVColumns = String(localized: "baseCSVColumns")
+    static let mapCSVColumns = String(localized: "mapCSVColumns")
     static let getStartedMessage = String(localized: "getStartedMessage")
     static let defaultAlertButtonDismissMessage = String(localized: "defaultAlertButtonDismissMessage")
     
@@ -65,10 +67,12 @@ struct Strings {
     static let dropdownMenuLabel = String(localized: "dropdownMenuLabel")
     static let numberOfDropdownOptionsLabel = String(localized: "numberOfDropdownOptionsLabel")
     
-    static let checkboxesLabel = String(localized: "checkboxesLabel")
+    static let checkboxMenuLabel = String(localized: "checkboxMenuLabel")
     static let noSelectionLabel = String(localized: "noSelectionLabel")
     static let numberOfCheckboxesLabel = String(localized: "numberOfCheckboxesLabel")
     static let descriptionLabel = String(localized: "descriptionLabel")
+    static let trueLabel = String(localized: "trueLabel")
+    static let falseLabel = String(localized: "falseLabel")
     
     static let mapLabel = String(localized: "mapLabel")
     static let coordinateTypePickerLabel = String(localized: "coordinateTypePickerLabel")
@@ -107,4 +111,5 @@ struct Strings {
     static let mapPinIconName = "mappin.circle.fill"
     
     static let logoAnimationFileName = "logoAnimation"
+    static let formContainerFileName = "Form Container"
 }

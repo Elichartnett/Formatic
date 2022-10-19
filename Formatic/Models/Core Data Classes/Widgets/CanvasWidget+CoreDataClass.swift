@@ -11,7 +11,7 @@ import CoreData
 
 @objc(CanvasWidget)
 public class CanvasWidget: Widget, Decodable, Copyable, Csv {
-
+    
     /// CanvasWidget  init
     init(title: String?, position: Int, image: Data?, pkDrawing: Data?, widgetViewPreview: Data?) {
         super.init(entityName: "CanvasWidget", context: DataControllerModel.shared.container.viewContext, title: title, position: position)
@@ -65,8 +65,10 @@ public class CanvasWidget: Widget, Decodable, Copyable, Csv {
         var csvString = ""
         csvString += FormModel.formatAsCsv(self.section?.title ?? "") + ","
         csvString += FormModel.formatAsCsv(self.title ?? "") + ","
-        csvString += (self.type ?? "") + ","
-        csvString += ",,,,,,,"
+        csvString += Strings.canvasLabel + ","
+        csvString += String(repeating: ",", count: Strings.mapCSVColumns.filter({ character in
+            character == ","
+        }).count) + ","
         return csvString
     }
     

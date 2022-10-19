@@ -62,8 +62,7 @@ public class Form: NSManagedObject, Codable, Identifiable, Csv, Copyable {
     }
     
     func toCsv() -> String {
-        var csvString = ""
-        csvString += "Section Title, Widget Title, Widget Type, Widget Data, Selected, Marker Latitude, Marker Longitude, Marker Easting, Marker Northing, Marker Zone, Marker Hemisphere\n"
+        var csvString = Strings.baseCSVColumns + Strings.mapCSVColumns
         
         let sections = (sections ?? []).sorted { lhs, rhs in
             lhs.position < rhs.position

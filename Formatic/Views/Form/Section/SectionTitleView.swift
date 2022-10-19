@@ -48,12 +48,12 @@ struct SectionTitleView: View {
                 }
                 
                 // Add DropdownSectionWidget to section
-                Button(Strings.numberFieldLabel) {
+                Button(Strings.dropdownMenuLabel) {
                     newWidgetType = .dropdownSectionWidget
                 }
                 
                 // Add CheckboxSectionWidget to section
-                Button(Strings.checkboxesLabel) {
+                Button(Strings.checkboxMenuLabel) {
                     newWidgetType = .checkboxSectionWidget
                 }
                 

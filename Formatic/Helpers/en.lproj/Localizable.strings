@@ -6,6 +6,8 @@
  
  */
 
+"baseCSVColumns" = "Section Title, Widget Title, Widget Type, Widget Data, Selected,";
+"mapCSVColumns" = "Marker Latitude, Marker Longitude, Marker Easting, Marker Northing, Marker Zone, Marker Hemisphere\n";
 "getStartedMessage" = "Add a form to get started!";
 "defaultAlertButtonDismissMessage" = "Okay";
 
@@ -63,10 +65,12 @@
 "dropdownMenuLabel" = "Dropdown Menu";
 "numberOfDropdownOptionsLabel" = "Number of dropdown options: ";
 
-"checkboxesLabel" = "Checkboxes";
+"checkboxMenuLabel" = "Checkbox Menu";
 "noSelectionLabel" = "No selection";
 "numberOfCheckboxesLabel" = "Number of checkboxes: ";
 "descriptionLabel" = "description";
+"trueLabel" = "True";
+"falseLabel" = "False";
 
 "mapLabel" = "Map";
 "coordinateTypePickerLabel" = "Coordinate type picker";

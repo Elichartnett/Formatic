@@ -58,7 +58,7 @@ struct ConfigureWidgetView: View {
             case .checkboxSectionWidget:
                 ConfigureCheckboxSectionWidgetView(title: $widgetTitle, section: section)
                     .onAppear {
-                        typeTitle = Strings.checkboxesLabel
+                        typeTitle = Strings.checkboxMenuLabel
                     }
                 
                 // Will be handled in section
