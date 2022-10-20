@@ -12,6 +12,8 @@ struct ListViewToolbar: View {
     
     @Binding var showNewFormView: Bool
     @Binding var showImportFormView: Bool
+    @State var showSortMethodMenu: Bool
+    @Binding var sortMethod: SortMethod
     
     var body: some View {
         
@@ -42,12 +44,29 @@ struct ListViewToolbar: View {
             }
             
             Spacer()
+            
+            if showSortMethodMenu {
+                
+                Menu {
+                    Button(Strings.defaultLabel) {
+                        sortMethod = .defaultOrder
+                    }
+                    Button(Strings.alphabeticalyLabel) {
+                        sortMethod = .alphabetical
+                    }
+                } label: {
+                    Image(systemName: Strings.sortIconName)
+                }
+                
+                Spacer()
+            }
         }
     }
 }
 
 struct ListViewToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        ListViewToolbar(showNewFormView: .constant(false), showImportFormView: .constant(false))
+        let showSortMethodButton = (try? !dev.formModel.getForms().isEmpty) ?? false
+        ListViewToolbar(showNewFormView: .constant(false), showImportFormView: .constant(false), showSortMethodMenu: showSortMethodButton, sortMethod: .constant(.defaultOrder))
     }
 }

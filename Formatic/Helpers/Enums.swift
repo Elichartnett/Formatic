@@ -74,3 +74,8 @@ enum ImageError: Error {
     case getImageFromContextError
     case mapSnapshotError
 }
+
+enum SortMethod {
+    case defaultOrder
+    case alphabetical
+}

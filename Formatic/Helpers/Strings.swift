@@ -11,6 +11,8 @@ struct Strings {
     static let baseCSVColumns = String(localized: "baseCSVColumns")
     static let mapCSVColumns = String(localized: "mapCSVColumns")
     static let getStartedMessage = String(localized: "getStartedMessage")
+    static let defaultLabel = String(localized: "defaultLabel")
+    static let alphabeticalyLabel = String(localized: "alphabeticalLabel")
     static let defaultAlertButtonDismissMessage = String(localized: "defaultAlertButtonDismissMessage")
     
     static let loadFormsErrorMessage = String(localized: "loadFormsErrorMessage")
@@ -109,6 +111,7 @@ struct Strings {
     static let photoFrameIconName = "photo.on.rectangle.angled"
     static let cameraIconName = "camera"
     static let mapPinIconName = "mappin.circle.fill"
+    static let sortIconName = "line.3.horizontal.decrease.circle"
     
     static let logoAnimationFileName = "logoAnimation"
     static let formContainerFileName = "Form Container"

@@ -16,6 +16,7 @@ struct FormListView: View {
     @State var searchText = ""
     @State var showNewFormView = false
     @State var showImportFormView = false
+    @State var sortMethod = SortMethod.defaultOrder
     @State var showAlert = false
     @State var alertTitle = ""
     @State var alertButtonDismissMessage = "Okay"
@@ -65,13 +66,21 @@ struct FormListView: View {
                             }
                         }
                     }
-                    .searchable(text: $searchText, placement: .navigationBarDrawer)
+                    .searchable(text: $searchText, placement: .toolbar)
                     .onChange(of: searchText, perform: { _ in
                         if searchText == "" {
                             filteredForms.nsPredicate = nil
                         }
                         else {
                             filteredForms.nsPredicate = NSPredicate(format: "title CONTAINS %@", searchText)
+                        }
+                    })
+                    .onChange(of: sortMethod, perform: { _ in
+                        switch sortMethod {
+                        case .defaultOrder:
+                            filteredForms.nsSortDescriptors = []
+                        case .alphabetical:
+                            filteredForms.nsSortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
                         }
                     })
                     .overlay {
@@ -91,7 +100,7 @@ struct FormListView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    ListViewToolbar(showNewFormView: $showNewFormView, showImportFormView: $showImportFormView)
+                    ListViewToolbar(showNewFormView: $showNewFormView, showImportFormView: $showImportFormView, showSortMethodMenu: !forms.isEmpty, sortMethod: $sortMethod)
                 }
             }
             .sheet(isPresented: $showNewFormView) {

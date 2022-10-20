@@ -9,6 +9,8 @@
 "baseCSVColumns" = "Section Title, Widget Title, Widget Type, Widget Data, Selected,";
 "mapCSVColumns" = "Marker Latitude, Marker Longitude, Marker Easting, Marker Northing, Marker Zone, Marker Hemisphere\n";
 "getStartedMessage" = "Add a form to get started!";
+"defaultLabel" = "Default";
+"alphabeticalLabel" = "Alphabetical";
 "defaultAlertButtonDismissMessage" = "Okay";
 
 "loadFormsErrorMessage" = "Error loading forms";
