@@ -38,7 +38,7 @@ struct ToggleLockView: View {
             
             VStack {
                 if form.password != nil {
-                    Toggle(Strings.setupLockLabel, isOn: $removePassword)
+                    Toggle(Strings.removeLockLabel, isOn: $removePassword)
                         .labelStyle(.titleAndIcon)
                 }
                 Button {
