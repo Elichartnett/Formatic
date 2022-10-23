@@ -46,6 +46,21 @@ struct NumberFieldWidgetView: View {
                         number.removeAll { character in
                             !character.isNumber && character != "-" && character != "."
                         }
+                        
+                        var decimalUsed = false
+                        for (index, character) in number.enumerated() {
+                            if character == "-" && index != 0 {
+                                number.remove(at: number.index(number.startIndex, offsetBy: index))
+                            }
+                            else if character == "." {
+                                if !decimalUsed {
+                                    decimalUsed = true
+                                }
+                                else {
+                                    number.remove(at: number.index(number.startIndex, offsetBy: index))
+                                }
+                            }
+                        }
                     }
                 }
             
