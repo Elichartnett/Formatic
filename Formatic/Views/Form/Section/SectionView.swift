@@ -73,19 +73,21 @@ struct SectionView: View {
                 }
             }
             .swipeActions {
-                Button {
-                    formModel.deleteWidget(section: section, position: Int(widget.position))
-                } label: {
-                    Label(Strings.deleteLabel, systemImage: Strings.trashIconName)
+                if !locked {
+                    Button {
+                        formModel.deleteWidget(section: section, position: Int(widget.position))
+                    } label: {
+                        Label(Strings.deleteLabel, systemImage: Strings.trashIconName)
+                    }
+                    .tint(.red)
+                    
+                    Button {
+                        formModel.copyWidget(section: section, widget: widget)
+                    } label: {
+                        Label(Strings.copyLabel, systemImage: Strings.copyIconName)
+                    }
+                    .tint(.blue)
                 }
-                .tint(.red)
-                
-                Button {
-                    formModel.copyWidget(section: section, widget: widget)
-                } label: {
-                    Label(Strings.copyLabel, systemImage: Strings.copyIconName)
-                }
-                .tint(.blue)
             }
             
             if forPDF && widget != widgets[widgets.count - 1] {
