@@ -48,11 +48,32 @@ struct ListViewToolbar: View {
             if showSortMethodMenu {
                 
                 Menu {
-                    Button(Strings.defaultLabel) {
+                    Button {
                         sortMethod = .defaultOrder
+                    } label: {
+                        HStack {
+                            Text(Strings.defaultLabel)
+                            
+                            Spacer()
+                            
+                            if sortMethod == .defaultOrder {
+                                Image(systemName: Strings.checkmarkIconName)
+                                    .customIcon()
+                            }
+                        }
                     }
-                    Button(Strings.alphabeticalyLabel) {
+                    
+                    Button {
                         sortMethod = .alphabetical
+                    } label: {
+                        Text(Strings.alphabeticalyLabel)
+                        
+                        Spacer()
+                        
+                        if sortMethod == .alphabetical {
+                            Image(systemName: Strings.checkmarkIconName)
+                                .customIcon()
+                        }
                     }
                 } label: {
                     Image(systemName: Strings.sortIconName)

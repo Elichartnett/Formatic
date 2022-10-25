@@ -75,7 +75,7 @@ enum ImageError: Error {
     case mapSnapshotError
 }
 
-enum SortMethod {
-    case defaultOrder
-    case alphabetical
+enum SortMethod: String {
+    case defaultOrder = "defaultOrder"
+    case alphabetical = "alphabetical"
 }

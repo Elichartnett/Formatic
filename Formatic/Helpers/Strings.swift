@@ -8,6 +8,8 @@
 import Foundation
 
 struct Strings {
+    static let sortMethodUserDefaultsKey = "sortMethod"
+    
     static let baseCSVColumns = String(localized: "baseCSVColumns")
     static let mapCSVColumns = String(localized: "mapCSVColumns")
     static let getStartedMessage = String(localized: "getStartedMessage")

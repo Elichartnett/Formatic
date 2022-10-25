@@ -76,6 +76,7 @@ struct FormListView: View {
                         }
                     })
                     .onChange(of: sortMethod, perform: { _ in
+                        UserDefaults.standard.set(sortMethod.rawValue, forKey: Strings.sortMethodUserDefaultsKey)
                         switch sortMethod {
                         case .defaultOrder:
                             filteredForms.nsSortDescriptors = []
@@ -135,6 +136,11 @@ struct FormListView: View {
             })
         }
         .navigationViewStyle(.stack)
+        .onAppear {
+            if let method = UserDefaults.standard.object(forKey: Strings.sortMethodUserDefaultsKey) as? String {
+                sortMethod = SortMethod(rawValue: method) ?? SortMethod.defaultOrder
+            }
+        }
     }
 }
 
