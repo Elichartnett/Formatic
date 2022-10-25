@@ -10,6 +10,7 @@ import SwiftUI
 // List of all saved forms with list toolbar
 struct FormListView: View {
     
+    @Environment(\.colorScheme) var colorScheme
     @FetchRequest(sortDescriptors: [SortDescriptor(\.position)]) var forms: FetchedResults<Form>
     @FetchRequest(sortDescriptors: [SortDescriptor(\.position)]) var filteredForms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel
@@ -95,7 +96,14 @@ struct FormListView: View {
                 else {
                     Text(Strings.getStartedMessage)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color(uiColor: UIColor.systemGray6).ignoresSafeArea())
+                        .background {
+                            if colorScheme == .light {
+                                Color(uiColor: UIColor.systemGray6).ignoresSafeArea()
+                            }
+                            else {
+                                Color.black.ignoresSafeArea()
+                            }
+                        }
                 }
             }
             .navigationBarTitleDisplayMode(.inline)

@@ -10,6 +10,7 @@ import SwiftUI
 // Displays a form with title and sections
 struct FormView: View {
     
+    @Environment(\.colorScheme) var colorScheme
     @Environment(\.editMode) var editMode
     @FetchRequest var sections: FetchedResults<Section>
     @ObservedObject var form: Form
@@ -27,13 +28,25 @@ struct FormView: View {
             
             FormTitleView(form: form, formTitle: form.title)
                 .padding(.horizontal)
-                .background(Color(uiColor: .systemGray6))
+                .background {
+                    if colorScheme == .light {
+                        Color(uiColor: .systemGray6).ignoresSafeArea()
+                    }
+                    else {
+                        Color.black.ignoresSafeArea()
+                    }
+                }
             
             // Display all section in form
             if !forPDF {
                 // List is used for user visibility due to built in support for swipe gestures and lazy loading. Can not be used for pdf because there is no finite height due to lazy loading. Without a finite height, the view is not rendered properly when exporting view as pdf.
                 if sections.isEmpty {
-                    Color(uiColor: .systemGray6)
+                    if colorScheme == .light {
+                        Color(uiColor: .systemGray6).ignoresSafeArea()
+                    }
+                    else {
+                        Color.black.ignoresSafeArea()
+                    }
                 }
                 else {
                     List {
@@ -43,7 +56,6 @@ struct FormView: View {
                             } header: {
                                 HStack {
                                     SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
-                                    
                                     Button {
                                         FormModel.deleteSection(section: section)
                                     } label: {
@@ -87,7 +99,6 @@ struct FormView: View {
                     }
                 }
                 .padding()
-                .background(Color(uiColor: .systemGray6))
             }
         }
         .navigationBarTitleDisplayMode(.inline)
