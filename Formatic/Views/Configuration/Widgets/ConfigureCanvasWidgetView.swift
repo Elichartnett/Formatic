@@ -26,7 +26,7 @@ struct ConfigureCanvasWidgetView: View {
             Image(uiImage: UIImage(data: pickerResult) ?? UIImage())
                 .resizable()
                 .scaledToFit()
-                .border(.black)
+                .border(.secondary)
                 .padding()
                 .onAppear {
                     if let imageData = canvasWidget?.image {

@@ -80,14 +80,20 @@ struct FormView: View {
                     else {
                         ForEach(sections) { section in
                             SwiftUI.Section {
-                                VStack {
+                                VStack (spacing: 0) {
                                     SectionView(section: section, locked: $form.locked, forPDF: forPDF)
                                         .padding(.top, 10)
                                         .padding(.bottom, 10)
                                         .padding(.horizontal, 20)
-                                        .background(.white)
+                                        .background {
+                                            if colorScheme == .light {
+                                                Color.white.ignoresSafeArea()
+                                            }
+                                            else {
+                                                Color(uiColor: .systemGray6).ignoresSafeArea()
+                                            }
+                                        }
                                 }
-                                .background(.white)
                                 .cornerRadius(10)
                             } header: {
                                 SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
@@ -99,14 +105,6 @@ struct FormView: View {
                     }
                 }
                 .padding()
-                .background {
-                    if colorScheme == .light {
-                        Color(uiColor: .systemGray6).ignoresSafeArea()
-                    }
-                    else {
-                        Color.black.ignoresSafeArea()
-                    }
-                }
             }
         }
         .navigationBarTitleDisplayMode(.inline)

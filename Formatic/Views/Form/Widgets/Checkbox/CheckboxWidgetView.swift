@@ -30,7 +30,7 @@ struct CheckboxWidgetView: View {
                 }
             }
             .buttonStyle(.plain)
-            .foregroundColor(.black)
+            .foregroundColor(.secondary)
             
             TextField(Strings.descriptionLabel, text: $description)
                 .focused($isFocused)

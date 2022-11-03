@@ -26,6 +26,6 @@ struct WidgetPreviewFrame: ViewModifier {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(.secondary, lineWidth: 2)
             )
-            .foregroundColor(.black)
+            .foregroundColor(.primary)
     }
 }

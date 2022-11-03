@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TextEditorWidgetView: View {
     
+    @Environment(\.colorScheme) var colorScheme
     @ObservedObject var textEditorWidget: TextEditorWidget
     @Binding var locked: Bool
     @FocusState var isFocused: Bool
@@ -18,8 +19,8 @@ struct TextEditorWidgetView: View {
     init(textEditorWidget: TextEditorWidget, locked: Binding<Bool>) {
         self.textEditorWidget = textEditorWidget
         self._locked = locked
-        self.title = textEditorWidget.title ?? ""
-        self.text = textEditorWidget.text ?? ""
+        self._title = State(initialValue: textEditorWidget.title ?? "")
+        self._text = State(initialValue: textEditorWidget.text ?? "")
     }
     
     var body: some View {
@@ -47,7 +48,15 @@ struct TextEditorWidgetView: View {
                     .onChange(of: text) { _ in
                         textEditorWidget.text = text
                     }
-                
+                    .scrollContentBackground(.hidden)
+                    .background {
+                        if colorScheme == .light {
+                            Color.white.ignoresSafeArea()
+                        }
+                        else {
+                            Color(uiColor: .systemGray6).ignoresSafeArea()
+                        }
+                    }
                 if text.isEmpty {
                     Text(Strings.startTypingHereLabel)
                         .foregroundColor(Color(uiColor: UIColor.systemGray3))

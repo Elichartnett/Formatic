@@ -24,6 +24,7 @@
 "formTitleAlreadyInUseErrorMessage" = "Title already in use";
 "formPasswordDoesNotMatchErrorMessage" = "Passwords do not match";
 "importCanvasErrorMessage" = "Error importing canvas";
+"updateCanvasWidgetViewPreviewErrorMessage" = "Error updating canvas widget preview";
 "noSearchResultsMessage" = "No results. Try searching for a different title.";
 "noFormDataErrorMessage" = "No form data";
 

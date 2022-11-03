@@ -9,6 +9,7 @@ import PencilKit
 
 struct CanvasRepresentable: UIViewRepresentable {
     
+    @Environment(\.colorScheme) var colorScheme
     @State var canvasWidget: CanvasWidget
     @State var canvasView: PKCanvasView = PKCanvasView()
     let imageView = UIImageView()
@@ -40,7 +41,7 @@ struct CanvasRepresentable: UIViewRepresentable {
         imageView.frame = CGRect(origin: .zero, size: canvasView.frame.size)
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(data: canvasWidget.image ?? Data())
-        imageView.backgroundColor = .white
+        imageView.backgroundColor = colorScheme == .light ? .white : .systemGray6
         
         canvasView.addSubview(imageView)
         canvasView.sendSubviewToBack(imageView)
@@ -72,8 +73,7 @@ struct CanvasRepresentable: UIViewRepresentable {
         }
         
         func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
-            parent.canvasWidget.pkDrawing = canvasView.drawing.dataRepresentation()
-            parent.canvasWidget.widgetViewPreview = canvasView.drawing.image(from: CGRect(origin: .zero, size: canvasView.frame.size), scale: UIScreen.main.scale).pngData()
+            FormModel.updateCanvasWidgetViewPreview(canvasWidget: parent.canvasWidget, canvasView: parent.canvasView)
         }
         
         // Sends updates from UIView to SwiftUI

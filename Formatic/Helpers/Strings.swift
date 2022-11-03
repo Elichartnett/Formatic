@@ -28,6 +28,7 @@ struct Strings {
     static let formTitleAlreadyInUseErrorMessage = String(localized: "formTitleAlreadyInUseErrorMessage")
     static let formPasswordDoesNotMatchErrorMessage = String(localized: "formPasswordDoesNotMatchErrorMessage")
     static let importCanvasErrorMessage = String(localized: "importCanvasErrorMessage")
+    static let updateCanvasWidgetViewPreviewErrorMessage = String(localized: "updateCanvasWidgetViewPreviewErrorMessage")
     static let noSearchResultsMessage = String(localized: "noSearchResultsMessage")
     static let noFormDataErrorMessage = String(localized: "noFormDataErrorMessage")
     

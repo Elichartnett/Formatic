@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import CoreData
 import MapKit
+import PencilKit
 
 class FormModel: ObservableObject {
     
@@ -421,5 +422,10 @@ class FormModel: ObservableObject {
                 UIGraphicsEndImageContext()
             }
         }
+    }
+    
+    static func updateCanvasWidgetViewPreview(canvasWidget: CanvasWidget, canvasView: PKCanvasView) {
+        canvasWidget.pkDrawing = canvasView.drawing.dataRepresentation()
+        canvasWidget.widgetViewPreview = canvasView.drawing.image(from: CGRect(origin: .zero, size: canvasView.frame.size), scale: UIScreen.main.scale).pngData()
     }
 }

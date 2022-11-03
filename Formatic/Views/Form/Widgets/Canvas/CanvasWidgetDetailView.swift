@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
-import PencilKit
 
 struct CanvasWidgetDetailView: View {
     
+    @Environment(\.colorScheme) var colorScheme
     @ObservedObject var canvasWidget: CanvasWidget
     @State var showAlert: Bool = false
     @State var alertTitle: String = ""
@@ -19,7 +19,7 @@ struct CanvasWidgetDetailView: View {
     var body: some View {
         CanvasRepresentable(canvasWidget: canvasWidget, showAlert: $showAlert, alertTitle: $alertTitle, width: width)
             .frame(width: width, height: width)
-            .border(.black)
+            .border(.secondary)
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle(canvasWidget.title ?? "")
             .alert(alertTitle, isPresented: $showAlert, actions: {
