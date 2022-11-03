@@ -12,8 +12,8 @@ struct CanvasRepresentable: UIViewRepresentable {
     @Environment(\.colorScheme) var colorScheme
     @State var canvasWidget: CanvasWidget
     @State var canvasView: PKCanvasView = PKCanvasView()
-    let imageView = UIImageView()
-    let toolPicker: PKToolPicker = PKToolPicker()
+    @State var imageView = UIImageView()
+    @State var toolPicker: PKToolPicker = PKToolPicker()
     @Binding var showAlert: Bool
     @Binding var alertTitle: String
     let width: Double
@@ -57,7 +57,11 @@ struct CanvasRepresentable: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: PKCanvasView, context: Context) {
-        
+        DispatchQueue.main.async {
+            imageView.backgroundColor = colorScheme == .light ? .white : .systemGray6
+            toolPicker.colorUserInterfaceStyle = UIUserInterfaceStyle(colorScheme)
+            toolPicker.overrideUserInterfaceStyle = UIUserInterfaceStyle(colorScheme)
+        }
     }
     
     func makeCoordinator() -> Coordinator {

@@ -12,6 +12,7 @@ import UTMConversion
 // Full map view to plot annotations with
 struct MapWidgetDetailView: View {
     
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var formModel: FormModel
     @ObservedObject var mapWidget: MapWidget
     @State var coordinateType: CoordinateType
@@ -19,7 +20,7 @@ struct MapWidgetDetailView: View {
     
     init(mapWidget: MapWidget, coordinateType: CoordinateType = .latLon, localCoordinateRegion: MKCoordinateRegion) {
         self.mapWidget = mapWidget
-        self.coordinateType = coordinateType
+        self._coordinateType = State(initialValue: coordinateType)
         self._localCoordinateRegion = State(initialValue: localCoordinateRegion)
     }
     
@@ -38,6 +39,14 @@ struct MapWidgetDetailView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(mapWidget.title ?? "")
+        .background {
+            if colorScheme == .light {
+                Color(uiColor: .systemGray6).ignoresSafeArea()
+            }
+            else {
+                Color.black.ignoresSafeArea()
+            }
+        }
     }
 }
 

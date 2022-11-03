@@ -22,6 +22,15 @@ struct CanvasWidgetDetailView: View {
             .border(.secondary)
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle(canvasWidget.title ?? "")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background {
+                if colorScheme == .light {
+                    Color(uiColor: .systemGray6).ignoresSafeArea()
+                }
+                else {
+                    Color.black
+                }
+            }
             .alert(alertTitle, isPresented: $showAlert, actions: {
                 Button(alertButtonDismissMessage, role: .cancel) {}
             })
