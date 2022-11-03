@@ -99,6 +99,14 @@ struct FormView: View {
                     }
                 }
                 .padding()
+                .background {
+                    if colorScheme == .light {
+                        Color(uiColor: .systemGray6).ignoresSafeArea()
+                    }
+                    else {
+                        Color.black.ignoresSafeArea()
+                    }
+                }
             }
         }
         .navigationBarTitleDisplayMode(.inline)
