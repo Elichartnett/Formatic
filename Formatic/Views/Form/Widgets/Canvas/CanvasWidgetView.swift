@@ -16,7 +16,6 @@ struct CanvasWidgetView: View {
     @Binding var locked: Bool
     @State var title: String
     @State var reconfigureWidget = false
-    let width = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) - 100
     @State var showAlert: Bool = false
     @State var alertTitle: String = ""
     @State var alertButtonDismissMessage: String = Strings.defaultAlertButtonDismissMessage
@@ -41,22 +40,34 @@ struct CanvasWidgetView: View {
             NavigationLink {
                 CanvasWidgetDetailView(canvasWidget: canvasWidget)
             } label: {
-                ZStack {
-                    Image(uiImage: UIImage(data: canvasWidget.image ?? Data()) ?? UIImage())
-                        .resizable()
-                        .scaledToFit()
-                    
-                    Image(uiImage: UIImage(data: canvasWidget.widgetViewPreview ?? Data()) ?? UIImage())
-                        .resizable()
-                        .scaledToFit()
+                if let backgroundImage = UIImage(data: canvasWidget.image ?? Data()) {
+                    GeometryReader { proxy in
+                        HStack {
+                            Spacer()
+                            
+                            ZStack {
+                                let proxyMin = min(proxy.size.width, proxy.size.height)
+                                let targetSize = CGSize(width: proxyMin, height: proxyMin)
+                                let resizedBackgroundImage = FormModel.resizeImage(image: backgroundImage, targetSize: targetSize) ?? UIImage()
+                                Image(uiImage: resizedBackgroundImage)
+                                
+                                Image(uiImage: UIImage(data: canvasWidget.widgetViewPreview ?? Data()) ?? UIImage())
+                                    .resizable()
+                                    .scaledToFit()
+                            }
+                            .border(.secondary)
+                            
+                            Spacer()
+                        }
+                    }
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .WidgetPreviewStyle()
             .onChange(of: colorScheme, perform: { _ in
                 do {
                     let canvasView = PKCanvasView()
                     let imageView = UIImageView()
+                    let width = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) - 100
                     
                     canvasView.drawing = try PKDrawing(data: canvasWidget.pkDrawing ?? Data())
                     
@@ -109,5 +120,30 @@ struct CanvasWidgetView: View {
 struct CanvasWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         CanvasWidgetView(canvasWidget: dev.canvasWidget, locked: .constant(false))
+    }
+}
+
+extension FormModel {
+    static func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
+        
+        let size = image.size
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+        
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
+        }
+        
+        let rect = CGRect(origin: .zero, size: newSize)
+           
+       UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+       image.draw(in: rect)
+       let newImage = UIGraphicsGetImageFromCurrentImageContext()
+       UIGraphicsEndImageContext()
+        
+        return newImage
     }
 }
