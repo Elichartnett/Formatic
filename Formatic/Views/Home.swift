@@ -18,18 +18,19 @@ struct Home: View {
         // List of all created forms
         FormListView()
             .overlay {
-                LottieView(name: Strings.logoAnimationFileName)
-                    .background(Color.white)
-                    .onReceive(timer) { _ in
-                        time += 0.1
-                        if time >= 1.5 {
-                            withAnimation {
-                                finishedLaunching = true
+                if !finishedLaunching {
+                    LottieView(name: Strings.logoAnimationFileName)
+                        .background(Color.white)
+                        .onReceive(timer) { _ in
+                            time += 0.1
+                            if time >= 1.5 {
+                                withAnimation {
+                                    finishedLaunching = true
+                                }
+                                timer.upstream.connect().cancel()
                             }
-                            timer.upstream.connect().cancel()
                         }
-                    }
-                    .opacity(finishedLaunching == true ? 0 : 1)
+                }
             }
     }
 }
