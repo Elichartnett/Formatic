@@ -79,19 +79,6 @@ struct EditorViewToolbar: View {
             .frame(maxWidth: .infinity)
             .disabled(form.locked)
             
-            // Save form in managed object context button
-            Button {
-                do {
-                    try DataControllerModel.saveMOC()
-                }
-                catch {
-                    alertTitle = Strings.saveFormErrorMessage
-                    showAlert = true
-                }
-            } label: {
-                Text(Strings.saveLabel)
-            }
-            
             // Export form button
             Menu {
                 
