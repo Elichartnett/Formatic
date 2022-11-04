@@ -32,14 +32,7 @@ struct SectionView: View {
         
         if widgets.isEmpty {
             // Empty view representing section - used as work around for vertical spacing issue when adding multiple sections at once without any widgets in the section
-            Group {
-                if colorScheme == .light {
-                    Color.white.ignoresSafeArea()
-                }
-                else {
-                    Color(uiColor: .systemGray6).ignoresSafeArea()
-                }
-            }
+            Color.clear
             .frame(height: forPDF ? 45 : 1)
             .cornerRadius(10)
         }
@@ -113,14 +106,6 @@ struct SectionView: View {
                 formModel.updateWidgetPosition(section: section, indexSet: indexSet, destination: destination)
             })
             .moveDisabled(moveDisabled)
-            .background {
-                if colorScheme == .light {
-                    Color.white.ignoresSafeArea()
-                }
-                else {
-                    Color(uiColor: .systemGray6).ignoresSafeArea()
-                }
-            }
         }
     }
 }

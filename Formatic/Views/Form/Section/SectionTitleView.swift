@@ -81,7 +81,7 @@ struct SectionTitleView: View {
         .textCase(.none)
         .sheet(isPresented: $configureNewWidget) {
             ConfigureWidgetView(newWidgetType: newWidgetType!, section: section)
-                .font(Font.body)
+                .textCase(.none)
         }
     }
 }

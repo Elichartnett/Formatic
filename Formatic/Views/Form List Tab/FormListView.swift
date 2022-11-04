@@ -73,7 +73,7 @@ struct FormListView: View {
                             filteredForms.nsPredicate = nil
                         }
                         else {
-                            filteredForms.nsPredicate = NSPredicate(format: "title CONTAINS %@", searchText)
+                            filteredForms.nsPredicate = NSPredicate(format: "title CONTAINS[cd] %@", searchText)
                         }
                     })
                     .onChange(of: sortMethod, perform: { _ in
@@ -89,7 +89,14 @@ struct FormListView: View {
                         if filteredForms.isEmpty {
                             Text(Strings.noSearchResultsMessage)
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .background(Color(uiColor: UIColor.systemGray6).ignoresSafeArea())
+                                .background {
+                                    if colorScheme == .light {
+                                        Color(uiColor: UIColor.systemGray6).ignoresSafeArea()
+                                    }
+                                    else {
+                                        Color.black.ignoresSafeArea()
+                                    }
+                                }
                         }
                     }
                 }
@@ -104,6 +111,15 @@ struct FormListView: View {
                                 Color.black.ignoresSafeArea()
                             }
                         }
+                }
+            }
+            .scrollContentBackground(.hidden)
+            .background {
+                if colorScheme == .light {
+                    Color(uiColor: UIColor.systemGray6).ignoresSafeArea()
+                }
+                else {
+                    Color.black.ignoresSafeArea()
                 }
             }
             .navigationBarTitleDisplayMode(.inline)

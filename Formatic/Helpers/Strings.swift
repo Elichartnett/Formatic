@@ -32,7 +32,7 @@ struct Strings {
     static let noSearchResultsMessage = String(localized: "noSearchResultsMessage")
     static let noFormDataErrorMessage = String(localized: "noFormDataErrorMessage")
     
-    static let formPreviewLabel = String(localized: "formPreviewLabel")
+    static let previewLabel = String(localized: "previewLabel")
     static let formLabel = String(localized: "formLabel")
     static let formTitleLabel = String(localized: "formTitleLabel")
     static let sectionTitleLabel = String(localized: "sectionTitleLabel")

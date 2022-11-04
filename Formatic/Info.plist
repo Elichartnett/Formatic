@@ -17,6 +17,8 @@
 	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Providing location helps as a reference while adding map pins.</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>

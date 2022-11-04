@@ -49,14 +49,6 @@ struct TextEditorWidgetView: View {
                         textEditorWidget.text = text
                     }
                     .scrollContentBackground(.hidden)
-                    .background {
-                        if colorScheme == .light {
-                            Color.white.ignoresSafeArea()
-                        }
-                        else {
-                            Color(uiColor: .systemGray6).ignoresSafeArea()
-                        }
-                    }
                 if text.isEmpty {
                     Text(Strings.startTypingHereLabel)
                         .foregroundColor(Color(uiColor: UIColor.systemGray3))

@@ -28,7 +28,7 @@ struct CanvasWidgetDetailView: View {
                     Color(uiColor: .systemGray6).ignoresSafeArea()
                 }
                 else {
-                    Color.black
+                    Color.black.ignoresSafeArea()
                 }
             }
             .alert(alertTitle, isPresented: $showAlert, actions: {

@@ -68,6 +68,15 @@ struct FormView: View {
                             .headerProminence(.increased)
                         }
                     }
+                    .scrollContentBackground(.hidden)
+                    .background {
+                        if colorScheme == .light {
+                            Color(uiColor: .systemGray6).ignoresSafeArea()
+                        }
+                        else {
+                            Color.black.ignoresSafeArea()
+                        }
+                    }
                 }
             }
             
@@ -90,6 +99,14 @@ struct FormView: View {
                                         .padding(.top, 10)
                                         .padding(.bottom, 10)
                                         .padding(.horizontal, 20)
+                                        .background {
+                                            if colorScheme == .light {
+                                                Color.white.ignoresSafeArea()
+                                            }
+                                            else {
+                                                Color(uiColor: .systemGray6).ignoresSafeArea()
+                                            }
+                                        }
                                 }
                                 .cornerRadius(10)
                             } header: {
