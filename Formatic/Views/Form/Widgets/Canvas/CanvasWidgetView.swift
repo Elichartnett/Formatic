@@ -49,6 +49,7 @@ struct CanvasWidgetView: View {
                                 let proxyMin = min(proxy.size.width, proxy.size.height)
                                 let targetSize = CGSize(width: proxyMin, height: proxyMin)
                                 let resizedBackgroundImage = FormModel.resizeImage(image: backgroundImage, targetSize: targetSize) ?? UIImage()
+                                
                                 Image(uiImage: resizedBackgroundImage)
                                 
                                 Image(uiImage: UIImage(data: canvasWidget.widgetViewPreview ?? Data()) ?? UIImage())
@@ -120,30 +121,5 @@ struct CanvasWidgetView: View {
 struct CanvasWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         CanvasWidgetView(canvasWidget: dev.canvasWidget, locked: .constant(false))
-    }
-}
-
-extension FormModel {
-    static func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
-        
-        let size = image.size
-        let widthRatio  = targetSize.width  / size.width
-        let heightRatio = targetSize.height / size.height
-        
-        var newSize: CGSize
-        if(widthRatio > heightRatio) {
-            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
-        } else {
-            newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
-        }
-        
-        let rect = CGRect(origin: .zero, size: newSize)
-           
-       UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-       image.draw(in: rect)
-       let newImage = UIGraphicsGetImageFromCurrentImageContext()
-       UIGraphicsEndImageContext()
-        
-        return newImage
     }
 }
