@@ -75,7 +75,12 @@ struct FormView: View {
                 // ScrollView is used in place of list when exporting to pdf because it has a finite height so the full view can be rendered without scrolling. Modifiers added to make scrollview look like list
                 ScrollView {
                     if sections.isEmpty {
-                        
+                        if colorScheme == .light {
+                            Color(uiColor: .systemGray6).ignoresSafeArea()
+                        }
+                        else {
+                            Color.black.ignoresSafeArea()
+                        }
                     }
                     else {
                         ForEach(sections) { section in
@@ -85,14 +90,6 @@ struct FormView: View {
                                         .padding(.top, 10)
                                         .padding(.bottom, 10)
                                         .padding(.horizontal, 20)
-                                        .background {
-                                            if colorScheme == .light {
-                                                Color.white.ignoresSafeArea()
-                                            }
-                                            else {
-                                                Color(uiColor: .systemGray6).ignoresSafeArea()
-                                            }
-                                        }
                                 }
                                 .cornerRadius(10)
                             } header: {
@@ -105,6 +102,14 @@ struct FormView: View {
                     }
                 }
                 .padding()
+                .background {
+                    if colorScheme == .light {
+                        Color(uiColor: .systemGray6).ignoresSafeArea()
+                    }
+                    else {
+                        Color.black.ignoresSafeArea()
+                    }
+                }
             }
         }
         .navigationBarTitleDisplayMode(.inline)
