@@ -93,6 +93,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		620DD0932915CFA600EA54BB /* Formatic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Formatic.entitlements; sourceTree = "<group>"; };
 		62294F06281F4F5B00226AF1 /* NewFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFormView.swift; sourceTree = "<group>"; };
 		62294F0B281F519C00226AF1 /* InputBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBox.swift; sourceTree = "<group>"; };
 		62294F0D281F61B900226AF1 /* SubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButton.swift; sourceTree = "<group>"; };
@@ -446,6 +447,7 @@
 		62FE6E6A28187058009D41FD /* Formatic */ = {
 			isa = PBXGroup;
 			children = (
+				620DD0932915CFA600EA54BB /* Formatic.entitlements */,
 				6250E9802836CAB400E6E6A0 /* Info.plist */,
 				62FE6E6B28187058009D41FD /* Formatic.swift */,
 				6288C6A228BB03B70081A39D /* LaunchScreen.storyboard */,
@@ -794,6 +796,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = Formatic/Formatic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Formatic/Preview Content\"";
@@ -834,6 +837,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = Formatic/Formatic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Formatic/Preview Content\"";

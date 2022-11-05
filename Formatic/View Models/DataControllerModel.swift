@@ -14,13 +14,15 @@ class DataControllerModel: ObservableObject {
     
     static var failed: Bool?
     
-    @Published var container = NSPersistentContainer(name: Strings.formContainerFileName)
+    @Published var container = NSPersistentCloudKitContainer(name: Strings.formContainerFileName)
     
     private init() {
         loadPersistentStores()
     }
     
     func loadPersistentStores() {
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        
         container.loadPersistentStores { description, error in
             if let _ = error {
                 DataControllerModel.failed = true
