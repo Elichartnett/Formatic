@@ -77,13 +77,7 @@ struct FormListView: View {
                         }
                     })
                     .onChange(of: sortMethod, perform: { _ in
-                        UserDefaults.standard.set(sortMethod.rawValue, forKey: Strings.sortMethodUserDefaultsKey)
-                        switch sortMethod {
-                        case .defaultOrder:
-                            filteredForms.nsSortDescriptors = []
-                        case .alphabetical:
-                            filteredForms.nsSortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-                        }
+                        updateFilteredForms()
                     })
                     .overlay {
                         if filteredForms.isEmpty {
@@ -160,17 +154,21 @@ struct FormListView: View {
             })
         }
         .navigationViewStyle(.stack)
-        .onAppear {
-            if let method = UserDefaults.standard.object(forKey: Strings.sortMethodUserDefaultsKey) as? String {
-                sortMethod = SortMethod(rawValue: method) ?? SortMethod.defaultOrder
-            }
+    }
+    
+    func updateFilteredForms() {
+        switch sortMethod {
+        case .defaultOrder:
+            filteredForms.nsSortDescriptors = []
+        case .alphabetical:
+            filteredForms.nsSortDescriptors = [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))]
         }
     }
 }
 
 struct FormListView_Previews: PreviewProvider {
     static var previews: some View {
-        FormListView()
+        FormListView(sortMethod: .defaultOrder)
             .environment(\.managedObjectContext, DataControllerModel.shared.container.viewContext)
             .environmentObject(FormModel())
     }

@@ -14,8 +14,12 @@ extension View {
         modifier(TitleFrame(locked: locked))
     }
     
-    func WidgetPreviewStyle() -> some View {
-        modifier(WidgetPreviewFrame())
+    func WidgetFrameStyle(isFocused: Bool = false) -> some View {
+        modifier(WidgetFrame(isFocused: isFocused))
+    }
+    
+    func WidgetPreviewStyle(isFocused: Bool = false) -> some View {
+        modifier(WidgetPreviewFrame(isFocused: isFocused))
     }
 }
 

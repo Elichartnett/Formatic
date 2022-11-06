@@ -25,9 +25,14 @@ struct ListViewToolbar: View {
             Button {
                 showNewFormView = true
             } label: {
-                HStack {
+                if FormModel.isPhone {
                     Image(systemName: Strings.plusCircleIconName)
-                    Text(Strings.newFormLabel)
+                }
+                else {
+                    HStack {
+                        Image(systemName: Strings.plusCircleIconName)
+                        Text(Strings.newFormLabel)
+                    }
                 }
             }
             
@@ -37,14 +42,20 @@ struct ListViewToolbar: View {
             Button {
                 showImportFormView = true
             } label: {
-                HStack {
+                if FormModel.isPhone {
                     Image(systemName: Strings.importFormIconName)
-                    Text(Strings.importLabel)
+                }
+                else {
+                    HStack {
+                        Image(systemName: Strings.importFormIconName)
+                        Text(Strings.importLabel)
+                    }
                 }
             }
             
             Spacer()
             
+            // Sort method menu
             if showSortMethodMenu {
                 
                 Menu {

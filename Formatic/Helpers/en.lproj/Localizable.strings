@@ -54,6 +54,7 @@
 "unlockedLabel" = "Unlocked";
 "optionalFormPasswordLabel" = "Optional password";
 "retypeFormPasswordLabel" = "Retype password";
+"sortMethodLabel" = "Sort Method";
 
 "textFieldLabel" = "Text Field";
 "textLabel" = "text";

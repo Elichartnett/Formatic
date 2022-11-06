@@ -25,36 +25,15 @@ struct TextEditorWidgetView: View {
     
     var body: some View {
         
-        HStack {
+        if FormModel.isPhone {
+            VStack (alignment: .leading) {
+                BaseTextEditorWidgetView(textEditorWidget: textEditorWidget, locked: $locked)
+            }
+        }
+        else {
             
-            InputBox(placeholder: Strings.titleLabel, text: $title)
-                .titleFrameStyle(locked: $locked)
-                .onAppear {
-                    title = textEditorWidget.title ?? ""
-                    text = textEditorWidget.text ?? ""
-                }
-                .onChange(of: title) { _ in
-                    textEditorWidget.title = title
-                }
-            
-            ZStack (alignment: .topLeading) {
-                TextEditor(text: $text)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(isFocused ? .blue : .secondary, lineWidth: 2)
-                    )
-                    .frame(height: 200)
-                    .focused($isFocused)
-                    .onChange(of: text) { _ in
-                        textEditorWidget.text = text
-                    }
-                    .scrollContentBackground(.hidden)
-                if text.isEmpty {
-                    Text(Strings.startTypingHereLabel)
-                        .foregroundColor(Color(uiColor: UIColor.systemGray3))
-                        .padding(.top, 10)
-                        .padding(.leading, 5)
-                }
+            HStack {
+                BaseTextEditorWidgetView(textEditorWidget: textEditorWidget, locked: $locked)
             }
         }
     }
@@ -63,5 +42,52 @@ struct TextEditorWidgetView: View {
 struct TextEditorWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         TextEditorWidgetView(textEditorWidget: dev.textEditorWidget, locked: .constant(false))
+    }
+}
+
+struct BaseTextEditorWidgetView: View {
+    
+    @Environment(\.colorScheme) var colorScheme
+    @ObservedObject var textEditorWidget: TextEditorWidget
+    @Binding var locked: Bool
+    @FocusState var isFocused: Bool
+    @State var title: String
+    @State var text: String
+    
+    init(textEditorWidget: TextEditorWidget, locked: Binding<Bool>) {
+        self.textEditorWidget = textEditorWidget
+        self._locked = locked
+        self._title = State(initialValue: textEditorWidget.title ?? "")
+        self._text = State(initialValue: textEditorWidget.text ?? "")
+    }
+    
+    var body: some View {
+        
+        InputBox(placeholder: Strings.titleLabel, text: $title)
+            .titleFrameStyle(locked: $locked)
+            .onAppear {
+                title = textEditorWidget.title ?? ""
+                text = textEditorWidget.text ?? ""
+            }
+            .onChange(of: title) { _ in
+                textEditorWidget.title = title
+            }
+        
+        ZStack (alignment: .topLeading) {
+            TextEditor(text: $text)
+                .WidgetPreviewStyle(isFocused: isFocused)
+                .focused($isFocused)
+                .onChange(of: text) { _ in
+                    textEditorWidget.text = text
+                }
+                .scrollContentBackground(.hidden)
+            if text.isEmpty {
+                Text(Strings.startTypingHereLabel)
+                    .foregroundColor(Color(uiColor: UIColor.systemGray3))
+                    .padding(.top, 10)
+                    .padding(.leading, 5)
+            }
+        }
+
     }
 }

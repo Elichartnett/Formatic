@@ -53,11 +53,7 @@ struct InputBox: View {
         }
         .foregroundColor(isValid ? .primary : .red)
         .padding(.leading)
-        .frame(height: 40)
-        .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(isFocused ? .blue : .secondary, lineWidth: 2)
-        )
+        .WidgetFrameStyle(isFocused: isFocused)
         .focused($isFocused)
     }
 }

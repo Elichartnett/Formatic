@@ -11,7 +11,6 @@ struct DropdownSectionWidgetView: View {
     
     @FetchRequest var dropdowns: FetchedResults<DropdownWidget>
     @ObservedObject var dropdownSectionWidget: DropdownSectionWidget
-    @Environment(\.editMode) var editMode
     @Binding var locked: Bool
     @State var reconfigureWidget = false
     @State var title: String
@@ -25,17 +24,69 @@ struct DropdownSectionWidgetView: View {
     
     var body: some View {
         
-        HStack {
+        if FormModel.isPhone {
+            VStack(alignment: .leading) {
+                BaseDropdownSectionWidgetView(dropdownSectionWidget: dropdownSectionWidget, locked: $locked)
+            }
+        }
+        else {
+            HStack {
+                BaseDropdownSectionWidgetView(dropdownSectionWidget: dropdownSectionWidget, locked: $locked)
+            }
+        }
+    }
+}
+
+struct DropdownSectionWidgetView_Previews: PreviewProvider {
+    static var previews: some View {
+        DropdownSectionWidgetView(dropdownSectionWidget: dev.dropdownSectionWidget, locked: .constant(false))
+    }
+}
+
+struct BaseDropdownSectionWidgetView: View {
+    
+    @FetchRequest var dropdowns: FetchedResults<DropdownWidget>
+    @ObservedObject var dropdownSectionWidget: DropdownSectionWidget
+    @Environment(\.editMode) var editMode
+    @Binding var locked: Bool
+    @State var reconfigureWidget = false
+    @State var title: String
+    
+    init(dropdownSectionWidget: DropdownSectionWidget, locked: Binding<Bool>) {
+        self._dropdowns = FetchRequest<DropdownWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "dropdownSectionWidget == %@", dropdownSectionWidget))
+        self.dropdownSectionWidget = dropdownSectionWidget
+        self._locked = locked
+        self._title = State(initialValue: dropdownSectionWidget.title ?? "")
+    }
+    
+    var body: some View {
+        Group {
             
-            InputBox(placeholder: Strings.titleLabel, text: $title)
-                .titleFrameStyle(locked: $locked)
-                .onChange(of: title) { _ in
-                    dropdownSectionWidget.title = title
+            let reconfigureButton = Button {
+                reconfigureWidget = true
+            } label: {
+                if editMode?.wrappedValue == .active {
+                    Image(systemName: Strings.editIconName)
+                        .customIcon()
                 }
-            
-            Spacer()
+            }
+                .disabled(editMode?.wrappedValue == .inactive)
             
             HStack {
+                InputBox(placeholder: Strings.titleLabel, text: $title)
+                    .titleFrameStyle(locked: $locked)
+                    .onChange(of: title) { _ in
+                        dropdownSectionWidget.title = title
+                    }
+                
+                if FormModel.isPhone {
+                    reconfigureButton
+                }
+            }
+            .padding(.bottom, 1)
+            
+            HStack {
+                Spacer()
                 
                 Menu {
                     ForEach(dropdowns) { widget in
@@ -53,33 +104,27 @@ struct DropdownSectionWidgetView: View {
                     }
                 } label: {
                     Text(Strings.dropdownMenuLabel)
+                        .foregroundColor(.blue)
                 }
                 
                 Text(dropdownSectionWidget.selectedDropdown?.title! ?? Strings.noSelectionLabel)
+                
+                Spacer()
             }
+            .frame(maxWidth: .infinity)
+            .WidgetFrameStyle()
             
-            Spacer()
-            
-            Button {
-                reconfigureWidget = true
-            } label: {
-                if editMode?.wrappedValue == .active {
-                    Image(systemName: Strings.editIconName)
-                        .customIcon()
-                }
+            if !FormModel.isPhone {
+                reconfigureButton
             }
-            .disabled(editMode?.wrappedValue == .inactive)
         }
-        .ignoresSafeArea()
         .sheet(isPresented: $reconfigureWidget) {
             ConfigureDropdownSectionWidgetView(dropdownSectionWidget: dropdownSectionWidget, title: $title, section: dropdownSectionWidget.section!)
                 .padding()
         }
-    }
-}
-
-struct DropdownSectionWidgetView_Previews: PreviewProvider {
-    static var previews: some View {
-        DropdownSectionWidgetView(dropdownSectionWidget: dev.dropdownSectionWidget, locked: .constant(false))
+        // Manually setting list row inset to 0
+        .alignmentGuide(.listRowSeparatorLeading, computeValue: { viewDimensions in
+            return viewDimensions[.listRowSeparatorLeading]
+        })
     }
 }

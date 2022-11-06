@@ -15,15 +15,15 @@ struct SubmitButton: View {
     
     var body: some View {
         
-        Rectangle()
-            .fill(isValid ? .blue : .gray)
-            .frame(width: 300, height: 100)
-            .cornerRadius(10)
-            .overlay(
-                Text(buttonTitle)
-                    .font(.title)
-                    .foregroundColor(.primary)
-            )
+        Text(buttonTitle)
+            .font(.title)
+            .foregroundColor(.primary)
+            .padding()
+            .background {
+                Rectangle()
+                    .fill(isValid ? .blue : .gray)
+                    .cornerRadius(10)
+            }
     }
 }
 

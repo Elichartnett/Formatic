@@ -36,9 +36,14 @@ struct EditorViewToolbar: View {
                     form.locked = true
                 }
             } label: {
-                HStack {
+                if FormModel.isPhone {
                     Image(systemName: form.locked == true ? Strings.lockIconName : Strings.openLockIconName)
-                    Text(form.locked == true ? Strings.lockedLabel : Strings.unlockedLabel)
+                }
+                else {
+                    HStack {
+                        Image(systemName: form.locked == true ? Strings.lockIconName : Strings.openLockIconName)
+                        Text(form.locked == true ? Strings.lockedLabel : Strings.unlockedLabel)
+                    }
                 }
             }
             .frame(maxWidth: .infinity)
@@ -47,9 +52,14 @@ struct EditorViewToolbar: View {
             Button {
                 form.addToSections(Section(position: form.sections?.count ?? 0, title: nil))
             } label: {
-                HStack {
+                if FormModel.isPhone {
                     Image(systemName: Strings.plusCircleIconName)
-                    Text(Strings.newSectionLabel)
+                }
+                else {
+                    HStack {
+                        Image(systemName: Strings.plusCircleIconName)
+                        Text(Strings.newSectionLabel)
+                    }
                 }
             }
             .frame(maxWidth: .infinity)
@@ -66,13 +76,18 @@ struct EditorViewToolbar: View {
                     }
                 }
             } label: {
-                HStack {
+                if FormModel.isPhone {
                     Image(systemName: Strings.editIconName)
-                    if editMode == .active {
-                        Text(Strings.doneLabel)
-                    }
-                    else {
-                        Text(Strings.editLabel)
+                }
+                else {
+                    HStack {
+                        Image(systemName: Strings.editIconName)
+                        if editMode == .active {
+                            Text(Strings.doneLabel)
+                        }
+                        else {
+                            Text(Strings.editLabel)
+                        }
                     }
                 }
             }
@@ -111,9 +126,14 @@ struct EditorViewToolbar: View {
                     }
                 }
             } label: {
-                HStack {
+                if FormModel.isPhone {
                     Image(systemName: Strings.exportFormIconName)
-                    Text(Strings.exportLabel)
+                }
+                else {
+                    HStack {
+                        Image(systemName: Strings.exportFormIconName)
+                        Text(Strings.exportLabel)
+                    }
                 }
             }
             .frame(maxWidth: .infinity)

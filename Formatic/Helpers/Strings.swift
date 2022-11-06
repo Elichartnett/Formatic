@@ -58,6 +58,7 @@ struct Strings {
     static let unlockedLabel = String(localized: "unlockedLabel")
     static let optionalFormPasswordLabel = String(localized: "optionalFormPasswordLabel")
     static let retypeFormPasswordLabel = String(localized: "retypeFormPasswordLabel")
+    static let sortMethodLabel = String(localized: "sortMethodLabel")
     
     static let textFieldLabel = String(localized: "textFieldLabel")
     static let textLabel = String(localized: "textLabel")
