@@ -96,7 +96,7 @@ struct Strings {
     static let plusIconName = "plus"
     static let plusCircleIconName = "plus.circle"
     static let importFormIconName = "square.and.arrow.down"
-    static let exportFormIconName = "square.and.arrow.down"
+    static let exportFormIconName = "square.and.arrow.up"
     static let docZipperIconName = "doc.zipper"
     static let docTextImageIconName = "doc.text.image"
     static let csvTableIconName = "tablecells"
