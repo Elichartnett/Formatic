@@ -66,7 +66,7 @@ class DeveloperPreview {
         annotation.latitude = 0.0
         annotation.longitude = 0.0
         mapWidget.addToAnnotations(annotation)
-        coordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.0902, longitude: -95.7129), span: MKCoordinateSpan(latitudeDelta: 70, longitudeDelta: 70))
+        coordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.0902, longitude: -95.7129), span: MKCoordinateSpan(latitudeDelta: 90, longitudeDelta: 90))
         
         // Create CanvasWidget
         canvasWidget = CanvasWidget(title: "Canvas widget title", position: 8, image: nil, pkDrawing: nil, widgetViewPreview: nil)

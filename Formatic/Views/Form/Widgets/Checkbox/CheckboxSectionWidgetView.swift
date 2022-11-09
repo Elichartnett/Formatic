@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CheckboxSectionWidgetView: View {
     
+    @EnvironmentObject var formModel: FormModel
     @FetchRequest var checkboxes: FetchedResults<CheckboxWidget>
     @ObservedObject var checkboxSectionWidget: CheckboxSectionWidget
     @Environment(\.editMode) var editMode
@@ -26,23 +27,9 @@ struct CheckboxSectionWidgetView: View {
     
     var body: some View {
         
-        HStack {
+        let baseView = Group {
             
-            InputBox(placeholder: Strings.titleLabel, text: $title)
-                .titleFrameStyle(locked: $locked)
-                .onChange(of: title) { _ in
-                    checkboxSectionWidget.title = title
-                }
-            
-            let columns: [GridItem] = Array(repeating: GridItem(.flexible(minimum: 100, maximum: 150), spacing: 20, alignment: nil), count: 3)
-            LazyVGrid(columns: columns, alignment: .leading) {
-                ForEach(checkboxes) { checkboxWidget in
-                    CheckboxWidgetView(checkbox: checkboxWidget)
-                }
-            }
-            .frame(maxWidth: .infinity)
-            
-            Button {
+            let reconfigureButton = Button {
                 reconfigureWidget = true
             } label: {
                 if editMode?.wrappedValue == .active {
@@ -50,11 +37,53 @@ struct CheckboxSectionWidgetView: View {
                         .customIcon()
                 }
             }
-            .disabled(editMode?.wrappedValue == .inactive)
+                .disabled(editMode?.wrappedValue == .inactive)
+            
+            Group {
+                
+                HStack {
+                    InputBox(placeholder: Strings.titleLabel, text: $title)
+                        .titleFrameStyle(locked: $locked)
+                        .padding(.top, formModel.isPhone ? 6 : 0)
+                        .onChange(of: title) { _ in
+                            checkboxSectionWidget.title = title
+                        }
+                    
+                    if formModel.isPhone {
+                        reconfigureButton
+                    }
+                }
+                
+                let columns = [GridItem(.adaptive(minimum: 200), alignment: .leading)]
+                
+                LazyVGrid(columns: columns, alignment: .leading) {
+                    ForEach(checkboxes) { checkboxWidget in
+                        CheckboxWidgetView(checkbox: checkboxWidget)
+                    }
+                    .padding(.leading, 5)
+                }
+                .WidgetFrameStyle(height: .adaptive)
+                .padding(.bottom, formModel.isPhone ? 6 : 0)
+
+                if !formModel.isPhone && editMode?.wrappedValue == .active {
+                    reconfigureButton
+                }
+            }
+            .sheet(isPresented: $reconfigureWidget) {
+                ConfigureCheckboxSectionWidgetView(checkboxSectionWidget: checkboxSectionWidget, title: $title, section: checkboxSectionWidget.section!)
+                    .padding()
+            }
         }
-        .sheet(isPresented: $reconfigureWidget) {
-            ConfigureCheckboxSectionWidgetView(checkboxSectionWidget: checkboxSectionWidget, title: $title, section: checkboxSectionWidget.section!)
-                .padding()
+        
+        if formModel.isPhone {
+            VStack(alignment: .leading, spacing: FormModel.spacingConstant) {
+                baseView
+            }
+        }
+        else {
+            HStack(spacing: FormModel.spacingConstant) {
+                baseView
+            }
         }
     }
 }
@@ -62,5 +91,6 @@ struct CheckboxSectionWidgetView: View {
 struct CheckboxSectionWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         CheckboxSectionWidgetView(checkboxSectionWidget: dev.checkboxSectionWidget, locked: .constant(false))
+            .environmentObject(FormModel())
     }
 }

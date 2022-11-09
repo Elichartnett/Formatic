@@ -15,14 +15,12 @@ struct ConfigureMapWidgetView: View {
     @State var mapWidget: MapWidget?
     @Binding var title: String
     @State var section: Section
-    @State var coordinateRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.0902, longitude: -95.7129), span: MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20))
+    @State var coordinateRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.0902, longitude: -95.7129), span: MKCoordinateSpan(latitudeDelta: 90, longitudeDelta: 90))
     var widgetViewPreviewSize = CGSize.zero
     
     var body: some View {
         
         VStack {
-            Text(Strings.previewLabel)
-                .font(.title)
             
             Group {
                 if let mapWidget {
@@ -32,7 +30,7 @@ struct ConfigureMapWidgetView: View {
                     Map(coordinateRegion: $coordinateRegion, interactionModes: .all, showsUserLocation: false, userTrackingMode: .none)
                 }
             }
-            .WidgetPreviewStyle()
+            .WidgetFrameStyle(height: .large)
             
             Button {
                 if let mapWidget {
@@ -56,7 +54,6 @@ struct ConfigureMapWidgetView: View {
                 SubmitButton(isValid: .constant(true))
             }
         }
-        .padding()
         .onAppear {
             if let mapWidget {
                 coordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: mapWidget.coordinateRegionCenterLat, longitude: mapWidget.coordinateRegionCenterLon), span: MKCoordinateSpan(latitudeDelta: mapWidget.coordinateSpanLatDelta, longitudeDelta: mapWidget.coordinateSpanLonDelta))

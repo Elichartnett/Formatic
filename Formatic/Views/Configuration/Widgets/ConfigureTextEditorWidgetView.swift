@@ -23,14 +23,14 @@ struct ConfigureTextEditorWidgetView: View {
             
             ZStack (alignment: .topLeading) {
                 TextEditor(text: $text)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(isFocused ? .blue : .secondary, lineWidth: 2)
-                    )
+                    .WidgetFrameStyle(isFocused: isFocused, height: .adaptive)
                     .focused($isFocused)
                 
                 if text.isEmpty {
                     Text(Strings.startTypingHereLabel)
+                        .onTapGesture {
+                            isFocused = true
+                        }
                         .foregroundColor(Color(uiColor: UIColor.systemGray3))
                         .padding(.top, 10)
                         .padding(.leading, 5)

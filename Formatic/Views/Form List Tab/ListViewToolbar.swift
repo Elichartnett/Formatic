@@ -10,6 +10,7 @@ import SwiftUI
 // Tool bar options for list of saved forms
 struct ListViewToolbar: View {
     
+    @EnvironmentObject var formModel: FormModel
     @Binding var showNewFormView: Bool
     @Binding var showImportFormView: Bool
     @State var showSortMethodMenu: Bool
@@ -25,7 +26,7 @@ struct ListViewToolbar: View {
             Button {
                 showNewFormView = true
             } label: {
-                if FormModel.isPhone {
+                if formModel.isPhone {
                     Image(systemName: Strings.plusCircleIconName)
                 }
                 else {
@@ -42,7 +43,7 @@ struct ListViewToolbar: View {
             Button {
                 showImportFormView = true
             } label: {
-                if FormModel.isPhone {
+                if formModel.isPhone {
                     Image(systemName: Strings.importFormIconName)
                 }
                 else {

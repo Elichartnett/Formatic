@@ -95,6 +95,7 @@ struct ConfigureDropdownSectionWidgetView: View {
             } label: {
                 SubmitButton(isValid: $isValid)
             }
+            .disabled(!isValid)
             .padding(.bottom)
         }
         .frame(maxHeight: .infinity)

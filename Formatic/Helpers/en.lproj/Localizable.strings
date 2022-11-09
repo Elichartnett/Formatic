@@ -28,7 +28,6 @@
 "noSearchResultsMessage" = "No results. Try searching for a different title.";
 "noFormDataErrorMessage" = "No form data";
 
-"previewLabel" = "Preview";
 "formLabel" = "Form";
 "formTitleLabel" = "Form Title";
 "sectionTitleLabel" = "Section Title";

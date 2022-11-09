@@ -14,7 +14,8 @@ import PencilKit
 class FormModel: ObservableObject {
     
     @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    static var isPhone = UIDevice.current.userInterfaceIdiom == .phone
+    @Published var isPhone = UIDevice.current.userInterfaceIdiom == .phone
+    static var spacingConstant: CGFloat = 8
     
     func numberIsValid(number: String, range: ClosedRange<Double>? = nil) -> Bool {
         // Check if field only contains nubmers

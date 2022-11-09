@@ -10,6 +10,7 @@ import PencilKit
 
 struct CanvasWidgetView: View {
     
+    @EnvironmentObject var formModel: FormModel
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.editMode) var editMode
     @ObservedObject var canvasWidget: CanvasWidget
@@ -28,76 +29,9 @@ struct CanvasWidgetView: View {
     
     var body: some View {
         
-        HStack {
+        let baseView = Group {
             
-            InputBox(placeholder: Strings.titleLabel, text: $title)
-                .titleFrameStyle(locked: $locked)
-                .onChange(of: title) { _ in
-                    canvasWidget.title = title
-                }
-                .disabled(locked)
-            
-            NavigationLink {
-                CanvasWidgetDetailView(canvasWidget: canvasWidget)
-            } label: {
-                if let backgroundImage = UIImage(data: canvasWidget.image ?? Data()) {
-                    GeometryReader { proxy in
-                        HStack {
-                            Spacer()
-                            
-                            ZStack {
-                                let proxyMin = min(proxy.size.width, proxy.size.height)
-                                let targetSize = CGSize(width: proxyMin, height: proxyMin)
-                                let resizedBackgroundImage = FormModel.resizeImage(image: backgroundImage, targetSize: targetSize) ?? UIImage()
-                                
-                                Image(uiImage: resizedBackgroundImage)
-                                
-                                Image(uiImage: UIImage(data: canvasWidget.widgetViewPreview ?? Data()) ?? UIImage())
-                                    .resizable()
-                                    .scaledToFit()
-                            }
-                            .border(.secondary)
-                            
-                            Spacer()
-                        }
-                    }
-                }
-            }
-            .WidgetPreviewStyle()
-            .onChange(of: colorScheme, perform: { _ in
-                do {
-                    let canvasView = PKCanvasView()
-                    let imageView = UIImageView()
-                    let width = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) - 100
-                    
-                    canvasView.drawing = try PKDrawing(data: canvasWidget.pkDrawing ?? Data())
-                    
-                    canvasView.frame = CGRect(origin: .zero, size: CGSize(width: width, height: width))
-                    canvasView.isOpaque = false
-                    canvasView.backgroundColor = .clear
-                    canvasView.minimumZoomScale = 1
-                    canvasView.maximumZoomScale = 5
-                    
-                    imageView.frame = CGRect(origin: .zero, size: canvasView.frame.size)
-                    imageView.contentMode = .scaleAspectFit
-                    imageView.image = UIImage(data: canvasWidget.image ?? Data())
-                    imageView.backgroundColor = colorScheme == .light ? .white : .systemGray6
-                    
-                    canvasView.addSubview(imageView)
-                    canvasView.sendSubviewToBack(imageView)
-                    
-                    // Add picker
-                    canvasView.becomeFirstResponder()
-                    
-                    FormModel.updateCanvasWidgetViewPreview(canvasWidget: canvasWidget, canvasView: canvasView)
-                }
-                catch {
-                    title = Strings.updateCanvasWidgetViewPreviewErrorMessage
-                    showAlert = true
-                }
-            })
-            
-            Button {
+            let reconfigureButton = Button {
                 reconfigureWidget = true
             } label: {
                 if editMode?.wrappedValue == .active {
@@ -107,14 +41,106 @@ struct CanvasWidgetView: View {
             }
             .disabled(editMode?.wrappedValue == .inactive)
             .buttonStyle(.plain)
+            
+            Group {
+                
+                HStack {
+                    InputBox(placeholder: Strings.titleLabel, text: $title)
+                        .titleFrameStyle(locked: $locked)
+                        .onChange(of: title) { _ in
+                            canvasWidget.title = title
+                        }
+                        .disabled(locked)
+                    
+                    if formModel.isPhone {
+                        reconfigureButton
+                    }
+                }
+                
+                NavigationLink {
+                    CanvasWidgetDetailView(canvasWidget: canvasWidget)
+                } label: {
+                    if let backgroundImage = UIImage(data: canvasWidget.image ?? Data()) {
+                        GeometryReader { proxy in
+                            HStack {
+                                Spacer()
+                                
+                                ZStack {
+                                    let proxyMin = min(proxy.size.width, proxy.size.height)
+                                    let targetSize = CGSize(width: proxyMin, height: proxyMin)
+                                    let resizedBackgroundImage = FormModel.resizeImage(image: backgroundImage, targetSize: targetSize) ?? UIImage()
+                                    
+                                    Image(uiImage: resizedBackgroundImage)
+                                    
+                                    Image(uiImage: UIImage(data: canvasWidget.widgetViewPreview ?? Data()) ?? UIImage())
+                                        .resizable()
+                                        .scaledToFit()
+                                }
+                                .border(.secondary)
+                                
+                                Spacer()
+                            }
+                            .offset(x: 10)
+                        }
+                    }
+                }
+                .WidgetFrameStyle(height: .large)
+                .onChange(of: colorScheme, perform: { _ in
+                    do {
+                        let canvasView = PKCanvasView()
+                        let imageView = UIImageView()
+                        let width = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) - 100
+                        
+                        canvasView.drawing = try PKDrawing(data: canvasWidget.pkDrawing ?? Data())
+                        
+                        canvasView.frame = CGRect(origin: .zero, size: CGSize(width: width, height: width))
+                        canvasView.isOpaque = false
+                        canvasView.backgroundColor = .clear
+                        canvasView.minimumZoomScale = 1
+                        canvasView.maximumZoomScale = 5
+                        
+                        imageView.frame = CGRect(origin: .zero, size: canvasView.frame.size)
+                        imageView.contentMode = .scaleAspectFit
+                        imageView.image = UIImage(data: canvasWidget.image ?? Data())
+                        imageView.backgroundColor = colorScheme == .light ? .white : .systemGray6
+                        
+                        canvasView.addSubview(imageView)
+                        canvasView.sendSubviewToBack(imageView)
+                        
+                        // Add picker
+                        canvasView.becomeFirstResponder()
+                        
+                        FormModel.updateCanvasWidgetViewPreview(canvasWidget: canvasWidget, canvasView: canvasView)
+                    }
+                    catch {
+                        title = Strings.updateCanvasWidgetViewPreviewErrorMessage
+                        showAlert = true
+                    }
+                })
+                
+                if !formModel.isPhone {
+                    reconfigureButton
+                }
+            }
+            .sheet(isPresented: $reconfigureWidget) {
+                ConfigureCanvasWidgetView(canvasWidget: canvasWidget, title: $title, section: canvasWidget.section!)
+                    .padding()
+            }
+            .alert(alertTitle, isPresented: $showAlert, actions: {
+                Button(alertButtonDismissMessage, role: .cancel) {}
+            })
         }
-        .sheet(isPresented: $reconfigureWidget) {
-            ConfigureCanvasWidgetView(canvasWidget: canvasWidget, title: $title, section: canvasWidget.section!)
-                .padding()
+        
+        if formModel.isPhone {
+            VStack(alignment: .leading, spacing: FormModel.spacingConstant) {
+                baseView
+            }
         }
-        .alert(alertTitle, isPresented: $showAlert, actions: {
-            Button(alertButtonDismissMessage, role: .cancel) {}
-        })
+        else {
+            HStack(spacing: FormModel.spacingConstant) {
+                baseView
+            }
+        }
     }
 }
 

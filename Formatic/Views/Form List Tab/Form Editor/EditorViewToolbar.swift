@@ -10,6 +10,7 @@ import SwiftUI
 // Tool bar options for editing a form
 struct EditorViewToolbar: View {
     
+    @EnvironmentObject var formModel: FormModel
     @ObservedObject var form: Form
     @Binding var exportToForm: Bool
     @Binding var exportToPDF: Bool
@@ -36,7 +37,7 @@ struct EditorViewToolbar: View {
                     form.locked = true
                 }
             } label: {
-                if FormModel.isPhone {
+                if formModel.isPhone {
                     Image(systemName: form.locked == true ? Strings.lockIconName : Strings.openLockIconName)
                 }
                 else {
@@ -52,7 +53,7 @@ struct EditorViewToolbar: View {
             Button {
                 form.addToSections(Section(position: form.sections?.count ?? 0, title: nil))
             } label: {
-                if FormModel.isPhone {
+                if formModel.isPhone {
                     Image(systemName: Strings.plusCircleIconName)
                 }
                 else {
@@ -76,7 +77,7 @@ struct EditorViewToolbar: View {
                     }
                 }
             } label: {
-                if FormModel.isPhone {
+                if formModel.isPhone {
                     Image(systemName: Strings.editIconName)
                 }
                 else {
@@ -126,7 +127,7 @@ struct EditorViewToolbar: View {
                     }
                 }
             } label: {
-                if FormModel.isPhone {
+                if formModel.isPhone {
                     Image(systemName: Strings.exportFormIconName)
                 }
                 else {

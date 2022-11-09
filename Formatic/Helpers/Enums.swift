@@ -79,3 +79,9 @@ enum SortMethod: String {
     case defaultOrder = "defaultOrder"
     case alphabetical = "alphabetical"
 }
+
+enum WidgetViewHeight: CGFloat {
+    case regular = 42
+    case adaptive
+    case large = 200
+}

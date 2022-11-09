@@ -38,6 +38,20 @@ struct Formatic: App {
                 .alert(alertTitle, isPresented: $showAlert, actions: {
                     Button(alertButtonDismissMessage, role: .cancel) {}
                 })
+                .overlay {
+                    GeometryReader { proxy in
+                        EmptyView()
+                            .onChange(of: proxy.size.width) { newValue in
+                                if newValue < CGFloat(654.0) {
+                                    formModel.isPhone = true
+                                }
+                                else {
+                                    formModel.isPhone = false
+
+                                }
+                            }
+                    }
+                }
         }
     }
 }
