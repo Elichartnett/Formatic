@@ -50,15 +50,20 @@ struct TextFieldWidgetView: View {
                         textFieldWidget.text = text
                     }
                     .scrollContentBackground(.hidden)
-                if text.isEmpty {
-                    Text(Strings.textLabel)
-                        .onTapGesture {
-                            isFocused = true
+                    .overlay {
+                        HStack {
+                            if text.isEmpty {
+                                Text(Strings.textLabel)
+                                    .onTapGesture {
+                                        isFocused = true
+                                    }
+                                    .foregroundColor(Color(uiColor: UIColor.systemGray3))
+                                    .padding(.leading, 20)
+                                
+                                Spacer()
+                            }
                         }
-                        .foregroundColor(Color(uiColor: UIColor.systemGray3))
-                        .padding(.top)
-                        .padding(.leading)
-                }
+                    }
             }
         }
             .alignmentGuide(.listRowSeparatorLeading, computeValue: { viewDimensions in

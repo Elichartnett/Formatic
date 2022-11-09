@@ -39,8 +39,8 @@ struct CanvasWidgetView: View {
                         .customIcon()
                 }
             }
-            .disabled(editMode?.wrappedValue == .inactive)
-            .buttonStyle(.plain)
+                .disabled(editMode?.wrappedValue == .inactive)
+                .buttonStyle(.plain)
             
             Group {
                 
@@ -60,28 +60,29 @@ struct CanvasWidgetView: View {
                 NavigationLink {
                     CanvasWidgetDetailView(canvasWidget: canvasWidget)
                 } label: {
-                    if let backgroundImage = UIImage(data: canvasWidget.image ?? Data()) {
-                        GeometryReader { proxy in
-                            HStack {
-                                Spacer()
+                    GeometryReader { proxy in
+                        HStack {
+                            Spacer()
+                            
+                            ZStack {
                                 
-                                ZStack {
+                                if let backgroundImage = UIImage(data: canvasWidget.image ?? Data()) {
                                     let proxyMin = min(proxy.size.width, proxy.size.height)
                                     let targetSize = CGSize(width: proxyMin, height: proxyMin)
                                     let resizedBackgroundImage = FormModel.resizeImage(image: backgroundImage, targetSize: targetSize) ?? UIImage()
                                     
                                     Image(uiImage: resizedBackgroundImage)
-                                    
-                                    Image(uiImage: UIImage(data: canvasWidget.widgetViewPreview ?? Data()) ?? UIImage())
-                                        .resizable()
-                                        .scaledToFit()
                                 }
-                                .border(.secondary)
                                 
-                                Spacer()
+                                Image(uiImage: UIImage(data: canvasWidget.widgetViewPreview ?? Data()) ?? UIImage())
+                                    .resizable()
+                                    .scaledToFit()
                             }
-                            .offset(x: 10)
+                            .border(.secondary)
+                            
+                            Spacer()
                         }
+                        .offset(x: 10)
                     }
                 }
                 .WidgetFrameStyle(height: .large)
@@ -147,5 +148,6 @@ struct CanvasWidgetView: View {
 struct CanvasWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         CanvasWidgetView(canvasWidget: dev.canvasWidget, locked: .constant(false))
+            .environmentObject(FormModel())
     }
 }
