@@ -39,12 +39,6 @@ struct ConfigureWidgetView: View {
                         typeTitle = Strings.numberFieldLabel
                     }
                 
-            case .textEditorWidget:
-                ConfigureTextEditorWidgetView(title: $widgetTitle, section: section)
-                    .onAppear {
-                        typeTitle = Strings.textEditorLabel
-                    }
-                
             case .dropdownSectionWidget:
                 ConfigureDropdownSectionWidgetView(title: $widgetTitle, section: section)
                     .onAppear {

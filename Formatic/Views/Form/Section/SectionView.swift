@@ -51,10 +51,6 @@ struct SectionView: View {
                         let numberFieldWidget = widget as! NumberFieldWidget
                         NumberFieldWidgetView(numberFieldWidget: numberFieldWidget, locked: $locked)
                         
-                    case .textEditorWidget:
-                        let textEditorWidget = widget as! TextEditorWidget
-                        TextEditorWidgetView(textEditorWidget: textEditorWidget, locked: $locked)
-                        
                     case .dropdownSectionWidget:
                         let dropdownSectionWidget = widget as! DropdownSectionWidget
                         DropdownSectionWidgetView(dropdownSectionWidget: dropdownSectionWidget, locked: $locked)

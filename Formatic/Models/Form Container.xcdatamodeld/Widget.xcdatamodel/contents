@@ -54,9 +54,6 @@
         <relationship name="form" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Form" inverseName="sections" inverseEntity="Form"/>
         <relationship name="widgets" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Widget" inverseName="section" inverseEntity="Widget"/>
     </entity>
-    <entity name="TextEditorWidget" representedClassName="TextEditorWidget" parentEntity="Widget" syncable="YES">
-        <attribute name="text" optional="YES" attributeType="String"/>
-    </entity>
     <entity name="TextFieldWidget" representedClassName="TextFieldWidget" parentEntity="Widget" syncable="YES">
         <attribute name="text" optional="YES" attributeType="String"/>
     </entity>

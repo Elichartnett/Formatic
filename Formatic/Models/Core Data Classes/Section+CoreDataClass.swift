@@ -51,10 +51,6 @@ public class Section: NSManagedObject, Codable, Identifiable, Csv, Copyable {
                 let numberFieldWidget = try widgetsArray.decode(NumberFieldWidget.self)
                 numberFieldWidget.section = self
 
-            case .textEditorWidget:
-                let textEditorWidget = try widgetsArray.decode(TextEditorWidget.self)
-                textEditorWidget.section = self
-
             case .dropdownSectionWidget:
                 let dropdownSectionWidget = try widgetsArray.decode(DropdownSectionWidget.self)
                 dropdownSectionWidget.section = self
@@ -112,10 +108,6 @@ public class Section: NSManagedObject, Codable, Identifiable, Csv, Copyable {
                 if let numberFieldWidget = item as? NumberFieldWidget {
                     retString += numberFieldWidget.toCsv()
                 }
-            case .textEditorWidget:
-                if let textEditorWidget = item as? TextEditorWidget {
-                    retString += textEditorWidget.toCsv()
-                }
             case .dropdownWidget:
                 // Handled in DropdownSectionWidget
                 break
@@ -153,11 +145,6 @@ public class Section: NSManagedObject, Codable, Identifiable, Csv, Copyable {
             case .numberFieldWidget:
                 if let widget = widget as? NumberFieldWidget {
                     let widgetCopy = widget.createCopy() as! NumberFieldWidget
-                    copy.addToWidgets(widgetCopy)
-                }
-            case .textEditorWidget:
-                if let widget = widget as? TextEditorWidget {
-                    let widgetCopy = widget.createCopy() as! TextEditorWidget
                     copy.addToWidgets(widgetCopy)
                 }
             case .dropdownSectionWidget:

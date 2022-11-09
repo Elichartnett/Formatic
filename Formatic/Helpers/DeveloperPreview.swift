@@ -19,7 +19,6 @@ class DeveloperPreview {
     let newWidgetType: WidgetType
     let textFieldWidget: TextFieldWidget
     let numberFieldWidget: NumberFieldWidget
-    let textEditorWidget: TextEditorWidget
     let dropdownWidget: DropdownWidget
     let dropdownSectionWidget: DropdownSectionWidget
     let checkboxWidget: CheckboxWidget
@@ -46,9 +45,6 @@ class DeveloperPreview {
         // Create NumberFieldWidget
         numberFieldWidget = NumberFieldWidget(title: "Number field title", position: 2, number: "0.00")
         
-        // Create TextEditorWidget
-        textEditorWidget = TextEditorWidget(title: "Text editor title", position: 3, text: "Text editor text")
-        
         // Create DropdownSectionWidget section
         dropdownSectionWidget = DropdownSectionWidget(title: "Dropdown section title", position: 4, selectedDropdown: nil, dropdownWidgets: nil)
         dropdownWidget = DropdownWidget(title: "Dropdown option 1", position: 0, dropdownSectionWidget: nil, selectedDropdownInverse: nil)
@@ -73,6 +69,6 @@ class DeveloperPreview {
         canvasWidget.widgetViewPreview = UIImage(systemName: "photo")?.pngData()
         
         // Add all widgets to section
-        section.addToWidgets(NSSet(array: [textFieldWidget, numberFieldWidget, textEditorWidget, dropdownSectionWidget, checkboxSectionWidget, mapWidget, canvasWidget]))
+        section.addToWidgets(NSSet(array: [textFieldWidget, numberFieldWidget, dropdownSectionWidget, checkboxSectionWidget, mapWidget, canvasWidget]))
     }
 }

@@ -13,6 +13,7 @@ struct ConfigureTextFieldWidgetView: View {
     @EnvironmentObject var formModel: FormModel
     @Environment(\.dismiss) var dismiss
     @Binding var title: String
+    @FocusState var isFocused: Bool
     @State var section: Section
     @State var text: String = ""
     
@@ -20,7 +21,21 @@ struct ConfigureTextFieldWidgetView: View {
         
         VStack {
             
-            InputBox(placeholder: Strings.textLabel, text: $text)
+            ZStack (alignment: .topLeading) {
+                TextEditor(text: $text)
+                    .WidgetFrameStyle(isFocused: isFocused, height: .adaptive)
+                    .focused($isFocused)
+                
+                if text.isEmpty {
+                    Text(Strings.textLabel)
+                        .onTapGesture {
+                            isFocused = true
+                        }
+                        .foregroundColor(Color(uiColor: UIColor.systemGray3))
+                        .padding(.top, 10)
+                        .padding(.leading, 5)
+                }
+            }
             
             Button {
                 let textFieldWidget = TextFieldWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), text: text)
@@ -31,11 +46,12 @@ struct ConfigureTextFieldWidgetView: View {
             } label: {
                 SubmitButton(isValid: .constant(true))
             }
+            .padding(.bottom)
         }
     }
 }
 
-struct ConfigureTextFieldView_Previews: PreviewProvider {
+struct ConfigureTextFieldWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         ConfigureTextFieldWidgetView(title: .constant(dev.textFieldWidget.title!), section: dev.section)
     }

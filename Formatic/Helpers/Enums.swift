@@ -33,7 +33,6 @@ enum WidgetType: String, Decodable, Identifiable {
     
     case textFieldWidget = "TextFieldWidget"
     case numberFieldWidget = "NumberFieldWidget"
-    case textEditorWidget = "TextEditorWidget"
     case dropdownSectionWidget = "DropdownSectionWidget"
     case dropdownWidget = "DropdownWidget"
     case checkboxSectionWidget = "CheckboxSectionWidget"

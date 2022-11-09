@@ -42,11 +42,6 @@ struct SectionTitleView: View {
                     newWidgetType = .numberFieldWidget
                 }
                 
-                // Add TextEditorWidget to section
-                Button(Strings.textEditorLabel) {
-                    newWidgetType = .textEditorWidget
-                }
-                
                 // Add DropdownSectionWidget to section
                 Button(Strings.dropdownMenuLabel) {
                     newWidgetType = .dropdownSectionWidget

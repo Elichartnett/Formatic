@@ -256,12 +256,6 @@ class FormModel: ObservableObject {
                 copy.position = widget.position + 1
                 section.addToWidgets(copy)
             }
-        case .textEditorWidget:
-            if let widget = widget as? TextEditorWidget {
-                let copy = widget.createCopy() as! TextEditorWidget
-                copy.position = widget.position + 1
-                section.addToWidgets(copy)
-            }
         case .dropdownSectionWidget:
             if let widget = widget as? DropdownSectionWidget {
                 let copy = widget.createCopy() as! DropdownSectionWidget

@@ -64,10 +64,7 @@ struct Strings {
     
     static let numberFieldLabel = String(localized: "numberFieldLabel")
     static let numberLabel = String(localized: "numberLabel")
-    
-    static let textEditorLabel = String(localized: "textEditorLabel")
-    static let startTypingHereLabel = String(localized: "startTypingHereLabel")
-    
+        
     static let dropdownMenuLabel = String(localized: "dropdownMenuLabel")
     static let numberOfDropdownOptionsLabel = String(localized: "numberOfDropdownOptionsLabel")
     
