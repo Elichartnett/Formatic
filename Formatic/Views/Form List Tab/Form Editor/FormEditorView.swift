@@ -24,11 +24,10 @@ struct FormEditorView: View {
     @State var alertTitle = ""
     @State var alertButtonDismissMessage = Strings.defaultAlertButtonDismissMessage
     @State var exportFormat: UTType?
+    @State var exportMessage = ""
     
     var body: some View {
-        
         VStack {
-            
             FormView(form: form, forPDF: false)
                 .environment(\.editMode, $editMode)
                 .toolbar(content: {
@@ -39,34 +38,46 @@ struct FormEditorView: View {
                 .onChange(of: exportToForm, perform: { _ in
                     if exportToForm {
                         exportFormat = .form
-                        do {
-                            let formData = try formModel.encodeFormToJsonData(form: form)
-                            formaticFileDocument = FormaticFileDocument(documentData: formData)
-                            showFileExporter = true
+                        exportMessage = Strings.formExportMessage
+                        DispatchQueue.main.async {
+                            do {
+                                let formData = try formModel.encodeFormToJsonData(form: form)
+                                formaticFileDocument = FormaticFileDocument(documentData: formData)
+                                showFileExporter = true
+                            }
+                            catch {
+                                alertTitle = Strings.exportFormErrorMessage
+                                showAlert = true
+                            }
+                            exportToForm = false
+                            exportMessage = ""
                         }
-                        catch {
-                            alertTitle = Strings.exportFormErrorMessage
-                            showAlert = true
-                        }
-                        exportToForm = false
                     }
                 })
                 .onChange(of: exportToPDF, perform: { _ in
                     if exportToPDF {
                         exportFormat = .pdf
-                        let pdfData = formModel.exportToPdf(form: form)
-                        formaticFileDocument = FormaticFileDocument(documentData: pdfData)
-                        showFileExporter = true
-                        exportToPDF = false
+                        exportMessage = Strings.pdfExportMessage
+                        DispatchQueue.main.async {
+                            let pdfData = formModel.exportToPdf(form: form)
+                            formaticFileDocument = FormaticFileDocument(documentData: pdfData)
+                            exportToPDF = false
+                            exportMessage = ""
+                            showFileExporter = true
+                        }
                     }
                 })
                 .onChange(of: exportToCSV, perform: { _ in
                     if exportToCSV {
                         exportFormat = .commaSeparatedText
-                        let csvData = formModel.exportToCsv(form: form)
-                        formaticFileDocument = FormaticFileDocument(documentData: csvData)
-                        showFileExporter = true
-                        exportToCSV = false
+                        exportMessage = Strings.csvExportMessage
+                        DispatchQueue.main.async {
+                            let csvData = formModel.exportToCsv(form: form)
+                            formaticFileDocument = FormaticFileDocument(documentData: csvData)
+                            showFileExporter = true
+                            exportToCSV = false
+                            exportMessage = ""
+                        }
                     }
                 })
                 .sheet(isPresented: $showToggleLockView, onDismiss: {
@@ -90,6 +101,18 @@ struct FormEditorView: View {
                 .alert(alertTitle, isPresented: $showAlert, actions: {
                     Button(alertButtonDismissMessage, role: .cancel) {}
                 })
+                .overlay(exportingOverlay)
+        }
+    }
+    @ViewBuilder private var exportingOverlay: some View {
+        if exportMessage != "" {
+            VStack {
+                ProgressView(exportMessage)
+            }
+            .padding()
+            .background(.ultraThinMaterial,
+                        in: RoundedRectangle(cornerRadius: 30))
+            .scaleEffect(3)
         }
     }
 }
