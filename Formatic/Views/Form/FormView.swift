@@ -69,6 +69,7 @@ struct FormView: View {
                         }
                     }
                     .scrollContentBackground(.hidden)
+                    .scrollDismissesKeyboard(.interactively)
                     .background {
                         if colorScheme == .light {
                             Color(uiColor: .systemGray6).ignoresSafeArea()

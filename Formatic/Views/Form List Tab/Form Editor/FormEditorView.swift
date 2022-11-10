@@ -34,6 +34,16 @@ struct FormEditorView: View {
                     ToolbarItem(placement: .principal) {
                         EditorViewToolbar(form: form, exportToForm: $exportToForm, exportToPDF: $exportToPDF, exportToCSV: $exportToCSV, showToggleLockView: $showToggleLockView, editMode: $editMode)
                     }
+                    
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        
+                        Button {
+                            formModel.endEditing()
+                        } label: {
+                            Text("Done")
+                        }
+                    }
                 })
                 .onChange(of: exportToForm, perform: { _ in
                     if exportToForm {

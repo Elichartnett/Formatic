@@ -68,6 +68,7 @@ struct FormListView: View {
                         }
                     }
                     .searchable(text: $searchText, placement: .toolbar)
+                    .scrollDismissesKeyboard(.interactively)
                     .onChange(of: searchText, perform: { _ in
                         if searchText == "" {
                             filteredForms.nsPredicate = nil
