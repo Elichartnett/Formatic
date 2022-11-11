@@ -52,12 +52,14 @@ public class Form: NSManagedObject, Codable, Identifiable, Csv, Copyable {
             self.sections = sections
         }
         
-        if let sealedBoxData = try formContainer.decode(Data?.self, forKey: .password) {
-            let hash = SHA256.hash(data: dateCreated.timeIntervalSince1970.description.data(using: .utf8)!)
-            let key = SymmetricKey(data: hash)
-            let sealedBox = try! ChaChaPoly.SealedBox(combined: sealedBoxData)
-            let passwordData = try! ChaChaPoly.open(sealedBox, using: key)
-            self.password = String(data: passwordData, encoding: .utf8)
+        do {
+            if let sealedBoxData = try? formContainer.decode(Data?.self, forKey: .password) {
+                let hash = SHA256.hash(data: dateCreated.timeIntervalSince1970.description.data(using: .utf8)!)
+                let key = SymmetricKey(data: hash)
+                let sealedBox = try! ChaChaPoly.SealedBox(combined: sealedBoxData)
+                let passwordData = try! ChaChaPoly.open(sealedBox, using: key)
+                self.password = String(data: passwordData, encoding: .utf8)
+            }
         }
     }
     
