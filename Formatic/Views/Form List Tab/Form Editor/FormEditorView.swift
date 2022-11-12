@@ -24,7 +24,6 @@ struct FormEditorView: View {
     @State var alertTitle = ""
     @State var alertButtonDismissMessage = Strings.defaultAlertButtonDismissMessage
     @State var exportFormat: UTType?
-    @State var exportMessage = ""
     
     var body: some View {
         VStack {
@@ -48,7 +47,6 @@ struct FormEditorView: View {
                 .onChange(of: exportToForm, perform: { _ in
                     if exportToForm {
                         exportFormat = .form
-                        exportMessage = Strings.formExportMessage
                         DispatchQueue.main.async {
                             do {
                                 let formData = try formModel.encodeFormToJsonData(form: form)
@@ -60,19 +58,16 @@ struct FormEditorView: View {
                                 showAlert = true
                             }
                             exportToForm = false
-                            exportMessage = ""
                         }
                     }
                 })
                 .onChange(of: exportToPDF, perform: { _ in
                     if exportToPDF {
                         exportFormat = .pdf
-                        exportMessage = Strings.pdfExportMessage
                         DispatchQueue.main.async {
                             let pdfData = formModel.exportToPdf(form: form)
                             formaticFileDocument = FormaticFileDocument(documentData: pdfData)
                             exportToPDF = false
-                            exportMessage = ""
                             showFileExporter = true
                         }
                     }
@@ -80,13 +75,11 @@ struct FormEditorView: View {
                 .onChange(of: exportToCSV, perform: { _ in
                     if exportToCSV {
                         exportFormat = .commaSeparatedText
-                        exportMessage = Strings.csvExportMessage
                         DispatchQueue.main.async {
                             let csvData = formModel.exportToCsv(form: form)
                             formaticFileDocument = FormaticFileDocument(documentData: csvData)
                             showFileExporter = true
                             exportToCSV = false
-                            exportMessage = ""
                         }
                     }
                 })
@@ -108,21 +101,14 @@ struct FormEditorView: View {
                         showAlert = true
                     }
                 })
+                .overlay {
+                    if exportToForm || exportToPDF || exportToCSV {
+                        ProgressView()
+                    }
+                }
                 .alert(alertTitle, isPresented: $showAlert, actions: {
                     Button(alertButtonDismissMessage, role: .cancel) {}
                 })
-                .overlay(exportingOverlay)
-        }
-    }
-    @ViewBuilder private var exportingOverlay: some View {
-        if exportMessage != "" {
-            VStack {
-                ProgressView(exportMessage)
-            }
-            .padding()
-            .background(.ultraThinMaterial,
-                        in: RoundedRectangle(cornerRadius: 30))
-            .scaleEffect(3)
         }
     }
 }

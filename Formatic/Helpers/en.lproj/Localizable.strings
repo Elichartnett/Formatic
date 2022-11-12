@@ -86,7 +86,3 @@
 "canvasLabel" = "Canvas";
 "selectPhotoLabel" = "Select photo";
 "takePhotoLabel" = "Take photo";
-
-"csvExportMessage" = "Preparing CSV File...";
-"formExportMessage" = "Preparing for Export...";
-"pdfExportMessage" = "Preparing PDF File...";

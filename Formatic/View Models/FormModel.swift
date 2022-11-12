@@ -141,7 +141,9 @@ class FormModel: ObservableObject {
     
     func urlToData(url: URL) throws -> Data {
         do {
+            _ = url.startAccessingSecurityScopedResource()
             let data = try Data(contentsOf: url)
+            url.stopAccessingSecurityScopedResource()
             return data
         }
         catch {

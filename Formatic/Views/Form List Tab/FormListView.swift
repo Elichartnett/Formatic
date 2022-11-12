@@ -17,6 +17,7 @@ struct FormListView: View {
     @State var searchText = ""
     @State var showNewFormView = false
     @State var showImportFormView = false
+    @State var importingForm = false
     @State var sortMethod = SortMethod.defaultOrder
     @State var showAlert = false
     @State var alertTitle = ""
@@ -129,12 +130,16 @@ struct FormListView: View {
             .fileImporter(isPresented: $showImportFormView, allowedContentTypes: [.form]) { result in
                 switch result {
                 case .success(let url):
-                    do {
-                        try formModel.importForm(url: url)
-                    }
-                    catch {
-                        alertTitle = Strings.importFormErrorMessage
-                        showAlert = true
+                    DispatchQueue.main.async {
+                        importingForm = true
+                        do {
+                            try formModel.importForm(url: url)
+                        }
+                        catch {
+                            alertTitle = Strings.importFormErrorMessage
+                            showAlert = true
+                        }
+                        importingForm = false
                     }
                 case .failure(_):
                     alertTitle = Strings.importFormErrorMessage
@@ -148,6 +153,11 @@ struct FormListView: View {
                 catch {
                     alertTitle = Strings.importFormErrorMessage
                     showAlert = true
+                }
+            }
+            .overlay {
+                if importingForm {
+                    ProgressView()
                 }
             }
             .alert(alertTitle, isPresented: $showAlert, actions: {

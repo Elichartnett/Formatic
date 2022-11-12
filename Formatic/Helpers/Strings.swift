@@ -91,10 +91,6 @@ struct Strings {
     static let selectPhotoLabel = String(localized: "selectPhotoLabel")
     static let takePhotoLabel = String(localized: "takePhotoLabel")
     
-    static let csvExportMessage = String(localized: "csvExportMessage")
-    static let formExportMessage = String(localized: "formExportMessage")
-    static let pdfExportMessage = String(localized: "pdfExportMessage")
-    
     static let trashIconName = "trash"
     static let copyIconName = "doc.on.doc"
     static let plusIconName = "plus"
