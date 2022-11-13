@@ -42,7 +42,6 @@
 		6250E9612831632D00E6E6A0 /* CanvasWidgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E9602831632D00E6E6A0 /* CanvasWidgetDetailView.swift */; };
 		6250E9632831649C00E6E6A0 /* CanvasRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E9622831649C00E6E6A0 /* CanvasRepresentableView.swift */; };
 		6250E97F2835B11600E6E6A0 /* FormaticFileDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E97E2835B11600E6E6A0 /* FormaticFileDocument.swift */; };
-		627053CE291CB7AE00552F6C /* Todos.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 627053CD291CB7AE00552F6C /* Todos.rtf */; };
 		627736FD28300F7D00F7B107 /* PhotoTaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627736FC28300F7D00F7B107 /* PhotoTaker.swift */; };
 		6288C6A328BB03B70081A39D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6A228BB03B70081A39D /* LaunchScreen.storyboard */; };
 		6288C6A728BB06580081A39D /* Privacy Policy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6A628BB06580081A39D /* Privacy Policy.pdf */; };
@@ -125,7 +124,6 @@
 		6250E9622831649C00E6E6A0 /* CanvasRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasRepresentableView.swift; sourceTree = "<group>"; };
 		6250E97E2835B11600E6E6A0 /* FormaticFileDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormaticFileDocument.swift; sourceTree = "<group>"; };
 		6250E9802836CAB400E6E6A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		627053CD291CB7AE00552F6C /* Todos.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Todos.rtf; sourceTree = "<group>"; };
 		627736FC28300F7D00F7B107 /* PhotoTaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTaker.swift; sourceTree = "<group>"; };
 		6288C6A228BB03B70081A39D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6288C6A528BB06530081A39D /* Privacy Policy pages.pages */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Privacy Policy pages.pages"; sourceTree = "<group>"; };
@@ -158,6 +156,7 @@
 		62D7D87828F86448004C55C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		62D7D87A28F86623004C55C9 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		62D7FE982826B8AF00FAA815 /* CheckboxWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxWidgetView.swift; sourceTree = "<group>"; };
+		62DBCBBC291F6405005C6FB9 /* Todo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Todo.md; sourceTree = "<group>"; };
 		62E3FAFF28DA13DD00F5FE2B /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		62E6AB46281E0ED6009F568B /* Form+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62E6AB48281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -421,7 +420,7 @@
 		62FE6E5F28187058009D41FD = {
 			isa = PBXGroup;
 			children = (
-				627053CD291CB7AE00552F6C /* Todos.rtf */,
+				62DBCBBC291F6405005C6FB9 /* Todo.md */,
 				62FE6E6A28187058009D41FD /* Formatic */,
 				62FE6E6928187058009D41FD /* Products */,
 			);
@@ -565,7 +564,6 @@
 				6288C6AE28BB06680081A39D /* logoAnimation.json in Resources */,
 				6288C6A728BB06580081A39D /* Privacy Policy.pdf in Resources */,
 				62D7D87728F86448004C55C9 /* Localizable.strings in Resources */,
-				627053CE291CB7AE00552F6C /* Todos.rtf in Resources */,
 				6288C6AC28BB06640081A39D /* logo.svg in Resources */,
 				62FE6E7028187059009D41FD /* Assets.xcassets in Resources */,
 			);

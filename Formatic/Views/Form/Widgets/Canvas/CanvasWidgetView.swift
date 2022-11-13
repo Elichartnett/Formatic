@@ -66,17 +66,18 @@ struct CanvasWidgetView: View {
                             
                             ZStack {
                                 
+                                let proxyMin = min(proxy.size.width, proxy.size.height)
                                 if let backgroundImage = UIImage(data: canvasWidget.image ?? Data()) {
-                                    let proxyMin = min(proxy.size.width, proxy.size.height)
-                                    let targetSize = CGSize(width: proxyMin, height: proxyMin)
-                                    let resizedBackgroundImage = FormModel.resizeImage(image: backgroundImage, targetSize: targetSize) ?? UIImage()
-                                    
-                                    Image(uiImage: resizedBackgroundImage)
+                                    Image(uiImage: backgroundImage)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: proxyMin, height: proxyMin)
                                 }
                                 
                                 Image(uiImage: UIImage(data: canvasWidget.widgetViewPreview ?? Data()) ?? UIImage())
                                     .resizable()
                                     .scaledToFit()
+                                    .frame(width: proxyMin, height: proxyMin)
                             }
                             .border(.secondary)
                             
@@ -92,7 +93,9 @@ struct CanvasWidgetView: View {
                         let imageView = UIImageView()
                         let width = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) - 100
                         
-                        canvasView.drawing = try PKDrawing(data: canvasWidget.pkDrawing ?? Data())
+                        if canvasWidget.pkDrawing != nil {
+                            canvasView.drawing = try PKDrawing(data: canvasWidget.pkDrawing ?? Data())
+                        }
                         
                         canvasView.frame = CGRect(origin: .zero, size: CGSize(width: width, height: width))
                         canvasView.isOpaque = false
@@ -114,7 +117,7 @@ struct CanvasWidgetView: View {
                         FormModel.updateCanvasWidgetViewPreview(canvasWidget: canvasWidget, canvasView: canvasView)
                     }
                     catch {
-                        title = Strings.updateCanvasWidgetViewPreviewErrorMessage
+                        alertTitle = Strings.updateCanvasWidgetViewPreviewErrorMessage
                         showAlert = true
                     }
                 })

@@ -82,6 +82,7 @@ struct ConfigureCanvasWidgetView: View {
             switch type {
             case .camera:
                 PhotoTaker(pickerResult: $pickerResult)
+                    .ignoresSafeArea()
             case .photoLibrary:
                 EmptyView()
             }
