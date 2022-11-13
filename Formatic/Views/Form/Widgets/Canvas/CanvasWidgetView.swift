@@ -60,31 +60,27 @@ struct CanvasWidgetView: View {
                 NavigationLink {
                     CanvasWidgetDetailView(canvasWidget: canvasWidget)
                 } label: {
-                    GeometryReader { proxy in
-                        HStack {
-                            Spacer()
+                    HStack {
+                        Spacer()
+                        
+                        ZStack {
                             
-                            ZStack {
-                                
-                                let proxyMin = min(proxy.size.width, proxy.size.height)
-                                if let backgroundImage = UIImage(data: canvasWidget.image ?? Data()) {
-                                    Image(uiImage: backgroundImage)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: proxyMin, height: proxyMin)
-                                }
-                                
-                                Image(uiImage: UIImage(data: canvasWidget.widgetViewPreview ?? Data()) ?? UIImage())
+                            if let backgroundImage = UIImage(data: canvasWidget.image ?? Data()) {
+                                Image(uiImage: backgroundImage)
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: proxyMin, height: proxyMin)
                             }
-                            .border(.secondary)
                             
-                            Spacer()
+                            Image(uiImage: UIImage(data: canvasWidget.widgetViewPreview ?? Data()) ?? UIImage())
+                                .resizable()
+                                .scaledToFit()
                         }
-                        .offset(x: 10)
+                        .frame(width: WidgetViewHeight.large.rawValue, height: WidgetViewHeight.large.rawValue)
+                        .border(.secondary)
+                        
+                        Spacer()
                     }
+                    .offset(x: 10)
                 }
                 .WidgetFrameStyle(height: .large)
                 .onChange(of: colorScheme, perform: { _ in
