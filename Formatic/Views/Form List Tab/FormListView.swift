@@ -25,7 +25,7 @@ struct FormListView: View {
     
     var body: some View {
         
-        NavigationView {
+        NavigationStack {
             
             Group {
                 if !forms.isEmpty {
