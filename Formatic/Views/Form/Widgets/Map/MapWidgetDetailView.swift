@@ -29,7 +29,7 @@ struct MapWidgetDetailView: View {
         VStack {
             
             AddAnnotationsView(mapWidget: mapWidget, localCoordinateRegion: $localCoordinateRegion, coordinateType: $coordinateType)
-                .padding()
+                .padding(.horizontal)
             
             MapView(mapWidget: mapWidget, localCoordinateRegion: $localCoordinateRegion)
                 .overlay {
