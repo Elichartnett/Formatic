@@ -344,6 +344,7 @@
 		6288C6A428BB06420081A39D /* FileAssets */ = {
 			isa = PBXGroup;
 			children = (
+				62DBCBBC291F6405005C6FB9 /* Todo.md */,
 				6288C6A528BB06530081A39D /* Privacy Policy pages.pages */,
 				6288C6A628BB06580081A39D /* Privacy Policy.pdf */,
 				6288C6A828BB065D0081A39D /* logoAnimation.keyshape */,
@@ -469,7 +470,6 @@
 		62FE6E5F28187058009D41FD = {
 			isa = PBXGroup;
 			children = (
-				62DBCBBC291F6405005C6FB9 /* Todo.md */,
 				62FE6E6A28187058009D41FD /* Formatic */,
 				62FE6E6928187058009D41FD /* Products */,
 			);
@@ -867,7 +867,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Formatic/Formatic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Formatic/Preview Content\"";
 				DEVELOPMENT_TEAM = BMNBE7JVDJ;
@@ -909,7 +909,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Formatic/Formatic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"Formatic/Preview Content\"";
 				DEVELOPMENT_TEAM = BMNBE7JVDJ;
 				ENABLE_PREVIEWS = YES;

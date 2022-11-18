@@ -38,7 +38,6 @@ struct MapWidgetDetailView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(mapWidget.title ?? "")
-        .background(Color.primaryBackground).ignoresSafeArea()
     }
 }
 
@@ -46,6 +45,7 @@ struct MapWidgetDetailView_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { proxy in
             MapWidgetDetailView(mapWidget: dev.mapWidget, localCoordinateRegion: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: dev.mapWidget.coordinateRegionCenterLat, longitude: dev.mapWidget.coordinateRegionCenterLon), span: MKCoordinateSpan(latitudeDelta: dev.mapWidget.coordinateSpanLatDelta, longitudeDelta: dev.mapWidget.coordinateSpanLonDelta)))
+                .environmentObject(FormModel())
         }
     }
 }
