@@ -52,6 +52,10 @@ extension Color {
 }
 
 extension UIColor {
+    static var primaryBackground: UIColor {
+        return UIColor(Color.primaryBackground)
+    }
+    
     static var secondaryBackground: UIColor {
         return UIColor(Color.secondaryBackground)
     }
