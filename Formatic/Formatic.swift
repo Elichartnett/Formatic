@@ -6,10 +6,20 @@
 //
 
 import SwiftUI
+import Firebase
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        FirebaseApp.configure()
+        return true
+    }
+}
 
 @main
 struct Formatic: App {
     
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @Environment(\.scenePhase) var scenePhase
     @StateObject var formModel = FormModel()
     @State var alertTitle = ""
@@ -45,7 +55,6 @@ struct Formatic: App {
                                 }
                                 else {
                                     formModel.isPhone = false
-
                                 }
                             }
                     }
