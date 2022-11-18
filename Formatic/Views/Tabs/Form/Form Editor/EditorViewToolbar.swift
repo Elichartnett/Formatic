@@ -37,12 +37,13 @@ struct EditorViewToolbar: View {
                     form.locked = true
                 }
             } label: {
+                let icon = Image(systemName: form.locked == true ? Strings.lockIconName : Strings.openLockIconName)
                 if formModel.isPhone {
-                    Image(systemName: form.locked == true ? Strings.lockIconName : Strings.openLockIconName)
+                    icon
                 }
                 else {
                     HStack {
-                        Image(systemName: form.locked == true ? Strings.lockIconName : Strings.openLockIconName)
+                        icon
                         Text(form.locked == true ? Strings.lockedLabel : Strings.unlockedLabel)
                     }
                 }
@@ -78,12 +79,13 @@ struct EditorViewToolbar: View {
                     }
                 }
             } label: {
+                let icon = Image(systemName: Strings.editIconName)
                 if formModel.isPhone {
-                    Image(systemName: Strings.editIconName)
+                    icon
                 }
                 else {
                     HStack {
-                        Image(systemName: Strings.editIconName)
+                        icon
                         if editMode == .active {
                             Text(Strings.doneLabel)
                         }
@@ -128,12 +130,13 @@ struct EditorViewToolbar: View {
                     }
                 }
             } label: {
+                let icon = Image(systemName: Strings.exportFormIconName)
                 if formModel.isPhone {
-                    Image(systemName: Strings.exportFormIconName)
+                    icon
                 }
                 else {
                     HStack {
-                        Image(systemName: Strings.exportFormIconName)
+                        icon
                         Text(Strings.exportLabel)
                     }
                 }
