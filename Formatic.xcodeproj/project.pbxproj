@@ -551,6 +551,7 @@
 				62FE6E6528187058009D41FD /* Frameworks */,
 				62FE6E6628187058009D41FD /* Resources */,
 				62D1B0A829273F8400712D85 /* Crashlytics Run Script */,
+				628A13902927FA32000530A4 /* Increase Build Number Run Script */,
 			);
 			buildRules = (
 			);
@@ -629,6 +630,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		628A13902927FA32000530A4 /* Increase Build Number Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Increase Build Number Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${DEVELOPER_BIN_DIR}/agvtool\" next-version -all\n";
+		};
 		62D1B0A829273F8400712D85 /* Crashlytics Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -867,7 +886,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Formatic/Formatic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 16;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Formatic/Preview Content\"";
 				DEVELOPMENT_TEAM = BMNBE7JVDJ;
@@ -909,7 +928,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Formatic/Formatic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "\"Formatic/Preview Content\"";
 				DEVELOPMENT_TEAM = BMNBE7JVDJ;
 				ENABLE_PREVIEWS = YES;
