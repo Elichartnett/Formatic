@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import FirebaseAnalytics
 
 // In new widget sheet to configure new MapWidget
 struct ConfigureMapWidgetView: View {
@@ -48,6 +49,7 @@ struct ConfigureMapWidgetView: View {
                     withAnimation {
                         section.addToWidgets(mapWidget)
                     }
+                    Analytics.logEvent(Strings.analyticsCreateMapWidgetEvent, parameters: nil)
                 }
                 dismiss()
             } label: {

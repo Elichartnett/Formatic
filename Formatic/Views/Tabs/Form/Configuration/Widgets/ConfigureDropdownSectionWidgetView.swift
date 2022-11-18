@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 // In new widget sheet to configure new DropdownSectionWidget
 struct ConfigureDropdownSectionWidgetView: View {
@@ -90,6 +91,7 @@ struct ConfigureDropdownSectionWidgetView: View {
                     withAnimation {
                         section.addToWidgets(dropdownSectionWidget!)
                     }
+                    Analytics.logEvent(Strings.analyticsCreateDropdownWidgetEvent, parameters: nil)
                 }
                 dismiss()
             } label: {

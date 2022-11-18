@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import FirebaseAnalytics
 
 // In new widget sheet to configure new CanvasWidget
 struct ConfigureCanvasWidgetView: View {
@@ -71,6 +72,7 @@ struct ConfigureCanvasWidgetView: View {
                         
                         section.addToWidgets(canvasWidget)
                     }
+                    Analytics.logEvent(Strings.analyticsCreateCanvasWidgetEvenet, parameters: nil)
                 }
                 dismiss()
             } label: {

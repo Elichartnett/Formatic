@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 // In new widget sheet to configure new CheckboxSectionWidget
 struct ConfigureCheckboxSectionWidgetView: View {
@@ -79,6 +80,7 @@ struct ConfigureCheckboxSectionWidgetView: View {
                     withAnimation {
                         section.addToWidgets(checkboxSectionWidget)
                     }
+                    Analytics.logEvent(Strings.analyticsCreateCheckboxWidgetEvent, parameters: nil)
                 }
                 dismiss()
             } label: {

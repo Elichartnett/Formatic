@@ -10,6 +10,7 @@ import SwiftUI
 import CoreData
 import MapKit
 import PencilKit
+import FirebaseAnalytics
 
 class FormModel: ObservableObject {
     
@@ -84,6 +85,7 @@ class FormModel: ObservableObject {
         let decoder = JSONDecoder()
         do {
             let form = try decoder.decode(Form.self, from: data)
+            Analytics.logEvent(Strings.analyticsImportFormEvent, parameters: nil)
             return form
         }
         catch {
@@ -185,6 +187,7 @@ class FormModel: ObservableObject {
             }) {
                 withAnimation {
                     DataControllerModel.shared.container.viewContext.delete(form)
+                    Analytics.logEvent(Strings.analyticsDeleteFormEvent, parameters: nil)
                 }
             }
         }
@@ -202,6 +205,7 @@ class FormModel: ObservableObject {
         do {
             try withAnimation {
                 let formCopy = form.createCopy() as! Form
+                Analytics.logEvent(Strings.analyticsCopyFormEvent, parameters: nil)
                 do {
                     try resolveDuplicateFormName(newForm: formCopy)
                 }

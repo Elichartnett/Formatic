@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 // Displays view to create new form
 struct NewFormView: View {
@@ -59,9 +60,11 @@ struct NewFormView: View {
             Button {
                 withAnimation {
                     let form = Form(title: title)
+                    Analytics.logEvent(Strings.analyticsCreateFormEvent, parameters: nil)
                     if !password.isEmpty {
                         form.password = password
                         form.locked = true
+                        Analytics.logEvent(Strings.analyticsCreateLockFormEvent, parameters: nil)
                     }
                 }
                 showNewFormView = false
