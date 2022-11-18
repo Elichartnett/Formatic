@@ -10,15 +10,15 @@ import SwiftUI
 // List of all saved forms with list toolbar
 struct FormListView: View {
     
-    @Environment(\.colorScheme) var colorScheme
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.position)]) var forms: FetchedResults<Form>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.position)]) var filteredForms: FetchedResults<Form>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)]) var forms: FetchedResults<Form>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)]) var filteredForms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel
     @State var searchText = ""
     @State var showNewFormView = false
     @State var showImportFormView = false
     @State var importingForm = false
-    @State var sortMethod = SortMethod.defaultOrder
+    @State var sortMethod = SortMethod.dateCreated
+    @State var showSettingsMenu = false
     @State var showAlert = false
     @State var alertTitle = ""
     @State var alertButtonDismissMessage = "Okay"
@@ -42,7 +42,7 @@ struct FormListView: View {
                             .swipeActions {
                                 Button {
                                     do {
-                                        try formModel.deleteForm(position: Int(form.position))
+                                        try formModel.deleteForm(id: form.id)
                                     }
                                     catch {
                                         alertTitle = Strings.deleteFormErrorMessage
@@ -85,48 +85,30 @@ struct FormListView: View {
                         if filteredForms.isEmpty {
                             Text(Strings.noSearchResultsMessage)
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .background {
-                                    if colorScheme == .light {
-                                        Color(uiColor: UIColor.systemGray6).ignoresSafeArea()
-                                    }
-                                    else {
-                                        Color.black.ignoresSafeArea()
-                                    }
-                                }
+                                .background(Color.primaryBackground).ignoresSafeArea()
                         }
                     }
                 }
                 else {
                     Text(Strings.getStartedMessage)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background {
-                            if colorScheme == .light {
-                                Color(uiColor: UIColor.systemGray6).ignoresSafeArea()
-                            }
-                            else {
-                                Color.black.ignoresSafeArea()
-                            }
-                        }
+                        .background(Color.primaryBackground).ignoresSafeArea()
                 }
             }
             .scrollContentBackground(.hidden)
-            .background {
-                if colorScheme == .light {
-                    Color(uiColor: UIColor.systemGray6).ignoresSafeArea()
-                }
-                else {
-                    Color.black.ignoresSafeArea()
-                }
-            }
+            .background(Color.primaryBackground)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    ListViewToolbar(showNewFormView: $showNewFormView, showImportFormView: $showImportFormView, showSortMethodMenu: !forms.isEmpty, sortMethod: $sortMethod)
+                    ListViewToolbar(showNewFormView: $showNewFormView, showImportFormView: $showImportFormView, showSortMethodMenu: !forms.isEmpty, sortMethod: $sortMethod, showSettingsMenu: $showSettingsMenu)
                 }
             }
             .sheet(isPresented: $showNewFormView) {
                 NewFormView(showNewFormView: $showNewFormView)
             }
+            .sheet(isPresented: $showSettingsMenu, content: {
+                SettingsView()
+            })
             .fileImporter(isPresented: $showImportFormView, allowedContentTypes: [.form]) { result in
                 switch result {
                 case .success(let url):
@@ -169,8 +151,8 @@ struct FormListView: View {
     
     func updateFilteredForms() {
         switch sortMethod {
-        case .defaultOrder:
-            filteredForms.nsSortDescriptors = []
+        case .dateCreated:
+            filteredForms.nsSortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: true)]
         case .alphabetical:
             filteredForms.nsSortDescriptors = [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))]
         }
@@ -179,7 +161,7 @@ struct FormListView: View {
 
 struct FormListView_Previews: PreviewProvider {
     static var previews: some View {
-        FormListView(sortMethod: .defaultOrder)
+        FormListView(sortMethod: .dateCreated)
             .environment(\.managedObjectContext, DataControllerModel.shared.container.viewContext)
             .environmentObject(FormModel())
     }

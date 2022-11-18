@@ -41,7 +41,7 @@ struct CanvasRepresentable: UIViewRepresentable {
         imageView.frame = CGRect(origin: .zero, size: canvasView.frame.size)
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(data: canvasWidget.image ?? Data())
-        imageView.backgroundColor = colorScheme == .light ? .white : .systemGray6
+        imageView.backgroundColor = .secondaryBackground
         
         canvasView.addSubview(imageView)
         canvasView.sendSubviewToBack(imageView)
@@ -58,7 +58,7 @@ struct CanvasRepresentable: UIViewRepresentable {
     
     func updateUIView(_ uiView: PKCanvasView, context: Context) {
         DispatchQueue.main.async {
-            imageView.backgroundColor = colorScheme == .light ? .white : .systemGray6
+            imageView.backgroundColor = .secondaryBackground
             toolPicker.colorUserInterfaceStyle = UIUserInterfaceStyle(colorScheme)
             toolPicker.overrideUserInterfaceStyle = UIUserInterfaceStyle(colorScheme)
         }

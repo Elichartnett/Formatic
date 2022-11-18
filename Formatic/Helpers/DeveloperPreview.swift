@@ -31,7 +31,7 @@ class DeveloperPreview {
     private init() {
         
         // Create form
-        form = Form(position: 0, title: "Form title")
+        form = Form(title: "Form title")
         
         // Add section
         section = Section(position: 0, title: "Section title")

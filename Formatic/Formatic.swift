@@ -11,16 +11,14 @@ import SwiftUI
 struct Formatic: App {
     
     @Environment(\.scenePhase) var scenePhase
-    @State var viewContext = DataControllerModel.shared.container.viewContext
     @StateObject var formModel = FormModel()
     @State var alertTitle = ""
     @State var showAlert = false
-    @State var alertButtonDismissMessage = Strings.defaultAlertButtonDismissMessage
     
     var body: some Scene {
         WindowGroup {
             Home()
-                .environment(\.managedObjectContext, viewContext)
+                .environment(\.managedObjectContext, DataControllerModel.shared.container.viewContext)
                 .environmentObject(formModel)
                 .onReceive(formModel.timer) { _ in
                     do {
@@ -28,7 +26,7 @@ struct Formatic: App {
                             alertTitle = Strings.loadFormsErrorMessage
                             showAlert = true
                         }
-                        if viewContext.hasChanges { try DataControllerModel.saveMOC() }
+                        try DataControllerModel.saveMOC()
                     }
                     catch {
                         alertTitle = Strings.saveFormErrorMessage
@@ -36,7 +34,7 @@ struct Formatic: App {
                     }
                 }
                 .alert(alertTitle, isPresented: $showAlert, actions: {
-                    Button(alertButtonDismissMessage, role: .cancel) {}
+                    Button(Strings.defaultAlertButtonDismissMessage, role: .cancel) {}
                 })
                 .overlay {
                     GeometryReader { proxy in

@@ -69,6 +69,9 @@
 		62A979C128277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BD28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift */; };
 		62A979C228277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BE28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift */; };
 		62BFAC9528188B97006C8216 /* Form Container.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62BFAC9328188B97006C8216 /* Form Container.xcdatamodeld */; };
+		62D1B07829252EAA00712D85 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D1B07729252EAA00712D85 /* SettingsView.swift */; };
+		62D1B097292670C500712D85 /* EmailViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D1B096292670C500712D85 /* EmailViewRepresentable.swift */; };
+		62D1B0992926716F00712D85 /* EmailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D1B0982926716F00712D85 /* EmailData.swift */; };
 		62D7D87728F86448004C55C9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62D7D87928F86448004C55C9 /* Localizable.strings */; };
 		62D7D87B28F86623004C55C9 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D7D87A28F86623004C55C9 /* Strings.swift */; };
 		62D7FE992826B8AF00FAA815 /* CheckboxWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D7FE982826B8AF00FAA815 /* CheckboxWidgetView.swift */; };
@@ -153,6 +156,9 @@
 		62A979BD28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckboxSectionWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		62A979BE28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckboxSectionWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62BFAC9428188B97006C8216 /* Widget.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Widget.xcdatamodel; sourceTree = "<group>"; };
+		62D1B07729252EAA00712D85 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		62D1B096292670C500712D85 /* EmailViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewRepresentable.swift; sourceTree = "<group>"; };
+		62D1B0982926716F00712D85 /* EmailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailData.swift; sourceTree = "<group>"; };
 		62D7D87828F86448004C55C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		62D7D87A28F86623004C55C9 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		62D7FE982826B8AF00FAA815 /* CheckboxWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxWidgetView.swift; sourceTree = "<group>"; };
@@ -362,14 +368,14 @@
 			path = Widgets;
 			sourceTree = "<group>";
 		};
-		629886F4281C318D00C34782 /* Form List Tab */ = {
+		629886F4281C318D00C34782 /* Form List */ = {
 			isa = PBXGroup;
 			children = (
 				629886F2281B92AA00C34782 /* FormListView.swift */,
 				629886F6281C31C400C34782 /* ListViewToolbar.swift */,
 				629886F5281C319C00C34782 /* Form Editor */,
 			);
-			path = "Form List Tab";
+			path = "Form List";
 			sourceTree = "<group>";
 		};
 		629886F5281C319C00C34782 /* Form Editor */ = {
@@ -404,6 +410,35 @@
 				6250E95F283161EC00E6E6A0 /* Canvas */,
 			);
 			path = Widgets;
+			sourceTree = "<group>";
+		};
+		62D1B07429252E5E00712D85 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				62FE6E6D28187058009D41FD /* Home.swift */,
+				62D1B07529252E6700712D85 /* Form */,
+				62D1B07629252E7000712D85 /* Settings */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		62D1B07529252E6700712D85 /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				629886F4281C318D00C34782 /* Form List */,
+				629886FA281C36E700C34782 /* Form */,
+				62294F212821EB0200226AF1 /* Configuration */,
+			);
+			path = Form;
+			sourceTree = "<group>";
+		};
+		62D1B07629252E7000712D85 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				62D1B07729252EAA00712D85 /* SettingsView.swift */,
+				62D1B096292670C500712D85 /* EmailViewRepresentable.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		62F8FE67282DAC86005C8D73 /* Map */ = {
@@ -464,10 +499,7 @@
 		62FE6E79281874FA009D41FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				62FE6E6D28187058009D41FD /* Home.swift */,
-				629886F4281C318D00C34782 /* Form List Tab */,
-				629886FA281C36E700C34782 /* Form */,
-				62294F212821EB0200226AF1 /* Configuration */,
+				62D1B07429252E5E00712D85 /* Tabs */,
 				62294F0A281F514300226AF1 /* Reusable Components */,
 			);
 			path = Views;
@@ -488,6 +520,7 @@
 				62BFAC9328188B97006C8216 /* Form Container.xcdatamodeld */,
 				6244315E281A1B5000E21B11 /* Core Data Classes */,
 				6244315D281A1B2400E21B11 /* Entity Property Files */,
+				62D1B0982926716F00712D85 /* EmailData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -604,6 +637,7 @@
 				6208345828283A2F00DF864F /* CheckboxWidget+CoreDataClass.swift in Sources */,
 				6250E9612831632D00E6E6A0 /* CanvasWidgetDetailView.swift in Sources */,
 				62D7D87B28F86623004C55C9 /* Strings.swift in Sources */,
+				62D1B0992926716F00712D85 /* EmailData.swift in Sources */,
 				627736FD28300F7D00F7B107 /* PhotoTaker.swift in Sources */,
 				62A979C228277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift in Sources */,
 				622A99CD281E03B700BB5E12 /* Widget+CoreDataProperties.swift in Sources */,
@@ -611,11 +645,13 @@
 				62E6AB4B281ECBEA009F568B /* TextFieldWidget+CoreDataProperties.swift in Sources */,
 				62294F252821EB7700226AF1 /* ConfigureNumberFieldWidgetView.swift in Sources */,
 				6244311F281A130000E21B11 /* DataControllerModel.swift in Sources */,
+				62D1B07829252EAA00712D85 /* SettingsView.swift in Sources */,
 				629886FC281C36F700C34782 /* FormView.swift in Sources */,
 				72F9420D28C82B3F001E8A2A /* Protocols.swift in Sources */,
 				62E3FB0028DA13DD00F5FE2B /* ViewModifiers.swift in Sources */,
 				6250E97F2835B11600E6E6A0 /* FormaticFileDocument.swift in Sources */,
 				62FE6E6C28187058009D41FD /* Formatic.swift in Sources */,
+				62D1B097292670C500712D85 /* EmailViewRepresentable.swift in Sources */,
 				629886DB281B578800C34782 /* Enums.swift in Sources */,
 				62F8FE66282CA814005C8D73 /* AddAnnotationsView.swift in Sources */,
 				629886F7281C31C400C34782 /* ListViewToolbar.swift in Sources */,

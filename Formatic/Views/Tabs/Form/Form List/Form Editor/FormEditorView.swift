@@ -22,7 +22,6 @@ struct FormEditorView: View {
     @State var showToggleLockView = false
     @State var showAlert = false
     @State var alertTitle = ""
-    @State var alertButtonDismissMessage = Strings.defaultAlertButtonDismissMessage
     @State var exportFormat: UTType?
     
     var body: some View {
@@ -107,7 +106,7 @@ struct FormEditorView: View {
                     }
                 }
                 .alert(alertTitle, isPresented: $showAlert, actions: {
-                    Button(alertButtonDismissMessage, role: .cancel) {}
+                    Button(Strings.defaultAlertButtonDismissMessage, role: .cancel) {}
                 })
         }
     }

@@ -19,7 +19,6 @@ struct CanvasWidgetView: View {
     @State var reconfigureWidget = false
     @State var showAlert: Bool = false
     @State var alertTitle: String = ""
-    @State var alertButtonDismissMessage: String = Strings.defaultAlertButtonDismissMessage
     
     init(canvasWidget: CanvasWidget, locked: Binding<Bool>) {
         self.canvasWidget = canvasWidget
@@ -102,7 +101,7 @@ struct CanvasWidgetView: View {
                         imageView.frame = CGRect(origin: .zero, size: canvasView.frame.size)
                         imageView.contentMode = .scaleAspectFit
                         imageView.image = UIImage(data: canvasWidget.image ?? Data())
-                        imageView.backgroundColor = colorScheme == .light ? .white : .systemGray6
+                        imageView.backgroundColor = .secondaryBackground
                         
                         canvasView.addSubview(imageView)
                         canvasView.sendSubviewToBack(imageView)
@@ -127,7 +126,7 @@ struct CanvasWidgetView: View {
                     .padding()
             }
             .alert(alertTitle, isPresented: $showAlert, actions: {
-                Button(alertButtonDismissMessage, role: .cancel) {}
+                Button(Strings.defaultAlertButtonDismissMessage, role: .cancel) {}
             })
         }
         

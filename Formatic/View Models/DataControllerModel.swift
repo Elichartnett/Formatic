@@ -17,10 +17,10 @@ class DataControllerModel: ObservableObject {
     @Published var container = NSPersistentCloudKitContainer(name: Strings.formContainerFileName)
     
     private init() {
-        loadPersistentStores()
+        setupContainer()
     }
     
-    func loadPersistentStores() {
+    func setupContainer() {
         container.viewContext.automaticallyMergesChangesFromParent = true
         
         container.loadPersistentStores { description, error in

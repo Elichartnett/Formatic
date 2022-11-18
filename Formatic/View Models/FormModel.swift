@@ -98,7 +98,6 @@ class FormModel: ObservableObject {
                 let newForm = try decodeJsonDataToForm(data: data)
                 do {
                     let forms = try getForms()
-                    newForm.position = Int16(forms.count - 1)
                     if forms.contains(where: { form in
                         form.title == newForm.title && form.id != newForm.id
                     })
@@ -124,7 +123,7 @@ class FormModel: ObservableObject {
         do {
             var forms = try DataControllerModel.shared.container.viewContext.fetch(formsRequest)
             forms = forms.sorted { lhs, rhs in
-                lhs.position < rhs.position
+                lhs.dateCreated < rhs.dateCreated
             }
             return forms
         }
@@ -178,16 +177,14 @@ class FormModel: ObservableObject {
         }
     }
     
-    func deleteForm(position: Int) throws {
+    func deleteForm(id: UUID) throws {
         do {
             let forms = try getForms()
-            
-            withAnimation {
-                DataControllerModel.shared.container.viewContext.delete(forms[position])
-                
-                // Update positions starting with form after deleted index
-                for index in position..<forms.count {
-                    forms[index].position = forms[index].position - 1
+            if let form = forms.first(where: { form in
+                form.id == id
+            }) {
+                withAnimation {
+                    DataControllerModel.shared.container.viewContext.delete(form)
                 }
             }
         }
@@ -203,17 +200,10 @@ class FormModel: ObservableObject {
     func copyForm(form: Form) throws {
         
         do {
-            let forms = try getForms()
-            
             try withAnimation {
-                for index in Int(form.position + 1)..<forms.count {
-                    forms[index].position = forms[index].position + 1
-                }
-                
                 let formCopy = form.createCopy() as! Form
                 do {
                     try resolveDuplicateFormName(newForm: formCopy)
-                    formCopy.position = form.position + 1
                 }
                 catch {
                     throw FormError.copyError

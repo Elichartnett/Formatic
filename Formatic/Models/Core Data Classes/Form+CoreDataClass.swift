@@ -81,7 +81,7 @@ public class Form: NSManagedObject, Codable, Identifiable, Csv, Copyable {
     }
     
     func createCopy() -> Any {
-        let copy = Form(position: Int(self.position), title: self.title!)
+        let copy = Form(title: self.title!)
         copy.locked = locked
         copy.password = password
         

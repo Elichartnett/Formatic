@@ -75,7 +75,7 @@ enum ImageError: Error {
 }
 
 enum SortMethod: String {
-    case defaultOrder = "defaultOrder"
+    case dateCreated = "dateCreated"
     case alphabetical = "alphabetical"
 }
 
@@ -83,4 +83,9 @@ enum WidgetViewHeight: CGFloat {
     case regular = 42
     case adaptive
     case large = 200
+}
+
+enum CustomColor: String {
+    case primaryBackground = "primaryBackground"
+    case secondaryBackground = "secondaryBackground"
 }

@@ -15,7 +15,6 @@ struct FormTitleView: View {
     @State var lastValidTitle = ""
     @State var showAlert = false
     @State var alertTitle = ""
-    @State var alertButtonDismissMessage: String = Strings.defaultAlertButtonDismissMessage
     
     init(form: Form, formTitle: String?) {
         self.form = form
@@ -52,7 +51,7 @@ struct FormTitleView: View {
         }
         .disabled(form.locked)
         .alert(alertTitle, isPresented: $showAlert, actions: {
-            Button(alertButtonDismissMessage, role: .cancel) {}
+            Button(Strings.defaultAlertButtonDismissMessage, role: .cancel) {}
         })
     }
 }

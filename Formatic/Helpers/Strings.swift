@@ -13,7 +13,7 @@ struct Strings {
     static let baseCSVColumns = String(localized: "baseCSVColumns")
     static let mapCSVColumns = String(localized: "mapCSVColumns")
     static let getStartedMessage = String(localized: "getStartedMessage")
-    static let defaultLabel = String(localized: "defaultLabel")
+    static let dateCreatedLabel = String(localized: "dateCreatedLabel")
     static let alphabeticalyLabel = String(localized: "alphabeticalLabel")
     static let defaultAlertButtonDismissMessage = String(localized: "defaultAlertButtonDismissMessage")
     
@@ -59,6 +59,15 @@ struct Strings {
     static let retypeFormPasswordLabel = String(localized: "retypeFormPasswordLabel")
     static let sortMethodLabel = String(localized: "sortMethodLabel")
     
+    static let settingsLabel = String(localized: "settingsLabel")
+    static let emailAddress = "eli@elihartnett.com"
+    static let failedToOpenEmailURLErrorMessage = String(localized: "failedToOpenEmailURLErrorMessage") + emailAddress + "."
+    static let failedToCreateEmailURLErrorMessage = String(localized: "failedToCreateEmailURLErrorMessage") + emailAddress + "."
+    static let failedToSendEmailErrorMessage = String(localized: "failedToSendEmailErrorMessage") + emailAddress + "."
+    static let copyAddressLabel = String(localized: "copyAddressLabel")
+    static let versionLabel = String(localized: "versionLabel")
+    static let submitFeedbackLabel = String(localized: "submitFeedback")
+    
     static let textFieldLabel = String(localized: "textFieldLabel")
     static let textLabel = String(localized: "textLabel")
     
@@ -91,6 +100,8 @@ struct Strings {
     static let selectPhotoLabel = String(localized: "selectPhotoLabel")
     static let takePhotoLabel = String(localized: "takePhotoLabel")
     
+    static let formsIconName = "doc.on.doc"
+    static let settingsIconName = "gearshape"
     static let trashIconName = "trash"
     static let copyIconName = "doc.on.doc"
     static let plusIconName = "plus"

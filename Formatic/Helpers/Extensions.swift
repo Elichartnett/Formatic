@@ -40,3 +40,44 @@ extension Image {
             .frame(width: 25, height: 25)
     }
 }
+
+extension Color {
+    static var primaryBackground: Color {
+        return Color(CustomColor.primaryBackground.rawValue)
+    }
+    
+    static var secondaryBackground: Color {
+        return Color(CustomColor.secondaryBackground.rawValue)
+    }
+}
+
+extension UIColor {
+    static var secondaryBackground: UIColor {
+        return UIColor(Color.secondaryBackground)
+    }
+}
+
+extension Bundle {
+
+    var shortVersion: String {
+        if let result = infoDictionary?["CFBundleShortVersionString"] as? String {
+            return result
+        } else {
+            assert(false)
+            return ""
+        }
+    }
+
+    var buildVersion: String {
+        if let result = infoDictionary?["CFBundleVersion"] as? String {
+            return result
+        } else {
+            assert(false)
+            return ""
+        }
+    }
+
+    var fullVersion: String {
+        return "\(shortVersion) (\(buildVersion))"
+    }
+}

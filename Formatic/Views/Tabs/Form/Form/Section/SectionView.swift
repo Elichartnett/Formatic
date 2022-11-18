@@ -10,7 +10,6 @@ import SwiftUI
 // Displays form sections with section titles and widgets
 struct SectionView: View {
     
-    @Environment(\.colorScheme) var colorScheme
     @Environment(\.editMode) var editMode
     @EnvironmentObject var formModel: FormModel
     @FetchRequest var widgets: FetchedResults<Widget>

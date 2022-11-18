@@ -9,9 +9,9 @@
 "baseCSVColumns" = "Section Title, Widget Title, Widget Type, Widget Data, Selected,";
 "mapCSVColumns" = "Marker Latitude, Marker Longitude, Marker Easting, Marker Northing, Marker Zone, Marker Hemisphere\n";
 "getStartedMessage" = "Add a form to get started!";
-"defaultLabel" = "Default";
+"dateCreatedLabel" = "Date Created";
 "alphabeticalLabel" = "Alphabetical";
-"defaultAlertButtonDismissMessage" = "Okay";
+"defaultAlertButtonDismissMessage" = "Dismiss";
 
 "loadFormsErrorMessage" = "Error loading forms";
 "saveFormErrorMessage" = "Error saving form";
@@ -54,6 +54,14 @@
 "optionalFormPasswordLabel" = "Optional password";
 "retypeFormPasswordLabel" = "Retype password";
 "sortMethodLabel" = "Sort Method";
+
+"settingsLabel" = "Settings";
+"failedToOpenEmailURLErrorMessage" = "Failed to find mail application. Please manually email ";
+"failedToCreateEmailURLErrorMessage" = "Failed to create email. Please manually email ";
+"failedToSendEmailErrorMessage" = "Failed to send email. Please manually email ";
+"copyAddressLabel" = "Copy Address";
+"versionLabel" = "Version";
+"submitFeedback" = "Submit Feedback";
 
 "textFieldLabel" = "Text Field";
 "textLabel" = "text";

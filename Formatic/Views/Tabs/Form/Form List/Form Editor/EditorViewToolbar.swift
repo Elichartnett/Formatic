@@ -19,7 +19,6 @@ struct EditorViewToolbar: View {
     @Binding var editMode: EditMode
     @State var alertTitle = ""
     @State var showAlert = false
-    @State var alertButtonDismissMessage = Strings.defaultAlertButtonDismissMessage
     
     var body: some View {
         
@@ -141,7 +140,7 @@ struct EditorViewToolbar: View {
             
         }
         .alert(alertTitle, isPresented: $showAlert, actions: {
-            Button(alertButtonDismissMessage, role: .cancel) {}
+            Button(Strings.defaultAlertButtonDismissMessage, role: .cancel) {}
         })
     }
 }

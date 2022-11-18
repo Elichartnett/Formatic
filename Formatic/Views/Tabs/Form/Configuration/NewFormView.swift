@@ -20,7 +20,6 @@ struct NewFormView: View {
     @State var isValid: Bool = false
     @State var showAlert: Bool = false
     @State var alertTitle: String = ""
-    @State var alertButtonDismissMessage: String = Strings.defaultAlertButtonDismissMessage
     
     var body: some View {
         
@@ -46,7 +45,7 @@ struct NewFormView: View {
                     }
                 })
                 .alert(alertTitle, isPresented: $showAlert, actions: {
-                    Button(alertButtonDismissMessage, role: .cancel) {}
+                    Button(Strings.defaultAlertButtonDismissMessage, role: .cancel) {}
                 })
             
             PasswordView(validPassword: $validPassword, password: $password)
@@ -59,7 +58,7 @@ struct NewFormView: View {
             // Submit button - create form and set lock if optional password is used
             Button {
                 withAnimation {
-                    let form = Form(position: forms.count, title: title)
+                    let form = Form(title: title)
                     if !password.isEmpty {
                         form.password = password
                         form.locked = true

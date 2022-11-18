@@ -10,7 +10,6 @@ import SwiftUI
 struct TextFieldWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
-    @Environment(\.colorScheme) var colorScheme
     @ObservedObject var textFieldWidget: TextFieldWidget
     @Binding var locked: Bool
     @FocusState var isFocused: Bool
