@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 // In new widget sheet to configure new TextFieldWidget
 struct ConfigureTextFieldWidgetView: View {
@@ -42,6 +43,7 @@ struct ConfigureTextFieldWidgetView: View {
                 withAnimation {
                     section.addToWidgets(textFieldWidget)
                 }
+                Analytics.logEvent(Strings.analyticsCreateTextFieldWidgetEvent, parameters: nil)
                 dismiss()
             } label: {
                 SubmitButton(isValid: .constant(true))

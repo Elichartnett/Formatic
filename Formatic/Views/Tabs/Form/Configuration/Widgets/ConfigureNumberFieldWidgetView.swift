@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 // In new widget sheet to configure new NumberFieldWidget
 struct ConfigureNumberFieldWidgetView: View {
@@ -37,6 +38,7 @@ struct ConfigureNumberFieldWidgetView: View {
                 withAnimation {
                     section.addToWidgets(numberFieldWidget)
                 }
+                Analytics.logEvent(Strings.analyticsCreateNumberFieldWidgetEvent, parameters: nil)
                 dismiss()
             } label: {
                 SubmitButton(isValid: $isValid)

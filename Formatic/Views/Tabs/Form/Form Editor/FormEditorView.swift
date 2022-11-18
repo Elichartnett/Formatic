@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
+import FirebaseAnalytics
 
 // Display form with form tool bar
 struct FormEditorView: View {
@@ -50,6 +51,7 @@ struct FormEditorView: View {
                             do {
                                 let formData = try formModel.encodeFormToJsonData(form: form)
                                 formaticFileDocument = FormaticFileDocument(documentData: formData)
+                                Analytics.logEvent(Strings.analyticsExportFormEvent, parameters: nil)
                                 showFileExporter = true
                             }
                             catch {
@@ -66,6 +68,7 @@ struct FormEditorView: View {
                         DispatchQueue.main.async {
                             let pdfData = formModel.exportToPdf(form: form)
                             formaticFileDocument = FormaticFileDocument(documentData: pdfData)
+                            Analytics.logEvent(Strings.analyticsExportPDFEvent, parameters: nil)
                             exportToPDF = false
                             showFileExporter = true
                         }
@@ -77,6 +80,7 @@ struct FormEditorView: View {
                         DispatchQueue.main.async {
                             let csvData = formModel.exportToCsv(form: form)
                             formaticFileDocument = FormaticFileDocument(documentData: csvData)
+                            Analytics.logEvent(Strings.analyticsExportCSVEvent, parameters: nil)
                             showFileExporter = true
                             exportToCSV = false
                         }

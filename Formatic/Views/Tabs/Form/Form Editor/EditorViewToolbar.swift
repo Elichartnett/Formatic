@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 // Tool bar options for editing a form
 struct EditorViewToolbar: View {
@@ -51,6 +52,7 @@ struct EditorViewToolbar: View {
             // Add section to form button
             Button {
                 form.addToSections(Section(position: form.sections?.count ?? 0, title: nil))
+                Analytics.logEvent(Strings.analyticsCreateSectionEvent, parameters: nil)
             } label: {
                 if formModel.isPhone {
                     Image(systemName: Strings.plusCircleIconName)
