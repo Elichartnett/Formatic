@@ -63,7 +63,7 @@ struct FormListView: View {
                             }
                         }
                     }
-                    .searchable(text: $searchText, placement: .toolbar)
+                    .searchable(text: $searchText, placement: .navigationBarDrawer)
                     .scrollDismissesKeyboard(.interactively)
                     .onChange(of: searchText, perform: { _ in
                         if searchText == "" {
