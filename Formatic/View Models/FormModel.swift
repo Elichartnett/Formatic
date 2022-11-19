@@ -421,7 +421,21 @@ class FormModel: ObservableObject {
         canvasWidget.widgetViewPreview = canvasView.drawing.image(from: CGRect(origin: .zero, size: canvasView.frame.size), scale: UIScreen.main.scale).pngData()
     }
     
-    func endEditing() {
+    static func endEditing() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    
+    static func getDeviceInformation() -> String {
+        let device = UIDevice.current.name
+        let deviceVersion = UIDevice.current.systemVersion
+        return
+                        """
+                        -----------------------------
+                        Device: \(device)
+                        Device Version: \(deviceVersion)
+                        Formatic Version: \(Bundle.main.fullVersion)
+                        -----------------------------
+                        \n
+                        """
     }
 }

@@ -17,13 +17,15 @@ struct InputBox: View {
     @State var inputType: InputType
     @Binding var isValid: Bool
     var numberRange: ClosedRange<Double>?
+    var axis: Axis
     
-    init(placeholder: String, text: Binding<String>, inputType: InputType = .text, isValid: Binding<Bool> = .constant(true), numberRange: ClosedRange<Double>? = nil) {
+    init(placeholder: String, text: Binding<String>, inputType: InputType = .text, isValid: Binding<Bool> = .constant(true), numberRange: ClosedRange<Double>? = nil, axis: Axis = .horizontal) {
         self.placeholder = placeholder
         self._text = text
         self.inputType = inputType
         self._isValid = isValid
         self.numberRange = numberRange
+        self.axis = axis
     }
     
     var body: some View {
@@ -32,8 +34,8 @@ struct InputBox: View {
             switch inputType {
                 
             case .text:
-                TextField(placeholder, text: $text)
-                
+                TextField(placeholder, text: $text, axis: axis)
+
             case .number:
                 TextField(placeholder, text: $text)
                     .onChange(of: text) { _ in
@@ -53,7 +55,7 @@ struct InputBox: View {
         }
         .foregroundColor(isValid ? .primary : .red)
         .padding(.leading)
-        .WidgetFrameStyle(isFocused: isFocused)
+        .WidgetFrameStyle(isFocused: isFocused, height: axis == .vertical ? .adaptive : .regular)
         .focused($isFocused)
     }
 }

@@ -62,6 +62,7 @@
 "copyAddressLabel" = "Copy Address";
 "versionLabel" = "Version";
 "submitFeedback" = "Submit Feedback";
+"recentlyDeletedFormsLabel" = "Recently Deleted Forms";
 
 "textFieldLabel" = "Text Field";
 "textLabel" = "text";

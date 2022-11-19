@@ -10,15 +10,19 @@ import MessageUI
 
 struct SettingsView: View {
     
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)], predicate: NSPredicate(format: "recentlyDeleted == true")) var recentlyDeletedForms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel
     @State var showEmailVIew = false
+    @State var expandRecentlyDeleted = false
     @State var alertTitle = ""
     @State var showAlert = false
     
     var body: some View {
         
         NavigationStack {
+            
             SwiftUI.Form {
+                
                 SwiftUI.Section {
                     Text("\(Strings.versionLabel) \(Bundle.main.fullVersion)")
                     
@@ -48,20 +52,35 @@ struct SettingsView: View {
                         Text(Strings.submitFeedbackLabel)
                     }
                 }
+                
+                SwiftUI.Section {
+                    HStack {
+                        Text("\(Strings.recentlyDeletedFormsLabel) (\(recentlyDeletedForms.count))")
+                        Image(systemName: Strings.expandListIconName)
+                            .rotationEffect(Angle(degrees: expandRecentlyDeleted ? 90 : 0))
+                    }
+                    .onTapGesture {
+                        if recentlyDeletedForms.count != 0 {
+                            withAnimation {
+                                expandRecentlyDeleted.toggle()
+                            }
+                        }
+                    }
+                    
+                    if expandRecentlyDeleted {
+                        ForEach(recentlyDeletedForms) { form in
+                            Text(form.title ?? "")
+                        }
+                        .padding(.horizontal)
+                    }
+                }
             }
             .navigationTitle(Strings.settingsLabel)
             .scrollContentBackground(.hidden)
             .background(Color.primaryBackground)
             .sheet(isPresented: $showEmailVIew) {
-                let body = """
-                -----------------------------
-                Device: \(UIDevice.current.name)
-                Device Version: \(UIDevice.current.systemVersion)
-                Formatic Version: \(Bundle.main.fullVersion)
-                -----------------------------
-                \n
-                """
-                let emailData = EmailData(subject: "Formatic Feedback", recipients: [Strings.emailAddress], body: body)
+                let body = FormModel.getDeviceInformation()
+                let emailData = EmailData(subject: Strings.formaticFeedbackLabel, recipients: [Strings.emailAddress], body: body)
                 
                 EmailViewRepresentable(emailData: emailData) { result in
                     switch result {

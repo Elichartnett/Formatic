@@ -79,9 +79,8 @@ struct CanvasWidgetView: View {
                         
                         Spacer()
                     }
-                    .offset(x: 10)
+                    .WidgetFrameStyle(height: .large)
                 }
-                .WidgetFrameStyle(height: .large)
                 .onChange(of: colorScheme, perform: { _ in
                     do {
                         let canvasView = PKCanvasView()
