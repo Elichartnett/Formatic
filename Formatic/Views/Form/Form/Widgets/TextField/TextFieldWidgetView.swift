@@ -37,11 +37,14 @@ struct TextFieldWidgetView: View {
             NavigationLink {
                 TextFieldWidgetDetailView(textFieldWidget: textFieldWidget)
             } label: {
-                Text(textFieldWidget.text ?? "")
-                    .multilineTextAlignment(.leading)
+                Text(textFieldWidget.text ?? Strings.textLabel)
+                    .foregroundColor(textFieldWidget.text == nil ? .gray : .primary)
+                    .padding(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .WidgetFrameStyle(height: .adaptive)
                     .padding(.bottom, 6)
             }
+            .frame(maxWidth: .infinity)
         }
             .alignmentGuide(.listRowSeparatorLeading, computeValue: { viewDimensions in
                 return viewDimensions[.listRowSeparatorLeading]

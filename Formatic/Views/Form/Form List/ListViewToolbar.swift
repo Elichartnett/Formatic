@@ -38,20 +38,6 @@ struct ListViewToolbar: View {
             
             Spacer()
             
-            // Import form button
-            Button {
-                showImportFormView = true
-            } label: {
-                HStack {
-                    Image(systemName: Strings.importFormIconName)
-                    if !formModel.isPhone {
-                        Text(Strings.importLabel)
-                    }
-                }
-            }
-            
-            Spacer()
-            
             // Sort method menu
             if showSortMethodMenu {
                 
@@ -95,6 +81,20 @@ struct ListViewToolbar: View {
                 Spacer()
             }
             
+            // Import form button
+            Button {
+                showImportFormView = true
+            } label: {
+                HStack {
+                    Image(systemName: Strings.importFormIconName)
+                    if !formModel.isPhone {
+                        Text(Strings.importLabel)
+                    }
+                }
+            }
+            
+            Spacer()
+            
             Button {
                 showSettingsMenu = true
             } label: {
@@ -115,5 +115,6 @@ struct ListViewToolbar_Previews: PreviewProvider {
     static var previews: some View {
         let showSortMethodButton = (try? !dev.formModel.getForms().isEmpty) ?? false
         ListViewToolbar(showNewFormView: .constant(false), showImportFormView: .constant(false), showSortMethodMenu: showSortMethodButton, sortMethod: .constant(.dateCreated), showSettingsMenu: .constant(false))
+            .environmentObject(FormModel())
     }
 }

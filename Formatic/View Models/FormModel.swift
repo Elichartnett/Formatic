@@ -179,20 +179,10 @@ class FormModel: ObservableObject {
         }
     }
     
-    func deleteForm(id: UUID) throws {
-        do {
-            let forms = try getForms()
-            if let form = forms.first(where: { form in
-                form.id == id
-            }) {
-                withAnimation {
-                    DataControllerModel.shared.container.viewContext.delete(form)
-                    Analytics.logEvent(Strings.analyticsDeleteFormEvent, parameters: nil)
-                }
-            }
-        }
-        catch {
-            throw FormError.fetchError
+    func deleteForm(form: Form) {
+        withAnimation {
+            DataControllerModel.shared.container.viewContext.delete(form)
+            Analytics.logEvent(Strings.analyticsDeleteFormEvent, parameters: nil)
         }
     }
     

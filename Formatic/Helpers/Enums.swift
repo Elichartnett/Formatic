@@ -88,4 +88,5 @@ enum WidgetViewHeight: CGFloat {
 enum CustomColor: String {
     case primaryBackground = "primaryBackground"
     case secondaryBackground = "secondaryBackground"
+    case customGray = "customGray"
 }

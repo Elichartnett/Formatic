@@ -39,7 +39,7 @@ struct ConfigureTextFieldWidgetView: View {
             }
             
             Button {
-                let textFieldWidget = TextFieldWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), text: text)
+                let textFieldWidget = TextFieldWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), text: text.isEmpty ? nil : text)
                 withAnimation {
                     section.addToWidgets(textFieldWidget)
                 }

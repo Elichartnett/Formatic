@@ -34,10 +34,7 @@ extension UTType {
 extension Image {
     func customIcon() -> some View {
         return self
-            .resizable()
-            .foregroundColor(.gray)
-            .scaledToFit()
-            .frame(width: 25, height: 25)
+            .foregroundColor(.blue)
     }
 }
 
@@ -49,6 +46,10 @@ extension Color {
     static var secondaryBackground: Color {
         return Color(CustomColor.secondaryBackground.rawValue)
     }
+    
+    static var customGray: Color {
+        return Color(CustomColor.customGray.rawValue)
+    }
 }
 
 extension UIColor {
@@ -59,10 +60,13 @@ extension UIColor {
     static var secondaryBackground: UIColor {
         return UIColor(Color.secondaryBackground)
     }
+    
+    static var customGray: UIColor {
+        return UIColor(Color.customGray)
+    }
 }
 
 extension Bundle {
-
     var shortVersion: String {
         if let result = infoDictionary?["CFBundleShortVersionString"] as? String {
             return result

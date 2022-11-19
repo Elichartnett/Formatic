@@ -14,6 +14,7 @@ struct SettingsView: View {
     @EnvironmentObject var formModel: FormModel
     @State var showEmailVIew = false
     @State var expandRecentlyDeleted = false
+    @State var selectedForms: [Form] = []
     @State var alertTitle = ""
     @State var showAlert = false
     
@@ -21,7 +22,7 @@ struct SettingsView: View {
         
         NavigationStack {
             
-            SwiftUI.Form {
+            List {
                 
                 SwiftUI.Section {
                     Text("\(Strings.versionLabel) \(Bundle.main.fullVersion)")
@@ -55,23 +56,78 @@ struct SettingsView: View {
                 
                 SwiftUI.Section {
                     HStack {
-                        Text("\(Strings.recentlyDeletedFormsLabel) (\(recentlyDeletedForms.count))")
-                        Image(systemName: Strings.expandListIconName)
-                            .rotationEffect(Angle(degrees: expandRecentlyDeleted ? 90 : 0))
-                    }
-                    .onTapGesture {
-                        if recentlyDeletedForms.count != 0 {
-                            withAnimation {
-                                expandRecentlyDeleted.toggle()
+                        Button {
+                            if recentlyDeletedForms.count != 0 {
+                                withAnimation {
+                                    expandRecentlyDeleted.toggle()
+                                }
+                            }
+                        } label: {
+                            HStack {
+                                Text("\(Strings.recentlyDeletedFormsLabel) (\(recentlyDeletedForms.count))")
+                                    .foregroundColor(.primary)
+                                Image(systemName: Strings.expandListIconName)
+                                    .rotationEffect(Angle(degrees: expandRecentlyDeleted ? 90 : 0))
                             }
                         }
+                        .onChange(of: selectedForms.isEmpty) { _ in
+                            if selectedForms.isEmpty {
+                                expandRecentlyDeleted = false
+                            }
+                        }
+                        
+                        Spacer()
+                        
+                        
+                        Image(systemName: Strings.plusIconName)
+                            .customIcon()
+                            .onTapGesture {
+                                withAnimation {
+                                    for form in selectedForms {
+                                        form.recentlyDeleted = false
+                                    }
+                                    selectedForms.removeAll()
+                                }
+                            }
+                            .opacity(!selectedForms.isEmpty && expandRecentlyDeleted ? 1 : 0)
+                            .animation(.default, value: selectedForms.isEmpty)
+                        
+                        Image(systemName: Strings.trashIconName)
+                            .customIcon()
+                            .onTapGesture {
+                                withAnimation {
+                                    for form in selectedForms {
+                                        formModel.deleteForm(form: form)
+                                    }
+                                    selectedForms.removeAll()
+                                }
+                            }
+                            .opacity(!selectedForms.isEmpty && expandRecentlyDeleted ? 1 : 0)
+                            .animation(.default, value: selectedForms.isEmpty)
                     }
                     
                     if expandRecentlyDeleted {
                         ForEach(recentlyDeletedForms) { form in
-                            Text(form.title ?? "")
+                            let selected = selectedForms.contains(form)
+                            HStack {
+                                Image(systemName: selected ? "checkmark.circle.fill" : "circle")
+                                    .foregroundColor(Color(uiColor: selected ? .systemBlue : .customGray))
+                                Text(form.title ?? "")
+                            }
+                            .onTapGesture {
+                                if selected {
+                                    selectedForms.removeAll { selectedForm in
+                                        selectedForm.id == form.id
+                                    }
+                                }
+                                else {
+                                    selectedForms.append(form)
+                                }
+                            }
                         }
-                        .padding(.horizontal)
+                        .alignmentGuide(.listRowSeparatorLeading, computeValue: { viewDimensions in
+                            return 0
+                        })
                     }
                 }
             }
