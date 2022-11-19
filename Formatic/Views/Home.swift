@@ -17,6 +17,17 @@ struct Home: View {
         
         // List of all created forms
         FormListView()
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    
+                    Button {
+                        FormModel.endEditing()
+                    } label: {
+                        Text(Strings.doneLabel)
+                    }
+                }
+            }
             .overlay {
                 if !finishedLaunching {
                     LottieView(name: Strings.logoAnimationFileName)

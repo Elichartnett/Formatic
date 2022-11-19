@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import CoreData
 
 // List of all saved forms with list toolbar
 struct FormListView: View {
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)]) var forms: FetchedResults<Form>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)]) var filteredForms: FetchedResults<Form>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)], predicate: NSPredicate(format: "recentlyDeleted != true")) var forms: FetchedResults<Form>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)], predicate: NSPredicate(format: "recentlyDeleted != true")) var filteredForms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel
     @State var searchText = ""
     @State var showNewFormView = false
@@ -41,13 +42,7 @@ struct FormListView: View {
                             }
                             .swipeActions {
                                 Button {
-                                    do {
-                                        try formModel.deleteForm(id: form.id)
-                                    }
-                                    catch {
-                                        alertTitle = Strings.deleteFormErrorMessage
-                                        showAlert = true
-                                    }
+                                    form.recentlyDeleted = true
                                 } label: {
                                     Label(Strings.deleteLabel, systemImage: Strings.trashIconName)
                                 }
@@ -72,10 +67,10 @@ struct FormListView: View {
                     .scrollDismissesKeyboard(.interactively)
                     .onChange(of: searchText, perform: { _ in
                         if searchText == "" {
-                            filteredForms.nsPredicate = nil
+                            filteredForms.nsPredicate = NSPredicate(format: "recentlyDeleted != %@", "true")
                         }
                         else {
-                            filteredForms.nsPredicate = NSPredicate(format: "title CONTAINS[cd] %@", searchText)
+                            filteredForms.nsPredicate = NSPredicate(format: "title CONTAINS[cd] %@ AND recentlyDeleted != %@", searchText, "true")
                         }
                     })
                     .onChange(of: sortMethod, perform: { _ in

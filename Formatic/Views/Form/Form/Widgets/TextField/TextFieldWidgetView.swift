@@ -14,13 +14,11 @@ struct TextFieldWidgetView: View {
     @Binding var locked: Bool
     @FocusState var isFocused: Bool
     @State var title: String
-    @State var text: String
     
     init(textFieldWidget: TextFieldWidget, locked: Binding<Bool>) {
         self.textFieldWidget = textFieldWidget
         self._locked = locked
         self._title = State(initialValue: textFieldWidget.title ?? "")
-        self._text = State(initialValue: textFieldWidget.text ?? "")
     }
     
     var body: some View {
@@ -31,38 +29,18 @@ struct TextFieldWidgetView: View {
                 .padding(.top, 6)
                 .onAppear {
                     title = textFieldWidget.title ?? ""
-                    text = textFieldWidget.text ?? ""
                 }
                 .onChange(of: title) { _ in
                     textFieldWidget.title = title
                 }
             
-            ZStack (alignment: .topLeading) {
-                TextEditor(text: $text)
-                    .padding(.top)
-                    .padding(.leading)
-                    .WidgetFrameStyle(isFocused: isFocused, height: .adaptive)
+            NavigationLink {
+                TextFieldWidgetDetailView(textFieldWidget: textFieldWidget)
+            } label: {
+                Text(textFieldWidget.text ?? "")
+                    .multilineTextAlignment(.leading)
+                    .WidgetFrameStyle(height: .adaptive)
                     .padding(.bottom, 6)
-                    .padding(.top, !formModel.isPhone ? 6 : 0)
-                    .focused($isFocused)
-                    .onChange(of: text) { _ in
-                        textFieldWidget.text = text
-                    }
-                    .scrollContentBackground(.hidden)
-                    .overlay {
-                        HStack {
-                            if text.isEmpty {
-                                Text(Strings.textLabel)
-                                    .onTapGesture {
-                                        isFocused = true
-                                    }
-                                    .foregroundColor(Color(uiColor: UIColor.systemGray3))
-                                    .padding(.leading, 20)
-                                
-                                Spacer()
-                            }
-                        }
-                    }
             }
         }
             .alignmentGuide(.listRowSeparatorLeading, computeValue: { viewDimensions in

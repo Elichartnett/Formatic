@@ -38,9 +38,9 @@ struct FormEditorView: View {
                         Spacer()
                         
                         Button {
-                            formModel.endEditing()
+                            FormModel.endEditing()
                         } label: {
-                            Text("Done")
+                            Text(Strings.doneLabel)
                         }
                     }
                 })

@@ -60,6 +60,7 @@ struct Strings {
     static let sortMethodLabel = String(localized: "sortMethodLabel")
     
     static let settingsLabel = String(localized: "settingsLabel")
+    static let formaticFeedbackLabel = "Formatic Feedback"
     static let emailAddress = "eli@elihartnett.com"
     static let failedToOpenEmailURLErrorMessage = String(localized: "failedToOpenEmailURLErrorMessage") + emailAddress + "."
     static let failedToCreateEmailURLErrorMessage = String(localized: "failedToCreateEmailURLErrorMessage") + emailAddress + "."
@@ -67,6 +68,7 @@ struct Strings {
     static let copyAddressLabel = String(localized: "copyAddressLabel")
     static let versionLabel = String(localized: "versionLabel")
     static let submitFeedbackLabel = String(localized: "submitFeedback")
+    static let recentlyDeletedFormsLabel = String(localized: "recentlyDeletedFormsLabel")
     
     static let textFieldLabel = String(localized: "textFieldLabel")
     static let textLabel = String(localized: "textLabel")
@@ -122,6 +124,7 @@ struct Strings {
     static let cameraIconName = "camera"
     static let mapPinIconName = "mappin.circle.fill"
     static let sortIconName = "line.3.horizontal.decrease.circle"
+    static let expandListIconName = "chevron.right"
     
     static let logoAnimationFileName = "logoAnimation"
     static let formContainerFileName = "Form Container"

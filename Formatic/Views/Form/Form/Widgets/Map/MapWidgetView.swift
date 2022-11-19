@@ -75,9 +75,9 @@ struct MapWidgetView: View {
                                     .scaledToFit()
                             }
                         }
+                        .WidgetFrameStyle(height: .large)
                     }
                 }
-                .WidgetFrameStyle(height: .large)
                 .disabled(editMode?.wrappedValue == .active)
                 
                 if !formModel.isPhone && editMode?.wrappedValue == .active {

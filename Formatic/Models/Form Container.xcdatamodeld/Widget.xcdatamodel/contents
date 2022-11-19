@@ -32,6 +32,7 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="locked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="password" optional="YES" attributeType="String"/>
+        <attribute name="recentlyDeleted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Section" inverseName="form" inverseEntity="Section"/>
     </entity>

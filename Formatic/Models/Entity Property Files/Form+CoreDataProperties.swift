@@ -20,16 +20,18 @@ extension Form {
     @NSManaged public var dateCreated: Date
     @NSManaged public var locked: Bool
     @NSManaged public var password: String?
+    @NSManaged public var recentlyDeleted: Bool
     @NSManaged public var title: String?
     @NSManaged public var sections: Set<Section>?
     
     /// Form convenience init
-    convenience init(id: UUID = UUID(), locked: Bool = false, password: String? = nil, title: String) {
+    convenience init(id: UUID = UUID(), locked: Bool = false, password: String? = nil, recentlyDeleted: Bool = false, title: String) {
         self.init(context: DataControllerModel.shared.container.viewContext)
         self.id = id
         self.dateCreated = Date()
         self.locked = locked
         self.password = password
+        self.recentlyDeleted = recentlyDeleted
         self.title = title
     }
 }

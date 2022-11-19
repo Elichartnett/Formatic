@@ -63,6 +63,7 @@
 		62988701281C57B100C34782 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62988700281C57B100C34782 /* Extensions.swift */; };
 		62988709281C791400C34782 /* MapWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62988707281C791400C34782 /* MapWidget+CoreDataClass.swift */; };
 		6298870A281C791400C34782 /* MapWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62988708281C791400C34782 /* MapWidget+CoreDataProperties.swift */; };
+		62A8BFFC29297452005758BF /* TextFieldWidgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A8BFFB29297452005758BF /* TextFieldWidgetDetailView.swift */; };
 		62A979B628276D9C0067C0A3 /* DropdownWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979B428276D9C0067C0A3 /* DropdownWidget+CoreDataProperties.swift */; };
 		62A979BA28276E080067C0A3 /* DropdownSectionWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979B828276E080067C0A3 /* DropdownSectionWidget+CoreDataProperties.swift */; };
 		62A979C028277BFF0067C0A3 /* CheckboxWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BC28277BFF0067C0A3 /* CheckboxWidget+CoreDataProperties.swift */; };
@@ -156,6 +157,7 @@
 		62988700281C57B100C34782 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		62988707281C791400C34782 /* MapWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		62988708281C791400C34782 /* MapWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		62A8BFFB29297452005758BF /* TextFieldWidgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWidgetDetailView.swift; sourceTree = "<group>"; };
 		62A979B428276D9C0067C0A3 /* DropdownWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DropdownWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62A979B828276E080067C0A3 /* DropdownSectionWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DropdownSectionWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62A979BB28277BFF0067C0A3 /* CheckboxWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckboxWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -416,7 +418,7 @@
 		62988706281C6BF000C34782 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				62294F0F281F8C1C00226AF1 /* TextFieldWidgetView.swift */,
+				62A8BFFA29297442005758BF /* TextField */,
 				62294F11281F8C2800226AF1 /* NumberFieldWidgetView.swift */,
 				62294F15281F8C4800226AF1 /* DropdownSectionWidgetView.swift */,
 				6257F5492826254500E167C4 /* Checkbox */,
@@ -426,14 +428,13 @@
 			path = Widgets;
 			sourceTree = "<group>";
 		};
-		62D1B07429252E5E00712D85 /* Tabs */ = {
+		62A8BFFA29297442005758BF /* TextField */ = {
 			isa = PBXGroup;
 			children = (
-				62FE6E6D28187058009D41FD /* Home.swift */,
-				62D1B07529252E6700712D85 /* Form */,
-				62D1B07629252E7000712D85 /* Settings */,
+				62294F0F281F8C1C00226AF1 /* TextFieldWidgetView.swift */,
+				62A8BFFB29297452005758BF /* TextFieldWidgetDetailView.swift */,
 			);
-			path = Tabs;
+			path = TextField;
 			sourceTree = "<group>";
 		};
 		62D1B07529252E6700712D85 /* Form */ = {
@@ -514,7 +515,9 @@
 		62FE6E79281874FA009D41FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				62D1B07429252E5E00712D85 /* Tabs */,
+				62FE6E6D28187058009D41FD /* Home.swift */,
+				62D1B07529252E6700712D85 /* Form */,
+				62D1B07629252E7000712D85 /* Settings */,
 				62294F0A281F514300226AF1 /* Reusable Components */,
 			);
 			path = Views;
@@ -664,6 +667,7 @@
 				62294F3628231D5E00226AF1 /* FormTitleView.swift in Sources */,
 				629886FF281C4DBF00C34782 /* SectionView.swift in Sources */,
 				62E6AB4A281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift in Sources */,
+				62A8BFFC29297452005758BF /* TextFieldWidgetDetailView.swift in Sources */,
 				62443152281A152A00E21B11 /* NumberFieldWidget+CoreDataProperties.swift in Sources */,
 				62294F18281F8C6B00226AF1 /* CheckboxSectionWidgetView.swift in Sources */,
 				62FE6E6E28187058009D41FD /* Home.swift in Sources */,
@@ -868,7 +872,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Formatic/Formatic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Formatic/Preview Content\"";
 				DEVELOPMENT_TEAM = BMNBE7JVDJ;
@@ -890,7 +894,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.elihartnett.Formatic;
 				PRODUCT_NAME = Formatic;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -910,7 +914,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Formatic/Formatic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Formatic/Preview Content\"";
 				DEVELOPMENT_TEAM = BMNBE7JVDJ;
 				ENABLE_PREVIEWS = YES;
@@ -931,7 +935,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.elihartnett.Formatic;
 				PRODUCT_NAME = Formatic;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

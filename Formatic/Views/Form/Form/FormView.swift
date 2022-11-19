@@ -57,7 +57,7 @@ struct FormView: View {
                     }
                     .scrollContentBackground(.hidden)
                     .scrollDismissesKeyboard(.interactively)
-                    .background(Color.primaryBackground).ignoresSafeArea()
+                    .background(Color.primaryBackground)
                 }
             }
             
@@ -105,6 +105,7 @@ struct FormView_Previews: PreviewProvider {
                     }
                 })
                 .environmentObject(FormModel())
+                .environment(\.managedObjectContext, DataControllerModel.shared.container.viewContext)
         }
         .navigationViewStyle(.stack)
     }
