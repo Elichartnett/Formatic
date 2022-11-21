@@ -209,12 +209,12 @@ class FormModel: ObservableObject {
         }
     }
     
-    func deleteWidget(section: Section, position: Int) {
-        let widgets = getWidgetsInSection(section: section)
+    func deleteWidget(widget: Widget) {
+        let widgets = getWidgetsInSection(section: widget.section!)
         
         withAnimation {
-            DataControllerModel.shared.container.viewContext.delete(widgets[position])
-            for index in position..<widgets.count {
+            DataControllerModel.shared.container.viewContext.delete(widget)
+            for index in Int(widget.position)..<widgets.count {
                 widgets[index].position = widgets[index].position - 1
             }
         }

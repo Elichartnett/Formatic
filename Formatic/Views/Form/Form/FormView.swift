@@ -10,9 +10,11 @@ import SwiftUI
 // Displays a form with title and sections
 struct FormView: View {
     
+    @EnvironmentObject var formModel: FormModel
     @Environment(\.editMode) var editMode
     @FetchRequest var sections: FetchedResults<Section>
     @ObservedObject var form: Form
+    @State var selectedWidgets: [Widget] = []
     var forPDF: Bool
     
     init(form: Form, forPDF: Bool) {
@@ -39,20 +41,32 @@ struct FormView: View {
                     List {
                         ForEach(sections) { section in
                             SwiftUI.Section {
-                                SectionView(section: section, locked: $form.locked, forPDF: forPDF)
+                                SectionView(section: section, locked: $form.locked, selectedWidgets: $selectedWidgets, forPDF: forPDF)
                             } header: {
                                 HStack {
                                     SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
                                     Button {
-                                        FormModel.deleteSection(section: section)
+                                        withAnimation {
+                                            for widget in selectedWidgets {
+                                                formModel.deleteWidget(widget: widget)
+                                            }
+                                            selectedWidgets.removeAll()
+                                            editMode?.wrappedValue = .inactive
+                                        }
                                     } label: {
                                         Image(systemName: Strings.trashIconName)
                                             .customIcon()
-                                            .opacity(editMode?.wrappedValue == .active ? 1 : 0)
+                                            .opacity(editMode?.wrappedValue == .active && !selectedWidgets.isEmpty ? 1 : 0)
+                                            .animation(.default, value: selectedWidgets.isEmpty)
                                     }
                                 }
                             }
                             .headerProminence(.increased)
+                        }
+                        .onChange(of: editMode?.wrappedValue) { mode in
+                            if mode == .inactive {
+                                selectedWidgets.removeAll()
+                            }
                         }
                     }
                     .scrollContentBackground(.hidden)
@@ -71,7 +85,7 @@ struct FormView: View {
                         ForEach(sections) { section in
                             SwiftUI.Section {
                                 VStack (spacing: 0) {
-                                    SectionView(section: section, locked: $form.locked, forPDF: forPDF)
+                                    SectionView(section: section, locked: $form.locked, selectedWidgets: $selectedWidgets, forPDF: forPDF)
                                         .padding(.top, 10)
                                         .padding(.bottom, 10)
                                         .padding(.horizontal, 20)
