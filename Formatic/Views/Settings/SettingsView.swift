@@ -68,42 +68,44 @@ struct SettingsView: View {
                                     .foregroundColor(.primary)
                                 Image(systemName: Strings.expandListIconName)
                                     .rotationEffect(Angle(degrees: expandRecentlyDeleted ? 90 : 0))
+                                    .foregroundColor(recentlyDeletedForms.isEmpty ? .customGray : .blue)
                             }
                         }
-                        .onChange(of: selectedForms.isEmpty) { _ in
-                            if selectedForms.isEmpty {
+                        .onChange(of: selectedForms) { _ in
+                            if selectedForms.isEmpty && recentlyDeletedForms.isEmpty {
                                 expandRecentlyDeleted = false
                             }
                         }
                         
                         Spacer()
                         
-                        
-                        Image(systemName: Strings.plusIconName)
-                            .customIcon()
-                            .onTapGesture {
-                                withAnimation {
-                                    for form in selectedForms {
-                                        form.recentlyDeleted = false
+                        Group {
+                            
+                            Image(systemName: Strings.plusIconName)
+                                .customIcon()
+                                .onTapGesture {
+                                    withAnimation {
+                                        for form in selectedForms {
+                                            form.recentlyDeleted = false
+                                        }
+                                        selectedForms.removeAll()
                                     }
-                                    selectedForms.removeAll()
                                 }
-                            }
-                            .opacity(!selectedForms.isEmpty && expandRecentlyDeleted ? 1 : 0)
-                            .animation(.default, value: selectedForms.isEmpty)
-                        
-                        Image(systemName: Strings.trashIconName)
-                            .customIcon()
-                            .onTapGesture {
-                                withAnimation {
-                                    for form in selectedForms {
-                                        formModel.deleteForm(form: form)
+                                .padding(.trailing)
+                            
+                            Image(systemName: Strings.trashIconName)
+                                .foregroundColor(.red)
+                                .onTapGesture {
+                                    withAnimation {
+                                        for form in selectedForms {
+                                            formModel.deleteForm(form: form)
+                                        }
+                                        selectedForms.removeAll()
                                     }
-                                    selectedForms.removeAll()
                                 }
-                            }
-                            .opacity(!selectedForms.isEmpty && expandRecentlyDeleted ? 1 : 0)
-                            .animation(.default, value: selectedForms.isEmpty)
+                        }
+                        .opacity(!selectedForms.isEmpty && expandRecentlyDeleted ? 1 : 0)
+                        .animation(.default, value: selectedForms.isEmpty)
                     }
                     
                     if expandRecentlyDeleted {
@@ -123,6 +125,24 @@ struct SettingsView: View {
                                 else {
                                     selectedForms.append(form)
                                 }
+                            }
+                            .swipeActions {
+                                Button {
+                                    formModel.deleteForm(form: form)
+                                    if recentlyDeletedForms.isEmpty {
+                                        expandRecentlyDeleted = false
+                                    }
+                                } label: {
+                                    Label(Strings.deleteLabel, systemImage: Strings.trashIconName)
+                                }
+                                .tint(.red)
+                                
+                                Button {
+                                    
+                                } label: {
+                                    Label(Strings.recoverLabel, systemImage: Strings.plusIconName)
+                                }
+                                .tint(.blue)
                             }
                         }
                         .alignmentGuide(.listRowSeparatorLeading, computeValue: { viewDimensions in
