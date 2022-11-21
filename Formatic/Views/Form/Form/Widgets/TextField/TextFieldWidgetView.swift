@@ -42,7 +42,7 @@ struct TextFieldWidgetView: View {
                     .padding(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .WidgetFrameStyle(height: .adaptive)
-                    .padding(.bottom, 6)
+                    .padding(.bottom, formModel.isPhone ? 6 : 0)
             }
             .frame(maxWidth: .infinity)
         }

@@ -24,6 +24,24 @@ struct EditorViewToolbar: View {
         
         HStack {
             
+            // Add section to form button
+            Button {
+                form.addToSections(Section(position: form.sections?.count ?? 0, title: nil))
+                Analytics.logEvent(Strings.analyticsCreateSectionEvent, parameters: nil)
+            } label: {
+                if formModel.isPhone {
+                    Image(systemName: Strings.plusCircleIconName)
+                }
+                else {
+                    HStack {
+                        Image(systemName: Strings.plusCircleIconName)
+                        Text(Strings.newSectionLabel)
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .disabled(form.locked)
+            
             // Lock and unlock form button
             Button {
                 if form.locked || (!form.locked && form.password == nil) {
@@ -48,24 +66,6 @@ struct EditorViewToolbar: View {
                 }
             }
             .frame(maxWidth: .infinity)
-            
-            // Add section to form button
-            Button {
-                form.addToSections(Section(position: form.sections?.count ?? 0, title: nil))
-                Analytics.logEvent(Strings.analyticsCreateSectionEvent, parameters: nil)
-            } label: {
-                if formModel.isPhone {
-                    Image(systemName: Strings.plusCircleIconName)
-                }
-                else {
-                    HStack {
-                        Image(systemName: Strings.plusCircleIconName)
-                        Text(Strings.newSectionLabel)
-                    }
-                }
-            }
-            .frame(maxWidth: .infinity)
-            .disabled(form.locked)
             
             // Enable edit mode to rearrange list of widgets
             Button {

@@ -15,15 +15,17 @@ struct SectionView: View {
     @FetchRequest var widgets: FetchedResults<Widget>
     @ObservedObject var section: Section
     @Binding var locked: Bool
+    @Binding var selectedWidgets: [Widget]
     var forPDF: Bool
     var moveDisabled: Bool {
         return locked
     }
     
-    init(section: Section, locked: Binding<Bool>, forPDF: Bool = false) {
+    init(section: Section, locked: Binding<Bool>, selectedWidgets: Binding<[Widget]>, forPDF: Bool = false) {
         self._widgets = FetchRequest<Widget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "section == %@", section))
         self.section = section
         self._locked = locked
+        self._selectedWidgets = selectedWidgets
         self.forPDF = forPDF
     }
     
@@ -32,64 +34,83 @@ struct SectionView: View {
         if widgets.isEmpty {
             // Empty view representing section - used as work around for vertical spacing issue when adding multiple sections at once without any widgets in the section
             Color.clear
-            .frame(height: forPDF ? 45 : 1)
-            .cornerRadius(10)
+                .frame(height: forPDF ? 45 : 1)
+                .cornerRadius(10)
         }
         else {
             // Display all widgets in section
             ForEach(widgets) { widget in
-                let widgetType: WidgetType = WidgetType.init(rawValue: widget.type!)!
-                Group {
-                    switch widgetType {
-                    case .textFieldWidget:
-                        if let textFieldWidget = widget as? TextFieldWidget {
-                            TextFieldWidgetView(textFieldWidget: textFieldWidget, locked: $locked)
-                        }
-                        
-                    case .numberFieldWidget:
-                        let numberFieldWidget = widget as! NumberFieldWidget
-                        NumberFieldWidgetView(numberFieldWidget: numberFieldWidget, locked: $locked)
-                        
-                    case .dropdownSectionWidget:
-                        let dropdownSectionWidget = widget as! DropdownSectionWidget
-                        DropdownSectionWidgetView(dropdownSectionWidget: dropdownSectionWidget, locked: $locked)
-                        
-                        // Will be handled in section
-                    case .dropdownWidget:
-                        EmptyView()
-                        
-                    case .checkboxSectionWidget:
-                        let checkboxSectionWidget = widget as! CheckboxSectionWidget
-                        CheckboxSectionWidgetView(checkboxSectionWidget: checkboxSectionWidget, locked: $locked)
-                        
-                        // Will be handled in section
-                    case .checkboxWidget:
-                        EmptyView()
-                        
-                    case .mapWidget:
-                        let mapWidget = widget as! MapWidget
-                        MapWidgetView(mapWidget: mapWidget, locked: $locked, forPDF: forPDF)
-                        
-                    case .canvasWidget:
-                        let canvasWidget = widget as! CanvasWidget
-                        CanvasWidgetView(canvasWidget: canvasWidget, locked: $locked)
+                HStack {
+                    let selected = selectedWidgets.contains(widget)
+                    if editMode?.wrappedValue == .active {
+                        Image(systemName: selected ? "checkmark.circle.fill" : "circle")
+                            .foregroundColor(Color(uiColor: selected ? .systemBlue : .customGray))
+                            .transition(.asymmetric(insertion: .push(from: .leading), removal: .push(from: .trailing)))
+                            .onTapGesture {
+                                if selected {
+                                    if let index = selectedWidgets.firstIndex(of: widget) {
+                                        selectedWidgets.remove(at: index)
+                                    }
+                                }
+                                else {
+                                    selectedWidgets.append(widget)
+                                }
+                            }
                     }
-                }
-                .swipeActions {
-                    if !locked {
-                        Button {
-                            formModel.deleteWidget(section: section, position: Int(widget.position))
-                        } label: {
-                            Label(Strings.deleteLabel, systemImage: Strings.trashIconName)
+                    
+                    let widgetType: WidgetType = WidgetType.init(rawValue: widget.type!)!
+                    Group {
+                        switch widgetType {
+                        case .textFieldWidget:
+                            if let textFieldWidget = widget as? TextFieldWidget {
+                                TextFieldWidgetView(textFieldWidget: textFieldWidget, locked: $locked)
+                            }
+                            
+                        case .numberFieldWidget:
+                            let numberFieldWidget = widget as! NumberFieldWidget
+                            NumberFieldWidgetView(numberFieldWidget: numberFieldWidget, locked: $locked)
+                            
+                        case .dropdownSectionWidget:
+                            let dropdownSectionWidget = widget as! DropdownSectionWidget
+                            DropdownSectionWidgetView(dropdownSectionWidget: dropdownSectionWidget, locked: $locked)
+                            
+                            // Will be handled in section
+                        case .dropdownWidget:
+                            EmptyView()
+                            
+                        case .checkboxSectionWidget:
+                            let checkboxSectionWidget = widget as! CheckboxSectionWidget
+                            CheckboxSectionWidgetView(checkboxSectionWidget: checkboxSectionWidget, locked: $locked)
+                            
+                            // Will be handled in section
+                        case .checkboxWidget:
+                            EmptyView()
+                            
+                        case .mapWidget:
+                            let mapWidget = widget as! MapWidget
+                            MapWidgetView(mapWidget: mapWidget, locked: $locked, forPDF: forPDF)
+                            
+                        case .canvasWidget:
+                            let canvasWidget = widget as! CanvasWidget
+                            CanvasWidgetView(canvasWidget: canvasWidget, locked: $locked)
                         }
-                        .tint(.red)
-                        
-                        Button {
-                            formModel.copyWidget(section: section, widget: widget)
-                        } label: {
-                            Label(Strings.copyLabel, systemImage: Strings.copyIconName)
+                    }
+                    .swipeActions {
+                        if !locked {
+                            Button {
+                                formModel.deleteWidget(widget: widget)
+                            } label: {
+                                Label(Strings.deleteLabel, systemImage: Strings.trashIconName)
+                            }
+                            .tint(.red)
+                            
+                            Button {
+                                formModel.copyWidget(section: section, widget: widget)
+                            } label: {
+                                Label(Strings.copyLabel, systemImage: Strings.copyIconName)
+                            }
+                            .tint(.blue)
                         }
-                        .tint(.blue)
                     }
                 }
                 
@@ -108,7 +129,7 @@ struct SectionView: View {
 struct SectionView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            SectionView(section: (dev.form.sections!.first)!, locked: .constant(dev.form.locked))
+            SectionView(section: (dev.form.sections!.first)!, locked: .constant(dev.form.locked), selectedWidgets: .constant([]))
                 .environmentObject(FormModel())
         }
     }
