@@ -186,7 +186,7 @@ class FormModel: ObservableObject {
         }
     }
     
-    static func deleteSection(section: Section) {
+    func deleteSection(section: Section) {
         DataControllerModel.shared.container.viewContext.delete(section)
     }
     

@@ -47,13 +47,15 @@ struct SectionView: View {
                             .foregroundColor(Color(uiColor: selected ? .systemBlue : .customGray))
                             .transition(.asymmetric(insertion: .push(from: .leading), removal: .push(from: .trailing)))
                             .onTapGesture {
-                                if selected {
-                                    if let index = selectedWidgets.firstIndex(of: widget) {
-                                        selectedWidgets.remove(at: index)
+                                withAnimation {
+                                    if selected {
+                                        if let index = selectedWidgets.firstIndex(of: widget) {
+                                            selectedWidgets.remove(at: index)
+                                        }
                                     }
-                                }
-                                else {
-                                    selectedWidgets.append(widget)
+                                    else {
+                                        selectedWidgets.append(widget)
+                                    }
                                 }
                             }
                     }
