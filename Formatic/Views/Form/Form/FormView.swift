@@ -15,6 +15,7 @@ struct FormView: View {
     @FetchRequest var sections: FetchedResults<Section>
     @ObservedObject var form: Form
     @State var selectedWidgets: [Widget] = []
+    @State var selectedSections: [Section] = []
     var forPDF: Bool
     
     init(form: Form, forPDF: Bool) {
@@ -44,9 +45,37 @@ struct FormView: View {
                                 SectionView(section: section, locked: $form.locked, selectedWidgets: $selectedWidgets, forPDF: forPDF)
                             } header: {
                                 HStack {
+                                    if editMode?.wrappedValue == .active {
+                                        let selected = selectedSections.contains(section)
+                                        Image(systemName: selected ? "checkmark.circle.fill" : "circle")
+                                            .foregroundColor(Color(uiColor: selected ? .systemBlue : .customGray))
+                                            .transition(.asymmetric(insertion: .push(from: .leading), removal: .push(from: .trailing)))
+                                            .onTapGesture {
+                                                withAnimation {
+                                                    if selected {
+                                                        if let index = selectedSections.firstIndex(of: section) {
+                                                            selectedSections.remove(at: index)
+                                                            selectedWidgets.removeAll()
+                                                        }
+                                                    }
+                                                    else {
+                                                        selectedSections.append(section)
+                                                        for widget in section.widgets ?? [] {
+                                                            if !selectedWidgets.contains(widget) {
+                                                                selectedWidgets.append(widget)
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                    }
+                                    
                                     SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
                                     Button {
                                         withAnimation {
+                                            for section in selectedSections {
+                                                formModel.deleteSection(section: section)
+                                            }
                                             for widget in selectedWidgets {
                                                 formModel.deleteWidget(widget: widget)
                                             }
@@ -55,9 +84,12 @@ struct FormView: View {
                                         }
                                     } label: {
                                         Image(systemName: Strings.trashIconName)
-                                            .customIcon()
-                                            .opacity(editMode?.wrappedValue == .active && !selectedWidgets.isEmpty ? 1 : 0)
-                                            .animation(.default, value: selectedWidgets.isEmpty)
+                                            .foregroundColor(.red)
+                                            .opacity(editMode?.wrappedValue == .active && (selectedWidgets.contains(where: { selectedWidget in
+                                                section.widgets?.contains(selectedWidget) ?? false
+                                            }) || selectedSections.contains(where: { selectedSection in
+                                                selectedSection == section
+                                            })) ? 1 : 0)
                                     }
                                 }
                             }
@@ -66,6 +98,7 @@ struct FormView: View {
                         .onChange(of: editMode?.wrappedValue) { mode in
                             if mode == .inactive {
                                 selectedWidgets.removeAll()
+                                selectedSections.removeAll()
                             }
                         }
                     }
