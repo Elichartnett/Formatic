@@ -42,8 +42,8 @@
 "editLabel" = "Edit";
 "submitLabel" = "Submit";
 "exportLabel" = "Export";
-"pdfLabel" = "PDF";
-"csvLabel" = "CSV";
+"generatePDFLabel" = "Generate PDF";
+"generateCSVLabel" = "Generate CSV";
 
 "passwordLabel" = "Password";
 "setupLockLabel" = "Setup Lock";

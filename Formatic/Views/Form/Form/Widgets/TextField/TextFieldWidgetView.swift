@@ -38,7 +38,7 @@ struct TextFieldWidgetView: View {
                 TextFieldWidgetDetailView(textFieldWidget: textFieldWidget)
             } label: {
                 Text(textFieldWidget.text ?? Strings.textLabel)
-                    .foregroundColor(textFieldWidget.text == nil ? .gray : .primary)
+                    .foregroundColor(textFieldWidget.text == nil ? .customGray : .primary)
                     .padding(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .WidgetFrameStyle(height: .adaptive)

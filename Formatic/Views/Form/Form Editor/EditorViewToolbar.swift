@@ -7,15 +7,14 @@
 
 import SwiftUI
 import FirebaseAnalytics
+import UniformTypeIdentifiers
 
 // Tool bar options for editing a form
 struct EditorViewToolbar: View {
     
     @EnvironmentObject var formModel: FormModel
     @ObservedObject var form: Form
-    @Binding var exportToForm: Bool
-    @Binding var exportToPDF: Bool
-    @Binding var exportToCSV: Bool
+    @State var exportType: UTType?
     @Binding var showToggleLockView: Bool
     @Binding var editMode: EditMode
     @State var alertTitle = ""
@@ -80,8 +79,14 @@ struct EditorViewToolbar: View {
                 }
             } label: {
                 let icon = Image(systemName: Strings.editIconName)
+                
                 if formModel.isPhone {
                     icon
+                        .foregroundColor(editMode == .active ? .primaryBackground : .blue)
+                        .background {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(editMode == .active ? .blue : Color.primaryBackground)
+                        }
                 }
                 else {
                     HStack {
@@ -101,32 +106,26 @@ struct EditorViewToolbar: View {
             // Export form button
             Menu {
                 
-                // Export to form button
-                Button {
-                    exportToForm = true
-                } label: {
-                    HStack {
-                        Image(systemName: Strings.docZipperIconName)
-                        Text(Strings.formLabel)
-                    }
-                }
+                // Export to form
+                ShareLink(item: form, preview: SharePreview(form.title ?? "Form"))
                 
-                // Export to pdf button
+                // Export to PDF
                 Button {
-                    exportToPDF = true
+                    exportType = .pdf
                 } label: {
                     HStack {
                         Image(systemName: Strings.docTextImageIconName)
-                        Text(Strings.pdfLabel)
+                        Text(Strings.generatePDFLabel)
                     }
                 }
                 
+                // Export to CSV
                 Button {
-                    exportToCSV = true
+                    exportType = .commaSeparatedText
                 } label: {
                     HStack {
                         Image (systemName: Strings.csvTableIconName)
-                        Text(Strings.csvLabel)
+                        Text(Strings.generateCSVLabel)
                     }
                 }
             } label: {
@@ -144,6 +143,9 @@ struct EditorViewToolbar: View {
             .frame(maxWidth: .infinity)
             
         }
+        .sheet(item: $exportType, content: { exportType in
+            ExportView(form: form, exportType: $exportType)
+        })
         .alert(alertTitle, isPresented: $showAlert, actions: {
             Button(Strings.defaultAlertButtonDismissMessage, role: .cancel) {}
         })
@@ -152,6 +154,6 @@ struct EditorViewToolbar: View {
 
 struct EditorViewToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        EditorViewToolbar(form: dev.form, exportToForm: .constant(false), exportToPDF: .constant(false), exportToCSV: .constant(false), showToggleLockView: .constant(false), editMode: .constant(.inactive))
+        EditorViewToolbar(form: dev.form, showToggleLockView: .constant(false), editMode: .constant(.inactive))
     }
 }

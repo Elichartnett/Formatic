@@ -9,9 +9,10 @@
 import Foundation
 import CoreData
 import CryptoKit
+import SwiftUI
 
 @objc(Form)
-public class Form: NSManagedObject, Codable, Identifiable, Csv, Copyable {
+public class Form: NSManagedObject, Codable, Identifiable, Transferable, Csv, Copyable {
     
     enum CodingKeys: String, CodingKey {
         case dateCreated = "dateCreated"
@@ -61,6 +62,10 @@ public class Form: NSManagedObject, Codable, Identifiable, Csv, Copyable {
                 self.password = String(data: passwordData, encoding: .utf8)
             }
         }
+    }
+    
+    static public var transferRepresentation: some TransferRepresentation {
+        CodableRepresentation(contentType: .form)
     }
     
     func toCsv() -> String {
