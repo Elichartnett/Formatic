@@ -46,8 +46,8 @@ struct Strings {
     static let editLabel = String(localized: "editLabel")
     static let submitLabel = String(localized: "submitLabel")
     static let exportLabel = String(localized: "exportLabel")
-    static let pdfLabel = String(localized: "pdfLabel")
-    static let csvLabel = String(localized: "csvLabel")
+    static let generatePDFLabel = String(localized: "generatePDFLabel")
+    static let generateCSVLabel = String(localized: "generateCSVLabel")
     
     static let passwordLabel = String(localized: "passwordLabel")
     static let setupLockLabel = String(localized: "setupLockLabel")

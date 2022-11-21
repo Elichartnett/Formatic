@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension Form {
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Form> {

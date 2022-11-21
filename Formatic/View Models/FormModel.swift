@@ -70,7 +70,7 @@ class FormModel: ObservableObject {
         }
     }
     
-    func encodeFormToJsonData(form: Form) throws -> Data {
+    static func encodeFormToJsonData(form: Form) throws -> Data {
         let encoder = JSONEncoder()
         do {
             let data = try encoder.encode(form)
@@ -81,7 +81,7 @@ class FormModel: ObservableObject {
         }
     }
     
-    func decodeJsonDataToForm(data: Data) throws -> Form {
+    static func decodeJsonDataToForm(data: Data) throws -> Form {
         let decoder = JSONDecoder()
         do {
             let form = try decoder.decode(Form.self, from: data)
@@ -97,7 +97,7 @@ class FormModel: ObservableObject {
         do {
             let data = try urlToData(url: url)
             do {
-                let newForm = try decodeJsonDataToForm(data: data)
+                let newForm = try FormModel.decodeJsonDataToForm(data: data)
                 do {
                     let forms = try getForms()
                     if forms.contains(where: { form in

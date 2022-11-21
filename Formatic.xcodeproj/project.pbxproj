@@ -41,7 +41,6 @@
 		62443167281A1CA000E21B11 /* DropdownSectionWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6244315F281A1CA000E21B11 /* DropdownSectionWidget+CoreDataClass.swift */; };
 		6250E9612831632D00E6E6A0 /* CanvasWidgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E9602831632D00E6E6A0 /* CanvasWidgetDetailView.swift */; };
 		6250E9632831649C00E6E6A0 /* CanvasRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E9622831649C00E6E6A0 /* CanvasRepresentableView.swift */; };
-		6250E97F2835B11600E6E6A0 /* FormaticFileDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E97E2835B11600E6E6A0 /* FormaticFileDocument.swift */; };
 		627736FD28300F7D00F7B107 /* PhotoTaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627736FC28300F7D00F7B107 /* PhotoTaker.swift */; };
 		6288C6A328BB03B70081A39D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6A228BB03B70081A39D /* LaunchScreen.storyboard */; };
 		6288C6A728BB06580081A39D /* Privacy Policy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6A628BB06580081A39D /* Privacy Policy.pdf */; };
@@ -64,6 +63,7 @@
 		62988709281C791400C34782 /* MapWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62988707281C791400C34782 /* MapWidget+CoreDataClass.swift */; };
 		6298870A281C791400C34782 /* MapWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62988708281C791400C34782 /* MapWidget+CoreDataProperties.swift */; };
 		62A8BFFC29297452005758BF /* TextFieldWidgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A8BFFB29297452005758BF /* TextFieldWidgetDetailView.swift */; };
+		62A8C005292B3863005758BF /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A8C004292B3863005758BF /* ExportView.swift */; };
 		62A979B628276D9C0067C0A3 /* DropdownWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979B428276D9C0067C0A3 /* DropdownWidget+CoreDataProperties.swift */; };
 		62A979BA28276E080067C0A3 /* DropdownSectionWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979B828276E080067C0A3 /* DropdownSectionWidget+CoreDataProperties.swift */; };
 		62A979C028277BFF0067C0A3 /* CheckboxWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BC28277BFF0067C0A3 /* CheckboxWidget+CoreDataProperties.swift */; };
@@ -133,7 +133,6 @@
 		6244315F281A1CA000E21B11 /* DropdownSectionWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DropdownSectionWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6250E9602831632D00E6E6A0 /* CanvasWidgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWidgetDetailView.swift; sourceTree = "<group>"; };
 		6250E9622831649C00E6E6A0 /* CanvasRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasRepresentableView.swift; sourceTree = "<group>"; };
-		6250E97E2835B11600E6E6A0 /* FormaticFileDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormaticFileDocument.swift; sourceTree = "<group>"; };
 		6250E9802836CAB400E6E6A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		627736FC28300F7D00F7B107 /* PhotoTaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTaker.swift; sourceTree = "<group>"; };
 		6288C6A228BB03B70081A39D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -158,6 +157,7 @@
 		62988707281C791400C34782 /* MapWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		62988708281C791400C34782 /* MapWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62A8BFFB29297452005758BF /* TextFieldWidgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWidgetDetailView.swift; sourceTree = "<group>"; };
+		62A8C004292B3863005758BF /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
 		62A979B428276D9C0067C0A3 /* DropdownWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DropdownWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62A979B828276E080067C0A3 /* DropdownSectionWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DropdownSectionWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62A979BB28277BFF0067C0A3 /* CheckboxWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckboxWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -260,7 +260,6 @@
 				62E3FAFF28DA13DD00F5FE2B /* ViewModifiers.swift */,
 				62E7F87C282EE713004A95EF /* DeveloperPreview.swift */,
 				62E7F87A282EE1E4004A95EF /* LocationManager.swift */,
-				6250E97E2835B11600E6E6A0 /* FormaticFileDocument.swift */,
 				72F9420C28C82B3F001E8A2A /* Protocols.swift */,
 				62D7D87A28F86623004C55C9 /* Strings.swift */,
 				62D7D87928F86448004C55C9 /* Localizable.strings */,
@@ -400,6 +399,7 @@
 				629886F0281B929600C34782 /* FormEditorView.swift */,
 				629886F8281C343500C34782 /* EditorViewToolbar.swift */,
 				62294F3A282580D900226AF1 /* ToggleLockView.swift */,
+				62A8C004292B3863005758BF /* ExportView.swift */,
 			);
 			path = "Form Editor";
 			sourceTree = "<group>";
@@ -698,10 +698,10 @@
 				62294F252821EB7700226AF1 /* ConfigureNumberFieldWidgetView.swift in Sources */,
 				6244311F281A130000E21B11 /* DataControllerModel.swift in Sources */,
 				62D1B07829252EAA00712D85 /* SettingsView.swift in Sources */,
+				62A8C005292B3863005758BF /* ExportView.swift in Sources */,
 				629886FC281C36F700C34782 /* FormView.swift in Sources */,
 				72F9420D28C82B3F001E8A2A /* Protocols.swift in Sources */,
 				62E3FB0028DA13DD00F5FE2B /* ViewModifiers.swift in Sources */,
-				6250E97F2835B11600E6E6A0 /* FormaticFileDocument.swift in Sources */,
 				62FE6E6C28187058009D41FD /* Formatic.swift in Sources */,
 				62D1B097292670C500712D85 /* EmailViewRepresentable.swift in Sources */,
 				629886DB281B578800C34782 /* Enums.swift in Sources */,

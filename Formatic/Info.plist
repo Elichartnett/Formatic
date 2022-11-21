@@ -6,12 +6,12 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeName</key>
-			<string>FormaticDocumentType</string>
+			<string>Form</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>Formatic.form</string>
+				<string>form</string>
 			</array>
 		</dict>
 	</array>
@@ -26,14 +26,36 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.data</string>
+				<string>com.public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>FormaticDocumentType</string>
+			<string>Form</string>
 			<key>UTTypeIconFiles</key>
 			<array/>
 			<key>UTTypeIdentifier</key>
-			<string>Formatic.form</string>
+			<string>com.formatic.form</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>form</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>com.public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Form</string>
+			<key>UTTypeIconFiles</key>
+			<array/>
+			<key>UTTypeIdentifier</key>
+			<string>com.formatic.form</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
