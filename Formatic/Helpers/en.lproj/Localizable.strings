@@ -21,7 +21,8 @@
 "exportFormErrorMessage" = "Error exporting form";
 "emptyFormTitleErrorMessage" = "Error renaming form. Title can not be empty";
 "formTitleValidationErrorMessage" = "Error validating title";
-"formTitleAlreadyInUseErrorMessage" = "Title already in use. Try clearing recently deleted forms in settings.";
+"formTitleAlreadyInUseErrorMessage" = "Title already in use";
+"formTitleInRecentlyDeletedErrorMessage" = "Clear recently deleted folder in settings.";
 "formPasswordDoesNotMatchErrorMessage" = "Passwords do not match";
 "importCanvasErrorMessage" = "Error importing canvas";
 "updateCanvasWidgetViewPreviewErrorMessage" = "Error updating canvas widget preview";

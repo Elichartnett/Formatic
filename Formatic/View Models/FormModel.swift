@@ -45,28 +45,31 @@ class FormModel: ObservableObject {
         }
     }
     
-    func titleIsValid(title: String) throws -> Bool {
-        try withAnimation {
-            do {
-                let forms = try getForms()
-                
-                if forms.contains(where: { form in
-                    form.title == title
-                }) {
-                    return false
+    func titleIsValid(title: String) throws -> (isValid: Bool, inRecentlyDeleted: Bool) {
+        do {
+            let forms = try getForms()
+            
+            if forms.contains(where: { form in
+                form.title == title && form.recentlyDeleted == true
+            }) {
+                return (false, true)
+            }
+            else if forms.contains(where: { form in
+                form.title == title
+            }) {
+                return (false, false)
+            }
+            else {
+                if title.isEmpty {
+                    return (false, false)
                 }
                 else {
-                    if !title.isEmpty {
-                        return true
-                    }
-                    else {
-                        return false
-                    }
+                    return (true, false)
                 }
             }
-            catch {
-                throw FormError.fetchError
-            }
+        }
+        catch {
+            throw FormError.fetchError
         }
     }
     
