@@ -14,13 +14,14 @@ struct NewFormView: View {
     @FetchRequest(sortDescriptors: []) var forms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel
     @Binding var showNewFormView: Bool
-    @State var title: String = ""
-    @State var password: String = ""
-    @State var validTitle: Bool = false
-    @State var validPassword: Bool = true
-    @State var isValid: Bool = false
-    @State var showAlert: Bool = false
-    @State var alertTitle: String = ""
+    @State var title = ""
+    @State var password = ""
+    @State var validTitle = false
+    @State var validPassword = true
+    @State var inRecentlyDeleted = false
+    @State var isValid = false
+    @State var showAlert = false
+    @State var alertTitle = ""
     
     var body: some View {
         
@@ -32,17 +33,19 @@ struct NewFormView: View {
             // Form title
             InputBox(placeholder: Strings.titleLabel, text: $title)
                 .onChange(of: title) { _ in
-                    do {
-                        validTitle = try formModel.titleIsValid(title: title)
-                    }
-                    catch {
-                        alertTitle = Strings.formTitleValidationErrorMessage
-                        validTitle = false
+                    withAnimation {
+                        do {
+                            (validTitle, inRecentlyDeleted) = try formModel.titleIsValid(title: title)
+                        }
+                        catch {
+                            alertTitle = Strings.formTitleValidationErrorMessage
+                            validTitle = false
+                        }
                     }
                 }
                 .onChange(of: validTitle, perform: { _ in
                     withAnimation {
-                        isValid = (validTitle && validPassword)
+                        isValid = (validTitle && validPassword && !inRecentlyDeleted)
                     }
                 })
                 .alert(alertTitle, isPresented: $showAlert, actions: {
@@ -75,8 +78,9 @@ struct NewFormView: View {
             .disabled(!(isValid))
             
             if !validTitle && !title.isEmpty {
-                Text(Strings.formTitleAlreadyInUseErrorMessage)
+                Text(Strings.formTitleAlreadyInUseErrorMessage + (inRecentlyDeleted ? ". " : "") + (inRecentlyDeleted ? Strings.formTitleInRecentlyDeletedErrorMessage : ""))
                     .foregroundColor(.red)
+                    .multilineTextAlignment(.center)
             }
             if !validPassword {
                 Text(Strings.formPasswordDoesNotMatchErrorMessage)
