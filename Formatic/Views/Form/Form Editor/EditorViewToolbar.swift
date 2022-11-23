@@ -82,7 +82,7 @@ struct EditorViewToolbar: View {
                 
                 if formModel.isPhone {
                     icon
-                        .foregroundColor(editMode == .active ? .primaryBackground : .blue)
+                        .foregroundColor(form.locked ? .customGray : editMode == .active ? .primaryBackground : .blue)
                         .background {
                             RoundedRectangle(cornerRadius: 5)
                                 .fill(editMode == .active ? .blue : Color.primaryBackground)

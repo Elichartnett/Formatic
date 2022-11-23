@@ -89,6 +89,7 @@ public class Form: NSManagedObject, Codable, Identifiable, Transferable, Csv, Co
         let copy = Form(title: self.title!)
         copy.locked = locked
         copy.password = password
+        copy.dateCreated = dateCreated.addingTimeInterval(1)
         
         let sectionsArray = sections?.sorted(by: { lhs, rhs in
             lhs.position < rhs.position

@@ -71,16 +71,66 @@ struct FormView: View {
                                     }
                                     
                                     SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
+                                                                        
                                     Button {
                                         withAnimation {
-                                            for section in selectedSections {
-                                                formModel.deleteSection(section: section)
+                                            if selectedSections.contains(section) {
+                                                if let copy = section.createCopy() as? Section {
+                                                    copy.position += 1
+                                                    if let sections = form.sections?.sorted(by: { lhs, rhs in
+                                                        lhs.position < rhs.position
+                                                    }) {
+                                                        for index in Int(copy.position)..<sections.count {
+                                                            sections[index].position += 1
+                                                        }
+                                                    }
+                                                    form.addToSections(copy)
+                                                }
+                                                selectedWidgets.removeAll { selectedWidget in
+                                                    selectedWidget.section == section
+                                                }
                                             }
+                                            
                                             for widget in selectedWidgets {
-                                                formModel.deleteWidget(widget: widget)
+                                                if section.widgets?.contains(widget) ?? false {
+                                                    formModel.copyWidget(section: section, widget: widget)
+                                                }
                                             }
-                                            selectedWidgets.removeAll()
-                                            editMode?.wrappedValue = .inactive
+                                            
+                                            selectedSections.removeAll { selectedSection in
+                                                selectedSection == section
+                                            }
+                                            selectedWidgets.removeAll { selectedWidget in
+                                                selectedWidget.section == section
+                                            }
+                                        }
+                                    } label: {
+                                        Image(systemName: Strings.copyIconName)
+                                            .foregroundColor(.blue)
+                                            .opacity(editMode?.wrappedValue == .active && (selectedWidgets.contains(where: { selectedWidget in
+                                                section.widgets?.contains(selectedWidget) ?? false
+                                            }) || selectedSections.contains(where: { selectedSection in
+                                                selectedSection == section
+                                            })) ? 1 : 0)
+                                    }
+                                    
+                                    Button {
+                                        withAnimation {
+                                            if selectedSections.contains(section) {
+                                                formModel.deleteSection(section: section, form: form)
+                                            }
+                                            
+                                            for widget in selectedWidgets {
+                                                if section.widgets?.contains(widget) ?? false {
+                                                    formModel.deleteWidget(widget: widget)
+                                                }
+                                            }
+                                            selectedSections.removeAll { selectedSection in
+                                                selectedSection == section
+                                            }
+                                            selectedWidgets.removeAll { selectedWidget in
+                                                selectedWidget.section == section
+                                            }
                                         }
                                     } label: {
                                         Image(systemName: Strings.trashIconName)
