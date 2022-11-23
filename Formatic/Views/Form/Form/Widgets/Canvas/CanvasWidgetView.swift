@@ -79,6 +79,7 @@ struct CanvasWidgetView: View {
                         
                         Spacer()
                     }
+                    .padding(.leading)
                     .WidgetFrameStyle(height: .large)
                 }
                 .onChange(of: colorScheme, perform: { _ in
