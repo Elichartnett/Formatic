@@ -5,4 +5,5 @@
 - Investigate map making edit mode change laggy
 - StoreKit
 - Add accessibility
+- Optimize reuse
 - Abstract code to view model and view model code to classes

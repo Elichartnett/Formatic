@@ -33,13 +33,12 @@ struct CanvasWidgetView: View {
             let reconfigureButton = Button {
                 reconfigureWidget = true
             } label: {
-                if editMode?.wrappedValue == .active {
-                    Image(systemName: Strings.editIconName)
-                        .customIcon()
-                }
+                Image(systemName: Strings.editIconName)
+                    .customIcon()
+                    .opacity(editMode?.wrappedValue == .active ? 1 : 0)
             }
                 .disabled(editMode?.wrappedValue == .inactive)
-                .buttonStyle(.plain)
+                .transition(.asymmetric(insertion: .push(from: .trailing), removal: .push(from: .leading)))
             
             Group {
                 
