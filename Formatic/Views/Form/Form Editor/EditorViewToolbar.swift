@@ -71,48 +71,12 @@ struct EditorViewToolbar: View {
             EditModeButton(onTap: {})
             .disabled(form.locked)
             
-            // Export form button
-            Menu {
-                
-                // Export to form
-                ShareLink(item: form, preview: SharePreview(form.title ?? "Form"))
-                
-                // Export to PDF
-                Button {
-                    exportType = .pdf
-                } label: {
-                    HStack {
-                        Image(systemName: Strings.docTextImageIconName)
-                        Text(Strings.generatePDFLabel)
-                    }
-                }
-                
-                // Export to CSV
-                Button {
-                    exportType = .commaSeparatedText
-                } label: {
-                    HStack {
-                        Image (systemName: Strings.csvTableIconName)
-                        Text(Strings.generateCSVLabel)
-                    }
-                }
-            } label: {
-                let icon = Image(systemName: Strings.exportFormIconName)
-                if formModel.isPhone {
-                    icon
-                }
-                else {
-                    HStack {
-                        icon
-                        Text(Strings.exportLabel)
-                    }
-                }
-            }
+            ExportMenuButton(exportType: $exportType, forms: [form])
             .frame(maxWidth: .infinity)
             
         }
         .sheet(item: $exportType, content: { exportType in
-            ExportView(form: form, exportType: $exportType)
+            ExportView(forms: [form], exportType: $exportType)
         })
         .alert(alertTitle, isPresented: $showAlert, actions: {
             Button(Strings.defaultAlertButtonDismissMessage, role: .cancel) {}

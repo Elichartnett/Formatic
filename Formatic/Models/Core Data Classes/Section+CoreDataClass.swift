@@ -79,7 +79,7 @@ public class Section: NSManagedObject, Codable, Identifiable, Csv, Copyable {
     }
     
     func toCsv() -> String {
-        var retString = ""
+        var csvString = ""
         let allWidgets = (widgets ?? []).sorted { lhs, rhs in
             lhs.position < rhs.position
         }
@@ -90,23 +90,23 @@ public class Section: NSManagedObject, Codable, Identifiable, Csv, Copyable {
             switch widgetType {
             case .dropdownSectionWidget:
                 if let dropdownSectionWidget = item as? DropdownSectionWidget {
-                    retString += dropdownSectionWidget.toCsv()
+                    csvString += dropdownSectionWidget.toCsv()
                 }
             case .textFieldWidget:
                 if let textFieldWidget = item as? TextFieldWidget {
-                    retString += textFieldWidget.toCsv()
+                    csvString += textFieldWidget.toCsv()
                 }
             case .checkboxSectionWidget:
                 if let checkboxSectionWidget = item as? CheckboxSectionWidget {
-                    retString += checkboxSectionWidget.toCsv()
+                    csvString += checkboxSectionWidget.toCsv()
                 }
             case .mapWidget:
                 if let mapWidget = item as? MapWidget {
-                    retString += mapWidget.toCsv()
+                    csvString += mapWidget.toCsv()
                 }
             case .numberFieldWidget:
                 if let numberFieldWidget = item as? NumberFieldWidget {
-                    retString += numberFieldWidget.toCsv()
+                    csvString += numberFieldWidget.toCsv()
                 }
             case .dropdownWidget:
                 // Handled in DropdownSectionWidget
@@ -116,16 +116,16 @@ public class Section: NSManagedObject, Codable, Identifiable, Csv, Copyable {
                 break
             case .canvasWidget:
                 if let canvasWidget = item as? CanvasWidget {
-                    retString += canvasWidget.toCsv()
+                    csvString += canvasWidget.toCsv()
                 }
             }
-            retString += "\n"
+            csvString += "\n"
         }
         // Remove trailing newline character IF widgets exist in section
-        if retString != "" {
-            retString.remove(at: retString.index(before: retString.endIndex))
+        if csvString != "" {
+            csvString.remove(at: csvString.index(before: csvString.endIndex))
         }
-        return retString
+        return csvString
     }
     
     func createCopy() -> Any {

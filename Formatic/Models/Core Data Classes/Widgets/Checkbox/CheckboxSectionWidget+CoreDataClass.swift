@@ -61,8 +61,9 @@ public class CheckboxSectionWidget: Widget, Decodable, Csv, Copyable {
             
             // For each checkbox, add a row
             for checkboxWidget in checkboxWidgets {
-                csvString += FormModel.formatAsCsv(self.section?.title ?? "") + ","
-                csvString += FormModel.formatAsCsv(self.title ?? "") + ","
+                csvString += FormModel.formatAsCsv(section?.form?.title ?? "") + ","
+                csvString += FormModel.formatAsCsv(section?.title ?? "") + ","
+                csvString += FormModel.formatAsCsv(title ?? "") + ","
                 csvString += Strings.checkboxMenuLabel
                 csvString += FormModel.formatAsCsv(checkboxWidget.title ?? "") + ","
                 if checkboxWidget.checked == true {
@@ -76,7 +77,7 @@ public class CheckboxSectionWidget: Widget, Decodable, Csv, Copyable {
                 }).count) + ",\n"
             }
             
-            // Remove traling newline character (if retString exists/values exist in dropdown)
+            // Remove traling newline character
             if csvString != "" {
                 csvString.remove(at: csvString.index(before: csvString.endIndex))
             }

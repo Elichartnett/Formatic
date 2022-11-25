@@ -73,7 +73,7 @@ class FormModel: ObservableObject {
         do {
             let data = try urlToData(url: url)
             do {
-                let newForm = try FormModel.decodeJsonDataToForm(data: data)
+                let _ = try FormModel.decodeJsonDataToForm(data: data)
             }
             catch {
                 throw FormError.decodeJsonDataToFormError
@@ -141,6 +141,7 @@ class FormModel: ObservableObject {
     func copyForm(form: Form) throws {
         withAnimation {
             let formCopy = form.createCopy() as! Form
+            formCopy.dateCreated = formCopy.dateCreated.addingTimeInterval(1)
             Analytics.logEvent(Strings.analyticsCopyFormEvent, parameters: nil)
         }
     }
@@ -224,32 +225,45 @@ class FormModel: ObservableObject {
         }
     }
     
-    func exportToPdf(form: Form) -> Data {
-        
-        let pdfView = convertToScrollView(content: FormView(form: form, forPDF: true).environment(\.managedObjectContext, DataControllerModel.shared.container.viewContext).environmentObject(FormModel()))
-        pdfView.tag = 1009
+    func exportToPdf(forms: [Form]) -> Data {
+        // Get size for renderer
+        let pdfView = convertToScrollView(content: FormView(form: forms[0], forPDF: true).environment(\.managedObjectContext, DataControllerModel.shared.container.viewContext).environmentObject(FormModel()))
         let size = pdfView.contentSize
-        pdfView.frame = CGRect(x: 0, y: getSafeArea().top, width: size.width, height: size.height)
-        
-        getRootController().view.insertSubview(pdfView, at: 0)
         
         let pdfRenderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-        let data = pdfRenderer.pdfData(actions: { context in
-            context.beginPage()
-            pdfView.layer.render(in: context.cgContext)
-        })
-        
-        getRootController().view.subviews.forEach { view in
-            if view.tag == 1009 {
-                view.removeFromSuperview()
+        let data = pdfRenderer.pdfData { context in
+
+            for form in forms {
+                context.beginPage()
+
+                let pdfView = convertToScrollView(content: FormView(form: form, forPDF: true).environment(\.managedObjectContext, DataControllerModel.shared.container.viewContext).environmentObject(FormModel()))
+                let size = pdfView.contentSize
+                pdfView.frame = CGRect(x: 0, y: getSafeArea().top, width: size.width, height: size.height)
+                pdfView.tag = 1009
+                
+                getRootController().view.insertSubview(pdfView, at: 0)
+                
+                pdfView.layer.render(in: context.cgContext)
+                
+                getRootController().view.subviews.forEach { view in
+                    if view.tag == 1009 {
+                        view.removeFromSuperview()
+                    }
+                }
             }
         }
         return data
     }
     
-    func exportToCsv(form: Form) -> Data {
-        let data = form.toCsv().data(using: .utf8) ?? Strings.noFormDataErrorMessage.data(using: .utf8)!
-        return data
+    func exportToCsv(forms: [Form]) -> Data {
+        var csvString = Strings.baseCSVColumns + Strings.mapCSVColumns
+        for form in forms {
+            csvString.append(form.toCsv())
+            if form != forms.last {
+                csvString.append("\n")
+            }
+        }
+        return csvString.data(using: .utf8) ?? Strings.noFormDataErrorMessage.data(using: .utf8)!
     }
     
     static func formatAsCsv(_ string: String) -> String {
