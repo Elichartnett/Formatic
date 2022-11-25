@@ -24,9 +24,6 @@ struct Strings {
     static let importFormErrorMessage = String(localized: "importFormErrorMessage")
     static let exportFormErrorMessage = String(localized: "exportFormErrorMessage")
     static let emptyFormTitleErrorMessage = String(localized: "emptyFormTitleErrorMessage")
-    static let formTitleValidationErrorMessage = String(localized: "formTitleValidationErrorMessage")
-    static let formTitleAlreadyInUseErrorMessage = String(localized: "formTitleAlreadyInUseErrorMessage")
-    static let formTitleInRecentlyDeletedErrorMessage = String(localized: "formTitleInRecentlyDeletedErrorMessage")
     static let formPasswordDoesNotMatchErrorMessage = String(localized: "formPasswordDoesNotMatchErrorMessage")
     static let importCanvasErrorMessage = String(localized: "importCanvasErrorMessage")
     static let updateCanvasWidgetViewPreviewErrorMessage = String(localized: "updateCanvasWidgetViewPreviewErrorMessage")
@@ -112,6 +109,7 @@ struct Strings {
     static let plusCircleIconName = "plus.circle"
     static let importFormIconName = "square.and.arrow.down"
     static let exportFormIconName = "square.and.arrow.up"
+    static let exportMultipleFormsIconName = "square.and.arrow.up.on.square"
     static let docZipperIconName = "doc.zipper"
     static let docTextImageIconName = "doc.text.image"
     static let csvTableIconName = "tablecells"

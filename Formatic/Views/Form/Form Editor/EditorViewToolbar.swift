@@ -12,11 +12,11 @@ import UniformTypeIdentifiers
 // Tool bar options for editing a form
 struct EditorViewToolbar: View {
     
+    @Environment(\.editMode) var editMode
     @EnvironmentObject var formModel: FormModel
     @ObservedObject var form: Form
     @State var exportType: UTType?
     @Binding var showToggleLockView: Bool
-    @Binding var editMode: EditMode
     @State var alertTitle = ""
     @State var showAlert = false
     
@@ -49,7 +49,7 @@ struct EditorViewToolbar: View {
                 }
                 else  {
                     withAnimation {
-                        editMode = .inactive
+                        editMode?.wrappedValue = .inactive
                     }
                     form.locked = true
                 }
@@ -68,39 +68,7 @@ struct EditorViewToolbar: View {
             .frame(maxWidth: .infinity)
             
             // Enable edit mode to rearrange list of widgets
-            Button {
-                withAnimation {
-                    if editMode == .active {
-                        editMode = .inactive
-                    }
-                    else {
-                        editMode = .active
-                    }
-                }
-            } label: {
-                let icon = Image(systemName: Strings.editIconName)
-                
-                if formModel.isPhone {
-                    icon
-                        .foregroundColor(form.locked ? .customGray : editMode == .active ? .primaryBackground : .blue)
-                        .background {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(editMode == .active ? .blue : Color.primaryBackground)
-                        }
-                }
-                else {
-                    HStack {
-                        icon
-                        if editMode == .active {
-                            Text(Strings.doneLabel)
-                        }
-                        else {
-                            Text(Strings.editLabel)
-                        }
-                    }
-                }
-            }
-            .frame(maxWidth: .infinity)
+            EditModeButton(onTap: {})
             .disabled(form.locked)
             
             // Export form button
@@ -154,6 +122,6 @@ struct EditorViewToolbar: View {
 
 struct EditorViewToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        EditorViewToolbar(form: dev.form, showToggleLockView: .constant(false), editMode: .constant(.inactive))
+        EditorViewToolbar(form: dev.form, showToggleLockView: .constant(false))
     }
 }

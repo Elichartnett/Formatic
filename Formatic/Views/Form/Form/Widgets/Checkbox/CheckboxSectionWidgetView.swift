@@ -76,12 +76,12 @@ struct CheckboxSectionWidgetView: View {
         }
         
         if formModel.isPhone {
-            VStack(alignment: .leading, spacing: FormModel.spacingConstant) {
+            VStack(alignment: .leading, spacing: FormModel.stackSpacingConstant) {
                 baseView
             }
         }
         else {
-            HStack(spacing: FormModel.spacingConstant) {
+            HStack(spacing: FormModel.stackSpacingConstant) {
                 baseView
             }
         }

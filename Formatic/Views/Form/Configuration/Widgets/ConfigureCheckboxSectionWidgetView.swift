@@ -84,7 +84,7 @@ struct ConfigureCheckboxSectionWidgetView: View {
                 }
                 dismiss()
             } label: {
-                SubmitButton(isValid: .constant(true))
+                SubmitButton()
             }
             .padding(.bottom)
         }

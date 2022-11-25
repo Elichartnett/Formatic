@@ -12,8 +12,8 @@ import FirebaseAnalytics
 // Display form with form tool bar
 struct FormEditorView: View {
     
+    @Environment(\.editMode) var editMode
     @EnvironmentObject var formModel: FormModel
-    @State var editMode = EditMode.inactive
     @ObservedObject var form: Form
     @State var exportToPDF = false
     @State var exportToCSV = false
@@ -24,10 +24,9 @@ struct FormEditorView: View {
     var body: some View {
         VStack {
             FormView(form: form, forPDF: false)
-                .environment(\.editMode, $editMode)
                 .toolbar(content: {
                     ToolbarItem(placement: .principal) {
-                        EditorViewToolbar(form: form, showToggleLockView: $showToggleLockView, editMode: $editMode)
+                        EditorViewToolbar(form: form, showToggleLockView: $showToggleLockView)
                     }
                     
                     ToolbarItemGroup(placement: .keyboard) {
@@ -43,7 +42,7 @@ struct FormEditorView: View {
                 .sheet(isPresented: $showToggleLockView, onDismiss: {
                     if form.locked == true {
                         withAnimation {
-                            editMode = .inactive
+                            editMode?.wrappedValue = .inactive
                         }
                     }
                 }, content: {

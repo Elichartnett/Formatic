@@ -41,7 +41,7 @@ struct ConfigureNumberFieldWidgetView: View {
                 Analytics.logEvent(Strings.analyticsCreateNumberFieldWidgetEvent, parameters: nil)
                 dismiss()
             } label: {
-                SubmitButton(isValid: $isValid)
+                SubmitButton()
             }
             .disabled(!isValid)
         }

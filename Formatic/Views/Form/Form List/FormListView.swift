@@ -11,9 +11,12 @@ import CoreData
 // List of all saved forms with list toolbar
 struct FormListView: View {
     
+    @Environment(\.editMode) var editMode
     @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)], predicate: NSPredicate(format: "recentlyDeleted != true")) var forms: FetchedResults<Form>
     @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)], predicate: NSPredicate(format: "recentlyDeleted != true")) var filteredForms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel
+    @State var selectedForms = Set<Form>()
+    @State var showSelectionToolbar = false
     @State var searchText = ""
     @State var showNewFormView = false
     @State var showImportFormView = false
@@ -22,65 +25,117 @@ struct FormListView: View {
     @State var showSettingsMenu = false
     @State var showAlert = false
     @State var alertTitle = ""
-    @State var alertButtonDismissMessage = "Okay"
+    @State var alertButtonDismissMessage = Strings.defaultAlertButtonDismissMessage
     
     var body: some View {
         
-        NavigationStack {
+        NavigationStack(path: $formModel.navigationPath) {
             
             Group {
                 if !forms.isEmpty {
-                    
-                    List {
-                        
-                        ForEach(filteredForms) { form in
-                            
-                            NavigationLink {
-                                FormEditorView(form: form)
-                            } label: {
-                                Text(form.title ?? "")
-                            }
-                            .swipeActions {
+                    VStack {
+                        if showSelectionToolbar {
+                            HStack {
+                                Spacer()
                                 Button {
-                                    form.recentlyDeleted = true
+                                    for form in selectedForms {
+                                        do {
+                                            try formModel.copyForm(form: form)
+                                        }
+                                        catch {
+                                            alertTitle = Strings.copyFormErrorMessage
+                                            showAlert = true
+                                        }
+                                    }
+                                    selectedForms.removeAll()
                                 } label: {
-                                    Label(Strings.deleteLabel, systemImage: Strings.trashIconName)
+                                    Image(systemName: Strings.copyIconName)
+                                        .foregroundColor(.blue)
                                 }
-                                .tint(.red)
+                                
+                                Spacer()
                                 
                                 Button {
-                                    do {
-                                        try formModel.copyForm(form: form)
+                                    for form in selectedForms {
+                                        form.recentlyDeleted = true
                                     }
-                                    catch {
-                                        alertTitle = Strings.copyFormErrorMessage
-                                        showAlert = true
-                                    }
+                                    selectedForms.removeAll()
                                 } label: {
-                                    Label(Strings.copyLabel, systemImage: Strings.copyIconName)
+                                    Image(systemName: Strings.trashIconName)
+                                        .foregroundColor(.red)
                                 }
-                                .tint(.blue)
+                                
+                                Spacer()
+                                
+                                Button {
+                                    
+                                } label: {
+                                    Image(systemName: Strings.exportMultipleFormsIconName)
+                                        .foregroundColor(.blue)
+                                }
+                                
+                                Spacer()
+                            }
+                            .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
+                        }
+                        
+                        List(filteredForms, id: \.self, selection: $selectedForms) { form in
+                            
+                            Button {
+                                formModel.navigationPath.append(form)
+                            } label: {
+                                Text(form.title ?? "")
+                                    .foregroundColor(.primary)
+                                    .swipeActions {
+                                        Button {
+                                            form.recentlyDeleted = true
+                                        } label: {
+                                            Label(Strings.deleteLabel, systemImage: Strings.trashIconName)
+                                        }
+                                        .tint(.red)
+                                        
+                                        Button {
+                                            do {
+                                                try formModel.copyForm(form: form)
+                                            }
+                                            catch {
+                                                alertTitle = Strings.copyFormErrorMessage
+                                                showAlert = true
+                                            }
+                                        } label: {
+                                            Label(Strings.copyLabel, systemImage: Strings.copyIconName)
+                                        }
+                                        .tint(.blue)
+                                    }
                             }
                         }
-                    }
-                    .searchable(text: $searchText, placement: .navigationBarDrawer)
-                    .scrollDismissesKeyboard(.interactively)
-                    .onChange(of: searchText, perform: { _ in
-                        if searchText == "" {
-                            filteredForms.nsPredicate = NSPredicate(format: "recentlyDeleted != %@", "true")
-                        }
-                        else {
-                            filteredForms.nsPredicate = NSPredicate(format: "title CONTAINS[cd] %@ AND recentlyDeleted != %@", searchText, "true")
-                        }
-                    })
-                    .onChange(of: sortMethod, perform: { _ in
-                        updateFilteredForms()
-                    })
-                    .overlay {
-                        if filteredForms.isEmpty {
-                            Text(Strings.noSearchResultsMessage)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .background(Color.primaryBackground).ignoresSafeArea()
+                        .searchable(text: $searchText, placement: .navigationBarDrawer)
+                        .scrollDismissesKeyboard(.interactively)
+                        .navigationDestination(for: Form.self, destination: { form in
+                            FormEditorView(form: form)
+                        })
+                        .onChange(of: selectedForms.isEmpty, perform: { isEmpty in
+                            withAnimation {
+                                showSelectionToolbar = !isEmpty
+                            }
+                        })
+                        .onChange(of: searchText, perform: { _ in
+                            if searchText == "" {
+                                filteredForms.nsPredicate = NSPredicate(format: "recentlyDeleted != %@", "true")
+                            }
+                            else {
+                                filteredForms.nsPredicate = NSPredicate(format: "title CONTAINS[cd] %@ AND recentlyDeleted != %@", searchText, "true")
+                            }
+                        })
+                        .onChange(of: sortMethod, perform: { _ in
+                            updateFilteredForms()
+                        })
+                        .overlay {
+                            if filteredForms.isEmpty {
+                                Text(Strings.noSearchResultsMessage)
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                    .background(Color.primaryBackground).ignoresSafeArea()
+                            }
                         }
                     }
                 }

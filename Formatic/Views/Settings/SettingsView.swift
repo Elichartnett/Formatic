@@ -14,7 +14,7 @@ struct SettingsView: View {
     @EnvironmentObject var formModel: FormModel
     @State var showEmailVIew = false
     @State var expandRecentlyDeleted = false
-    @State var selectedForms: [Form] = []
+    @State var selectedForms = Set<Form>()
     @State var alertTitle = ""
     @State var showAlert = false
     
@@ -22,7 +22,7 @@ struct SettingsView: View {
         
         NavigationStack {
             
-            List {
+            List(selection: $selectedForms) {
                 
                 SwiftUI.Section {
                     Text("\(Strings.versionLabel) \(Bundle.main.fullVersion)")
@@ -76,11 +76,11 @@ struct SettingsView: View {
                                 expandRecentlyDeleted = false
                             }
                         }
-                        
+
                         Spacer()
-                        
+
                         Group {
-                            
+
                             Image(systemName: Strings.plusIconName)
                                 .customIcon()
                                 .onTapGesture {
@@ -91,8 +91,7 @@ struct SettingsView: View {
                                         selectedForms.removeAll()
                                     }
                                 }
-                                .padding(.trailing)
-                            
+
                             Image(systemName: Strings.trashIconName)
                                 .foregroundColor(.red)
                                 .onTapGesture {
@@ -107,50 +106,34 @@ struct SettingsView: View {
                         .opacity(!selectedForms.isEmpty && expandRecentlyDeleted ? 1 : 0)
                         .animation(.default, value: selectedForms.isEmpty)
                     }
-                    
+
                     if expandRecentlyDeleted {
-                        ForEach(recentlyDeletedForms) { form in
-                            let selected = selectedForms.contains(form)
-                            HStack {
-                                Image(systemName: selected ? "checkmark.circle.fill" : "circle")
-                                    .foregroundColor(Color(uiColor: selected ? .systemBlue : .customGray))
-                                Text(form.title ?? "")
-                            }
-                            .onTapGesture {
-                                if selected {
-                                    selectedForms.removeAll { selectedForm in
-                                        selectedForm.id == form.id
+                        ForEach(recentlyDeletedForms, id: \.self) { form in
+                            Text(form.title ?? "")
+                                .swipeActions {
+                                    Button {
+                                        formModel.deleteForm(form: form)
+                                        if recentlyDeletedForms.isEmpty {
+                                            expandRecentlyDeleted = false
+                                        }
+                                    } label: {
+                                        Label(Strings.deleteLabel, systemImage: Strings.trashIconName)
                                     }
-                                }
-                                else {
-                                    selectedForms.append(form)
-                                }
-                            }
-                            .swipeActions {
-                                Button {
-                                    formModel.deleteForm(form: form)
-                                    if recentlyDeletedForms.isEmpty {
-                                        expandRecentlyDeleted = false
-                                    }
-                                } label: {
-                                    Label(Strings.deleteLabel, systemImage: Strings.trashIconName)
-                                }
-                                .tint(.red)
-                                
-                                Button {
+                                    .tint(.red)
                                     
-                                } label: {
-                                    Label(Strings.recoverLabel, systemImage: Strings.plusIconName)
+                                    Button {
+                                        
+                                    } label: {
+                                        Label(Strings.recoverLabel, systemImage: Strings.plusIconName)
+                                    }
+                                    .tint(.blue)
                                 }
-                                .tint(.blue)
-                            }
                         }
-                        .alignmentGuide(.listRowSeparatorLeading, computeValue: { viewDimensions in
-                            return 0
-                        })
+                        .transition(.move(edge: .bottom))
                     }
                 }
             }
+            .environment(\.editMode, .constant(.active))
             .navigationTitle(Strings.settingsLabel)
             .scrollContentBackground(.hidden)
             .background(Color.primaryBackground)

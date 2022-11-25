@@ -69,6 +69,7 @@
 		62A979C028277BFF0067C0A3 /* CheckboxWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BC28277BFF0067C0A3 /* CheckboxWidget+CoreDataProperties.swift */; };
 		62A979C128277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BD28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift */; };
 		62A979C228277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BE28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift */; };
+		62AC486B292EEA0100B4DB4B /* EditModeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC486A292EEA0100B4DB4B /* EditModeButton.swift */; };
 		62BFAC9528188B97006C8216 /* Form Container.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62BFAC9328188B97006C8216 /* Form Container.xcdatamodeld */; };
 		62D1B07829252EAA00712D85 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D1B07729252EAA00712D85 /* SettingsView.swift */; };
 		62D1B097292670C500712D85 /* EmailViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D1B096292670C500712D85 /* EmailViewRepresentable.swift */; };
@@ -164,6 +165,7 @@
 		62A979BC28277BFF0067C0A3 /* CheckboxWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckboxWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62A979BD28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckboxSectionWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		62A979BE28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckboxSectionWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		62AC486A292EEA0100B4DB4B /* EditModeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditModeButton.swift; sourceTree = "<group>"; };
 		62BFAC9428188B97006C8216 /* Widget.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Widget.xcdatamodel; sourceTree = "<group>"; };
 		62D1B07729252EAA00712D85 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		62D1B096292670C500712D85 /* EmailViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewRepresentable.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				62294F0B281F519C00226AF1 /* InputBox.swift */,
 				62294F0D281F61B900226AF1 /* SubmitButton.swift */,
 				627736FC28300F7D00F7B107 /* PhotoTaker.swift */,
+				62AC486A292EEA0100B4DB4B /* EditModeButton.swift */,
 			);
 			path = "Reusable Components";
 			sourceTree = "<group>";
@@ -702,6 +705,7 @@
 				629886FC281C36F700C34782 /* FormView.swift in Sources */,
 				72F9420D28C82B3F001E8A2A /* Protocols.swift in Sources */,
 				62E3FB0028DA13DD00F5FE2B /* ViewModifiers.swift in Sources */,
+				62AC486B292EEA0100B4DB4B /* EditModeButton.swift in Sources */,
 				62FE6E6C28187058009D41FD /* Formatic.swift in Sources */,
 				62D1B097292670C500712D85 /* EmailViewRepresentable.swift in Sources */,
 				629886DB281B578800C34782 /* Enums.swift in Sources */,
