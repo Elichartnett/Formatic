@@ -53,7 +53,7 @@ struct ConfigureMapWidgetView: View {
                 }
                 dismiss()
             } label: {
-                SubmitButton(isValid: .constant(true))
+                SubmitButton()
             }
         }
         .onAppear {

@@ -16,10 +16,8 @@ struct NewFormView: View {
     @Binding var showNewFormView: Bool
     @State var title = ""
     @State var password = ""
-    @State var validTitle = false
     @State var validPassword = true
     @State var inRecentlyDeleted = false
-    @State var isValid = false
     @State var showAlert = false
     @State var alertTitle = ""
     
@@ -32,32 +30,11 @@ struct NewFormView: View {
             
             // Form title
             InputBox(placeholder: Strings.titleLabel, text: $title)
-                .onChange(of: title) { _ in
-                    withAnimation {
-                        do {
-                            (validTitle, inRecentlyDeleted) = try formModel.titleIsValid(title: title)
-                        }
-                        catch {
-                            alertTitle = Strings.formTitleValidationErrorMessage
-                            validTitle = false
-                        }
-                    }
-                }
-                .onChange(of: validTitle, perform: { _ in
-                    withAnimation {
-                        isValid = (validTitle && validPassword && !inRecentlyDeleted)
-                    }
-                })
                 .alert(alertTitle, isPresented: $showAlert, actions: {
                     Button(Strings.defaultAlertButtonDismissMessage, role: .cancel) {}
                 })
             
             PasswordView(validPassword: $validPassword, password: $password)
-                .onChange(of: validPassword) { _ in
-                    withAnimation {
-                        isValid = (validTitle && validPassword)
-                    }
-                }
             
             // Submit button - create form and set lock if optional password is used
             Button {
@@ -73,15 +50,10 @@ struct NewFormView: View {
                 showNewFormView = false
                 
             } label: {
-                SubmitButton(isValid: $isValid)
+                SubmitButton()
             }
-            .disabled(!(isValid))
+            .disabled(!validPassword)
             
-            if !validTitle && !title.isEmpty {
-                Text(Strings.formTitleAlreadyInUseErrorMessage + (inRecentlyDeleted ? ". " : "") + (inRecentlyDeleted ? Strings.formTitleInRecentlyDeletedErrorMessage : ""))
-                    .foregroundColor(.red)
-                    .multilineTextAlignment(.center)
-            }
             if !validPassword {
                 Text(Strings.formPasswordDoesNotMatchErrorMessage)
                     .foregroundColor(.red)

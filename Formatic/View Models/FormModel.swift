@@ -14,9 +14,10 @@ import FirebaseAnalytics
 
 class FormModel: ObservableObject {
     
+    @Published var navigationPath = NavigationPath()
     @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @Published var isPhone = UIDevice.current.userInterfaceIdiom == .phone
-    static var spacingConstant: CGFloat = 8
+    static var stackSpacingConstant: CGFloat = 8
     
     func numberIsValid(number: String, range: ClosedRange<Double>? = nil) -> Bool {
         // Check if field only contains nubmers
@@ -42,34 +43,6 @@ class FormModel: ObservableObject {
             }
             // Not a valid number
             return false
-        }
-    }
-    
-    func titleIsValid(title: String) throws -> (isValid: Bool, inRecentlyDeleted: Bool) {
-        do {
-            let forms = try getForms()
-            
-            if forms.contains(where: { form in
-                form.title == title && form.recentlyDeleted == true
-            }) {
-                return (false, true)
-            }
-            else if forms.contains(where: { form in
-                form.title == title
-            }) {
-                return (false, false)
-            }
-            else {
-                if title.isEmpty {
-                    return (false, false)
-                }
-                else {
-                    return (true, false)
-                }
-            }
-        }
-        catch {
-            throw FormError.fetchError
         }
     }
     
@@ -101,18 +74,6 @@ class FormModel: ObservableObject {
             let data = try urlToData(url: url)
             do {
                 let newForm = try FormModel.decodeJsonDataToForm(data: data)
-                do {
-                    let forms = try getForms()
-                    if forms.contains(where: { form in
-                        form.title == newForm.title && form.id != newForm.id
-                    })
-                    {
-                        try resolveDuplicateFormName(newForm: newForm)
-                    }
-                }
-                catch {
-                    throw FormError.fetchError
-                }
             }
             catch {
                 throw FormError.decodeJsonDataToFormError
@@ -159,29 +120,6 @@ class FormModel: ObservableObject {
         return getWidgetsInSection(section: section).count
     }
     
-    func resolveDuplicateFormName(newForm: Form) throws {
-        do {
-            let forms = try getForms()
-            var newTitleFound = false
-            var index = 1
-            while !newTitleFound {
-                let newTitle = "\(newForm.title ?? "") (\(index))"
-                if !forms.contains(where: { form in
-                    form.title == newTitle
-                }) {
-                    newTitleFound = true
-                    newForm.title = newTitle
-                }
-                else {
-                    index += 1
-                }
-            }
-        }
-        catch {
-            throw FormError.fetchError
-        }
-    }
-    
     func deleteForm(form: Form) {
         withAnimation {
             DataControllerModel.shared.container.viewContext.delete(form)
@@ -201,21 +139,9 @@ class FormModel: ObservableObject {
     }
     
     func copyForm(form: Form) throws {
-        
-        do {
-            try withAnimation {
-                let formCopy = form.createCopy() as! Form
-                Analytics.logEvent(Strings.analyticsCopyFormEvent, parameters: nil)
-                do {
-                    try resolveDuplicateFormName(newForm: formCopy)
-                }
-                catch {
-                    throw FormError.copyError
-                }
-            }
-        }
-        catch {
-            throw FormError.fetchError
+        withAnimation {
+            let formCopy = form.createCopy() as! Form
+            Analytics.logEvent(Strings.analyticsCopyFormEvent, parameters: nil)
         }
     }
     

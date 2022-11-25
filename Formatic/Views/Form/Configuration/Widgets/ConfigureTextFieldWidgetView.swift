@@ -46,7 +46,7 @@ struct ConfigureTextFieldWidgetView: View {
                 Analytics.logEvent(Strings.analyticsCreateTextFieldWidgetEvent, parameters: nil)
                 dismiss()
             } label: {
-                SubmitButton(isValid: .constant(true))
+                SubmitButton()
             }
             .padding(.bottom)
         }

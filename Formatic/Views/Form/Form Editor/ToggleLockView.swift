@@ -60,7 +60,7 @@ struct ToggleLockView: View {
                     }
                     showToggleLockView = false
                 } label: {
-                    SubmitButton(isValid: $validPassword)
+                    SubmitButton()
                 }
                 .disabled(!validPassword)
             }

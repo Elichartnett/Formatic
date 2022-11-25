@@ -15,17 +15,15 @@ struct SectionView: View {
     @FetchRequest var widgets: FetchedResults<Widget>
     @ObservedObject var section: Section
     @Binding var locked: Bool
-    @Binding var selectedWidgets: [Widget]
     var forPDF: Bool
     var moveDisabled: Bool {
         return locked
     }
     
-    init(section: Section, locked: Binding<Bool>, selectedWidgets: Binding<[Widget]>, forPDF: Bool = false) {
+    init(section: Section, locked: Binding<Bool>, forPDF: Bool = false) {
         self._widgets = FetchRequest<Widget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "section == %@", section))
         self.section = section
         self._locked = locked
-        self._selectedWidgets = selectedWidgets
         self.forPDF = forPDF
     }
     
@@ -39,27 +37,8 @@ struct SectionView: View {
         }
         else {
             // Display all widgets in section
-            ForEach(widgets) { widget in
+            ForEach(widgets, id: \.self) { widget in
                 HStack {
-                    let selected = selectedWidgets.contains(widget)
-                    if editMode?.wrappedValue == .active {
-                        Image(systemName: selected ? "checkmark.circle.fill" : "circle")
-                            .foregroundColor(Color(uiColor: selected ? .systemBlue : .customGray))
-                            .transition(.asymmetric(insertion: .push(from: .leading), removal: .push(from: .trailing)))
-                            .onTapGesture {
-                                withAnimation {
-                                    if selected {
-                                        if let index = selectedWidgets.firstIndex(of: widget) {
-                                            selectedWidgets.remove(at: index)
-                                        }
-                                    }
-                                    else {
-                                        selectedWidgets.append(widget)
-                                    }
-                                }
-                            }
-                    }
-                    
                     let widgetType: WidgetType = WidgetType.init(rawValue: widget.type!)!
                     Group {
                         switch widgetType {
@@ -131,7 +110,7 @@ struct SectionView: View {
 struct SectionView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            SectionView(section: (dev.form.sections!.first)!, locked: .constant(dev.form.locked), selectedWidgets: .constant([]))
+            SectionView(section: (dev.form.sections!.first)!, locked: .constant(dev.form.locked))
                 .environmentObject(FormModel())
         }
     }

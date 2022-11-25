@@ -49,6 +49,7 @@ struct Home: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Home()
+            .environmentObject(FormModel())
             .environment(\.managedObjectContext, DataControllerModel.shared.container.viewContext)
     }
 }

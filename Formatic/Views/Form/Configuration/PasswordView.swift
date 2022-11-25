@@ -23,18 +23,12 @@ struct PasswordView: View {
                 .onChange(of: password) { _ in
                     withAnimation {
                         if password.isEmpty {
-                            validPassword = false
+                            validPassword = true
                             showPasswordConfirmation = false
                         }
                         else {
-                            if !passwordConfirmation.isEmpty {
-                                validPassword = true
-                            }
-                            else {
-                                validPassword = false
-                            }
+                            validPassword = false
                             showPasswordConfirmation = true
-                            passwordConfirmation = ""
                         }
                     }
                 }
@@ -44,7 +38,7 @@ struct PasswordView: View {
                 InputBox(placeholder: Strings.retypeFormPasswordLabel, text: $passwordConfirmation, inputType: .password)
                     .onChange(of: passwordConfirmation) { _ in
                         withAnimation {
-                            if passwordConfirmation == password {
+                            if passwordConfirmation == password && !password.isEmpty {
                                 validPassword = true
                             }
                             else {

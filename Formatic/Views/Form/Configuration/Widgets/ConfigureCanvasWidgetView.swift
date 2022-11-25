@@ -76,7 +76,7 @@ struct ConfigureCanvasWidgetView: View {
                 }
                 dismiss()
             } label: {
-                SubmitButton(isValid: .constant(true))
+                SubmitButton()
                     .padding(.bottom)
             }
         }

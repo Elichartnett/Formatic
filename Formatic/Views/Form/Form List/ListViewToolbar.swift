@@ -80,6 +80,11 @@ struct ListViewToolbar: View {
                 
                 Spacer()
             }
+                        
+            // Edit Mode button
+            EditModeButton(onTap: {})
+            
+            Spacer()
             
             // Import form button
             Button {
@@ -95,18 +100,20 @@ struct ListViewToolbar: View {
             
             Spacer()
             
-            Button {
-                showSettingsMenu = true
-            } label: {
-                HStack {
-                    Image(systemName: Strings.settingsIconName)
-                    if !formModel.isPhone {
-                        Text(Strings.settingsLabel)
+            Group {
+                Button {
+                    showSettingsMenu = true
+                } label: {
+                    HStack {
+                        Image(systemName: Strings.settingsIconName)
+                        if !formModel.isPhone {
+                            Text(Strings.settingsLabel)
+                        }
                     }
                 }
+                
+                Spacer()
             }
-            
-            Spacer()
         }
     }
 }
