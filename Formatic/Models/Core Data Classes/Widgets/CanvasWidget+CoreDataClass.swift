@@ -63,6 +63,7 @@ public class CanvasWidget: Widget, Decodable, Copyable, Csv {
     
     func toCsv() -> String {
         var csvString = ""
+        csvString += FormModel.formatAsCsv(section?.form?.title ?? "") + ","
         csvString += FormModel.formatAsCsv(self.section?.title ?? "") + ","
         csvString += FormModel.formatAsCsv(self.title ?? "") + ","
         csvString += Strings.canvasLabel + ","

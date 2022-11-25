@@ -6,7 +6,7 @@
  
  */
 
-"baseCSVColumns" = "Section Title, Widget Title, Widget Type, Widget Data, Selected,";
+"baseCSVColumns" = "Form Title, Section Title, Widget Title, Widget Type, Widget Data, Selected,";
 "mapCSVColumns" = "Marker Latitude, Marker Longitude, Marker Easting, Marker Northing, Marker Zone, Marker Hemisphere\n";
 "getStartedMessage" = "Add a form to get started!";
 "dateCreatedLabel" = "Date Created";

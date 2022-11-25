@@ -67,8 +67,9 @@ public class DropdownSectionWidget: Widget, Decodable, Csv, Copyable {
             
             // For each dropdown, add a row
             for dropdownWidget in dropdownWidgets {
-                csvString += FormModel.formatAsCsv(self.section?.title ?? "") + ","
-                csvString += FormModel.formatAsCsv(self.title ?? "") + ","
+                csvString += FormModel.formatAsCsv(section?.form?.title ?? "") + ","
+                csvString += FormModel.formatAsCsv(section?.title ?? "") + ","
+                csvString += FormModel.formatAsCsv(title ?? "") + ","
                 csvString += Strings.dropdownMenuLabel + ","
                 csvString += FormModel.formatAsCsv(dropdownWidget.title ?? "") + ","
                 if self.selectedDropdown == dropdownWidget {

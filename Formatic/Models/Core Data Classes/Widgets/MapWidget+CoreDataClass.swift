@@ -70,8 +70,10 @@ public class MapWidget: Widget, Decodable, Csv, Copyable {
                 // Get the UTM version of the coordinate as well
                 let coordinate = CLLocationCoordinate2D(latitude: annotation.latitude, longitude: annotation.longitude)
                 let utm = coordinate.utmCoordinate()
-                csvString += FormModel.formatAsCsv(self.section?.title ?? "") + ","
-                csvString += FormModel.formatAsCsv(self.title ?? "") + ","
+                
+                csvString += FormModel.formatAsCsv(section?.form?.title ?? "") + ","
+                csvString += FormModel.formatAsCsv(section?.title ?? "") + ","
+                csvString += FormModel.formatAsCsv(title ?? "") + ","
                 csvString += Strings.mapLabel + ","
                 csvString += FormModel.formatAsCsv(annotation.name ?? "") + ",,"
                 csvString += String(annotation.latitude) + ","
@@ -87,7 +89,7 @@ public class MapWidget: Widget, Decodable, Csv, Copyable {
             }
         }
         
-        // Remove traling newline character (if retString exists/annotations exist in the map)
+        // Remove traling newline character
         if csvString != "" {
             csvString.remove(at: csvString.index(before: csvString.endIndex))
         }

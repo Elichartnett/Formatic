@@ -7,6 +7,8 @@
 
 import SwiftUI
 import CoreData
+import UniformTypeIdentifiers
+import FirebaseAnalytics
 
 // List of all saved forms with list toolbar
 struct FormListView: View {
@@ -16,6 +18,8 @@ struct FormListView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)], predicate: NSPredicate(format: "recentlyDeleted != true")) var filteredForms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel
     @State var selectedForms = Set<Form>()
+    @State var exportType: UTType?
+    @State var showExportView = false
     @State var showSelectionToolbar = false
     @State var searchText = ""
     @State var showNewFormView = false
@@ -67,12 +71,10 @@ struct FormListView: View {
                                 
                                 Spacer()
                                 
-                                Button {
-                                    
-                                } label: {
-                                    Image(systemName: Strings.exportMultipleFormsIconName)
-                                        .foregroundColor(.blue)
-                                }
+                                ExportMenuButton(exportType: $exportType, forms: selectedForms.sorted(by: { $0.dateCreated < $1.dateCreated }))
+                                    .onChange(of: exportType) { _ in
+                                        if exportType != nil { showExportView = true }
+                                    }
                                 
                                 Spacer()
                             }
@@ -158,6 +160,9 @@ struct FormListView: View {
             }
             .sheet(isPresented: $showSettingsMenu, content: {
                 SettingsView()
+            })
+            .sheet(isPresented: $showExportView, content: {
+                ExportView(forms: selectedForms.sorted(by: { $0.dateCreated < $1.dateCreated }), exportType: $exportType)
             })
             .fileImporter(isPresented: $showImportFormView, allowedContentTypes: [.form]) { result in
                 switch result {

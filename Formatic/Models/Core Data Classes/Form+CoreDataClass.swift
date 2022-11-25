@@ -69,12 +69,10 @@ public class Form: NSManagedObject, Codable, Identifiable, Transferable, Csv, Co
     }
     
     func toCsv() -> String {
-        var csvString = Strings.baseCSVColumns + Strings.mapCSVColumns
-        
+        var csvString = ""
         let sections = (sections ?? []).sorted { lhs, rhs in
             lhs.position < rhs.position
         }
-                
         for section in sections {
             csvString += section.toCsv()
             csvString += "\n\n"
@@ -89,7 +87,6 @@ public class Form: NSManagedObject, Codable, Identifiable, Transferable, Csv, Co
         let copy = Form(title: self.title!)
         copy.locked = locked
         copy.password = password
-        copy.dateCreated = dateCreated.addingTimeInterval(1)
         
         let sectionsArray = sections?.sorted(by: { lhs, rhs in
             lhs.position < rhs.position

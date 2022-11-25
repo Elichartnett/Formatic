@@ -50,10 +50,11 @@ public class TextFieldWidget: Widget, Decodable, Csv, Copyable {
     
     func toCsv() -> String {
         var csvString = ""
-        csvString += FormModel.formatAsCsv(self.section?.title ?? "") + ","
-        csvString += FormModel.formatAsCsv(self.title ?? "") + ","
+        csvString += FormModel.formatAsCsv(section?.form?.title ?? "") + ","
+        csvString += FormModel.formatAsCsv(section?.title ?? "") + ","
+        csvString += FormModel.formatAsCsv(title ?? "") + ","
         csvString += Strings.textFieldLabel + ","
-        csvString += FormModel.formatAsCsv(self.text ?? "") + ","
+        csvString += FormModel.formatAsCsv(text ?? "") + ","
         csvString += String(repeating: ",", count: Strings.mapCSVColumns.filter({ character in
             character == ","
         }).count) + ","

@@ -70,6 +70,7 @@
 		62A979C128277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BD28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift */; };
 		62A979C228277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BE28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift */; };
 		62AC486B292EEA0100B4DB4B /* EditModeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC486A292EEA0100B4DB4B /* EditModeButton.swift */; };
+		62AC488B29315EA200B4DB4B /* ExportMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC488A29315EA200B4DB4B /* ExportMenuButton.swift */; };
 		62BFAC9528188B97006C8216 /* Form Container.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62BFAC9328188B97006C8216 /* Form Container.xcdatamodeld */; };
 		62D1B07829252EAA00712D85 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D1B07729252EAA00712D85 /* SettingsView.swift */; };
 		62D1B097292670C500712D85 /* EmailViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D1B096292670C500712D85 /* EmailViewRepresentable.swift */; };
@@ -166,6 +167,7 @@
 		62A979BD28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckboxSectionWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		62A979BE28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckboxSectionWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62AC486A292EEA0100B4DB4B /* EditModeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditModeButton.swift; sourceTree = "<group>"; };
+		62AC488A29315EA200B4DB4B /* ExportMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportMenuButton.swift; sourceTree = "<group>"; };
 		62BFAC9428188B97006C8216 /* Widget.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Widget.xcdatamodel; sourceTree = "<group>"; };
 		62D1B07729252EAA00712D85 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		62D1B096292670C500712D85 /* EmailViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewRepresentable.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				62294F0D281F61B900226AF1 /* SubmitButton.swift */,
 				627736FC28300F7D00F7B107 /* PhotoTaker.swift */,
 				62AC486A292EEA0100B4DB4B /* EditModeButton.swift */,
+				62AC488A29315EA200B4DB4B /* ExportMenuButton.swift */,
 			);
 			path = "Reusable Components";
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 				6250E9632831649C00E6E6A0 /* CanvasRepresentableView.swift in Sources */,
 				62BFAC9528188B97006C8216 /* Form Container.xcdatamodeld in Sources */,
 				62988701281C57B100C34782 /* Extensions.swift in Sources */,
+				62AC488B29315EA200B4DB4B /* ExportMenuButton.swift in Sources */,
 				629886E7281B902800C34782 /* Section+CoreDataProperties.swift in Sources */,
 				622A99D0281E053C00BB5E12 /* DropdownWidget+CoreDataClass.swift in Sources */,
 				62F8FE6B282DAD49005C8D73 /* MapWidgetDetailView.swift in Sources */,

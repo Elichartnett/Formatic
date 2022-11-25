@@ -13,7 +13,7 @@ import FirebaseAnalytics
 struct ExportView: View {
     
     @EnvironmentObject var formModel: FormModel
-    @ObservedObject var form: Form
+    let forms: [Form]
     @Binding var exportType: UTType?
     @State var generatedFileURL: URL?
     @State var readyToExport = false
@@ -31,16 +31,16 @@ struct ExportView: View {
             else {
                 ProgressView()
                     .onAppear {
-                        generatedFileURL = URL.temporaryDirectory.appending(path: "\(form.title ?? "Form").\(exportType == .pdf ? "pdf" : "csv")")
+                        generatedFileURL = URL.temporaryDirectory.appending(path: "Form\(forms.count == 1 ? "" : "s").\(exportType == .pdf ? "pdf" : "csv")")
                         if let generatedFileURL {
                             DispatchQueue.main.async {
                                 if exportType == .pdf {
-                                    let formData = formModel.exportToPdf(form: form)
+                                    let formData = formModel.exportToPdf(forms: forms)
                                     try? formData.write(to: generatedFileURL)
                                     Analytics.logEvent(Strings.analyticsExportPDFEvent, parameters: nil)
                                 }
                                 else {
-                                    let csvData = formModel.exportToCsv(form: form)
+                                    let csvData = formModel.exportToCsv(forms: forms)
                                     try? csvData.write(to: generatedFileURL)
                                     Analytics.logEvent(Strings.analyticsExportCSVEvent,parameters: nil)
                                 }
@@ -56,7 +56,7 @@ struct ExportView: View {
 
 struct ExportView_Previews: PreviewProvider {
     static var previews: some View {
-        ExportView(form: dev.form, exportType: .constant(.pdf))
+        ExportView(forms: [dev.form], exportType: .constant(.pdf))
     }
 }
 
