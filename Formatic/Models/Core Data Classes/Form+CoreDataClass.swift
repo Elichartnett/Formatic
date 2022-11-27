@@ -12,32 +12,7 @@ import CryptoKit
 import SwiftUI
 
 @objc(Form)
-public class Form: NSManagedObject, Codable, Identifiable, Transferable, Csv, Copyable {
-    
-    enum CodingKeys: String, CodingKey {
-        case dateCreated = "dateCreated"
-        case locked = "locked"
-        case password = "password"
-        case title = "title"
-        case sections = "sections"
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var formContainer = encoder.container(keyedBy: CodingKeys.self)
-        
-        try formContainer.encode(dateCreated, forKey: .dateCreated)
-        try formContainer.encode(locked, forKey: .locked)
-        try formContainer.encode(title, forKey: .title)
-        try formContainer.encode(sections, forKey: .sections)
-        
-        if let password {
-            let hash = SHA256.hash(data: dateCreated.timeIntervalSince1970.description.data(using: .utf8)!)
-            let key = SymmetricKey(data: hash)
-            let passwordData = password.data(using: .utf8)!
-            let sealedBoxData = try! ChaChaPoly.seal(passwordData, using: key).combined
-            try formContainer.encode(sealedBoxData, forKey: .password)
-        }
-    }
+public class Form: NSManagedObject {
     
     required public convenience init(from decoder: Decoder) throws {
         self.init(context: DataControllerModel.shared.container.viewContext)
@@ -62,39 +37,5 @@ public class Form: NSManagedObject, Codable, Identifiable, Transferable, Csv, Co
                 self.password = String(data: passwordData, encoding: .utf8)
             }
         }
-    }
-    
-    static public var transferRepresentation: some TransferRepresentation {
-        CodableRepresentation(contentType: .form)
-    }
-    
-    func toCsv() -> String {
-        var csvString = ""
-        let sections = (sections ?? []).sorted { lhs, rhs in
-            lhs.position < rhs.position
-        }
-        for section in sections {
-            csvString += section.toCsv()
-            csvString += "\n\n"
-        }
-        // Remove trailing newline characters
-        csvString.remove(at: csvString.index(before: csvString.endIndex))
-        csvString.remove(at: csvString.index(before: csvString.endIndex))
-        return csvString
-    }
-    
-    func createCopy() -> Any {
-        let copy = Form(title: self.title!)
-        copy.locked = locked
-        copy.password = password
-        
-        let sectionsArray = sections?.sorted(by: { lhs, rhs in
-            lhs.position < rhs.position
-        }) ?? []
-        for section in sectionsArray {
-            let sectionCopy = section.createCopy() as! Section
-            copy.addToSections(sectionCopy)
-        }
-        return copy
     }
 }
