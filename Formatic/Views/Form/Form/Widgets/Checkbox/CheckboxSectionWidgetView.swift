@@ -19,7 +19,7 @@ struct CheckboxSectionWidgetView: View {
     @State var title: String
     
     init(checkboxSectionWidget: CheckboxSectionWidget, locked: Binding<Bool>) {
-        self._checkboxes = FetchRequest<CheckboxWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "checkboxSectionWidget == %@", checkboxSectionWidget))
+        self._checkboxes = FetchRequest<CheckboxWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: Constants.predicateCheckboxSectionWidgetEqualTo, checkboxSectionWidget))
         self.checkboxSectionWidget = checkboxSectionWidget
         self._locked = locked
         self._title = State(initialValue: checkboxSectionWidget.title ?? "")
@@ -32,7 +32,7 @@ struct CheckboxSectionWidgetView: View {
             let reconfigureButton = Button {
                 reconfigureWidget = true
             } label: {
-                Image(systemName: Strings.editIconName)
+                Image(systemName: Constants.editIconName)
                     .customIcon()
                     .opacity(editMode?.wrappedValue == .active ? 1 : 0)
             }
@@ -76,12 +76,12 @@ struct CheckboxSectionWidgetView: View {
         }
         
         if formModel.isPhone {
-            VStack(alignment: .leading, spacing: FormModel.stackSpacingConstant) {
+            VStack(alignment: .leading, spacing: Constants.stackSpacingConstant) {
                 baseView
             }
         }
         else {
-            HStack(spacing: FormModel.stackSpacingConstant) {
+            HStack(spacing: Constants.stackSpacingConstant) {
                 baseView
             }
         }

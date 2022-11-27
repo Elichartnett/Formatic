@@ -11,10 +11,11 @@ import SwiftUI
 struct ListViewToolbar: View {
     
     @EnvironmentObject var formModel: FormModel
+    
     @Binding var showNewFormView: Bool
-    @Binding var showImportFormView: Bool
     @State var showSortMethodMenu: Bool
     @Binding var sortMethod: SortMethod
+    @Binding var showImportFormView: Bool
     @Binding var showSettingsMenu: Bool
     
     var body: some View {
@@ -23,13 +24,12 @@ struct ListViewToolbar: View {
             
             Spacer()
             
-            // Create new form button
             Button {
                 showNewFormView = true
             } label: {
                 
                 HStack {
-                    Image(systemName: Strings.plusCircleIconName)
+                    Image(systemName: Constants.plusCircleIconName)
                     if !formModel.isPhone {
                         Text(Strings.newFormLabel)
                     }
@@ -38,7 +38,6 @@ struct ListViewToolbar: View {
             
             Spacer()
             
-            // Sort method menu
             if showSortMethodMenu {
                 
                 Menu {
@@ -51,7 +50,7 @@ struct ListViewToolbar: View {
                             Spacer()
                             
                             if sortMethod == .dateCreated {
-                                Image(systemName: Strings.checkmarkIconName)
+                                Image(systemName: Constants.checkmarkIconName)
                                     .customIcon()
                             }
                         }
@@ -65,13 +64,13 @@ struct ListViewToolbar: View {
                         Spacer()
                         
                         if sortMethod == .alphabetical {
-                            Image(systemName: Strings.checkmarkIconName)
+                            Image(systemName: Constants.checkmarkIconName)
                                 .customIcon()
                         }
                     }
                 } label: {
                     HStack {
-                        Image(systemName: Strings.sortIconName)
+                        Image(systemName: Constants.sortIconName)
                         if !formModel.isPhone {
                             Text(Strings.sortMethodLabel)
                         }
@@ -80,18 +79,16 @@ struct ListViewToolbar: View {
                 
                 Spacer()
             }
-                        
-            // Edit Mode button
+            
             EditModeButton(onTap: {})
             
             Spacer()
             
-            // Import form button
             Button {
                 showImportFormView = true
             } label: {
                 HStack {
-                    Image(systemName: Strings.importFormIconName)
+                    Image(systemName: Constants.importFormIconName)
                     if !formModel.isPhone {
                         Text(Strings.importLabel)
                     }
@@ -100,28 +97,25 @@ struct ListViewToolbar: View {
             
             Spacer()
             
-            Group {
-                Button {
-                    showSettingsMenu = true
-                } label: {
-                    HStack {
-                        Image(systemName: Strings.settingsIconName)
-                        if !formModel.isPhone {
-                            Text(Strings.settingsLabel)
-                        }
+            Button {
+                showSettingsMenu = true
+            } label: {
+                HStack {
+                    Image(systemName: Constants.settingsIconName)
+                    if !formModel.isPhone {
+                        Text(Strings.settingsLabel)
                     }
                 }
-                
-                Spacer()
             }
+            
+            Spacer()
         }
     }
 }
 
 struct ListViewToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        let showSortMethodButton = (try? !dev.formModel.getForms().isEmpty) ?? false
-        ListViewToolbar(showNewFormView: .constant(false), showImportFormView: .constant(false), showSortMethodMenu: showSortMethodButton, sortMethod: .constant(.dateCreated), showSettingsMenu: .constant(false))
+        ListViewToolbar(showNewFormView: .constant(false), showSortMethodMenu: false, sortMethod: .constant(.dateCreated), showImportFormView: .constant(false), showSettingsMenu: .constant(false))
             .environmentObject(FormModel())
     }
 }

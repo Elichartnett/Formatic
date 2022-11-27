@@ -47,16 +47,16 @@ struct ToggleLockView: View {
                     if form.password == nil {
                         form.password = enteredPassword
                         form.locked = true
-                        Analytics.logEvent(Strings.analyticsCreateLockFormEvent, parameters: nil)
+                        Analytics.logEvent(Constants.analyticsCreateLockFormEvent, parameters: nil)
                     }
                     // Unlock form
                     else {
                         form.locked = false
                         if removePassword {
                             form.password = nil
-                            Analytics.logEvent(Strings.analyticsRemoveLockFormEvent, parameters: nil)
+                            Analytics.logEvent(Constants.analyticsRemoveLockFormEvent, parameters: nil)
                         }
-                        Analytics.logEvent(Strings.analyticsUnlockFormEvent, parameters: nil)
+                        Analytics.logEvent(Constants.analyticsUnlockFormEvent, parameters: nil)
                     }
                     showToggleLockView = false
                 } label: {

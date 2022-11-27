@@ -77,7 +77,7 @@ struct CanvasRepresentable: UIViewRepresentable {
         }
         
         func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
-            FormModel.updateCanvasWidgetViewPreview(canvasWidget: parent.canvasWidget, canvasView: parent.canvasView)
+            CanvasWidget.updateWidgetViewPreview(canvasWidget: parent.canvasWidget, canvasView: parent.canvasView)
         }
         
         // Sends updates from UIView to SwiftUI

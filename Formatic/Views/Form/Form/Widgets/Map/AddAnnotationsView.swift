@@ -96,7 +96,7 @@ struct AddAnnotationsView: View {
                     mapWidget.addToAnnotations(annotation)
                 } label: {
                     VStack {
-                        Image(systemName: Strings.plusIconName)
+                        Image(systemName: Constants.plusIconName)
                         Text(Strings.addPinLabel)
                     }
                 }

@@ -44,7 +44,7 @@ struct InputBox: View {
                                 isValid = true
                             }
                             else {
-                                isValid = formModel.numberIsValid(number: text, range: numberRange)
+                                isValid = text.isValidNumber(range: numberRange)
                             }
                         }
                     }

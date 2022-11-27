@@ -62,7 +62,7 @@ struct SectionTitleView: View {
                     newWidgetType = .canvasWidget
                 }
             } label: {
-                Image(systemName: Strings.plusCircleIconName)
+                Image(systemName: Constants.plusCircleIconName)
             }
             
             TextField(Strings.sectionTitleLabel, text: $sectionTitle)

@@ -18,7 +18,7 @@ struct FormView: View {
     @State var selectedWidgets = Set<Widget>()
     
     init(form: Form, forPDF: Bool) {
-        self._sections = FetchRequest<Section>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "form == %@", form))
+        self._sections = FetchRequest<Section>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: Constants.predicateFormEqualTo, form))
         self.form = form
         self.forPDF = forPDF
     }
@@ -49,14 +49,14 @@ struct FormView: View {
                                     withAnimation {
                                         for widget in selectedWidgets {
                                             if section.widgets?.contains(widget) ?? false {
-                                                formModel.copyWidget(section: section, widget: widget)
+                                                widget.initiateCopy()
                                             }
                                         }
                                         selectedWidgets.removeAll()
                                     }
                                 } label: {
-                                    Image(systemName: Strings.copyIconName)
-                                        .foregroundColor(.blue)
+                                    Image(systemName: Constants.copyIconName)
+                                        .customIcon()
                                         .opacity(editMode?.wrappedValue == .active && (selectedWidgets.contains(where: { selectedWidget in
                                             section.widgets?.contains(selectedWidget) ?? false
                                         })) ? 1 : 0)
@@ -66,13 +66,13 @@ struct FormView: View {
                                     withAnimation {
                                         for widget in selectedWidgets {
                                             if section.widgets?.contains(widget) ?? false {
-                                                formModel.deleteWidget(widget: widget)
+                                                widget.delete()
                                             }
                                         }
                                         selectedWidgets.removeAll()
                                     }
                                 } label: {
-                                    Image(systemName: Strings.trashIconName)
+                                    Image(systemName: Constants.trashIconName)
                                         .foregroundColor(.red)
                                         .opacity(editMode?.wrappedValue == .active && (selectedWidgets.contains(where: { selectedWidget in
                                             section.widgets?.contains(selectedWidget) ?? false

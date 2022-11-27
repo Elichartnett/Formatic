@@ -28,17 +28,17 @@ struct ConfigureNumberFieldWidgetView: View {
                             isValid = true
                         }
                         else {
-                            isValid = formModel.numberIsValid(number: number, range: range)
+                            isValid = number.isValidNumber(range: range)
                         }
                     }
                 }
             
             Button {
-                let numberFieldWidget = NumberFieldWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), number: number)
+                let numberFieldWidget = NumberFieldWidget(title: title, position: section.numberOfWidgets(), number: number)
                 withAnimation {
                     section.addToWidgets(numberFieldWidget)
                 }
-                Analytics.logEvent(Strings.analyticsCreateNumberFieldWidgetEvent, parameters: nil)
+                Analytics.logEvent(Constants.analyticsCreateNumberFieldWidgetEvent, parameters: nil)
                 dismiss()
             } label: {
                 SubmitButton()

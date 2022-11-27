@@ -30,7 +30,7 @@ struct ExportMenuButton: View {
                 exportType = .pdf
             } label: {
                 HStack {
-                    Image(systemName: Strings.docTextImageIconName)
+                    Image(systemName: Constants.docTextImageIconName)
                     Text(Strings.generatePDFLabel)
                 }
             }
@@ -40,12 +40,12 @@ struct ExportMenuButton: View {
                 exportType = .commaSeparatedText
             } label: {
                 HStack {
-                    Image (systemName: Strings.csvTableIconName)
+                    Image (systemName: Constants.csvTableIconName)
                     Text(Strings.generateCSVLabel)
                 }
             }
         } label: {
-            let icon = Image(systemName: Strings.exportFormIconName)
+            let icon = Image(systemName: Constants.exportFormIconName)
             if formModel.isPhone {
                 icon
             }

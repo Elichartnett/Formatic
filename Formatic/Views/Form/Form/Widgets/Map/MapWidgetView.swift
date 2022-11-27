@@ -36,7 +36,7 @@ struct MapWidgetView: View {
             let reconfigureButton = Button {
                 reconfigureWidget = true
             } label: {
-                Image(systemName: Strings.editIconName)
+                Image(systemName: Constants.editIconName)
                     .customIcon()
                     .opacity(editMode?.wrappedValue == .active ? 1 : 0)
             }
@@ -66,7 +66,7 @@ struct MapWidgetView: View {
                                 MapView(mapWidget: mapWidget, localCoordinateRegion: $localCoordinateRegion)
                                     .onAppear {
                                         widgetViewPreviewSize = proxy.size
-                                        formModel.updateMapWidgetSnapshot(size: proxy.size, mapWidget: mapWidget)
+                                        mapWidget.updatePreviewSnapshot(size: widgetViewPreviewSize)
                                     }
                             }
                             else {
@@ -93,12 +93,12 @@ struct MapWidgetView: View {
         }
         
         if formModel.isPhone {
-            VStack(alignment: .leading, spacing: FormModel.stackSpacingConstant) {
+            VStack(alignment: .leading, spacing: Constants.stackSpacingConstant) {
                 baseView
             }
         }
         else {
-            HStack(spacing: FormModel.stackSpacingConstant) {
+            HStack(spacing: Constants.stackSpacingConstant) {
                 baseView
             }
         }

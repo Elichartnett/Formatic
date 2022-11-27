@@ -39,17 +39,17 @@ struct ConfigureMapWidgetView: View {
                     mapWidget.coordinateRegionCenterLon = coordinateRegion.center.longitude
                     mapWidget.coordinateSpanLatDelta = coordinateRegion.span.latitudeDelta
                     mapWidget.coordinateSpanLonDelta = coordinateRegion.span.longitudeDelta
-                    formModel.updateMapWidgetSnapshot(size: widgetViewPreviewSize, mapWidget: mapWidget)
+                    mapWidget.updatePreviewSnapshot(size: widgetViewPreviewSize)
                     withAnimation {
                         section.addToWidgets(mapWidget)
                     }
                 }
                 else {
-                    let mapWidget = MapWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), coordinateRegionCenterLat: coordinateRegion.center.latitude, coordinateRegionCenterLon: coordinateRegion.center.longitude, coordinateSpanLatDelta: coordinateRegion.span.latitudeDelta, coordinateSpanLonDelta: coordinateRegion.span.longitudeDelta)
+                    let mapWidget = MapWidget(title: title, position: section.numberOfWidgets(), coordinateRegionCenterLat: coordinateRegion.center.latitude, coordinateRegionCenterLon: coordinateRegion.center.longitude, coordinateSpanLatDelta: coordinateRegion.span.latitudeDelta, coordinateSpanLonDelta: coordinateRegion.span.longitudeDelta)
                     withAnimation {
                         section.addToWidgets(mapWidget)
                     }
-                    Analytics.logEvent(Strings.analyticsCreateMapWidgetEvent, parameters: nil)
+                    Analytics.logEvent(Constants.analyticsCreateMapWidgetEvent, parameters: nil)
                 }
                 dismiss()
             } label: {

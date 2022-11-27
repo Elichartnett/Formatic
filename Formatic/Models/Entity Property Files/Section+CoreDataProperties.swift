@@ -21,14 +21,6 @@ extension Section {
     @NSManaged public var title: String?
     @NSManaged public var form: Form?
     @NSManaged public var widgets: Set<Widget>?
-    
-    /// Section convenience init
-    convenience init(id: UUID = UUID(), position: Int, title: String?) {
-        self.init(context: DataControllerModel.shared.container.viewContext)
-        self.id = id
-        self.position = Int16(position)
-        self.title = title
-    }
 }
 
 // MARK: Generated accessors for widgets
