@@ -68,7 +68,7 @@ struct ConfigureCheckboxSectionWidgetView: View {
                 }
                 else {
                     // Create checkboxSectionWidget
-                    let checkboxSectionWidget = CheckboxSectionWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), checkboxWidgets: nil)
+                    let checkboxSectionWidget = CheckboxSectionWidget(title: title, position: section.numberOfWidgets(), checkboxWidgets: nil)
                     
                     // Append checkboxes to checkboxSectionWidget
                     for (index, localCheckbox) in localCheckboxes.enumerated() {
@@ -80,7 +80,7 @@ struct ConfigureCheckboxSectionWidgetView: View {
                     withAnimation {
                         section.addToWidgets(checkboxSectionWidget)
                     }
-                    Analytics.logEvent(Strings.analyticsCreateCheckboxWidgetEvent, parameters: nil)
+                    Analytics.logEvent(Constants.analyticsCreateCheckboxWidgetEvent, parameters: nil)
                 }
                 dismiss()
             } label: {

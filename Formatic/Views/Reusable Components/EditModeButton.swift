@@ -26,7 +26,7 @@ struct EditModeButton: View {
                 onTap()
             }
         } label: {
-            let icon = Image(systemName: Strings.editIconName)
+            let icon = Image(systemName: Constants.editIconName)
             
             if formModel.isPhone {
                 icon

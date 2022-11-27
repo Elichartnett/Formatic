@@ -41,7 +41,7 @@ struct ConfigureCanvasWidgetView: View {
                     selection: $photoPickerItem,
                     matching: .images,
                     photoLibrary: .shared()) {
-                        Image(systemName: Strings.photoFrameIconName)
+                        Image(systemName: Constants.photoFrameIconName)
                         Text(Strings.selectPhotoLabel)
                     }
                     .onChange(of: photoPickerItem) { newItem in
@@ -56,7 +56,7 @@ struct ConfigureCanvasWidgetView: View {
                 Button {
                     sourceType = .camera
                 } label: {
-                    Image(systemName: Strings.cameraIconName)
+                    Image(systemName: Constants.cameraIconName)
                     Text(Strings.takePhotoLabel)
                 }
             }
@@ -67,12 +67,12 @@ struct ConfigureCanvasWidgetView: View {
                 }
                 else {
                     withAnimation {
-                        let canvasWidget = CanvasWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), image: pickerResult, pkDrawing: nil, widgetViewPreview: nil)
+                        let canvasWidget = CanvasWidget(title: title, position: section.numberOfWidgets(), image: pickerResult, pkDrawing: nil, widgetViewPreview: nil)
                         canvasWidget.image = pickerResult
                         
                         section.addToWidgets(canvasWidget)
                     }
-                    Analytics.logEvent(Strings.analyticsCreateCanvasWidgetEvenet, parameters: nil)
+                    Analytics.logEvent(Constants.analyticsCreateCanvasWidgetEvenet, parameters: nil)
                 }
                 dismiss()
             } label: {

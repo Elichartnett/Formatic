@@ -20,7 +20,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct Formatic: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @Environment(\.scenePhase) var scenePhase
     @StateObject var formModel = FormModel()
     @State var alertTitle = ""
     @State var showAlert = false

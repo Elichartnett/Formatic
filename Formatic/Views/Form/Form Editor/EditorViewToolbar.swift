@@ -27,14 +27,14 @@ struct EditorViewToolbar: View {
             // Add section to form button
             Button {
                 form.addToSections(Section(position: form.sections?.count ?? 0, title: nil))
-                Analytics.logEvent(Strings.analyticsCreateSectionEvent, parameters: nil)
+                Analytics.logEvent(Constants.analyticsCreateSectionEvent, parameters: nil)
             } label: {
                 if formModel.isPhone {
-                    Image(systemName: Strings.plusCircleIconName)
+                    Image(systemName: Constants.plusCircleIconName)
                 }
                 else {
                     HStack {
-                        Image(systemName: Strings.plusCircleIconName)
+                        Image(systemName: Constants.plusCircleIconName)
                         Text(Strings.newSectionLabel)
                     }
                 }
@@ -54,7 +54,7 @@ struct EditorViewToolbar: View {
                     form.locked = true
                 }
             } label: {
-                let icon = Image(systemName: form.locked == true ? Strings.lockIconName : Strings.openLockIconName)
+                let icon = Image(systemName: form.locked == true ? Constants.lockIconName : Constants.openLockIconName)
                 if formModel.isPhone {
                     icon
                 }

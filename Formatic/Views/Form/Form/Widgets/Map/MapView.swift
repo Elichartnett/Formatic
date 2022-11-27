@@ -17,7 +17,7 @@ struct MapView: View {
     
     init(mapWidget: MapWidget, localCoordinateRegion: Binding<MKCoordinateRegion>) {
         self.mapWidget = mapWidget
-        self._annotations = FetchRequest<Annotation>(sortDescriptors: [], predicate: NSPredicate(format: "mapWidget == %@", mapWidget))
+        self._annotations = FetchRequest<Annotation>(sortDescriptors: [], predicate: NSPredicate(format: Constants.predicateMapWidgetEqualTo, mapWidget))
         self._localCoordinateRegion = localCoordinateRegion
     }
     

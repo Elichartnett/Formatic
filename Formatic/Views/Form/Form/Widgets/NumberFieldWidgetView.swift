@@ -37,7 +37,7 @@ struct NumberFieldWidgetView: View {
             
             InputBox(placeholder: Strings.numberLabel, text: $number)
                 .onChange(of: number) { _ in
-                    isValid = formModel.numberIsValid(number: number, range: range)
+                    isValid = number.isValidNumber(range: range)
                     if isValid {
                         numberFieldWidget.number = number
                     }
@@ -65,12 +65,12 @@ struct NumberFieldWidgetView: View {
         }
         
         if formModel.isPhone {
-            VStack(alignment: .leading, spacing: FormModel.stackSpacingConstant) {
+            VStack(alignment: .leading, spacing: Constants.stackSpacingConstant) {
                 baseView
             }
         }
         else {
-            HStack(spacing: FormModel.stackSpacingConstant) {
+            HStack(spacing: Constants.stackSpacingConstant) {
                 baseView
             }
         }

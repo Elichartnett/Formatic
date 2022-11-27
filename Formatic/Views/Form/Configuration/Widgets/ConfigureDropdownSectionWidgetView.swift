@@ -77,7 +77,7 @@ struct ConfigureDropdownSectionWidgetView: View {
                     }
                 } else {
                     // Create dropdownSectionWidget
-                    dropdownSectionWidget = DropdownSectionWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), selectedDropdown: nil, dropdownWidgets: nil)
+                    dropdownSectionWidget = DropdownSectionWidget(title: title, position: section.numberOfWidgets(), selectedDropdown: nil, dropdownWidgets: nil)
                     
                     // Append dropdown options to dropdownSectionWidget
                     for (index, localDropdown) in localDropdowns.enumerated() {
@@ -91,7 +91,7 @@ struct ConfigureDropdownSectionWidgetView: View {
                     withAnimation {
                         section.addToWidgets(dropdownSectionWidget!)
                     }
-                    Analytics.logEvent(Strings.analyticsCreateDropdownWidgetEvent, parameters: nil)
+                    Analytics.logEvent(Constants.analyticsCreateDropdownWidgetEvent, parameters: nil)
                 }
                 dismiss()
             } label: {

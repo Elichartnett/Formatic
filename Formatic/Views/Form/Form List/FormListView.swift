@@ -8,19 +8,17 @@
 import SwiftUI
 import CoreData
 import UniformTypeIdentifiers
-import FirebaseAnalytics
 
 // List of all saved forms with list toolbar
 struct FormListView: View {
-    
-    @Environment(\.editMode) var editMode
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)], predicate: NSPredicate(format: "recentlyDeleted != true")) var forms: FetchedResults<Form>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)], predicate: NSPredicate(format: "recentlyDeleted != true")) var filteredForms: FetchedResults<Form>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)], predicate: NSPredicate(format: Constants.predicateRecentlyDeletedEqualToFalse)) var forms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel
+        
+    @State var filteredForms = [Form]()
     @State var selectedForms = Set<Form>()
     @State var exportType: UTType?
     @State var showExportView = false
-    @State var showSelectionToolbar = false
+    @State var showMultiSelectionToolbar = false
     @State var searchText = ""
     @State var showNewFormView = false
     @State var showImportFormView = false
@@ -30,186 +28,196 @@ struct FormListView: View {
     @State var showAlert = false
     @State var alertTitle = ""
     @State var alertButtonDismissMessage = Strings.defaultAlertButtonDismissMessage
+    var sortedSelectedForm: [Form] {
+        selectedForms.sorted(by: {
+            sortMethod == .dateCreated ? $0.dateCreated < $1.dateCreated : $0.title ?? "" < $1.title ?? "" })
+    }
     
     var body: some View {
         
-        NavigationStack(path: $formModel.navigationPath) {
-            
-            Group {
-                if !forms.isEmpty {
-                    VStack {
-                        if showSelectionToolbar {
-                            HStack {
-                                Spacer()
-                                Button {
-                                    for form in selectedForms {
-                                        do {
-                                            try formModel.copyForm(form: form)
-                                        }
-                                        catch {
-                                            alertTitle = Strings.copyFormErrorMessage
-                                            showAlert = true
-                                        }
-                                    }
-                                    selectedForms.removeAll()
-                                } label: {
-                                    Image(systemName: Strings.copyIconName)
-                                        .foregroundColor(.blue)
-                                }
-                                
-                                Spacer()
-                                
-                                Button {
-                                    for form in selectedForms {
-                                        form.recentlyDeleted = true
-                                    }
-                                    selectedForms.removeAll()
-                                } label: {
-                                    Image(systemName: Strings.trashIconName)
-                                        .foregroundColor(.red)
-                                }
-                                
-                                Spacer()
-                                
-                                ExportMenuButton(exportType: $exportType, forms: selectedForms.sorted(by: { $0.dateCreated < $1.dateCreated }))
-                                    .onChange(of: exportType) { _ in
-                                        if exportType != nil { showExportView = true }
-                                    }
-                                
-                                Spacer()
-                            }
+        Group {
+            if !forms.isEmpty {
+                VStack {
+                    if showMultiSelectionToolbar {
+                        multiSelectionToolbar
                             .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
+                    }
+                    
+                    List(filteredForms, id: \.self, selection: $selectedForms) { form in
+                        Button {
+                            formModel.navigationPath.append(form)
+                        } label: {
+                            Text(form.title ?? "")
+                                .foregroundColor(.primary)
                         }
-                        
-                        List(filteredForms, id: \.self, selection: $selectedForms) { form in
+                        .swipeActions {
+                            Button {
+                                form.recentlyDeleted = true
+                            } label: {
+                                Labels.delete
+                            }
+                            .tint(.red)
                             
                             Button {
-                                formModel.navigationPath.append(form)
+                                let _ = form.createCopy()
                             } label: {
-                                Text(form.title ?? "")
-                                    .foregroundColor(.primary)
-                                    .swipeActions {
-                                        Button {
-                                            form.recentlyDeleted = true
-                                        } label: {
-                                            Label(Strings.deleteLabel, systemImage: Strings.trashIconName)
-                                        }
-                                        .tint(.red)
-                                        
-                                        Button {
-                                            do {
-                                                try formModel.copyForm(form: form)
-                                            }
-                                            catch {
-                                                alertTitle = Strings.copyFormErrorMessage
-                                                showAlert = true
-                                            }
-                                        } label: {
-                                            Label(Strings.copyLabel, systemImage: Strings.copyIconName)
-                                        }
-                                        .tint(.blue)
-                                    }
+                                Labels.copy
                             }
+                            .tint(.blue)
                         }
-                        .searchable(text: $searchText, placement: .navigationBarDrawer)
-                        .scrollDismissesKeyboard(.interactively)
-                        .navigationDestination(for: Form.self, destination: { form in
-                            FormEditorView(form: form)
-                        })
-                        .onChange(of: selectedForms.isEmpty, perform: { isEmpty in
-                            withAnimation {
-                                showSelectionToolbar = !isEmpty
-                            }
-                        })
-                        .onChange(of: searchText, perform: { _ in
-                            if searchText == "" {
-                                filteredForms.nsPredicate = NSPredicate(format: "recentlyDeleted != %@", "true")
+                    }
+                    .searchable(text: $searchText, placement: .navigationBarDrawer)
+                    .scrollDismissesKeyboard(.interactively)
+                    .navigationDestination(for: Form.self, destination: { form in
+                        FormEditorView(form: form)
+                    })
+                    .onAppear {
+                        filteredForms.removeAll()
+                        for form in forms {
+                            filteredForms.append(form)
+                        }
+                    }
+                    .onChange(of: selectedForms.isEmpty, perform: { isEmpty in
+                        withAnimation {
+                            showMultiSelectionToolbar = !isEmpty
+                        }
+                    })
+                    .onChange(of: forms.count, perform: { _ in
+                        filteredForms.removeAll()
+                        for form in forms {
+                            filteredForms.append(form)
+                        }
+                    })
+                    .onChange(of: searchText, perform: { _ in
+                        filteredForms.removeAll()
+                        for form in forms {
+                            if searchText.isEmpty {
+                                if !form.recentlyDeleted { filteredForms.append(form) }
                             }
                             else {
-                                filteredForms.nsPredicate = NSPredicate(format: "title CONTAINS[cd] %@ AND recentlyDeleted != %@", searchText, "true")
+                                let title = form.title ?? ""
+                                if !form.recentlyDeleted && title.contains(searchText) { filteredForms.append(form) }
                             }
-                        })
-                        .onChange(of: sortMethod, perform: { _ in
-                            updateFilteredForms()
-                        })
-                        .overlay {
-                            if filteredForms.isEmpty {
-                                Text(Strings.noSearchResultsMessage)
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                    .background(Color.primaryBackground).ignoresSafeArea()
-                            }
+                        }
+                    })
+                    .onChange(of: sortMethod, perform: { _ in
+                        updateFilteredForms()
+                    })
+                    .overlay {
+                        if filteredForms.isEmpty {
+                            Text(Strings.noSearchResultsMessage)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(Color.primaryBackground).ignoresSafeArea()
                         }
                     }
                 }
-                else {
-                    Text(Strings.getStartedMessage)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color.primaryBackground).ignoresSafeArea()
-                }
             }
-            .scrollContentBackground(.hidden)
-            .background(Color.primaryBackground)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    ListViewToolbar(showNewFormView: $showNewFormView, showImportFormView: $showImportFormView, showSortMethodMenu: !forms.isEmpty, sortMethod: $sortMethod, showSettingsMenu: $showSettingsMenu)
-                }
+            else {
+                Text(Strings.getStartedMessage)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color.primaryBackground).ignoresSafeArea()
             }
-            .sheet(isPresented: $showNewFormView) {
-                NewFormView(showNewFormView: $showNewFormView)
-            }
-            .sheet(isPresented: $showSettingsMenu, content: {
-                SettingsView()
-            })
-            .sheet(isPresented: $showExportView, content: {
-                ExportView(forms: selectedForms.sorted(by: { $0.dateCreated < $1.dateCreated }), exportType: $exportType)
-            })
-            .fileImporter(isPresented: $showImportFormView, allowedContentTypes: [.form]) { result in
-                switch result {
-                case .success(let url):
-                    DispatchQueue.main.async {
-                        importingForm = true
-                        do {
-                            try formModel.importForm(url: url)
-                        }
-                        catch {
-                            alertTitle = Strings.importFormErrorMessage
-                            showAlert = true
-                        }
-                        importingForm = false
-                    }
-                case .failure(_):
-                    alertTitle = Strings.importFormErrorMessage
-                    showAlert = true
-                }
-            }
-            .onOpenURL { url in
-                do {
-                    try formModel.importForm(url: url)
-                }
-                catch {
-                    alertTitle = Strings.importFormErrorMessage
-                    showAlert = true
-                }
-            }
-            .overlay {
-                if importingForm {
-                    ProgressView()
-                }
-            }
-            .alert(alertTitle, isPresented: $showAlert, actions: {
-                Button(alertButtonDismissMessage, role: .cancel) {}
-            })
         }
-        .navigationViewStyle(.stack)
+        .scrollContentBackground(.hidden)
+        .background(Color.primaryBackground)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                ListViewToolbar(showNewFormView: $showNewFormView, showSortMethodMenu: !forms.isEmpty, sortMethod: $sortMethod, showImportFormView: $showImportFormView, showSettingsMenu: $showSettingsMenu)
+            }
+        }
+        .sheet(isPresented: $showNewFormView, content: {
+            NewFormView(showNewFormView: $showNewFormView)
+        })
+        .sheet(isPresented: $showSettingsMenu, content: {
+            SettingsView()
+        })
+        .sheet(isPresented: $showExportView, content: {
+            ExportView(forms: sortedSelectedForm, exportType: $exportType)
+        })
+        .fileImporter(isPresented: $showImportFormView, allowedContentTypes: [.form]) { result in
+            switch result {
+            case .success(let url):
+                DispatchQueue.main.async {
+                    importingForm = true
+                    do {
+                        try Form.importForm(url: url)
+                    }
+                    catch {
+                        alertTitle = Strings.importFormErrorMessage
+                        showAlert = true
+                    }
+                    importingForm = false
+                }
+            case .failure(_):
+                alertTitle = Strings.importFormErrorMessage
+                showAlert = true
+            }
+        }
+        .onOpenURL { url in
+            do {
+                try Form.importForm(url: url)
+            }
+            catch {
+                alertTitle = Strings.importFormErrorMessage
+                showAlert = true
+            }
+        }
+        .overlay {
+            if importingForm {
+                ProgressView()
+            }
+        }
+        .alert(alertTitle, isPresented: $showAlert, actions: {
+            Button(alertButtonDismissMessage, role: .cancel) {}
+        })
+    }
+    
+    var multiSelectionToolbar: some View {
+        HStack {
+            Spacer()
+            Button {
+                withAnimation {
+                    for form in selectedForms {
+                        let _ = form.createCopy()
+                    }
+                    selectedForms.removeAll()
+                }
+            } label: {
+                Image(systemName: Constants.copyIconName)
+                    .customIcon()
+            }
+            
+            Spacer()
+            
+            Button {
+                for form in selectedForms {
+                    form.recentlyDeleted = true
+                }
+                selectedForms.removeAll()
+            } label: {
+                Image(systemName: Constants.trashIconName)
+                    .foregroundColor(.red)
+            }
+            
+            Spacer()
+            
+            ExportMenuButton(exportType: $exportType, forms: sortedSelectedForm)
+                .onChange(of: exportType) { _ in
+                    if exportType != nil { showExportView = true }
+                }
+            
+            Spacer()
+        }
+        
     }
     
     func updateFilteredForms() {
         switch sortMethod {
         case .dateCreated:
-            filteredForms.nsSortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: true)]
+            forms.nsSortDescriptors = [NSSortDescriptor(key: Constants.sortDescriptorDateCreated, ascending: true)]
         case .alphabetical:
-            filteredForms.nsSortDescriptors = [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))]
+            forms.nsSortDescriptors = [NSSortDescriptor(key: Constants.sortDescriptorTitle, ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))]
         }
     }
 }

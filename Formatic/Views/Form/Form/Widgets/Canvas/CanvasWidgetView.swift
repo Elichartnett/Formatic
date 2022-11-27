@@ -33,7 +33,7 @@ struct CanvasWidgetView: View {
             let reconfigureButton = Button {
                 reconfigureWidget = true
             } label: {
-                Image(systemName: Strings.editIconName)
+                Image(systemName: Constants.editIconName)
                     .customIcon()
                     .opacity(editMode?.wrappedValue == .active ? 1 : 0)
             }
@@ -108,7 +108,7 @@ struct CanvasWidgetView: View {
                         // Add picker
                         canvasView.becomeFirstResponder()
                         
-                        FormModel.updateCanvasWidgetViewPreview(canvasWidget: canvasWidget, canvasView: canvasView)
+                        CanvasWidget.updateWidgetViewPreview(canvasWidget: canvasWidget, canvasView: canvasView)
                     }
                     catch {
                         alertTitle = Strings.updateCanvasWidgetViewPreviewErrorMessage
@@ -130,12 +130,12 @@ struct CanvasWidgetView: View {
         }
         
         if formModel.isPhone {
-            VStack(alignment: .leading, spacing: FormModel.stackSpacingConstant) {
+            VStack(alignment: .leading, spacing: Constants.stackSpacingConstant) {
                 baseView
             }
         }
         else {
-            HStack(spacing: FormModel.stackSpacingConstant) {
+            HStack(spacing: Constants.stackSpacingConstant) {
                 baseView
             }
         }

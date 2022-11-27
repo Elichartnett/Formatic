@@ -10,20 +10,7 @@ import Foundation
 import CoreData
 
 @objc(Section)
-public class Section: NSManagedObject, Codable, Identifiable, Csv, Copyable {
-        
-    enum CodingKeys: String, CodingKey {
-        case position = "position"
-        case title = "title"
-        case widgets = "widgets"
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var sectionContainer = encoder.container(keyedBy: CodingKeys.self)
-        try sectionContainer.encode(position, forKey: .position)
-        try sectionContainer.encode(title, forKey: .title)
-        try sectionContainer.encode(widgets, forKey: .widgets)
-    }
+public class Section: NSManagedObject {
     
     required public convenience init(from decoder: Decoder) throws {
         self.init(context: DataControllerModel.shared.container.viewContext)
@@ -76,105 +63,5 @@ public class Section: NSManagedObject, Codable, Identifiable, Csv, Copyable {
                 canvasWidget.section = self
             }
         }
-    }
-    
-    func toCsv() -> String {
-        var csvString = ""
-        let allWidgets = (widgets ?? []).sorted { lhs, rhs in
-            lhs.position < rhs.position
-        }
-        
-        for item in allWidgets {
-            let widgetType: WidgetType = WidgetType.init(rawValue: item.type!)!
-            
-            switch widgetType {
-            case .dropdownSectionWidget:
-                if let dropdownSectionWidget = item as? DropdownSectionWidget {
-                    csvString += dropdownSectionWidget.toCsv()
-                }
-            case .textFieldWidget:
-                if let textFieldWidget = item as? TextFieldWidget {
-                    csvString += textFieldWidget.toCsv()
-                }
-            case .checkboxSectionWidget:
-                if let checkboxSectionWidget = item as? CheckboxSectionWidget {
-                    csvString += checkboxSectionWidget.toCsv()
-                }
-            case .mapWidget:
-                if let mapWidget = item as? MapWidget {
-                    csvString += mapWidget.toCsv()
-                }
-            case .numberFieldWidget:
-                if let numberFieldWidget = item as? NumberFieldWidget {
-                    csvString += numberFieldWidget.toCsv()
-                }
-            case .dropdownWidget:
-                // Handled in DropdownSectionWidget
-                break
-            case .checkboxWidget:
-                // Handled in CheckboxSectionWidget
-                break
-            case .canvasWidget:
-                if let canvasWidget = item as? CanvasWidget {
-                    csvString += canvasWidget.toCsv()
-                }
-            }
-            csvString += "\n"
-        }
-        // Remove trailing newline character IF widgets exist in section
-        if csvString != "" {
-            csvString.remove(at: csvString.index(before: csvString.endIndex))
-        }
-        return csvString
-    }
-    
-    func createCopy() -> Any {
-        let copy = Section(position: Int(position), title: title)
-        let widgetArray = widgets?.sorted(by: { lhs, rhs in
-            lhs.position < rhs.position
-        })
-        
-        for widget in widgetArray ?? [] {
-            let widgetType = WidgetType(rawValue: widget.type!)
-            switch widgetType {
-            case .textFieldWidget:
-                if let widget = widget as? TextFieldWidget {
-                    let widgetCopy = widget.createCopy() as! TextFieldWidget
-                    copy.addToWidgets(widgetCopy)
-                }
-            case .numberFieldWidget:
-                if let widget = widget as? NumberFieldWidget {
-                    let widgetCopy = widget.createCopy() as! NumberFieldWidget
-                    copy.addToWidgets(widgetCopy)
-                }
-            case .dropdownSectionWidget:
-                if let widget = widget as? DropdownSectionWidget {
-                    let widgetCopy = widget.createCopy() as! DropdownSectionWidget
-                    copy.addToWidgets(widgetCopy)
-                }
-            case .dropdownWidget:
-                break
-            case .checkboxSectionWidget:
-                if let widget = widget as? CheckboxSectionWidget {
-                    let widgetCopy = widget.createCopy() as! CheckboxSectionWidget
-                    copy.addToWidgets(widgetCopy)
-                }
-            case .checkboxWidget:
-                break
-            case .mapWidget:
-                if let widget = widget as? MapWidget {
-                    let widgetCopy = widget.createCopy() as! MapWidget
-                    copy.addToWidgets(widgetCopy)
-                }
-            case .canvasWidget:
-                if let widget = widget as? CanvasWidget {
-                    let widgetCopy = widget.createCopy() as! CanvasWidget
-                    copy.addToWidgets(widgetCopy)
-                }
-            default:
-                break
-            }
-        }
-        return copy
     }
 }

@@ -9,40 +9,40 @@ import SwiftUI
 
 struct Home: View {
     
+    @EnvironmentObject var formModel: FormModel
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     @State var time = 0.0
     @State var finishedLaunching = false
     
     var body: some View {
         
-        // List of all created forms
-        FormListView()
-            .toolbar {
-                ToolbarItemGroup(placement: .keyboard) {
-                    Spacer()
-                    
-                    Button {
-                        FormModel.endEditing()
-                    } label: {
-                        Text(Strings.doneLabel)
+        NavigationStack(path: $formModel.navigationPath) {
+            FormListView()
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        
+                        EndEditingButton()
                     }
                 }
-            }
-            .overlay {
-                if !finishedLaunching {
-                    LottieView(name: Strings.logoAnimationFileName)
-                        .background(Color.white)
-                        .onReceive(timer) { _ in
-                            time += 0.1
-                            if time >= 1.5 {
-                                withAnimation {
-                                    finishedLaunching = true
-                                }
-                                timer.upstream.connect().cancel()
+        }
+        .navigationViewStyle(.stack)
+        .overlay {
+            if !finishedLaunching {
+                LottieView(name: Constants.logoAnimationFileName)
+                    .background(Color.white)
+                    .ignoresSafeArea()
+                    .onReceive(timer) { _ in
+                        time += 0.1
+                        if time >= 1.5 {
+                            withAnimation {
+                                finishedLaunching = true
                             }
+                            timer.upstream.connect().cancel()
                         }
-                }
+                    }
             }
+        }
     }
 }
 

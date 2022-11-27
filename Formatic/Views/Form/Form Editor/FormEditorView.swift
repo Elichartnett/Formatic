@@ -6,14 +6,11 @@
 //
 
 import SwiftUI
-import UniformTypeIdentifiers
-import FirebaseAnalytics
 
-// Display form with form tool bar
 struct FormEditorView: View {
     
     @Environment(\.editMode) var editMode
-    @EnvironmentObject var formModel: FormModel
+    
     @ObservedObject var form: Form
     @State var exportToPDF = false
     @State var exportToCSV = false
@@ -59,7 +56,6 @@ struct FormEditorView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             FormEditorView(form: dev.form)
-                .environmentObject(FormModel())
                 .environment(\.managedObjectContext, DataControllerModel.shared.container.viewContext)
         }
         .navigationViewStyle(.stack)

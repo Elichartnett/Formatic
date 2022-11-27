@@ -21,7 +21,7 @@ struct SectionView: View {
     }
     
     init(section: Section, locked: Binding<Bool>, forPDF: Bool = false) {
-        self._widgets = FetchRequest<Widget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "section == %@", section))
+        self._widgets = FetchRequest<Widget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: Constants.predicateSectionEqualTo, section))
         self.section = section
         self._locked = locked
         self.forPDF = forPDF
@@ -79,16 +79,16 @@ struct SectionView: View {
                     .swipeActions {
                         if !locked {
                             Button {
-                                formModel.deleteWidget(widget: widget)
+                                widget.delete()
                             } label: {
-                                Label(Strings.deleteLabel, systemImage: Strings.trashIconName)
+                                Label(Strings.deleteLabel, systemImage: Constants.trashIconName)
                             }
                             .tint(.red)
                             
                             Button {
-                                formModel.copyWidget(section: section, widget: widget)
+                                widget.initiateCopy()
                             } label: {
-                                Label(Strings.copyLabel, systemImage: Strings.copyIconName)
+                                Label(Strings.copyLabel, systemImage: Constants.copyIconName)
                             }
                             .tint(.blue)
                         }
@@ -100,7 +100,7 @@ struct SectionView: View {
                 }
             }
             .onMove(perform: { indexSet, destination in
-                formModel.updateWidgetPosition(section: section, indexSet: indexSet, destination: destination)
+                section.updateWidgetPositions(indexSet: indexSet, destination: destination)
             })
             .moveDisabled(moveDisabled)
         }

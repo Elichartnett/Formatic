@@ -18,7 +18,7 @@ struct DropdownSectionWidgetView: View {
     @State var title: String
     
     init(dropdownSectionWidget: DropdownSectionWidget, locked: Binding<Bool>) {
-        self._dropdowns = FetchRequest<DropdownWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "dropdownSectionWidget == %@", dropdownSectionWidget))
+        self._dropdowns = FetchRequest<DropdownWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: Constants.predicateDropdownSectionWidgetEqualTo, dropdownSectionWidget))
         self.dropdownSectionWidget = dropdownSectionWidget
         self._locked = locked
         self._title = State(initialValue: dropdownSectionWidget.title ?? "")
@@ -31,7 +31,7 @@ struct DropdownSectionWidgetView: View {
             let reconfigureButton = Button {
                 reconfigureWidget = true
             } label: {
-                Image(systemName: Strings.editIconName)
+                Image(systemName: Constants.editIconName)
                     .customIcon()
                     .opacity(editMode?.wrappedValue == .active ? 1 : 0)
             }
@@ -62,7 +62,7 @@ struct DropdownSectionWidgetView: View {
                                     Text(widget.title!)
                                     Spacer()
                                     if dropdownSectionWidget.selectedDropdown == widget {
-                                        Image(systemName: Strings.checkmarkIconName)
+                                        Image(systemName: Constants.checkmarkIconName)
                                     }
                                 }
                             }
@@ -93,12 +93,12 @@ struct DropdownSectionWidgetView: View {
         }
         
         if formModel.isPhone {
-            VStack(alignment: .leading, spacing: FormModel.stackSpacingConstant) {
+            VStack(alignment: .leading, spacing: Constants.stackSpacingConstant) {
                 baseView
             }
         }
         else {
-            HStack(spacing: FormModel.stackSpacingConstant) {
+            HStack(spacing: Constants.stackSpacingConstant) {
                 baseView
             }
         }

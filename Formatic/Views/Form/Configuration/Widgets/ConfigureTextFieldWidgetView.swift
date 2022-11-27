@@ -39,11 +39,11 @@ struct ConfigureTextFieldWidgetView: View {
             }
             
             Button {
-                let textFieldWidget = TextFieldWidget(title: title, position: formModel.numberOfWidgetsInSection(section: section), text: text.isEmpty ? nil : text)
+                let textFieldWidget = TextFieldWidget(title: title, position: section.numberOfWidgets(), text: text.isEmpty ? nil : text)
                 withAnimation {
                     section.addToWidgets(textFieldWidget)
                 }
-                Analytics.logEvent(Strings.analyticsCreateTextFieldWidgetEvent, parameters: nil)
+                Analytics.logEvent(Constants.analyticsCreateTextFieldWidgetEvent, parameters: nil)
                 dismiss()
             } label: {
                 SubmitButton()

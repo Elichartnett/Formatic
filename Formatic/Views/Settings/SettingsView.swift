@@ -10,7 +10,7 @@ import MessageUI
 
 struct SettingsView: View {
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)], predicate: NSPredicate(format: "recentlyDeleted == true")) var recentlyDeletedForms: FetchedResults<Form>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)], predicate: NSPredicate(format: Constants.predicateRecentlyDeletedEqualToTrue)) var recentlyDeletedForms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel
     @State var showEmailVIew = false
     @State var expandRecentlyDeleted = false
@@ -66,7 +66,7 @@ struct SettingsView: View {
                             HStack {
                                 Text("\(Strings.recentlyDeletedFormsLabel) (\(recentlyDeletedForms.count))")
                                     .foregroundColor(.primary)
-                                Image(systemName: Strings.expandListIconName)
+                                Image(systemName: Constants.expandListIconName)
                                     .rotationEffect(Angle(degrees: expandRecentlyDeleted ? 90 : 0))
                                     .foregroundColor(recentlyDeletedForms.isEmpty ? .customGray : .blue)
                             }
@@ -81,7 +81,7 @@ struct SettingsView: View {
 
                         Group {
 
-                            Image(systemName: Strings.plusIconName)
+                            Image(systemName: Constants.plusIconName)
                                 .customIcon()
                                 .onTapGesture {
                                     withAnimation {
@@ -92,12 +92,12 @@ struct SettingsView: View {
                                     }
                                 }
 
-                            Image(systemName: Strings.trashIconName)
+                            Image(systemName: Constants.trashIconName)
                                 .foregroundColor(.red)
                                 .onTapGesture {
                                     withAnimation {
                                         for form in selectedForms {
-                                            formModel.deleteForm(form: form)
+                                            form.delete()
                                         }
                                         selectedForms.removeAll()
                                     }
@@ -112,19 +112,21 @@ struct SettingsView: View {
                             Text(form.title ?? "")
                                 .swipeActions {
                                     Button {
-                                        formModel.deleteForm(form: form)
-                                        if recentlyDeletedForms.isEmpty {
-                                            expandRecentlyDeleted = false
+                                        withAnimation {
+                                            form.delete()
+                                            if recentlyDeletedForms.isEmpty {
+                                                expandRecentlyDeleted = false
+                                            }
                                         }
                                     } label: {
-                                        Label(Strings.deleteLabel, systemImage: Strings.trashIconName)
+                                        Label(Strings.deleteLabel, systemImage: Constants.trashIconName)
                                     }
                                     .tint(.red)
                                     
                                     Button {
                                         
                                     } label: {
-                                        Label(Strings.recoverLabel, systemImage: Strings.plusIconName)
+                                        Label(Strings.recoverLabel, systemImage: Constants.plusIconName)
                                     }
                                     .tint(.blue)
                                 }
