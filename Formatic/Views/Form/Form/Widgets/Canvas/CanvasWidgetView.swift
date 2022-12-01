@@ -31,16 +31,6 @@ struct CanvasWidgetView: View {
         
         let baseView = Group {
             
-            let reconfigureButton = Button {
-                reconfigureWidget = true
-            } label: {
-                Image(systemName: Constants.editIconName)
-                    .customIcon()
-                    .opacity(editMode?.wrappedValue == .active ? 1 : 0)
-            }
-                .disabled(editMode?.wrappedValue == .inactive)
-                .transition(.asymmetric(insertion: .push(from: .trailing), removal: .push(from: .leading)))
-            
             Group {
                 
                 HStack {
@@ -52,7 +42,7 @@ struct CanvasWidgetView: View {
                         .disabled(locked)
                     
                     if formModel.isPhone {
-                        reconfigureButton
+                        ReconfigureWidgetButton(reconfigureWidget: $reconfigureWidget)
                     }
                 }
                 
@@ -84,7 +74,7 @@ struct CanvasWidgetView: View {
                 }
                 
                 if !formModel.isPhone {
-                    reconfigureButton
+                    ReconfigureWidgetButton(reconfigureWidget: $reconfigureWidget)
                 }
             }
             .sheet(isPresented: $reconfigureWidget) {

@@ -29,16 +29,6 @@ struct CheckboxSectionWidgetView: View {
         
         let baseView = Group {
             
-            let reconfigureButton = Button {
-                reconfigureWidget = true
-            } label: {
-                Image(systemName: Constants.editIconName)
-                    .customIcon()
-                    .opacity(editMode?.wrappedValue == .active ? 1 : 0)
-            }
-                .disabled(editMode?.wrappedValue == .inactive)
-                .transition(.asymmetric(insertion: .push(from: .trailing), removal: .push(from: .leading)))
-            
             Group {
                 
                 HStack {
@@ -50,7 +40,7 @@ struct CheckboxSectionWidgetView: View {
                         }
                     
                     if formModel.isPhone {
-                        reconfigureButton
+                        ReconfigureWidgetButton(reconfigureWidget: $reconfigureWidget)
                     }
                 }
                 
@@ -66,7 +56,7 @@ struct CheckboxSectionWidgetView: View {
                 .padding(.bottom, formModel.isPhone ? 6 : 0)
                 
                 if !formModel.isPhone && editMode?.wrappedValue == .active {
-                    reconfigureButton
+                    ReconfigureWidgetButton(reconfigureWidget: $reconfigureWidget)
                 }
             }
             .sheet(isPresented: $reconfigureWidget) {
