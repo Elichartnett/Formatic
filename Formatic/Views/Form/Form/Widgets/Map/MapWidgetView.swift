@@ -34,15 +34,6 @@ struct MapWidgetView: View {
         
         let baseView = Group {
             
-            let reconfigureButton = Button {
-                reconfigureWidget = true
-            } label: {
-                Image(systemName: Constants.editIconName)
-                    .customIcon()
-                    .opacity(editMode?.wrappedValue == .active ? 1 : 0)
-            }
-                .disabled(editMode?.wrappedValue == .inactive)
-            
             Group {
                 
                 HStack {
@@ -53,7 +44,7 @@ struct MapWidgetView: View {
                         }
                     
                     if formModel.isPhone {
-                        reconfigureButton
+                        ReconfigureWidgetButton(reconfigureWidget: $reconfigureWidget)
                     }
                 }
                 
@@ -81,7 +72,7 @@ struct MapWidgetView: View {
                 .disabled(editMode?.wrappedValue == .active)
                 
                 if !formModel.isPhone && editMode?.wrappedValue == .active {
-                    reconfigureButton
+                    ReconfigureWidgetButton(reconfigureWidget: $reconfigureWidget)
                 }
             }
             .sheet(isPresented: $reconfigureWidget) {
