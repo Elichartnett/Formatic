@@ -201,6 +201,7 @@ struct FormListView: View {
                     form.recentlyDeleted = true
                 }
                 selectedForms.removeAll()
+                showMultiSelectionToolbar = false
             } label: {
                 Image(systemName: Constants.trashIconName)
                     .foregroundColor(.red)
