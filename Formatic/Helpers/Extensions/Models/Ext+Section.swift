@@ -51,12 +51,10 @@ extension Section: Codable, Identifiable, Csv, Copyable {
     }
     
     func updateWidgetPositions(indexSet: IndexSet, destination: Int) {
-        // Create temporary array with moved index
         var widgets = self.sortedWidgetsArray()
 
         widgets.move(fromOffsets: indexSet, toOffset: destination)
         
-        // Update positions
         for (index, widget) in widgets.enumerated() {
             DispatchQueue.main.async {
                 widget.position = Int16(index)
@@ -107,7 +105,7 @@ extension Section: Codable, Identifiable, Csv, Copyable {
             }
             csvString += "\n"
         }
-        // Remove trailing newline character IF widgets exist in section
+
         if csvString != "" {
             csvString.remove(at: csvString.index(before: csvString.endIndex))
         }

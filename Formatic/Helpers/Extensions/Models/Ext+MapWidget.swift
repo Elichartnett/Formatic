@@ -59,7 +59,6 @@ extension MapWidget: Csv, Copyable {
         
         for item in annotations ?? [] {
             if let annotation = item as? Annotation {
-                // Get the UTM version of the coordinate as well
                 let coordinate = CLLocationCoordinate2D(latitude: annotation.latitude, longitude: annotation.longitude)
                 let utm = coordinate.utmCoordinate()
                 
@@ -81,7 +80,6 @@ extension MapWidget: Csv, Copyable {
             }
         }
         
-        // Remove traling newline character
         if csvString != "" {
             csvString.remove(at: csvString.index(before: csvString.endIndex))
         }

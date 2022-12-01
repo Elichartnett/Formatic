@@ -24,7 +24,6 @@ extension CheckboxSectionWidget: Csv, Copyable {
                 lhs.position < rhs.position
             }
             
-            // For each checkbox, add a row
             for checkboxWidget in checkboxWidgets {
                 csvString += FormModel.formatAsCsv(section?.form?.title ?? "") + ","
                 csvString += FormModel.formatAsCsv(section?.title ?? "") + ","
@@ -42,7 +41,6 @@ extension CheckboxSectionWidget: Csv, Copyable {
                 }).count) + ",\n"
             }
             
-            // Remove traling newline character
             if csvString != "" {
                 csvString.remove(at: csvString.index(before: csvString.endIndex))
             }
