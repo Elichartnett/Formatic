@@ -25,14 +25,12 @@ struct ToggleLockView: View {
                 .bold()
             
             if form.password != nil {
-                // Unlock
                 InputBox(placeholder: Strings.passwordLabel, text: $enteredPassword, inputType: .password)
                     .onChange(of: enteredPassword) { _ in
                         validPassword = (enteredPassword == form.password)
                     }
             }
             else {
-                // Set up lock
                 PasswordView(validPassword: $validPassword, password: $enteredPassword)
             }
             
@@ -42,13 +40,11 @@ struct ToggleLockView: View {
                         .labelStyle(.titleAndIcon)
                 }
                 Button {
-                    // Set up new password
                     if form.password == nil {
                         form.password = enteredPassword
                         form.locked = true
                         Analytics.logEvent(Constants.analyticsCreateLockFormEvent, parameters: nil)
                     }
-                    // Unlock form
                     else {
                         form.locked = false
                         if removePassword {

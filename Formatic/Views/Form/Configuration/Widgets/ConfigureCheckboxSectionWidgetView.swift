@@ -31,11 +31,9 @@ struct ConfigureCheckboxSectionWidgetView: View {
             }
             .onChange(of: numCheckboxes) { newVal in
                 withAnimation {
-                    // Number decreased - remove trailing boxes
                     if newVal < localCheckboxes.count {
                         localCheckboxes.removeSubrange(newVal..<localCheckboxes.count)
                     }
-                    // Number increased - append more boxes
                     else {
                         let numToAdd = newVal - localCheckboxes.count
                         for _ in 0..<numToAdd {
@@ -46,7 +44,6 @@ struct ConfigureCheckboxSectionWidgetView: View {
             }
             
             ScrollView {
-                // Configure checkboxes
                 ForEach($localCheckboxes) { $localCheckbox in
                     InputBox(placeholder: Strings.descriptionLabel, text: $localCheckbox.title)
                 }

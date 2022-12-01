@@ -9,7 +9,6 @@ import SwiftUI
 import CoreData
 import UniformTypeIdentifiers
 
-// List of all saved forms with list toolbar
 struct FormListView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)], predicate: NSPredicate(format: Constants.predicateRecentlyDeletedEqualToFalse)) var forms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel

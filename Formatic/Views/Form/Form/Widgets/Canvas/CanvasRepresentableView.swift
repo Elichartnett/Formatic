@@ -63,7 +63,6 @@ struct CanvasRepresentable: UIViewRepresentable {
             CanvasWidget.updateWidgetViewPreview(canvasWidget: parent.canvasWidget, canvasView: parent.canvasView)
         }
         
-        // Sends updates from UIView to SwiftUI
         func scrollViewDidZoom(_ scrollView: UIScrollView) {
             let zoom = parent.canvasView.zoomScale
             let canvasViewSize = parent.canvasView.frame.size

@@ -8,7 +8,6 @@
 import SwiftUI
 import FirebaseAnalytics
 
-// Displays view to create new form
 struct NewFormView: View {
     
     @FetchRequest(sortDescriptors: []) var forms: FetchedResults<Form>

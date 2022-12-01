@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// Displays a form with title and sections
 struct FormView: View {
     
     @EnvironmentObject var formModel: FormModel

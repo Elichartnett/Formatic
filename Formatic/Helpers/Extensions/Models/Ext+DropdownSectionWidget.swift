@@ -25,7 +25,6 @@ extension DropdownSectionWidget: Csv, Copyable {
                 lhs.position < rhs.position
             }
             
-            // For each dropdown, add a row
             for dropdownWidget in dropdownWidgets {
                 csvString += FormModel.formatAsCsv(section?.form?.title ?? "") + ","
                 csvString += FormModel.formatAsCsv(section?.title ?? "") + ","
@@ -43,7 +42,6 @@ extension DropdownSectionWidget: Csv, Copyable {
                 }).count) + ",\n"
             }
             
-            // Remove traling newline character (if csvString/values exist in dropdown)
             if csvString != "" {
                 csvString.remove(at: csvString.index(before: csvString.endIndex))
             }

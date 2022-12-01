@@ -8,7 +8,6 @@
 import SwiftUI
 import MapKit
 
-// Shows MapWidget annotations
 struct MapView: View {
     
     @ObservedObject var mapWidget: MapWidget

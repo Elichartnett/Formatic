@@ -46,7 +46,6 @@ struct ConfigureCanvasWidgetView: View {
                     }
                     .onChange(of: photoPickerItem) { newItem in
                         Task {
-                            // Retrieve selected asset in the form of Data
                             if let data = try? await newItem?.loadTransferable(type: Data.self) {
                                 pickerResult = data
                             }
