@@ -13,6 +13,7 @@ struct SectionView: View {
     @Environment(\.editMode) var editMode
     @EnvironmentObject var formModel: FormModel
     @FetchRequest var widgets: FetchedResults<Widget>
+    
     @ObservedObject var section: Section
     @Binding var locked: Bool
     var forPDF: Bool
@@ -36,64 +37,8 @@ struct SectionView: View {
                 .cornerRadius(10)
         }
         else {
-            // Display all widgets in section
             ForEach(widgets, id: \.self) { widget in
-                HStack {
-                    let widgetType: WidgetType = WidgetType.init(rawValue: widget.type!)!
-                    Group {
-                        switch widgetType {
-                        case .textFieldWidget:
-                            if let textFieldWidget = widget as? TextFieldWidget {
-                                TextFieldWidgetView(textFieldWidget: textFieldWidget, locked: $locked)
-                            }
-                            
-                        case .numberFieldWidget:
-                            let numberFieldWidget = widget as! NumberFieldWidget
-                            NumberFieldWidgetView(numberFieldWidget: numberFieldWidget, locked: $locked)
-                            
-                        case .dropdownSectionWidget:
-                            let dropdownSectionWidget = widget as! DropdownSectionWidget
-                            DropdownSectionWidgetView(dropdownSectionWidget: dropdownSectionWidget, locked: $locked)
-                            
-                            // Will be handled in section
-                        case .dropdownWidget:
-                            EmptyView()
-                            
-                        case .checkboxSectionWidget:
-                            let checkboxSectionWidget = widget as! CheckboxSectionWidget
-                            CheckboxSectionWidgetView(checkboxSectionWidget: checkboxSectionWidget, locked: $locked)
-                            
-                            // Will be handled in section
-                        case .checkboxWidget:
-                            EmptyView()
-                            
-                        case .mapWidget:
-                            let mapWidget = widget as! MapWidget
-                            MapWidgetView(mapWidget: mapWidget, locked: $locked, forPDF: forPDF)
-                            
-                        case .canvasWidget:
-                            let canvasWidget = widget as! CanvasWidget
-                            CanvasWidgetView(canvasWidget: canvasWidget, locked: $locked)
-                        }
-                    }
-                    .swipeActions {
-                        if !locked {
-                            Button {
-                                widget.delete()
-                            } label: {
-                                Label(Strings.deleteLabel, systemImage: Constants.trashIconName)
-                            }
-                            .tint(.red)
-                            
-                            Button {
-                                widget.initiateCopy()
-                            } label: {
-                                Label(Strings.copyLabel, systemImage: Constants.copyIconName)
-                            }
-                            .tint(.blue)
-                        }
-                    }
-                }
+                WidgetView(widget: widget, locked: $locked, forPDF: forPDF)
                 
                 if forPDF && widget != widgets[widgets.count - 1] {
                     Divider()

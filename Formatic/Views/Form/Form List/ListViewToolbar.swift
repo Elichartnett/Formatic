@@ -7,13 +7,12 @@
 
 import SwiftUI
 
-// Tool bar options for list of saved forms
 struct ListViewToolbar: View {
     
     @EnvironmentObject var formModel: FormModel
     
     @Binding var showNewFormView: Bool
-    @State var showSortMethodMenu: Bool
+    let showSortMethodMenu: Bool
     @Binding var sortMethod: SortMethod
     @Binding var showImportFormView: Bool
     @Binding var showSettingsMenu: Bool
@@ -27,7 +26,6 @@ struct ListViewToolbar: View {
             Button {
                 showNewFormView = true
             } label: {
-                
                 HStack {
                     Image(systemName: Constants.plusCircleIconName)
                     if !formModel.isPhone {

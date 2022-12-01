@@ -29,11 +29,7 @@ struct FormEditorView: View {
                     ToolbarItemGroup(placement: .keyboard) {
                         Spacer()
                         
-                        Button {
-                            FormModel.endEditing()
-                        } label: {
-                            Text(Strings.doneLabel)
-                        }
+                        EndEditingButton()
                     }
                 })
                 .sheet(isPresented: $showToggleLockView, onDismiss: {

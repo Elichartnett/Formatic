@@ -8,11 +8,11 @@
 import SwiftUI
 import FirebaseAnalytics
 
-// In new widget sheet to configure new NumberFieldWidget
 struct ConfigureNumberFieldWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
     @Environment(\.dismiss) var dismiss
+    
     @Binding var title: String
     @State var section: Section
     @State var number: String = ""

@@ -13,6 +13,7 @@ struct CanvasWidgetView: View {
     @EnvironmentObject var formModel: FormModel
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.editMode) var editMode
+    
     @ObservedObject var canvasWidget: CanvasWidget
     @Binding var locked: Bool
     @State var title: String
@@ -81,40 +82,6 @@ struct CanvasWidgetView: View {
                     .padding(.leading)
                     .WidgetFrameStyle(height: .large)
                 }
-                .onChange(of: colorScheme, perform: { _ in
-                    do {
-                        let canvasView = PKCanvasView()
-                        let imageView = UIImageView()
-                        let width = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) - 100
-                        
-                        if canvasWidget.pkDrawing != nil {
-                            canvasView.drawing = try PKDrawing(data: canvasWidget.pkDrawing ?? Data())
-                        }
-                        
-                        canvasView.frame = CGRect(origin: .zero, size: CGSize(width: width, height: width))
-                        canvasView.isOpaque = false
-                        canvasView.backgroundColor = .clear
-                        canvasView.minimumZoomScale = 1
-                        canvasView.maximumZoomScale = 5
-                        
-                        imageView.frame = CGRect(origin: .zero, size: canvasView.frame.size)
-                        imageView.contentMode = .scaleAspectFit
-                        imageView.image = UIImage(data: canvasWidget.image ?? Data())
-                        imageView.backgroundColor = .secondaryBackground
-                        
-                        canvasView.addSubview(imageView)
-                        canvasView.sendSubviewToBack(imageView)
-                        
-                        // Add picker
-                        canvasView.becomeFirstResponder()
-                        
-                        CanvasWidget.updateWidgetViewPreview(canvasWidget: canvasWidget, canvasView: canvasView)
-                    }
-                    catch {
-                        alertTitle = Strings.updateCanvasWidgetViewPreviewErrorMessage
-                        showAlert = true
-                    }
-                })
                 
                 if !formModel.isPhone {
                     reconfigureButton

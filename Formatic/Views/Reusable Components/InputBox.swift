@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-// Standard text field
 struct InputBox: View {
     
     @EnvironmentObject var formModel: FormModel
     @FocusState var isFocused: Bool
+    
     @State var placeholder: String
     @Binding var text: String
     @State var inputType: InputType

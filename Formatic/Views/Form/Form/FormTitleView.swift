@@ -12,7 +12,6 @@ struct FormTitleView: View {
     @ObservedObject var form: Form
     @State var formTitle: String
     @FocusState var formTitleIsFocused: Bool
-    @State var lastValidTitle = ""
     @State var showAlert = false
     @State var alertTitle = ""
     
@@ -26,24 +25,14 @@ struct FormTitleView: View {
         VStack {
             
             TextField(Strings.formTitleLabel, text: $formTitle)
-                .font(.largeTitle.weight(.bold))
+                .font(.largeTitle)
+                .bold()
                 .focused($formTitleIsFocused)
                 .onAppear {
                     formTitle = form.title ?? ""
-                    lastValidTitle = formTitle
                 }
                 .onChange(of: formTitle) { _ in
-                    if !formTitle.isEmpty {
-                        form.title = formTitle
-                        lastValidTitle = formTitle
-                    }
-                }
-                .onChange(of: formTitleIsFocused) { _ in
-                    if !formTitleIsFocused && formTitle.isEmpty {
-                        alertTitle = Strings.emptyFormTitleErrorMessage
-                        showAlert = true
-                        formTitle = lastValidTitle
-                    }
+                    form.title = formTitle
                 }
             
             Rectangle()

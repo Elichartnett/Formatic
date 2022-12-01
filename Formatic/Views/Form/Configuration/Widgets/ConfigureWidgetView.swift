@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// Sheet to configure new widget
 struct ConfigureWidgetView: View {
     
     let newWidgetType: WidgetType

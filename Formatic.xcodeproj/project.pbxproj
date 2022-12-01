@@ -32,6 +32,7 @@
 		622A99CD281E03B700BB5E12 /* Widget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622A99CB281E03B700BB5E12 /* Widget+CoreDataProperties.swift */; };
 		622A99D0281E053C00BB5E12 /* DropdownWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622A99CE281E053C00BB5E12 /* DropdownWidget+CoreDataClass.swift */; };
 		622A99DC281E0C5000BB5E12 /* Form+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622A99DA281E0C5000BB5E12 /* Form+CoreDataClass.swift */; };
+		62315046293413CC00634E89 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62315045293413CC00634E89 /* WidgetView.swift */; };
 		6244311F281A130000E21B11 /* DataControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6244311E281A130000E21B11 /* DataControllerModel.swift */; };
 		62443122281A13A400E21B11 /* UTMConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 62443121281A13A400E21B11 /* UTMConversion */; };
 		6244314F281A152A00E21B11 /* CanvasWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62443139281A152A00E21B11 /* CanvasWidget+CoreDataClass.swift */; };
@@ -73,27 +74,27 @@
 		62AC488D293170FF00B4DB4B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC488C293170FF00B4DB4B /* Constants.swift */; };
 		62AC488F2931A3C800B4DB4B /* EndEditingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC488E2931A3C800B4DB4B /* EndEditingButton.swift */; };
 		62AC48932931ABAC00B4DB4B /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48922931ABAC00B4DB4B /* Labels.swift */; };
-		62AC489629327FFD00B4DB4B /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC489529327FFD00B4DB4B /* Extension+String.swift */; };
-		62AC48982932801000B4DB4B /* Extension+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48972932801000B4DB4B /* Extension+View.swift */; };
-		62AC489A2932801F00B4DB4B /* Extension+PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48992932801F00B4DB4B /* Extension+PreviewProvider.swift */; };
-		62AC489C2932802D00B4DB4B /* Extension+UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC489B2932802D00B4DB4B /* Extension+UTType.swift */; };
-		62AC489E2932803C00B4DB4B /* Extension+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC489D2932803C00B4DB4B /* Extension+Data.swift */; };
-		62AC48A02932804B00B4DB4B /* Extension+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC489F2932804B00B4DB4B /* Extension+Image.swift */; };
-		62AC48A22932808300B4DB4B /* Extension+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48A12932808300B4DB4B /* Extension+Bundle.swift */; };
-		62AC48A42932809600B4DB4B /* Extension+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48A32932809600B4DB4B /* Extension+URL.swift */; };
-		62AC48A62932810A00B4DB4B /* Extension+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48A52932810A00B4DB4B /* Extension+Color.swift */; };
-		62AC48A82932812E00B4DB4B /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48A72932812E00B4DB4B /* Extension+UIColor.swift */; };
-		62AC48AA293281C400B4DB4B /* Extension+Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48A9293281C400B4DB4B /* Extension+Form.swift */; };
-		62AC48AC293281D300B4DB4B /* Extension+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48AB293281D300B4DB4B /* Extension+Section.swift */; };
-		62AC48AE293281DB00B4DB4B /* Extension+Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48AD293281DB00B4DB4B /* Extension+Widget.swift */; };
-		62AC48B0293281E600B4DB4B /* Extension+TextFieldWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48AF293281E600B4DB4B /* Extension+TextFieldWidget.swift */; };
-		62AC48B2293281FA00B4DB4B /* Extension+NumberFieldWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48B1293281FA00B4DB4B /* Extension+NumberFieldWidget.swift */; };
-		62AC48C02932960500B4DB4B /* Extension+DropdownSectionWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48BF2932960500B4DB4B /* Extension+DropdownSectionWidget.swift */; };
-		62AC48C22932964600B4DB4B /* Extension+DropdownWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48C12932964600B4DB4B /* Extension+DropdownWidget.swift */; };
-		62AC48C42932968100B4DB4B /* Extension+CheckboxSectionWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48C32932968100B4DB4B /* Extension+CheckboxSectionWidget.swift */; };
-		62AC48C7293296BE00B4DB4B /* Extension+CheckboxWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48C6293296BE00B4DB4B /* Extension+CheckboxWidget.swift */; };
-		62AC48C92932970300B4DB4B /* Extensions+MapWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48C82932970300B4DB4B /* Extensions+MapWidget.swift */; };
-		62AC48CC2932AFA700B4DB4B /* Extension+CanvasWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48CB2932AFA700B4DB4B /* Extension+CanvasWidget.swift */; };
+		62AC489629327FFD00B4DB4B /* Ext+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC489529327FFD00B4DB4B /* Ext+String.swift */; };
+		62AC48982932801000B4DB4B /* Ext+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48972932801000B4DB4B /* Ext+View.swift */; };
+		62AC489A2932801F00B4DB4B /* Ext+PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48992932801F00B4DB4B /* Ext+PreviewProvider.swift */; };
+		62AC489C2932802D00B4DB4B /* Ext+UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC489B2932802D00B4DB4B /* Ext+UTType.swift */; };
+		62AC489E2932803C00B4DB4B /* Ext+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC489D2932803C00B4DB4B /* Ext+Data.swift */; };
+		62AC48A02932804B00B4DB4B /* Ext+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC489F2932804B00B4DB4B /* Ext+Image.swift */; };
+		62AC48A22932808300B4DB4B /* Ext+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48A12932808300B4DB4B /* Ext+Bundle.swift */; };
+		62AC48A42932809600B4DB4B /* Ext+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48A32932809600B4DB4B /* Ext+URL.swift */; };
+		62AC48A62932810A00B4DB4B /* Ext+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48A52932810A00B4DB4B /* Ext+Color.swift */; };
+		62AC48A82932812E00B4DB4B /* Ext+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48A72932812E00B4DB4B /* Ext+UIColor.swift */; };
+		62AC48AA293281C400B4DB4B /* Ext+Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48A9293281C400B4DB4B /* Ext+Form.swift */; };
+		62AC48AC293281D300B4DB4B /* Ext+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48AB293281D300B4DB4B /* Ext+Section.swift */; };
+		62AC48AE293281DB00B4DB4B /* Ext+Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48AD293281DB00B4DB4B /* Ext+Widget.swift */; };
+		62AC48B0293281E600B4DB4B /* Ext+TextFieldWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48AF293281E600B4DB4B /* Ext+TextFieldWidget.swift */; };
+		62AC48B2293281FA00B4DB4B /* Ext+NumberFieldWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48B1293281FA00B4DB4B /* Ext+NumberFieldWidget.swift */; };
+		62AC48C02932960500B4DB4B /* Ext+DropdownSectionWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48BF2932960500B4DB4B /* Ext+DropdownSectionWidget.swift */; };
+		62AC48C22932964600B4DB4B /* Ext+DropdownWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48C12932964600B4DB4B /* Ext+DropdownWidget.swift */; };
+		62AC48C42932968100B4DB4B /* Ext+CheckboxSectionWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48C32932968100B4DB4B /* Ext+CheckboxSectionWidget.swift */; };
+		62AC48C7293296BE00B4DB4B /* Ext+CheckboxWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48C6293296BE00B4DB4B /* Ext+CheckboxWidget.swift */; };
+		62AC48C92932970300B4DB4B /* Ext+MapWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48C82932970300B4DB4B /* Ext+MapWidget.swift */; };
+		62AC48CC2932AFA700B4DB4B /* Ext+CanvasWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48CB2932AFA700B4DB4B /* Ext+CanvasWidget.swift */; };
 		62BFAC9528188B97006C8216 /* Form Container.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62BFAC9328188B97006C8216 /* Form Container.xcdatamodeld */; };
 		62D1B07829252EAA00712D85 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D1B07729252EAA00712D85 /* SettingsView.swift */; };
 		62D1B097292670C500712D85 /* EmailViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D1B096292670C500712D85 /* EmailViewRepresentable.swift */; };
@@ -150,6 +151,7 @@
 		622A99CB281E03B700BB5E12 /* Widget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		622A99CE281E053C00BB5E12 /* DropdownWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DropdownWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		622A99DA281E0C5000BB5E12 /* Form+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataClass.swift"; sourceTree = "<group>"; };
+		62315045293413CC00634E89 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
 		6244311E281A130000E21B11 /* DataControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataControllerModel.swift; sourceTree = "<group>"; };
 		62443139281A152A00E21B11 /* CanvasWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CanvasWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6244313A281A152A00E21B11 /* CanvasWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CanvasWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -193,27 +195,27 @@
 		62AC488C293170FF00B4DB4B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		62AC488E2931A3C800B4DB4B /* EndEditingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndEditingButton.swift; sourceTree = "<group>"; };
 		62AC48922931ABAC00B4DB4B /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
-		62AC489529327FFD00B4DB4B /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
-		62AC48972932801000B4DB4B /* Extension+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+View.swift"; sourceTree = "<group>"; };
-		62AC48992932801F00B4DB4B /* Extension+PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+PreviewProvider.swift"; sourceTree = "<group>"; };
-		62AC489B2932802D00B4DB4B /* Extension+UTType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UTType.swift"; sourceTree = "<group>"; };
-		62AC489D2932803C00B4DB4B /* Extension+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Data.swift"; sourceTree = "<group>"; };
-		62AC489F2932804B00B4DB4B /* Extension+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Image.swift"; sourceTree = "<group>"; };
-		62AC48A12932808300B4DB4B /* Extension+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Bundle.swift"; sourceTree = "<group>"; };
-		62AC48A32932809600B4DB4B /* Extension+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+URL.swift"; sourceTree = "<group>"; };
-		62AC48A52932810A00B4DB4B /* Extension+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Color.swift"; sourceTree = "<group>"; };
-		62AC48A72932812E00B4DB4B /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
-		62AC48A9293281C400B4DB4B /* Extension+Form.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Form.swift"; sourceTree = "<group>"; };
-		62AC48AB293281D300B4DB4B /* Extension+Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Section.swift"; sourceTree = "<group>"; };
-		62AC48AD293281DB00B4DB4B /* Extension+Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Widget.swift"; sourceTree = "<group>"; };
-		62AC48AF293281E600B4DB4B /* Extension+TextFieldWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+TextFieldWidget.swift"; sourceTree = "<group>"; };
-		62AC48B1293281FA00B4DB4B /* Extension+NumberFieldWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NumberFieldWidget.swift"; sourceTree = "<group>"; };
-		62AC48BF2932960500B4DB4B /* Extension+DropdownSectionWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+DropdownSectionWidget.swift"; sourceTree = "<group>"; };
-		62AC48C12932964600B4DB4B /* Extension+DropdownWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+DropdownWidget.swift"; sourceTree = "<group>"; };
-		62AC48C32932968100B4DB4B /* Extension+CheckboxSectionWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+CheckboxSectionWidget.swift"; sourceTree = "<group>"; };
-		62AC48C6293296BE00B4DB4B /* Extension+CheckboxWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+CheckboxWidget.swift"; sourceTree = "<group>"; };
-		62AC48C82932970300B4DB4B /* Extensions+MapWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+MapWidget.swift"; sourceTree = "<group>"; };
-		62AC48CB2932AFA700B4DB4B /* Extension+CanvasWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+CanvasWidget.swift"; sourceTree = "<group>"; };
+		62AC489529327FFD00B4DB4B /* Ext+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+String.swift"; sourceTree = "<group>"; };
+		62AC48972932801000B4DB4B /* Ext+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+View.swift"; sourceTree = "<group>"; };
+		62AC48992932801F00B4DB4B /* Ext+PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+PreviewProvider.swift"; sourceTree = "<group>"; };
+		62AC489B2932802D00B4DB4B /* Ext+UTType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UTType.swift"; sourceTree = "<group>"; };
+		62AC489D2932803C00B4DB4B /* Ext+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+Data.swift"; sourceTree = "<group>"; };
+		62AC489F2932804B00B4DB4B /* Ext+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+Image.swift"; sourceTree = "<group>"; };
+		62AC48A12932808300B4DB4B /* Ext+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+Bundle.swift"; sourceTree = "<group>"; };
+		62AC48A32932809600B4DB4B /* Ext+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+URL.swift"; sourceTree = "<group>"; };
+		62AC48A52932810A00B4DB4B /* Ext+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+Color.swift"; sourceTree = "<group>"; };
+		62AC48A72932812E00B4DB4B /* Ext+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIColor.swift"; sourceTree = "<group>"; };
+		62AC48A9293281C400B4DB4B /* Ext+Form.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+Form.swift"; sourceTree = "<group>"; };
+		62AC48AB293281D300B4DB4B /* Ext+Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+Section.swift"; sourceTree = "<group>"; };
+		62AC48AD293281DB00B4DB4B /* Ext+Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+Widget.swift"; sourceTree = "<group>"; };
+		62AC48AF293281E600B4DB4B /* Ext+TextFieldWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+TextFieldWidget.swift"; sourceTree = "<group>"; };
+		62AC48B1293281FA00B4DB4B /* Ext+NumberFieldWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+NumberFieldWidget.swift"; sourceTree = "<group>"; };
+		62AC48BF2932960500B4DB4B /* Ext+DropdownSectionWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+DropdownSectionWidget.swift"; sourceTree = "<group>"; };
+		62AC48C12932964600B4DB4B /* Ext+DropdownWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+DropdownWidget.swift"; sourceTree = "<group>"; };
+		62AC48C32932968100B4DB4B /* Ext+CheckboxSectionWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+CheckboxSectionWidget.swift"; sourceTree = "<group>"; };
+		62AC48C6293296BE00B4DB4B /* Ext+CheckboxWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+CheckboxWidget.swift"; sourceTree = "<group>"; };
+		62AC48C82932970300B4DB4B /* Ext+MapWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+MapWidget.swift"; sourceTree = "<group>"; };
+		62AC48CB2932AFA700B4DB4B /* Ext+CanvasWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+CanvasWidget.swift"; sourceTree = "<group>"; };
 		62BFAC9428188B97006C8216 /* Widget.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Widget.xcdatamodel; sourceTree = "<group>"; };
 		62D1B07729252EAA00712D85 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		62D1B096292670C500712D85 /* EmailViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewRepresentable.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				62294F0D281F61B900226AF1 /* SubmitButton.swift */,
 				627736FC28300F7D00F7B107 /* PhotoTaker.swift */,
 				62AC486A292EEA0100B4DB4B /* EditModeButton.swift */,
+				62A8C004292B3863005758BF /* ExportView.swift */,
 				62AC488A29315EA200B4DB4B /* ExportMenuButton.swift */,
 				62AC488E2931A3C800B4DB4B /* EndEditingButton.swift */,
 				62AC48922931ABAC00B4DB4B /* Labels.swift */,
@@ -309,7 +312,6 @@
 		6244311C281A12D400E21B11 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				62E7F87A282EE1E4004A95EF /* LocationManager.swift */,
 				62AC489429327FDA00B4DB4B /* Extensions */,
 				629886DA281B578800C34782 /* Enums.swift */,
 				62E3FAFF28DA13DD00F5FE2B /* ViewModifiers.swift */,
@@ -406,7 +408,6 @@
 				629886F0281B929600C34782 /* FormEditorView.swift */,
 				629886F8281C343500C34782 /* EditorViewToolbar.swift */,
 				62294F3A282580D900226AF1 /* ToggleLockView.swift */,
-				62A8C004292B3863005758BF /* ExportView.swift */,
 			);
 			path = "Form Editor";
 			sourceTree = "<group>";
@@ -425,6 +426,7 @@
 		62988706281C6BF000C34782 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				62315045293413CC00634E89 /* WidgetView.swift */,
 				62A8BFFA29297442005758BF /* TextField */,
 				62294F11281F8C2800226AF1 /* NumberFieldWidgetView.swift */,
 				62294F15281F8C4800226AF1 /* DropdownSectionWidgetView.swift */,
@@ -448,16 +450,16 @@
 			isa = PBXGroup;
 			children = (
 				62AC48CA293297DB00B4DB4B /* Models */,
-				62AC48972932801000B4DB4B /* Extension+View.swift */,
-				62AC48992932801F00B4DB4B /* Extension+PreviewProvider.swift */,
-				62AC489B2932802D00B4DB4B /* Extension+UTType.swift */,
-				62AC489529327FFD00B4DB4B /* Extension+String.swift */,
-				62AC489D2932803C00B4DB4B /* Extension+Data.swift */,
-				62AC489F2932804B00B4DB4B /* Extension+Image.swift */,
-				62AC48A52932810A00B4DB4B /* Extension+Color.swift */,
-				62AC48A72932812E00B4DB4B /* Extension+UIColor.swift */,
-				62AC48A12932808300B4DB4B /* Extension+Bundle.swift */,
-				62AC48A32932809600B4DB4B /* Extension+URL.swift */,
+				62AC48972932801000B4DB4B /* Ext+View.swift */,
+				62AC48992932801F00B4DB4B /* Ext+PreviewProvider.swift */,
+				62AC489B2932802D00B4DB4B /* Ext+UTType.swift */,
+				62AC489529327FFD00B4DB4B /* Ext+String.swift */,
+				62AC489D2932803C00B4DB4B /* Ext+Data.swift */,
+				62AC489F2932804B00B4DB4B /* Ext+Image.swift */,
+				62AC48A52932810A00B4DB4B /* Ext+Color.swift */,
+				62AC48A72932812E00B4DB4B /* Ext+UIColor.swift */,
+				62AC48A12932808300B4DB4B /* Ext+Bundle.swift */,
+				62AC48A32932809600B4DB4B /* Ext+URL.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -465,17 +467,17 @@
 		62AC48CA293297DB00B4DB4B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				62AC48A9293281C400B4DB4B /* Extension+Form.swift */,
-				62AC48AB293281D300B4DB4B /* Extension+Section.swift */,
-				62AC48AD293281DB00B4DB4B /* Extension+Widget.swift */,
-				62AC48AF293281E600B4DB4B /* Extension+TextFieldWidget.swift */,
-				62AC48B1293281FA00B4DB4B /* Extension+NumberFieldWidget.swift */,
-				62AC48BF2932960500B4DB4B /* Extension+DropdownSectionWidget.swift */,
-				62AC48C12932964600B4DB4B /* Extension+DropdownWidget.swift */,
-				62AC48C32932968100B4DB4B /* Extension+CheckboxSectionWidget.swift */,
-				62AC48C6293296BE00B4DB4B /* Extension+CheckboxWidget.swift */,
-				62AC48C82932970300B4DB4B /* Extensions+MapWidget.swift */,
-				62AC48CB2932AFA700B4DB4B /* Extension+CanvasWidget.swift */,
+				62AC48A9293281C400B4DB4B /* Ext+Form.swift */,
+				62AC48AB293281D300B4DB4B /* Ext+Section.swift */,
+				62AC48AD293281DB00B4DB4B /* Ext+Widget.swift */,
+				62AC48AF293281E600B4DB4B /* Ext+TextFieldWidget.swift */,
+				62AC48B1293281FA00B4DB4B /* Ext+NumberFieldWidget.swift */,
+				62AC48BF2932960500B4DB4B /* Ext+DropdownSectionWidget.swift */,
+				62AC48C12932964600B4DB4B /* Ext+DropdownWidget.swift */,
+				62AC48C32932968100B4DB4B /* Ext+CheckboxSectionWidget.swift */,
+				62AC48C6293296BE00B4DB4B /* Ext+CheckboxWidget.swift */,
+				62AC48C82932970300B4DB4B /* Ext+MapWidget.swift */,
+				62AC48CB2932AFA700B4DB4B /* Ext+CanvasWidget.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -571,6 +573,7 @@
 			children = (
 				629886E0281B8F1000C34782 /* FormModel.swift */,
 				6244311E281A130000E21B11 /* DataControllerModel.swift */,
+				62E7F87A282EE1E4004A95EF /* LocationManager.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -705,57 +708,58 @@
 			files = (
 				62A979BA28276E080067C0A3 /* DropdownSectionWidget+CoreDataProperties.swift in Sources */,
 				629886F3281B92AA00C34782 /* FormListView.swift in Sources */,
-				62AC48C02932960500B4DB4B /* Extension+DropdownSectionWidget.swift in Sources */,
-				62AC48982932801000B4DB4B /* Extension+View.swift in Sources */,
+				62AC48C02932960500B4DB4B /* Ext+DropdownSectionWidget.swift in Sources */,
+				62AC48982932801000B4DB4B /* Ext+View.swift in Sources */,
 				62294F3D282589CE00226AF1 /* PasswordView.swift in Sources */,
 				629886E6281B902800C34782 /* Section+CoreDataClass.swift in Sources */,
 				62294F3628231D5E00226AF1 /* FormTitleView.swift in Sources */,
-				62AC489C2932802D00B4DB4B /* Extension+UTType.swift in Sources */,
+				62AC489C2932802D00B4DB4B /* Ext+UTType.swift in Sources */,
 				629886FF281C4DBF00C34782 /* SectionView.swift in Sources */,
-				62AC489A2932801F00B4DB4B /* Extension+PreviewProvider.swift in Sources */,
-				62AC48AE293281DB00B4DB4B /* Extension+Widget.swift in Sources */,
+				62AC489A2932801F00B4DB4B /* Ext+PreviewProvider.swift in Sources */,
+				62AC48AE293281DB00B4DB4B /* Ext+Widget.swift in Sources */,
 				62E6AB4A281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift in Sources */,
 				62A8BFFC29297452005758BF /* TextFieldWidgetDetailView.swift in Sources */,
-				62AC48AC293281D300B4DB4B /* Extension+Section.swift in Sources */,
+				62AC48AC293281D300B4DB4B /* Ext+Section.swift in Sources */,
 				62443152281A152A00E21B11 /* NumberFieldWidget+CoreDataProperties.swift in Sources */,
 				62294F18281F8C6B00226AF1 /* CheckboxSectionWidgetView.swift in Sources */,
 				62FE6E6E28187058009D41FD /* Home.swift in Sources */,
 				62A979B628276D9C0067C0A3 /* DropdownWidget+CoreDataProperties.swift in Sources */,
 				62294F232821EB6500226AF1 /* ConfigureTextFieldWidgetView.swift in Sources */,
 				62294F2D2821EBF600226AF1 /* ConfigureMapWidgetView.swift in Sources */,
-				62AC48B2293281FA00B4DB4B /* Extension+NumberFieldWidget.swift in Sources */,
+				62AC48B2293281FA00B4DB4B /* Ext+NumberFieldWidget.swift in Sources */,
 				62E6AB47281E0ED6009F568B /* Form+CoreDataProperties.swift in Sources */,
 				62294F1A281F8C7700226AF1 /* MapWidgetView.swift in Sources */,
 				62D7FE992826B8AF00FAA815 /* CheckboxWidgetView.swift in Sources */,
 				629886F9281C343500C34782 /* EditorViewToolbar.swift in Sources */,
 				629886E1281B8F1000C34782 /* FormModel.swift in Sources */,
 				6298870A281C791400C34782 /* MapWidget+CoreDataProperties.swift in Sources */,
-				62AC48B0293281E600B4DB4B /* Extension+TextFieldWidget.swift in Sources */,
+				62AC48B0293281E600B4DB4B /* Ext+TextFieldWidget.swift in Sources */,
 				62294F12281F8C2800226AF1 /* NumberFieldWidgetView.swift in Sources */,
 				62443150281A152A00E21B11 /* CanvasWidget+CoreDataProperties.swift in Sources */,
-				62AC48A62932810A00B4DB4B /* Extension+Color.swift in Sources */,
+				62AC48A62932810A00B4DB4B /* Ext+Color.swift in Sources */,
 				62F8FE69282DAC9F005C8D73 /* MapView.swift in Sources */,
 				629886F1281B929600C34782 /* FormEditorView.swift in Sources */,
+				62315046293413CC00634E89 /* WidgetView.swift in Sources */,
 				62294F332822F0CC00226AF1 /* SectionTitleView.swift in Sources */,
 				62294F10281F8C1C00226AF1 /* TextFieldWidgetView.swift in Sources */,
 				6208345828283A2F00DF864F /* CheckboxWidget+CoreDataClass.swift in Sources */,
 				6250E9612831632D00E6E6A0 /* CanvasWidgetDetailView.swift in Sources */,
-				62AC48A02932804B00B4DB4B /* Extension+Image.swift in Sources */,
+				62AC48A02932804B00B4DB4B /* Ext+Image.swift in Sources */,
 				62D7D87B28F86623004C55C9 /* Strings.swift in Sources */,
 				62D1B0992926716F00712D85 /* EmailData.swift in Sources */,
 				62AC488F2931A3C800B4DB4B /* EndEditingButton.swift in Sources */,
 				627736FD28300F7D00F7B107 /* PhotoTaker.swift in Sources */,
-				62AC48C92932970300B4DB4B /* Extensions+MapWidget.swift in Sources */,
+				62AC48C92932970300B4DB4B /* Ext+MapWidget.swift in Sources */,
 				62A979C228277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift in Sources */,
 				622A99CD281E03B700BB5E12 /* Widget+CoreDataProperties.swift in Sources */,
 				6244314F281A152A00E21B11 /* CanvasWidget+CoreDataClass.swift in Sources */,
 				62E6AB4B281ECBEA009F568B /* TextFieldWidget+CoreDataProperties.swift in Sources */,
-				62AC48C42932968100B4DB4B /* Extension+CheckboxSectionWidget.swift in Sources */,
+				62AC48C42932968100B4DB4B /* Ext+CheckboxSectionWidget.swift in Sources */,
 				62294F252821EB7700226AF1 /* ConfigureNumberFieldWidgetView.swift in Sources */,
 				6244311F281A130000E21B11 /* DataControllerModel.swift in Sources */,
 				62D1B07829252EAA00712D85 /* SettingsView.swift in Sources */,
 				62A8C005292B3863005758BF /* ExportView.swift in Sources */,
-				62AC489629327FFD00B4DB4B /* Extension+String.swift in Sources */,
+				62AC489629327FFD00B4DB4B /* Ext+String.swift in Sources */,
 				62AC488D293170FF00B4DB4B /* Constants.swift in Sources */,
 				629886FC281C36F700C34782 /* FormView.swift in Sources */,
 				72F9420D28C82B3F001E8A2A /* Protocols.swift in Sources */,
@@ -766,7 +770,7 @@
 				62D1B097292670C500712D85 /* EmailViewRepresentable.swift in Sources */,
 				629886DB281B578800C34782 /* Enums.swift in Sources */,
 				62F8FE66282CA814005C8D73 /* AddAnnotationsView.swift in Sources */,
-				62AC489E2932803C00B4DB4B /* Extension+Data.swift in Sources */,
+				62AC489E2932803C00B4DB4B /* Ext+Data.swift in Sources */,
 				629886F7281C31C400C34782 /* ListViewToolbar.swift in Sources */,
 				62294F202821E83F00226AF1 /* ConfigureWidgetView.swift in Sources */,
 				62294F0E281F61B900226AF1 /* SubmitButton.swift in Sources */,
@@ -777,10 +781,10 @@
 				62443167281A1CA000E21B11 /* DropdownSectionWidget+CoreDataClass.swift in Sources */,
 				62E7F87D282EE713004A95EF /* DeveloperPreview.swift in Sources */,
 				62294F1E281F8CAA00226AF1 /* CanvasWidgetView.swift in Sources */,
-				62AC48C22932964600B4DB4B /* Extension+DropdownWidget.swift in Sources */,
+				62AC48C22932964600B4DB4B /* Ext+DropdownWidget.swift in Sources */,
 				62294F2B2821EBD900226AF1 /* ConfigureCheckboxSectionWidgetView.swift in Sources */,
 				62E7F87B282EE1E4004A95EF /* LocationManager.swift in Sources */,
-				62AC48C7293296BE00B4DB4B /* Extension+CheckboxWidget.swift in Sources */,
+				62AC48C7293296BE00B4DB4B /* Ext+CheckboxWidget.swift in Sources */,
 				62294F312821EC1300226AF1 /* ConfigureCanvasWidgetView.swift in Sources */,
 				62A979C028277BFF0067C0A3 /* CheckboxWidget+CoreDataProperties.swift in Sources */,
 				62A979C128277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift in Sources */,
@@ -788,19 +792,19 @@
 				62294F0C281F519C00226AF1 /* InputBox.swift in Sources */,
 				62988709281C791400C34782 /* MapWidget+CoreDataClass.swift in Sources */,
 				6250E9632831649C00E6E6A0 /* CanvasRepresentableView.swift in Sources */,
-				62AC48A42932809600B4DB4B /* Extension+URL.swift in Sources */,
+				62AC48A42932809600B4DB4B /* Ext+URL.swift in Sources */,
 				62BFAC9528188B97006C8216 /* Form Container.xcdatamodeld in Sources */,
-				62AC48A22932808300B4DB4B /* Extension+Bundle.swift in Sources */,
+				62AC48A22932808300B4DB4B /* Ext+Bundle.swift in Sources */,
 				62AC488B29315EA200B4DB4B /* ExportMenuButton.swift in Sources */,
 				629886E7281B902800C34782 /* Section+CoreDataProperties.swift in Sources */,
 				622A99D0281E053C00BB5E12 /* DropdownWidget+CoreDataClass.swift in Sources */,
 				62F8FE6B282DAD49005C8D73 /* MapWidgetDetailView.swift in Sources */,
-				62AC48AA293281C400B4DB4B /* Extension+Form.swift in Sources */,
+				62AC48AA293281C400B4DB4B /* Ext+Form.swift in Sources */,
 				62294F07281F4F5B00226AF1 /* NewFormView.swift in Sources */,
 				622A99CC281E03B700BB5E12 /* Widget+CoreDataClass.swift in Sources */,
-				62AC48CC2932AFA700B4DB4B /* Extension+CanvasWidget.swift in Sources */,
+				62AC48CC2932AFA700B4DB4B /* Ext+CanvasWidget.swift in Sources */,
 				62294F16281F8C4800226AF1 /* DropdownSectionWidgetView.swift in Sources */,
-				62AC48A82932812E00B4DB4B /* Extension+UIColor.swift in Sources */,
+				62AC48A82932812E00B4DB4B /* Ext+UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

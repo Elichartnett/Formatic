@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 extension Color {
+    
     static var primaryBackground: Color { Color(CustomColor.primaryBackground.rawValue) }
     
     static var secondaryBackground: Color { Color(CustomColor.secondaryBackground.rawValue) }

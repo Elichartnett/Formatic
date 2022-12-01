@@ -13,13 +13,13 @@ import CoreData
 public class TextFieldWidget: Widget, Decodable {
     
     init(title: String?, position: Int, text: String?) {
-        super.init(entityName: Constants.textFieldWidgetEntityName, context: DataControllerModel.shared.container.viewContext, title: title, position: position)
+        super.init(entityName: WidgetType.textFieldWidget.rawValue, context: DataControllerModel.shared.container.viewContext, title: title, position: position)
         self.type = WidgetType.textFieldWidget.rawValue
         self.text = text
     }
     
     required public init(from decoder: Decoder) throws {
-        super.init(entityName: Constants.textFieldWidgetEntityName, context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
+        super.init(entityName: WidgetType.textFieldWidget.rawValue, context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
         
         let textFieldWidgetContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()

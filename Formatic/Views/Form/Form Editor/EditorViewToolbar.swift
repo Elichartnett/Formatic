@@ -9,11 +9,11 @@ import SwiftUI
 import FirebaseAnalytics
 import UniformTypeIdentifiers
 
-// Tool bar options for editing a form
 struct EditorViewToolbar: View {
     
     @Environment(\.editMode) var editMode
     @EnvironmentObject var formModel: FormModel
+    
     @ObservedObject var form: Form
     @State var exportType: UTType?
     @Binding var showToggleLockView: Bool
@@ -23,57 +23,25 @@ struct EditorViewToolbar: View {
     var body: some View {
         
         HStack {
+            Spacer()
             
-            // Add section to form button
-            Button {
-                form.addToSections(Section(position: form.sections?.count ?? 0, title: nil))
-                Analytics.logEvent(Constants.analyticsCreateSectionEvent, parameters: nil)
-            } label: {
-                if formModel.isPhone {
-                    Image(systemName: Constants.plusCircleIconName)
-                }
-                else {
-                    HStack {
-                        Image(systemName: Constants.plusCircleIconName)
-                        Text(Strings.newSectionLabel)
-                    }
-                }
-            }
-            .frame(maxWidth: .infinity)
-            .disabled(form.locked)
+            addSectionButton
+                .disabled(form.locked)
             
-            // Lock and unlock form button
-            Button {
-                if form.locked || (!form.locked && form.password == nil) {
-                    showToggleLockView = true
-                }
-                else  {
-                    withAnimation {
-                        editMode?.wrappedValue = .inactive
-                    }
-                    form.locked = true
-                }
-            } label: {
-                let icon = Image(systemName: form.locked == true ? Constants.lockIconName : Constants.openLockIconName)
-                if formModel.isPhone {
-                    icon
-                }
-                else {
-                    HStack {
-                        icon
-                        Text(form.locked == true ? Strings.lockedLabel : Strings.unlockedLabel)
-                    }
-                }
-            }
-            .frame(maxWidth: .infinity)
+            Spacer()
             
-            // Enable edit mode to rearrange list of widgets
+            lockFormButton
+            
+            Spacer()
+            
             EditModeButton(onTap: {})
-            .disabled(form.locked)
+                .disabled(form.locked)
+            
+            Spacer()
             
             ExportMenuButton(exportType: $exportType, forms: [form])
-            .frame(maxWidth: .infinity)
             
+            Spacer()
         }
         .sheet(item: $exportType, content: { exportType in
             ExportView(forms: [form], exportType: $exportType)
@@ -82,10 +50,54 @@ struct EditorViewToolbar: View {
             Button(Strings.defaultAlertButtonDismissMessage, role: .cancel) {}
         })
     }
+    
+    var addSectionButton: some View {
+        Button {
+            form.addToSections(Section(position: form.sections?.count ?? 0, title: nil))
+            Analytics.logEvent(Constants.analyticsCreateSectionEvent, parameters: nil)
+        } label: {
+            let icon = Image(systemName: Constants.plusCircleIconName)
+            if formModel.isPhone {
+                icon
+            }
+            else {
+                HStack {
+                    icon
+                    Text(Strings.newSectionLabel)
+                }
+            }
+        }
+    }
+    
+    var lockFormButton: some View {
+        Button {
+            if form.locked || (!form.locked && form.password == nil) {
+                showToggleLockView = true
+            }
+            else  {
+                withAnimation {
+                    editMode?.wrappedValue = .inactive
+                }
+                form.locked = true
+            }
+        } label: {
+            let icon = Image(systemName: form.locked == true ? Constants.lockIconName : Constants.openLockIconName)
+            if formModel.isPhone {
+                icon
+            }
+            else {
+                HStack {
+                    icon
+                    Text(form.locked == true ? Strings.lockedLabel : Strings.unlockedLabel)
+                }
+            }
+        }
+    }
 }
 
 struct EditorViewToolbar_Previews: PreviewProvider {
     static var previews: some View {
         EditorViewToolbar(form: dev.form, showToggleLockView: .constant(false))
+            .environmentObject(FormModel())
     }
 }

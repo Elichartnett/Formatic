@@ -13,7 +13,7 @@ import UniformTypeIdentifiers
 struct FormListView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)], predicate: NSPredicate(format: Constants.predicateRecentlyDeletedEqualToFalse)) var forms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel
-        
+    
     @State var filteredForms = [Form]()
     @State var selectedForms = Set<Form>()
     @State var exportType: UTType?
@@ -82,7 +82,7 @@ struct FormListView: View {
                             showMultiSelectionToolbar = !isEmpty
                         }
                     })
-                    .onChange(of: forms.count, perform: { _ in
+                    .onChange(of: forms.count, perform: { _ in // Force list update - refresh bug when canceling search and adding form
                         filteredForms.removeAll()
                         for form in forms {
                             filteredForms.append(form)
@@ -102,6 +102,10 @@ struct FormListView: View {
                     })
                     .onChange(of: sortMethod, perform: { _ in
                         updateFilteredForms()
+                        filteredForms.removeAll()
+                        for form in forms {
+                            filteredForms.append(form)
+                        }
                     })
                     .overlay {
                         if filteredForms.isEmpty {
@@ -132,7 +136,9 @@ struct FormListView: View {
         .sheet(isPresented: $showSettingsMenu, content: {
             SettingsView()
         })
-        .sheet(isPresented: $showExportView, content: {
+        .sheet(isPresented: $showExportView, onDismiss: {
+            exportType = nil
+        }, content: {
             ExportView(forms: sortedSelectedForm, exportType: $exportType)
         })
         .fileImporter(isPresented: $showImportFormView, allowedContentTypes: [.form]) { result in
@@ -176,6 +182,7 @@ struct FormListView: View {
     var multiSelectionToolbar: some View {
         HStack {
             Spacer()
+            
             Button {
                 withAnimation {
                     for form in selectedForms {

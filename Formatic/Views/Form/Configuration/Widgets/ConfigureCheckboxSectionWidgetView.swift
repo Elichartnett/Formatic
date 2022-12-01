@@ -8,7 +8,6 @@
 import SwiftUI
 import FirebaseAnalytics
 
-// In new widget sheet to configure new CheckboxSectionWidget
 struct ConfigureCheckboxSectionWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
@@ -56,31 +55,10 @@ struct ConfigureCheckboxSectionWidgetView: View {
             
             Button {
                 if checkboxSectionWidget != nil {
-                    let existingArray = (checkboxSectionWidget?.checkboxWidgets as? Set<CheckboxWidget> ?? []).sorted { lhs, rhs in
-                        lhs.position < rhs.position
-                    }
-                    for checkbox in existingArray {
-                        checkboxSectionWidget?.removeFromCheckboxWidgets(checkbox)
-                    }
-                    for (index, localCheckbox) in localCheckboxes.enumerated() {
-                        checkboxSectionWidget?.addToCheckboxWidgets(CheckboxWidget(title: localCheckbox.title, position: index, checked: false, checkboxSectionWidget: checkboxSectionWidget))
-                    }
+                    updateExistingCheckboxSectionWidget()
                 }
                 else {
-                    // Create checkboxSectionWidget
-                    let checkboxSectionWidget = CheckboxSectionWidget(title: title, position: section.numberOfWidgets(), checkboxWidgets: nil)
-                    
-                    // Append checkboxes to checkboxSectionWidget
-                    for (index, localCheckbox) in localCheckboxes.enumerated() {
-                        let checkboxWidget = CheckboxWidget(title: localCheckbox.title, position: index, checked: false, checkboxSectionWidget: nil)
-                        checkboxSectionWidget.addToCheckboxWidgets(checkboxWidget)
-                    }
-                    
-                    // Append dropdownSectionWidget to form section
-                    withAnimation {
-                        section.addToWidgets(checkboxSectionWidget)
-                    }
-                    Analytics.logEvent(Constants.analyticsCreateCheckboxWidgetEvent, parameters: nil)
+                    createNewCheckboxSectionWidget()
                 }
                 dismiss()
             } label: {
@@ -90,25 +68,54 @@ struct ConfigureCheckboxSectionWidgetView: View {
         }
         .frame(maxHeight: .infinity)
         .onAppear {
-            // Load existing widget
-            if let numCheckboxSectionWidgetCheckboxes = checkboxSectionWidget?.checkboxWidgets?.count {
-                numCheckboxes = numCheckboxSectionWidgetCheckboxes
-                
-                var checkboxesArray: [CheckboxWidget] {
-                    let set = checkboxSectionWidget?.checkboxWidgets as? Set<CheckboxWidget> ?? []
-                    return set.sorted { lhs, rhs in
-                        lhs.position < rhs.position
-                    }
-                }
-                
-                for checkbox in checkboxesArray {
-                    localCheckboxes.append(LocalCheckboxWidget(title: checkbox.title ?? ""))
+           loadCheckboxSectionWidget()
+        }
+    }
+    
+    func loadCheckboxSectionWidget() {
+        if let numCheckboxSectionWidgetCheckboxes = checkboxSectionWidget?.checkboxWidgets?.count {
+            numCheckboxes = numCheckboxSectionWidgetCheckboxes
+            
+            var checkboxesArray: [CheckboxWidget] {
+                let set = checkboxSectionWidget?.checkboxWidgets as? Set<CheckboxWidget> ?? []
+                return set.sorted { lhs, rhs in
+                    lhs.position < rhs.position
                 }
             }
-            else {
-                localCheckboxes = [LocalCheckboxWidget()]
+            
+            for checkbox in checkboxesArray {
+                localCheckboxes.append(LocalCheckboxWidget(title: checkbox.title ?? ""))
             }
         }
+        else {
+            localCheckboxes = [LocalCheckboxWidget()]
+        }
+    }
+    
+    func updateExistingCheckboxSectionWidget() {
+        let existingArray = (checkboxSectionWidget?.checkboxWidgets as? Set<CheckboxWidget> ?? []).sorted { lhs, rhs in
+            lhs.position < rhs.position
+        }
+        for checkbox in existingArray {
+            checkboxSectionWidget?.removeFromCheckboxWidgets(checkbox)
+        }
+        for (index, localCheckbox) in localCheckboxes.enumerated() {
+            checkboxSectionWidget?.addToCheckboxWidgets(CheckboxWidget(title: localCheckbox.title, position: index, checked: false, checkboxSectionWidget: checkboxSectionWidget))
+        }
+    }
+    
+    func createNewCheckboxSectionWidget() {
+        let checkboxSectionWidget = CheckboxSectionWidget(title: title, position: section.numberOfWidgets(), checkboxWidgets: nil)
+        
+        for (index, localCheckbox) in localCheckboxes.enumerated() {
+            let checkboxWidget = CheckboxWidget(title: localCheckbox.title, position: index, checked: false, checkboxSectionWidget: nil)
+            checkboxSectionWidget.addToCheckboxWidgets(checkboxWidget)
+        }
+        
+        withAnimation {
+            section.addToWidgets(checkboxSectionWidget)
+        }
+        Analytics.logEvent(Constants.analyticsCreateCheckboxWidgetEvent, parameters: nil)
     }
 }
 

@@ -19,13 +19,11 @@ struct ExportMenuButton: View {
         
         Menu {
             
-            // Export to form
             if forms.count == 1 {
                 let form = forms[0]
                 ShareLink(item: form, preview: SharePreview(form.title ?? "Form"))
             }
             
-            // Export to PDF
             Button {
                 exportType = .pdf
             } label: {
@@ -35,7 +33,6 @@ struct ExportMenuButton: View {
                 }
             }
             
-            // Export to CSV
             Button {
                 exportType = .commaSeparatedText
             } label: {
@@ -62,5 +59,6 @@ struct ExportMenuButton: View {
 struct ExportMenuButton_Previews: PreviewProvider {
     static var previews: some View {
         ExportMenuButton(exportType: .constant(.form), forms: [dev.form])
+            .environmentObject(FormModel())
     }
 }

@@ -40,4 +40,24 @@ extension CanvasWidget: Csv, Copyable {
         canvasWidget.pkDrawing = canvasView.drawing.dataRepresentation()
         canvasWidget.widgetViewPreview = canvasView.drawing.image(from: CGRect(origin: .zero, size: canvasView.frame.size), scale: UIScreen.main.scale).pngData()
     }
+    
+    func setUpCanvas(canvasView: PKCanvasView, imageView: UIImageView, toolPicker: PKToolPicker? = nil, width: Double) {
+        canvasView.frame = CGRect(origin: .zero, size: CGSize(width: width, height: width))
+        canvasView.isOpaque = false
+        canvasView.backgroundColor = .clear
+        canvasView.minimumZoomScale = 1
+        canvasView.maximumZoomScale = 5
+        
+        imageView.frame = CGRect(origin: .zero, size: imageView.frame.size)
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(data: self.image ?? Data())
+        imageView.backgroundColor = .secondaryBackground
+        
+        canvasView.addSubview(imageView)
+        canvasView.sendSubviewToBack(imageView)
+        
+        canvasView.becomeFirstResponder()
+        toolPicker?.addObserver(canvasView)
+        toolPicker?.setVisible(true, forFirstResponder: canvasView)
+    }
 }

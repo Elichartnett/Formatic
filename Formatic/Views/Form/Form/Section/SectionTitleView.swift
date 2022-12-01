@@ -12,13 +12,13 @@ struct SectionTitleView: View {
     @ObservedObject var section: Section
     @Binding var locked: Bool
     @FocusState var sectionTitleIsFocused: Bool
+    @State var sectionTitle: String
+    @State var configureNewWidget = false
     @State var newWidgetType: WidgetType? {
         didSet {
             configureNewWidget = true
         }
     }
-    @State var sectionTitle: String
-    @State var configureNewWidget = false
     
     init(section: Section, locked: Binding<Bool>, sectionTitle: String) {
         self.section = section
@@ -28,42 +28,9 @@ struct SectionTitleView: View {
     
     var body: some View {
         
-        // Section title and add widget menu
         HStack {
             
-            Menu {
-                // Add TextFieldWidget to section
-                Button(Strings.textFieldLabel) {
-                    newWidgetType = .textFieldWidget
-                }
-                
-                // Add NumberFieldWidget to section
-                Button(Strings.numberFieldLabel) {
-                    newWidgetType = .numberFieldWidget
-                }
-                
-                // Add DropdownSectionWidget to section
-                Button(Strings.dropdownMenuLabel) {
-                    newWidgetType = .dropdownSectionWidget
-                }
-                
-                // Add CheckboxSectionWidget to section
-                Button(Strings.checkboxMenuLabel) {
-                    newWidgetType = .checkboxSectionWidget
-                }
-                
-                // Add MapWidget to section
-                Button(Strings.mapLabel) {
-                    newWidgetType = .mapWidget
-                }
-                
-                // Add CanvasWidget to section
-                Button(Strings.canvasLabel) {
-                    newWidgetType = .canvasWidget
-                }
-            } label: {
-                Image(systemName: Constants.plusCircleIconName)
-            }
+            addWidgetMenu
             
             TextField(Strings.sectionTitleLabel, text: $sectionTitle)
                 .focused($sectionTitleIsFocused)
@@ -77,6 +44,36 @@ struct SectionTitleView: View {
         .sheet(isPresented: $configureNewWidget) {
             ConfigureWidgetView(newWidgetType: newWidgetType!, section: section)
                 .textCase(.none)
+        }
+    }
+    
+    var addWidgetMenu: some View {
+        Menu {
+            Button(Strings.textFieldLabel) {
+                newWidgetType = .textFieldWidget
+            }
+            
+            Button(Strings.numberFieldLabel) {
+                newWidgetType = .numberFieldWidget
+            }
+            
+            Button(Strings.dropdownMenuLabel) {
+                newWidgetType = .dropdownSectionWidget
+            }
+            
+            Button(Strings.checkboxMenuLabel) {
+                newWidgetType = .checkboxSectionWidget
+            }
+            
+            Button(Strings.mapLabel) {
+                newWidgetType = .mapWidget
+            }
+            
+            Button(Strings.canvasLabel) {
+                newWidgetType = .canvasWidget
+            }
+        } label: {
+            Image(systemName: Constants.plusCircleIconName)
         }
     }
 }

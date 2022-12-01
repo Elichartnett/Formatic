@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// Standard submit button label
 struct SubmitButton: View {
     
     let buttonTitle: String = Strings.submitLabel

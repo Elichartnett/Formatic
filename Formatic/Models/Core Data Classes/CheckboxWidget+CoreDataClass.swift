@@ -13,14 +13,14 @@ import CoreData
 public class CheckboxWidget: Widget, Decodable {
     
     init(title: String?, position: Int, checked: Bool, checkboxSectionWidget: CheckboxSectionWidget?) {
-        super.init(entityName: Constants.checkboxWidgetEntityname, context: DataControllerModel.shared.container.viewContext, title: title, position: position)
+        super.init(entityName: WidgetType.checkboxWidget.rawValue, context: DataControllerModel.shared.container.viewContext, title: title, position: position)
         self.type = WidgetType.checkboxWidget.rawValue
         self.checked = checked
         self.checkboxSectionWidget = checkboxSectionWidget
     }
     
     required public init(from decoder: Decoder) throws {
-        super.init(entityName: Constants.checkboxWidgetEntityname, context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
+        super.init(entityName: WidgetType.checkboxWidget.rawValue, context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
 
         let checkboxWidgetContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()

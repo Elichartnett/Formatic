@@ -10,6 +10,7 @@ import SwiftUI
 struct NumberFieldWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
+    
     @ObservedObject var numberFieldWidget: NumberFieldWidget
     @Binding var locked: Bool
     @State var title: String
@@ -42,24 +43,7 @@ struct NumberFieldWidgetView: View {
                         numberFieldWidget.number = number
                     }
                     else {
-                        number.removeAll { character in
-                            !character.isNumber && character != "-" && character != "."
-                        }
-                        
-                        var decimalUsed = false
-                        for (index, character) in number.enumerated() {
-                            if character == "-" && index != 0 {
-                                number.remove(at: number.index(number.startIndex, offsetBy: index))
-                            }
-                            else if character == "." {
-                                if !decimalUsed {
-                                    decimalUsed = true
-                                }
-                                else {
-                                    number.remove(at: number.index(number.startIndex, offsetBy: index))
-                                }
-                            }
-                        }
+                        number.enforceNumberValidation()
                     }
                 }
         }

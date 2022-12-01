@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct Labels {
-    static var delete = Label(Strings.deleteLabel, systemImage: Constants.trashIconName)
-    
     static var copy = Label(Strings.copyLabel, systemImage: Constants.copyIconName)
+    
+    static var delete = Label(Strings.deleteLabel, systemImage: Constants.trashIconName)
 }

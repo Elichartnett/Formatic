@@ -8,14 +8,12 @@
 import Foundation
 import UniformTypeIdentifiers
 
-
 extension UTType: Identifiable {
+    
     public var id: UUID {
         return UUID()
     }
-}
-
-extension UTType {
+    
     static var form: UTType {
         UTType(filenameExtension: "form")!
     }

@@ -13,6 +13,7 @@ import MapKit
 struct AddAnnotationsView: View {
     
     @EnvironmentObject var formModel: FormModel
+    
     @ObservedObject var mapWidget: MapWidget
     @Binding var localCoordinateRegion: MKCoordinateRegion
     @Binding var coordinateType: CoordinateType
@@ -101,8 +102,9 @@ struct AddAnnotationsView: View {
                     }
                 }
                 .disabled(coordinateType == .latLon ? !(validLatitude && validLongitude) : coordinateType == .utm ? !(validEasting && validNorthing && validZone) : false)
-            }.animation(.default, value: coordinateType)
-                .padding(.vertical, 10)
+            }
+            .animation(.default, value: coordinateType)
+            .padding(.vertical, 10)
         }
     }
 }

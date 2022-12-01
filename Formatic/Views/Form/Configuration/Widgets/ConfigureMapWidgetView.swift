@@ -9,10 +9,11 @@ import SwiftUI
 import MapKit
 import FirebaseAnalytics
 
-// In new widget sheet to configure new MapWidget
 struct ConfigureMapWidgetView: View {
+    
     @EnvironmentObject var formModel: FormModel
     @Environment(\.dismiss) var dismiss
+    
     @State var mapWidget: MapWidget?
     @Binding var title: String
     @State var section: Section

@@ -14,7 +14,7 @@ import PencilKit
 public class CanvasWidget: Widget, Decodable {
     
     init(title: String?, position: Int, image: Data?, pkDrawing: Data?, widgetViewPreview: Data?) {
-        super.init(entityName: Constants.canvasWidgetEntityName, context: DataControllerModel.shared.container.viewContext, title: title, position: position)
+        super.init(entityName: WidgetType.canvasWidget.rawValue, context: DataControllerModel.shared.container.viewContext, title: title, position: position)
         self.type = WidgetType.canvasWidget.rawValue
         self.image = image
         self.pkDrawing = pkDrawing
@@ -22,7 +22,7 @@ public class CanvasWidget: Widget, Decodable {
     }
     
     required public init(from decoder: Decoder) throws {
-        super.init(entityName: Constants.canvasWidgetEntityName, context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
+        super.init(entityName: WidgetType.canvasWidget.rawValue, context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
         
         let canvasWidgetContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()

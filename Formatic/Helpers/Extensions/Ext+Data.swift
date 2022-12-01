@@ -9,6 +9,7 @@ import Foundation
 import FirebaseAnalytics
 
 extension Data {
+    
     func decodeToForm() throws {
         let decoder = JSONDecoder()
         do {

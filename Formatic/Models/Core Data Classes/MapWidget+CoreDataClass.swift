@@ -14,7 +14,7 @@ import UTMConversion
 public class MapWidget: Widget, Decodable {
     
     init(title: String?, position: Int, coordinateRegionCenterLat: Double, coordinateRegionCenterLon: Double, coordinateSpanLatDelta: Double, coordinateSpanLonDelta: Double) {
-        super.init(entityName: Constants.mapWidgetEntityName, context: DataControllerModel.shared.container.viewContext, title: title, position: position)
+        super.init(entityName: WidgetType.mapWidget.rawValue, context: DataControllerModel.shared.container.viewContext, title: title, position: position)
         self.type = WidgetType.mapWidget.rawValue
         self.coordinateRegionCenterLat = coordinateRegionCenterLat
         self.coordinateRegionCenterLon = coordinateRegionCenterLon
@@ -23,7 +23,7 @@ public class MapWidget: Widget, Decodable {
     }
     
     required public init(from decoder: Decoder) throws {
-        super.init(entityName: Constants.mapWidgetEntityName, context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
+        super.init(entityName: WidgetType.mapWidget.rawValue, context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
         
         let mapWidgetContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()

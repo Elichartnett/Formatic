@@ -10,6 +10,7 @@ import PencilKit
 struct CanvasRepresentable: UIViewRepresentable {
     
     @Environment(\.colorScheme) var colorScheme
+    
     @State var canvasWidget: CanvasWidget
     @State var canvasView: PKCanvasView = PKCanvasView()
     @State var imageView = UIImageView()
@@ -21,7 +22,6 @@ struct CanvasRepresentable: UIViewRepresentable {
     func makeUIView(context: Context) -> PKCanvasView {
         do {
             if let pkDrawingData = canvasWidget.pkDrawing {
-                // Load existing canvas
                 try canvasView.drawing = PKDrawing(data: pkDrawingData)
             }
         }
@@ -31,25 +31,8 @@ struct CanvasRepresentable: UIViewRepresentable {
                 showAlert = true
             }
         }
-        // Customize canvas
-        canvasView.frame = CGRect(origin: .zero, size: CGSize(width: width, height: width))
-        canvasView.isOpaque = false
-        canvasView.backgroundColor = .clear
-        canvasView.minimumZoomScale = 1
-        canvasView.maximumZoomScale = 5
-        
-        imageView.frame = CGRect(origin: .zero, size: canvasView.frame.size)
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(data: canvasWidget.image ?? Data())
-        imageView.backgroundColor = .secondaryBackground
-        
-        canvasView.addSubview(imageView)
-        canvasView.sendSubviewToBack(imageView)
-        
-        // Add picker
-        canvasView.becomeFirstResponder()
-        toolPicker.addObserver(canvasView)
-        toolPicker.setVisible(true, forFirstResponder: canvasView)
+
+        canvasWidget.setUpCanvas(canvasView: canvasView, imageView: imageView, toolPicker: toolPicker, width: width)
         
         canvasView.delegate = context.coordinator
         
