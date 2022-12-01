@@ -8,14 +8,8 @@
 import Foundation
 
 struct Constants {
-    static let textFieldWidgetEntityName = "TextFieldWidget"
-    static let numberFieldWidgetEntityName = "NumberFieldWidget"
-    static let dropdownSectionWidgetEntityName = "DropdownSectionWidget"
-    static let dropdownWidgetEntityName = "DropdownWidget"
-    static let checkboxSectionWidgetEntityName = "CheckboxSectionWidget"
-    static let checkboxWidgetEntityname = "CheckboxWidget"
-    static let mapWidgetEntityName = "MapWidget"
-    static let canvasWidgetEntityName = "CanvasWidget"
+    
+    static let stackSpacingConstant: CGFloat = 8
     
     static let sortDescriptorDateCreated = "dateCreated"
     static let sortDescriptorTitle = "title"
@@ -31,9 +25,7 @@ struct Constants {
     static let predicateRecentlyDeletedEqualToFalse = "recentlyDeleted == false"
     static let predicateRecentlyDeletedEqualToTrue = "recentlyDeleted == true"
     static let predicateTitleContainsAndRecentlyDeletedEqualTo = "title CONTAINS[cd] %@ AND \(Constants.predicateRecentlyDeletedEqualTo)"
-    
-    static let stackSpacingConstant: CGFloat = 8
-    
+        
     static let formsIconName = "doc.on.doc"
     static let settingsIconName = "gearshape"
     static let trashIconName = "trash"

@@ -10,6 +10,7 @@ import UIKit
 import SwiftUI
 
 extension UIColor {
+    
     static var primaryBackground: UIColor { UIColor(Color.primaryBackground) }
     
     static var secondaryBackground: UIColor { UIColor(Color.secondaryBackground) }

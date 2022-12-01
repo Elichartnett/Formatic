@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 extension View {
+    
     func titleFrameStyle(locked: Binding<Bool>) -> some View { modifier(TitleFrame(locked: locked)) }
     
     func WidgetFrameStyle(isFocused: Bool = false, height: WidgetViewHeight = .regular) -> some View {

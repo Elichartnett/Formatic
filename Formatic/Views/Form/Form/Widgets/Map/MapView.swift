@@ -26,7 +26,6 @@ struct MapView: View {
         Map(coordinateRegion: $localCoordinateRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(.none), annotationItems: annotations) { annotation in
             MapMarker(coordinate: CLLocationCoordinate2D(latitude: annotation.latitude, longitude: annotation.longitude))
         }
-        .ignoresSafeArea()
         .onAppear {
             let manager = CLLocationManager()
             switch manager.authorizationStatus {
@@ -44,6 +43,7 @@ struct MapView: View {
                 fatalError("Unkown default")
             }
         }
+        .ignoresSafeArea()
     }
 }
 

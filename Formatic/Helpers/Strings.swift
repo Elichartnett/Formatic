@@ -8,7 +8,6 @@
 import Foundation
 
 struct Strings {
-    static let sortMethodUserDefaultsKey = "sortMethod"
     
     static let baseCSVColumns = String(localized: "baseCSVColumns")
     static let mapCSVColumns = String(localized: "mapCSVColumns")
@@ -23,10 +22,8 @@ struct Strings {
     static let copyFormErrorMessage = String(localized: "copyFormErrorMessage")
     static let importFormErrorMessage = String(localized: "importFormErrorMessage")
     static let exportFormErrorMessage = String(localized: "exportFormErrorMessage")
-    static let emptyFormTitleErrorMessage = String(localized: "emptyFormTitleErrorMessage")
     static let formPasswordDoesNotMatchErrorMessage = String(localized: "formPasswordDoesNotMatchErrorMessage")
     static let importCanvasErrorMessage = String(localized: "importCanvasErrorMessage")
-    static let updateCanvasWidgetViewPreviewErrorMessage = String(localized: "updateCanvasWidgetViewPreviewErrorMessage")
     static let noSearchResultsMessage = String(localized: "noSearchResultsMessage")
     static let noFormDataErrorMessage = String(localized: "noFormDataErrorMessage")
     
@@ -74,7 +71,7 @@ struct Strings {
     
     static let numberFieldLabel = String(localized: "numberFieldLabel")
     static let numberLabel = String(localized: "numberLabel")
-        
+    
     static let dropdownMenuLabel = String(localized: "dropdownMenuLabel")
     static let numberOfDropdownOptionsLabel = String(localized: "numberOfDropdownOptionsLabel")
     

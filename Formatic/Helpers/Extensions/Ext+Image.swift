@@ -9,5 +9,6 @@ import Foundation
 import SwiftUI
 
 extension Image {
+    
     func customIcon() -> some View { self.foregroundColor(.blue) }
 }

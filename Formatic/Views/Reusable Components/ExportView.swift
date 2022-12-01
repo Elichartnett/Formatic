@@ -13,6 +13,7 @@ import FirebaseAnalytics
 struct ExportView: View {
     
     @EnvironmentObject var formModel: FormModel
+    
     let forms: [Form]
     @Binding var exportType: UTType?
     @State var generatedFileURL: URL?

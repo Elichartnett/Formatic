@@ -10,6 +10,7 @@ import SwiftUI
 struct TextFieldWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
+    
     @ObservedObject var textFieldWidget: TextFieldWidget
     @Binding var locked: Bool
     @FocusState var isFocused: Bool
@@ -46,6 +47,7 @@ struct TextFieldWidgetView: View {
             }
             .frame(maxWidth: .infinity)
         }
+        // Manually setting list row inset to 0 for bug where divider does not go all the way across row
             .alignmentGuide(.listRowSeparatorLeading, computeValue: { viewDimensions in
                 return viewDimensions[.listRowSeparatorLeading]
             })

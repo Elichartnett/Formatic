@@ -14,6 +14,7 @@ struct TextFieldWidgetDetailView: View {
     @FocusState var isFocused: Bool
     
     var body: some View {
+        
         VStack {
             TextField(Strings.textLabel, text: $text, axis: .vertical)
                 .focused($isFocused)

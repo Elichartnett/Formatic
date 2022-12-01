@@ -8,6 +8,7 @@
 import Foundation
 
 extension URL {
+    
     func toData() throws -> Data {
         do {
             _ = self.startAccessingSecurityScopedResource()

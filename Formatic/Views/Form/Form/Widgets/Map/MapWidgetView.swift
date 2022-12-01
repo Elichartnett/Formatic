@@ -8,11 +8,11 @@
 import SwiftUI
 import MapKit
 
-// Preview of map shown in form section
 struct MapWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
     @Environment(\.editMode) var editMode
+    
     @ObservedObject var mapWidget: MapWidget
     @Binding var locked: Bool
     @State var title: String
@@ -20,6 +20,7 @@ struct MapWidgetView: View {
     @State var widgetViewPreviewSize = CGSize.zero
     @State var localCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.0902, longitude: -95.7129), span: MKCoordinateSpan(latitudeDelta: 90, longitudeDelta: 90))
     var forPDF: Bool
+    @State var showReconfigureButton = false
     
     init(mapWidget: MapWidget, locked: Binding<Bool>, forPDF: Bool) {
         self.mapWidget = mapWidget
@@ -41,7 +42,6 @@ struct MapWidgetView: View {
                     .opacity(editMode?.wrappedValue == .active ? 1 : 0)
             }
                 .disabled(editMode?.wrappedValue == .inactive)
-                .transition(.asymmetric(insertion: .push(from: .trailing), removal: .push(from: .leading)))
             
             Group {
                 

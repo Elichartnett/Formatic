@@ -8,6 +8,7 @@
 import Foundation
 
 extension Bundle {
+    
     var shortVersion: String {
         if let result = infoDictionary?["CFBundleShortVersionString"] as? String {
             return result

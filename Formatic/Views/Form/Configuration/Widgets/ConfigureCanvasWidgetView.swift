@@ -9,11 +9,11 @@ import SwiftUI
 import PhotosUI
 import FirebaseAnalytics
 
-// In new widget sheet to configure new CanvasWidget
 struct ConfigureCanvasWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
     @Environment(\.dismiss) var dismiss
+    
     @State var canvasWidget: CanvasWidget?
     @Binding var title: String
     @State var section: Section

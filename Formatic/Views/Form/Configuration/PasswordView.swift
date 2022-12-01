@@ -18,7 +18,6 @@ struct PasswordView: View {
         
         VStack {
             
-            // Optional form password
             InputBox(placeholder: Strings.optionalFormPasswordLabel, text: $password, inputType: .password)
                 .onChange(of: password) { _ in
                     withAnimation {
@@ -33,7 +32,6 @@ struct PasswordView: View {
                     }
                 }
             
-            // Confirm password if optional password is used on form
             if showPasswordConfirmation {
                 InputBox(placeholder: Strings.retypeFormPasswordLabel, text: $passwordConfirmation, inputType: .password)
                     .onChange(of: passwordConfirmation) { _ in

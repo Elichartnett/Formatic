@@ -8,11 +8,11 @@
 import SwiftUI
 import FirebaseAnalytics
 
-// In new widget sheet to configure new DropdownSectionWidget
 struct ConfigureDropdownSectionWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
     @Environment(\.dismiss) var dismiss
+    
     @State var dropdownSectionWidget: DropdownSectionWidget?
     @State var localDropdowns: [LocalDropdownWidget] = []
     @Binding var title: String
@@ -26,16 +26,14 @@ struct ConfigureDropdownSectionWidgetView: View {
             Stepper(value: $numDropdowns, in: 1...10) {
                 HStack (spacing: 0) {
                     Text(Strings.numberOfDropdownOptionsLabel)
-                    Text("\(numDropdowns)")
+                    Text(numDropdowns.description)
                 }
             }
             .onChange(of: numDropdowns) { newVal in
                 withAnimation {
-                    // Number decreased - remove trailing boxes
                     if newVal < localDropdowns.count {
                         localDropdowns.removeSubrange(newVal..<localDropdowns.count)
                     }
-                    // Number increased - append more boxes
                     else {
                         let numToAdd = newVal - localDropdowns.count
                         for _ in 0..<numToAdd {
@@ -46,7 +44,6 @@ struct ConfigureDropdownSectionWidgetView: View {
             }
             
             ScrollView {
-                // Configure drop down options
                 ForEach($localDropdowns) { $localDropdown in
                     InputBox(placeholder: Strings.descriptionLabel, text: $localDropdown.title)
                 }
@@ -66,32 +63,9 @@ struct ConfigureDropdownSectionWidgetView: View {
             
             Button {
                 if dropdownSectionWidget != nil {
-                    let existingArray = (dropdownSectionWidget?.dropdownWidgets as? Set<DropdownWidget> ?? []).sorted { lhs, rhs in
-                        lhs.position < rhs.position
-                    }
-                    for dropownWidget in existingArray {
-                        dropdownSectionWidget?.removeFromDropdownWidgets(dropownWidget)
-                    }
-                    for (index, localDropdown) in localDropdowns.enumerated() {
-                        dropdownSectionWidget?.addToDropdownWidgets(DropdownWidget(title: localDropdown.title, position: index, dropdownSectionWidget: dropdownSectionWidget, selectedDropdownInverse: nil))
-                    }
+                    updateExistingDropdownSectionWidget()
                 } else {
-                    // Create dropdownSectionWidget
-                    dropdownSectionWidget = DropdownSectionWidget(title: title, position: section.numberOfWidgets(), selectedDropdown: nil, dropdownWidgets: nil)
-                    
-                    // Append dropdown options to dropdownSectionWidget
-                    for (index, localDropdown) in localDropdowns.enumerated() {
-                        if !localDropdown.title.isEmpty {
-                            let dropdownWidget = DropdownWidget(title: localDropdown.title, position: index, dropdownSectionWidget: dropdownSectionWidget, selectedDropdownInverse: nil)
-                            dropdownSectionWidget!.addToDropdownWidgets(dropdownWidget)
-                        }
-                    }
-                    
-                    // Append dropdownSectionWidget to form section
-                    withAnimation {
-                        section.addToWidgets(dropdownSectionWidget!)
-                    }
-                    Analytics.logEvent(Constants.analyticsCreateDropdownWidgetEvent, parameters: nil)
+                    createNewDropdownSectionWidget()
                 }
                 dismiss()
             } label: {
@@ -102,25 +76,55 @@ struct ConfigureDropdownSectionWidgetView: View {
         }
         .frame(maxHeight: .infinity)
         .onAppear {
-            // Load existing widget
-            if let numDropdownSectionWidgetDropdowns = dropdownSectionWidget?.dropdownWidgets?.count {
-                numDropdowns = numDropdownSectionWidgetDropdowns
-                
-                var dropdownsArray: [DropdownWidget] {
-                    let set = dropdownSectionWidget?.dropdownWidgets as? Set<DropdownWidget> ?? []
-                    return set.sorted { lhs, rhs in
-                        lhs.position < rhs.position
-                    }
-                }
-                
-                for dropdown in dropdownsArray {
-                    localDropdowns.append(LocalDropdownWidget(title: dropdown.title ?? ""))
+            loadDropdownSectionWidget()
+        }
+    }
+    
+    func loadDropdownSectionWidget() {
+        if let numDropdownSectionWidgetDropdowns = dropdownSectionWidget?.dropdownWidgets?.count {
+            numDropdowns = numDropdownSectionWidgetDropdowns
+            
+            var dropdownsArray: [DropdownWidget] {
+                let set = dropdownSectionWidget?.dropdownWidgets as? Set<DropdownWidget> ?? []
+                return set.sorted { lhs, rhs in
+                    lhs.position < rhs.position
                 }
             }
-            else {
-                localDropdowns = [LocalDropdownWidget()]
+            
+            for dropdown in dropdownsArray {
+                localDropdowns.append(LocalDropdownWidget(title: dropdown.title ?? ""))
             }
         }
+        else {
+            localDropdowns = [LocalDropdownWidget()]
+        }
+    }
+    func updateExistingDropdownSectionWidget() {
+        let existingArray = (dropdownSectionWidget?.dropdownWidgets as? Set<DropdownWidget> ?? []).sorted { lhs, rhs in
+            lhs.position < rhs.position
+        }
+        for dropownWidget in existingArray {
+            dropdownSectionWidget?.removeFromDropdownWidgets(dropownWidget)
+        }
+        for (index, localDropdown) in localDropdowns.enumerated() {
+            dropdownSectionWidget?.addToDropdownWidgets(DropdownWidget(title: localDropdown.title, position: index, dropdownSectionWidget: dropdownSectionWidget, selectedDropdownInverse: nil))
+        }
+    }
+    
+    func createNewDropdownSectionWidget() {
+        dropdownSectionWidget = DropdownSectionWidget(title: title, position: section.numberOfWidgets(), selectedDropdown: nil, dropdownWidgets: nil)
+        
+        for (index, localDropdown) in localDropdowns.enumerated() {
+            if !localDropdown.title.isEmpty {
+                let dropdownWidget = DropdownWidget(title: localDropdown.title, position: index, dropdownSectionWidget: dropdownSectionWidget, selectedDropdownInverse: nil)
+                dropdownSectionWidget!.addToDropdownWidgets(dropdownWidget)
+            }
+        }
+        
+        withAnimation {
+            section.addToWidgets(dropdownSectionWidget!)
+        }
+        Analytics.logEvent(Constants.analyticsCreateDropdownWidgetEvent, parameters: nil)
     }
 }
 

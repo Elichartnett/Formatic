@@ -11,6 +11,7 @@ struct EditModeButton: View {
     
     @Environment(\.editMode) var editMode
     @EnvironmentObject var formModel: FormModel
+    
     let onTap: () -> ()
     
     var body: some View {

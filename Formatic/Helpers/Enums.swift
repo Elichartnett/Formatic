@@ -7,7 +7,6 @@
 
 import Foundation
 
-// InputBox input types
 enum InputType {
     case text
     case number
@@ -26,7 +25,6 @@ enum WidgetTypeKey: CodingKey {
     case type
 }
 
-// Widget types
 enum WidgetType: String, Decodable, Identifiable {
     
     var id: RawValue { rawValue }
@@ -41,7 +39,6 @@ enum WidgetType: String, Decodable, Identifiable {
     case canvasWidget = "CanvasWidget"
 }
 
-// Coordinate types
 enum CoordinateType: String, Identifiable, CaseIterable {
     
     var id: RawValue { rawValue}
@@ -51,7 +48,6 @@ enum CoordinateType: String, Identifiable, CaseIterable {
     case center = "Center"
 }
 
-// Image types
 enum SourceType: String, Identifiable {
     var id: Self { self }
     

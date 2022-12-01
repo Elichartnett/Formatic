@@ -8,7 +8,6 @@
 import SwiftUI
 import FirebaseAnalytics
 
-// View used in sheet to unlock or set up lock - not displayed to lock
 struct ToggleLockView: View {
     
     @Binding var showToggleLockView: Bool

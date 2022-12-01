@@ -12,6 +12,7 @@ import MessageUI
 struct EmailViewRepresentable: UIViewControllerRepresentable {
     
     @Environment(\.presentationMode) private var presentationMode
+    
     let emailData: EmailData
     var result: (Result<MFMailComposeResult, Error>) -> Void
     

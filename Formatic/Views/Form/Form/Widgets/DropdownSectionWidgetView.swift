@@ -12,6 +12,7 @@ struct DropdownSectionWidgetView: View {
     @Environment(\.editMode) var editMode
     @EnvironmentObject var formModel: FormModel
     @FetchRequest var dropdowns: FetchedResults<DropdownWidget>
+    
     @ObservedObject var dropdownSectionWidget: DropdownSectionWidget
     @Binding var locked: Bool
     @State var reconfigureWidget = false
@@ -53,27 +54,9 @@ struct DropdownSectionWidgetView: View {
                 
                 HStack {
                     
-                    Menu {
-                        ForEach(dropdowns) { widget in
-                            Button {
-                                dropdownSectionWidget.selectedDropdown = widget
-                            } label: {
-                                HStack {
-                                    Text(widget.title!)
-                                    Spacer()
-                                    if dropdownSectionWidget.selectedDropdown == widget {
-                                        Image(systemName: Constants.checkmarkIconName)
-                                    }
-                                }
-                            }
-                        }
-                    } label: {
-                        Text(Strings.dropdownMenuLabel)
-                            .foregroundColor(.blue)
-                    }
+                    dropDownMenuButton
                     
-                    Text(dropdownSectionWidget.selectedDropdown?.title! ?? Strings.noSelectionLabel)
-                    
+                    Text(dropdownSectionWidget.selectedDropdown?.title ?? Strings.noSelectionLabel)
                 }
                 .frame(maxWidth: .infinity)
                 .WidgetFrameStyle()
@@ -86,7 +69,7 @@ struct DropdownSectionWidgetView: View {
                 ConfigureDropdownSectionWidgetView(dropdownSectionWidget: dropdownSectionWidget, title: $title, section: dropdownSectionWidget.section!)
                     .padding()
             }
-            // Manually setting list row inset to 0 for divider bug
+            // Manually setting list row inset to 0 for bug where divider does not go all the way across row
             .alignmentGuide(.listRowSeparatorLeading, computeValue: { viewDimensions in
                 return viewDimensions[.listRowSeparatorLeading]
             })
@@ -101,6 +84,27 @@ struct DropdownSectionWidgetView: View {
             HStack(spacing: Constants.stackSpacingConstant) {
                 baseView
             }
+        }
+    }
+    
+    var dropDownMenuButton: some View {
+        Menu {
+            ForEach(dropdowns) { widget in
+                Button {
+                    dropdownSectionWidget.selectedDropdown = widget
+                } label: {
+                    HStack {
+                        Text(widget.title!)
+                        Spacer()
+                        if dropdownSectionWidget.selectedDropdown == widget {
+                            Image(systemName: Constants.checkmarkIconName)
+                        }
+                    }
+                }
+            }
+        } label: {
+            Text(Strings.dropdownMenuLabel)
+                .foregroundColor(.blue)
         }
     }
 }

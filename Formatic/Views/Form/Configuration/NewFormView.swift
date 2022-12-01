@@ -13,6 +13,7 @@ struct NewFormView: View {
     
     @FetchRequest(sortDescriptors: []) var forms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel
+    
     @Binding var showNewFormView: Bool
     @State var title = ""
     @State var password = ""
@@ -28,7 +29,6 @@ struct NewFormView: View {
             Text(Strings.newFormLabel)
                 .font(.title)
             
-            // Form title
             InputBox(placeholder: Strings.titleLabel, text: $title)
                 .alert(alertTitle, isPresented: $showAlert, actions: {
                     Button(Strings.defaultAlertButtonDismissMessage, role: .cancel) {}
@@ -36,7 +36,6 @@ struct NewFormView: View {
             
             PasswordView(validPassword: $validPassword, password: $password)
             
-            // Submit button - create form and set lock if optional password is used
             Button {
                 withAnimation {
                     let form = Form(title: title)

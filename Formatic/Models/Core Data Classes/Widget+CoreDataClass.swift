@@ -19,6 +19,10 @@ public class Widget: NSManagedObject, Encodable {
         self.position = Int16(position)
     }
     
+    private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+    }
+    
     public func encode(to encoder: Encoder) throws {
         var widgetContainer = encoder.container(keyedBy: CodingKeys.self)
         try widgetContainer.encode(position, forKey: .position)

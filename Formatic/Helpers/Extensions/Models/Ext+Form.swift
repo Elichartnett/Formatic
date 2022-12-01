@@ -77,7 +77,7 @@ extension Form: Codable, Identifiable, Transferable, Csv, Copyable {
 
         copy.locked = locked
         copy.password = password
-        copy.dateCreated = copy.dateCreated.addingTimeInterval(1)
+        copy.dateCreated = self.dateCreated.addingTimeInterval(1)
         
         let sectionsArray = sections?.sorted(by: { lhs, rhs in
             lhs.position < rhs.position
@@ -105,30 +105,53 @@ extension Form: Codable, Identifiable, Transferable, Csv, Copyable {
     }
     
     static func exportToPdf(forms: [Form]) -> Data {
-        // Get size for renderer
-        let pdfView = convertToScrollView(content: FormView(form: forms[0], forPDF: true).environment(\.managedObjectContext, DataControllerModel.shared.container.viewContext).environmentObject(FormModel()))
+        let documentData = NSMutableData()
+        UIGraphicsBeginPDFContextToData(documentData, .zero, nil)
+        
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return documentData as Data
+        }
+        
+        var pdfs = [Data]()
+        for form in forms {
+            pdfs.append(Form.convertFormToPdfPage(form: form))
+        }
+
+        for pdf in pdfs {
+                guard let dataProvider = CGDataProvider(data: pdf as CFData), let document = CGPDFDocument(dataProvider) else { continue }
+
+                for pageNumber in 1...document.numberOfPages {
+                    guard let page = document.page(at: pageNumber) else { continue }
+                    var mediaBox = page.getBoxRect(.mediaBox)
+                    context.beginPage(mediaBox: &mediaBox)
+                    context.drawPDFPage(page)
+                    context.endPage()
+                }
+            }
+
+            context.closePDF()
+            UIGraphicsEndPDFContext()
+        
+        return documentData as Data
+    }
+    
+    static func convertFormToPdfPage(form: Form) -> Data {
+        let pdfView = convertToScrollView(content: FormView(form: form, forPDF: true).environment(\.managedObjectContext, DataControllerModel.shared.container.viewContext).environmentObject(FormModel()))
+        pdfView.tag = 1009
         let size = pdfView.contentSize
+        pdfView.frame = CGRect(x: 0, y: getSafeArea().top, width: size.width, height: size.height)
+        
+        getRootController().view.insertSubview(pdfView, at: 0)
         
         let pdfRenderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-        let data = pdfRenderer.pdfData { context in
-
-            for form in forms {
-                context.beginPage()
-
-                let pdfView = convertToScrollView(content: FormView(form: form, forPDF: true).environment(\.managedObjectContext, DataControllerModel.shared.container.viewContext).environmentObject(FormModel()))
-                let size = pdfView.contentSize
-                pdfView.frame = CGRect(x: 0, y: getSafeArea().top, width: size.width, height: size.height)
-                pdfView.tag = 1009
-                
-                getRootController().view.insertSubview(pdfView, at: 0)
-                
-                pdfView.layer.render(in: context.cgContext)
-                
-                getRootController().view.subviews.forEach { view in
-                    if view.tag == 1009 {
-                        view.removeFromSuperview()
-                    }
-                }
+        let data = pdfRenderer.pdfData(actions: { context in
+            context.beginPage()
+            pdfView.layer.render(in: context.cgContext)
+        })
+        
+        getRootController().view.subviews.forEach { view in
+            if view.tag == 1009 {
+                view.removeFromSuperview()
             }
         }
         return data

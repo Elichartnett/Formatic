@@ -9,7 +9,9 @@ import Foundation
 import SwiftUI
 
 struct TitleFrame: ViewModifier {
+    
     @Binding var locked: Bool
+    
     func body(content: Content) -> some View {
         content
             .frame(width: 200, height: WidgetViewHeight.regular.rawValue)
@@ -18,9 +20,10 @@ struct TitleFrame: ViewModifier {
 }
 
 struct WidgetFrame: ViewModifier {
+    
     let isFocused: Bool
     let height: WidgetViewHeight
-
+    
     func body(content: Content) -> some View {
         let border = RoundedRectangle(cornerRadius: 10)
             .stroke(isFocused ? .blue : .secondary, lineWidth: 2)

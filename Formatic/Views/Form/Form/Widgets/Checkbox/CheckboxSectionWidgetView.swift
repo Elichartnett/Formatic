@@ -11,10 +11,10 @@ struct CheckboxSectionWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
     @FetchRequest var checkboxes: FetchedResults<CheckboxWidget>
-    @ObservedObject var checkboxSectionWidget: CheckboxSectionWidget
     @Environment(\.editMode) var editMode
-    @State var reconfigureWidget = false
     
+    @ObservedObject var checkboxSectionWidget: CheckboxSectionWidget
+    @State var reconfigureWidget = false
     @Binding var locked: Bool
     @State var title: String
     
@@ -64,7 +64,7 @@ struct CheckboxSectionWidgetView: View {
                 }
                 .WidgetFrameStyle(height: .adaptive)
                 .padding(.bottom, formModel.isPhone ? 6 : 0)
-
+                
                 if !formModel.isPhone && editMode?.wrappedValue == .active {
                     reconfigureButton
                 }

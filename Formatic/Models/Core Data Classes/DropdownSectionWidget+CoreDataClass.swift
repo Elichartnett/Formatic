@@ -13,14 +13,14 @@ import CoreData
 public class DropdownSectionWidget: Widget, Decodable {
     
     init(title: String?, position: Int, selectedDropdown: DropdownWidget?, dropdownWidgets: NSSet?) {
-        super.init(entityName: Constants.dropdownSectionWidgetEntityName, context: DataControllerModel.shared.container.viewContext, title: title, position: position)
+        super.init(entityName: WidgetType.dropdownSectionWidget.rawValue, context: DataControllerModel.shared.container.viewContext, title: title, position: position)
         self.type = WidgetType.dropdownSectionWidget.rawValue
         self.selectedDropdown = selectedDropdown
         self.dropdownWidgets = dropdownWidgets
     }
     
     required public init(from decoder: Decoder) throws {
-        super.init(entityName: Constants.dropdownSectionWidgetEntityName, context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
+        super.init(entityName: WidgetType.dropdownSectionWidget.rawValue, context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
         
         let dropdownSectionWidgetContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()
