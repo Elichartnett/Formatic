@@ -51,6 +51,12 @@ extension Form: Codable, Identifiable, Transferable, Csv, Copyable {
         CodableRepresentation(contentType: .form)
     }
     
+    func sortedSectionsArray() -> [Section] {
+        return sections?.sorted(by: { lhs, rhs in
+            lhs.position < rhs.position
+        }) ?? []
+    }
+    
     func delete() {
         DataControllerModel.shared.container.viewContext.delete(self)
         Analytics.logEvent(Constants.analyticsDeleteFormEvent, parameters: nil)
@@ -58,10 +64,7 @@ extension Form: Codable, Identifiable, Transferable, Csv, Copyable {
     
     func toCsv() -> String {
         var csvString = ""
-        let sections = (sections ?? []).sorted { lhs, rhs in
-            lhs.position < rhs.position
-        }
-        for section in sections {
+        for section in sortedSectionsArray() {
             csvString += section.toCsv()
             csvString += "\n\n"
         }
@@ -79,9 +82,7 @@ extension Form: Codable, Identifiable, Transferable, Csv, Copyable {
         copy.password = password
         copy.dateCreated = self.dateCreated.addingTimeInterval(1)
         
-        let sectionsArray = sections?.sorted(by: { lhs, rhs in
-            lhs.position < rhs.position
-        }) ?? []
+        let sectionsArray = sortedSectionsArray()
         for section in sectionsArray {
             let sectionCopy = section.createCopy() as! Section
             copy.addToSections(sectionCopy)

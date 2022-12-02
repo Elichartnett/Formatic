@@ -16,6 +16,7 @@ struct FormView: View {
     @ObservedObject var form: Form
     var forPDF: Bool
     @State var selectedWidgets = Set<Widget>()
+    @State var selectedSections = Set<Section>()
     
     init(form: Form, forPDF: Bool) {
         self._sections = FetchRequest<Section>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: Constants.predicateFormEqualTo, form))
@@ -42,12 +43,33 @@ struct FormView: View {
                             SectionView(section: section, locked: $form.locked, forPDF: forPDF)
                         } header: {
                             HStack {
+                                if editMode?.wrappedValue == .active {
+                                    Button {
+                                        withAnimation {
+                                            if selectedSections.contains(section) {
+                                                for widget in section.sortedWidgetsArray() {
+                                                    selectedWidgets.remove(widget)
+                                                }
+                                                selectedSections.remove(section)
+                                            }
+                                            else {
+                                                for widget in section.sortedWidgetsArray() {
+                                                    selectedWidgets.insert(widget)
+                                                }
+                                                selectedSections.insert(section)
+                                            }
+                                        }
+                                    } label: {
+                                        Image(systemName: selectedSections.contains(section) ? Constants.filledCircleCheckmarkIconName : Constants.circleIconName)
+                                    }
+                                }
+                                
                                 SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
                                 
-                                MultiSelectionToolBar(section: section, selectedWidgets: $selectedWidgets)
+                                MultiWidgetSelectionToolBar(section: section, selectedSections: $selectedSections, selectedWidgets: $selectedWidgets)
                                     .opacity(editMode?.wrappedValue == .active && (selectedWidgets.contains(where: { selectedWidget in
                                         section.widgets?.contains(selectedWidget) ?? false
-                                    })) ? 1 : 0)
+                                    }) || selectedSections.contains(section)) ? 1 : 0)
                                     .animation(.default, value: selectedWidgets.isEmpty)
                             }
                         }
@@ -55,6 +77,11 @@ struct FormView: View {
                     .scrollContentBackground(.hidden)
                     .scrollDismissesKeyboard(.interactively)
                     .background(Color.primaryBackground)
+                    .onChange(of: editMode?.wrappedValue) { mode in
+                        if mode == .inactive {
+                            selectedSections.removeAll()
+                        }
+                    }
                 }
                 else {
                     // ScrollView is used in place of list when exporting to pdf because it has a finite height so the full view can be rendered without scrolling. Modifiers added to make scrollview look like list
@@ -107,11 +134,12 @@ struct FormView_Previews: PreviewProvider {
     }
 }
 
-private struct MultiSelectionToolBar: View {
+private struct MultiWidgetSelectionToolBar: View {
     
     @Environment(\.editMode) var editMode
     
     let section: Section
+    @Binding var selectedSections: Set<Section>
     @Binding var selectedWidgets: Set<Widget>
     
     var body: some View {
@@ -119,12 +147,27 @@ private struct MultiSelectionToolBar: View {
         HStack {
             Button {
                 withAnimation {
-                    for widget in selectedWidgets {
-                        if section.widgets?.contains(widget) ?? false {
-                            widget.initiateCopy()
+                    if selectedSections.contains(section) {
+                        guard let sections = section.form?.sortedSectionsArray() else { return }
+                        
+                        let copy = section.createCopy() as! Section
+                        copy.position = section.position + 1
+                        
+                        for index in Int(copy.position)..<sections.count {
+                            sections[index].position += 1
+                        }
+                        
+                        copy.form = section.form
+                        selectedSections.remove(section)
+                    }
+                    else {
+                        for widget in section.sortedWidgetsArray() {
+                            if selectedWidgets.contains(widget) {
+                                widget.initiateCopy()
+                            }
                         }
                     }
-                    selectedWidgets.removeAll()
+                    removeAllWidgetsFromSelection()
                 }
             } label: {
                 Image(systemName: Constants.copyIconName)
@@ -133,17 +176,28 @@ private struct MultiSelectionToolBar: View {
             
             Button {
                 withAnimation {
-                    for widget in selectedWidgets {
-                        if section.widgets?.contains(widget) ?? false {
-                            widget.delete()
+                    if selectedSections.contains(section) {
+                        section.delete()
+                    }
+                    else {
+                        for widget in section.sortedWidgetsArray() {
+                            if selectedWidgets.contains(widget) {
+                                widget.delete()
+                            }
                         }
                     }
-                    selectedWidgets.removeAll()
+                    removeAllWidgetsFromSelection()
                 }
             } label: {
                 Image(systemName: Constants.trashIconName)
                     .foregroundColor(.red)
             }
+        }
+    }
+    
+    func removeAllWidgetsFromSelection() {
+        for widget in section.sortedWidgetsArray() {
+            selectedWidgets.remove(widget)
         }
     }
 }

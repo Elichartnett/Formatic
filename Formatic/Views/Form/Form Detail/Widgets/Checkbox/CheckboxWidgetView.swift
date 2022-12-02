@@ -23,7 +23,7 @@ struct CheckboxWidgetView: View {
                 }
             } label: {
                 if checkbox.checked {
-                    Image(systemName: Constants.filledCheckmarkIconName)
+                    Image(systemName: Constants.filledSquareCheckmarkIconName)
                 }
                 else {
                     Image(systemName: Constants.squareIconName)

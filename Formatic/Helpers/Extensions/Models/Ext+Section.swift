@@ -114,11 +114,9 @@ extension Section: Codable, Identifiable, Csv, Copyable {
     
     func createCopy() -> Any {
         let copy = Section(position: Int(position), title: title)
-        let widgetArray = widgets?.sorted(by: { lhs, rhs in
-            lhs.position < rhs.position
-        })
+        let widgetArray = self.sortedWidgetsArray()
         
-        for widget in widgetArray ?? [] {
+        for widget in widgetArray {
             let widgetType = WidgetType(rawValue: widget.type!)
             switch widgetType {
             case .textFieldWidget:

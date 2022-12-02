@@ -17,7 +17,7 @@ struct FormListView: View {
     @State var selectedForms = Set<Form>()
     @State var exportType: UTType?
     @State var showExportView = false
-    @State var showMultiSelectionToolbar = false
+    @State var showMultiWidgetSelectionToolBar = false
     @State var searchText = ""
     @State var showNewFormView = false
     @State var showImportFormView = false
@@ -37,8 +37,8 @@ struct FormListView: View {
         Group {
             if !forms.isEmpty {
                 VStack {
-                    if showMultiSelectionToolbar {
-                        multiSelectionToolbar
+                    if showMultiWidgetSelectionToolBar {
+                        multiWidgetSelectionToolBar
                             .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
                     }
                     
@@ -68,7 +68,7 @@ struct FormListView: View {
                     .searchable(text: $searchText, placement: .navigationBarDrawer)
                     .scrollDismissesKeyboard(.interactively)
                     .navigationDestination(for: Form.self, destination: { form in
-                        FormEditorView(form: form)
+                        FormDetailView(form: form)
                     })
                     .onAppear {
                         filteredForms.removeAll()
@@ -78,7 +78,7 @@ struct FormListView: View {
                     }
                     .onChange(of: selectedForms.isEmpty, perform: { isEmpty in
                         withAnimation {
-                            showMultiSelectionToolbar = !isEmpty
+                            showMultiWidgetSelectionToolBar = !isEmpty
                         }
                     })
                     .onChange(of: forms.count, perform: { _ in // Force list update - refresh bug when canceling search and adding form
@@ -178,7 +178,7 @@ struct FormListView: View {
         })
     }
     
-    var multiSelectionToolbar: some View {
+    var multiWidgetSelectionToolBar: some View {
         HStack {
             Spacer()
             
@@ -201,7 +201,7 @@ struct FormListView: View {
                     form.recentlyDeleted = true
                 }
                 selectedForms.removeAll()
-                showMultiSelectionToolbar = false
+                showMultiWidgetSelectionToolBar = false
             } label: {
                 Image(systemName: Constants.trashIconName)
                     .foregroundColor(.red)

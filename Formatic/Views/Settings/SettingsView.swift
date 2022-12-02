@@ -37,7 +37,7 @@ struct SettingsView: View {
                         
                         Spacer()
                         
-                        multiSelectionToolbar
+                        multiWidgetSelectionToolBar
                             .opacity(!selectedForms.isEmpty && expandRecentlyDeleted ? 1 : 0)
                             .animation(.default, value: selectedForms.isEmpty)
                     }
@@ -129,7 +129,7 @@ struct SettingsView: View {
         }
     }
     
-    var multiSelectionToolbar: some View {
+    var multiWidgetSelectionToolBar: some View {
         HStack {
             Image(systemName: Constants.plusIconName)
                 .customIcon()
