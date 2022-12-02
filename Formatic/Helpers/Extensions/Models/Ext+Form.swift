@@ -105,7 +105,7 @@ extension Form: Codable, Identifiable, Transferable, Csv, Copyable {
         }
     }
     
-    static func exportToPdf(forms: [Form]) -> Data {
+    static func exportToPDF(forms: [Form]) -> Data {
         let documentData = NSMutableData()
         UIGraphicsBeginPDFContextToData(documentData, .zero, nil)
         
@@ -196,7 +196,7 @@ extension Form: Codable, Identifiable, Transferable, Csv, Copyable {
         return safeArea
     }
     
-    static func exportToCsv(forms: [Form]) -> Data {
+    static func exportToCSV(forms: [Form]) -> Data {
         var csvString = Strings.baseCSVColumns + Strings.mapCSVColumns
         for form in forms {
             csvString.append(form.toCsv())

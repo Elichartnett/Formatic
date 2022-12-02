@@ -53,7 +53,8 @@ struct EditorViewToolbar: View {
     
     var addSectionButton: some View {
         Button {
-            form.addToSections(Section(position: form.sections?.count ?? 0, title: nil))
+            let section = Section(position: form.sections?.count ?? 0, title: nil)
+            form.addToSections(section)
             Analytics.logEvent(Constants.analyticsCreateSectionEvent, parameters: nil)
         } label: {
             let icon = Image(systemName: Constants.plusCircleIconName)

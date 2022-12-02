@@ -15,63 +15,64 @@ struct WidgetView: View {
     
     var body: some View {
         
-        HStack {
-            let widgetType: WidgetType = WidgetType.init(rawValue: widget.type!)!
-            Group {
-                switch widgetType {
-                case .textFieldWidget:
-                    if let textFieldWidget = widget as? TextFieldWidget {
-                        TextFieldWidgetView(textFieldWidget: textFieldWidget, locked: $locked)
+        if widget.type != nil, let widgetType: WidgetType = WidgetType.init(rawValue: widget.type!) {
+            HStack {
+                Group {
+                    switch widgetType {
+                    case .textFieldWidget:
+                        if let textFieldWidget = widget as? TextFieldWidget {
+                            TextFieldWidgetView(textFieldWidget: textFieldWidget, locked: $locked)
+                        }
+                        
+                    case .numberFieldWidget:
+                        let numberFieldWidget = widget as! NumberFieldWidget
+                        NumberFieldWidgetView(numberFieldWidget: numberFieldWidget, locked: $locked)
+                        
+                    case .dropdownSectionWidget:
+                        let dropdownSectionWidget = widget as! DropdownSectionWidget
+                        DropdownSectionWidgetView(dropdownSectionWidget: dropdownSectionWidget, locked: $locked)
+                        
+                        // Will be handled in section
+                    case .dropdownWidget:
+                        EmptyView()
+                        
+                    case .checkboxSectionWidget:
+                        let checkboxSectionWidget = widget as! CheckboxSectionWidget
+                        CheckboxSectionWidgetView(checkboxSectionWidget: checkboxSectionWidget, locked: $locked)
+                        
+                        // Will be handled in section
+                    case .checkboxWidget:
+                        EmptyView()
+                        
+                    case .mapWidget:
+                        let mapWidget = widget as! MapWidget
+                        MapWidgetView(mapWidget: mapWidget, locked: $locked, forPDF: forPDF)
+                        
+                    case .canvasWidget:
+                        let canvasWidget = widget as! CanvasWidget
+                        CanvasWidgetView(canvasWidget: canvasWidget, locked: $locked)
                     }
-                    
-                case .numberFieldWidget:
-                    let numberFieldWidget = widget as! NumberFieldWidget
-                    NumberFieldWidgetView(numberFieldWidget: numberFieldWidget, locked: $locked)
-                    
-                case .dropdownSectionWidget:
-                    let dropdownSectionWidget = widget as! DropdownSectionWidget
-                    DropdownSectionWidgetView(dropdownSectionWidget: dropdownSectionWidget, locked: $locked)
-                    
-                    // Will be handled in section
-                case .dropdownWidget:
-                    EmptyView()
-                    
-                case .checkboxSectionWidget:
-                    let checkboxSectionWidget = widget as! CheckboxSectionWidget
-                    CheckboxSectionWidgetView(checkboxSectionWidget: checkboxSectionWidget, locked: $locked)
-                    
-                    // Will be handled in section
-                case .checkboxWidget:
-                    EmptyView()
-                    
-                case .mapWidget:
-                    let mapWidget = widget as! MapWidget
-                    MapWidgetView(mapWidget: mapWidget, locked: $locked, forPDF: forPDF)
-                    
-                case .canvasWidget:
-                    let canvasWidget = widget as! CanvasWidget
-                    CanvasWidgetView(canvasWidget: canvasWidget, locked: $locked)
+                }
+                .swipeActions {
+                    if !locked {
+                        Button {
+                            widget.delete()
+                        } label: {
+                            Labels.delete
+                        }
+                        .tint(.red)
+                        
+                        Button {
+                            widget.initiateCopy()
+                        } label: {
+                            Labels.copy
+                        }
+                        .tint(.blue)
+                    }
                 }
             }
-            .swipeActions {
-                if !locked {
-                    Button {
-                        widget.delete()
-                    } label: {
-                        Labels.delete
-                    }
-                    .tint(.red)
-                    
-                    Button {
-                        widget.initiateCopy()
-                    } label: {
-                        Labels.copy
-                    }
-                    .tint(.blue)
-                }
-            }
-        }
 
+        }
     }
 }
 

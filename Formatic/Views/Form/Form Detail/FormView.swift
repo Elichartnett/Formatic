@@ -17,6 +17,7 @@ struct FormView: View {
     var forPDF: Bool
     @State var selectedWidgets = Set<Widget>()
     @State var selectedSections = Set<Section>()
+    @State var showToggleLockView = false
     
     init(form: Form, forPDF: Bool) {
         self._sections = FetchRequest<Section>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: Constants.predicateFormEqualTo, form))
@@ -38,49 +39,60 @@ struct FormView: View {
             }
             else {
                 if !forPDF {
-                    List(sections, selection: $selectedWidgets) { section in
-                        SwiftUI.Section {
-                            SectionView(section: section, locked: $form.locked, forPDF: forPDF)
-                        } header: {
-                            HStack {
-                                if editMode?.wrappedValue == .active {
-                                    Button {
-                                        withAnimation {
-                                            if selectedSections.contains(section) {
-                                                for widget in section.sortedWidgetsArray() {
-                                                    selectedWidgets.remove(widget)
+                    ScrollViewReader { scrollViewProxy in
+                        
+                        List(sections, id: \.id, selection: $selectedWidgets) { section in
+                            
+                            SwiftUI.Section {
+                                SectionView(section: section, locked: $form.locked, forPDF: forPDF)
+                            } header: {
+                                HStack {
+                                    if editMode?.wrappedValue == .active {
+                                        Button {
+                                            withAnimation {
+                                                if selectedSections.contains(section) {
+                                                    for widget in section.sortedWidgetsArray() {
+                                                        selectedWidgets.remove(widget)
+                                                    }
+                                                    selectedSections.remove(section)
                                                 }
-                                                selectedSections.remove(section)
-                                            }
-                                            else {
-                                                for widget in section.sortedWidgetsArray() {
-                                                    selectedWidgets.insert(widget)
+                                                else {
+                                                    for widget in section.sortedWidgetsArray() {
+                                                        selectedWidgets.insert(widget)
+                                                    }
+                                                    selectedSections.insert(section)
                                                 }
-                                                selectedSections.insert(section)
                                             }
+                                        } label: {
+                                            Image(systemName: selectedSections.contains(section) ? Constants.filledCircleCheckmarkIconName : Constants.circleIconName)
                                         }
-                                    } label: {
-                                        Image(systemName: selectedSections.contains(section) ? Constants.filledCircleCheckmarkIconName : Constants.circleIconName)
                                     }
+                                    
+                                    SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
+                                    
+                                    MultiWidgetSelectionToolBar(section: section, selectedSections: $selectedSections, selectedWidgets: $selectedWidgets)
+                                        .opacity(editMode?.wrappedValue == .active && (selectedWidgets.contains(where: { selectedWidget in
+                                            section.widgets?.contains(selectedWidget) ?? false
+                                        }) || selectedSections.contains(section)) ? 1 : 0)
+                                        .animation(.default, value: selectedWidgets.isEmpty)
                                 }
-                                
-                                SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
-                                
-                                MultiWidgetSelectionToolBar(section: section, selectedSections: $selectedSections, selectedWidgets: $selectedWidgets)
-                                    .opacity(editMode?.wrappedValue == .active && (selectedWidgets.contains(where: { selectedWidget in
-                                        section.widgets?.contains(selectedWidget) ?? false
-                                    }) || selectedSections.contains(section)) ? 1 : 0)
-                                    .animation(.default, value: selectedWidgets.isEmpty)
+                            }
+                            .id(Int(section.position))
+                        }
+                        .scrollContentBackground(.hidden)
+                        .scrollDismissesKeyboard(.interactively)
+                        .background(Color.primaryBackground)
+                        .onChange(of: editMode?.wrappedValue) { mode in
+                            if mode == .inactive {
+                                selectedSections.removeAll()
                             }
                         }
-                    }
-                    .scrollContentBackground(.hidden)
-                    .scrollDismissesKeyboard(.interactively)
-                    .background(Color.primaryBackground)
-                    .onChange(of: editMode?.wrappedValue) { mode in
-                        if mode == .inactive {
-                            selectedSections.removeAll()
+                        .onChange(of: sections.count) { newValue in
+                            withAnimation {
+//                                scrollViewProxy.scrollTo(sections.count - 1)
+                            }
                         }
+                        
                     }
                 }
                 else {
@@ -114,6 +126,26 @@ struct FormView: View {
                 }
             }
         }
+        .toolbar(content: {
+            ToolbarItem(placement: .principal) {
+                EditorViewToolbar(form: form, showToggleLockView: $showToggleLockView)
+            }
+            
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                
+                EndEditingButton()
+            }
+        })
+        .sheet(isPresented: $showToggleLockView, onDismiss: {
+            if form.locked == true {
+                withAnimation {
+                    editMode?.wrappedValue = .inactive
+                }
+            }
+        }, content: {
+            ToggleLockView(showToggleLockView: $showToggleLockView, form: form)
+        })
         .navigationBarTitleDisplayMode(.inline)
     }
 }
