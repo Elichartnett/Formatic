@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FormView: View {
     
+    @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject var formModel: FormModel
     @Environment(\.editMode) var editMode
     @FetchRequest var sections: FetchedResults<Section>
@@ -94,6 +95,14 @@ struct FormView: View {
                         }
                         
                     }
+                    .onChange(of: sections.count) { _ in
+                        resolvePositions()
+                    }
+                    .onChange(of: scenePhase) { newValue in
+                        if newValue == .active {
+                            resolvePositions()
+                        }
+                    }
                 }
                 else {
                     // ScrollView is used in place of list when exporting to pdf because it has a finite height so the full view can be rendered without scrolling. Modifiers added to make scrollview look like list
@@ -147,6 +156,13 @@ struct FormView: View {
             ToggleLockView(showToggleLockView: $showToggleLockView, form: form)
         })
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    func resolvePositions() {
+        for (index, section) in form.sortedSectionsArray().enumerated() {
+            section.position = Int16(index)
+        }
+        try? DataControllerModel.saveMOC()
     }
 }
 
