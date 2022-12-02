@@ -36,12 +36,12 @@ struct ExportView: View {
                         if let generatedFileURL {
                             DispatchQueue.main.async {
                                 if exportType == .pdf {
-                                    let formData = Form.exportToPdf(forms: forms)
+                                    let formData = Form.exportToPDF(forms: forms)
                                     try? formData.write(to: generatedFileURL)
                                     Analytics.logEvent(Constants.analyticsExportPDFEvent, parameters: nil)
                                 }
                                 else {
-                                    let csvData = Form.exportToCsv(forms: forms)
+                                    let csvData = Form.exportToCSV(forms: forms)
                                     try? csvData.write(to: generatedFileURL)
                                     Analytics.logEvent(Constants.analyticsExportCSVEvent,parameters: nil)
                                 }

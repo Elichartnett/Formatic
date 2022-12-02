@@ -18,10 +18,10 @@ extension Widget: Identifiable {
     func delete() {
         let widgets = self.section?.sortedWidgetsArray() ?? []
         
-        DataControllerModel.shared.container.viewContext.delete(self)
         for index in Int(self.position)..<widgets.count {
             widgets[index].position = widgets[index].position - 1
         }
+        DataControllerModel.shared.container.viewContext.delete(self)
     }
     
     func initiateCopy() {

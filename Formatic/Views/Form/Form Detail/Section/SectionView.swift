@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SectionView: View {
     
+    @Environment(\.scenePhase) var scenePhase
     @Environment(\.editMode) var editMode
     @EnvironmentObject var formModel: FormModel
     @FetchRequest var widgets: FetchedResults<Widget>
@@ -36,8 +37,11 @@ struct SectionView: View {
                 .cornerRadius(10)
         }
         else {
-            ForEach(widgets, id: \.self) { widget in
-                WidgetView(widget: widget, locked: $locked, forPDF: forPDF)
+            ForEach(widgets, id: \.id) { widget in
+                HStack {
+                    Text(widget.position.description)
+                    WidgetView(widget: widget, locked: $locked, forPDF: forPDF)
+                }
                 
                 if forPDF && widget != widgets[widgets.count - 1] {
                     Divider()
@@ -47,7 +51,22 @@ struct SectionView: View {
                 section.updateWidgetPositions(indexSet: indexSet, destination: destination)
             })
             .moveDisabled(moveDisabled)
+            .onChange(of: widgets.count, perform: { newValue in
+                resolvePositions()
+            })
+            .onChange(of: scenePhase) { newValue in
+                if newValue == .active {
+                    resolvePositions()
+                }
+            }
         }
+    }
+    
+    func resolvePositions() {
+        for (index, widget) in section.sortedWidgetsArray().enumerated() {
+            widget.position = Int16(index)
+        }
+        try? DataControllerModel.saveMOC()
     }
 }
 
