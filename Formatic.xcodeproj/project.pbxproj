@@ -17,13 +17,6 @@
 		62294F18281F8C6B00226AF1 /* CheckboxSectionWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F17281F8C6B00226AF1 /* CheckboxSectionWidgetView.swift */; };
 		62294F1A281F8C7700226AF1 /* MapWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F19281F8C7700226AF1 /* MapWidgetView.swift */; };
 		62294F1E281F8CAA00226AF1 /* CanvasWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F1D281F8CAA00226AF1 /* CanvasWidgetView.swift */; };
-		62294F202821E83F00226AF1 /* ConfigureWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F1F2821E83F00226AF1 /* ConfigureWidgetView.swift */; };
-		62294F232821EB6500226AF1 /* ConfigureTextFieldWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F222821EB6500226AF1 /* ConfigureTextFieldWidgetView.swift */; };
-		62294F252821EB7700226AF1 /* ConfigureNumberFieldWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F242821EB7700226AF1 /* ConfigureNumberFieldWidgetView.swift */; };
-		62294F292821EB9000226AF1 /* ConfigureDropdownSectionWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F282821EB9000226AF1 /* ConfigureDropdownSectionWidgetView.swift */; };
-		62294F2B2821EBD900226AF1 /* ConfigureCheckboxSectionWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F2A2821EBD900226AF1 /* ConfigureCheckboxSectionWidgetView.swift */; };
-		62294F2D2821EBF600226AF1 /* ConfigureMapWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F2C2821EBF600226AF1 /* ConfigureMapWidgetView.swift */; };
-		62294F312821EC1300226AF1 /* ConfigureCanvasWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F302821EC1300226AF1 /* ConfigureCanvasWidgetView.swift */; };
 		62294F332822F0CC00226AF1 /* SectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F322822F0CC00226AF1 /* SectionTitleView.swift */; };
 		62294F3628231D5E00226AF1 /* FormTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F3528231D5E00226AF1 /* FormTitleView.swift */; };
 		62294F3B282580D900226AF1 /* ToggleLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F3A282580D900226AF1 /* ToggleLockView.swift */; };
@@ -34,6 +27,13 @@
 		622A99DC281E0C5000BB5E12 /* Form+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622A99DA281E0C5000BB5E12 /* Form+CoreDataClass.swift */; };
 		622EFF29293868D300CF74F8 /* ReconfigureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EFF28293868D300CF74F8 /* ReconfigureButton.swift */; };
 		62315046293413CC00634E89 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62315045293413CC00634E89 /* WidgetView.swift */; };
+		6238A157293A598A007C09A1 /* ConfigureWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6238A156293A598A007C09A1 /* ConfigureWidgetView.swift */; };
+		6238A159293A59CE007C09A1 /* ConfigureTextFieldWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6238A158293A59CE007C09A1 /* ConfigureTextFieldWidgetView.swift */; };
+		6238A15B293A59F4007C09A1 /* ConfigureNumberFieldWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6238A15A293A59F4007C09A1 /* ConfigureNumberFieldWidgetView.swift */; };
+		6238A15D293A59FD007C09A1 /* ConfigureDropdownSectionWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6238A15C293A59FD007C09A1 /* ConfigureDropdownSectionWidgetView.swift */; };
+		6238A15F293A5A06007C09A1 /* ConfigureCheckboxSectionWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6238A15E293A5A06007C09A1 /* ConfigureCheckboxSectionWidgetView.swift */; };
+		6238A161293A5A0E007C09A1 /* ConfigureMapWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6238A160293A5A0E007C09A1 /* ConfigureMapWidgetView.swift */; };
+		6238A163293A5A18007C09A1 /* ConfigureCanvasWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6238A162293A5A18007C09A1 /* ConfigureCanvasWidgetView.swift */; };
 		6244311F281A130000E21B11 /* DataControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6244311E281A130000E21B11 /* DataControllerModel.swift */; };
 		62443122281A13A400E21B11 /* UTMConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 62443121281A13A400E21B11 /* UTMConversion */; };
 		6244314F281A152A00E21B11 /* CanvasWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62443139281A152A00E21B11 /* CanvasWidget+CoreDataClass.swift */; };
@@ -137,13 +137,6 @@
 		62294F17281F8C6B00226AF1 /* CheckboxSectionWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxSectionWidgetView.swift; sourceTree = "<group>"; };
 		62294F19281F8C7700226AF1 /* MapWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWidgetView.swift; sourceTree = "<group>"; };
 		62294F1D281F8CAA00226AF1 /* CanvasWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWidgetView.swift; sourceTree = "<group>"; };
-		62294F1F2821E83F00226AF1 /* ConfigureWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureWidgetView.swift; sourceTree = "<group>"; };
-		62294F222821EB6500226AF1 /* ConfigureTextFieldWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureTextFieldWidgetView.swift; sourceTree = "<group>"; };
-		62294F242821EB7700226AF1 /* ConfigureNumberFieldWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureNumberFieldWidgetView.swift; sourceTree = "<group>"; };
-		62294F282821EB9000226AF1 /* ConfigureDropdownSectionWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureDropdownSectionWidgetView.swift; sourceTree = "<group>"; };
-		62294F2A2821EBD900226AF1 /* ConfigureCheckboxSectionWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureCheckboxSectionWidgetView.swift; sourceTree = "<group>"; };
-		62294F2C2821EBF600226AF1 /* ConfigureMapWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureMapWidgetView.swift; sourceTree = "<group>"; };
-		62294F302821EC1300226AF1 /* ConfigureCanvasWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureCanvasWidgetView.swift; sourceTree = "<group>"; };
 		62294F322822F0CC00226AF1 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
 		62294F3528231D5E00226AF1 /* FormTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTitleView.swift; sourceTree = "<group>"; };
 		62294F3A282580D900226AF1 /* ToggleLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleLockView.swift; sourceTree = "<group>"; };
@@ -154,6 +147,13 @@
 		622A99DA281E0C5000BB5E12 /* Form+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataClass.swift"; sourceTree = "<group>"; };
 		622EFF28293868D300CF74F8 /* ReconfigureButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconfigureButton.swift; sourceTree = "<group>"; };
 		62315045293413CC00634E89 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
+		6238A156293A598A007C09A1 /* ConfigureWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfigureWidgetView.swift; path = ../../../../../../../../Desktop/ConfigureWidgetView.swift; sourceTree = "<group>"; };
+		6238A158293A59CE007C09A1 /* ConfigureTextFieldWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfigureTextFieldWidgetView.swift; path = ../../../../../../../../Desktop/ConfigureTextFieldWidgetView.swift; sourceTree = "<group>"; };
+		6238A15A293A59F4007C09A1 /* ConfigureNumberFieldWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfigureNumberFieldWidgetView.swift; path = ../../../../../../../../Desktop/ConfigureNumberFieldWidgetView.swift; sourceTree = "<group>"; };
+		6238A15C293A59FD007C09A1 /* ConfigureDropdownSectionWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfigureDropdownSectionWidgetView.swift; path = ../../../../../../../../Desktop/ConfigureDropdownSectionWidgetView.swift; sourceTree = "<group>"; };
+		6238A15E293A5A06007C09A1 /* ConfigureCheckboxSectionWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfigureCheckboxSectionWidgetView.swift; path = ../../../../../../../../Desktop/ConfigureCheckboxSectionWidgetView.swift; sourceTree = "<group>"; };
+		6238A160293A5A0E007C09A1 /* ConfigureMapWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfigureMapWidgetView.swift; path = ../../../../../../../../Desktop/ConfigureMapWidgetView.swift; sourceTree = "<group>"; };
+		6238A162293A5A18007C09A1 /* ConfigureCanvasWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfigureCanvasWidgetView.swift; path = ../../../../../../../../Desktop/ConfigureCanvasWidgetView.swift; sourceTree = "<group>"; };
 		6244311E281A130000E21B11 /* DataControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataControllerModel.swift; sourceTree = "<group>"; };
 		62443139281A152A00E21B11 /* CanvasWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CanvasWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6244313A281A152A00E21B11 /* CanvasWidget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CanvasWidget+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -269,6 +269,7 @@
 				62294F0B281F519C00226AF1 /* InputBox.swift */,
 				62294F0D281F61B900226AF1 /* SubmitButton.swift */,
 				627736FC28300F7D00F7B107 /* PhotoTaker.swift */,
+				62294F3A282580D900226AF1 /* ToggleLockView.swift */,
 				62AC486A292EEA0100B4DB4B /* EditModeButton.swift */,
 				62A8C004292B3863005758BF /* ExportView.swift */,
 				62AC488A29315EA200B4DB4B /* ExportMenuButton.swift */,
@@ -301,13 +302,13 @@
 		62294F37282490E600226AF1 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				62294F1F2821E83F00226AF1 /* ConfigureWidgetView.swift */,
-				62294F222821EB6500226AF1 /* ConfigureTextFieldWidgetView.swift */,
-				62294F242821EB7700226AF1 /* ConfigureNumberFieldWidgetView.swift */,
-				62294F282821EB9000226AF1 /* ConfigureDropdownSectionWidgetView.swift */,
-				62294F2A2821EBD900226AF1 /* ConfigureCheckboxSectionWidgetView.swift */,
-				62294F2C2821EBF600226AF1 /* ConfigureMapWidgetView.swift */,
-				62294F302821EC1300226AF1 /* ConfigureCanvasWidgetView.swift */,
+				6238A156293A598A007C09A1 /* ConfigureWidgetView.swift */,
+				6238A158293A59CE007C09A1 /* ConfigureTextFieldWidgetView.swift */,
+				6238A15A293A59F4007C09A1 /* ConfigureNumberFieldWidgetView.swift */,
+				6238A15C293A59FD007C09A1 /* ConfigureDropdownSectionWidgetView.swift */,
+				6238A15E293A5A06007C09A1 /* ConfigureCheckboxSectionWidgetView.swift */,
+				6238A160293A5A0E007C09A1 /* ConfigureMapWidgetView.swift */,
+				6238A162293A5A18007C09A1 /* ConfigureCanvasWidgetView.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -405,25 +406,18 @@
 			path = "Form List";
 			sourceTree = "<group>";
 		};
-		629886F5281C319C00C34782 /* Form Editor */ = {
+		629886F5281C319C00C34782 /* Form Detail */ = {
 			isa = PBXGroup;
 			children = (
 				629886F0281B929600C34782 /* FormEditorView.swift */,
 				629886F8281C343500C34782 /* EditorViewToolbar.swift */,
-				62294F3A282580D900226AF1 /* ToggleLockView.swift */,
-			);
-			path = "Form Editor";
-			sourceTree = "<group>";
-		};
-		629886FA281C36E700C34782 /* Form */ = {
-			isa = PBXGroup;
-			children = (
 				629886FB281C36F700C34782 /* FormView.swift */,
 				62294F3528231D5E00226AF1 /* FormTitleView.swift */,
 				62294F342822F0D200226AF1 /* Section */,
 				62988706281C6BF000C34782 /* Widgets */,
+				62294F212821EB0200226AF1 /* Configuration */,
 			);
-			path = Form;
+			path = "Form Detail";
 			sourceTree = "<group>";
 		};
 		62988706281C6BF000C34782 /* Widgets */ = {
@@ -489,9 +483,7 @@
 			isa = PBXGroup;
 			children = (
 				629886F4281C318D00C34782 /* Form List */,
-				629886F5281C319C00C34782 /* Form Editor */,
-				629886FA281C36E700C34782 /* Form */,
-				62294F212821EB0200226AF1 /* Configuration */,
+				629886F5281C319C00C34782 /* Form Detail */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -718,6 +710,7 @@
 				62294F3628231D5E00226AF1 /* FormTitleView.swift in Sources */,
 				62AC489C2932802D00B4DB4B /* Ext+UTType.swift in Sources */,
 				629886FF281C4DBF00C34782 /* SectionView.swift in Sources */,
+				6238A157293A598A007C09A1 /* ConfigureWidgetView.swift in Sources */,
 				62AC489A2932801F00B4DB4B /* Ext+PreviewProvider.swift in Sources */,
 				62AC48AE293281DB00B4DB4B /* Ext+Widget.swift in Sources */,
 				62E6AB4A281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift in Sources */,
@@ -727,12 +720,11 @@
 				62294F18281F8C6B00226AF1 /* CheckboxSectionWidgetView.swift in Sources */,
 				62FE6E6E28187058009D41FD /* Home.swift in Sources */,
 				62A979B628276D9C0067C0A3 /* DropdownWidget+CoreDataProperties.swift in Sources */,
-				62294F232821EB6500226AF1 /* ConfigureTextFieldWidgetView.swift in Sources */,
 				622EFF29293868D300CF74F8 /* ReconfigureButton.swift in Sources */,
-				62294F2D2821EBF600226AF1 /* ConfigureMapWidgetView.swift in Sources */,
 				62AC48B2293281FA00B4DB4B /* Ext+NumberFieldWidget.swift in Sources */,
 				62E6AB47281E0ED6009F568B /* Form+CoreDataProperties.swift in Sources */,
 				62294F1A281F8C7700226AF1 /* MapWidgetView.swift in Sources */,
+				6238A15B293A59F4007C09A1 /* ConfigureNumberFieldWidgetView.swift in Sources */,
 				62D7FE992826B8AF00FAA815 /* CheckboxWidgetView.swift in Sources */,
 				629886F9281C343500C34782 /* EditorViewToolbar.swift in Sources */,
 				629886E1281B8F1000C34782 /* FormModel.swift in Sources */,
@@ -750,16 +742,17 @@
 				6250E9612831632D00E6E6A0 /* CanvasWidgetDetailView.swift in Sources */,
 				62AC48A02932804B00B4DB4B /* Ext+Image.swift in Sources */,
 				62D7D87B28F86623004C55C9 /* Strings.swift in Sources */,
+				6238A163293A5A18007C09A1 /* ConfigureCanvasWidgetView.swift in Sources */,
 				62D1B0992926716F00712D85 /* EmailData.swift in Sources */,
 				62AC488F2931A3C800B4DB4B /* EndEditingButton.swift in Sources */,
 				627736FD28300F7D00F7B107 /* PhotoTaker.swift in Sources */,
+				6238A159293A59CE007C09A1 /* ConfigureTextFieldWidgetView.swift in Sources */,
 				62AC48C92932970300B4DB4B /* Ext+MapWidget.swift in Sources */,
 				62A979C228277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift in Sources */,
 				622A99CD281E03B700BB5E12 /* Widget+CoreDataProperties.swift in Sources */,
 				6244314F281A152A00E21B11 /* CanvasWidget+CoreDataClass.swift in Sources */,
 				62E6AB4B281ECBEA009F568B /* TextFieldWidget+CoreDataProperties.swift in Sources */,
 				62AC48C42932968100B4DB4B /* Ext+CheckboxSectionWidget.swift in Sources */,
-				62294F252821EB7700226AF1 /* ConfigureNumberFieldWidgetView.swift in Sources */,
 				6244311F281A130000E21B11 /* DataControllerModel.swift in Sources */,
 				62D1B07829252EAA00712D85 /* SettingsView.swift in Sources */,
 				62A8C005292B3863005758BF /* ExportView.swift in Sources */,
@@ -776,20 +769,19 @@
 				62F8FE66282CA814005C8D73 /* AddAnnotationsView.swift in Sources */,
 				62AC489E2932803C00B4DB4B /* Ext+Data.swift in Sources */,
 				629886F7281C31C400C34782 /* ListViewToolbar.swift in Sources */,
-				62294F202821E83F00226AF1 /* ConfigureWidgetView.swift in Sources */,
 				62294F0E281F61B900226AF1 /* SubmitButton.swift in Sources */,
 				6288C6B528BB080A0081A39D /* LottieView.swift in Sources */,
 				62443151281A152A00E21B11 /* NumberFieldWidget+CoreDataClass.swift in Sources */,
-				62294F292821EB9000226AF1 /* ConfigureDropdownSectionWidgetView.swift in Sources */,
 				622A99DC281E0C5000BB5E12 /* Form+CoreDataClass.swift in Sources */,
 				62443167281A1CA000E21B11 /* DropdownSectionWidget+CoreDataClass.swift in Sources */,
 				62E7F87D282EE713004A95EF /* DeveloperPreview.swift in Sources */,
+				6238A15D293A59FD007C09A1 /* ConfigureDropdownSectionWidgetView.swift in Sources */,
 				62294F1E281F8CAA00226AF1 /* CanvasWidgetView.swift in Sources */,
 				62AC48C22932964600B4DB4B /* Ext+DropdownWidget.swift in Sources */,
-				62294F2B2821EBD900226AF1 /* ConfigureCheckboxSectionWidgetView.swift in Sources */,
 				62E7F87B282EE1E4004A95EF /* LocationManager.swift in Sources */,
 				62AC48C7293296BE00B4DB4B /* Ext+CheckboxWidget.swift in Sources */,
-				62294F312821EC1300226AF1 /* ConfigureCanvasWidgetView.swift in Sources */,
+				6238A15F293A5A06007C09A1 /* ConfigureCheckboxSectionWidgetView.swift in Sources */,
+				6238A161293A5A0E007C09A1 /* ConfigureMapWidgetView.swift in Sources */,
 				62A979C028277BFF0067C0A3 /* CheckboxWidget+CoreDataProperties.swift in Sources */,
 				62A979C128277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift in Sources */,
 				62294F3B282580D900226AF1 /* ToggleLockView.swift in Sources */,

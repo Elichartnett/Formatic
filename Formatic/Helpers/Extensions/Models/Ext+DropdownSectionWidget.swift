@@ -53,7 +53,7 @@ extension DropdownSectionWidget: Csv, Copyable {
     func createCopy() -> Any {
         let selectedDropdownWidgetCopy = selectedDropdown?.createCopy() as? DropdownWidget
         
-        let dropdownWidgetsArray = dropdownWidgets?.allObjects.sorted(by: { lhs, rhs in
+        let dropdownWidgetsArray = dropdownWidgets?.sorted(by: { lhs, rhs in
             let lhs = lhs as! DropdownWidget
             let rhs = rhs as! DropdownWidget
             return lhs.position < rhs.position

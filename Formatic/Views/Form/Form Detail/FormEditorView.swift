@@ -1,5 +1,5 @@
 //
-//  FormEditorView.swift
+//  FormDetailView.swift
 //  Formatic
 //
 //  Created by Eli Hartnett on 4/28/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FormEditorView: View {
+struct FormDetailView: View {
     
     @Environment(\.editMode) var editMode
     
@@ -48,10 +48,10 @@ struct FormEditorView: View {
     }
 }
 
-struct FormEditorView_Previews: PreviewProvider {
+struct FormDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            FormEditorView(form: dev.form)
+            FormDetailView(form: dev.form)
                 .environment(\.managedObjectContext, DataControllerModel.shared.container.viewContext)
         }
         .navigationViewStyle(.stack)
