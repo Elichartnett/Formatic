@@ -38,10 +38,7 @@ struct SectionView: View {
         }
         else {
             ForEach(widgets, id: \.id) { widget in
-                HStack {
-                    Text(widget.position.description)
-                    WidgetView(widget: widget, locked: $locked, forPDF: forPDF)
-                }
+                WidgetView(widget: widget, locked: $locked, forPDF: forPDF)
                 
                 if forPDF && widget != widgets[widgets.count - 1] {
                     Divider()
@@ -51,7 +48,7 @@ struct SectionView: View {
                 section.updateWidgetPositions(indexSet: indexSet, destination: destination)
             })
             .moveDisabled(moveDisabled)
-            .onChange(of: widgets.count, perform: { newValue in
+            .onChange(of: widgets.count, perform: { _ in
                 resolvePositions()
             })
             .onChange(of: scenePhase) { newValue in
