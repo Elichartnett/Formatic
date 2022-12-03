@@ -9,7 +9,6 @@ import SwiftUI
 
 struct FormView: View {
     
-    @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject var formModel: FormModel
     @Environment(\.editMode) var editMode
     @FetchRequest var sections: FetchedResults<Section>
@@ -93,15 +92,9 @@ struct FormView: View {
 //                                scrollViewProxy.scrollTo(sections.count - 1)
                             }
                         }
-                        
                     }
-                    .onChange(of: sections.count) { _ in
+                    .onChange(of: form.sections?.hashValue) { _ in
                         resolvePositions()
-                    }
-                    .onChange(of: scenePhase) { newValue in
-                        if newValue == .active {
-                            resolvePositions()
-                        }
                     }
                 }
                 else {
