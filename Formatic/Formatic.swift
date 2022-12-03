@@ -11,9 +11,14 @@ import Firebase
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        var enableCrashlytics = false
         #if Release
-        FirebaseApp.configure()
+            FirebaseApp.configure()
+            enableCrashlytics = true
         #endif
+        
+        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(enableCrashlytics)
         
         return true
     }

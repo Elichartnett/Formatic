@@ -36,11 +36,8 @@ struct SectionView: View {
                 .cornerRadius(10)
         }
         else {
-            ForEach(widgets, id: \.id) { widget in
-                HStack {
-                    Text(widget.position.description)
-                    WidgetView(widget: widget, locked: $locked, forPDF: forPDF)
-                }
+            ForEach(widgets, id: \.self) { widget in
+                WidgetView(widget: widget, locked: $locked, forPDF: forPDF)
                 
                 if forPDF && widget != widgets[widgets.count - 1] {
                     Divider()
