@@ -39,9 +39,9 @@ struct FormView: View {
             }
             else {
                 if !forPDF {
-                    ScrollViewReader { scrollViewProxy in
+//                    ScrollViewReader { scrollViewProxy in
                         
-                        List(sections, id: \.id, selection: $selectedWidgets) { section in
+                        List(sections, selection: $selectedWidgets) { section in
                             
                             SwiftUI.Section {
                                 SectionView(section: section, locked: $form.locked, forPDF: forPDF)
@@ -79,6 +79,8 @@ struct FormView: View {
                             }
                             .id(Int(section.position))
                         }
+                        .listStyle(.plain)
+                        .padding(.horizontal)
                         .scrollContentBackground(.hidden)
                         .scrollDismissesKeyboard(.interactively)
                         .background(Color.primaryBackground)
@@ -87,12 +89,12 @@ struct FormView: View {
                                 selectedSections.removeAll()
                             }
                         }
-                        .onChange(of: sections.count) { newValue in
-                            withAnimation {
+//                        .onChange(of: sections.count) { newValue in
+//                            withAnimation {
 //                                scrollViewProxy.scrollTo(sections.count - 1)
-                            }
-                        }
-                    }
+//                            }
+//                        }
+//                    }
                     .onChange(of: form.sections?.hashValue) { _ in
                         resolvePositions()
                     }

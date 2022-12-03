@@ -47,6 +47,7 @@ struct SettingsView: View {
                     }
                 }
             }
+            .listStyle(.sidebar)
             .environment(\.editMode, .constant(.active))
             .navigationTitle(Strings.settingsLabel)
             .scrollContentBackground(.hidden)
