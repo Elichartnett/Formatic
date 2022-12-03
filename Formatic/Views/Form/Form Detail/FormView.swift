@@ -39,7 +39,7 @@ struct FormView: View {
             }
             else {
                 if !forPDF {
-//                    ScrollViewReader { scrollViewProxy in
+                    ScrollViewReader { scrollViewProxy in
                         
                         List(sections, selection: $selectedWidgets) { section in
                             
@@ -78,6 +78,7 @@ struct FormView: View {
                                 }
                             }
                             .id(Int(section.position))
+                            .listRowSeparator(.hidden)
                         }
                         .listStyle(.plain)
                         .padding(.horizontal)
@@ -94,7 +95,7 @@ struct FormView: View {
 //                                scrollViewProxy.scrollTo(sections.count - 1)
 //                            }
 //                        }
-//                    }
+                    }
                     .onChange(of: form.sections?.hashValue) { _ in
                         resolvePositions()
                     }

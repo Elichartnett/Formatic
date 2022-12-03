@@ -36,17 +36,21 @@ struct SectionView: View {
                 .cornerRadius(10)
         }
         else {
+            // Must identify with self for list selection
             ForEach(widgets, id: \.self) { widget in
-                WidgetView(widget: widget, locked: $locked, forPDF: forPDF)
-                
-                if forPDF && widget != widgets[widgets.count - 1] {
-                    Divider()
+                VStack(spacing: 0) {
+                    WidgetView(widget: widget, locked: $locked, forPDF: forPDF)
+                    
+                    if widget != widgets[widgets.count - 1] {
+                        Divider()
+                    }
                 }
             }
             .onMove(perform: { indexSet, destination in
                 section.updateWidgetPositions(indexSet: indexSet, destination: destination)
             })
             .moveDisabled(moveDisabled)
+            .listRowBackground(Color.secondaryBackground)
             .onChange(of: section.widgets?.hashValue) { _ in
                 resolvePositions()
             }
