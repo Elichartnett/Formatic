@@ -46,7 +46,6 @@ struct ConfigureCheckboxSectionWidgetView: View {
                 ForEach($localCheckboxes) { $localCheckbox in
                     InputBox(placeholder: Strings.descriptionLabel, text: $localCheckbox.title)
                 }
-                .padding(.top, 1)
             }
             
             Button {

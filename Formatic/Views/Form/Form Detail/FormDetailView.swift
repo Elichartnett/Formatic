@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FormView: View {
+struct FormDetailView: View {
     
     @EnvironmentObject var formModel: FormModel
     @Environment(\.editMode) var editMode
@@ -78,7 +78,10 @@ struct FormView: View {
                                 }
                             }
                             .id(Int(section.position))
-                            .listRowSeparator(.hidden)
+                            .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
+                                return -20
+                            }
+                            .listSectionSeparator(.hidden)
                         }
                         .listStyle(.plain)
                         .padding(.horizontal)
@@ -133,7 +136,7 @@ struct FormView: View {
         }
         .toolbar(content: {
             ToolbarItem(placement: .principal) {
-                EditorViewToolbar(form: form, showToggleLockView: $showToggleLockView)
+                FormDetailViewToolbar(form: form, showToggleLockView: $showToggleLockView)
             }
             
             ToolbarItemGroup(placement: .keyboard) {
@@ -165,10 +168,10 @@ struct FormView: View {
 struct FormView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            FormView(form: dev.form, forPDF: false)
+            FormDetailView(form: dev.form, forPDF: false)
                 .toolbar(content: {
                     ToolbarItem(placement: .principal) {
-                        EditorViewToolbar(form: dev.form, showToggleLockView: .constant(false))
+                        FormDetailViewToolbar(form: dev.form, showToggleLockView: .constant(false))
                     }
                 })
                 .environmentObject(FormModel())

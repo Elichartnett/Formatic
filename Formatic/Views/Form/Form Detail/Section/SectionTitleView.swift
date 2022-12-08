@@ -49,28 +49,53 @@ struct SectionTitleView: View {
     
     var addWidgetMenu: some View {
         Menu {
-            Button(Strings.textFieldLabel) {
-                newWidgetType = .textFieldWidget
-            }
-            
-            Button(Strings.numberFieldLabel) {
-                newWidgetType = .numberFieldWidget
-            }
-            
-            Button(Strings.dropdownMenuLabel) {
-                newWidgetType = .dropdownSectionWidget
-            }
-            
-            Button(Strings.checkboxMenuLabel) {
-                newWidgetType = .checkboxSectionWidget
-            }
-            
-            Button(Strings.mapLabel) {
-                newWidgetType = .mapWidget
-            }
-            
-            Button(Strings.canvasLabel) {
-                newWidgetType = .canvasWidget
+            ForEach(WidgetType.allCases) { widgetType in
+                switch widgetType {
+                case .textFieldWidget:
+                    Button(Strings.textFieldLabel) {
+                        newWidgetType = .textFieldWidget
+                    }
+                    
+                case .numberFieldWidget:
+                    Button(Strings.numberFieldLabel) {
+                        newWidgetType = .numberFieldWidget
+                    }
+                    
+                case .dateFieldWidget:
+                    Button(Strings.dateFieldLabel) {
+                        newWidgetType = .dateFieldWidget
+                    }
+
+                case .sliderWidget:
+                    Button(Strings.sliderLabel) {
+                        newWidgetType = .sliderWidget
+                    }
+                case .dropdownSectionWidget:
+                    Button(Strings.dropdownMenuLabel) {
+                        newWidgetType = .dropdownSectionWidget
+                    }
+                    
+                case .dropdownWidget:
+                    EmptyView()
+
+                case .checkboxSectionWidget:
+                    Button(Strings.checkboxMenuLabel) {
+                        newWidgetType = .checkboxSectionWidget
+                    }
+                    
+                case .checkboxWidget:
+                    EmptyView()
+                    
+                case .mapWidget:
+                    Button(Strings.mapLabel) {
+                        newWidgetType = .mapWidget
+                    }
+
+                case .canvasWidget:
+                    Button(Strings.canvasLabel) {
+                        newWidgetType = .canvasWidget
+                    }
+                }
             }
         } label: {
             Image(systemName: Constants.plusCircleIconName)

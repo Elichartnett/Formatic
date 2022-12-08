@@ -67,6 +67,10 @@
 "numberFieldLabel" = "Number Field";
 "numberLabel" = "number";
 
+"dateFieldLabel" = "Date Field";
+
+"sliderLabel" = "Slider";
+
 "dropdownMenuLabel" = "Dropdown Menu";
 "numberOfDropdownOptionsLabel" = "Number of dropdown options: ";
 

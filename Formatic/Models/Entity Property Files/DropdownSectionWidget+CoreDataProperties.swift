@@ -9,7 +9,6 @@ import Foundation
 import CoreData
 import SwiftUI
 
-
 extension DropdownSectionWidget {
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<DropdownSectionWidget> {
@@ -34,5 +33,4 @@ extension DropdownSectionWidget {
     
     @objc(removeDropdownWidgets:)
     @NSManaged public func removeFromDropdownWidgets(_ values: NSSet)
-    
 }

@@ -8,7 +8,6 @@
 import Foundation
 import CoreData
 
-
 extension CheckboxSectionWidget {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CheckboxSectionWidget> {
@@ -32,5 +31,4 @@ extension CheckboxSectionWidget {
 
     @objc(removeCheckboxWidgets:)
     @NSManaged public func removeFromCheckboxWidgets(_ values: NSSet)
-
 }

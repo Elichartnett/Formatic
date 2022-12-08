@@ -8,7 +8,6 @@
 import Foundation
 import CoreData
 
-
 extension Widget {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Widget> {

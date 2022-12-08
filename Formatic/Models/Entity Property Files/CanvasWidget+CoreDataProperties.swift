@@ -8,7 +8,6 @@
 import Foundation
 import CoreData
 
-
 extension CanvasWidget {
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CanvasWidget> {

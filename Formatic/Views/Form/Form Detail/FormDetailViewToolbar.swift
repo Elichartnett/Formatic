@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseAnalytics
 import UniformTypeIdentifiers
 
-struct EditorViewToolbar: View {
+struct FormDetailViewToolbar: View {
     
     @Environment(\.editMode) var editMode
     @EnvironmentObject var formModel: FormModel
@@ -34,8 +34,7 @@ struct EditorViewToolbar: View {
             
             Spacer()
             
-            EditModeButton(onTap: {})
-                .disabled(form.locked)
+            EditModeButton(disabled: form.locked, onTap: {})
             
             Spacer()
             
@@ -98,7 +97,7 @@ struct EditorViewToolbar: View {
 
 struct EditorViewToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        EditorViewToolbar(form: dev.form, showToggleLockView: .constant(false))
+        FormDetailViewToolbar(form: dev.form, showToggleLockView: .constant(false))
             .environmentObject(FormModel())
     }
 }

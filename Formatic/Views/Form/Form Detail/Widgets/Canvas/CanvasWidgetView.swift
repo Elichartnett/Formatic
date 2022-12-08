@@ -64,7 +64,8 @@ struct CanvasWidgetView: View {
                                 .resizable()
                                 .scaledToFit()
                         }
-                        .frame(width: WidgetViewHeight.large.rawValue, height: WidgetViewHeight.large.rawValue)
+                        .frame(width: WidgetViewHeight.large.rawValue)
+                        .frame(maxHeight: .infinity)
                         .border(.secondary)
                         
                         Spacer()

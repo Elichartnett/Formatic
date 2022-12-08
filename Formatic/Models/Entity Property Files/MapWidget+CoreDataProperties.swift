@@ -8,7 +8,6 @@
 import Foundation
 import CoreData
 
-
 extension MapWidget {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<MapWidget> {
@@ -38,5 +37,4 @@ extension MapWidget {
 
     @objc(removeAnnotations:)
     @NSManaged public func removeFromAnnotations(_ values: NSSet)
-
 }

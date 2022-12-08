@@ -41,7 +41,7 @@ struct SectionView: View {
                 VStack(spacing: 0) {
                     WidgetView(widget: widget, locked: $locked, forPDF: forPDF)
                     
-                    if widget != widgets[widgets.count - 1] {
+                    if forPDF && widget != widgets[widgets.count - 1] {
                         Divider()
                     }
                 }

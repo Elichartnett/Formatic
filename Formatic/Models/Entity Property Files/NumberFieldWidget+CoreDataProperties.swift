@@ -8,7 +8,6 @@
 import Foundation
 import CoreData
 
-
 extension NumberFieldWidget {
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<NumberFieldWidget> {

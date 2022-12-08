@@ -80,6 +80,13 @@ extension Section: Codable, Identifiable, Csv, Copyable {
                 if let textFieldWidget = item as? TextFieldWidget {
                     csvString += textFieldWidget.toCsv()
                 }
+                
+            case .dateFieldWidget:
+                break
+                
+            case .sliderWidget:
+                break
+                
             case .checkboxSectionWidget:
                 if let checkboxSectionWidget = item as? CheckboxSectionWidget {
                     csvString += checkboxSectionWidget.toCsv()
