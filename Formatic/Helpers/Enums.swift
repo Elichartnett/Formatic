@@ -25,12 +25,14 @@ enum WidgetTypeKey: CodingKey {
     case type
 }
 
-enum WidgetType: String, Decodable, Identifiable {
+enum WidgetType: String, Decodable, Identifiable, CaseIterable {
     
     var id: RawValue { rawValue }
     
     case textFieldWidget = "TextFieldWidget"
     case numberFieldWidget = "NumberFieldWidget"
+    case dateFieldWidget = "DateFieldWidget"
+    case sliderWidget = "SliderWidget"
     case dropdownSectionWidget = "DropdownSectionWidget"
     case dropdownWidget = "DropdownWidget"
     case checkboxSectionWidget = "CheckboxSectionWidget"

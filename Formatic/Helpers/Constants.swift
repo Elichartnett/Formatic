@@ -69,6 +69,8 @@ struct Constants {
     static let analyticsExportCSVEvent = "analyticsExportCSVEvent"
     static let analyticsCreateTextFieldWidgetEvent = "analyticsCreateTextFieldWidgetEvent"
     static let analyticsCreateNumberFieldWidgetEvent = "analyticsCreateNumberFieldWidgetEvent"
+    static let analyticsCreateDateFieldWidgetEvent = "analyticsCreateDateFieldWidgetEvent"
+    static let analyticsCreateSliderWidgetEvent = "analyticsCreateSliderWidgetEvent"
     static let analyticsCreateDropdownWidgetEvent = "analyticsCreateDropdownWidgetEvent"
     static let analyticsCreateCheckboxWidgetEvent = "analyticsCreateCheckboxWidgetEvent"
     static let analyticsCreateMapWidgetEvent = "analyticsCreateMapWidgetEvent"

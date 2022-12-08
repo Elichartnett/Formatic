@@ -27,7 +27,6 @@ struct TextFieldWidgetView: View {
         let baseView = Group {
             InputBox(placeholder: Strings.titleLabel, text: $title)
                 .titleFrameStyle(locked: $locked)
-                .padding(.top, 6)
                 .onAppear {
                     title = textFieldWidget.title ?? ""
                 }
@@ -43,9 +42,7 @@ struct TextFieldWidgetView: View {
                     .padding(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .WidgetFrameStyle(height: .adaptive)
-                    .padding(.bottom, formModel.isPhone ? 6 : 0)
             }
-            .frame(maxWidth: .infinity)
         }
         
         if formModel.isPhone {
@@ -59,5 +56,11 @@ struct TextFieldWidgetView: View {
                 baseView
             }
         }
+    }
+}
+
+struct TextFieldWidgetView_Previews: PreviewProvider {
+    static var previews: some View {
+        TextFieldWidgetView(textFieldWidget: dev.textFieldWidget, locked: .constant(false))
     }
 }

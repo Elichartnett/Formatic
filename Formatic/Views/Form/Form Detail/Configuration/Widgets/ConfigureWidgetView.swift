@@ -16,6 +16,7 @@ struct ConfigureWidgetView: View {
     var body: some View {
         
         VStack {
+            Spacer()
             
             Text(typeTitle)
                 .font(.title)
@@ -35,6 +36,18 @@ struct ConfigureWidgetView: View {
                 ConfigureNumberFieldWidgetView(title: $widgetTitle, section: section)
                     .onAppear {
                         typeTitle = Strings.numberFieldLabel
+                    }
+                
+            case .dateFieldWidget:
+                ConfigureDateFieldWidgetView(title: $widgetTitle, section: section)
+                    .onAppear {
+                        typeTitle = Strings.dateFieldLabel
+                    }
+                
+            case .sliderWidget:
+                ConfigureSliderWidgetView()
+                    .onAppear {
+                        typeTitle = Strings.sliderLabel
                     }
                 
             case .dropdownSectionWidget:
@@ -69,8 +82,11 @@ struct ConfigureWidgetView: View {
                         typeTitle = Strings.canvasLabel
                     }
             }
+            
+            Spacer()
         }
         .padding(.horizontal)
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
 

@@ -31,7 +31,7 @@ struct ConfigureTextFieldWidgetView: View {
                         .onTapGesture {
                             isFocused = true
                         }
-                        .foregroundColor(Color(uiColor: UIColor.systemGray3))
+                        .foregroundColor(Color.customGray)
                         .padding(.top, 10)
                         .padding(.leading, 5)
                 }

@@ -19,6 +19,8 @@ class DeveloperPreview {
     let newWidgetType: WidgetType
     let textFieldWidget: TextFieldWidget
     let numberFieldWidget: NumberFieldWidget
+    let dateFieldWidget: DateFieldWidget
+    let sliderWidget: SliderWidget
     let dropdownWidget: DropdownWidget
     let dropdownSectionWidget: DropdownSectionWidget
     let checkboxWidget: CheckboxWidget
@@ -41,16 +43,20 @@ class DeveloperPreview {
         
         numberFieldWidget = NumberFieldWidget(title: "Number field title", position: 2, number: "0.00")
         
-        dropdownSectionWidget = DropdownSectionWidget(title: "Dropdown section title", position: 4, selectedDropdown: nil, dropdownWidgets: nil)
+        dateFieldWidget = DateFieldWidget(title: "Date field title", position: 3, date: Date())
+        
+        sliderWidget = SliderWidget(title: "Slider widget title", position: 4, lowerBound: "1", upperBound: "5", step: "1")
+        
+        dropdownSectionWidget = DropdownSectionWidget(title: "Dropdown section title", position: 5, selectedDropdown: nil, dropdownWidgets: nil)
         dropdownWidget = DropdownWidget(title: "Dropdown option 1", position: 0, dropdownSectionWidget: nil, selectedDropdownInverse: nil)
         dropdownSectionWidget.selectedDropdown = dropdownWidget
         dropdownSectionWidget.addToDropdownWidgets(dropdownWidget)
         
-        checkboxSectionWidget = CheckboxSectionWidget(title: "Checkbox section title", position: 5, checkboxWidgets: nil)
+        checkboxSectionWidget = CheckboxSectionWidget(title: "Checkbox section title", position: 6, checkboxWidgets: nil)
         checkboxWidget = CheckboxWidget(title: "Checkbox 1", position: 0, checked: true, checkboxSectionWidget: checkboxSectionWidget)
         checkboxSectionWidget.addToCheckboxWidgets(checkboxWidget)
         
-        mapWidget = MapWidget(title: "Map title", position: 6, coordinateRegionCenterLat: 37.0902, coordinateRegionCenterLon: -95.7129, coordinateSpanLatDelta: 70, coordinateSpanLonDelta: 70)
+        mapWidget = MapWidget(title: "Map title", position: 7, coordinateRegionCenterLat: 37.0902, coordinateRegionCenterLon: -95.7129, coordinateSpanLatDelta: 70, coordinateSpanLonDelta: 70)
         annotation = Annotation(context: DataControllerModel.shared.container.viewContext)
         annotation.latitude = 0.0
         annotation.longitude = 0.0
@@ -60,6 +66,6 @@ class DeveloperPreview {
         canvasWidget = CanvasWidget(title: "Canvas widget title", position: 8, image: nil, pkDrawing: nil, widgetViewPreview: nil)
         canvasWidget.widgetViewPreview = UIImage(systemName: "photo")?.pngData()
         
-        section.addToWidgets(NSSet(array: [textFieldWidget, numberFieldWidget, dropdownSectionWidget, checkboxSectionWidget, mapWidget, canvasWidget]))
+        section.addToWidgets(NSSet(array: [textFieldWidget, numberFieldWidget, dateFieldWidget, sliderWidget, dropdownSectionWidget, checkboxSectionWidget, mapWidget, canvasWidget]))
     }
 }

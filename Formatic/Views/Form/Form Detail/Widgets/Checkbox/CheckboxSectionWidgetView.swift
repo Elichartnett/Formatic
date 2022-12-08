@@ -34,7 +34,6 @@ struct CheckboxSectionWidgetView: View {
                 HStack {
                     InputBox(placeholder: Strings.titleLabel, text: $title)
                         .titleFrameStyle(locked: $locked)
-                        .padding(.top, formModel.isPhone ? 6 : 0)
                         .onChange(of: title) { _ in
                             checkboxSectionWidget.title = title
                         }
@@ -50,10 +49,9 @@ struct CheckboxSectionWidgetView: View {
                     ForEach(checkboxes) { checkboxWidget in
                         CheckboxWidgetView(checkbox: checkboxWidget)
                     }
-                    .padding(.leading, 5)
+                    .padding(.leading)
                 }
                 .WidgetFrameStyle(height: .adaptive)
-                .padding(.bottom, formModel.isPhone ? 6 : 0)
                 
                 if !formModel.isPhone && editMode?.wrappedValue == .active {
                     ReconfigureWidgetButton(reconfigureWidget: $reconfigureWidget)

@@ -8,7 +8,6 @@
 import Foundation
 import CoreData
 
-
 extension Section {
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Section> {
@@ -36,5 +35,4 @@ extension Section {
 
     @objc(removeWidgets:)
     @NSManaged public func removeFromWidgets(_ values: NSSet)
-
 }

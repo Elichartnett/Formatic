@@ -8,7 +8,6 @@
 import Foundation
 import CoreData
 
-
 extension TextFieldWidget {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<TextFieldWidget> {

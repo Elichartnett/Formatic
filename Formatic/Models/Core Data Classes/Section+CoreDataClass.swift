@@ -37,6 +37,12 @@ public class Section: NSManagedObject {
             case .numberFieldWidget:
                 let numberFieldWidget = try widgetsArray.decode(NumberFieldWidget.self)
                 numberFieldWidget.section = self
+                
+            case .dateFieldWidget:
+                break
+                
+            case .sliderWidget:
+                break
 
             case .dropdownSectionWidget:
                 let dropdownSectionWidget = try widgetsArray.decode(DropdownSectionWidget.self)

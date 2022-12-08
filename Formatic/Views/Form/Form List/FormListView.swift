@@ -68,7 +68,7 @@ struct FormListView: View {
                     .searchable(text: $searchText, placement: .navigationBarDrawer)
                     .scrollDismissesKeyboard(.interactively)
                     .navigationDestination(for: Form.self, destination: { form in
-                        FormView(form: form, forPDF: false)
+                        FormDetailView(form: form, forPDF: false)
                     })
                     .onAppear {
                         filteredForms.removeAll()

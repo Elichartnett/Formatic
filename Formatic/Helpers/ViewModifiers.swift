@@ -44,7 +44,7 @@ struct WidgetFrame: ViewModifier {
                 .frame(minHeight: WidgetViewHeight.regular.rawValue, maxHeight: .infinity)
         case .large:
             view
-                .frame(height: WidgetViewHeight.large.rawValue)
+                .frame(minHeight: WidgetViewHeight.large.rawValue)
         }
     }
 }

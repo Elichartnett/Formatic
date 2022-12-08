@@ -25,32 +25,45 @@ struct WidgetView: View {
                         }
                         
                     case .numberFieldWidget:
-                        let numberFieldWidget = widget as! NumberFieldWidget
-                        NumberFieldWidgetView(numberFieldWidget: numberFieldWidget, locked: $locked)
+                        if let numberFieldWidget = widget as? NumberFieldWidget {
+                            NumberFieldWidgetView(numberFieldWidget: numberFieldWidget, locked: $locked)
+                        }
+                        
+                    case .dateFieldWidget:
+                        if let dateFieldWidget = widget as? DateFieldWidget {
+                            DateFieldWidgetView(dateFieldWidget: dateFieldWidget, locked: $locked)
+                        }
+                        
+                    case .sliderWidget:
+                        EmptyView()
                         
                     case .dropdownSectionWidget:
-                        let dropdownSectionWidget = widget as! DropdownSectionWidget
-                        DropdownSectionWidgetView(dropdownSectionWidget: dropdownSectionWidget, locked: $locked)
+                        if let dropdownSectionWidget = widget as? DropdownSectionWidget {
+                            DropdownSectionWidgetView(dropdownSectionWidget: dropdownSectionWidget, locked: $locked)
+                        }
                         
                         // Will be handled in section
                     case .dropdownWidget:
                         EmptyView()
                         
                     case .checkboxSectionWidget:
-                        let checkboxSectionWidget = widget as! CheckboxSectionWidget
-                        CheckboxSectionWidgetView(checkboxSectionWidget: checkboxSectionWidget, locked: $locked)
+                        if let checkboxSectionWidget = widget as? CheckboxSectionWidget {
+                            CheckboxSectionWidgetView(checkboxSectionWidget: checkboxSectionWidget, locked: $locked)
+                        }
                         
                         // Will be handled in section
                     case .checkboxWidget:
                         EmptyView()
                         
                     case .mapWidget:
-                        let mapWidget = widget as! MapWidget
-                        MapWidgetView(mapWidget: mapWidget, locked: $locked, forPDF: forPDF)
+                        if let mapWidget = widget as? MapWidget {
+                            MapWidgetView(mapWidget: mapWidget, locked: $locked, forPDF: forPDF)
+                        }
                         
                     case .canvasWidget:
-                        let canvasWidget = widget as! CanvasWidget
-                        CanvasWidgetView(canvasWidget: canvasWidget, locked: $locked)
+                        if let canvasWidget = widget as? CanvasWidget {
+                            CanvasWidgetView(canvasWidget: canvasWidget, locked: $locked)
+                        }
                     }
                 }
                 .swipeActions {
@@ -71,7 +84,7 @@ struct WidgetView: View {
                     }
                 }
             }
-
+            
         }
     }
 }

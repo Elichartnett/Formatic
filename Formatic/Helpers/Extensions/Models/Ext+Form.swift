@@ -137,7 +137,7 @@ extension Form: Codable, Identifiable, Transferable, Csv, Copyable {
     }
     
     static func convertFormToPdfPage(form: Form) -> Data {
-        let pdfView = convertToScrollView(content: FormView(form: form, forPDF: true).environment(\.managedObjectContext, DataControllerModel.shared.container.viewContext).environmentObject(FormModel()))
+        let pdfView = convertToScrollView(content: FormDetailView(form: form, forPDF: true).environment(\.managedObjectContext, DataControllerModel.shared.container.viewContext).environmentObject(FormModel()))
         pdfView.tag = 1009
         let size = pdfView.contentSize
         pdfView.frame = CGRect(x: 0, y: getSafeArea().top, width: size.width, height: size.height)

@@ -8,7 +8,6 @@
 import Foundation
 import CoreData
 
-
 extension CheckboxWidget {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CheckboxWidget> {
