@@ -82,10 +82,14 @@ extension Section: Codable, Identifiable, Csv, Copyable {
                 }
                 
             case .dateFieldWidget:
-                break
+                if let dateFieldWidget = item as? DateFieldWidget {
+                    csvString += dateFieldWidget.toCsv()
+                }
                 
             case .sliderWidget:
-                break
+                if let sliderWidget = item as? SliderWidget {
+                    csvString += sliderWidget.toCsv()
+                }
                 
             case .checkboxSectionWidget:
                 if let checkboxSectionWidget = item as? CheckboxSectionWidget {

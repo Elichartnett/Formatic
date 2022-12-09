@@ -8,13 +8,103 @@
 import SwiftUI
 
 struct SliderWidgetView: View {
+    
+    @Environment(\.editMode) var editMode
+    @EnvironmentObject var formModel: FormModel
+    
+    @ObservedObject var sliderWidget: SliderWidget
+    @Binding var locked: Bool
+    @State var title: String
+    @State var number: Double
+    @State var lowerBound: Double
+    @State var upperBound: Double
+    @State var step: Double
+    @State var reconfigureWidget = false
+    
+    init(sliderWidget: SliderWidget, locked: Binding<Bool>) {
+        self.sliderWidget = sliderWidget
+        self._locked = locked
+        self._title = State(initialValue: sliderWidget.title ?? "")
+        self._number = State(initialValue: Double(sliderWidget.number!) ?? 0)
+        self._lowerBound = State(initialValue: Double(sliderWidget.lowerBound!) ?? 0)
+        self._upperBound = State(initialValue: Double(sliderWidget.upperBound!) ?? 0)
+        self._step = State(initialValue: Double(sliderWidget.step!) ?? 0)
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        let baseView = Group {
+            
+            Group {
+                
+                HStack {
+                    InputBox(placeholder: Strings.titleLabel, text: $title)
+                        .titleFrameStyle(locked: $locked)
+                        .onChange(of: title) { _ in
+                            sliderWidget.title = title
+                        }
+                    
+                    if formModel.isPhone {
+                        ReconfigureWidgetButton(reconfigureWidget: $reconfigureWidget)
+                    }
+                }
+                
+                HStack {
+                    VStack {
+                        Text("Value: \(sliderWidget.number ?? "")")
+                        
+                        HStack {
+                            Text(lowerBound.formatted())
+                            
+                            Slider(value: $number, in: lowerBound...upperBound, step: step)
+                                .onChange(of: number) { _ in
+                                    sliderWidget.number = number.formatted()
+                                }
+                            
+                            Text(upperBound.formatted())
+                        }
+                        .onChange(of: sliderWidget.lowerBound, perform: { _ in
+                            lowerBound = Double(sliderWidget.lowerBound!)!
+                        })
+                        .onChange(of: sliderWidget.upperBound, perform: { _ in
+                            upperBound = Double(sliderWidget.upperBound!)!
+                        })
+                        .onChange(of: sliderWidget.step, perform: { _ in
+                            step = Double(sliderWidget.step!)!
+                        })
+                        .onChange(of: sliderWidget.number, perform: { _ in
+                            number = Double(sliderWidget.number!)!
+                        })
+                        .padding(.horizontal)
+                    }
+                    .WidgetFrameStyle(height: .adaptive)
+                    
+                    if !formModel.isPhone && editMode?.wrappedValue == .active {
+                        ReconfigureWidgetButton(reconfigureWidget: $reconfigureWidget)
+                    }
+                }
+            }
+            .sheet(isPresented: $reconfigureWidget) {
+                ConfigureSliderWidgetView(sliderWidget: sliderWidget, title: $title, section: sliderWidget.section!)
+                    .padding()
+            }
+        }
+        
+        if formModel.isPhone {
+            VStack(alignment: .leading, spacing: Constants.stackSpacingConstant) {
+                baseView
+            }
+        }
+        else {
+            HStack {
+                baseView
+            }
+        }
     }
 }
 
 struct SliderWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        SliderWidgetView()
+        SliderWidgetView(sliderWidget: dev.sliderWidget, locked: .constant(false))
     }
 }

@@ -93,11 +93,6 @@ struct FormDetailView: View {
                                 selectedSections.removeAll()
                             }
                         }
-//                        .onChange(of: sections.count) { newValue in
-//                            withAnimation {
-//                                scrollViewProxy.scrollTo(sections.count - 1)
-//                            }
-//                        }
                     }
                     .onChange(of: form.sections?.hashValue) { _ in
                         resolvePositions()

@@ -12,12 +12,13 @@ import CoreData
 @objc(SliderWidget)
 public class SliderWidget: Widget, Decodable {
 
-    init(title: String?, position: Int, lowerBound: String?, upperBound: String?, step: String?) {
+    init(title: String?, position: Int, lowerBound: String?, upperBound: String?, step: String?, number: String?) {
         super.init(entityName: WidgetType.sliderWidget.rawValue, context: DataControllerModel.shared.container.viewContext, title: title, position: position)
         self.type = WidgetType.sliderWidget.rawValue
         self.lowerBound = lowerBound
         self.upperBound = upperBound
         self.step = step
+        self.number = number
     }
     
     required public init(from decoder: Decoder) throws {
@@ -39,6 +40,9 @@ public class SliderWidget: Widget, Decodable {
         if let step = try sliderWidgetContainer.decode(String?.self, forKey: .step) {
             self.step = step
         }
+        if let number = try sliderWidgetContainer.decode(String?.self, forKey: .number) {
+            self.number = number
+        }
     }
     
     override public func encode(to encoder: Encoder) throws {
@@ -48,5 +52,6 @@ public class SliderWidget: Widget, Decodable {
         try sliderWidgetContainer.encode(lowerBound, forKey: .lowerBound)
         try sliderWidgetContainer.encode(upperBound, forKey: .upperBound)
         try sliderWidgetContainer.encode(step, forKey: .step)
+        try sliderWidgetContainer.encode(number, forKey: .number)
     }
 }

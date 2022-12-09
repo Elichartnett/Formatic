@@ -59,6 +59,7 @@
     </entity>
     <entity name="SliderWidget" representedClassName="SliderWidget" parentEntity="Widget" syncable="YES">
         <attribute name="lowerBound" optional="YES" attributeType="String"/>
+        <attribute name="number" optional="YES" attributeType="String"/>
         <attribute name="step" optional="YES" attributeType="String"/>
         <attribute name="upperBound" optional="YES" attributeType="String"/>
     </entity>

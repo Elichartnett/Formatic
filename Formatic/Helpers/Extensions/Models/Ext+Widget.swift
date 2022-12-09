@@ -46,6 +46,18 @@ extension Widget: Identifiable {
                 copy.position = widget.position + 1
                 section?.addToWidgets(copy)
             }
+        case .dateFieldWidget:
+            if let widget = self as? DateFieldWidget {
+                let copy = widget.createCopy() as! DateFieldWidget
+                copy.position = widget.position + 1
+                section?.addToWidgets(copy)
+            }
+        case .sliderWidget:
+            if let widget = self as? SliderWidget {
+                let copy = widget.createCopy() as! SliderWidget
+                copy.position = widget.position + 1
+                section?.addToWidgets(copy)
+            }
         case .dropdownSectionWidget:
             if let widget = self as? DropdownSectionWidget {
                 let copy = widget.createCopy() as! DropdownSectionWidget

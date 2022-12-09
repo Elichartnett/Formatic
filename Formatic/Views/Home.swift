@@ -31,7 +31,6 @@ struct Home: View {
             if !finishedLaunching {
                 LottieView(name: Constants.logoAnimationFileName)
                     .background(Color.white)
-                    .ignoresSafeArea()
                     .onReceive(timer) { _ in
                         time += 0.1
                         if time >= 1.5 {
