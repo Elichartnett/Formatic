@@ -125,9 +125,9 @@ struct BaseLatLonView: View {
     
     var body: some View {
         
-        InputBox(placeholder: Strings.latitudeLabel, text: $latitude, inputType: .number, isValid: $validLatitude, numberRange: -90...90)
+        InputBox(placeholder: Strings.latitudeLabel, text: $latitude, inputType: .number, isValid: $validLatitude, validRange: -90...90)
             .titleFrameStyle(locked: .constant(false))
-        InputBox(placeholder: Strings.longitudeLabel, text: $longitude, inputType: .number, isValid: $validLongitude, numberRange: -180...180)
+        InputBox(placeholder: Strings.longitudeLabel, text: $longitude, inputType: .number, isValid: $validLongitude, validRange: -180...180)
             .titleFrameStyle(locked: .constant(false))
     }
 }
@@ -145,12 +145,12 @@ struct BaseUTMView: View {
     
     var body: some View {
         
-        let eastingView = InputBox(placeholder: Strings.eastingLabel, text: $easting, inputType: .number, isValid: $validEasting, numberRange: 166640...833360)
+        let eastingView = InputBox(placeholder: Strings.eastingLabel, text: $easting, inputType: .number, isValid: $validEasting, validRange: 166640...833360)
             .titleFrameStyle(locked: .constant(false))
-        let northingView = InputBox(placeholder: Strings.northingLabel, text: $northing, inputType: .number, isValid: $validNorthing, numberRange: 1110400...9334080)
+        let northingView = InputBox(placeholder: Strings.northingLabel, text: $northing, inputType: .number, isValid: $validNorthing, validRange: 1110400...9334080)
             .titleFrameStyle(locked: .constant(false))
         
-        let zoneView = InputBox(placeholder: Strings.zoneLabel, text: $zone, inputType: .number, isValid: $validZone, numberRange: 1...60)
+        let zoneView = InputBox(placeholder: Strings.zoneLabel, text: $zone, inputType: .number, isValid: $validZone, validRange: 1...60)
         
         let pickerView = Picker(Strings.hemisphereLabel, selection: $hemisphere) {
             Text(Strings.northernLabel)

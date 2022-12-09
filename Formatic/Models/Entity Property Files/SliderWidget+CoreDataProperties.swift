@@ -15,6 +15,7 @@ extension SliderWidget {
     }
 
     @NSManaged public var lowerBound: String?
+    @NSManaged public var number: String?
     @NSManaged public var step: String?
     @NSManaged public var upperBound: String?
 }

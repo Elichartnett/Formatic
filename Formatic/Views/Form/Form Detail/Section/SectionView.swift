@@ -43,6 +43,7 @@ struct SectionView: View {
                     
                     if forPDF && widget != widgets[widgets.count - 1] {
                         Divider()
+                            .padding(.vertical, 10)
                     }
                 }
             }

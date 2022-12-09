@@ -111,17 +111,17 @@ struct ConfigureDropdownSectionWidgetView: View {
     }
     
     func createNewDropdownSectionWidget() {
-        dropdownSectionWidget = DropdownSectionWidget(title: title, position: section.numberOfWidgets(), selectedDropdown: nil, dropdownWidgets: nil)
+        let dropdownSectionWidget = DropdownSectionWidget(title: title, position: section.numberOfWidgets(), selectedDropdown: nil, dropdownWidgets: nil)
         
         for (index, localDropdown) in localDropdowns.enumerated() {
             if !localDropdown.title.isEmpty {
                 let dropdownWidget = DropdownWidget(title: localDropdown.title, position: index, dropdownSectionWidget: dropdownSectionWidget, selectedDropdownInverse: nil)
-                dropdownSectionWidget!.addToDropdownWidgets(dropdownWidget)
+                dropdownSectionWidget.addToDropdownWidgets(dropdownWidget)
             }
         }
         
         withAnimation {
-            section.addToWidgets(dropdownSectionWidget!)
+            section.addToWidgets(dropdownSectionWidget)
         }
         Analytics.logEvent(Constants.analyticsCreateDropdownWidgetEvent, parameters: nil)
     }

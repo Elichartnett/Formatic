@@ -35,7 +35,9 @@ struct WidgetView: View {
                         }
                         
                     case .sliderWidget:
-                        EmptyView()
+                        if let sliderWidget = widget as? SliderWidget {
+                            SliderWidgetView(sliderWidget: sliderWidget, locked: $locked)
+                        }
                         
                     case .dropdownSectionWidget:
                         if let dropdownSectionWidget = widget as? DropdownSectionWidget {

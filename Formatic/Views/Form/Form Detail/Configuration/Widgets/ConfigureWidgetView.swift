@@ -45,7 +45,7 @@ struct ConfigureWidgetView: View {
                     }
                 
             case .sliderWidget:
-                ConfigureSliderWidgetView()
+                ConfigureSliderWidgetView(title: $widgetTitle, section: section)
                     .onAppear {
                         typeTitle = Strings.sliderLabel
                     }

@@ -21,8 +21,8 @@ class FormModel: ObservableObject {
     static func formatAsCsv(_ string: String) -> String {
         var csvString = ""
         
+        // In case user *specifcally* used normal quotes in their text
         if string.contains("\""){
-            // In case user *specifcally* used normal quotes in their text
             csvString = string.replacingOccurrences(of: "\"", with: "“")
         }
         else {

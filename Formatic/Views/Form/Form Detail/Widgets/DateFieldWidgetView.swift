@@ -39,6 +39,9 @@ struct DateFieldWidgetView: View {
             DatePicker(selection: $date, displayedComponents: [.date, .hourAndMinute]) {}
                 .labelsHidden()
             .datePickerStyle(.compact)
+            .onChange(of: date, perform: { _ in
+                dateFieldWidget.date = date
+            })
             .frame(maxWidth: .infinity)
             .WidgetFrameStyle(height: .regular)
         }

@@ -45,7 +45,7 @@ class DeveloperPreview {
         
         dateFieldWidget = DateFieldWidget(title: "Date field title", position: 3, date: Date())
         
-        sliderWidget = SliderWidget(title: "Slider widget title", position: 4, lowerBound: "1", upperBound: "5", step: "1")
+        sliderWidget = SliderWidget(title: "Slider widget title", position: 4, lowerBound: "1", upperBound: "5", step: "1", number: "1")
         
         dropdownSectionWidget = DropdownSectionWidget(title: "Dropdown section title", position: 5, selectedDropdown: nil, dropdownWidgets: nil)
         dropdownWidget = DropdownWidget(title: "Dropdown option 1", position: 0, dropdownSectionWidget: nil, selectedDropdownInverse: nil)

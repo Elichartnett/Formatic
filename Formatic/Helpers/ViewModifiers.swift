@@ -38,13 +38,13 @@ struct WidgetFrame: ViewModifier {
         switch height {
         case .regular:
             view
-                .frame(height: WidgetViewHeight.regular.rawValue)
+                .frame(minHeight: WidgetViewHeight.regular.rawValue, maxHeight: WidgetViewHeight.regular.rawValue)
         case .adaptive:
             view
                 .frame(minHeight: WidgetViewHeight.regular.rawValue, maxHeight: .infinity)
         case .large:
             view
-                .frame(minHeight: WidgetViewHeight.large.rawValue)
+                .frame(minHeight: WidgetViewHeight.large.rawValue, maxHeight: WidgetViewHeight.large.rawValue)
         }
     }
 }

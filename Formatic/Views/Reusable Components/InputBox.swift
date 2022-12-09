@@ -16,15 +16,15 @@ struct InputBox: View {
     @Binding var text: String
     @State var inputType: InputType
     @Binding var isValid: Bool
-    var numberRange: ClosedRange<Double>?
+    var validRange: ClosedRange<Double>?
     var axis: Axis
     
-    init(placeholder: String, text: Binding<String>, inputType: InputType = .text, isValid: Binding<Bool> = .constant(true), numberRange: ClosedRange<Double>? = nil, axis: Axis = .horizontal) {
+    init(placeholder: String, text: Binding<String>, inputType: InputType = .text, isValid: Binding<Bool> = .constant(true), validRange: ClosedRange<Double>? = nil, axis: Axis = .horizontal) {
         self.placeholder = placeholder
         self._text = text
         self.inputType = inputType
         self._isValid = isValid
-        self.numberRange = numberRange
+        self.validRange = validRange
         self.axis = axis
     }
     
@@ -44,7 +44,7 @@ struct InputBox: View {
                                 isValid = true
                             }
                             else {
-                                isValid = text.isValidNumber(range: numberRange)
+                                isValid = text.isValidNumber(range: validRange)
                             }
                         }
                     }
