@@ -86,7 +86,6 @@ struct ConfigureWidgetView: View {
             Spacer()
         }
         .padding(.horizontal)
-        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
 
