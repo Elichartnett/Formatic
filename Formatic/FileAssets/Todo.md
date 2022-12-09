@@ -1,5 +1,6 @@
 #  Todo
 
+- Strings constants for new widgets
 - multi selection toolbar should have labels on larger devices
 - Reorder sections with list
 - Drag and drop widgets between sections
@@ -7,6 +8,3 @@
 - StoreKit (importing and exporting)
 - Add accessibility
 - Add testing
-
-What to test:
-

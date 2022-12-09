@@ -17,7 +17,7 @@ struct FormListView: View {
     @State var selectedForms = Set<Form>()
     @State var exportType: UTType?
     @State var showExportView = false
-    @State var showMultiWidgetSelectionToolBar = false
+    @State var showMultiFormSelectionToolBar = false
     @State var searchText = ""
     @State var showNewFormView = false
     @State var showImportFormView = false
@@ -37,8 +37,8 @@ struct FormListView: View {
         Group {
             if !forms.isEmpty {
                 VStack {
-                    if showMultiWidgetSelectionToolBar {
-                        multiWidgetSelectionToolBar
+                    if showMultiFormSelectionToolBar {
+                        multiFormSelectionToolBar
                             .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
                     }
                     
@@ -81,7 +81,7 @@ struct FormListView: View {
                     }
                     .onChange(of: selectedForms.isEmpty, perform: { isEmpty in
                         withAnimation {
-                            showMultiWidgetSelectionToolBar = !isEmpty
+                            showMultiFormSelectionToolBar = !isEmpty
                         }
                     })
                     .onChange(of: forms.count, perform: { _ in // Force list update - refresh bug when canceling search and adding form
@@ -181,7 +181,7 @@ struct FormListView: View {
         })
     }
     
-    var multiWidgetSelectionToolBar: some View {
+    var multiFormSelectionToolBar: some View {
         HStack {
             Spacer()
             
@@ -193,8 +193,7 @@ struct FormListView: View {
                     selectedForms.removeAll()
                 }
             } label: {
-                Image(systemName: Constants.copyIconName)
-                    .customIcon()
+                Labels.copy
             }
             
             Spacer()
@@ -204,9 +203,9 @@ struct FormListView: View {
                     form.recentlyDeleted = true
                 }
                 selectedForms.removeAll()
-                showMultiWidgetSelectionToolBar = false
+                showMultiFormSelectionToolBar = false
             } label: {
-                Image(systemName: Constants.trashIconName)
+                Labels.delete
                     .foregroundColor(.red)
             }
             

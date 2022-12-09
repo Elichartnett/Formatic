@@ -132,8 +132,8 @@ struct SettingsView: View {
     
     var multiWidgetSelectionToolBar: some View {
         HStack {
-            Image(systemName: Constants.plusIconName)
-                .customIcon()
+            let recoverLabel = Labels.recover
+                .foregroundColor(.blue)
                 .onTapGesture {
                     withAnimation {
                         for form in selectedForms {
@@ -143,7 +143,14 @@ struct SettingsView: View {
                     }
                 }
             
-            Image(systemName: Constants.trashIconName)
+            if formModel.isPhone {
+                recoverLabel.labelStyle(.iconOnly)
+            }
+            else {
+                recoverLabel.labelStyle(.titleAndIcon)
+            }
+            
+            let deleteLabel = Labels.delete
                 .foregroundColor(.red)
                 .onTapGesture {
                     withAnimation {
@@ -153,6 +160,13 @@ struct SettingsView: View {
                         selectedForms.removeAll()
                     }
                 }
+            
+            if formModel.isPhone {
+                deleteLabel.labelStyle(.iconOnly)
+            }
+            else {
+                deleteLabel.labelStyle(.titleAndIcon)
+            }
         }
     }
     

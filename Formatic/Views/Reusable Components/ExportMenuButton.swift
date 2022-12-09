@@ -42,16 +42,7 @@ struct ExportMenuButton: View {
                 }
             }
         } label: {
-            let icon = Image(systemName: Constants.exportFormIconName)
-            if formModel.isPhone {
-                icon
-            }
-            else {
-                HStack {
-                    icon
-                    Text(Strings.exportLabel)
-                }
-            }
+            Labels.export
         }
     }
 }
