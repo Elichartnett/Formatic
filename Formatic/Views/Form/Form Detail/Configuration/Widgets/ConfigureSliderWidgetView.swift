@@ -34,7 +34,7 @@ struct ConfigureSliderWidgetView: View {
         
         VStack {
             
-            Text("Value: \(number.formatted())")
+            Text("\(Strings.valueLabel): \(number.formatted())")
             
             HStack {
                 Text(lowerBound.formatted())
@@ -45,8 +45,8 @@ struct ConfigureSliderWidgetView: View {
             }
             
             HStack {
-                Text("Lower Bound")
-                InputBox(placeholder: "0", text: $lowerBoundInput, inputType: .number, isValid: $validLowerBoundInput, validRange: 0...upperBound-1)
+                Text(Strings.lowerBoundLabel)
+                InputBox(placeholder: lowerBoundDefault.formatted(), text: $lowerBoundInput, inputType: .number, isValid: $validLowerBoundInput, validRange: 0...upperBound-1)
                     .onChange(of: lowerBoundInput) { _ in
                         validateLowerBound()
                         validateUpperBound()
@@ -55,8 +55,8 @@ struct ConfigureSliderWidgetView: View {
             }
             
             HStack {
-                Text("Upper Bound")
-                InputBox(placeholder: "10", text: $upperBoundInput, inputType: .number, isValid: $validUpperBoundInput, validRange: max(lowerBound, step)+1...maxInput)
+                Text(Strings.upperBoundLabel)
+                InputBox(placeholder: upperBoundDefault.formatted(), text: $upperBoundInput, inputType: .number, isValid: $validUpperBoundInput, validRange: max(lowerBound, step)+1...maxInput)
                     .onChange(of: upperBoundInput) { _ in
                         validateUpperBound()
                         validateLowerBound()
@@ -65,8 +65,8 @@ struct ConfigureSliderWidgetView: View {
             }
             
             HStack {
-                Text("Step")
-                InputBox(placeholder: "1", text: $stepInput, inputType: .number, isValid: $validStepInput, validRange: 1/maxInput...upperBound-1)
+                Text(Strings.stepLabel)
+                InputBox(placeholder: stepDefault.formatted(), text: $stepInput, inputType: .number, isValid: $validStepInput, validRange: 1/maxInput...upperBound-1)
                     .onChange(of: stepInput) { _ in
                         validateStep()
                         validateLowerBound()

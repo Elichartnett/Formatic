@@ -178,6 +178,7 @@ struct FormView_Previews: PreviewProvider {
 
 private struct MultiWidgetSelectionToolBar: View {
     
+    @EnvironmentObject var formModel: FormModel
     @Environment(\.editMode) var editMode
     
     let section: Section
@@ -212,8 +213,14 @@ private struct MultiWidgetSelectionToolBar: View {
                     removeAllWidgetsFromSelection()
                 }
             } label: {
-                Image(systemName: Constants.copyIconName)
-                    .customIcon()
+                let label = Labels.copy
+                
+                if formModel.isPhone {
+                    label.labelStyle(.iconOnly)
+                }
+                else {
+                    label
+                }
             }
             
             Button {
@@ -231,8 +238,15 @@ private struct MultiWidgetSelectionToolBar: View {
                     removeAllWidgetsFromSelection()
                 }
             } label: {
-                Image(systemName: Constants.trashIconName)
+                let label = Labels.delete
                     .foregroundColor(.red)
+                
+                if formModel.isPhone {
+                    label.labelStyle(.iconOnly)
+                }
+                else {
+                    label
+                }
             }
         }
     }

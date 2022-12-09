@@ -70,6 +70,10 @@
 "dateFieldLabel" = "Date Field";
 
 "sliderLabel" = "Slider";
+"valueLabel" = "Value";
+"lowerBoundLabel" = "Lower Bound";
+"upperBoundLabel" = "Upper Bound";
+"stepLabel" = "Step";
 
 "dropdownMenuLabel" = "Dropdown Menu";
 "numberOfDropdownOptionsLabel" = "Number of dropdown options: ";

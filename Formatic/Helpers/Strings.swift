@@ -73,6 +73,10 @@ struct Strings {
     static let numberLabel = String(localized: "numberLabel")
     
     static let dateFieldLabel = String(localized: "dateFieldLabel")
+    static let valueLabel = String(localized: "valueLabel")
+    static let lowerBoundLabel = String(localized: "lowerBoundLabel")
+    static let upperBoundLabel = String(localized: "upperBoundLabel")
+    static let stepLabel = String(localized: "stepLabel")
     
     static let sliderLabel = String(localized: "sliderLabel")
     

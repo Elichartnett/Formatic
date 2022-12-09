@@ -51,7 +51,7 @@ struct SliderWidgetView: View {
                 
                 HStack {
                     VStack {
-                        Text("Value: \(sliderWidget.number ?? "")")
+                        Text("\(Strings.valueLabel): \(sliderWidget.number ?? "")")
                         
                         HStack {
                             Text(lowerBound.formatted())
