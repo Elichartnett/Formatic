@@ -128,7 +128,7 @@ extension Section: Codable, Identifiable, Csv, Copyable {
         let widgetArray = self.sortedWidgetsArray()
         
         for widget in widgetArray {
-            let widgetType = WidgetType(rawValue: widget.type!)
+            let widgetType = WidgetType(rawValue: widget.type!)!
             switch widgetType {
             case .textFieldWidget:
                 if let widget = widget as? TextFieldWidget {
@@ -138,6 +138,16 @@ extension Section: Codable, Identifiable, Csv, Copyable {
             case .numberFieldWidget:
                 if let widget = widget as? NumberFieldWidget {
                     let widgetCopy = widget.createCopy() as! NumberFieldWidget
+                    copy.addToWidgets(widgetCopy)
+                }
+            case .dateFieldWidget:
+                if let widget = widget as? DateFieldWidget {
+                    let widgetCopy = widget.createCopy() as! DateFieldWidget
+                    copy.addToWidgets(widgetCopy)
+                }
+            case .sliderWidget:
+                if let widget = widget as? SliderWidget {
+                    let widgetCopy = widget.createCopy() as! SliderWidget
                     copy.addToWidgets(widgetCopy)
                 }
             case .dropdownSectionWidget:
@@ -164,8 +174,6 @@ extension Section: Codable, Identifiable, Csv, Copyable {
                     let widgetCopy = widget.createCopy() as! CanvasWidget
                     copy.addToWidgets(widgetCopy)
                 }
-            default:
-                break
             }
         }
         return copy

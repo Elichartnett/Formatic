@@ -31,7 +31,7 @@ extension Widget: Identifiable {
             widgets[index].position = widgets[index].position + 1
         }
         
-        let widgetType = WidgetType(rawValue: self.type!)
+        let widgetType = WidgetType(rawValue: self.type!)!
         
         switch widgetType {
         case .textFieldWidget:
@@ -86,8 +86,6 @@ extension Widget: Identifiable {
                 copy.position = widget.position + 1
                 section?.addToWidgets(copy)
             }
-        default:
-            break
         }
     }
 }
