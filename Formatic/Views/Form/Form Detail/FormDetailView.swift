@@ -75,6 +75,16 @@ struct FormDetailView: View {
                                             section.widgets?.contains(selectedWidget) ?? false
                                         }) || selectedSections.contains(section)) ? 1 : 0)
                                         .animation(.default, value: selectedWidgets.isEmpty)
+                                    
+                                    Group {
+                                        if formModel.isPhone {
+                                            Labels.sort.labelStyle(.iconOnly)
+                                        }
+                                        else {
+                                            Labels.sort.labelStyle(.titleAndIcon)
+                                        }
+                                    }
+                                    .opacity(editMode?.wrappedValue == .active ? 1 : 0)
                                 }
                             }
                             .id(Int(section.position))

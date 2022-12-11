@@ -47,6 +47,9 @@ struct SectionView: View {
                     }
                 }
             }
+            .onInsert(of: ["com.formatic.widget"], perform: { index, items in
+                print(index, items)
+            })
             .onMove(perform: { indexSet, destination in
                 section.updateWidgetPositions(indexSet: indexSet, destination: destination)
             })
