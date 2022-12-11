@@ -50,7 +50,7 @@
 "unlockedLabel" = "Unlocked";
 "optionalFormPasswordLabel" = "Optional password";
 "retypeFormPasswordLabel" = "Retype password";
-"sortMethodLabel" = "Sort Method";
+"sortLabel" = "Sort";
 
 "settingsLabel" = "Settings";
 "failedToOpenEmailURLErrorMessage" = "Failed to find mail application. Please manually email ";

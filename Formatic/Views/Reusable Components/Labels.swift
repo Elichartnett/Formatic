@@ -16,4 +16,6 @@ struct Labels {
     static var export = Label(Strings.exportLabel, systemImage: Constants.exportFormIconName)
     
     static let recover = Label(Strings.recoverLabel, systemImage: Constants.plusIconName)
+    
+    static let sort = Label(Strings.sortLabel, systemImage: Constants.sortIconName)
 }

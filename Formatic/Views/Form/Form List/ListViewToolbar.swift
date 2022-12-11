@@ -70,7 +70,7 @@ struct ListViewToolbar: View {
                     HStack {
                         Image(systemName: Constants.sortIconName)
                         if !formModel.isPhone {
-                            Text(Strings.sortMethodLabel)
+                            Text(Strings.sortLabel)
                         }
                     }
                 }
