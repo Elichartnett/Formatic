@@ -39,7 +39,6 @@ struct FormDetailView: View {
             }
             else {
                 if !forPDF {
-                    ScrollViewReader { scrollViewProxy in
                         
                         List(sections, selection: $selectedWidgets) { section in
                             
@@ -83,25 +82,43 @@ struct FormDetailView: View {
                                         else {
                                             Labels.sort.labelStyle(.titleAndIcon)
                                         }
+                                    } label: {
+                                        Image(systemName: selectedSections.contains(section) ? Constants.filledCircleCheckmarkIconName : Constants.circleIconName)
                                     }
-                                    .opacity(editMode?.wrappedValue == .active ? 1 : 0)
                                 }
+                                
+                                SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
+                                
+                                MultiWidgetSelectionToolBar(section: section, selectedSections: $selectedSections, selectedWidgets: $selectedWidgets)
+                                    .opacity(editMode?.wrappedValue == .active && (selectedWidgets.contains(where: { selectedWidget in
+                                        section.widgets?.contains(selectedWidget) ?? false
+                                    }) || selectedSections.contains(section)) ? 1 : 0)
+                                    .animation(.default, value: selectedWidgets.isEmpty)
+                                
+                                Group {
+                                    if formModel.isPhone {
+                                        Labels.sort.labelStyle(.iconOnly)
+                                    }
+                                    else {
+                                        Labels.sort.labelStyle(.titleAndIcon)
+                                    }
+                                }
+                                .opacity(editMode?.wrappedValue == .active ? 1 : 0)
                             }
-                            .id(Int(section.position))
-                            .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
-                                return -20
-                            }
-                            .listSectionSeparator(.hidden)
                         }
-                        .listStyle(.plain)
-                        .padding(.horizontal)
-                        .scrollContentBackground(.hidden)
-                        .scrollDismissesKeyboard(.interactively)
-                        .background(Color.primaryBackground)
-                        .onChange(of: editMode?.wrappedValue) { mode in
-                            if mode == .inactive {
-                                selectedSections.removeAll()
-                            }
+                        .id(Int(section.position))
+                        .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
+                            return -20
+                        }
+                        .listSectionSeparator(.hidden)
+                    .listStyle(.plain)
+                    .padding(.horizontal)
+                    .scrollContentBackground(.hidden)
+                    .scrollDismissesKeyboard(.interactively)
+                    .background(Color.primaryBackground)
+                    .onChange(of: editMode?.wrappedValue) { mode in
+                        if mode == .inactive {
+                            selectedSections.removeAll()
                         }
                     }
                     .onChange(of: form.sections?.hashValue) { _ in
