@@ -84,7 +84,6 @@ struct WidgetView: View {
                     .tint(.blue)
                 }
             }
-            
         }
     }
 }
