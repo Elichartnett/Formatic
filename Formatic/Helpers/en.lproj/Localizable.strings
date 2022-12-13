@@ -51,6 +51,7 @@
 "optionalFormPasswordLabel" = "Optional password";
 "retypeFormPasswordLabel" = "Retype password";
 "sortLabel" = "Sort";
+"moveLabel" = "Move";
 
 "settingsLabel" = "Settings";
 "failedToOpenEmailURLErrorMessage" = "Failed to find mail application. Please manually email ";

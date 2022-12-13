@@ -52,6 +52,7 @@ struct Constants {
     static let mapPinIconName = "mappin.circle.fill"
     static let sortIconName = "line.3.horizontal.decrease.circle"
     static let expandListIconName = "chevron.right"
+    static let moveIconName = "arrow.up.arrow.down"
     
     static let logoAnimationFileName = "logoAnimation"
     static let formContainerFileName = "Form Container"
