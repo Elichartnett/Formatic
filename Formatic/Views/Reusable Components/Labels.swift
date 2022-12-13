@@ -18,4 +18,6 @@ struct Labels {
     static let recover = Label(Strings.recoverLabel, systemImage: Constants.plusIconName)
     
     static let sort = Label(Strings.sortLabel, systemImage: Constants.sortIconName)
+    
+    static let move = Label(Strings.moveLabel, systemImage: Constants.moveIconName)
 }

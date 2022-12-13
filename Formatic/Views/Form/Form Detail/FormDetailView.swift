@@ -18,6 +18,7 @@ struct FormDetailView: View {
     @State var selectedWidgets = Set<Widget>()
     @State var selectedSections = Set<Section>()
     @State var showToggleLockView = false
+    @State var sortSections = false
     
     init(form: Form, forPDF: Bool) {
         self._sections = FetchRequest<Section>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: Constants.predicateFormEqualTo, form))
@@ -39,48 +40,28 @@ struct FormDetailView: View {
             }
             else {
                 if !forPDF {
+                    
+                    List(sections, selection: $selectedWidgets) { section in
                         
-                        List(sections, selection: $selectedWidgets) { section in
-                            
-                            SwiftUI.Section {
-                                SectionView(section: section, locked: $form.locked, forPDF: forPDF)
-                            } header: {
-                                HStack {
-                                    if editMode?.wrappedValue == .active {
-                                        Button {
-                                            withAnimation {
-                                                if selectedSections.contains(section) {
-                                                    for widget in section.sortedWidgetsArray() {
-                                                        selectedWidgets.remove(widget)
-                                                    }
-                                                    selectedSections.remove(section)
+                        SwiftUI.Section {
+                            SectionView(section: section, locked: $form.locked, forPDF: forPDF)
+                        } header: {
+                            HStack {
+                                if editMode?.wrappedValue == .active {
+                                    Button {
+                                        withAnimation {
+                                            if selectedSections.contains(section) {
+                                                for widget in section.sortedWidgetsArray() {
+                                                    selectedWidgets.remove(widget)
                                                 }
-                                                else {
-                                                    for widget in section.sortedWidgetsArray() {
-                                                        selectedWidgets.insert(widget)
-                                                    }
-                                                    selectedSections.insert(section)
-                                                }
+                                                selectedSections.remove(section)
                                             }
-                                        } label: {
-                                            Image(systemName: selectedSections.contains(section) ? Constants.filledCircleCheckmarkIconName : Constants.circleIconName)
-                                        }
-                                    }
-                                    
-                                    SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
-                                    
-                                    MultiWidgetSelectionToolBar(section: section, selectedSections: $selectedSections, selectedWidgets: $selectedWidgets)
-                                        .opacity(editMode?.wrappedValue == .active && (selectedWidgets.contains(where: { selectedWidget in
-                                            section.widgets?.contains(selectedWidget) ?? false
-                                        }) || selectedSections.contains(section)) ? 1 : 0)
-                                        .animation(.default, value: selectedWidgets.isEmpty)
-                                    
-                                    Group {
-                                        if formModel.isPhone {
-                                            Labels.sort.labelStyle(.iconOnly)
-                                        }
-                                        else {
-                                            Labels.sort.labelStyle(.titleAndIcon)
+                                            else {
+                                                for widget in section.sortedWidgetsArray() {
+                                                    selectedWidgets.insert(widget)
+                                                }
+                                                selectedSections.insert(section)
+                                            }
                                         }
                                     } label: {
                                         Image(systemName: selectedSections.contains(section) ? Constants.filledCircleCheckmarkIconName : Constants.circleIconName)
@@ -95,15 +76,19 @@ struct FormDetailView: View {
                                     }) || selectedSections.contains(section)) ? 1 : 0)
                                     .animation(.default, value: selectedWidgets.isEmpty)
                                 
-                                Group {
-                                    if formModel.isPhone {
-                                        Labels.sort.labelStyle(.iconOnly)
+                                Button {
+                                    sortSections.toggle()
+                                } label: {
+                                    Group {
+                                        if formModel.isPhone {
+                                            Labels.move.labelStyle(.iconOnly)
+                                        }
+                                        else {
+                                            Labels.move.labelStyle(.titleAndIcon)
+                                        }
                                     }
-                                    else {
-                                        Labels.sort.labelStyle(.titleAndIcon)
-                                    }
+                                    .opacity(editMode?.wrappedValue == .active ? 1 : 0)
                                 }
-                                .opacity(editMode?.wrappedValue == .active ? 1 : 0)
                             }
                         }
                         .id(Int(section.position))
@@ -111,6 +96,7 @@ struct FormDetailView: View {
                             return -20
                         }
                         .listSectionSeparator(.hidden)
+                    }
                     .listStyle(.plain)
                     .padding(.horizontal)
                     .scrollContentBackground(.hidden)
@@ -167,6 +153,7 @@ struct FormDetailView: View {
                 EndEditingButton()
             }
         })
+        .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $showToggleLockView, onDismiss: {
             if form.locked == true {
                 withAnimation {
@@ -176,7 +163,17 @@ struct FormDetailView: View {
         }, content: {
             ToggleLockView(showToggleLockView: $showToggleLockView, form: form)
         })
-        .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $sortSections) {
+            List {
+                ForEach(sections) { section in
+                    Text(section.title ?? "")
+                }
+                .onMove(perform: { indexSet, destination in
+                    form.updateSectionPositions(indexSet: indexSet, destination: destination)
+                })
+            }
+            .environment(\.editMode, .constant(.active))
+        }
     }
     
     func resolvePositions() {

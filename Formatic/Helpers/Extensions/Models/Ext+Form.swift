@@ -206,4 +206,16 @@ extension Form: Codable, Identifiable, Transferable, Csv, Copyable {
         }
         return csvString.data(using: .utf8) ?? Strings.noFormDataErrorMessage.data(using: .utf8)!
     }
+    
+    func updateSectionPositions(indexSet: IndexSet, destination: Int) {
+        var sections = self.sortedSectionsArray()
+        
+        sections.move(fromOffsets: indexSet, toOffset: destination)
+        
+        for (index, section) in sections.enumerated() {
+            DispatchQueue.main.async {
+                section.position = Int16(index)
+            }
+        }
+    }
 }

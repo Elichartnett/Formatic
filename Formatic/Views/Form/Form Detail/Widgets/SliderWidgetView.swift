@@ -64,16 +64,24 @@ struct SliderWidgetView: View {
                             Text(upperBound.formatted())
                         }
                         .onChange(of: sliderWidget.lowerBound, perform: { _ in
-                            lowerBound = Double(sliderWidget.lowerBound!)!
+                            if let bound = sliderWidget.lowerBound {
+                                lowerBound = Double(bound)!
+                            }
                         })
                         .onChange(of: sliderWidget.upperBound, perform: { _ in
-                            upperBound = Double(sliderWidget.upperBound!)!
+                            if let bound = sliderWidget.lowerBound {
+                                upperBound = Double(bound)!
+                            }
                         })
                         .onChange(of: sliderWidget.step, perform: { _ in
-                            step = Double(sliderWidget.step!)!
+                            if let sliderStep = sliderWidget.step {
+                                step = Double(sliderStep)!
+                            }
                         })
                         .onChange(of: sliderWidget.number, perform: { _ in
-                            number = Double(sliderWidget.number!)!
+                            if let sliderNumber = sliderWidget.number {
+                                number = Double(sliderNumber)!
+                            }
                         })
                         .padding(.horizontal)
                     }
