@@ -69,15 +69,17 @@ extension Form: Codable, Identifiable, Transferable, Csv, Copyable {
             csvString += "\n\n"
         }
         // Remove trailing newline characters
-        csvString.remove(at: csvString.index(before: csvString.endIndex))
-        csvString.remove(at: csvString.index(before: csvString.endIndex))
+        if !csvString.isEmpty {
+            csvString.remove(at: csvString.index(before: csvString.endIndex))
+            csvString.remove(at: csvString.index(before: csvString.endIndex))
+        }
         return csvString
     }
     
     func createCopy() -> Any {
         let copy = Form(title: self.title!)
         Analytics.logEvent(Constants.analyticsCopyFormEvent, parameters: nil)
-
+        
         copy.locked = locked
         copy.password = password
         copy.dateCreated = self.dateCreated.addingTimeInterval(1)
@@ -117,21 +119,21 @@ extension Form: Codable, Identifiable, Transferable, Csv, Copyable {
         for form in forms {
             pdfs.append(Form.convertFormToPdfPage(form: form))
         }
-
+        
         for pdf in pdfs {
-                guard let dataProvider = CGDataProvider(data: pdf as CFData), let document = CGPDFDocument(dataProvider) else { continue }
-
-                for pageNumber in 1...document.numberOfPages {
-                    guard let page = document.page(at: pageNumber) else { continue }
-                    var mediaBox = page.getBoxRect(.mediaBox)
-                    context.beginPage(mediaBox: &mediaBox)
-                    context.drawPDFPage(page)
-                    context.endPage()
-                }
+            guard let dataProvider = CGDataProvider(data: pdf as CFData), let document = CGPDFDocument(dataProvider) else { continue }
+            
+            for pageNumber in 1...document.numberOfPages {
+                guard let page = document.page(at: pageNumber) else { continue }
+                var mediaBox = page.getBoxRect(.mediaBox)
+                context.beginPage(mediaBox: &mediaBox)
+                context.drawPDFPage(page)
+                context.endPage()
             }
-
-            context.closePDF()
-            UIGraphicsEndPDFContext()
+        }
+        
+        context.closePDF()
+        UIGraphicsEndPDFContext()
         
         return documentData as Data
     }

@@ -38,7 +38,7 @@ struct FormDetailViewToolbar: View {
             
             Spacer()
             
-            ExportMenuButton(exportType: $exportType, forms: [form])
+            ExportMenuButton(storeKitManager: formModel.storeKitManager, exportType: $exportType, forms: [form])
             
             Spacer()
         }

@@ -11,21 +11,45 @@ import UniformTypeIdentifiers
 struct ExportMenuButton: View {
     
     @EnvironmentObject var formModel: FormModel
+    @ObservedObject var storeKitManager: StoreKitManager
     
     @Binding var exportType: UTType?
     var forms: [Form]
+    
+    @State var showPaywallView = false
     
     var body: some View {
         
         Menu {
             
             if forms.count == 1 {
-                let form = forms[0]
-                ShareLink(item: form, preview: SharePreview(form.title ?? "Form"))
+                
+                if storeKitManager.purchasedProducts.contains(where: { product in
+                    product.id == FormaticProductID.importExportFormatic.rawValue
+                }) {
+                    let form = forms[0]
+                    ShareLink(item: form, preview: SharePreview(form.title ?? Strings.formLabel)) {
+                        Text(Strings.formaticFileLabel)
+                    }
+                }
+                else {
+                    Button {
+                        showPaywallView = true
+                    } label: {
+                        Text(Strings.formaticFileLabel)
+                    }
+                }
             }
             
             Button {
-                exportType = .pdf
+                if storeKitManager.purchasedProducts.contains(where: { product in
+                    product.id == FormaticProductID.exportPdf.rawValue
+                }) {
+                    exportType = .pdf
+                }
+                else {
+                    showPaywallView = true
+                }
             } label: {
                 HStack {
                     Image(systemName: Constants.docTextImageIconName)
@@ -34,7 +58,14 @@ struct ExportMenuButton: View {
             }
             
             Button {
-                exportType = .commaSeparatedText
+                if storeKitManager.purchasedProducts.contains(where: { product in
+                    product.id == FormaticProductID.exportCsv.rawValue
+                }) {
+                    exportType = .commaSeparatedText
+                }
+                else {
+                    showPaywallView = true
+                }
             } label: {
                 HStack {
                     Image (systemName: Constants.csvTableIconName)
@@ -42,14 +73,26 @@ struct ExportMenuButton: View {
                 }
             }
         } label: {
-            Labels.export
+            let icon = Image(systemName: Constants.exportFormIconName)
+            if formModel.isPhone {
+                icon
+            }
+            else {
+                HStack {
+                    icon
+                    Text(Strings.exportLabel)
+                }
+            }
+        }
+        .sheet(isPresented: $showPaywallView) {
+            PaywallView()
         }
     }
 }
 
 struct ExportMenuButton_Previews: PreviewProvider {
     static var previews: some View {
-        ExportMenuButton(exportType: .constant(.form), forms: [dev.form])
+        ExportMenuButton(storeKitManager: dev.formModel.storeKitManager, exportType: .constant(.form), forms: [dev.form])
             .environmentObject(FormModel())
     }
 }
