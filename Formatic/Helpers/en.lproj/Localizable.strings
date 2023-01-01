@@ -65,7 +65,8 @@
 "inAppPurchasesLabel" = "In App Purchases";
 "purchases" = "Purchases";
 "failedToPurchaseErrorMessage" = "Failed to purchase";
-"restorePurchasesLabel" = "Restore Purchases";
+"restorePurchasesLabel" = "Restore purchases";
+"purchasesRestored" = "Purchases restored";
 "formaticFileLabel" = "Formatic File";
 
 "textFieldLabel" = "Text Field";

@@ -52,6 +52,8 @@ struct PaywallView: View {
                     DispatchQueue.main.async {
                         formModel.storeKitManager.purchasedProducts = tempPurchasedProducts
                     }
+                    alertTitle = Strings.purchasesRestored
+                    showAlert = true
                 }
             } label: {
                 Text(Strings.restorePurchasesLabel)

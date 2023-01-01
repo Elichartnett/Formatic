@@ -24,19 +24,24 @@ struct ExportMenuButton: View {
             
             if forms.count == 1 {
                 
+                let formaticFileLabel = HStack {
+                    Image(systemName: Constants.fileIconName)
+                    Text(Strings.formaticFileLabel)
+                }
+                
                 if storeKitManager.purchasedProducts.contains(where: { product in
                     product.id == FormaticProductID.importExportFormatic.rawValue
                 }) {
                     let form = forms[0]
                     ShareLink(item: form, preview: SharePreview(form.title ?? Strings.formLabel)) {
-                        Text(Strings.formaticFileLabel)
+                        formaticFileLabel
                     }
                 }
                 else {
                     Button {
                         showPaywallView = true
                     } label: {
-                        Text(Strings.formaticFileLabel)
+                        formaticFileLabel
                     }
                 }
             }

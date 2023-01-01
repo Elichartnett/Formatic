@@ -88,7 +88,7 @@ struct SettingsView: View {
         Button {
             showPaywallView = true
         } label: {
-            Text(Strings.purchasesLabel)
+            Text(Strings.inAppPurchasesLabel)
         }
     }
     
