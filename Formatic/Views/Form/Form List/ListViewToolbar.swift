@@ -16,6 +16,7 @@ struct ListViewToolbar: View {
     @Binding var sortMethod: SortMethod
     @Binding var showImportFormView: Bool
     @Binding var showSettingsMenu: Bool
+    @State var showPaywallView = false
     
     var body: some View {
         
@@ -83,7 +84,14 @@ struct ListViewToolbar: View {
             Spacer()
             
             Button {
-                showImportFormView = true
+                if formModel.storeKitManager.purchasedProducts.contains(where: { product in
+                    product.id == FormaticProductID.importExportFormatic.rawValue
+                }) {
+                    showImportFormView = true
+                }
+                else {
+                    showPaywallView = true
+                }
             } label: {
                 HStack {
                     Image(systemName: Constants.importFormIconName)
@@ -107,6 +115,9 @@ struct ListViewToolbar: View {
             }
             
             Spacer()
+        }
+        .sheet(isPresented: $showPaywallView) {
+            PaywallView()
         }
     }
 }

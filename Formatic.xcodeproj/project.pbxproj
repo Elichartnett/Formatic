@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		620364EF2948333E0061B825 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620364EE2948333E0061B825 /* PaywallView.swift */; };
+		620364F2294836660061B825 /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620364F1294836660061B825 /* StoreKitManager.swift */; };
 		6208345828283A2F00DF864F /* CheckboxWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BB28277BFF0067C0A3 /* CheckboxWidget+CoreDataClass.swift */; };
+		6219A298294AC0C10003DD29 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621DDB1B29497AE50023A6E2 /* StoreKit.framework */; };
 		62294F07281F4F5B00226AF1 /* NewFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F06281F4F5B00226AF1 /* NewFormView.swift */; };
 		62294F0C281F519C00226AF1 /* InputBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F0B281F519C00226AF1 /* InputBox.swift */; };
 		62294F0E281F61B900226AF1 /* SubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F0D281F61B900226AF1 /* SubmitButton.swift */; };
@@ -136,7 +139,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		620364EE2948333E0061B825 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		620364F0294834120061B825 /* Formatic.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Formatic.storekit; sourceTree = "<group>"; };
+		620364F1294836660061B825 /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
 		620DD0932915CFA600EA54BB /* Formatic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Formatic.entitlements; sourceTree = "<group>"; };
+		621DDB1B29497AE50023A6E2 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		62294F06281F4F5B00226AF1 /* NewFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFormView.swift; sourceTree = "<group>"; };
 		62294F0B281F519C00226AF1 /* InputBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBox.swift; sourceTree = "<group>"; };
 		62294F0D281F61B900226AF1 /* SubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButton.swift; sourceTree = "<group>"; };
@@ -267,6 +274,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6219A298294AC0C10003DD29 /* StoreKit.framework in Frameworks */,
 				62443122281A13A400E21B11 /* UTMConversion in Frameworks */,
 				62F537E62927E14500314E6A /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				6288C6B128BB06F60081A39D /* Lottie in Frameworks */,
@@ -281,6 +289,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		621DDB1A29497AE50023A6E2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				621DDB1B29497AE50023A6E2 /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		62294F0A281F514300226AF1 /* Reusable Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +309,7 @@
 				62AC488E2931A3C800B4DB4B /* EndEditingButton.swift */,
 				62AC48922931ABAC00B4DB4B /* Labels.swift */,
 				622EFF28293868D300CF74F8 /* ReconfigureButton.swift */,
+				620364EE2948333E0061B825 /* PaywallView.swift */,
 			);
 			path = "Reusable Components";
 			sourceTree = "<group>";
@@ -343,6 +360,7 @@
 				62AC488C293170FF00B4DB4B /* Constants.swift */,
 				62D7D87A28F86623004C55C9 /* Strings.swift */,
 				62D7D87928F86448004C55C9 /* Localizable.strings */,
+				620364F0294834120061B825 /* Formatic.storekit */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -540,6 +558,7 @@
 			children = (
 				62FE6E6A28187058009D41FD /* Formatic */,
 				62FE6E6928187058009D41FD /* Products */,
+				621DDB1A29497AE50023A6E2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -596,6 +615,7 @@
 				629886E0281B8F1000C34782 /* FormModel.swift */,
 				6244311E281A130000E21B11 /* DataControllerModel.swift */,
 				62E7F87A282EE1E4004A95EF /* LocationManager.swift */,
+				620364F1294836660061B825 /* StoreKitManager.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -749,6 +769,7 @@
 				62FE6E6E28187058009D41FD /* Home.swift in Sources */,
 				62A979B628276D9C0067C0A3 /* DropdownWidget+CoreDataProperties.swift in Sources */,
 				622EFF29293868D300CF74F8 /* ReconfigureButton.swift in Sources */,
+				620364F2294836660061B825 /* StoreKitManager.swift in Sources */,
 				62AC48B2293281FA00B4DB4B /* Ext+NumberFieldWidget.swift in Sources */,
 				62E6AB47281E0ED6009F568B /* Form+CoreDataProperties.swift in Sources */,
 				62294F1A281F8C7700226AF1 /* MapWidgetView.swift in Sources */,
@@ -820,6 +841,7 @@
 				62294F0C281F519C00226AF1 /* InputBox.swift in Sources */,
 				62988709281C791400C34782 /* MapWidget+CoreDataClass.swift in Sources */,
 				6250E9632831649C00E6E6A0 /* CanvasRepresentableView.swift in Sources */,
+				620364EF2948333E0061B825 /* PaywallView.swift in Sources */,
 				62AC48A42932809600B4DB4B /* Ext+URL.swift in Sources */,
 				62BFAC9528188B97006C8216 /* Form Container.xcdatamodeld in Sources */,
 				62AC48A22932808300B4DB4B /* Ext+Bundle.swift in Sources */,

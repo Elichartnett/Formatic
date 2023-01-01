@@ -211,7 +211,7 @@ struct FormListView: View {
             
             Spacer()
             
-            ExportMenuButton(exportType: $exportType, forms: sortedSelectedForm)
+            ExportMenuButton(storeKitManager: formModel.storeKitManager, exportType: $exportType, forms: sortedSelectedForm)
                 .onChange(of: exportType) { _ in
                     if exportType != nil { showExportView = true }
                 }

@@ -1,0 +1,65 @@
+{
+  "identifier" : "B2C1D99F",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "6445130244",
+      "localizations" : [
+        {
+          "description" : "Export to CSV file",
+          "displayName" : "Export To CSV",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.elihartnett.Formatic.exportCsv",
+      "referenceName" : "Export To CSV",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "6445130099",
+      "localizations" : [
+        {
+          "description" : "Export to PDF file",
+          "displayName" : "Export To PDF",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.elihartnett.Formatic.exportPdf",
+      "referenceName" : "Export To PDF",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "1.99",
+      "familyShareable" : false,
+      "internalID" : "6445272403",
+      "localizations" : [
+        {
+          "description" : "Import and export to Formatic file",
+          "displayName" : "Import And Export To Formatic",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.elihartnett.Formatic.importExportFormatic",
+      "referenceName" : "Import And Export To Formatic",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "1643318765",
+    "_developerTeamID" : "BMNBE7JVDJ",
+    "_lastSynchronizedDate" : 694212969.17883503
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}

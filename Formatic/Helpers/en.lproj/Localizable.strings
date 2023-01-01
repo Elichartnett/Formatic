@@ -62,6 +62,12 @@
 "submitFeedback" = "Submit Feedback";
 "recentlyDeletedFormsLabel" = "Recently Deleted Forms";
 
+"inAppPurchasesLabel" = "In App Purchases";
+"purchases" = "Purchases";
+"failedToPurchaseErrorMessage" = "Failed to purchase";
+"restorePurchasesLabel" = "Restore Purchases";
+"formaticFileLabel" = "Formatic File";
+
 "textFieldLabel" = "Text Field";
 "textLabel" = "text";
 

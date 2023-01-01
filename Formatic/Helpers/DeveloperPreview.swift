@@ -11,7 +11,7 @@ import MapKit
 
 class DeveloperPreview {
     
-    static let instance = DeveloperPreview()
+    static let shared = DeveloperPreview()
     
     let formModel: FormModel = FormModel()
     let form: Form

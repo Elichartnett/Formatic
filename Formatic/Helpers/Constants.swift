@@ -25,7 +25,9 @@ struct Constants {
     static let predicateRecentlyDeletedEqualToFalse = "recentlyDeleted == false"
     static let predicateRecentlyDeletedEqualToTrue = "recentlyDeleted == true"
     static let predicateTitleContainsAndRecentlyDeletedEqualTo = "title CONTAINS[cd] %@ AND \(Constants.predicateRecentlyDeletedEqualTo)"
-        
+    
+    static let logoIconName = "doc.plaintext"
+    static let fileIconName = "doc.text"
     static let formsIconName = "doc.on.doc"
     static let settingsIconName = "gearshape"
     static let trashIconName = "trash"

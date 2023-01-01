@@ -15,6 +15,7 @@ import FirebaseAnalytics
 class FormModel: ObservableObject {
     
     @Published var navigationPath = NavigationPath()
+    @Published var storeKitManager = StoreKitManager()
     @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @Published var isPhone = UIDevice.current.userInterfaceIdiom == .phone
     

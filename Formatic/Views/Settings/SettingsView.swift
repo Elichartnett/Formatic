@@ -18,6 +18,7 @@ struct SettingsView: View {
     @State var selectedForms = Set<Form>()
     @State var alertTitle = ""
     @State var showAlert = false
+    @State var showPaywallView = false
     
     var body: some View {
         
@@ -27,6 +28,8 @@ struct SettingsView: View {
                 
                 SwiftUI.Section {
                     versionLabel
+                    
+                    showPaywallViewButton
                     
                     submitFeedbackButton
                 }
@@ -51,6 +54,9 @@ struct SettingsView: View {
             .navigationTitle(Strings.settingsLabel)
             .scrollContentBackground(.hidden)
             .background(Color.primaryBackground)
+            .sheet(isPresented: $showPaywallView, content: {
+                PaywallView()
+            })
             .sheet(isPresented: $showEmailVIew) {
                 let body = FormModel.getDeviceInformation()
                 let emailData = EmailData(subject: Strings.formaticFeedbackLabel, recipients: [Strings.emailAddress], body: body)
@@ -76,6 +82,14 @@ struct SettingsView: View {
     
     var versionLabel: some View {
         Text("\(Strings.versionLabel) \(Bundle.main.fullVersion)")
+    }
+    
+    var showPaywallViewButton: some View {
+        Button {
+            showPaywallView = true
+        } label: {
+            Text(Strings.purchasesLabel)
+        }
     }
     
     var submitFeedbackButton: some View {
