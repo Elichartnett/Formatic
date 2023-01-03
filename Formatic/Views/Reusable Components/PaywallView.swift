@@ -20,43 +20,48 @@ struct PaywallView: View {
         
         VStack {
             
-            Text(Strings.inAppPurchasesLabel)
-                .font(.title)
-                .bold()
-            
-            ForEach(FormaticProductID.allCases) { productID in
-                
-                if let product = formModel.storeKitManager.products.first(where: { product in
-                    product.id == productID.rawValue
-                }) {
-                    Button {
-                        Task {
-                            do {
-                                try formModel.storeKitManager.purchase(product: product)
-                            }
-                            catch {
-                                alertTitle = Strings.failedToPurchaseErrorMessage
-                                showAlert = true
-                            }
-                        }
-                    } label: {
-                        ProductView(storeKitManager: formModel.storeKitManager, product: product, icon: getIconForProductID(productID))
-                    }
-                    .buttonStyle(.plain)
-                }
+            if formModel.storeKitManager.products.isEmpty {
+                Text(Strings.failedToLoadPurchasesErrorMessage)
             }
-            
-            Button {
-                Task {
-                    let tempPurchasedProducts = await formModel.storeKitManager.getAllPurchases()
-                    DispatchQueue.main.async {
-                        formModel.storeKitManager.purchasedProducts = tempPurchasedProducts
+            else {
+                Text(Strings.inAppPurchasesLabel)
+                    .font(.title)
+                    .bold()
+                
+                ForEach(FormaticProductID.allCases) { productID in
+                    
+                    if let product = formModel.storeKitManager.products.first(where: { product in
+                        product.id == productID.rawValue
+                    }) {
+                        Button {
+                            Task {
+                                do {
+                                    try formModel.storeKitManager.purchase(product: product)
+                                }
+                                catch {
+                                    alertTitle = Strings.failedToPurchaseErrorMessage
+                                    showAlert = true
+                                }
+                            }
+                        } label: {
+                            ProductView(storeKitManager: formModel.storeKitManager, product: product, icon: getIconForProductID(productID))
+                        }
+                        .buttonStyle(.plain)
                     }
-                    alertTitle = Strings.purchasesRestored
-                    showAlert = true
                 }
-            } label: {
-                Text(Strings.restorePurchasesLabel)
+                
+                Button {
+                    Task {
+                        let tempPurchasedProducts = await formModel.storeKitManager.getAllPurchases()
+                        DispatchQueue.main.async {
+                            formModel.storeKitManager.purchasedProducts = tempPurchasedProducts
+                        }
+                        alertTitle = Strings.purchasesRestored
+                        showAlert = true
+                    }
+                } label: {
+                    Text(Strings.restorePurchasesLabel)
+                }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
