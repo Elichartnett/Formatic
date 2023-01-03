@@ -55,7 +55,7 @@ struct SettingsView: View {
             .scrollContentBackground(.hidden)
             .background(Color.primaryBackground)
             .sheet(isPresented: $showPaywallView, content: {
-                PaywallView()
+                PaywallView(storeKitManager: formModel.storeKitManager)
             })
             .sheet(isPresented: $showEmailVIew) {
                 let body = FormModel.getDeviceInformation()

@@ -117,7 +117,7 @@ struct ListViewToolbar: View {
             Spacer()
         }
         .sheet(isPresented: $showPaywallView) {
-            PaywallView()
+            PaywallView(storeKitManager: formModel.storeKitManager)
         }
     }
 }
