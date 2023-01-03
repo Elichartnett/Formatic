@@ -63,7 +63,7 @@
 "recentlyDeletedFormsLabel" = "Recently Deleted Forms";
 
 "inAppPurchasesLabel" = "In App Purchases";
-"purchases" = "Purchases";
+"failedToLoadPurchasesErrorMessage" = "Failed to load in app purchases";
 "failedToPurchaseErrorMessage" = "Failed to purchase";
 "restorePurchasesLabel" = "Restore purchases";
 "purchasesRestored" = "Purchases restored";
