@@ -11,6 +11,7 @@ import StoreKit
 struct PaywallView: View {
     
     @EnvironmentObject var formModel: FormModel
+    @ObservedObject var storeKitManager: StoreKitManager
     
     @State var isLoading = false
     @State var showAlert = false
@@ -21,8 +22,18 @@ struct PaywallView: View {
         
         VStack {
             
-            if formModel.storeKitManager.products.isEmpty {
+            if storeKitManager.products.isEmpty {
                 Text(Strings.failedToLoadPurchasesErrorMessage)
+                Button {
+                    Task {
+                        isLoading = true
+                        await storeKitManager.fetchProducts()
+                        isLoading = true
+                    }
+                } label: {
+                    Text("Try again")
+                }
+                
             }
             else {
                 Text(Strings.inAppPurchasesLabel)
@@ -31,23 +42,21 @@ struct PaywallView: View {
                 
                 ForEach(FormaticProductID.allCases) { productID in
                     
-                    if let product = formModel.storeKitManager.products.first(where: { product in
+                    if let product = storeKitManager.products.first(where: { product in
                         product.id == productID.rawValue
                     }) {
                         Button {
-                            isLoading = true
                             Task {
                                 do {
-                                    try formModel.storeKitManager.purchase(product: product)
+                                    try storeKitManager.purchase(product: product)
                                 }
                                 catch {
                                     alertTitle = Strings.failedToPurchaseErrorMessage
                                     showAlert = true
                                 }
-                                isLoading = false
                             }
                         } label: {
-                            ProductView(storeKitManager: formModel.storeKitManager, product: product, icon: getIconForProductID(productID))
+                            ProductView(storeKitManager: storeKitManager, product: product, icon: getIconForProductID(productID))
                         }
                         .buttonStyle(.plain)
                     }
@@ -56,9 +65,9 @@ struct PaywallView: View {
                 Button {
                     Task {
                         isLoading = true
-                        let tempPurchasedProducts = await formModel.storeKitManager.getAllPurchases()
+                        let tempPurchasedProducts = await storeKitManager.getAllPurchases()
                         DispatchQueue.main.async {
-                            formModel.storeKitManager.purchasedProducts = tempPurchasedProducts
+                            storeKitManager.purchasedProducts = tempPurchasedProducts
                         }
                         isLoading = false
                         alertTitle = Strings.purchasesRestored
@@ -95,7 +104,7 @@ struct PaywallView: View {
 
 struct Paywall_Previews: PreviewProvider {
     static var previews: some View {
-        PaywallView()
+        PaywallView(storeKitManager: dev.formModel.storeKitManager)
             .environmentObject(FormModel())
     }
 }

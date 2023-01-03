@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import StoreKit
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
@@ -66,6 +67,37 @@ struct Formatic: App {
                             }
                     }
                 }
+                .onAppear {
+                    let _ = TransactionObserver(storeKitManager: formModel.storeKitManager)
+                }
         }
+    }
+}
+
+final class TransactionObserver {
+    
+    let storeKitManager: StoreKitManager
+    var updates: Task<Void, Never>? = nil
+    
+    init(storeKitManager: StoreKitManager) {
+        self.storeKitManager = storeKitManager
+        
+        Task.detached {
+            for await result in Transaction.updates {
+                switch result {
+                case .unverified(_, _):
+                    break
+                case .verified(_):
+                    let tempPurchasedProducts = await self.storeKitManager.getAllPurchases()
+                    self.storeKitManager.purchasedProducts.removeAll()
+                    self.storeKitManager.purchasedProducts = tempPurchasedProducts
+                }
+            }
+        }
+    }
+
+    deinit {
+        // Cancel the update handling task when you deinitialize the class.
+        updates?.cancel()
     }
 }

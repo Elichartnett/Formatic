@@ -90,7 +90,7 @@ struct ExportMenuButton: View {
             }
         }
         .sheet(isPresented: $showPaywallView) {
-            PaywallView()
+            PaywallView(storeKitManager: formModel.storeKitManager)
         }
     }
 }
