@@ -12,6 +12,7 @@ struct PaywallView: View {
     
     @EnvironmentObject var formModel: FormModel
     
+    @State var isLoading = false
     @State var showAlert = false
     @State var alertTitle = ""
     @State var alertButtonDismissMessage = Strings.defaultAlertButtonDismissMessage
@@ -34,6 +35,7 @@ struct PaywallView: View {
                         product.id == productID.rawValue
                     }) {
                         Button {
+                            isLoading = true
                             Task {
                                 do {
                                     try formModel.storeKitManager.purchase(product: product)
@@ -42,6 +44,7 @@ struct PaywallView: View {
                                     alertTitle = Strings.failedToPurchaseErrorMessage
                                     showAlert = true
                                 }
+                                isLoading = false
                             }
                         } label: {
                             ProductView(storeKitManager: formModel.storeKitManager, product: product, icon: getIconForProductID(productID))
@@ -52,10 +55,12 @@ struct PaywallView: View {
                 
                 Button {
                     Task {
+                        isLoading = true
                         let tempPurchasedProducts = await formModel.storeKitManager.getAllPurchases()
                         DispatchQueue.main.async {
                             formModel.storeKitManager.purchasedProducts = tempPurchasedProducts
                         }
+                        isLoading = false
                         alertTitle = Strings.purchasesRestored
                         showAlert = true
                     }
@@ -66,6 +71,11 @@ struct PaywallView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.primaryBackground.ignoresSafeArea())
+        .overlay {
+            if isLoading {
+                ProgressView()
+            }
+        }
         .alert(alertTitle, isPresented: $showAlert, actions: {
             Button(Strings.defaultAlertButtonDismissMessage, role: .cancel) {}
         })
