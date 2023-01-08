@@ -47,7 +47,9 @@ struct PaywallView: View {
                         product.id == productID.rawValue
                     }) {
                         Button {
-                            if !purchasePending {
+                            if !purchasePending && !storeKitManager.purchasedProducts.contains(where: { product in
+                                product.id == productID.rawValue
+                            }) {
                                 purchasePending = true
                                 Task {
                                     do {
