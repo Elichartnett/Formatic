@@ -7,6 +7,7 @@
 
 import Foundation
 import StoreKit
+import SwiftUI
 
 class StoreKitManager: ObservableObject {
     
@@ -34,34 +35,26 @@ class StoreKitManager: ObservableObject {
     }
     
     func updatePurchasedProducts() async {
-        for product in products {
-            if await isPurchased(product: product) {
+        
+    }
+    
+    func purchase(product: Product) async throws {
+        let result = try await product.purchase()
+        
+        switch result {
+        case .success(let verification):
+            switch verification {
+            case .unverified(_, _):
+                break
+            case .verified(_):
                 DispatchQueue.main.async { [weak self] in
                     self?.purchasedProducts.append(product)
                 }
             }
-        }
-    }
-    
-    func purchase(product: Product) throws {
-        Task {
-            let result = try await product.purchase()
-            
-            switch result {
-            case .success(let verification):
-                switch verification {
-                case .unverified(_, _):
-                    break
-                case .verified(_):
-                    DispatchQueue.main.async { [weak self] in
-                        self?.purchasedProducts.append(product)
-                    }
-                }
-            case .userCancelled, .pending:
-                break
-            default:
-                break
-            }
+        case .userCancelled, .pending:
+            break
+        default:
+            break
         }
     }
     

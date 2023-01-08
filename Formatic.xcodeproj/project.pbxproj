@@ -251,7 +251,6 @@
 		62D7D87828F86448004C55C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		62D7D87A28F86623004C55C9 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		62D7FE982826B8AF00FAA815 /* CheckboxWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxWidgetView.swift; sourceTree = "<group>"; };
-		62DBCBBC291F6405005C6FB9 /* Todo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Todo.md; sourceTree = "<group>"; };
 		62E3FAFF28DA13DD00F5FE2B /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		62E6AB46281E0ED6009F568B /* Form+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		62E6AB48281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -427,7 +426,6 @@
 		6288C6A428BB06420081A39D /* FileAssets */ = {
 			isa = PBXGroup;
 			children = (
-				62DBCBBC291F6405005C6FB9 /* Todo.md */,
 				6288C6A528BB06530081A39D /* Privacy Policy pages.pages */,
 				6288C6A628BB06580081A39D /* Privacy Policy.pdf */,
 				6288C6A828BB065D0081A39D /* logoAnimation.keyshape */,

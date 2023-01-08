@@ -13,6 +13,7 @@ struct PaywallView: View {
     @EnvironmentObject var formModel: FormModel
     @ObservedObject var storeKitManager: StoreKitManager
     
+    @State var purchasePending = false
     @State var isLoading = false
     @State var showAlert = false
     @State var alertTitle = ""
@@ -46,13 +47,18 @@ struct PaywallView: View {
                         product.id == productID.rawValue
                     }) {
                         Button {
-                            Task {
-                                do {
-                                    try storeKitManager.purchase(product: product)
-                                }
-                                catch {
-                                    alertTitle = Strings.failedToPurchaseErrorMessage
-                                    showAlert = true
+                            if !purchasePending {
+                                purchasePending = true
+                                Task {
+                                    do {
+                                        try await storeKitManager.purchase(product: product)
+                                        purchasePending = false
+                                    }
+                                    catch {
+                                        purchasePending = false
+                                        alertTitle = Strings.failedToPurchaseErrorMessage
+                                        showAlert = true
+                                    }
                                 }
                             }
                         } label: {
@@ -81,7 +87,7 @@ struct PaywallView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.primaryBackground.ignoresSafeArea())
         .overlay {
-            if isLoading {
+            if isLoading || purchasePending {
                 ProgressView()
             }
         }
