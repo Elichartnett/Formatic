@@ -122,12 +122,10 @@ struct FormDetailView: View {
                                 SwiftUI.Section {
                                     VStack (spacing: 0) {
                                         SectionView(section: section, locked: $form.locked, forPDF: forPDF)
-                                            .padding(.top, 10)
-                                            .padding(.bottom, 10)
+                                            .padding(.vertical, 10)
                                             .padding(.horizontal, 20)
                                             .background(Color.secondaryBackground).ignoresSafeArea()
                                     }
-                                    .cornerRadius(10)
                                 } header: {
                                     SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
                                         .padding(.top)
@@ -138,7 +136,6 @@ struct FormDetailView: View {
                         }
                     }
                     .padding()
-                    .background(Color.primaryBackground).ignoresSafeArea()
                 }
             }
         }

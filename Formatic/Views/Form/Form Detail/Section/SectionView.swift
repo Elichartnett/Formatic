@@ -31,9 +31,9 @@ struct SectionView: View {
         
         if widgets.isEmpty {
             // Empty view representing section - used as work around for vertical spacing issue when adding multiple sections at once without any widgets in the section
-            Color.clear
-                .frame(height: forPDF ? 45 : 1)
-                .cornerRadius(10)
+            Color.secondaryBackground
+                .frame(height: 45)
+                .listRowBackground(Color.secondaryBackground)
         }
         else {
             // Must identify with self for list selection
