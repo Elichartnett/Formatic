@@ -11,7 +11,6 @@ import PencilKit
 struct CanvasWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
-    @Environment(\.colorScheme) var colorScheme
     @Environment(\.editMode) var editMode
     
     @ObservedObject var canvasWidget: CanvasWidget
@@ -61,8 +60,10 @@ struct CanvasWidgetView: View {
                             }
                             
                             Image(uiImage: UIImage(data: canvasWidget.widgetViewPreview ?? Data()) ?? UIImage())
+                                .renderingMode(.template)
                                 .resizable()
                                 .scaledToFit()
+                                .foregroundColor(.primary)
                         }
                         .frame(width: WidgetViewHeight.large.rawValue)
                         .frame(maxHeight: .infinity)

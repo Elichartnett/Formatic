@@ -48,7 +48,7 @@ extension CanvasWidget: Csv, Copyable {
         canvasView.minimumZoomScale = 1
         canvasView.maximumZoomScale = 5
         
-        imageView.frame = CGRect(origin: .zero, size: imageView.frame.size)
+        imageView.frame = CGRect(origin: .zero, size: canvasView.frame.size)
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(data: self.image ?? Data())
         imageView.backgroundColor = .secondaryBackground
