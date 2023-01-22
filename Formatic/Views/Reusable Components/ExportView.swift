@@ -13,6 +13,7 @@ import FirebaseAnalytics
 struct ExportView: View {
     
     @EnvironmentObject var formModel: FormModel
+    @Environment(\.colorScheme) var colorScheme
     
     let forms: [Form]
     @Binding var exportType: UTType?
@@ -27,32 +28,40 @@ struct ExportView: View {
                         .padding()
                     WebViewRepresentable(generatedFileURL: generatedFileURL)
                         .ignoresSafeArea(edges: [.bottom])
+                        .onChange(of: colorScheme) { _ in
+                            self.generatedFileURL = nil
+                        }
                 }
             }
             else {
                 ProgressView()
                     .onAppear {
-                        generatedFileURL = URL.temporaryDirectory.appending(path: "Form\(forms.count == 1 ? "" : "s").\(exportType == .pdf ? "pdf" : "csv")")
-                        if let generatedFileURL {
-                            DispatchQueue.main.async {
-                                if exportType == .pdf {
-                                    let formData = Form.exportToPDF(forms: forms)
-                                    try? formData.write(to: generatedFileURL)
-                                    Analytics.logEvent(Constants.analyticsExportPDFEvent, parameters: nil)
-                                }
-                                else {
-                                    let csvData = Form.exportToCSV(forms: forms)
-                                    try? csvData.write(to: generatedFileURL)
-                                    Analytics.logEvent(Constants.analyticsExportCSVEvent,parameters: nil)
-                                }
-                                readyToExport = true
-                            }
-                        }
+                        generateFile()
                     }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.primaryBackground)    }
+        .background(Color.primaryBackground)
+    }
+    
+    func generateFile() {
+        generatedFileURL = URL.temporaryDirectory.appending(path: "Form\(forms.count == 1 ? "" : "s").\(exportType == .pdf ? "pdf" : "csv")")
+        if let generatedFileURL {
+            DispatchQueue.main.async {
+                if exportType == .pdf {
+                    let formData = Form.exportToPDF(forms: forms)
+                    try? formData.write(to: generatedFileURL)
+                    Analytics.logEvent(Constants.analyticsExportPDFEvent, parameters: nil)
+                }
+                else {
+                    let csvData = Form.exportToCSV(forms: forms)
+                    try? csvData.write(to: generatedFileURL)
+                    Analytics.logEvent(Constants.analyticsExportCSVEvent,parameters: nil)
+                }
+                readyToExport = true
+            }
+        }
+    }
 }
 
 struct ExportView_Previews: PreviewProvider {
@@ -64,14 +73,14 @@ struct ExportView_Previews: PreviewProvider {
 struct WebViewRepresentable: UIViewRepresentable {
     
     let generatedFileURL: URL
-    
-    func makeUIView(context: Context) -> some WKWebView {
+
+    func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
         webView.load(URLRequest(url: generatedFileURL))
         return webView
     }
     
-    func updateUIView(_ uiView: UIViewType, context: Context) {
-        
+    func updateUIView(_ uiView: WKWebView, context: Context) {
+        uiView.load(URLRequest(url: generatedFileURL))
     }
 }
