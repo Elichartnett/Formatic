@@ -28,7 +28,7 @@ extension CheckboxSectionWidget: Csv, Copyable {
                 csvString += FormModel.formatAsCsv(section?.form?.title ?? "") + ","
                 csvString += FormModel.formatAsCsv(section?.title ?? "") + ","
                 csvString += FormModel.formatAsCsv(title ?? "") + ","
-                csvString += Strings.checkboxMenuLabel
+                csvString += Strings.checkboxMenuLabel + ","
                 csvString += FormModel.formatAsCsv(checkboxWidget.title ?? "") + ","
                 if checkboxWidget.checked == true {
                     csvString += Strings.trueLabel
