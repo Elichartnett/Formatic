@@ -60,7 +60,6 @@ struct CanvasWidgetView: View {
                             }
                             
                             Image(uiImage: UIImage(data: canvasWidget.widgetViewPreview ?? Data()) ?? UIImage())
-                                .renderingMode(.template)
                                 .resizable()
                                 .scaledToFit()
                                 .foregroundColor(.primary)
