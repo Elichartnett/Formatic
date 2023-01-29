@@ -22,7 +22,7 @@ public class SliderWidget: Widget, Decodable {
     }
     
     required public init(from decoder: Decoder) throws {
-        super.init(entityName: WidgetType.dateFieldWidget.rawValue, context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
+        super.init(entityName: WidgetType.sliderWidget.rawValue, context: DataControllerModel.shared.container.viewContext, title: nil, position: 0)
         
         let sliderWidgetContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.id = UUID()

@@ -39,10 +39,12 @@ public class Section: NSManagedObject {
                 numberFieldWidget.section = self
                 
             case .dateFieldWidget:
-                break
+                let dateFieldWidget = try widgetsArray.decode(DateFieldWidget.self)
+                dateFieldWidget.section = self
                 
             case .sliderWidget:
-                break
+                let sliderWidget = try widgetsArray.decode(SliderWidget.self)
+                sliderWidget.section = self
 
             case .dropdownSectionWidget:
                 let dropdownSectionWidget = try widgetsArray.decode(DropdownSectionWidget.self)

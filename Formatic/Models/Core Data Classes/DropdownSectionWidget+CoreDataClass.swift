@@ -29,7 +29,9 @@ public class DropdownSectionWidget: Widget, Decodable {
         }
         self.type = try dropdownSectionWidgetContainer.decode(String.self, forKey: .type)
         
-        self.selectedDropdown = try dropdownSectionWidgetContainer.decode(DropdownWidget.self, forKey: .selectedDropdown)
+        if let selectedDropdown = try dropdownSectionWidgetContainer.decode(DropdownWidget?.self, forKey: .selectedDropdown) {
+            self.selectedDropdown = selectedDropdown
+        }
         let dropdownWidgetsArray = try dropdownSectionWidgetContainer.decode([DropdownWidget].self, forKey: .dropdownWidgets)
         for dropdownWidget in dropdownWidgetsArray {
             self.addToDropdownWidgets(dropdownWidget)
