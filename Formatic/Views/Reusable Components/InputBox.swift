@@ -48,6 +48,7 @@ struct InputBox: View {
                             }
                         }
                     }
+                    .keyboardType(.numberPad)
                 
             case .password:
                 SecureField(placeholder, text: $text)

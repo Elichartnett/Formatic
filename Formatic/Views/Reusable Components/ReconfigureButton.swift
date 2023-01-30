@@ -24,6 +24,7 @@ struct ReconfigureWidgetButton: View {
         }
         .disabled(editMode?.wrappedValue == .inactive)
         .buttonStyle(.plain)
+        .accessibilityHidden(editMode?.wrappedValue == .inactive)
     }
 }
 

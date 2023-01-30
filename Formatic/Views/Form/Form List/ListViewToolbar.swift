@@ -99,6 +99,7 @@ struct ListViewToolbar: View {
                         Text(Strings.importLabel)
                     }
                 }
+                .accessibilityLabel(Strings.importLabel)
             }
             
             Spacer()
@@ -112,6 +113,7 @@ struct ListViewToolbar: View {
                         Text(Strings.settingsLabel)
                     }
                 }
+                .accessibilityLabel(Strings.settingsLabel)
             }
             
             Spacer()

@@ -22,7 +22,7 @@ struct ConfigureDropdownSectionWidgetView: View {
     var body: some View {
         
         VStack {
-            Stepper(value: $numDropdowns, in: 1...10) {
+            Stepper(value: $numDropdowns, in: 1...100) {
                 HStack (spacing: 0) {
                     Text(Strings.numberOfDropdownOptionsLabel)
                     Text(numDropdowns.description)
