@@ -28,11 +28,13 @@ struct Strings {
     static let noFormDataErrorMessage = String(localized: "noFormDataErrorMessage")
     
     static let formLabel = String(localized: "formLabel")
+    static let formsLabel = String(localized: "formsLabel")
     static let formTitleLabel = String(localized: "formTitleLabel")
     static let sectionTitleLabel = String(localized: "sectionTitleLabel")
     static let titleLabel = String(localized: "titleLabel")
-    static let newSectionLabel = String(localized: "newSectionLabel")
     static let newFormLabel = String(localized: "newFormLabel")
+    static let newSectionLabel = String(localized: "newSectionLabel")
+    static let newWidgetLabel = String(localized: "newWidgetLabel")
     
     static let deleteLabel = String(localized: "deleteLabel")
     static let copyLabel = String(localized: "copyLabel")
@@ -92,6 +94,8 @@ struct Strings {
     static let numberOfDropdownOptionsLabel = String(localized: "numberOfDropdownOptionsLabel")
     
     static let checkboxMenuLabel = String(localized: "checkboxMenuLabel")
+    static let checkedLabel = String(localized: "checked")
+    static let uncheckedLabel = String(localized: "unchecked")
     static let noSelectionLabel = String(localized: "noSelectionLabel")
     static let numberOfCheckboxesLabel = String(localized: "numberOfCheckboxesLabel")
     static let descriptionLabel = String(localized: "descriptionLabel")

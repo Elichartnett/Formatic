@@ -33,6 +33,7 @@ struct ConfigureCanvasWidgetView: View {
                         pickerResult = imageData
                     }
                 }
+                .accessibilityHidden(pickerResult == Data())
             
             Group {
                 

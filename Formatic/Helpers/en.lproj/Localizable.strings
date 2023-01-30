@@ -25,11 +25,13 @@
 "noFormDataErrorMessage" = "No form data";
 
 "formLabel" = "Form";
+"formsLabel" = "Forms";
 "formTitleLabel" = "Form Title";
 "sectionTitleLabel" = "Section Title";
 "titleLabel" = "Title";
-"newSectionLabel" = "New Section";
 "newFormLabel" = "New Form";
+"newSectionLabel" = "New Section";
+"newWidgetLabel" = "New widget";
 
 "deleteLabel" = "Delete";
 "copyLabel" = "Copy";
@@ -87,6 +89,8 @@
 "numberOfDropdownOptionsLabel" = "Number of dropdown options: ";
 
 "checkboxMenuLabel" = "Checkbox Menu";
+"checkedLabel" = "Checked";
+"uncheckedLabel" = "Unchecked";
 "noSelectionLabel" = "No selection";
 "numberOfCheckboxesLabel" = "Number of checkboxes: ";
 "descriptionLabel" = "description";

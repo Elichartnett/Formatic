@@ -31,6 +31,7 @@ struct SectionTitleView: View {
         HStack {
             
             addWidgetMenu
+                .accessibilityLabel(Strings.newWidgetLabel)
             
             TextField(Strings.sectionTitleLabel, text: $sectionTitle)
                 .focused($sectionTitleIsFocused)

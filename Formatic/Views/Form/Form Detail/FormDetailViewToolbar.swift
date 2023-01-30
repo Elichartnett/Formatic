@@ -67,6 +67,7 @@ struct FormDetailViewToolbar: View {
                 }
             }
         }
+        .accessibilityLabel(Strings.newSectionLabel)
     }
     
     var lockFormButton: some View {

@@ -43,6 +43,10 @@ struct FormDetailView: View {
                     
                     List(sections, selection: $selectedWidgets) { section in
                         
+                        let sectionSelected = editMode?.wrappedValue == .active && (selectedWidgets.contains(where: { selectedWidget in
+                            section.widgets?.contains(selectedWidget) ?? false
+                        }) || selectedSections.contains(section))
+                        
                         SwiftUI.Section {
                             SectionView(section: section, locked: $form.locked, forPDF: forPDF)
                         } header: {
@@ -71,10 +75,9 @@ struct FormDetailView: View {
                                 SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
                                 
                                 MultiWidgetSelectionToolBar(section: section, selectedSections: $selectedSections, selectedWidgets: $selectedWidgets)
-                                    .opacity(editMode?.wrappedValue == .active && (selectedWidgets.contains(where: { selectedWidget in
-                                        section.widgets?.contains(selectedWidget) ?? false
-                                    }) || selectedSections.contains(section)) ? 1 : 0)
+                                    .opacity(sectionSelected ? 1 : 0)
                                     .animation(.default, value: selectedWidgets.isEmpty)
+                                    .accessibility(hidden: !sectionSelected)
                                 
                                 Button {
                                     sortSections.toggle()
@@ -88,6 +91,7 @@ struct FormDetailView: View {
                                         }
                                     }
                                     .opacity(editMode?.wrappedValue == .active ? 1 : 0)
+                                    .accessibility(hidden: editMode?.wrappedValue != .active)
                                 }
                             }
                         }

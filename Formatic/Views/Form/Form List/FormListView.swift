@@ -117,6 +117,7 @@ struct FormListView: View {
                         }
                     }
                 }
+                .accessibilityLabel(Strings.formsLabel)
             }
             else {
                 Text(Strings.getStartedMessage)
