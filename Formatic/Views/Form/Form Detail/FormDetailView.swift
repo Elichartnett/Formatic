@@ -140,6 +140,7 @@ struct FormDetailView: View {
                         }
                     }
                     .padding()
+                    .background(Color.primaryBackground.ignoresSafeArea())
                 }
             }
         }
