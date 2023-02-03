@@ -29,13 +29,13 @@ struct EditModeButton: View {
             }
         } label: {
             let icon = Image(systemName: Constants.editIconName)
+                .customIcon(foregroundColor: disabled ? .gray : editMode?.wrappedValue == .active ? .white : .blue)
             
             if formModel.isPhone {
                 icon
-                    .foregroundColor(disabled ? .gray : editMode?.wrappedValue == .active ? .primaryBackground : .blue)
                     .background {
                         RoundedRectangle(cornerRadius: 5)
-                            .fill(editMode?.wrappedValue == .active ? .blue : Color.primaryBackground)
+                            .fill(editMode?.wrappedValue == .active ? .blue : Color.clear)
                     }
             }
             else {
@@ -57,5 +57,6 @@ struct EditModeButton: View {
 struct EditModeButton_Previews: PreviewProvider {
     static var previews: some View {
         EditModeButton(onTap: {})
+            .environmentObject(FormModel())
     }
 }

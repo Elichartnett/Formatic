@@ -1,14 +1,14 @@
 //
-//  Extension+Image.swift
+//  Ext+Label.swift
 //  Formatic
 //
-//  Created by Eli Hartnett on 11/26/22.
+//  Created by Eli Hartnett on 2/2/23.
 //
 
 import Foundation
 import SwiftUI
 
-extension Image {
+extension Label {
     
     func customIcon(foregroundColor: Color = .blue) -> some View {
         self

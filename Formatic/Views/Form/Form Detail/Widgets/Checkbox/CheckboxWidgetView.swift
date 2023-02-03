@@ -24,10 +24,12 @@ struct CheckboxWidgetView: View {
             } label: {
                 if checkbox.checked {
                     Image(systemName: Constants.filledSquareCheckmarkIconName)
+                        .customIcon(foregroundColor: .secondary)
                         .accessibilityLabel(Strings.checkedLabel)
                 }
                 else {
                     Image(systemName: Constants.squareIconName)
+                        .customIcon(foregroundColor: .secondary)
                         .accessibilityLabel(Strings.uncheckedLabel)
                 }
             }

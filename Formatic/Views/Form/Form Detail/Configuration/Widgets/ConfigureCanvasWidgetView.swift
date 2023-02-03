@@ -42,6 +42,7 @@ struct ConfigureCanvasWidgetView: View {
                     matching: .images,
                     photoLibrary: .shared()) {
                         Image(systemName: Constants.photoFrameIconName)
+                            .customIcon()
                         Text(Strings.selectPhotoLabel)
                     }
                     .onChange(of: photoPickerItem) { newItem in
@@ -56,6 +57,7 @@ struct ConfigureCanvasWidgetView: View {
                     sourceType = .camera
                 } label: {
                     Image(systemName: Constants.cameraIconName)
+                        .customIcon()
                     Text(Strings.takePhotoLabel)
                 }
             }

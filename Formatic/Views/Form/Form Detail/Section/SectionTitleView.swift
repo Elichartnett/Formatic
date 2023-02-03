@@ -100,6 +100,7 @@ struct SectionTitleView: View {
             }
         } label: {
             Image(systemName: Constants.plusCircleIconName)
+                .customIcon()
         }
     }
 }

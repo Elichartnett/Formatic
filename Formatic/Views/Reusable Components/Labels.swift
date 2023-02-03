@@ -9,13 +9,13 @@ import Foundation
 import SwiftUI
 
 struct Labels {
-    static var copy = Label(Strings.copyLabel, systemImage: Constants.copyIconName)
+    static var copy: some View = Label(Strings.copyLabel, systemImage: Constants.copyIconName).customIcon()
     
-    static var delete = Label(Strings.deleteLabel, systemImage: Constants.trashIconName)
+    static var delete: some View = Label(Strings.deleteLabel, systemImage: Constants.trashIconName).customIcon(foregroundColor: .red)
 
-    static let recover = Label(Strings.recoverLabel, systemImage: Constants.plusIconName)
+    static let recover: some View = Label(Strings.recoverLabel, systemImage: Constants.plusIconName).customIcon()
     
-    static let sort = Label(Strings.sortLabel, systemImage: Constants.sortIconName)
+    static let sort: some View = Label(Strings.sortLabel, systemImage: Constants.sortIconName).customIcon()
     
-    static let move = Label(Strings.moveLabel, systemImage: Constants.moveIconName)
+    static let move: some View = Label(Strings.moveLabel, systemImage: Constants.moveIconName).customIcon()
 }

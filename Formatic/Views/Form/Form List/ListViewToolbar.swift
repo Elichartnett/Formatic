@@ -29,6 +29,7 @@ struct ListViewToolbar: View {
             } label: {
                 HStack {
                     Image(systemName: Constants.plusCircleIconName)
+                        .customIcon()
                     if !formModel.isPhone {
                         Text(Strings.newFormLabel)
                     }
@@ -50,7 +51,7 @@ struct ListViewToolbar: View {
                             
                             if sortMethod == .dateCreated {
                                 Image(systemName: Constants.checkmarkIconName)
-                                    .customIcon()
+                                    .customIcon(foregroundColor: .primary)
                             }
                         }
                     }
@@ -64,12 +65,13 @@ struct ListViewToolbar: View {
                         
                         if sortMethod == .alphabetical {
                             Image(systemName: Constants.checkmarkIconName)
-                                .customIcon()
+                                .customIcon(foregroundColor: .primary)
                         }
                     }
                 } label: {
                     HStack {
                         Image(systemName: Constants.sortIconName)
+                            .customIcon()
                         if !formModel.isPhone {
                             Text(Strings.sortLabel)
                         }
@@ -95,6 +97,7 @@ struct ListViewToolbar: View {
             } label: {
                 HStack {
                     Image(systemName: Constants.importFormIconName)
+                        .customIcon()
                     if !formModel.isPhone {
                         Text(Strings.importLabel)
                     }
@@ -109,6 +112,7 @@ struct ListViewToolbar: View {
             } label: {
                 HStack {
                     Image(systemName: Constants.settingsIconName)
+                        .customIcon()
                     if !formModel.isPhone {
                         Text(Strings.settingsLabel)
                     }
@@ -126,7 +130,7 @@ struct ListViewToolbar: View {
 
 struct ListViewToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        ListViewToolbar(showNewFormView: .constant(false), showSortMethodMenu: false, sortMethod: .constant(.dateCreated), showImportFormView: .constant(false), showSettingsMenu: .constant(false))
+        ListViewToolbar(showNewFormView: .constant(false), showSortMethodMenu: true, sortMethod: .constant(.dateCreated), showImportFormView: .constant(false), showSettingsMenu: .constant(false))
             .environmentObject(FormModel())
     }
 }
