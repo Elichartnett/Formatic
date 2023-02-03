@@ -132,16 +132,14 @@ struct ProductView: View {
         
         HStack {
             icon
-                .resizable()
-                .scaledToFit()
-                .frame(width: 25, height: 25)
+                .customIcon(foregroundColor: .primary)
             Text(product.displayName)
             
             Spacer()
             
             if purchased {
                 Image(systemName: Constants.filledCircleCheckmarkIconName)
-                    .foregroundColor(.green)
+                    .customIcon(foregroundColor: .green)
             }
             else {
                 Text(product.displayPrice)

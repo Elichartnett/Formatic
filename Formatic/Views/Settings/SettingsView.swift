@@ -132,8 +132,8 @@ struct SettingsView: View {
                 Text("\(Strings.recentlyDeletedFormsLabel) (\(recentlyDeletedForms.count))")
                     .foregroundColor(.primary)
                 Image(systemName: Constants.expandListIconName)
+                    .customIcon(foregroundColor: recentlyDeletedForms.isEmpty ? .customGray : .blue)
                     .rotationEffect(Angle(degrees: expandRecentlyDeleted ? 90 : 0))
-                    .foregroundColor(recentlyDeletedForms.isEmpty ? .customGray : .blue)
             }
         }
         .onChange(of: selectedForms) { _ in

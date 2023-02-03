@@ -97,6 +97,7 @@ struct AddAnnotationsView: View {
                 } label: {
                     VStack {
                         Image(systemName: Constants.plusIconName)
+                            .customIcon()
                         Text(Strings.addPinLabel)
                     }
                 }

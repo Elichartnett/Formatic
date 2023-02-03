@@ -57,6 +57,7 @@ struct FormDetailViewToolbar: View {
             Analytics.logEvent(Constants.analyticsCreateSectionEvent, parameters: nil)
         } label: {
             let icon = Image(systemName: Constants.plusCircleIconName)
+                .customIcon()
             if formModel.isPhone {
                 icon
             }
@@ -83,6 +84,7 @@ struct FormDetailViewToolbar: View {
             }
         } label: {
             let icon = Image(systemName: form.locked == true ? Constants.lockIconName : Constants.openLockIconName)
+                .customIcon()
             if formModel.isPhone {
                 icon
             }

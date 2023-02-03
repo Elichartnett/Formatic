@@ -69,6 +69,7 @@ struct FormDetailView: View {
                                         }
                                     } label: {
                                         Image(systemName: selectedSections.contains(section) ? Constants.filledCircleCheckmarkIconName : Constants.circleIconName)
+                                            .customIcon()
                                     }
                                 }
                                 

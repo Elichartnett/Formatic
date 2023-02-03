@@ -26,6 +26,7 @@ struct ExportMenuButton: View {
                 
                 let formaticFileLabel = HStack {
                     Image(systemName: Constants.fileIconName)
+                        .customIcon()
                     Text(Strings.formaticFileLabel)
                 }
                 
@@ -58,6 +59,7 @@ struct ExportMenuButton: View {
             } label: {
                 HStack {
                     Image(systemName: Constants.docTextImageIconName)
+                        .customIcon()
                     Text(Strings.generatePDFLabel)
                 }
             }
@@ -79,6 +81,7 @@ struct ExportMenuButton: View {
             }
         } label: {
             let icon = Image(systemName: Constants.exportFormIconName)
+                .customIcon()
             if formModel.isPhone {
                 icon
             }

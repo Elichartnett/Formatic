@@ -84,6 +84,7 @@ struct DropdownSectionWidgetView: View {
                         Spacer()
                         if dropdownSectionWidget.selectedDropdown == widget {
                             Image(systemName: Constants.checkmarkIconName)
+                                .customIcon(foregroundColor: .black)
                         }
                     }
                 }

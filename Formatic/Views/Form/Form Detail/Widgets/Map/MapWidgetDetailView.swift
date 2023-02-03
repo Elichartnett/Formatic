@@ -33,6 +33,7 @@ struct MapWidgetDetailView: View {
             MapView(mapWidget: mapWidget, localCoordinateRegion: $localCoordinateRegion)
                 .overlay {
                     Image(systemName: Constants.scopeIconName)
+                        .customIcon(foregroundColor: .primary)
                         .opacity(coordinateType == .center ? 1 : 0)
                 }
         }
