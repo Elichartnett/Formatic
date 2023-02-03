@@ -22,40 +22,72 @@ struct ConfigureDropdownSectionWidgetView: View {
     var body: some View {
         
         VStack {
-            Stepper(value: $numDropdowns, in: 1...100) {
-                HStack (spacing: 0) {
-                    Text(Strings.numberOfDropdownOptionsLabel)
-                    Text(numDropdowns.description)
-                }
-            }
-            .onChange(of: numDropdowns) { newVal in
-                withAnimation {
-                    if newVal < localDropdowns.count {
-                        localDropdowns.removeSubrange(newVal..<localDropdowns.count)
-                    }
-                    else {
-                        let numToAdd = newVal - localDropdowns.count
-                        for _ in 0..<numToAdd {
-                            localDropdowns.append(LocalDropdownWidget())
-                        }
-                    }
-                }
-            }
-            
-            ScrollView {
-                ForEach($localDropdowns) { $localDropdown in
-                    InputBox(placeholder: Strings.descriptionLabel, text: $localDropdown.title)
-                }
-                .onChange(of: localDropdowns) { _ in
+            HStack {
+                Spacer().frame(maxWidth: .infinity)
+                
+                Stepper(localDropdowns.count.description, value: $numDropdowns, in: 1...100)
+                    .labelsHidden()
+                .onChange(of: numDropdowns) { newVal in
                     withAnimation {
-                        if localDropdowns.contains(where: { localDropdown in
-                            localDropdown.title.isEmpty
-                        }) {
-                            isValid = false
+                        if newVal < localDropdowns.count {
+                            localDropdowns.removeSubrange(newVal..<localDropdowns.count)
                         }
                         else {
-                            isValid = true
+                            let numToAdd = newVal - localDropdowns.count
+                            for _ in 0..<numToAdd {
+                                localDropdowns.append(LocalDropdownWidget())
+                            }
                         }
+                    }
+                }
+                
+                EditModeButton { }
+
+                Spacer().frame(maxWidth: .infinity)
+                
+            }
+            
+            List {
+                ForEach($localDropdowns) { $localDropdown in
+                    InputBox(placeholder: Strings.descriptionLabel, text: $localDropdown.title)
+                        .swipeActions {
+                            if localDropdowns.count > 1 {
+                                Button {
+                                    if let index = localDropdowns.firstIndex(of: localDropdown) {
+                                        localDropdowns.remove(at: index)
+                                        numDropdowns -= 1
+                                    }
+                                } label: {
+                                    Labels.delete
+                                }
+                                .tint(.red)
+                            }
+                            
+                            Button {
+                                if let index = localDropdowns.firstIndex(of: localDropdown) {
+                                    localDropdowns.insert(LocalDropdownWidget(title: localDropdown.title), at: index + 1)
+                                    numDropdowns += 1
+                                }
+                            } label: {
+                                Labels.copy
+                            }
+                            .tint(.blue)
+                        }
+                }
+                .onMove { indexSet, destination in
+                    localDropdowns.move(fromOffsets: indexSet, toOffset: destination)
+                }
+            }
+            .scrollContentBackground(.hidden)
+            .onChange(of: localDropdowns) { _ in
+                withAnimation {
+                    if localDropdowns.contains(where: { localDropdown in
+                        localDropdown.title.isEmpty
+                    }) {
+                        isValid = false
+                    }
+                    else {
+                        isValid = true
                     }
                 }
             }
@@ -98,6 +130,7 @@ struct ConfigureDropdownSectionWidgetView: View {
             localDropdowns = [LocalDropdownWidget()]
         }
     }
+    
     func updateExistingDropdownSectionWidget() {
         let existingArray = (dropdownSectionWidget?.dropdownWidgets as? Set<DropdownWidget> ?? []).sorted { lhs, rhs in
             lhs.position < rhs.position
@@ -135,5 +168,6 @@ struct LocalDropdownWidget: Identifiable, Equatable {
 struct ConfigureDropdownSectionWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         ConfigureDropdownSectionWidgetView(title: .constant(dev.dropdownSectionWidget.title!), section: dev.section)
+            .environmentObject(FormModel())
     }
 }
