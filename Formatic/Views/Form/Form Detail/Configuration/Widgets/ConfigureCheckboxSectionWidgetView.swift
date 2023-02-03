@@ -22,31 +22,62 @@ struct ConfigureCheckboxSectionWidgetView: View {
         
         VStack {
             
-            Stepper(value: $numCheckboxes) {
-                HStack (spacing: 0) {
-                    Text(Strings.numberOfCheckboxesLabel)
-                    Text("\(numCheckboxes)")
-                }
-            }
-            .onChange(of: numCheckboxes) { newVal in
-                withAnimation {
-                    if newVal < localCheckboxes.count {
-                        localCheckboxes.removeSubrange(newVal..<localCheckboxes.count)
-                    }
-                    else {
-                        let numToAdd = newVal - localCheckboxes.count
-                        for _ in 0..<numToAdd {
-                            localCheckboxes.append(LocalCheckboxWidget())
+            HStack {
+                Spacer().frame(maxWidth: .infinity)
+                
+                Stepper(localCheckboxes.count.description, value: $numCheckboxes, in: 1...100)
+                    .labelsHidden()
+                    .onChange(of: numCheckboxes) { newVal in
+                        withAnimation {
+                            if newVal < localCheckboxes.count {
+                                localCheckboxes.removeSubrange(newVal..<localCheckboxes.count)
+                            }
+                            else {
+                                let numToAdd = newVal - localCheckboxes.count
+                                for _ in 0..<numToAdd {
+                                    localCheckboxes.append(LocalCheckboxWidget())
+                                }
+                            }
                         }
                     }
-                }
+                
+                EditModeButton { }
+                
+                Spacer().frame(maxWidth: .infinity)
             }
             
-            ScrollView {
+            List {
                 ForEach($localCheckboxes) { $localCheckbox in
                     InputBox(placeholder: Strings.descriptionLabel, text: $localCheckbox.title)
+                        .swipeActions {
+                            if localCheckboxes.count > 1 {
+                                Button {
+                                    if let index = localCheckboxes.firstIndex(of: localCheckbox) {
+                                        localCheckboxes.remove(at: index)
+                                        numCheckboxes -= 1
+                                    }
+                                } label: {
+                                    Labels.delete
+                                }
+                                .tint(.red)
+                            }
+                            
+                            Button {
+                                if let index = localCheckboxes.firstIndex(of: localCheckbox) {
+                                    localCheckboxes.insert(LocalCheckboxWidget(title: localCheckbox.title), at: index + 1)
+                                    numCheckboxes += 1
+                                }
+                            } label: {
+                                Labels.copy
+                            }
+                            .tint(.blue)
+                        }
+                }
+                .onMove { indexSet, destination in
+                    localCheckboxes.move(fromOffsets: indexSet, toOffset: destination)
                 }
             }
+            .scrollContentBackground(.hidden)
             
             Button {
                 if checkboxSectionWidget != nil {
@@ -63,7 +94,7 @@ struct ConfigureCheckboxSectionWidgetView: View {
         }
         .frame(maxHeight: .infinity)
         .onAppear {
-           loadCheckboxSectionWidget()
+            loadCheckboxSectionWidget()
         }
     }
     
@@ -123,5 +154,6 @@ struct LocalCheckboxWidget: Identifiable, Equatable {
 struct ConfigureCheckboxSectionWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         ConfigureCheckboxSectionWidgetView(title: .constant(dev.checkboxSectionWidget.title!), section: dev.section)
+            .environmentObject(FormModel())
     }
 }

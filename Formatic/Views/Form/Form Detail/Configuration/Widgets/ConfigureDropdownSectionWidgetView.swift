@@ -44,7 +44,6 @@ struct ConfigureDropdownSectionWidgetView: View {
                 EditModeButton { }
 
                 Spacer().frame(maxWidth: .infinity)
-                
             }
             
             List {
