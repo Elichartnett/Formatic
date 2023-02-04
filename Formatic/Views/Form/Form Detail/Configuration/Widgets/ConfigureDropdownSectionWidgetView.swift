@@ -18,6 +18,7 @@ struct ConfigureDropdownSectionWidgetView: View {
     @State var section: Section
     @State var numDropdowns: Int = 1
     @State var isValid: Bool = false
+    @State var selectedLocalDropdownID: UUID?
     
     var body: some View {
         
@@ -27,51 +28,70 @@ struct ConfigureDropdownSectionWidgetView: View {
                 
                 Stepper(localDropdowns.count.description, value: $numDropdowns, in: 1...100)
                     .labelsHidden()
-                .onChange(of: numDropdowns) { newVal in
-                    withAnimation {
-                        if newVal < localDropdowns.count {
-                            localDropdowns.removeSubrange(newVal..<localDropdowns.count)
-                        }
-                        else {
-                            let numToAdd = newVal - localDropdowns.count
-                            for _ in 0..<numToAdd {
-                                localDropdowns.append(LocalDropdownWidget())
+                    .onChange(of: numDropdowns) { newVal in
+                        withAnimation {
+                            if newVal < localDropdowns.count {
+                                localDropdowns.removeSubrange(newVal..<localDropdowns.count)
+                            }
+                            else {
+                                let numToAdd = newVal - localDropdowns.count
+                                for _ in 0..<numToAdd {
+                                    localDropdowns.append(LocalDropdownWidget())
+                                }
                             }
                         }
                     }
-                }
                 
                 EditModeButton { }
-
+                
                 Spacer().frame(maxWidth: .infinity)
             }
             
             List {
                 ForEach($localDropdowns) { $localDropdown in
-                    InputBox(placeholder: Strings.descriptionLabel, text: $localDropdown.title)
-                        .swipeActions {
-                            if localDropdowns.count > 1 {
+                    
+                    HStack {
+                        Button {
+                            selectedLocalDropdownID = localDropdown.id
+                        } label: {
+                            Group {
+                                if localDropdown.id == selectedLocalDropdownID {
+                                    Image(systemName: Constants.checkmarkIconName)
+                                        .customIcon(foregroundColor: .black)
+                                }
+                                else {
+                                    Rectangle().fill(.clear)
+                                }
+                            }
+                            .WidgetFrameStyle(width: 50)
+                        }
+                        .buttonStyle(.plain)
+                        
+                        InputBox(placeholder: Strings.descriptionLabel, text: $localDropdown.title)
+                            .swipeActions {
+                                if localDropdowns.count > 1 {
+                                    Button {
+                                        if let index = localDropdowns.firstIndex(of: localDropdown) {
+                                            localDropdowns.remove(at: index)
+                                            numDropdowns -= 1
+                                        }
+                                    } label: {
+                                        Labels.delete
+                                    }
+                                    .tint(.red)
+                                }
+                                
                                 Button {
                                     if let index = localDropdowns.firstIndex(of: localDropdown) {
-                                        localDropdowns.remove(at: index)
-                                        numDropdowns -= 1
+                                        localDropdowns.insert(LocalDropdownWidget(title: localDropdown.title), at: index + 1)
+                                        numDropdowns += 1
                                     }
                                 } label: {
-                                    Labels.delete
+                                    Labels.copy
                                 }
-                                .tint(.red)
+                                .tint(.blue)
                             }
-                            
-                            Button {
-                                if let index = localDropdowns.firstIndex(of: localDropdown) {
-                                    localDropdowns.insert(LocalDropdownWidget(title: localDropdown.title), at: index + 1)
-                                    numDropdowns += 1
-                                }
-                            } label: {
-                                Labels.copy
-                            }
-                            .tint(.blue)
-                        }
+                    }
                 }
                 .onMove { indexSet, destination in
                     localDropdowns.move(fromOffsets: indexSet, toOffset: destination)
@@ -122,7 +142,11 @@ struct ConfigureDropdownSectionWidgetView: View {
             }
             
             for dropdown in dropdownsArray {
-                localDropdowns.append(LocalDropdownWidget(title: dropdown.title ?? ""))
+                let newLocalDropdown = LocalDropdownWidget(title: dropdown.title ?? "")
+                localDropdowns.append(newLocalDropdown)
+                if dropdownSectionWidget?.selectedDropdown?.id == dropdown.id {
+                    selectedLocalDropdownID = newLocalDropdown.id
+                }
             }
         }
         else {
@@ -138,7 +162,11 @@ struct ConfigureDropdownSectionWidgetView: View {
             dropdownSectionWidget?.removeFromDropdownWidgets(dropownWidget)
         }
         for (index, localDropdown) in localDropdowns.enumerated() {
-            dropdownSectionWidget?.addToDropdownWidgets(DropdownWidget(title: localDropdown.title, position: index, dropdownSectionWidget: dropdownSectionWidget, selectedDropdownInverse: nil))
+            let dropdownWidget = DropdownWidget(title: localDropdown.title, position: index, dropdownSectionWidget: dropdownSectionWidget, selectedDropdownInverse: nil)
+            dropdownSectionWidget?.addToDropdownWidgets(dropdownWidget)
+            if localDropdown.id == selectedLocalDropdownID {
+                dropdownSectionWidget?.selectedDropdown = dropdownWidget
+            }
         }
     }
     
@@ -148,6 +176,9 @@ struct ConfigureDropdownSectionWidgetView: View {
         for (index, localDropdown) in localDropdowns.enumerated() {
             if !localDropdown.title.isEmpty {
                 let dropdownWidget = DropdownWidget(title: localDropdown.title, position: index, dropdownSectionWidget: dropdownSectionWidget, selectedDropdownInverse: nil)
+                if localDropdown.id == selectedLocalDropdownID {
+                    dropdownSectionWidget.selectedDropdown = dropdownWidget
+                }
                 dropdownSectionWidget.addToDropdownWidgets(dropdownWidget)
             }
         }

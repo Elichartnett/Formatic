@@ -23,8 +23,7 @@ struct ConfigureDateFieldWidgetView: View {
         VStack {
             
             ScrollView {
-                DatePicker(selection: $date, displayedComponents: [.date, .hourAndMinute]) {
-                }
+                DatePicker(selection: $date, displayedComponents: [.date, .hourAndMinute]) { }
                 .datePickerStyle(.graphical)
             }
             

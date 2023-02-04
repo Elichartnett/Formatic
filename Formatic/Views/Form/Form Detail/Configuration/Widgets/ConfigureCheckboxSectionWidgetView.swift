@@ -48,30 +48,51 @@ struct ConfigureCheckboxSectionWidgetView: View {
             
             List {
                 ForEach($localCheckboxes) { $localCheckbox in
-                    InputBox(placeholder: Strings.descriptionLabel, text: $localCheckbox.title)
-                        .swipeActions {
-                            if localCheckboxes.count > 1 {
+                    
+                    HStack {
+                        Button {
+                            localCheckbox.checked.toggle()
+                        } label: {
+                            Group {
+                                if localCheckbox.checked {
+                                    Image(systemName: Constants.filledSquareCheckmarkIconName)
+                                        .customIcon(foregroundColor: .secondary)
+                                        .accessibilityLabel(Strings.checkedLabel)
+                                }
+                                else {
+                                    Image(systemName: Constants.squareIconName)
+                                        .customIcon(foregroundColor: .secondary)
+                                        .accessibilityLabel(Strings.uncheckedLabel)
+                                }
+                            }
+                        }
+                        .buttonStyle(.plain)
+                        
+                        InputBox(placeholder: Strings.descriptionLabel, text: $localCheckbox.title)
+                            .swipeActions {
+                                if localCheckboxes.count > 1 {
+                                    Button {
+                                        if let index = localCheckboxes.firstIndex(of: localCheckbox) {
+                                            localCheckboxes.remove(at: index)
+                                            numCheckboxes -= 1
+                                        }
+                                    } label: {
+                                        Labels.delete
+                                    }
+                                    .tint(.red)
+                                }
+                                
                                 Button {
                                     if let index = localCheckboxes.firstIndex(of: localCheckbox) {
-                                        localCheckboxes.remove(at: index)
-                                        numCheckboxes -= 1
+                                        localCheckboxes.insert(LocalCheckboxWidget(title: localCheckbox.title), at: index + 1)
+                                        numCheckboxes += 1
                                     }
                                 } label: {
-                                    Labels.delete
+                                    Labels.copy
                                 }
-                                .tint(.red)
+                                .tint(.blue)
                             }
-                            
-                            Button {
-                                if let index = localCheckboxes.firstIndex(of: localCheckbox) {
-                                    localCheckboxes.insert(LocalCheckboxWidget(title: localCheckbox.title), at: index + 1)
-                                    numCheckboxes += 1
-                                }
-                            } label: {
-                                Labels.copy
-                            }
-                            .tint(.blue)
-                        }
+                    }
                 }
                 .onMove { indexSet, destination in
                     localCheckboxes.move(fromOffsets: indexSet, toOffset: destination)
@@ -110,7 +131,8 @@ struct ConfigureCheckboxSectionWidgetView: View {
             }
             
             for checkbox in checkboxesArray {
-                localCheckboxes.append(LocalCheckboxWidget(title: checkbox.title ?? ""))
+                let newLocalCheckbox = LocalCheckboxWidget(title: checkbox.title ?? "", checked: checkbox.checked)
+                localCheckboxes.append(newLocalCheckbox)
             }
         }
         else {
@@ -126,7 +148,7 @@ struct ConfigureCheckboxSectionWidgetView: View {
             checkboxSectionWidget?.removeFromCheckboxWidgets(checkbox)
         }
         for (index, localCheckbox) in localCheckboxes.enumerated() {
-            checkboxSectionWidget?.addToCheckboxWidgets(CheckboxWidget(title: localCheckbox.title, position: index, checked: false, checkboxSectionWidget: checkboxSectionWidget))
+            checkboxSectionWidget?.addToCheckboxWidgets(CheckboxWidget(title: localCheckbox.title, position: index, checked: localCheckbox.checked, checkboxSectionWidget: checkboxSectionWidget))
         }
     }
     
@@ -134,7 +156,7 @@ struct ConfigureCheckboxSectionWidgetView: View {
         let checkboxSectionWidget = CheckboxSectionWidget(title: title, position: section.numberOfWidgets(), checkboxWidgets: nil)
         
         for (index, localCheckbox) in localCheckboxes.enumerated() {
-            let checkboxWidget = CheckboxWidget(title: localCheckbox.title, position: index, checked: false, checkboxSectionWidget: nil)
+            let checkboxWidget = CheckboxWidget(title: localCheckbox.title, position: index, checked: localCheckbox.checked, checkboxSectionWidget: nil)
             checkboxSectionWidget.addToCheckboxWidgets(checkboxWidget)
         }
         
@@ -148,7 +170,8 @@ struct ConfigureCheckboxSectionWidgetView: View {
 
 struct LocalCheckboxWidget: Identifiable, Equatable {
     let id: UUID = UUID()
-    var title: String = ""
+    var title = ""
+    var checked = false
 }
 
 struct ConfigureCheckboxSectionWidgetView_Previews: PreviewProvider {
