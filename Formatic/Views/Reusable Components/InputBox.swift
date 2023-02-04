@@ -39,33 +39,10 @@ struct InputBox: View {
             case .number:
                 let isNegative = text.first == "-"
                 TextField(placeholder, text: $text)
+                    .onAppear(perform: validateNumber)
                     .onChange(of: text) { _ in
                         withAnimation {
-                            if text.isEmpty {
-                                isValid = true
-                            }
-                            else if text == "-" || text == "-." {
-                                isValid = false
-                            }
-                            else {
-                                if let decimalIndex = text.firstIndex(of: "."), let firstNumberIndex = text.firstIndex(where: { character in
-                                    character.isNumber == true
-                                }) {
-                                    text = String(text.trimmingPrefix("-"))
-                                    if decimalIndex < firstNumberIndex {
-                                        if decimalIndex == text.startIndex {
-                                            text = "0\(text)"
-                                        }
-                                        else {
-                                            text.insert("0", at: text.index(before: decimalIndex))
-                                        }
-                                    }
-                                    if isNegative {
-                                        text = "-\(text)"
-                                    }
-                                }
-                                isValid = text.isValidNumber(range: validRange)
-                            }
+                            validateNumber()
                         }
                     }
                     .keyboardType(.decimalPad)
@@ -95,6 +72,36 @@ struct InputBox: View {
         .padding(.leading)
         .WidgetFrameStyle(isFocused: isFocused, height: axis == .vertical ? .adaptive : .regular)
         .focused($isFocused)
+    }
+    
+    func validateNumber() {
+        let isNegative = text.first == "-"
+
+        if text.isEmpty {
+            isValid = true
+        }
+        else if text == "-" || text == "-." {
+            isValid = false
+        }
+        else {
+            if let decimalIndex = text.firstIndex(of: "."), let firstNumberIndex = text.firstIndex(where: { character in
+                character.isNumber == true
+            }) {
+                text = String(text.trimmingPrefix("-"))
+                if decimalIndex < firstNumberIndex {
+                    if decimalIndex == text.startIndex {
+                        text = "0\(text)"
+                    }
+                    else {
+                        text.insert("0", at: text.index(before: decimalIndex))
+                    }
+                }
+                if isNegative {
+                    text = "-\(text)"
+                }
+            }
+            isValid = text.isValidNumber(range: validRange)
+        }
     }
 }
 
