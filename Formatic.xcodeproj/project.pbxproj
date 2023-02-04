@@ -86,7 +86,7 @@
 		62AC486B292EEA0100B4DB4B /* EditModeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC486A292EEA0100B4DB4B /* EditModeButton.swift */; };
 		62AC488B29315EA200B4DB4B /* ExportMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC488A29315EA200B4DB4B /* ExportMenuButton.swift */; };
 		62AC488D293170FF00B4DB4B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC488C293170FF00B4DB4B /* Constants.swift */; };
-		62AC488F2931A3C800B4DB4B /* EndEditingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC488E2931A3C800B4DB4B /* EndEditingButton.swift */; };
+		62AC488F2931A3C800B4DB4B /* FormaticToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC488E2931A3C800B4DB4B /* FormaticToolbar.swift */; };
 		62AC48932931ABAC00B4DB4B /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48922931ABAC00B4DB4B /* Labels.swift */; };
 		62AC489629327FFD00B4DB4B /* Ext+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC489529327FFD00B4DB4B /* Ext+String.swift */; };
 		62AC48982932801000B4DB4B /* Ext+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC48972932801000B4DB4B /* Ext+View.swift */; };
@@ -222,7 +222,7 @@
 		62AC486A292EEA0100B4DB4B /* EditModeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditModeButton.swift; sourceTree = "<group>"; };
 		62AC488A29315EA200B4DB4B /* ExportMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportMenuButton.swift; sourceTree = "<group>"; };
 		62AC488C293170FF00B4DB4B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		62AC488E2931A3C800B4DB4B /* EndEditingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndEditingButton.swift; sourceTree = "<group>"; };
+		62AC488E2931A3C800B4DB4B /* FormaticToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormaticToolbar.swift; sourceTree = "<group>"; };
 		62AC48922931ABAC00B4DB4B /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
 		62AC489529327FFD00B4DB4B /* Ext+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+String.swift"; sourceTree = "<group>"; };
 		62AC48972932801000B4DB4B /* Ext+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+View.swift"; sourceTree = "<group>"; };
@@ -307,7 +307,7 @@
 				62AC486A292EEA0100B4DB4B /* EditModeButton.swift */,
 				62A8C004292B3863005758BF /* ExportView.swift */,
 				62AC488A29315EA200B4DB4B /* ExportMenuButton.swift */,
-				62AC488E2931A3C800B4DB4B /* EndEditingButton.swift */,
+				62AC488E2931A3C800B4DB4B /* FormaticToolbar.swift */,
 				62AC48922931ABAC00B4DB4B /* Labels.swift */,
 				622EFF28293868D300CF74F8 /* ReconfigureButton.swift */,
 				620364EE2948333E0061B825 /* PaywallView.swift */,
@@ -796,7 +796,7 @@
 				62AC48A02932804B00B4DB4B /* Ext+Image.swift in Sources */,
 				62D7D87B28F86623004C55C9 /* Strings.swift in Sources */,
 				62D1B0992926716F00712D85 /* EmailData.swift in Sources */,
-				62AC488F2931A3C800B4DB4B /* EndEditingButton.swift in Sources */,
+				62AC488F2931A3C800B4DB4B /* FormaticToolbar.swift in Sources */,
 				627736FD28300F7D00F7B107 /* PhotoTaker.swift in Sources */,
 				6238A16F293B99DC007C09A1 /* ConfigureTextFieldWidgetView.swift in Sources */,
 				62AC48C92932970300B4DB4B /* Ext+MapWidget.swift in Sources */,

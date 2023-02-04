@@ -15,6 +15,7 @@ struct ConfigureNumberFieldWidgetView: View {
     @Binding var title: String
     @State var section: Section
     @State var number: String = ""
+    @State var isNegative = false
     var range: ClosedRange<Double>?
     @State var isValid: Bool = true
     
@@ -27,6 +28,18 @@ struct ConfigureNumberFieldWidgetView: View {
                             isValid = true
                         }
                         else {
+                            if let decimalIndex = number.firstIndex(of: "."), let firstNumberIndex = number.firstIndex(where: { character in
+                                character.isNumber == true
+                            }) {
+                                if decimalIndex < firstNumberIndex {
+                                    if decimalIndex == number.startIndex {
+                                        number = "0\(number)"
+                                    }
+                                    else {
+                                        number.insert("0", at: number.index(before: decimalIndex))
+                                    }
+                                }
+                            }
                             isValid = number.isValidNumber(range: range)
                         }
                     }

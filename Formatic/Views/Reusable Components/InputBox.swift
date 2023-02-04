@@ -37,18 +37,55 @@ struct InputBox: View {
                 TextField(placeholder, text: $text, axis: axis)
 
             case .number:
+                let isNegative = text.first == "-"
                 TextField(placeholder, text: $text)
                     .onChange(of: text) { _ in
                         withAnimation {
                             if text.isEmpty {
                                 isValid = true
                             }
+                            else if text == "-" || text == "-." {
+                                isValid = false
+                            }
                             else {
+                                if let decimalIndex = text.firstIndex(of: "."), let firstNumberIndex = text.firstIndex(where: { character in
+                                    character.isNumber == true
+                                }) {
+                                    text = String(text.trimmingPrefix("-"))
+                                    if decimalIndex < firstNumberIndex {
+                                        if decimalIndex == text.startIndex {
+                                            text = "0\(text)"
+                                        }
+                                        else {
+                                            text.insert("0", at: text.index(before: decimalIndex))
+                                        }
+                                    }
+                                    if isNegative {
+                                        text = "-\(text)"
+                                    }
+                                }
                                 isValid = text.isValidNumber(range: validRange)
                             }
                         }
                     }
-                    .keyboardType(.numberPad)
+                    .keyboardType(.decimalPad)
+                    .toolbar {
+                        if inputType == .number && isFocused {
+                            ToolbarItem(placement: .keyboard) {
+                                Button {
+                                    if isNegative {
+                                        text = String(text.trimmingPrefix("-"))
+                                    }
+                                    else {
+                                        text = "-\(text)"
+                                    }
+                                } label: {
+                                    Image(systemName: "plusminus")
+                                        .customIcon()
+                                }
+                            }
+                        }
+                    }
                 
             case .password:
                 SecureField(placeholder, text: $text)
@@ -63,6 +100,6 @@ struct InputBox: View {
 
 struct InputBox_Previews: PreviewProvider {
     static var previews: some View {
-        InputBox(placeholder: "Placeholder...", text: .constant(""))
+        InputBox(placeholder: "Placeholder...", text: .constant(""), inputType: .number)
     }
 }

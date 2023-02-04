@@ -24,9 +24,6 @@ extension String {
             }
         }
         else {
-            if self == "-" {
-                return true
-            }
             return false
         }
     }

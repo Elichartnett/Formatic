@@ -41,13 +41,9 @@ struct TextFieldWidgetDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(textFieldWidget.title ?? "")
         .background(Color.primaryBackground.ignoresSafeArea())
-        .toolbar(content: {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                
-                EndEditingButton()
-            }
-        })
+        .toolbar {
+            FormaticToolbar()
+        }
     }
 }
 
