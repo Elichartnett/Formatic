@@ -22,11 +22,13 @@ struct TitleFrame: ViewModifier {
 struct WidgetFrame: ViewModifier {
     
     let isFocused: Bool
+    var overrideBorderOn: Bool
     let height: WidgetViewHeight
+    let width: CGFloat?
     
     func body(content: Content) -> some View {
         let border = RoundedRectangle(cornerRadius: 10)
-            .stroke(isFocused ? .blue : .secondary, lineWidth: 2)
+            .stroke(isFocused || overrideBorderOn ? .blue : .secondary, lineWidth: 2)
         
         let view = ZStack {
             content
@@ -38,13 +40,13 @@ struct WidgetFrame: ViewModifier {
         switch height {
         case .regular:
             view
-                .frame(minHeight: WidgetViewHeight.regular.rawValue, maxHeight: WidgetViewHeight.regular.rawValue)
+                .frame(maxWidth: width ?? .infinity, minHeight: WidgetViewHeight.regular.rawValue, maxHeight: WidgetViewHeight.regular.rawValue)
         case .adaptive:
             view
-                .frame(minHeight: WidgetViewHeight.regular.rawValue, maxHeight: .infinity)
+                .frame(maxWidth: width ?? .infinity, minHeight: WidgetViewHeight.regular.rawValue, maxHeight: .infinity)
         case .large:
             view
-                .frame(minHeight: WidgetViewHeight.large.rawValue, maxHeight: WidgetViewHeight.large.rawValue)
+                .frame(maxWidth: width ?? .infinity, minHeight: WidgetViewHeight.large.rawValue, maxHeight: WidgetViewHeight.large.rawValue)
         }
     }
 }
