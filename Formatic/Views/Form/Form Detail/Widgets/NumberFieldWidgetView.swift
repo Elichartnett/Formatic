@@ -36,7 +36,7 @@ struct NumberFieldWidgetView: View {
                     numberFieldWidget.title = title
                 }
             
-            InputBox(placeholder: Strings.numberLabel, text: $number)
+            InputBox(placeholder: Strings.numberLabel, text: $number, inputType: .number, isValid: $isValid)
                 .onChange(of: number) { _ in
                     isValid = number.isValidNumber(range: range)
                     if isValid {

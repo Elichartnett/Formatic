@@ -145,17 +145,13 @@ struct FormDetailView: View {
                 }
             }
         }
-        .toolbar(content: {
+        .toolbar {
             ToolbarItem(placement: .principal) {
                 FormDetailViewToolbar(form: form, showToggleLockView: $showToggleLockView)
             }
             
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                
-                EndEditingButton()
-            }
-        })
+            FormaticToolbar()
+        }
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $showToggleLockView, onDismiss: {
             if form.locked == true {
@@ -167,15 +163,24 @@ struct FormDetailView: View {
             ToggleLockView(showToggleLockView: $showToggleLockView, form: form)
         })
         .sheet(isPresented: $sortSections) {
-            List {
-                ForEach(sections) { section in
-                    Text(section.title ?? "")
+            VStack {
+                HStack {
+                    Spacer().frame(maxWidth: .infinity)
+
+                    EditModeButton { }
+                    
+                    Spacer().frame(maxWidth: .infinity)
                 }
-                .onMove(perform: { indexSet, destination in
-                    form.updateSectionPositions(indexSet: indexSet, destination: destination)
-                })
+                
+                List {
+                    ForEach(sections) { section in
+                        Text(section.title ?? "")
+                    }
+                    .onMove(perform: { indexSet, destination in
+                        form.updateSectionPositions(indexSet: indexSet, destination: destination)
+                    })
+                }
             }
-            .environment(\.editMode, .constant(.active))
         }
     }
     

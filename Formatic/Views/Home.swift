@@ -19,11 +19,7 @@ struct Home: View {
         NavigationStack(path: $formModel.navigationPath) {
             FormListView()
                 .toolbar {
-                    ToolbarItemGroup(placement: .keyboard) {
-                        Spacer()
-                        
-                        EndEditingButton()
-                    }
+                    FormaticToolbar()
                 }
         }
         .navigationViewStyle(.stack)

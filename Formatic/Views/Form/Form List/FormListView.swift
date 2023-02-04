@@ -55,12 +55,14 @@ struct FormListView: View {
                             } label: {
                                 Labels.delete
                             }
+                            .tint(.red)
                             
                             Button {
                                 let _ = form.createCopy()
                             } label: {
                                 Labels.copy
                             }
+                            .tint(.blue)
                         }
                         .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
                             return -20
