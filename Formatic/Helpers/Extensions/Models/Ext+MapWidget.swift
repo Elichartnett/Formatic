@@ -37,12 +37,10 @@ extension MapWidget: Csv, Copyable {
                 snapshotImage.draw(at: CGPoint.zero)
                 
                 for annotation in self.annotations ?? [] {
-                    if let annotation = annotation as? Annotation {
-                        if var point = snapshot?.point(for: CLLocationCoordinate2D(latitude: annotation.latitude, longitude: annotation.longitude)) {
-                            point.x -= mapMarker.size.width / 2
-                            point.y -= mapMarker.size.height / 2
-                            mapMarker.draw(at: (point))
-                        }
+                    if var point = snapshot?.point(for: CLLocationCoordinate2D(latitude: annotation.latitude, longitude: annotation.longitude)) {
+                        point.x -= mapMarker.size.width / 2
+                        point.y -= mapMarker.size.height / 2
+                        mapMarker.draw(at: (point))
                     }
                 }
                 
@@ -54,30 +52,27 @@ extension MapWidget: Csv, Copyable {
     }
     
     func toCsv() -> String {
-        let annotations = self.annotations?.allObjects
         var csvString = ""
         
-        for item in annotations ?? [] {
-            if let annotation = item as? Annotation {
-                let coordinate = CLLocationCoordinate2D(latitude: annotation.latitude, longitude: annotation.longitude)
-                let utm = coordinate.utmCoordinate()
-                
-                csvString += FormModel.formatAsCsv(section?.form?.title ?? "") + ","
-                csvString += FormModel.formatAsCsv(section?.title ?? "") + ","
-                csvString += FormModel.formatAsCsv(title ?? "") + ","
-                csvString += Strings.mapLabel + ","
-                csvString += FormModel.formatAsCsv(annotation.name ?? "") + ",,"
-                csvString += String(annotation.latitude) + ","
-                csvString += String(annotation.longitude) + ","
-                csvString += String(utm.easting) + ","
-                csvString += String(utm.northing) + ","
-                csvString += String(utm.zone) + ","
-                switch utm.hemisphere{
-                case .southern: csvString += Strings.southernLabel
-                case .northern: csvString += Strings.northernLabel
-                }
-                csvString += "\n"
+        for annotation in annotations ?? [] {
+            let coordinate = CLLocationCoordinate2D(latitude: annotation.latitude, longitude: annotation.longitude)
+            let utm = coordinate.utmCoordinate()
+            
+            csvString += FormModel.formatAsCsv(section?.form?.title ?? "") + ","
+            csvString += FormModel.formatAsCsv(section?.title ?? "") + ","
+            csvString += FormModel.formatAsCsv(title ?? "") + ","
+            csvString += Strings.mapLabel + ","
+            csvString += FormModel.formatAsCsv(annotation.name ?? "") + ",,"
+            csvString += String(annotation.latitude) + ","
+            csvString += String(annotation.longitude) + ","
+            csvString += String(utm.easting) + ","
+            csvString += String(utm.northing) + ","
+            csvString += String(utm.zone) + ","
+            switch utm.hemisphere{
+            case .southern: csvString += Strings.southernLabel
+            case .northern: csvString += Strings.northernLabel
             }
+            csvString += "\n"
         }
         
         if csvString != "" {
@@ -89,7 +84,17 @@ extension MapWidget: Csv, Copyable {
     
     func createCopy() -> Any {
         let copy = MapWidget(title: title, position: Int(position), coordinateRegionCenterLat: coordinateRegionCenterLat, coordinateRegionCenterLon: coordinateRegionCenterLon, coordinateSpanLatDelta: coordinateSpanLatDelta, coordinateSpanLonDelta: coordinateSpanLonDelta)
-        copy.annotations = annotations
+        
+        _ = annotations?.sorted(by: { _,_ in true }).forEach({ annotation in
+            let annotationCopy = Annotation(context: DataControllerModel.shared.container.viewContext)
+            annotationCopy.id = UUID()
+            annotationCopy.name = annotation.name
+            annotationCopy.latitude = annotation.latitude
+            annotationCopy.longitude = annotation.longitude
+            annotationCopy.mapWidget = copy
+            copy.annotations?.insert(annotationCopy)
+        })
+        
         return copy
     }
 }
