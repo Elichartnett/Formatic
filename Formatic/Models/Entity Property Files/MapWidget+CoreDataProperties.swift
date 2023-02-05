@@ -20,7 +20,7 @@ extension MapWidget {
     @NSManaged public var coordinateSpanLonDelta: Double
     @NSManaged public var widgetViewPreview: Data
 
-    @NSManaged public var annotations: NSSet?
+    @NSManaged public var annotations: Set<Annotation>?
 }
 
 // MARK: Generated accessors for annotations
