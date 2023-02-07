@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SubmitButton: View {
     
-    let buttonTitle: String = Strings.submitLabel
+    var buttonTitle: String = Strings.submitLabel
     
     var body: some View {
         

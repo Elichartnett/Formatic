@@ -17,7 +17,7 @@ struct ConfigureDropdownSectionWidgetView: View {
     @Binding var title: String
     @State var section: Section
     @State var numDropdowns: Int = 1
-    @State var isValid: Bool = false
+    @State var isValid: Bool = true
     @State var selectedLocalDropdownID: UUID?
     
     var body: some View {
@@ -26,7 +26,7 @@ struct ConfigureDropdownSectionWidgetView: View {
             HStack {
                 Spacer().frame(maxWidth: .infinity)
                 
-                Stepper(localDropdowns.count.description, value: $numDropdowns, in: 1...100)
+                Stepper(localDropdowns.count.description, value: $numDropdowns, in: 0...100)
                     .labelsHidden()
                     .onChange(of: numDropdowns) { newVal in
                         withAnimation {
@@ -52,7 +52,12 @@ struct ConfigureDropdownSectionWidgetView: View {
                     
                     HStack {
                         Button {
-                            selectedLocalDropdownID = localDropdown.id
+                            if selectedLocalDropdownID == nil {
+                                selectedLocalDropdownID = localDropdown.id
+                            }
+                            else {
+                                selectedLocalDropdownID = nil
+                            }
                         } label: {
                             Group {
                                 if localDropdown.id == selectedLocalDropdownID {
@@ -63,23 +68,21 @@ struct ConfigureDropdownSectionWidgetView: View {
                                     Rectangle().fill(.clear)
                                 }
                             }
-                            .WidgetFrameStyle(width: 50)
+                            .WidgetFrameStyle(width: 40)
                         }
                         .buttonStyle(.plain)
                         
                         InputBox(placeholder: Strings.descriptionLabel, text: $localDropdown.title)
                             .swipeActions {
-                                if localDropdowns.count > 1 {
-                                    Button {
-                                        if let index = localDropdowns.firstIndex(of: localDropdown) {
-                                            localDropdowns.remove(at: index)
-                                            numDropdowns -= 1
-                                        }
-                                    } label: {
-                                        Labels.delete
+                                Button {
+                                    if let index = localDropdowns.firstIndex(of: localDropdown) {
+                                        localDropdowns.remove(at: index)
+                                        numDropdowns -= 1
                                     }
-                                    .tint(.red)
+                                } label: {
+                                    Labels.delete
                                 }
+                                .tint(.red)
                                 
                                 Button {
                                     if let index = localDropdowns.firstIndex(of: localDropdown) {
@@ -98,18 +101,6 @@ struct ConfigureDropdownSectionWidgetView: View {
                 }
             }
             .scrollContentBackground(.hidden)
-            .onChange(of: localDropdowns) { _ in
-                withAnimation {
-                    if localDropdowns.contains(where: { localDropdown in
-                        localDropdown.title.isEmpty
-                    }) {
-                        isValid = false
-                    }
-                    else {
-                        isValid = true
-                    }
-                }
-            }
             
             Button {
                 if dropdownSectionWidget != nil {
@@ -127,6 +118,7 @@ struct ConfigureDropdownSectionWidgetView: View {
         .frame(maxHeight: .infinity)
         .onAppear {
             loadDropdownSectionWidget()
+            numDropdowns = localDropdowns.count
         }
     }
     

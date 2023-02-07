@@ -13,7 +13,9 @@ struct Home: View {
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     @State var time = 0.0
     @State var finishedLaunching = false
-    
+    #warning("abstract")
+    @AppStorage("tutorialComplete") var tutorialComplete: Bool = false
+
     var body: some View {
         
         NavigationStack(path: $formModel.navigationPath) {
@@ -36,6 +38,11 @@ struct Home: View {
                             timer.upstream.connect().cancel()
                         }
                     }
+            }
+            if finishedLaunching && !tutorialComplete {
+                TutorialView(showIntro: true) {
+                    tutorialComplete = true
+                }
             }
         }
     }

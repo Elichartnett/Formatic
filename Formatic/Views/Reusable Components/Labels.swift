@@ -17,5 +17,5 @@ struct Labels {
     
     static let sort: some View = Label(Strings.sortLabel, systemImage: Constants.sortIconName).customIcon()
     
-    static let move: some View = Label(Strings.moveLabel, systemImage: Constants.moveIconName).customIcon()
+    static let move: some View = Label(Strings.moveLabel, systemImage: Constants.moveSectionIconName).customIcon()
 }
