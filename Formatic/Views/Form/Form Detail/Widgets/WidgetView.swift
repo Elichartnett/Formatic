@@ -91,5 +91,6 @@ struct WidgetView: View {
 struct WidgetView_Previews: PreviewProvider {
     static var previews: some View {
         WidgetView(widget: dev.textFieldWidget, locked: .constant(false))
+            .environmentObject(FormModel())
     }
 }

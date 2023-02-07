@@ -19,6 +19,7 @@ struct SettingsView: View {
     @State var alertTitle = ""
     @State var showAlert = false
     @State var showPaywallView = false
+    @State var showTutorialView = false
     
     var body: some View {
         
@@ -30,6 +31,12 @@ struct SettingsView: View {
                     versionLabel
                     
                     showPaywallViewButton
+                    
+                    Button {
+                        showTutorialView = true
+                    } label: {
+                        Text("Tutorial")
+                    }
                     
                     submitFeedbackButton
                 }
@@ -54,6 +61,11 @@ struct SettingsView: View {
             .navigationTitle(Strings.settingsLabel)
             .scrollContentBackground(.hidden)
             .background(Color.primaryBackground)
+            .navigationDestination(isPresented: $showTutorialView, destination: {
+                TutorialView(selectedTab: 1) {
+                    showTutorialView = false
+                }
+            })
             .sheet(isPresented: $showPaywallView, content: {
                 PaywallView(storeKitManager: formModel.storeKitManager)
             })

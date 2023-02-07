@@ -12,6 +12,7 @@ struct EditModeButton: View {
     @Environment(\.editMode) var editMode
     @EnvironmentObject var formModel: FormModel
     
+    var activeOnAppear = false
     var disabled = false
     let onTap: () -> ()
     
@@ -30,6 +31,10 @@ struct EditModeButton: View {
         } label: {
             let icon = Image(systemName: Constants.editIconName)
                 .customIcon(foregroundColor: disabled ? .gray : editMode?.wrappedValue == .active ? .white : .blue)
+                .background {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(editMode?.wrappedValue == .active ? .blue : .clear)
+                }
             
             if formModel.isPhone {
                 icon
@@ -50,7 +55,13 @@ struct EditModeButton: View {
                 }
             }
         }
+        .foregroundColor(.blue)
         .disabled(disabled)
+        .onAppear {
+            if activeOnAppear {
+                editMode?.wrappedValue = .active
+            }
+        }
     }
 }
 

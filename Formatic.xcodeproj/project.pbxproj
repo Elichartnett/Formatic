@@ -11,6 +11,7 @@
 		620364F2294836660061B825 /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620364F1294836660061B825 /* StoreKitManager.swift */; };
 		6208345828283A2F00DF864F /* CheckboxWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A979BB28277BFF0067C0A3 /* CheckboxWidget+CoreDataClass.swift */; };
 		6208463D298C84FF006130CC /* Ext+Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6208463C298C84FF006130CC /* Ext+Label.swift */; };
+		6208463F298FEE9B006130CC /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6208463E298FEE9B006130CC /* TutorialView.swift */; };
 		6219A298294AC0C10003DD29 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621DDB1B29497AE50023A6E2 /* StoreKit.framework */; };
 		62294F07281F4F5B00226AF1 /* NewFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F06281F4F5B00226AF1 /* NewFormView.swift */; };
 		62294F0C281F519C00226AF1 /* InputBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62294F0B281F519C00226AF1 /* InputBox.swift */; };
@@ -144,6 +145,7 @@
 		620364F0294834120061B825 /* Formatic.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Formatic.storekit; sourceTree = "<group>"; };
 		620364F1294836660061B825 /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
 		6208463C298C84FF006130CC /* Ext+Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+Label.swift"; sourceTree = "<group>"; };
+		6208463E298FEE9B006130CC /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		620DD0932915CFA600EA54BB /* Formatic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Formatic.entitlements; sourceTree = "<group>"; };
 		621DDB1B29497AE50023A6E2 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		62294F06281F4F5B00226AF1 /* NewFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFormView.swift; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				62D1B07729252EAA00712D85 /* SettingsView.swift */,
+				6208463E298FEE9B006130CC /* TutorialView.swift */,
 				62D1B096292670C500712D85 /* EmailViewRepresentable.swift */,
 			);
 			path = Settings;
@@ -788,6 +791,7 @@
 				62315046293413CC00634E89 /* WidgetView.swift in Sources */,
 				62294F332822F0CC00226AF1 /* SectionTitleView.swift in Sources */,
 				6238A18B293C2C4A007C09A1 /* Ext+SliderWidget.swift in Sources */,
+				6208463F298FEE9B006130CC /* TutorialView.swift in Sources */,
 				6238A186293C2BDE007C09A1 /* SliderWidget+CoreDataClass.swift in Sources */,
 				62294F10281F8C1C00226AF1 /* TextFieldWidgetView.swift in Sources */,
 				6208345828283A2F00DF864F /* CheckboxWidget+CoreDataClass.swift in Sources */,

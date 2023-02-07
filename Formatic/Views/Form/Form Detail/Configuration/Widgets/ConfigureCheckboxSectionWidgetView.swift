@@ -25,7 +25,7 @@ struct ConfigureCheckboxSectionWidgetView: View {
             HStack {
                 Spacer().frame(maxWidth: .infinity)
                 
-                Stepper(localCheckboxes.count.description, value: $numCheckboxes, in: 1...100)
+                Stepper(localCheckboxes.count.description, value: $numCheckboxes, in: 0...100)
                     .labelsHidden()
                     .onChange(of: numCheckboxes) { newVal in
                         withAnimation {
@@ -70,17 +70,15 @@ struct ConfigureCheckboxSectionWidgetView: View {
                         
                         InputBox(placeholder: Strings.descriptionLabel, text: $localCheckbox.title)
                             .swipeActions {
-                                if localCheckboxes.count > 1 {
-                                    Button {
-                                        if let index = localCheckboxes.firstIndex(of: localCheckbox) {
-                                            localCheckboxes.remove(at: index)
-                                            numCheckboxes -= 1
-                                        }
-                                    } label: {
-                                        Labels.delete
+                                Button {
+                                    if let index = localCheckboxes.firstIndex(of: localCheckbox) {
+                                        localCheckboxes.remove(at: index)
+                                        numCheckboxes -= 1
                                     }
-                                    .tint(.red)
+                                } label: {
+                                    Labels.delete
                                 }
+                                .tint(.red)
                                 
                                 Button {
                                     if let index = localCheckboxes.firstIndex(of: localCheckbox) {

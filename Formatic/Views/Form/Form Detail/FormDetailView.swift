@@ -163,22 +163,54 @@ struct FormDetailView: View {
             ToggleLockView(showToggleLockView: $showToggleLockView, form: form)
         })
         .sheet(isPresented: $sortSections) {
-            VStack {
-                HStack {
-                    Spacer().frame(maxWidth: .infinity)
-
-                    EditModeButton { }
-                    
-                    Spacer().frame(maxWidth: .infinity)
-                }
+            VStack(spacing: 0) {
+                EditModeButton(activeOnAppear: true) { }
+                    .padding(.top)
                 
-                List {
-                    ForEach(sections) { section in
-                        Text(section.title ?? "")
+                if !(form.sections?.isEmpty ?? true) {
+                    List {
+                        ForEach(sections) { section in
+                            if form.sections?.contains(section) ?? false {
+                                Text(section.title ?? "")
+                                    .swipeActions {
+                                        Button {
+                                            section.delete()
+                                        } label: {
+                                            Labels.delete
+                                        }
+                                        .tint(.red)
+                                        
+                                        Button {
+                                            let copy = section.createCopy() as! Section
+                                            copy.position = section.position + 1
+                                            
+                                            for index in Int(copy.position)..<sections.count {
+                                                sections[index].position += 1
+                                            }
+                                            
+                                            copy.form = section.form
+                                        } label: {
+                                            Labels.copy
+                                        }
+                                        .tint(.blue)
+                                    }
+                            }
+                        }
+                        .onMove(perform: { indexSet, destination in
+                            form.updateSectionPositions(indexSet: indexSet, destination: destination)
+                        })
                     }
-                    .onMove(perform: { indexSet, destination in
-                        form.updateSectionPositions(indexSet: indexSet, destination: destination)
-                    })
+                    .scrollContentBackground(.hidden)
+                }
+                else {
+                    Color.primaryBackground
+                }
+            }
+            .background(Color.primaryBackground)
+            .onChange(of: form.sections?.isEmpty) { isEmpty in
+                if isEmpty ?? true {
+                    sortSections = false
+                    editMode?.wrappedValue = .inactive
                 }
             }
         }
