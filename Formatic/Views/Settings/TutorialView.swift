@@ -18,6 +18,7 @@ struct TutorialView: View {
     var body: some View {
         
 #warning("localize and abstract")
+#warning("remove outtro while viewing tutorial from settings")
         
         VStack {
             
@@ -35,7 +36,9 @@ struct TutorialView: View {
                         Text("Please take a few moments to learn more about the app to enhance your experience.")
                         
                         Button {
-                            didFinish()
+                            withAnimation {
+                                didFinish()
+                            }
                         } label: {
                             Text("This tutorial will always be available in settings. To skip ahead, click here") + Text(Image(systemName: "arrow.forward"))
                         }
@@ -153,7 +156,7 @@ struct TutorialView: View {
                             HStack {
                                 EditModeButton { }
                                     .disabled(true)
-                                Text("Edit mode enables the selection of multiple forms for copying, deleting, or exporting. Enabling edit mode while inside of a form enables moving sections or selecting multiple fields inside of a section for copying, deleting, or moving.")
+                                Text("Edit mode enables the selection of multiple forms for copying, deleting, or exporting. Enabling edit mode while inside of a form enables moving sections or selecting multiple fields inside of a section for copying, deleting, or moving. Additionally, fields that require configuration upon creation can also be reconfigured with edit mode.")
                             }
                             .padding()
                             

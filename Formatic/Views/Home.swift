@@ -26,22 +26,24 @@ struct Home: View {
         }
         .navigationViewStyle(.stack)
         .overlay {
-            if !finishedLaunching {
-                LottieView(name: Constants.logoAnimationFileName)
-                    .background(Color.white)
-                    .onReceive(timer) { _ in
-                        time += 0.1
-                        if time >= 1.5 {
-                            withAnimation {
-                                finishedLaunching = true
+            ZStack {
+                if !finishedLaunching {
+                    LottieView(name: Constants.logoAnimationFileName)
+                        .background(Color.white)
+                        .onReceive(timer) { _ in
+                            time += 0.1
+                            if time >= 1.5 {
+                                withAnimation {
+                                    finishedLaunching = true
+                                }
+                                timer.upstream.connect().cancel()
                             }
-                            timer.upstream.connect().cancel()
                         }
+                }
+                if finishedLaunching && !tutorialComplete {
+                    TutorialView(showIntro: true) {
+                        tutorialComplete = true
                     }
-            }
-            if finishedLaunching && !tutorialComplete {
-                TutorialView(showIntro: true) {
-                    tutorialComplete = true
                 }
             }
         }
