@@ -57,6 +57,7 @@ struct ConfigureDropdownSectionWidgetView: View {
                             }
                             else {
                                 selectedLocalDropdownID = nil
+                                selectedLocalDropdownID = localDropdown.id
                             }
                         } label: {
                             Group {
@@ -166,13 +167,11 @@ struct ConfigureDropdownSectionWidgetView: View {
         let dropdownSectionWidget = DropdownSectionWidget(title: title, position: section.numberOfWidgets(), selectedDropdown: nil, dropdownWidgets: nil)
         
         for (index, localDropdown) in localDropdowns.enumerated() {
-            if !localDropdown.title.isEmpty {
-                let dropdownWidget = DropdownWidget(title: localDropdown.title, position: index, dropdownSectionWidget: dropdownSectionWidget, selectedDropdownInverse: nil)
-                if localDropdown.id == selectedLocalDropdownID {
-                    dropdownSectionWidget.selectedDropdown = dropdownWidget
-                }
-                dropdownSectionWidget.addToDropdownWidgets(dropdownWidget)
+            let dropdownWidget = DropdownWidget(title: localDropdown.title, position: index, dropdownSectionWidget: dropdownSectionWidget, selectedDropdownInverse: nil)
+            if localDropdown.id == selectedLocalDropdownID {
+                dropdownSectionWidget.selectedDropdown = dropdownWidget
             }
+            dropdownSectionWidget.addToDropdownWidgets(dropdownWidget)
         }
         
         withAnimation {
