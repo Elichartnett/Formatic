@@ -40,7 +40,7 @@ struct TutorialView: View {
                                 didFinish()
                             }
                         } label: {
-                            Text("This tutorial will always be available in settings. To skip ahead, click here") + Text(Image(systemName: "arrow.forward"))
+                            Text("This tutorial will always be available in settings. To skip ahead, click here ") + Text(Image(systemName: "arrow.forward"))
                         }
                     }
                     .multilineTextAlignment(.center)
@@ -93,8 +93,8 @@ struct TutorialView: View {
                             .padding()
                             
                             HStack {
-                                EditModeButton() { }
-                                    .disabled(true)
+                                Image(systemName: Constants.editIconName)
+                                    .customIcon()
                                 Text("Toggle edit mode")
                             }
                             .padding()
@@ -120,6 +120,7 @@ struct TutorialView: View {
                             }
                             .padding()
                         }
+                        .frame(maxWidth: .infinity)
                     }
                     
                 }
@@ -149,7 +150,7 @@ struct TutorialView: View {
                             HStack {
                                 Image(systemName: Constants.exportFormIconName)
                                     .customIcon()
-                                Text("Forms can be export as a .form, .pdf, or .csv. For easy reuse, consider creating a template and saving it as a .form file.")
+                                Text("Forms can be export as a .form, .pdf, or .csv. For easy reuse, consider creating a template and either saving it as a .form file or making multiple copies.")
                             }
                             .padding()
                             
@@ -182,6 +183,7 @@ struct TutorialView: View {
                             .padding()
                         }
                     }
+                    .frame(maxWidth: .infinity)
                 }
                 .tag(2)
                 
@@ -201,6 +203,7 @@ struct TutorialView: View {
                 }
             } label: {
                 SubmitButton(buttonTitle: selectedTab != 3 ? "Next" : "Complete")
+                    .padding()
             }
         }
         .scrollContentBackground(.hidden)
@@ -211,7 +214,7 @@ struct TutorialView: View {
 
 struct TutorialView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             TutorialView {
                 print("Finished")
             }

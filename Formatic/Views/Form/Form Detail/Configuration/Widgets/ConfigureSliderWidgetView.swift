@@ -30,9 +30,17 @@ struct ConfigureSliderWidgetView: View {
     @State var validStepInput = true
     let maxInput: Double = 1000000
     
+    var lowerBoundRange: ClosedRange<Double> {
+        return -maxInput...upperBound-step
+    }
+    var upperBoundRange: ClosedRange<Double> {
+        return lowerBound+step...maxInput
+    }
+    
     var body: some View {
         
         VStack {
+            Text(step.description)
             
             Text("\(Strings.valueLabel): \(number.formatted())")
             
@@ -46,7 +54,8 @@ struct ConfigureSliderWidgetView: View {
             
             HStack {
                 Text(Strings.lowerBoundLabel)
-                InputBox(placeholder: lowerBoundDefault.formatted(), text: $lowerBoundInput, inputType: .number, isValid: $validLowerBoundInput, validRange: 0...upperBound-1)
+                
+                InputBox(placeholder: lowerBoundDefault.formatted(), text: $lowerBoundInput, inputType: .number, isValid: $validLowerBoundInput, validRange: lowerBoundRange)
                     .onChange(of: lowerBoundInput) { _ in
                         validateLowerBound()
                         validateUpperBound()
@@ -56,7 +65,8 @@ struct ConfigureSliderWidgetView: View {
             
             HStack {
                 Text(Strings.upperBoundLabel)
-                InputBox(placeholder: upperBoundDefault.formatted(), text: $upperBoundInput, inputType: .number, isValid: $validUpperBoundInput, validRange: max(lowerBound, step)+1...maxInput)
+                
+                InputBox(placeholder: upperBoundDefault.formatted(), text: $upperBoundInput, inputType: .number, isValid: $validUpperBoundInput, validRange: upperBoundRange)
                     .onChange(of: upperBoundInput) { _ in
                         validateUpperBound()
                         validateLowerBound()
@@ -66,7 +76,8 @@ struct ConfigureSliderWidgetView: View {
             
             HStack {
                 Text(Strings.stepLabel)
-                InputBox(placeholder: stepDefault.formatted(), text: $stepInput, inputType: .number, isValid: $validStepInput, validRange: 1/maxInput...upperBound-1)
+                
+                InputBox(placeholder: stepDefault.formatted(), text: $stepInput, inputType: .number, isValid: $validStepInput, validRange: lowerBound...upperBound, showNegative: false, allowZero: false, sliderStep: true)
                     .onChange(of: stepInput) { _ in
                         validateStep()
                         validateLowerBound()
@@ -119,48 +130,55 @@ struct ConfigureSliderWidgetView: View {
     
     func validateLowerBound() {
         if let lowerBoundDouble = Double(lowerBoundInput) {
-            if lowerBoundDouble < upperBound {
-                lowerBound = lowerBoundDouble
+            if lowerBoundRange ~= lowerBoundDouble {
                 validLowerBoundInput = true
+                lowerBound = lowerBoundDouble
             }
             else {
                 validLowerBoundInput = false
             }
         }
         else if lowerBoundInput.isEmpty {
+            validLowerBoundInput = true
             lowerBound = lowerBoundDefault
         }
     }
     
     func validateUpperBound() {
+        
         if let upperBoundDouble = Double(upperBoundInput) {
-            if upperBoundDouble > lowerBound && upperBoundDouble > step {
-                upperBound = upperBoundDouble
+            if upperBoundRange ~= upperBoundDouble {
                 validUpperBoundInput = true
+                upperBound = upperBoundDouble
             }
             else {
                 validUpperBoundInput = false
             }
-            if number > upperBound {
-                number = upperBound
-            }
         }
         else if upperBoundInput.isEmpty {
+            validUpperBoundInput = true
             upperBound = upperBoundDefault
         }
     }
     
     func validateStep() {
         if let stepDouble = Double(stepInput) {
-            if stepDouble > 0 && stepDouble < upperBound {
-                step = stepDouble
+            if stepDouble < 0 {
+                validStepInput = false
+            }
+            else if stepDouble == 0 || stepInput == "0." {
+                validStepInput = false
+            }
+            else if stepDouble <= (upperBound.magnitude - lowerBound.magnitude).magnitude {
                 validStepInput = true
+                step = stepDouble
             }
             else {
                 validStepInput = false
             }
         }
         else if stepInput.isEmpty {
+            validStepInput = true
             step = stepDefault
         }
     }
