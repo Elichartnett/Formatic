@@ -18,14 +18,20 @@ struct InputBox: View {
     @Binding var isValid: Bool
     var validRange: ClosedRange<Double>?
     var axis: Axis
+    var allowNegative: Bool
+    var allowZero: Bool
+    var sliderStep: Bool
     
-    init(placeholder: String, text: Binding<String>, inputType: InputType = .text, isValid: Binding<Bool> = .constant(true), validRange: ClosedRange<Double>? = nil, axis: Axis = .horizontal) {
+    init(placeholder: String, text: Binding<String>, inputType: InputType = .text, isValid: Binding<Bool> = .constant(true), validRange: ClosedRange<Double>? = nil, axis: Axis = .horizontal, showNegative: Bool = true, allowZero: Bool = true, sliderStep: Bool = false) {
         self.placeholder = placeholder
         self._text = text
         self.inputType = inputType
         self._isValid = isValid
         self.validRange = validRange
         self.axis = axis
+        self.allowNegative = showNegative
+        self.allowZero = allowZero
+        self.sliderStep = sliderStep
     }
     
     var body: some View {
@@ -37,7 +43,6 @@ struct InputBox: View {
                 TextField(placeholder, text: $text, axis: axis)
 
             case .number:
-                let isNegative = text.first == "-"
                 TextField(placeholder, text: $text)
                     .onAppear(perform: validateNumber)
                     .onChange(of: text) { _ in
@@ -47,18 +52,17 @@ struct InputBox: View {
                     }
                     .keyboardType(.decimalPad)
                     .toolbar {
-                        if inputType == .number && isFocused {
-                            ToolbarItem(placement: .keyboard) {
-                                Button {
-                                    if isNegative {
-                                        text = String(text.trimmingPrefix("-"))
+                        if allowNegative {
+                            if inputType == .number && isFocused {
+                                ToolbarItem(placement: .keyboard) {
+                                    Button {
+                                        if let textDouble = Double(text) {
+                                            text = String(textDouble * -1)
+                                        }
+                                    } label: {
+                                        Image(systemName: "plusminus")
+                                            .customIcon()
                                     }
-                                    else {
-                                        text = "-\(text)"
-                                    }
-                                } label: {
-                                    Image(systemName: "plusminus")
-                                        .customIcon()
                                 }
                             }
                         }
@@ -80,6 +84,9 @@ struct InputBox: View {
         if text.isEmpty {
             isValid = true
         }
+        else if text == "0" && !allowZero || text == "0." && !allowZero {
+            isValid = false
+        }
         else if text == "-" || text == "-." {
             isValid = false
         }
@@ -100,7 +107,17 @@ struct InputBox: View {
                     text = "-\(text)"
                 }
             }
-            isValid = text.isValidNumber(range: validRange)
+            if !sliderStep {
+                isValid = text.isValidNumber(range: validRange)
+            }
+            else {
+                if let stepDouble = Double(text), let lowerBound = validRange?.lowerBound, let upperBound = validRange?.upperBound {
+                    isValid = stepDouble <= (upperBound.magnitude - lowerBound.magnitude).magnitude
+                }
+            }
+        }
+        if isNegative && !allowNegative {
+            isValid = false
         }
     }
 }
