@@ -196,14 +196,14 @@ struct TutorialView: View {
                     .padding()
                     
                     HStack {
-                        Image(systemName: Constants.editIconName)
+                        Image(systemName: Constants.lockIconName)
                             .customIcon()
                         Text(Strings.tutorialTip3Label)
                     }
                     .padding()
                     
                     HStack {
-                        Image(systemName: Constants.lockIconName)
+                        Image(systemName: Constants.editIconName)
                             .customIcon()
                         Text(Strings.tutorialTip4Label)
                     }

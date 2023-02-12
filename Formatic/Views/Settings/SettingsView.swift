@@ -32,11 +32,7 @@ struct SettingsView: View {
                     
                     showPaywallViewButton
                     
-                    Button {
-                        showTutorialView = true
-                    } label: {
-                        Text("Tutorial")
-                    }
+                    showTutorialViewButton
                     
                     submitFeedbackButton
                 }
@@ -61,13 +57,13 @@ struct SettingsView: View {
             .navigationTitle(Strings.settingsLabel)
             .scrollContentBackground(.hidden)
             .background(Color.primaryBackground)
-            .navigationDestination(isPresented: $showTutorialView, destination: {
+            .sheet(isPresented: $showPaywallView, content: {
+                PaywallView(storeKitManager: formModel.storeKitManager)
+            })
+            .sheet(isPresented: $showTutorialView, content: {
                 TutorialView(tabs: [.icons, .tips]) {
                     showTutorialView = false
                 }
-            })
-            .sheet(isPresented: $showPaywallView, content: {
-                PaywallView(storeKitManager: formModel.storeKitManager)
             })
             .sheet(isPresented: $showEmailVIew) {
                 let body = FormModel.getDeviceInformation()
@@ -94,6 +90,14 @@ struct SettingsView: View {
     
     var versionLabel: some View {
         Text("\(Strings.versionLabel) \(Bundle.main.fullVersion)")
+    }
+    
+    var showTutorialViewButton: some View {
+        Button {
+            showTutorialView = true
+        } label: {
+            Text("Tutorial")
+        }
     }
     
     var showPaywallViewButton: some View {

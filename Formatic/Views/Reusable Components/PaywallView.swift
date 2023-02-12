@@ -32,7 +32,7 @@ struct PaywallView: View {
                         isLoading = true
                     }
                 } label: {
-                    Text("Try again")
+                    Text(Strings.tryAgainLabel)
                 }
                 
             }
@@ -100,6 +100,8 @@ struct PaywallView: View {
     
     func getIconForProductID(_ id: FormaticProductID) -> Image {
         switch id {
+        case .lockForm:
+            return Image(systemName: Constants.lockIconName)
         case .importExportFormatic:
             return Image(systemName: Constants.fileIconName)
         case .exportPdf:
@@ -133,7 +135,13 @@ struct ProductView: View {
         HStack {
             icon
                 .customIcon(foregroundColor: .primary)
-            Text(product.displayName)
+            
+            VStack(alignment: .leading) {
+                Text(product.displayName)
+                    .font(.title3)
+                Text(product.description)
+                    .foregroundColor(.gray)
+            }
             
             Spacer()
             
