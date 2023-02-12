@@ -55,7 +55,9 @@ struct Constants {
     static let sortIconName = "line.3.horizontal.decrease.circle"
     static let expandListIconName = "chevron.right"
     static let moveSectionIconName = "arrow.up.arrow.down"
+    static let forwardArrowIconName = "arrow.forward"
     static let moveWidgetIconName = "line.3.horizontal"
+    static let dollarSignIconName = "dollarsign.circle"
     static let supportIconName = "questionmark.circle"
     
     static let logoAnimationFileName = "logoAnimation"
