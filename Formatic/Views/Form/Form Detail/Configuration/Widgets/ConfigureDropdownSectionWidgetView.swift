@@ -18,7 +18,6 @@ struct ConfigureDropdownSectionWidgetView: View {
     @State var section: Section
     @State var numDropdowns: Int = 1
     @State var isValid: Bool = true
-    @State var selectedLocalDropdownID: UUID?
     
     var body: some View {
         
@@ -52,16 +51,17 @@ struct ConfigureDropdownSectionWidgetView: View {
                     
                     HStack {
                         Button {
-                            if selectedLocalDropdownID == nil {
-                                selectedLocalDropdownID = localDropdown.id
-                            }
-                            else {
-                                selectedLocalDropdownID = nil
-                                selectedLocalDropdownID = localDropdown.id
+                            for index in 0..<localDropdowns.count {
+                                if localDropdowns[index].id == localDropdown.id {
+                                    localDropdowns[index].selected.toggle()
+                                }
+                                else {
+                                    localDropdowns[index].selected = false
+                                }
                             }
                         } label: {
                             Group {
-                                if localDropdown.id == selectedLocalDropdownID {
+                                if localDropdown.selected {
                                     Image(systemName: Constants.checkmarkIconName)
                                         .customIcon(foregroundColor: .black)
                                 }
@@ -135,11 +135,9 @@ struct ConfigureDropdownSectionWidgetView: View {
             }
             
             for dropdown in dropdownsArray {
-                let newLocalDropdown = LocalDropdownWidget(title: dropdown.title ?? "")
+                var newLocalDropdown = LocalDropdownWidget(title: dropdown.title ?? "")
+                newLocalDropdown.selected = dropdownSectionWidget?.selectedDropdown?.id == dropdown.id
                 localDropdowns.append(newLocalDropdown)
-                if dropdownSectionWidget?.selectedDropdown?.id == dropdown.id {
-                    selectedLocalDropdownID = newLocalDropdown.id
-                }
             }
         }
         else {
@@ -157,9 +155,14 @@ struct ConfigureDropdownSectionWidgetView: View {
         for (index, localDropdown) in localDropdowns.enumerated() {
             let dropdownWidget = DropdownWidget(title: localDropdown.title, position: index, dropdownSectionWidget: dropdownSectionWidget, selectedDropdownInverse: nil)
             dropdownSectionWidget?.addToDropdownWidgets(dropdownWidget)
-            if localDropdown.id == selectedLocalDropdownID {
+            if localDropdown.selected {
                 dropdownSectionWidget?.selectedDropdown = dropdownWidget
             }
+        }
+        if !localDropdowns.contains(where: { localDropdown in
+            localDropdown.selected == true
+        }) {
+            dropdownSectionWidget?.selectedDropdown = nil
         }
     }
     
@@ -168,9 +171,6 @@ struct ConfigureDropdownSectionWidgetView: View {
         
         for (index, localDropdown) in localDropdowns.enumerated() {
             let dropdownWidget = DropdownWidget(title: localDropdown.title, position: index, dropdownSectionWidget: dropdownSectionWidget, selectedDropdownInverse: nil)
-            if localDropdown.id == selectedLocalDropdownID {
-                dropdownSectionWidget.selectedDropdown = dropdownWidget
-            }
             dropdownSectionWidget.addToDropdownWidgets(dropdownWidget)
         }
         
@@ -184,6 +184,7 @@ struct ConfigureDropdownSectionWidgetView: View {
 struct LocalDropdownWidget: Identifiable, Equatable {
     let id: UUID = UUID()
     var title: String = ""
+    var selected: Bool = false
 }
 
 struct ConfigureDropdownSectionWidgetView_Previews: PreviewProvider {

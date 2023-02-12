@@ -100,7 +100,7 @@ struct SectionTitleView: View {
             }
         } label: {
             Image(systemName: Constants.plusCircleIconName)
-                .customIcon()
+                .customIcon(foregroundColor: locked ? .gray : .blue)
         }
     }
 }

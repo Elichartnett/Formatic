@@ -55,7 +55,6 @@ struct EditModeButton: View {
                 }
             }
         }
-        .foregroundColor(.blue)
         .disabled(disabled)
         .onAppear {
             if activeOnAppear {
