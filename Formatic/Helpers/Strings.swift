@@ -68,6 +68,7 @@ struct Strings {
     static let versionLabel = String(localized: "versionLabel")
     static let submitFeedbackLabel = String(localized: "submitFeedback")
     static let recentlyDeletedFormsLabel = String(localized: "recentlyDeletedFormsLabel")
+    static let tryAgainLabel = String(localized: "tryAgainLabel")
     
     static let inAppPurchasesLabel = String(localized: "inAppPurchasesLabel")
     static let failedToLoadPurchasesErrorMessage = String(localized: "failedToLoadPurchasesErrorMessage")

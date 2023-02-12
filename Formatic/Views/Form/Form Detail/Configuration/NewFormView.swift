@@ -15,8 +15,6 @@ struct NewFormView: View {
     
     @Binding var showNewFormView: Bool
     @State var title = ""
-    @State var password = ""
-    @State var validPassword = true
     @State var inRecentlyDeleted = false
     @State var showAlert = false
     @State var alertTitle = ""
@@ -32,29 +30,16 @@ struct NewFormView: View {
                 .alert(alertTitle, isPresented: $showAlert, actions: {
                     Button(Strings.defaultAlertButtonDismissMessage, role: .cancel) {}
                 })
-            
-            PasswordView(validPassword: $validPassword, password: $password)
-            
+                        
             Button {
                 withAnimation {
-                    let form = Form(title: title)
+                    _ = Form(title: title)
                     Analytics.logEvent(Constants.analyticsCreateFormEvent, parameters: nil)
-                    if !password.isEmpty {
-                        form.password = password
-                        form.locked = true
-                        Analytics.logEvent(Constants.analyticsCreateLockFormEvent, parameters: nil)
-                    }
                 }
                 showNewFormView = false
                 
             } label: {
                 SubmitButton()
-            }
-            .disabled(!validPassword)
-            
-            if !validPassword {
-                Text(Strings.formPasswordDoesNotMatchErrorMessage)
-                    .foregroundColor(.red)
             }
         }
         .padding(.horizontal)

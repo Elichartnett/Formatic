@@ -17,6 +17,7 @@ struct FormDetailViewToolbar: View {
     @ObservedObject var form: Form
     @State var exportType: UTType?
     @Binding var showToggleLockView: Bool
+    @State var showPaywallView = false
     @State var alertTitle = ""
     @State var showAlert = false
     
@@ -44,6 +45,9 @@ struct FormDetailViewToolbar: View {
         }
         .sheet(item: $exportType, content: { exportType in
             ExportView(forms: [form], exportType: $exportType)
+        })
+        .sheet(isPresented: $showPaywallView, content: {
+            PaywallView(storeKitManager: formModel.storeKitManager)
         })
         .alert(alertTitle, isPresented: $showAlert, actions: {
             Button(Strings.defaultAlertButtonDismissMessage, role: .cancel) {}
@@ -73,14 +77,21 @@ struct FormDetailViewToolbar: View {
     
     var lockFormButton: some View {
         Button {
-            if form.locked || (!form.locked && form.password == nil) {
-                showToggleLockView = true
-            }
-            else  {
-                withAnimation {
-                    editMode?.wrappedValue = .inactive
+            if formModel.storeKitManager.purchasedProducts.contains(where: { product in
+                product.id == FormaticProductID.lockForm.rawValue
+            }) {
+                if form.locked || (!form.locked && form.password == nil) {
+                    showToggleLockView = true
                 }
-                form.locked = true
+                else  {
+                    withAnimation {
+                        editMode?.wrappedValue = .inactive
+                    }
+                    form.locked = true
+                }
+            }
+            else {
+                showPaywallView = true
             }
         } label: {
             let icon = Image(systemName: form.locked == true ? Constants.lockIconName : Constants.openLockIconName)

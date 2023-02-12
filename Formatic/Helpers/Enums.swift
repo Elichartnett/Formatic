@@ -90,6 +90,7 @@ enum CustomColor: String {
 enum FormaticProductID: String, CaseIterable, Identifiable {
     var id: RawValue { rawValue }
     
+    case lockForm = "com.elihartnett.Formatic.lockForm"
     case importExportFormatic = "com.elihartnett.Formatic.importExportFormatic"
     case exportPdf = "com.elihartnett.Formatic.exportPdf"
     case exportCsv = "com.elihartnett.Formatic.exportCsv"
