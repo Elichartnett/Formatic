@@ -11,198 +11,50 @@ struct TutorialView: View {
     
     @EnvironmentObject var formModel: FormModel
     
+    var tabs: [TutorialTab]
     @State var selectedTab = 0
-    var showIntro = false
     let didFinish: () -> ()
     
     var body: some View {
-        
-#warning("localize and abstract")
-#warning("remove outtro while viewing tutorial from settings")
         
         VStack {
             
             TabView(selection: $selectedTab) {
                 
-                if showIntro {
-                    VStack(spacing: 20) {
-                        Image(systemName: Constants.logoIconName)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100, height: 100)
-                        Text("Welcome to Formatic!")
-                            .font(.title)
-                        
-                        Text("Please take a few moments to learn more about the app to enhance your experience.")
-                        
-                        Button {
-                            withAnimation {
-                                didFinish()
-                            }
-                        } label: {
-                            Text("This tutorial will always be available in settings. To skip ahead, click here ") + Text(Image(systemName: "arrow.forward"))
-                        }
-                    }
-                    .multilineTextAlignment(.center)
-                    .padding()
-                    .tag(0)
+                if tabs.contains(.intro) {
+                    introView
+                        .padding()
+                        .tag(getIndexOfTab(tab: .intro))
                 }
                 
-                VStack {
-                    Text("Icons")
-                        .font(.title)
-                        .bold()
-                        .padding(.top)
-                    
-                    ScrollView {
-                        
-                        VStack (alignment: .leading) {
-                            HStack {
-                                Image(systemName: Constants.plusCircleIconName)
-                                    .customIcon()
-                                Text("Create a new form, section, or field")
-                            }
-                            .padding()
-                            
-                            HStack {
-                                Image(systemName: Constants.importFormIconName)
-                                    .customIcon()
-                                Text("Import a form")
-                            }
-                            .padding()
-                            
-                            HStack {
-                                Image(systemName: Constants.exportFormIconName)
-                                    .customIcon()
-                                Text("Export a form")
-                            }
-                            .padding()
-                            
-                            HStack {
-                                Image(systemName: Constants.lockIconName)
-                                    .customIcon()
-                                Text("Lock or unlock a form")
-                            }
-                            .padding()
-                            
-                            HStack {
-                                Image(systemName: Constants.sortIconName)
-                                    .customIcon()
-                                Text("Sort forms")
-                            }
-                            .padding()
-                            
-                            HStack {
-                                Image(systemName: Constants.editIconName)
-                                    .customIcon()
-                                Text("Toggle edit mode")
-                            }
-                            .padding()
-                            
-                            HStack {
-                                Image(systemName: Constants.moveSectionIconName)
-                                    .customIcon()
-                                Text("Change order of sections")
-                            }
-                            .padding()
-                            
-                            HStack {
-                                Image(systemName: Constants.moveWidgetIconName)
-                                    .customIcon()
-                                Text("Change order of fields")
-                            }
-                            .padding()
-                            
-                            HStack {
-                                Image(systemName: Constants.settingsIconName)
-                                    .customIcon()
-                                Text("Settings")
-                            }
-                            .padding()
-                        }
-                        .frame(maxWidth: .infinity)
-                    }
-                    
+                if tabs.contains(.icons) {
+                    iconsView
+                        .tag(getIndexOfTab(tab: .icons))
                 }
-                .tag(1)
                 
-                VStack {
-                    Text("Tips")
-                        .font(.title)
-                        .bold()
-                        .padding(.top)
-                    
-                    ScrollView {
-                        
-                        VStack(alignment: .leading) {
-                            
-                            Group {
-                                
-                            }
-                            
-                            HStack {
-                                Image(systemName: Constants.logoIconName)
-                                    .customIcon()
-                                Text("Forms are made up of sections and sections are made up of fields.")
-                            }
-                            .padding()
-                            
-                            HStack {
-                                Image(systemName: Constants.exportFormIconName)
-                                    .customIcon()
-                                Text("Forms can be export as a .form, .pdf, or .csv. For easy reuse, consider creating a template and either saving it as a .form file or making multiple copies.")
-                            }
-                            .padding()
-                            
-                            HStack {
-                                EditModeButton { }
-                                    .disabled(true)
-                                Text("Edit mode enables the selection of multiple forms for copying, deleting, or exporting. Enabling edit mode while inside of a form enables moving sections or selecting multiple fields inside of a section for copying, deleting, or moving. Additionally, fields that require configuration upon creation can also be reconfigured with edit mode.")
-                            }
-                            .padding()
-                            
-                            HStack {
-                                Image(systemName: Constants.lockIconName)
-                                    .customIcon()
-                                Text("Adding a lock to a form restricts all form customization while still allowing for fields to be filled out. After setting up, locks can be temporarily disabled or removed completely.")
-                            }
-                            .padding()
-                            
-                            HStack {
-                                Image(systemName: Constants.supportIconName)
-                                    .customIcon()
-                                Text("If you encounter any issues or have any suggestions, navigation to settings and click submit feedback.")
-                            }
-                            .padding()
-                            
-                            HStack {
-                                Image(systemName: "dollarsign.circle")
-                                    .customIcon()
-                                Text("In app purchases are optional, but will give lifetime access to premium features.")
-                            }
-                            .padding()
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
+                if tabs.contains(.tips) {
+                    tipsView
+                        .tag(getIndexOfTab(tab: .tips))
                 }
-                .tag(2)
                 
-                PaywallView(storeKitManager: formModel.storeKitManager)
-                    .tag(3)
+                if tabs.contains(.paywall) {
+                    PaywallView(storeKitManager: formModel.storeKitManager)
+                        .tag(getIndexOfTab(tab: .paywall))
+                }
             }
             .tabViewStyle(.page)
             
             Button {
                 withAnimation {
-                    if selectedTab == 3 {
+                    if selectedTab == tabs.count - 1 {
                         didFinish()
                     }
                     else {
-                        selectedTab += 1
+                        self.selectedTab += 1
                     }
                 }
             } label: {
-                SubmitButton(buttonTitle: selectedTab != 3 ? "Next" : "Complete")
+                SubmitButton(buttonTitle: selectedTab != tabs.count - 1 ? Strings.tutorialNextLabel : Strings.tutorialCompleteLabel)
                     .padding()
             }
         }
@@ -210,15 +62,180 @@ struct TutorialView: View {
         .background(Color.primaryBackground)
         .toolbar(.hidden)
     }
+    
+    func getIndexOfTab(tab: TutorialTab) -> Int {
+        tabs.firstIndex(of: tab) ?? 0
+    }
+    
+    var introView: some View {
+        VStack(spacing: 20) {
+            Image(systemName: Constants.logoIconName)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100, height: 100)
+            Text("\(Strings.tutorialWelcomeLabel)!")
+                .font(.title)
+            
+            Text(Strings.tutorialIntroLabel)
+            
+            HStack(spacing: 5) {
+                Text(Strings.tutorialSkipLabel)
+                Image(systemName: Constants.forwardArrowIconName).customIcon()
+                    .onTapGesture {
+                        withAnimation {
+                            didFinish()
+                        }
+                    }
+            }
+        }
+        .multilineTextAlignment(.center)
+    }
+    
+    var iconsView: some View {
+        VStack {
+            Text(Strings.tutorialIconsLabel)
+                .font(.title)
+                .bold()
+                .padding(.top)
+            
+            ScrollView {
+                
+                VStack (alignment: .leading) {
+                    HStack {
+                        Image(systemName: Constants.plusCircleIconName)
+                            .customIcon()
+                        Text(Strings.tutorialCreateLabel)
+                    }
+                    .padding()
+                    
+                    HStack {
+                        Image(systemName: Constants.importFormIconName)
+                            .customIcon()
+                        Text(Strings.tutorialImportLabel)
+                    }
+                    .padding()
+                    
+                    HStack {
+                        Image(systemName: Constants.exportFormIconName)
+                            .customIcon()
+                        Text(Strings.tutorialExportLabel)
+                    }
+                    .padding()
+                    
+                    HStack {
+                        Image(systemName: Constants.lockIconName)
+                            .customIcon()
+                        Text(Strings.tutorialLockLabel)
+                    }
+                    .padding()
+                    
+                    HStack {
+                        Image(systemName: Constants.sortIconName)
+                            .customIcon()
+                        Text(Strings.tutorialSortLabel)
+                    }
+                    .padding()
+                    
+                    HStack {
+                        Image(systemName: Constants.editIconName)
+                            .customIcon()
+                        Text(Strings.tutorialEditLabel)
+                    }
+                    .padding()
+                    
+                    HStack {
+                        Image(systemName: Constants.moveSectionIconName)
+                            .customIcon()
+                        Text(Strings.tutorialSectionOrderLabel)
+                    }
+                    .padding()
+                    
+                    HStack {
+                        Image(systemName: Constants.moveWidgetIconName)
+                            .customIcon()
+                        Text(Strings.tutorialFieldOrderLabel)
+                    }
+                    .padding()
+                    
+                    HStack {
+                        Image(systemName: Constants.settingsIconName)
+                            .customIcon()
+                        Text(Strings.settingsLabel)
+                    }
+                    .padding()
+                }
+                .frame(maxWidth: .infinity)
+            }
+        }
+    }
+    
+    var tipsView: some View {
+        VStack {
+            
+            Text(Strings.tutorialTipsLabel)
+                .font(.title)
+                .bold()
+                .padding(.top)
+            
+            ScrollView {
+                
+                VStack(alignment: .leading) {
+                    
+                    HStack {
+                        Image(systemName: Constants.logoIconName)
+                            .customIcon()
+                        Text(Strings.tutorialTip1Label)
+                    }
+                    .padding()
+                    
+                    HStack {
+                        Image(systemName: Constants.exportFormIconName)
+                            .customIcon()
+                        Text(Strings.tutorialTip2Label)
+                    }
+                    .padding()
+                    
+                    HStack {
+                        Image(systemName: Constants.editIconName)
+                            .customIcon()
+                        Text(Strings.tutorialTip3Label)
+                    }
+                    .padding()
+                    
+                    HStack {
+                        Image(systemName: Constants.lockIconName)
+                            .customIcon()
+                        Text(Strings.tutorialTip4Label)
+                    }
+                    .padding()
+                    
+                    HStack {
+                        Image(systemName: Constants.dollarSignIconName)
+                            .customIcon()
+                        Text(Strings.tutorialTip5Label)
+                    }
+                    .padding()
+                    
+                    HStack {
+                        Image(systemName: Constants.supportIconName)
+                            .customIcon()
+                        Text(Strings.tutorialTip6Label)
+                    }
+                    .padding()
+                }
+            }
+            .frame(maxWidth: .infinity)
+        }
+    }
 }
 
 struct TutorialView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            TutorialView {
+            TutorialView (tabs: [.intro, .icons, .tips]) {
                 print("Finished")
             }
-                .environmentObject(FormModel())
+            .environmentObject(FormModel())
         }
     }
 }

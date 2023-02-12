@@ -26,7 +26,6 @@ enum WidgetTypeKey: CodingKey {
 }
 
 enum WidgetType: String, Decodable, Identifiable, CaseIterable {
-    
     var id: RawValue { rawValue }
     
     case textFieldWidget = "TextFieldWidget"
@@ -42,7 +41,6 @@ enum WidgetType: String, Decodable, Identifiable, CaseIterable {
 }
 
 enum CoordinateType: String, Identifiable, CaseIterable {
-    
     var id: RawValue { rawValue}
     
     case latLon = "Latitude & Longitude"
@@ -95,4 +93,11 @@ enum FormaticProductID: String, CaseIterable, Identifiable {
     case importExportFormatic = "com.elihartnett.Formatic.importExportFormatic"
     case exportPdf = "com.elihartnett.Formatic.exportPdf"
     case exportCsv = "com.elihartnett.Formatic.exportCsv"
+}
+
+enum TutorialTab {
+    case intro
+    case icons
+    case tips
+    case paywall
 }

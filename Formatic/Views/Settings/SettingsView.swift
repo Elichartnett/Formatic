@@ -62,7 +62,7 @@ struct SettingsView: View {
             .scrollContentBackground(.hidden)
             .background(Color.primaryBackground)
             .navigationDestination(isPresented: $showTutorialView, destination: {
-                TutorialView(selectedTab: 1) {
+                TutorialView(tabs: [.icons, .tips]) {
                     showTutorialView = false
                 }
             })
