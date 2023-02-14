@@ -39,9 +39,7 @@ struct ConfigureSliderWidgetView: View {
     
     var body: some View {
         
-        VStack {
-            Text(step.description)
-            
+        VStack {            
             Text("\(Strings.valueLabel): \(number.formatted())")
             
             HStack {
