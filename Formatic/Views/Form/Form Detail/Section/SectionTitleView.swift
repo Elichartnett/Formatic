@@ -39,6 +39,7 @@ struct SectionTitleView: View {
                 .onChange(of: sectionTitle) { newValue in
                     section.title = sectionTitle
                 }
+                .animation(.default)
         }
         .disabled(locked)
         .textCase(.none)
