@@ -75,10 +75,15 @@ struct FormDetailView: View {
                                 
                                 SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
                                 
-                                MultiWidgetSelectionToolBar(section: section, selectedSections: $selectedSections, selectedWidgets: $selectedWidgets)
-                                    .opacity(sectionSelected ? 1 : 0)
-                                    .animation(.default, value: selectedWidgets.isEmpty)
-                                    .accessibility(hidden: !sectionSelected)
+                                ZStack {
+                                    if sectionSelected {
+                                        MultiWidgetSelectionToolBar(section: section, selectedSections: $selectedSections, selectedWidgets: $selectedWidgets)
+                                            .accessibility(hidden: !sectionSelected)
+                                            .animation(.default)
+                                            .transition(.asymmetric(insertion: .push(from: .trailing), removal: .push(from: .leading)).combined(with: .opacity).animation(.default))
+                                    }
+                                }
+                                
                                 
                                 Button {
                                     sortSections.toggle()
