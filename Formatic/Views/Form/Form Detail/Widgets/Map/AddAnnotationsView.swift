@@ -27,6 +27,8 @@ struct AddAnnotationsView: View {
     @State var validEasting: Bool = false
     @State var validNorthing: Bool = false
     @State var validZone: Bool = false
+    @State var alertTitle = ""
+    @State var showAlert = false
     
     var body: some View {
         
@@ -71,29 +73,47 @@ struct AddAnnotationsView: View {
                 }
                 
                 Button {
-                    let annotation = Annotation(context: DataControllerModel.shared.container.viewContext)
-                    annotation.id = UUID()
                     if coordinateType == .latLon {
-                        annotation.latitude = Double(latitude)!
-                        annotation.longitude = Double(longitude)!
-                        latitude = ""
-                        longitude = ""
+                        if let latitudeDouble = Double(latitude), let longitudeDouble = Double(longitude) {
+                            let annotation = Annotation(context: DataControllerModel.shared.container.viewContext)
+                            annotation.id = UUID()
+                            annotation.latitude = latitudeDouble
+                            annotation.longitude = longitudeDouble
+                            mapWidget.addToAnnotations(annotation)
+                            latitude = ""
+                            longitude = ""
+                        }
+                        else {
+                            alertTitle = Strings.failedToCreateMapAnnotationErrorMessage
+                            showAlert = true
+                        }
                     }
                     else if coordinateType == .utm {
-                        let utmCoordinate = UTMCoordinate(northing: Double(northing)!, easting: Double(easting)!, zone: UTMGridZone(zone)!, hemisphere: hemisphere).coordinate()
-                        easting = ""
-                        northing = ""
-                        zone = ""
-                        let latitude = utmCoordinate.latitude
-                        let longitude = utmCoordinate.longitude
-                        annotation.latitude = latitude
-                        annotation.longitude = longitude
+                        if let northingDouble = Double(northing), let eastingDouble = Double(easting), let utmGridZone = UTMGridZone(zone) {
+                            let utmCoordinate = UTMCoordinate(northing: northingDouble, easting: eastingDouble, zone: utmGridZone, hemisphere: hemisphere).coordinate()
+                            let annotation = Annotation(context: DataControllerModel.shared.container.viewContext)
+                            annotation.id = UUID()
+                            let latitude = utmCoordinate.latitude
+                            let longitude = utmCoordinate.longitude
+                            annotation.latitude = latitude
+                            annotation.longitude = longitude
+                            mapWidget.addToAnnotations(annotation)
+                            easting = ""
+                            northing = ""
+                            zone = ""
+                        }
+                        else {
+                            alertTitle = Strings.failedToCreateMapAnnotationErrorMessage
+                            showAlert = true
+                        }
                     }
                     else if coordinateType == .center {
+                        let annotation = Annotation(context: DataControllerModel.shared.container.viewContext)
+                        annotation.id = UUID()
                         annotation.latitude = localCoordinateRegion.center.latitude
                         annotation.longitude = localCoordinateRegion.center.longitude
+                        mapWidget.addToAnnotations(annotation)
                     }
-                    mapWidget.addToAnnotations(annotation)
                 } label: {
                     VStack {
                         Image(systemName: Constants.plusIconName)
@@ -102,9 +122,15 @@ struct AddAnnotationsView: View {
                     }
                 }
                 .disabled(coordinateType == .latLon ? !(validLatitude && validLongitude) : coordinateType == .utm ? !(validEasting && validNorthing && validZone) : false)
+                .alert(alertTitle, isPresented: $showAlert, actions: {
+                    Button(Strings.defaultAlertButtonDismissMessage, role: .cancel) {}
+                })
             }
             .animation(.default, value: coordinateType)
             .padding(.vertical, 10)
+            .toolbar {
+                FormaticToolbar()
+            }
         }
     }
 }

@@ -71,6 +71,7 @@
 "restorePurchasesLabel" = "Restore purchases";
 "purchasesRestored" = "Purchases restored";
 "formaticFileLabel" = "Formatic File";
+"failedToCreateMapAnnotationErrorMessage" = "Failed to create map annotation";
 
 "textFieldLabel" = "Text Field";
 "textLabel" = "text";

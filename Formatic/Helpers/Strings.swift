@@ -76,6 +76,7 @@ struct Strings {
     static let restorePurchasesLabel = String(localized: "restorePurchasesLabel")
     static let purchasesRestored = String(localized: "purchasesRestored")
     static let formaticFileLabel = String(localized: "formaticFileLabel")
+    static let failedToCreateMapAnnotationErrorMessage = String(localized: "failedToCreateMapAnnotationErrorMessage")
     
     static let textFieldLabel = String(localized: "textFieldLabel")
     static let textLabel = String(localized: "textLabel")
