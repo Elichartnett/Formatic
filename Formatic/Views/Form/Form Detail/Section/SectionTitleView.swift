@@ -19,6 +19,7 @@ struct SectionTitleView: View {
             configureNewWidget = true
         }
     }
+    @State var appeared = false
     
     init(section: Section, locked: Binding<Bool>, sectionTitle: String) {
         self.section = section
@@ -39,13 +40,16 @@ struct SectionTitleView: View {
                 .onChange(of: sectionTitle) { newValue in
                     section.title = sectionTitle
                 }
-                .animation(.default)
+                .animation(appeared ? .default : nil)
         }
         .disabled(locked)
         .textCase(.none)
         .sheet(isPresented: $configureNewWidget) {
             ConfigureWidgetView(newWidgetType: newWidgetType!, section: section)
                 .textCase(.none)
+        }
+        .onAppear {
+            appeared = true
         }
     }
     
