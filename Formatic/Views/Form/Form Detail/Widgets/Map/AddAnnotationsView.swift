@@ -249,29 +249,32 @@ struct BaseCenterView: View {
             Text(localCoordinateRegion.center.utmCoordinate().hemisphere == .northern ? Strings.northernLabel : Strings.southernLabel)
         }
         
-        if isPhone {
-            VStack {
-                latitudeLabel
-                longitudeLabel
+        Group {
+            if isPhone {
+                VStack {
+                    latitudeLabel
+                    longitudeLabel
+                }
+                VStack {
+                    eastingLabel
+                    northingLabel
+                }
+                VStack {
+                    zoneLabel
+                    hemisphereLabel
+                }
             }
-            VStack {
-                eastingLabel
-                northingLabel
-            }
-            VStack {
-                zoneLabel
-                hemisphereLabel
+            else {
+                HStack {
+                    latitudeLabel
+                    longitudeLabel
+                    eastingLabel
+                    northingLabel
+                    zoneLabel
+                    hemisphereLabel
+                }
             }
         }
-        else {
-            HStack {
-                latitudeLabel
-                longitudeLabel
-                eastingLabel
-                northingLabel
-                zoneLabel
-                hemisphereLabel
-            }
-        }
+        .monospacedDigit()
     }
 }
