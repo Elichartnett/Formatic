@@ -49,6 +49,16 @@ extension Form: Codable, Identifiable, Transferable, Csv, Copyable {
     
     static public var transferRepresentation: some TransferRepresentation {
         CodableRepresentation(contentType: .form)
+        
+        FileRepresentation(exportedContentType: .form) { form in
+            let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(form.title ?? "Formatic Form")").appendingPathExtension("form")
+
+            let data = try! JSONEncoder().encode(form)
+            let dataString = String(data: data, encoding: .utf8)!
+            try dataString.data(using: .utf8)?.write(to: fileURL)
+
+            return SentTransferredFile(fileURL)
+        }
     }
     
     func sortedSectionsArray() -> [Section] {

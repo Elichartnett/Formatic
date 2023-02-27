@@ -22,28 +22,26 @@ struct ExportMenuButton: View {
         
         Menu {
             
-            if forms.count == 1 {
-                
-                let formaticFileLabel = HStack {
-                    Image(systemName: Constants.fileIconName)
-                        .customIcon()
-                    Text(Strings.formaticFileLabel)
+            let formaticFileLabel = HStack {
+                Image(systemName: Constants.fileIconName)
+                    .customIcon()
+                Text(Strings.formaticFileLabel)
+            }
+            
+            if storeKitManager.purchasedProducts.contains(where: { product in
+                product.id == FormaticProductID.importExportFormatic.rawValue
+            }) {
+                ShareLink(items: forms) { form in
+                    SharePreview(Text(forms.compactMap { $0.title }, format: .list(type: .and)), icon: Image(systemName: Constants.fileIconName))
+                } label: {
+                    formaticFileLabel
                 }
-                
-                if storeKitManager.purchasedProducts.contains(where: { product in
-                    product.id == FormaticProductID.importExportFormatic.rawValue
-                }) {
-                    let form = forms[0]
-                    ShareLink(item: form, preview: SharePreview(form.title ?? Strings.formLabel)) {
-                        formaticFileLabel
-                    }
-                }
-                else {
-                    Button {
-                        showPaywallView = true
-                    } label: {
-                        formaticFileLabel
-                    }
+            }
+            else {
+                Button {
+                    showPaywallView = true
+                } label: {
+                    formaticFileLabel
                 }
             }
             
