@@ -84,4 +84,6 @@ struct Constants {
     static let analyticsCreateCanvasWidgetEvenet = "analyticsCreateCanvasWidgetEvenet"
     static let analyticsCopyWidgetEvent = "analyticsCopyWidgetEvent"
     static let analyticsDeleteWidgetEvent = "analyticsDeleteWidgetEvent"
+    
+    static let reviewLink = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1643318765&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software"
 }
