@@ -29,7 +29,7 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Formatic</string>
+			<string>Form</string>
 			<key>UTTypeIconFiles</key>
 			<array/>
 			<key>UTTypeIdentifier</key>
@@ -38,7 +38,7 @@
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>.form</string>
+					<string>form</string>
 				</array>
 			</dict>
 		</dict>
@@ -60,7 +60,7 @@
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>.form</string>
+					<string>form</string>
 				</array>
 			</dict>
 		</dict>

@@ -43,9 +43,8 @@ struct ExportView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.primaryBackground)
     }
-    
     func generateFile() {
-        generatedFileURL = URL.temporaryDirectory.appending(path: "Form\(forms.count == 1 ? "" : "s").\(exportType == .pdf ? "pdf" : "csv")")
+        generatedFileURL = URL.temporaryDirectory.appending(path: "\(forms.compactMap { $0.title }.formatted(.list(type: .and))).\(exportType == .pdf ? "pdf" : "csv")")
         if let generatedFileURL {
             DispatchQueue.main.async {
                 if exportType == .pdf {
