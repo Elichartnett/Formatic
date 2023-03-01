@@ -54,9 +54,10 @@ struct PaywallView: View {
                                 purchasePending = true
                                 Task {
                                     do {
-                                        try await storeKitManager.purchase(product: product)
+                                        let currentPurchaseCount = storeKitManager.products.count
+                                        let purchased = try await storeKitManager.purchase(product: product)
+                                        if purchased { requestReview() }
                                         purchasePending = false
-                                        requestReview()
                                     }
                                     catch {
                                         purchasePending = false
@@ -75,7 +76,7 @@ struct PaywallView: View {
                 Button {
                     Task {
                         isLoading = true
-                        let tempPurchasedProducts = await storeKitManager.getAllPurchases()
+                        let tempPurchasedProducts = await storeKitManager.updatePurchasedProducts()
                         DispatchQueue.main.async {
                             storeKitManager.purchasedProducts = tempPurchasedProducts
                         }

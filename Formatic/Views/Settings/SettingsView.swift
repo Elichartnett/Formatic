@@ -44,7 +44,7 @@ struct SettingsView: View {
                     }
                     
                     HStack {
-                        Image(systemName: Constants.supportIconName)
+                        Image(systemName: Constants.supportFilledIconName)
                             .customIcon(foregroundColor: .purple)
                         submitFeedbackButton
                     }

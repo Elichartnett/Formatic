@@ -83,7 +83,7 @@ final class TransactionObserver {
                 case .unverified(_, _):
                     break
                 case .verified(_):
-                    let tempPurchasedProducts = await self.storeKitManager.getAllPurchases()
+                    let tempPurchasedProducts = await self.storeKitManager.updatePurchasedProducts()
                     self.storeKitManager.purchasedProducts.removeAll()
                     self.storeKitManager.purchasedProducts = tempPurchasedProducts
                 }
