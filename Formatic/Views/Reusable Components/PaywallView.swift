@@ -10,6 +10,7 @@ import StoreKit
 
 struct PaywallView: View {
     
+    @Environment(\.requestReview) var requestReview
     @EnvironmentObject var formModel: FormModel
     @ObservedObject var storeKitManager: StoreKitManager
     
@@ -55,6 +56,7 @@ struct PaywallView: View {
                                     do {
                                         try await storeKitManager.purchase(product: product)
                                         purchasePending = false
+                                        requestReview()
                                     }
                                     catch {
                                         purchasePending = false
