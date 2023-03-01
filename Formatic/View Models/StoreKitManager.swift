@@ -17,7 +17,7 @@ class StoreKitManager: ObservableObject {
     init() {
         Task {
             await fetchProducts()
-            await updatePurchasedProducts()
+            let _ = await updatePurchasedProducts()
         }
     }
     
@@ -34,27 +34,34 @@ class StoreKitManager: ObservableObject {
         }
     }
     
-    func updatePurchasedProducts() async {
-        
+    func updatePurchasedProducts() async -> [Product] {
+        var tempPurchasedProducts = [Product]()
+        for product in products {
+            if await isPurchased(product: product) {
+                tempPurchasedProducts.append(product)
+            }
+        }
+        return tempPurchasedProducts
     }
     
-    func purchase(product: Product) async throws {
+    func purchase(product: Product) async throws -> Bool {
         let result = try await product.purchase()
         
         switch result {
         case .success(let verification):
             switch verification {
             case .unverified(_, _):
-                break
+                return false
             case .verified(_):
                 DispatchQueue.main.async { [weak self] in
                     self?.purchasedProducts.append(product)
                 }
+                return true
             }
         case .userCancelled, .pending:
-            break
+            return false
         default:
-            break
+            return false
         }
     }
     
@@ -66,15 +73,5 @@ class StoreKitManager: ObservableObject {
         case .verified(_):
             return true
         }
-    }
-    
-    func getAllPurchases() async -> [Product] {
-        var tempPurchasedProducts = [Product]()
-        for product in products {
-            if await isPurchased(product: product) {
-                tempPurchasedProducts.append(product)
-            }
-        }
-        return tempPurchasedProducts
     }
 }

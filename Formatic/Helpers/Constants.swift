@@ -61,7 +61,8 @@ struct Constants {
     static let dollarSignIconName = "dollarsign.circle"
     static let dollarSignFilledIconName = "dollarsign.circle.fill"
     static let tutorialIconName = "graduationcap.fill"
-    static let supportIconName = "questionmark.bubble.fill"
+    static let supportFilledIconName = "questionmark.bubble.fill"
+    static let supportIconName = "questionmark.bubble"
     static let starFilledIconName = "star.fill"
     
     static let logoAnimationFileName = "logoAnimation"
