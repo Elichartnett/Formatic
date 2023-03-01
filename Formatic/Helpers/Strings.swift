@@ -64,6 +64,7 @@ struct Strings {
     static let failedToOpenEmailURLErrorMessage = String(localized: "failedToOpenEmailURLErrorMessage") + emailAddress + "."
     static let failedToCreateEmailURLErrorMessage = String(localized: "failedToCreateEmailURLErrorMessage") + emailAddress + "."
     static let failedToSendEmailErrorMessage = String(localized: "failedToSendEmailErrorMessage") + emailAddress + "."
+    static let writeAReviewLabel = String(localized: "writeAReviewLabel")
     static let copyAddressLabel = String(localized: "copyAddressLabel")
     static let versionLabel = String(localized: "versionLabel")
     static let submitFeedbackLabel = String(localized: "submitFeedback")

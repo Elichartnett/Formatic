@@ -10,6 +10,7 @@ import MessageUI
 
 struct SettingsView: View {
     
+    @Environment(\.openURL) private var openURL
     @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)], predicate: NSPredicate(format: Constants.predicateRecentlyDeletedEqualToTrue)) var recentlyDeletedForms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel
     
@@ -30,11 +31,29 @@ struct SettingsView: View {
                 SwiftUI.Section {
                     versionLabel
                     
-                    showPaywallViewButton
+                    HStack {
+                        Image(systemName: Constants.dollarSignFilledIconName)
+                            .customIcon(foregroundColor: .green)
+                        showPaywallViewButton
+                    }
                     
-                    showTutorialViewButton
+                    HStack {
+                        Image(systemName: Constants.tutorialIconName)
+                            .customIcon(foregroundColor: .brown)
+                        showTutorialViewButton
+                    }
                     
-                    submitFeedbackButton
+                    HStack {
+                        Image(systemName: Constants.supportIconName)
+                            .customIcon(foregroundColor: .purple)
+                        submitFeedbackButton
+                    }
+                    
+                    HStack {
+                        Image(systemName: Constants.starFilledIconName)
+                            .customIcon(foregroundColor: .yellow)
+                        writeAReviewButton
+                    }
                 }
                 
                 SwiftUI.Section {
@@ -133,6 +152,18 @@ struct SettingsView: View {
             }
         } label: {
             Text(Strings.submitFeedbackLabel)
+        }
+    }
+    
+    var writeAReviewButton: some View {
+        Group {
+            if let url = URL(string: "https://apps.apple.com/app/id\(Constants.appID)?action=write-review") {
+                Button {
+                    openURL(url)
+                } label: {
+                    Text(Strings.writeAReviewLabel)
+                }
+            }
         }
     }
     
