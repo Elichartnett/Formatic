@@ -59,6 +59,7 @@
 "failedToOpenEmailURLErrorMessage" = "Failed to find mail application. Please manually email ";
 "failedToCreateEmailURLErrorMessage" = "Failed to create email. Please manually email ";
 "failedToSendEmailErrorMessage" = "Failed to send email. Please manually email ";
+"writeAReviewLabel" = "Write A Review";
 "copyAddressLabel" = "Copy Address";
 "versionLabel" = "Version";
 "submitFeedback" = "Submit Feedback";

@@ -8,7 +8,8 @@
 import Foundation
 
 struct Constants {
-    
+    static let appID = "1643318765"
+
     static let stackSpacingConstant: CGFloat = 8
     
     static let sortDescriptorDateCreated = "dateCreated"
@@ -58,7 +59,10 @@ struct Constants {
     static let forwardArrowIconName = "arrow.forward"
     static let moveWidgetIconName = "line.3.horizontal"
     static let dollarSignIconName = "dollarsign.circle"
-    static let supportIconName = "questionmark.circle"
+    static let dollarSignFilledIconName = "dollarsign.circle.fill"
+    static let tutorialIconName = "graduationcap.fill"
+    static let supportIconName = "questionmark.bubble.fill"
+    static let starFilledIconName = "star.fill"
     
     static let logoAnimationFileName = "logoAnimation"
     static let formContainerFileName = "Form Container"
@@ -84,6 +88,4 @@ struct Constants {
     static let analyticsCreateCanvasWidgetEvenet = "analyticsCreateCanvasWidgetEvenet"
     static let analyticsCopyWidgetEvent = "analyticsCopyWidgetEvent"
     static let analyticsDeleteWidgetEvent = "analyticsDeleteWidgetEvent"
-    
-    static let reviewLink = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1643318765&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software"
 }
