@@ -108,7 +108,7 @@ struct SettingsView: View {
     }
     
     var versionLabel: some View {
-        Text("\(Strings.versionLabel) \(Bundle.main.fullVersion)")
+        Text("\(Strings.versionLabel) \(Bundle.main.shortVersion)")
     }
     
     var showTutorialViewButton: some View {
