@@ -54,17 +54,19 @@ struct PaywallView: View {
                                 purchasePending = true
                                 Task {
                                     do {
-                                        let today = Date()
-                                        var originalPurchaseDate = today
-                                        let result = try await AppTransaction.shared
-                                        switch result {
-                                        case .verified(let appTransaction):
-                                            originalPurchaseDate = appTransaction.originalPurchaseDate
-                                        case .unverified(_, _):
-                                            break
-                                        }
-                                        if try await storeKitManager.purchase(product: product) && originalPurchaseDate != today {
-                                            requestReview()
+                                        if try await storeKitManager.purchase(product: product) {
+                                            let today = Date()
+                                            var originalPurchaseDate = today
+                                            let result = try await AppTransaction.shared
+                                            switch result {
+                                            case .verified(let appTransaction):
+                                                originalPurchaseDate = appTransaction.originalPurchaseDate
+                                            case .unverified(_, _):
+                                                break
+                                            }
+                                            if originalPurchaseDate != today {
+                                                requestReview()
+                                            }
                                         }
                                         purchasePending = false
                                     }
