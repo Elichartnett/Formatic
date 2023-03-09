@@ -24,6 +24,7 @@ struct FormListView: View {
     @State var importingForm = false
     @State var sortMethod = SortMethod.dateCreated
     @State var showSettingsMenu = false
+    @State var showPaywallView = false
     @State var showAlert = false
     @State var alertTitle = ""
     @State var alertButtonDismissMessage = Strings.defaultAlertButtonDismissMessage
@@ -144,6 +145,9 @@ struct FormListView: View {
         }, content: {
             ExportView(forms: sortedSelectedForm, exportType: $exportType)
         })
+        .sheet(isPresented: $showPaywallView, content: {
+            PaywallView(storeKitManager: formModel.storeKitManager)
+        })
         .fileImporter(isPresented: $showImportFormView, allowedContentTypes: [.form]) { result in
             switch result {
             case .success(let url):
@@ -165,7 +169,14 @@ struct FormListView: View {
         }
         .onOpenURL { url in
             do {
-                try Form.importForm(url: url)
+                if formModel.storeKitManager.purchasedProducts.contains(where: { product in
+                    product.id == FormaticProductID.importExportFormatic.rawValue
+                }) {
+                    try Form.importForm(url: url)
+                }
+                else {
+                    showPaywallView = true
+                }
             }
             catch {
                 alertTitle = Strings.importFormErrorMessage
