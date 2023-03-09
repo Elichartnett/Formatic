@@ -54,9 +54,18 @@ struct PaywallView: View {
                                 purchasePending = true
                                 Task {
                                     do {
-                                        let currentPurchaseCount = storeKitManager.products.count
-                                        let purchased = try await storeKitManager.purchase(product: product)
-                                        if purchased { requestReview() }
+                                        let today = Date()
+                                        var originalPurchaseDate = today
+                                        let result = try await AppTransaction.shared
+                                        switch result {
+                                        case .verified(let appTransaction):
+                                            originalPurchaseDate = appTransaction.originalPurchaseDate
+                                        case .unverified(_, _):
+                                            break
+                                        }
+                                        if try await storeKitManager.purchase(product: product) && originalPurchaseDate != today {
+                                            requestReview()
+                                        }
                                         purchasePending = false
                                     }
                                     catch {
