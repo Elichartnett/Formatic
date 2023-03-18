@@ -86,6 +86,14 @@ struct ConfigureDropdownSectionWidgetView: View {
                                 .tint(.red)
                                 
                                 Button {
+                                    localDropdown.title = ""
+                                    localDropdown.selected = false
+                                } label: {
+                                    Labels.reset
+                                }
+                                .tint(.yellow)
+                                
+                                Button {
                                     if let index = localDropdowns.firstIndex(of: localDropdown) {
                                         localDropdowns.insert(LocalDropdownWidget(title: localDropdown.title), at: index + 1)
                                         numDropdowns += 1

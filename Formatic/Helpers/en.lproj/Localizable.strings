@@ -35,6 +35,7 @@
 
 "deleteLabel" = "Delete";
 "copyLabel" = "Copy";
+"resetLabel" = "Reset";
 "recoverLabel" = "Recover";
 "importLabel" = "Import";
 "doneLabel" = "Done";

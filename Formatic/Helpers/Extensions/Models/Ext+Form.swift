@@ -230,4 +230,10 @@ extension Form: Codable, Identifiable, Transferable, Csv, Copyable {
             }
         }
     }
+    
+    func initiateReset() {
+        for section in sections ?? [] {
+            section.initiateReset()
+        }
+    }
 }

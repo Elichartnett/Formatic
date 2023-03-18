@@ -178,4 +178,10 @@ extension Section: Codable, Identifiable, Csv, Copyable {
         }
         return copy
     }
+    
+    func initiateReset() {
+        for widget in widgets ?? [] {
+            widget.initiateReset()
+        }
+    }
 }

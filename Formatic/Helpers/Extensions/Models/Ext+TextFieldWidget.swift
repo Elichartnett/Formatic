@@ -33,4 +33,8 @@ extension TextFieldWidget: Csv, Copyable {
         let copy = TextFieldWidget(title: title, position: Int(position), text: text)
         return copy
     }
+    
+    func reset() {
+        self.text = nil
+    }
 }

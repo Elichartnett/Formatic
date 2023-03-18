@@ -59,6 +59,13 @@ struct FormListView: View {
                             .tint(.red)
                             
                             Button {
+                                form.initiateReset()
+                            } label: {
+                                Labels.reset
+                            }
+                            .tint(.yellow)
+                            
+                            Button {
                                 let _ = form.createCopy()
                             } label: {
                                 Labels.copy
@@ -205,8 +212,32 @@ struct FormListView: View {
                     selectedForms.removeAll()
                 }
             } label: {
-                Labels.copy
+                let label = Labels.copy
+                if formModel.isPhone {
+                    label.labelStyle(.iconOnly)
+                }
+                else {
+                    label
+                }
             }
+            
+            Spacer()
+            
+            Button {
+                for form in selectedForms {
+                    form.initiateReset()
+                }
+                selectedForms.removeAll()
+            } label: {
+                let label = Labels.reset
+                if formModel.isPhone {
+                    label.labelStyle(.iconOnly)
+                }
+                else {
+                    label
+                }
+            }
+            .tint(.yellow)
             
             Spacer()
             
@@ -217,7 +248,13 @@ struct FormListView: View {
                 selectedForms.removeAll()
                 showMultiFormSelectionToolBar = false
             } label: {
-                Labels.delete
+                let label = Labels.delete
+                if formModel.isPhone {
+                    label.labelStyle(.iconOnly)
+                }
+                else {
+                    label
+                }
             }
             
             Spacer()

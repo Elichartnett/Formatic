@@ -77,6 +77,13 @@ struct WidgetView: View {
                     .tint(.red)
                     
                     Button {
+                        widget.initiateReset()
+                    } label: {
+                        Labels.reset
+                    }
+                    .tint(.yellow)
+                    
+                    Button {
                         widget.initiateCopy()
                     } label: {
                         Labels.copy

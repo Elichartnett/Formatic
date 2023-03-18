@@ -186,6 +186,13 @@ struct FormDetailView: View {
                                         .tint(.red)
                                         
                                         Button {
+                                            section.initiateReset()
+                                        } label: {
+                                            Labels.reset
+                                        }
+                                        .tint(.yellow)
+                                        
+                                        Button {
                                             let copy = section.createCopy() as! Section
                                             copy.position = section.position + 1
                                             
@@ -293,6 +300,21 @@ private struct MultiWidgetSelectionToolBar: View {
             }
             
             Button {
+                for selectedWidget in selectedWidgets {
+                    selectedWidget.initiateReset()
+                }
+            } label: {
+                let label = Labels.reset
+                
+                if formModel.isPhone {
+                    label.labelStyle(.iconOnly)
+                }
+                else {
+                    label
+                }
+            }
+                        
+            Button {
                 withAnimation {
                     if selectedSections.contains(section) {
                         section.delete()
@@ -308,7 +330,6 @@ private struct MultiWidgetSelectionToolBar: View {
                 }
             } label: {
                 let label = Labels.delete
-                    .foregroundColor(.red)
                 
                 if formModel.isPhone {
                     label.labelStyle(.iconOnly)

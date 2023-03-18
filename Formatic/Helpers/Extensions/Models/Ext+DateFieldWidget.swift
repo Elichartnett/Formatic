@@ -36,4 +36,8 @@ extension DateFieldWidget: Csv, Copyable {
         let copy = DateFieldWidget(title: title, position: Int(position), date: date)
         return copy
     }
+    
+    func reset() {
+        self.date = Date()
+    }
 }

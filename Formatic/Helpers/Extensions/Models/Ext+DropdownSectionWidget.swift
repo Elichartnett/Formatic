@@ -9,6 +9,13 @@ import Foundation
 
 extension DropdownSectionWidget: Csv, Copyable {
     
+    var dropdownWidgetsArray: [DropdownWidget] {
+        let set = dropdownWidgets as? Set<DropdownWidget> ?? []
+        return set.sorted { lhs, rhs in
+            lhs.position < rhs.position
+        }
+    }
+    
     enum CodingKeys: CodingKey {
         case position
         case title
@@ -53,11 +60,6 @@ extension DropdownSectionWidget: Csv, Copyable {
     func createCopy() -> Any {
         let selectedDropdownWidgetCopy = selectedDropdown?.createCopy() as? DropdownWidget
         
-        let dropdownWidgetsArray = dropdownWidgets?.sorted(by: { lhs, rhs in
-            let lhs = lhs as! DropdownWidget
-            let rhs = rhs as! DropdownWidget
-            return lhs.position < rhs.position
-        }) as! [DropdownWidget]
         var dropdownWidgetsCopy = [DropdownWidget]()
         for widget in dropdownWidgetsArray {
             let copy = widget.createCopy() as! DropdownWidget
@@ -66,5 +68,14 @@ extension DropdownSectionWidget: Csv, Copyable {
         
         let copy = DropdownSectionWidget(title: title, position: Int(position), selectedDropdown: selectedDropdownWidgetCopy, dropdownWidgets: NSSet(array: dropdownWidgetsCopy))
         return copy
+    }
+    
+    func reset() {
+        self.selectedDropdown = nil
+        for widget in dropdownWidgetsArray {
+            if widget.selectedDropdownInverse != nil {
+                widget.selectedDropdownInverse = nil
+            }
+        }
     }
 }

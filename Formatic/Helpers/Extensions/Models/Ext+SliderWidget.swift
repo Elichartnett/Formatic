@@ -36,4 +36,8 @@ extension SliderWidget: Csv, Copyable {
         let copy = SliderWidget(title: title, position: Int(position), lowerBound: lowerBound, upperBound: upperBound, step: step, number: number)
         return copy
     }
+    
+    func reset() {
+        self.number = self.lowerBound
+    }
 }

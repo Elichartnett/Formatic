@@ -33,6 +33,7 @@ struct Constants {
     static let settingsIconName = "gearshape"
     static let trashIconName = "trash"
     static let copyIconName = "doc.on.doc"
+    static let resetIconName = "arrow.3.trianglepath"
     static let plusIconName = "plus"
     static let circleIconName = "circle"
     static let plusCircleIconName = "plus.circle"

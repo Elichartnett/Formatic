@@ -88,4 +88,49 @@ extension Widget: Identifiable {
             }
         }
     }
+    
+    func initiateReset() {
+        let widgetType = WidgetType(rawValue: self.type!)
+        
+        switch widgetType {
+        case .textFieldWidget:
+            if let widget = self as? TextFieldWidget {
+                widget.reset()
+            }
+        case .numberFieldWidget:
+            if let widget = self as? NumberFieldWidget {
+                widget.reset()
+            }
+        case .dateFieldWidget:
+            if let widget = self as? DateFieldWidget {
+                widget.reset()
+            }
+        case .sliderWidget:
+            if let widget = self as? SliderWidget {
+                widget.reset()
+            }
+        case .dropdownSectionWidget:
+            if let widget = self as? DropdownSectionWidget {
+                widget.reset()
+            }
+        case .dropdownWidget:
+            break
+        case .checkboxSectionWidget:
+            if let widget = self as? CheckboxSectionWidget {
+                widget.reset()
+            }
+        case .checkboxWidget:
+            break
+        case .mapWidget:
+            if let widget = self as? MapWidget {
+                widget.reset()
+            }
+        case .canvasWidget:
+            if let widget = self as? CanvasWidget {
+                widget.reset()
+            }
+        case .none:
+            break
+        }
+    }
 }
