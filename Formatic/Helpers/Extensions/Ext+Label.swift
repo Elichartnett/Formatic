@@ -14,5 +14,7 @@ extension Label {
         self
             .font(.title2)
             .foregroundColor(foregroundColor)
+            .lineLimit(1)
+            .fixedSize()
     }
 }

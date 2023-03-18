@@ -10,6 +10,7 @@ import SwiftUI
 struct DateFieldWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
+    @FetchRequest var coreDataDateFieldWidget: FetchedResults<DateFieldWidget>
     
     @ObservedObject var dateFieldWidget: DateFieldWidget
     @Binding var locked: Bool
@@ -19,6 +20,7 @@ struct DateFieldWidgetView: View {
     
     init(dateFieldWidget: DateFieldWidget, locked: Binding<Bool>) {
         self.dateFieldWidget = dateFieldWidget
+        self._coreDataDateFieldWidget = FetchRequest<DateFieldWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "id == %@", dateFieldWidget.id as CVarArg))
         self._locked = locked
         self._title = State(initialValue: dateFieldWidget.title ?? "")
         self._date = State(initialValue: dateFieldWidget.date ?? Date())
@@ -42,6 +44,9 @@ struct DateFieldWidgetView: View {
             .onChange(of: date, perform: { _ in
                 dateFieldWidget.date = date
             })
+            .onChange(of: coreDataDateFieldWidget.first?.date ?? Date()) { newValue in
+                date = newValue
+            }
             .frame(maxWidth: .infinity)
             .WidgetFrameStyle(height: .regular)
         }

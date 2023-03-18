@@ -97,4 +97,8 @@ extension MapWidget: Csv, Copyable {
         
         return copy
     }
+    
+    func reset() {
+        self.annotations = nil
+    }
 }

@@ -30,7 +30,11 @@ extension NumberFieldWidget: Csv, Copyable {
     }
     
     func createCopy() -> Any {
-        let copy = NumberFieldWidget(title: title, position: Int(position), number: number)
+        let copy = NumberFieldWidget(title: title, position: Int(position), number: number ?? "")
         return copy
+    }
+    
+    func reset() {
+        self.number = nil
     }
 }

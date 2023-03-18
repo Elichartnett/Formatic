@@ -9,6 +9,13 @@ import Foundation
 
 extension CheckboxSectionWidget: Csv, Copyable {
     
+    var sortedCheckboxArray: [CheckboxWidget] {
+        let set = checkboxWidgets as? Set<CheckboxWidget> ?? []
+        return set.sorted { lhs, rhs in
+            lhs.position < rhs.position
+        }
+    }
+    
     enum CodingKeys: CodingKey {
         case position
         case title
@@ -62,5 +69,11 @@ extension CheckboxSectionWidget: Csv, Copyable {
         
         let copy = CheckboxSectionWidget(title: title, position: Int(position), checkboxWidgets: NSSet(array: checkboxWidgetsCopy))
         return copy
+    }
+    
+    func reset() {
+        for checkbox in self.sortedCheckboxArray {
+            checkbox.checked = false
+        }
     }
 }

@@ -38,6 +38,7 @@ struct Strings {
     
     static let deleteLabel = String(localized: "deleteLabel")
     static let copyLabel = String(localized: "copyLabel")
+    static let resetLabel = String(localized: "resetLabel")
     static let recoverLabel = String(localized: "recoverLabel")
     static let importLabel = String(localized: "importLabel")
     static let doneLabel = String(localized: "doneLabel")

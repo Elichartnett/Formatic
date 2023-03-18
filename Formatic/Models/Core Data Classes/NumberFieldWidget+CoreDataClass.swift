@@ -11,7 +11,7 @@ import CoreData
 @objc(NumberFieldWidget)
 public class NumberFieldWidget: Widget, Decodable {
     
-    init(title: String?, position: Int, number: String?) {
+    init(title: String?, position: Int, number: String) {
         super.init(entityName: WidgetType.numberFieldWidget.rawValue, context: DataControllerModel.shared.container.viewContext, title: title, position: position)
         self.type = WidgetType.numberFieldWidget.rawValue
         self.number = number
@@ -27,9 +27,7 @@ public class NumberFieldWidget: Widget, Decodable {
             self.title = title
         }
         self.type = try numberFieldWidgetContainer.decode(String.self, forKey: .type)
-        if let number = try numberFieldWidgetContainer.decode(String?.self, forKey: .number) {
-            self.number = number
-        }
+        self.number = try numberFieldWidgetContainer.decode(String.self, forKey: .number)
     }
     
     override public func encode(to encoder: Encoder) throws {

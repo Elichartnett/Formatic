@@ -11,6 +11,8 @@ import SwiftUI
 struct Labels {
     static var copy: some View = Label(Strings.copyLabel, systemImage: Constants.copyIconName).customIcon()
     
+    static var reset: some View = Label(Strings.resetLabel, systemImage: Constants.resetIconName).customIcon(foregroundColor: .yellow)
+
     static var delete: some View = Label(Strings.deleteLabel, systemImage: Constants.trashIconName).customIcon(foregroundColor: .red)
 
     static let recover: some View = Label(Strings.recoverLabel, systemImage: Constants.plusIconName).customIcon()

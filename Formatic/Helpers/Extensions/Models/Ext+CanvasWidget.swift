@@ -60,4 +60,9 @@ extension CanvasWidget: Csv, Copyable {
         toolPicker?.addObserver(canvasView)
         toolPicker?.setVisible(true, forFirstResponder: canvasView)
     }
+    
+    func reset() {
+        self.pkDrawing = nil
+        self.widgetViewPreview = nil
+    }
 }

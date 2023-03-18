@@ -10,6 +10,7 @@ import SwiftUI
 struct NumberFieldWidgetView: View {
     
     @EnvironmentObject var formModel: FormModel
+    @FetchRequest var coreDataNumberFieldWidget: FetchedResults<NumberFieldWidget>
     
     @ObservedObject var numberFieldWidget: NumberFieldWidget
     @Binding var locked: Bool
@@ -20,9 +21,10 @@ struct NumberFieldWidgetView: View {
     
     init(numberFieldWidget: NumberFieldWidget, locked: Binding<Bool>, range: ClosedRange<Double>? = nil) {
         self.numberFieldWidget = numberFieldWidget
+        self._coreDataNumberFieldWidget = FetchRequest<NumberFieldWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "id == %@", numberFieldWidget.id as CVarArg))
         self._locked = locked
-        self.title = numberFieldWidget.title ?? ""
-        self.number = numberFieldWidget.number ?? ""
+        self._title = State(initialValue: numberFieldWidget.title ?? "")
+        self._number = State(initialValue: numberFieldWidget.number ?? "")
         self.range = range
         self.isValid = isValid
     }
@@ -41,8 +43,11 @@ struct NumberFieldWidgetView: View {
                     isValid = number.isValidNumber(range: range)
                     if !isValid {
                         number.enforceNumberValidation()
-                        numberFieldWidget.number = number
                     }
+                    numberFieldWidget.number = number
+                }
+                .onChange(of: coreDataNumberFieldWidget.first?.number ?? "") { newValue in
+                    number = newValue
                 }
         }
         

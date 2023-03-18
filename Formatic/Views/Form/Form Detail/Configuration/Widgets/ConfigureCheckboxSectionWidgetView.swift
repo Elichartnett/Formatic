@@ -81,6 +81,14 @@ struct ConfigureCheckboxSectionWidgetView: View {
                                 .tint(.red)
                                 
                                 Button {
+                                    localCheckbox.title = ""
+                                    localCheckbox.checked = false
+                                } label: {
+                                    Labels.reset
+                                }
+                                .tint(.yellow)
+                                
+                                Button {
                                     if let index = localCheckboxes.firstIndex(of: localCheckbox) {
                                         localCheckboxes.insert(LocalCheckboxWidget(title: localCheckbox.title), at: index + 1)
                                         numCheckboxes += 1
