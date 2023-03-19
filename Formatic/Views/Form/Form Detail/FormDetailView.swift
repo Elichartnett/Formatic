@@ -51,53 +51,56 @@ struct FormDetailView: View {
                             SectionView(section: section, locked: $form.locked, forPDF: forPDF)
                         } header: {
                             HStack {
-                                if editMode?.wrappedValue == .active {
-                                    Button {
-                                        withAnimation {
-                                            if selectedSections.contains(section) {
-                                                for widget in section.sortedWidgetsArray() {
-                                                    selectedWidgets.remove(widget)
+                                if !form.locked {
+                                    if editMode?.wrappedValue == .active {
+                                        Button {
+                                            withAnimation {
+                                                if selectedSections.contains(section) {
+                                                    for widget in section.sortedWidgetsArray() {
+                                                        selectedWidgets.remove(widget)
+                                                    }
+                                                    selectedSections.remove(section)
                                                 }
-                                                selectedSections.remove(section)
-                                            }
-                                            else {
-                                                for widget in section.sortedWidgetsArray() {
-                                                    selectedWidgets.insert(widget)
+                                                else {
+                                                    for widget in section.sortedWidgetsArray() {
+                                                        selectedWidgets.insert(widget)
+                                                    }
+                                                    selectedSections.insert(section)
                                                 }
-                                                selectedSections.insert(section)
                                             }
+                                        } label: {
+                                            Image(systemName: selectedSections.contains(section) ? Constants.filledCircleCheckmarkIconName : Constants.circleIconName)
+                                                .customIcon()
                                         }
-                                    } label: {
-                                        Image(systemName: selectedSections.contains(section) ? Constants.filledCircleCheckmarkIconName : Constants.circleIconName)
-                                            .customIcon()
                                     }
                                 }
                                 
                                 SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
                                 
-                                ZStack {
-                                    if sectionSelected {
-                                        MultiWidgetSelectionToolBar(section: section, selectedSections: $selectedSections, selectedWidgets: $selectedWidgets)
-                                            .accessibility(hidden: !sectionSelected)
-                                            .animation(.default)
-                                            .transition(.asymmetric(insertion: .push(from: .trailing), removal: .push(from: .leading)).combined(with: .opacity).animation(.default))
-                                    }
-                                }
-                                
-                                
-                                Button {
-                                    sortSections.toggle()
-                                } label: {
-                                    Group {
-                                        if formModel.isPhone {
-                                            Labels.move.labelStyle(.iconOnly)
-                                        }
-                                        else {
-                                            Labels.move.labelStyle(.titleAndIcon)
+                                if !form.locked {
+                                    ZStack {
+                                        if sectionSelected {
+                                            MultiWidgetSelectionToolBar(section: section, selectedSections: $selectedSections, selectedWidgets: $selectedWidgets)
+                                                .accessibility(hidden: !sectionSelected)
+                                                .animation(.default)
+                                                .transition(.asymmetric(insertion: .push(from: .trailing), removal: .push(from: .leading)).combined(with: .opacity).animation(.default))
                                         }
                                     }
-                                    .opacity(editMode?.wrappedValue == .active ? 1 : 0)
-                                    .accessibility(hidden: editMode?.wrappedValue != .active)
+                                    
+                                    Button {
+                                        sortSections.toggle()
+                                    } label: {
+                                        Group {
+                                            if formModel.isPhone {
+                                                Labels.move.labelStyle(.iconOnly)
+                                            }
+                                            else {
+                                                Labels.move.labelStyle(.titleAndIcon)
+                                            }
+                                        }
+                                        .opacity(editMode?.wrappedValue == .active ? 1 : 0)
+                                        .accessibility(hidden: editMode?.wrappedValue != .active)
+                                    }
                                 }
                             }
                         }
@@ -313,7 +316,7 @@ private struct MultiWidgetSelectionToolBar: View {
                     label
                 }
             }
-                        
+            
             Button {
                 withAnimation {
                     if selectedSections.contains(section) {
