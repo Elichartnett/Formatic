@@ -32,7 +32,7 @@ struct ExportMenuButton: View {
                 product.id == FormaticProductID.importExportFormatic.rawValue
             }) {
                 ShareLink(items: forms) { form in
-                    SharePreview(Text(forms.compactMap { $0.title }, format: .list(type: .and)), icon: Image(systemName: Constants.fileIconName))
+                    SharePreview(Text(forms.compactMap { $0.title ?? "Untitled" }, format: .list(type: .and)), icon: Image(systemName: Constants.fileIconName))
                 } label: {
                     formaticFileLabel
                 }

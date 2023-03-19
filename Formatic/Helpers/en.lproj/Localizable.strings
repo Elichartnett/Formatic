@@ -133,7 +133,7 @@
 "tutorialFieldOrderLabel" = "Change order of fields";
 "tutorialTipsLabel" = "Tips";
 "tutorialTip1Label" = "Forms are made up of sections and sections are made up of fields. You can customize a form by adding multiple fields to each section and multiple sections to your form.";
-"tutorialTip2Label" = "Forms can be exported as .form, .pdf, or .csv. For easy reuse, consider creating a form template and saving the .form version to your files.";
+"tutorialTip2Label" = "Forms can be exported as .form, .pdf, or .csv. For easy reuse, consider creating a form template and saving the .form version to your files. When needed, import it and specify the number of copies you need.";
 "tutorialTip3Label" = "Adding a lock to a form restricts all form customization while still allowing for fields to be filled out. After setting up a lock, it can be temporarily disabled or completely removed. Consider locking a form before sharing the .form file to prevent alteration of the form structure.";
 "tutorialTip4Label" = "On the home screen, edit mode enables the selection of multiple forms for copying, deleting, or exporting at once. While inside of a form, edit mode enables customization of sections and their fields.";
 "tutorialTip5Label" = "In app purchases are optional, but will give lifetime access to premium features.";

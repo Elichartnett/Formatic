@@ -101,58 +101,82 @@ struct TutorialView: View {
             ScrollView {
                 
                 VStack (alignment: .leading) {
-                    HStack {
-                        Image(systemName: Constants.plusCircleIconName)
-                            .customIcon()
-                        Text(Strings.tutorialCreateLabel)
-                    }
-                    .padding()
                     
-                    HStack {
-                        Image(systemName: Constants.importFormIconName)
-                            .customIcon()
-                        Text(Strings.tutorialImportLabel)
+                    Group {
+                        HStack {
+                            Image(systemName: Constants.plusCircleIconName)
+                                .customIcon()
+                            Text(Strings.tutorialCreateLabel)
+                        }
+                        .padding()
+                        
+                        HStack {
+                            Image(systemName: Constants.importFormIconName)
+                                .customIcon()
+                            Text(Strings.tutorialImportLabel)
+                        }
+                        .padding()
+                        
+                        HStack {
+                            Image(systemName: Constants.exportFormIconName)
+                                .customIcon()
+                            Text(Strings.tutorialExportLabel)
+                        }
+                        .padding()
+                        
+                        HStack {
+                            Image(systemName: Constants.lockIconName)
+                                .customIcon()
+                            Text(Strings.tutorialLockLabel)
+                        }
+                        .padding()
+                        
+                        HStack {
+                            Image(systemName: Constants.sortIconName)
+                                .customIcon()
+                            Text(Strings.tutorialSortLabel)
+                        }
+                        .padding()
+                        
+                        HStack {
+                            Image(systemName: Constants.editIconName)
+                                .customIcon()
+                            Text(Strings.tutorialEditLabel)
+                        }
+                        .padding()
+                        
+                        HStack {
+                            Image(systemName: Constants.copyIconName)
+                                .customIcon()
+                            Text(Strings.copyLabel)
+                        }
+                        .padding()
+                        
+                        HStack {
+                            Image(systemName: Constants.resetIconName)
+                                .customIcon(foregroundColor: .yellow)
+                            Text(Strings.resetLabel)
+                        }
+                        .padding()
+                        
+                        HStack {
+                            Image(systemName: Constants.trashIconName)
+                                .customIcon(foregroundColor: .red)
+                            Text(Strings.deleteLabel)
+                        }
+                        .padding()
+                        
+                        HStack {
+                            Image(systemName: Constants.moveSectionIconName)
+                                .customIcon()
+                            Text(Strings.tutorialSectionOrderLabel)
+                        }
+                        .padding()
                     }
-                    .padding()
-                    
-                    HStack {
-                        Image(systemName: Constants.exportFormIconName)
-                            .customIcon()
-                        Text(Strings.tutorialExportLabel)
-                    }
-                    .padding()
-                    
-                    HStack {
-                        Image(systemName: Constants.lockIconName)
-                            .customIcon()
-                        Text(Strings.tutorialLockLabel)
-                    }
-                    .padding()
-                    
-                    HStack {
-                        Image(systemName: Constants.sortIconName)
-                            .customIcon()
-                        Text(Strings.tutorialSortLabel)
-                    }
-                    .padding()
-                    
-                    HStack {
-                        Image(systemName: Constants.editIconName)
-                            .customIcon()
-                        Text(Strings.tutorialEditLabel)
-                    }
-                    .padding()
-                    
-                    HStack {
-                        Image(systemName: Constants.moveSectionIconName)
-                            .customIcon()
-                        Text(Strings.tutorialSectionOrderLabel)
-                    }
-                    .padding()
                     
                     HStack {
                         Image(systemName: Constants.moveWidgetIconName)
-                            .customIcon()
+                            .customIcon(foregroundColor: .gray)
                         Text(Strings.tutorialFieldOrderLabel)
                     }
                     .padding()

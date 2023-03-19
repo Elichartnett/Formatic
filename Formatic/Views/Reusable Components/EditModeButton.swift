@@ -33,14 +33,14 @@ struct EditModeButton: View {
                 .customIcon(foregroundColor: disabled ? .gray : editMode?.wrappedValue == .active ? .white : .blue)
                 .background {
                     RoundedRectangle(cornerRadius: 5)
-                        .fill(editMode?.wrappedValue == .active ? .blue : .clear)
+                        .fill(editMode?.wrappedValue == .active && !disabled ? .blue : .clear)
                 }
             
             if formModel.isPhone {
                 icon
                     .background {
                         RoundedRectangle(cornerRadius: 5)
-                            .fill(editMode?.wrappedValue == .active ? .blue : Color.clear)
+                            .fill(editMode?.wrappedValue == .active && !disabled ? .blue : Color.clear)
                     }
             }
             else {

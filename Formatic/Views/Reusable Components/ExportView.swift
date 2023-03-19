@@ -44,7 +44,16 @@ struct ExportView: View {
         .background(Color.primaryBackground)
     }
     func generateFile() {
-        generatedFileURL = URL.temporaryDirectory.appending(path: "\(forms.compactMap { $0.title?.trimmingCharacters(in: .whitespaces).isEmpty ?? true ? "Form" : $0.title?.trimmingCharacters(in: .whitespaces) }.formatted(.list(type: .and))).\(exportType == .pdf ? "pdf" : "csv")")
+        let file = forms.map( { form in
+            let title = form.title?.trimmingCharacters(in: .whitespaces)
+            if let title, !title.isEmpty {
+                return title
+            }
+            else {
+                return "Untitled"
+            }
+        }).formatted(.list(type: .and))
+        generatedFileURL = URL.temporaryDirectory.appending(path: "\(file).\(exportType == .pdf ? "pdf" : "csv")")
         if let generatedFileURL {
             DispatchQueue.main.async {
                 if exportType == .pdf {
