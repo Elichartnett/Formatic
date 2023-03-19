@@ -169,19 +169,14 @@ struct FormListView: View {
             }
         }
         .onOpenURL { url in
-            do {
-                if formModel.storeKitManager.purchasedProducts.contains(where: { product in
-                    product.id == FormaticProductID.importExportFormatic.rawValue
-                }) {
-                    try Form.importForm(url: url)
-                }
-                else {
-                    showPaywallView = true
-                }
+            if formModel.storeKitManager.purchasedProducts.contains(where: { product in
+                product.id == FormaticProductID.importExportFormatic.rawValue
+            }) {
+                currentFormURL = url
+                showImportAlert = true
             }
-            catch {
-                alertTitle = Strings.importFormErrorMessage
-                showAlert = true
+            else {
+                showPaywallView = true
             }
         }
         .overlay {

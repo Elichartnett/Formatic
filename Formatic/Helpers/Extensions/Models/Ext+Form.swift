@@ -48,10 +48,12 @@ extension Form: Codable, Identifiable, Transferable, Csv, Copyable {
     }
     
     static public var transferRepresentation: some TransferRepresentation {
-        CodableRepresentation(contentType: .form)
-        
         FileRepresentation(exportedContentType: .form) { form in
-            let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(form.title ?? "Formatic Form")").appendingPathExtension("form")
+            var fileName = "Untitled"
+            if let title = form.title, !title.isEmpty {
+                fileName = title
+            }
+            let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(fileName)").appendingPathExtension("form")
 
             let data = try! JSONEncoder().encode(form)
             let dataString = String(data: data, encoding: .utf8)!
