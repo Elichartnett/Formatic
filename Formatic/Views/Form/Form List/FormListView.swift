@@ -20,11 +20,14 @@ struct FormListView: View {
     @State var showMultiFormSelectionToolBar = false
     @State var searchText = ""
     @State var showNewFormView = false
+    @State var importCount = "1"
+    @State var currentFormURL: URL?
     @State var showImportFormView = false
     @State var importingForm = false
     @State var sortMethod = SortMethod.dateCreated
     @State var showSettingsMenu = false
     @State var showPaywallView = false
+    @State var showImportAlert = false
     @State var showAlert = false
     @State var alertTitle = ""
     @State var alertButtonDismissMessage = Strings.defaultAlertButtonDismissMessage
@@ -158,17 +161,8 @@ struct FormListView: View {
         .fileImporter(isPresented: $showImportFormView, allowedContentTypes: [.form]) { result in
             switch result {
             case .success(let url):
-                DispatchQueue.main.async {
-                    importingForm = true
-                    do {
-                        try Form.importForm(url: url)
-                    }
-                    catch {
-                        alertTitle = Strings.importFormErrorMessage
-                        showAlert = true
-                    }
-                    importingForm = false
-                }
+                currentFormURL = url
+                showImportAlert = true
             case .failure(_):
                 alertTitle = Strings.importFormErrorMessage
                 showAlert = true
@@ -196,6 +190,13 @@ struct FormListView: View {
             }
         }
         .alert(alertTitle, isPresented: $showAlert, actions: {
+            Button(alertButtonDismissMessage, role: .cancel) {}
+        })
+        .alert(alertTitle, isPresented: $showImportAlert, actions: {
+            TextField("Import Count", text: $importCount)
+                .keyboardType(.numberPad)
+            
+            Button(Strings.importLabel) { importForm() }
             Button(alertButtonDismissMessage, role: .cancel) {}
         })
     }
@@ -276,6 +277,32 @@ struct FormListView: View {
         case .alphabetical:
             forms.nsSortDescriptors = [NSSortDescriptor(key: Constants.sortDescriptorTitle, ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))]
         }
+    }
+    
+    func importForm() {
+        DispatchQueue.main.async {
+            importingForm = true
+        }
+        do {
+            if let currentFormURL, let count = Int(importCount) {
+                for _ in 1...count {
+                    try Form.importForm(url: currentFormURL)
+                }
+            }
+            else {
+                alertTitle = Strings.importFormErrorMessage
+                showAlert = true
+            }
+        }
+        catch {
+            alertTitle = Strings.importFormErrorMessage
+            showAlert = true
+        }
+        DispatchQueue.main.async {
+            importingForm = false
+        }
+        
+        importCount = "1"
     }
 }
 
