@@ -57,6 +57,7 @@
 "moveLabel" = "Move";
 
 "settingsLabel" = "Settings";
+"numberForms" = "Show form numbers";
 "failedToOpenEmailURLErrorMessage" = "Failed to find mail application. Please manually email ";
 "failedToCreateEmailURLErrorMessage" = "Failed to create email. Please manually email ";
 "failedToSendEmailErrorMessage" = "Failed to send email. Please manually email ";
