@@ -14,6 +14,7 @@ struct Constants {
     
     static let sortDescriptorDateCreated = "dateCreated"
     static let sortDescriptorTitle = "title"
+    static let numberFormsSettingsKey = "numberFormsSettingsKey"
     
     static let predicateTrue = "true"
     static let predicateFalse = "false"

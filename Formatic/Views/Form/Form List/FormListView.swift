@@ -10,6 +10,8 @@ import CoreData
 import UniformTypeIdentifiers
 
 struct FormListView: View {
+    
+    @AppStorage(Constants.numberFormsSettingsKey) var numberForms = false
     @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)], predicate: NSPredicate(format: Constants.predicateRecentlyDeletedEqualToFalse)) var forms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel
     
@@ -50,30 +52,12 @@ struct FormListView: View {
                         Button {
                             formModel.navigationPath.append(form)
                         } label: {
-                            Text(form.title ?? "")
+                            let index = filteredForms.firstIndex(of: form)!
+                            Text("\(numberForms ? (index.description + ". ") : "")\(form.title ?? "")")
                                 .foregroundColor(.primary)
                         }
                         .swipeActions {
-                            Button {
-                                form.recentlyDeleted = true
-                            } label: {
-                                Labels.delete
-                            }
-                            .tint(.red)
-                            
-                            Button {
-                                form.initiateReset()
-                            } label: {
-                                Labels.reset
-                            }
-                            .tint(.yellow)
-                            
-                            Button {
-                                let _ = form.createCopy()
-                            } label: {
-                                Labels.copy
-                            }
-                            .tint(.blue)
+                            SwipeActions(form: form)
                         }
                         .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
                             return -20
@@ -298,6 +282,34 @@ struct FormListView: View {
         }
         
         importCount = "1"
+    }
+    
+    struct SwipeActions: View {
+        
+        @ObservedObject var form: Form
+        
+        var body: some View {
+            Button {
+                form.recentlyDeleted = true
+            } label: {
+                Labels.delete
+            }
+            .tint(.red)
+            
+            Button {
+                form.initiateReset()
+            } label: {
+                Labels.reset
+            }
+            .tint(.yellow)
+            
+            Button {
+                let _ = form.createCopy()
+            } label: {
+                Labels.copy
+            }
+            .tint(.blue)
+        }
     }
 }
 

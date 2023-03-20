@@ -10,6 +10,7 @@ import MessageUI
 
 struct SettingsView: View {
     
+    @AppStorage(Constants.numberFormsSettingsKey) var numberForms = false
     @Environment(\.openURL) private var openURL
     @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)], predicate: NSPredicate(format: Constants.predicateRecentlyDeletedEqualToTrue)) var recentlyDeletedForms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel
@@ -30,6 +31,8 @@ struct SettingsView: View {
                 
                 SwiftUI.Section {
                     versionLabel
+                    
+                    numberFormsToggle
                     
                     HStack {
                         Image(systemName: Constants.dollarSignFilledIconName)
@@ -109,6 +112,12 @@ struct SettingsView: View {
     
     var versionLabel: some View {
         Text("\(Strings.versionLabel) \(Bundle.main.shortVersion)")
+    }
+    
+    var numberFormsToggle: some View {
+        Toggle(isOn: $numberForms) {
+            Text("Number forms")
+        }
     }
     
     var showTutorialViewButton: some View {
