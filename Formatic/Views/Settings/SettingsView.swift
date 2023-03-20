@@ -116,7 +116,7 @@ struct SettingsView: View {
     
     var numberFormsToggle: some View {
         Toggle(isOn: $numberForms) {
-            Text("Number forms")
+            Text(Strings.numberForms)
         }
     }
     

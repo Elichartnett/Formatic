@@ -60,6 +60,7 @@ struct Strings {
     static let moveLabel = String(localized: "moveLabel")
     
     static let settingsLabel = String(localized: "settingsLabel")
+    static let numberForms = String(localized: "numberForms")
     static let formaticFeedbackLabel = "Formatic Feedback"
     static let emailAddress = "eli@elihartnett.com"
     static let failedToOpenEmailURLErrorMessage = String(localized: "failedToOpenEmailURLErrorMessage") + emailAddress + "."
