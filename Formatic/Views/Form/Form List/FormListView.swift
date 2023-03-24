@@ -52,8 +52,7 @@ struct FormListView: View {
                         Button {
                             formModel.navigationPath.append(form)
                         } label: {
-                            let index = forms.firstIndex(of: form)!
-                            Text("\(numberForms ? (index.description + ". ") : "")\(form.title ?? "")")
+                            Text("\(numberForms ? ((forms.firstIndex(of: form) ?? 0).description + ". ") : "")\(form.title ?? "")")
                                 .foregroundColor(.primary)
                         }
                         .swipeActions {
