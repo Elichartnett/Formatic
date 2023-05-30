@@ -35,7 +35,6 @@ struct PaywallView: View {
                 } label: {
                     Text(Strings.tryAgainLabel)
                 }
-                
             }
             else {
                 Text(Strings.inAppPurchasesLabel)

@@ -30,6 +30,7 @@ struct Strings {
     static let formLabel = String(localized: "formLabel")
     static let formsLabel = String(localized: "formsLabel")
     static let formTitleLabel = String(localized: "formTitleLabel")
+    static let formUntitledLabel = String(localized: "untitledLabel")
     static let sectionTitleLabel = String(localized: "sectionTitleLabel")
     static let titleLabel = String(localized: "titleLabel")
     static let newFormLabel = String(localized: "newFormLabel")
