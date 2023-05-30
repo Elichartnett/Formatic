@@ -50,7 +50,7 @@ struct ExportView: View {
                 return title
             }
             else {
-                return "Untitled"
+                return Strings.formUntitledLabel
             }
         }).formatted(.list(type: .and))
         generatedFileURL = URL.temporaryDirectory.appending(path: "\(file).\(exportType == .pdf ? "pdf" : "csv")")

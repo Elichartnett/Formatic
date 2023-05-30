@@ -15,8 +15,9 @@ struct FormDetailViewToolbar: View {
     @EnvironmentObject var formModel: FormModel
     
     @ObservedObject var form: Form
-    @State var exportType: UTType?
     @Binding var showToggleLockView: Bool
+    @State var exportType: UTType?
+    @State var showExportView = false
     @State var showPaywallView = false
     @State var alertTitle = ""
     @State var showAlert = false
@@ -40,10 +41,15 @@ struct FormDetailViewToolbar: View {
             Spacer()
             
             ExportMenuButton(storeKitManager: formModel.storeKitManager, exportType: $exportType, forms: [form])
+                .onChange(of: exportType) { _ in
+                    if exportType != nil { showExportView = true }
+                }
             
             Spacer()
         }
-        .sheet(item: $exportType, content: { exportType in
+        .sheet(isPresented: $showExportView, onDismiss: {
+            exportType = nil
+        }, content: {
             ExportView(forms: [form], exportType: $exportType)
         })
         .sheet(isPresented: $showPaywallView, content: {
