@@ -65,6 +65,12 @@ struct Formatic: App {
                 .onAppear {
                     let _ = TransactionObserver(storeKitManager: formModel.storeKitManager)
                 }
+                .onChange(of: formModel.storeKitManager.errorMessage) { errorMessage in
+                    if !errorMessage.isEmpty {
+                        alertTitle = errorMessage
+                        showAlert = true
+                    }
+                }
         }
     }
 }

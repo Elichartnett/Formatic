@@ -13,6 +13,7 @@ class StoreKitManager: ObservableObject {
     
     @Published var products: [Product] = []
     @Published var purchasedProducts: [Product] = []
+    @Published var errorMessage = ""
     
     init() {
         Task {
@@ -30,7 +31,7 @@ class StoreKitManager: ObservableObject {
             products = try await Product.products(for: productIDs)
         }
         catch {
-            print(error)
+            errorMessage = Strings.failedToLoadPurchasesErrorMessage
         }
     }
     
@@ -51,11 +52,11 @@ class StoreKitManager: ObservableObject {
             if !tempPurchasedProducts.contains(where: { product in
                 product.id == FormaticProductID.pro.rawValue
             }) {
-                if let pro = products.first { $0.id == FormaticProductID.pro.rawValue } {
+                if let pro = products.first(where: { $0.id == FormaticProductID.pro.rawValue }) {
                     tempPurchasedProducts.append(pro)
                 }
                 else {
-                    print("Error")
+                    errorMessage = Strings.failedToLoadPurchasesErrorMessage
                 }
             }
         }
