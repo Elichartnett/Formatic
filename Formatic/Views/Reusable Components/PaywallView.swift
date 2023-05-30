@@ -39,48 +39,42 @@ struct PaywallView: View {
             else {
                 Text(Strings.inAppPurchasesLabel)
                     .font(.title)
-                    .bold()
                 
-                ForEach(FormaticProductID.allCases) { productID in
-                    
-                    if let product = storeKitManager.products.first(where: { product in
-                        product.id == productID.rawValue
-                    }) {
-                        Button {
-                            if !purchasePending && !storeKitManager.purchasedProducts.contains(where: { product in
-                                product.id == productID.rawValue
-                            }) {
-                                purchasePending = true
-                                Task {
-                                    do {
-                                        if try await storeKitManager.purchase(product: product) {
-                                            let today = Date()
-                                            var originalPurchaseDate = today
-                                            let result = try await AppTransaction.shared
-                                            switch result {
-                                            case .verified(let appTransaction):
-                                                originalPurchaseDate = appTransaction.originalPurchaseDate
-                                            case .unverified(_, _):
-                                                break
-                                            }
-                                            if originalPurchaseDate != today {
-                                                requestReview()
-                                            }
+                if let pro = storeKitManager.products.first(where: { $0.id == FormaticProductID.pro.rawValue }) {
+                    Button {
+                        if !purchasePending && !storeKitManager.purchasedProducts.contains(where: { product in
+                            product.id == pro.id
+                        }) {
+                            purchasePending = true
+                            Task {
+                                do {
+                                    if try await storeKitManager.purchase(product: pro) {
+                                        let today = Date()
+                                        var originalPurchaseDate = today
+                                        let result = try await AppTransaction.shared
+                                        switch result {
+                                        case .verified(let appTransaction):
+                                            originalPurchaseDate = appTransaction.originalPurchaseDate
+                                        case .unverified(_, _):
+                                            break
                                         }
-                                        purchasePending = false
+                                        if originalPurchaseDate != today {
+                                            requestReview()
+                                        }
                                     }
-                                    catch {
-                                        purchasePending = false
-                                        alertTitle = Strings.failedToPurchaseErrorMessage
-                                        showAlert = true
-                                    }
+                                    purchasePending = false
+                                }
+                                catch {
+                                    purchasePending = false
+                                    alertTitle = Strings.failedToPurchaseErrorMessage
+                                    showAlert = true
                                 }
                             }
-                        } label: {
-                            ProductView(storeKitManager: storeKitManager, product: product, icon: getIconForProductID(productID))
                         }
-                        .buttonStyle(.plain)
+                    } label: {
+                        ProductView(storeKitManager: storeKitManager, product: pro, icon: getIconForProductID(.pro))
                     }
+                    .buttonStyle(.plain)
                 }
                 
                 Button {
@@ -121,6 +115,8 @@ struct PaywallView: View {
             return Image(systemName: Constants.docTextImageIconName)
         case .exportCsv:
             return Image(systemName: Constants.csvTableIconName)
+        case .pro:
+            return Image(systemName: Constants.fileIconName)
         }
     }
 }

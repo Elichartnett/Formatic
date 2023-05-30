@@ -84,7 +84,7 @@ struct FormDetailViewToolbar: View {
     var lockFormButton: some View {
         Button {
             if formModel.storeKitManager.purchasedProducts.contains(where: { product in
-                product.id == FormaticProductID.lockForm.rawValue
+                product.id == FormaticProductID.pro.rawValue
             }) {
                 if form.locked || (!form.locked && form.password == nil) {
                     showToggleLockView = true
