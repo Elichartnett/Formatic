@@ -55,7 +55,7 @@
       "internalID" : "6445272403",
       "localizations" : [
         {
-          "description" : "Import and export to Formatic file (.form)",
+          "description" : "Import and export forms as a .form file",
           "displayName" : "Import And Export To Formatic",
           "locale" : "en_US"
         }
@@ -63,12 +63,27 @@
       "productID" : "com.elihartnett.Formatic.importExportFormatic",
       "referenceName" : "Import And Export To Formatic",
       "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "6449687438",
+      "localizations" : [
+        {
+          "description" : "Unlock all features",
+          "displayName" : "Pro",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.elihartnett.Formatic.pro",
+      "referenceName" : "Pro",
+      "type" : "NonConsumable"
     }
   ],
   "settings" : {
     "_applicationInternalID" : "1643318765",
     "_developerTeamID" : "BMNBE7JVDJ",
-    "_lastSynchronizedDate" : 697930603.16939104
+    "_lastSynchronizedDate" : 707101109.64812005
   },
   "subscriptionGroups" : [
 

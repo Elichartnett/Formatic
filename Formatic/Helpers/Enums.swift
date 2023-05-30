@@ -94,6 +94,7 @@ enum FormaticProductID: String, CaseIterable, Identifiable {
     case exportPdf = "com.elihartnett.Formatic.exportPdf"
     case exportCsv = "com.elihartnett.Formatic.exportCsv"
     case lockForm = "com.elihartnett.Formatic.lockForm"
+    case pro = "com.elihartnett.Formatic.pro"
 }
 
 enum TutorialTab {

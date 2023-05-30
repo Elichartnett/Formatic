@@ -29,7 +29,7 @@ struct ExportMenuButton: View {
             }
             
             if storeKitManager.purchasedProducts.contains(where: { product in
-                product.id == FormaticProductID.importExportFormatic.rawValue
+                product.id == FormaticProductID.pro.rawValue
             }) {
                 ShareLink(items: forms) { form in
                     SharePreview(Text(forms.compactMap { $0.title ?? "Untitled" }, format: .list(type: .and)), icon: Image(systemName: Constants.fileIconName))
@@ -47,7 +47,7 @@ struct ExportMenuButton: View {
             
             Button {
                 if storeKitManager.purchasedProducts.contains(where: { product in
-                    product.id == FormaticProductID.exportPdf.rawValue
+                    product.id == FormaticProductID.pro.rawValue
                 }) {
                     exportType = .pdf
                 }
@@ -64,7 +64,7 @@ struct ExportMenuButton: View {
             
             Button {
                 if storeKitManager.purchasedProducts.contains(where: { product in
-                    product.id == FormaticProductID.exportCsv.rawValue
+                    product.id == FormaticProductID.pro.rawValue
                 }) {
                     exportType = .commaSeparatedText
                 }

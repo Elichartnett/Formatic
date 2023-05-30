@@ -153,7 +153,7 @@ struct FormListView: View {
         }
         .onOpenURL { url in
             if formModel.storeKitManager.purchasedProducts.contains(where: { product in
-                product.id == FormaticProductID.importExportFormatic.rawValue
+                product.id == FormaticProductID.pro.rawValue
             }) {
                 currentFormURL = url
                 showImportAlert = true

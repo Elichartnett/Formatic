@@ -17,7 +17,7 @@ class StoreKitManager: ObservableObject {
     init() {
         Task {
             await fetchProducts()
-            let _ = await updatePurchasedProducts()
+            purchasedProducts = await updatePurchasedProducts()
         }
     }
     
@@ -41,6 +41,25 @@ class StoreKitManager: ObservableObject {
                 tempPurchasedProducts.append(product)
             }
         }
+        
+        if tempPurchasedProducts.contains(where: { product in
+            product.id == FormaticProductID.importExportFormatic.rawValue ||
+            product.id == FormaticProductID.exportPdf.rawValue ||
+            product.id == FormaticProductID.exportCsv.rawValue ||
+            product.id == FormaticProductID.lockForm.rawValue
+        }) {
+            if !tempPurchasedProducts.contains(where: { product in
+                product.id == FormaticProductID.pro.rawValue
+            }) {
+                if let pro = products.first { $0.id == FormaticProductID.pro.rawValue } {
+                    tempPurchasedProducts.append(pro)
+                }
+                else {
+                    print("Error")
+                }
+            }
+        }
+        
         return tempPurchasedProducts
     }
     
