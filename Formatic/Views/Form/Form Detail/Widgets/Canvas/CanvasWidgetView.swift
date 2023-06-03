@@ -75,7 +75,7 @@ struct CanvasWidgetView: View {
                         Spacer()
                     }
                     .padding(.leading)
-                    .WidgetFrameStyle(height: .large)
+                    .widgetFrameStyle(height: .large)
                 }
                 
                 if !formModel.isPhone {

@@ -51,7 +51,7 @@ struct CheckboxSectionWidgetView: View {
                     }
                     .padding(.leading)
                 }
-                .WidgetFrameStyle(height: .adaptive)
+                .widgetFrameStyle(height: .adaptive)
                 
                 if !formModel.isPhone && editMode?.wrappedValue == .active {
                     ReconfigureWidgetButton(reconfigureWidget: $reconfigureWidget)

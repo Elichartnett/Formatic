@@ -49,7 +49,7 @@ struct DropdownSectionWidgetView: View {
                     Text(dropdownSectionWidget.selectedDropdown?.title ?? Strings.noSelectionLabel)
                 }
                 .frame(maxWidth: .infinity)
-                .WidgetFrameStyle(height: .adaptive)
+                .widgetFrameStyle(height: .adaptive)
                 
                 if !formModel.isPhone && editMode?.wrappedValue == .active {
                     ReconfigureWidgetButton(reconfigureWidget: $reconfigureWidget)

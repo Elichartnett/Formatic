@@ -67,7 +67,7 @@ struct MapWidgetView: View {
                             }
                         }
                     }
-                    .WidgetFrameStyle(height: .large)
+                    .widgetFrameStyle(height: .large)
                 }
                 .disabled(editMode?.wrappedValue == .active)
                 

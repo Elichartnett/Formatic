@@ -31,7 +31,7 @@ struct ConfigureMapWidgetView: View {
                     Map(coordinateRegion: $coordinateRegion, interactionModes: .all, showsUserLocation: false, userTrackingMode: .none)
                 }
             }
-            .WidgetFrameStyle(height: .large)
+            .widgetFrameStyle(height: .large)
             
             Button {
                 if let mapWidget {

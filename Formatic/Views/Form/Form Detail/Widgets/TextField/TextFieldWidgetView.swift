@@ -41,7 +41,7 @@ struct TextFieldWidgetView: View {
                     .foregroundColor(textFieldWidget.text == nil ? .customGray : .primary)
                     .padding(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .WidgetFrameStyle(height: .adaptive)
+                    .widgetFrameStyle(height: .adaptive)
             }
         }
         
