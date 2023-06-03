@@ -46,6 +46,8 @@ struct SectionView: View {
                             .padding(.vertical, 10)
                     }
                 }
+                .padding(.top, forPDF && widget == widgets[0] ? 10 : 0)
+                .padding(.bottom, forPDF && widget == widgets[widgets.count - 1] ? 10 : 0)
             }
             .onMove(perform: { indexSet, destination in
                 section.updateWidgetPositions(indexSet: indexSet, destination: destination)
