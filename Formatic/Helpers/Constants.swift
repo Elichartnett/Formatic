@@ -68,6 +68,7 @@ struct Constants {
     static let starFilledIconName = "star.fill"
     
     static let logoAnimationFileName = "logoAnimation"
+    static let diamondAnimationFileName = "diamondAnimation"
     static let formContainerFileName = "Form Container"
     
     static let analyticsCreateFormEvent = "createFormEvent"
