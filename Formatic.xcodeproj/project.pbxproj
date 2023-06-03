@@ -88,6 +88,7 @@
 		62443167281A1CA000E21B11 /* DropdownSectionWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6244315F281A1CA000E21B11 /* DropdownSectionWidget+CoreDataClass.swift */; };
 		6250E9612831632D00E6E6A0 /* CanvasWidgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E9602831632D00E6E6A0 /* CanvasWidgetDetailView.swift */; };
 		6250E9632831649C00E6E6A0 /* CanvasRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E9622831649C00E6E6A0 /* CanvasRepresentableView.swift */; };
+		626A5EE82A2AD6C60032D743 /* diamondAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 626A5EE72A2AD6C60032D743 /* diamondAnimation.json */; };
 		627736FD28300F7D00F7B107 /* PhotoTaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627736FC28300F7D00F7B107 /* PhotoTaker.swift */; };
 		6288C6A328BB03B70081A39D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6A228BB03B70081A39D /* LaunchScreen.storyboard */; };
 		6288C6A728BB06580081A39D /* Privacy Policy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6A628BB06580081A39D /* Privacy Policy.pdf */; };
@@ -253,6 +254,7 @@
 		6250E9602831632D00E6E6A0 /* CanvasWidgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWidgetDetailView.swift; sourceTree = "<group>"; };
 		6250E9622831649C00E6E6A0 /* CanvasRepresentableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasRepresentableView.swift; sourceTree = "<group>"; };
 		6250E9802836CAB400E6E6A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		626A5EE72A2AD6C60032D743 /* diamondAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = diamondAnimation.json; sourceTree = "<group>"; };
 		627736FC28300F7D00F7B107 /* PhotoTaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTaker.swift; sourceTree = "<group>"; };
 		6288C6A228BB03B70081A39D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6288C6A528BB06530081A39D /* Privacy Policy pages.pages */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Privacy Policy pages.pages"; sourceTree = "<group>"; };
@@ -582,6 +584,7 @@
 				6288C6AD28BB06680081A39D /* logoAnimation.json */,
 				6288C6AA28BB06630081A39D /* logo.svg */,
 				6288C6A928BB06630081A39D /* logo.png */,
+				626A5EE72A2AD6C60032D743 /* diamondAnimation.json */,
 			);
 			path = FileAssets;
 			sourceTree = "<group>";
@@ -888,6 +891,7 @@
 				62D7D87728F86448004C55C9 /* Localizable.strings in Resources */,
 				62084678299C7A91006130CC /* 8P1.png in Resources */,
 				6288C6AC28BB06640081A39D /* logo.svg in Resources */,
+				626A5EE82A2AD6C60032D743 /* diamondAnimation.json in Resources */,
 				62084665299C7A91006130CC /* PP4a.png in Resources */,
 				6208466B299C7A91006130CC /* PP5.png in Resources */,
 				62084670299C7A91006130CC /* 8P5a.png in Resources */,

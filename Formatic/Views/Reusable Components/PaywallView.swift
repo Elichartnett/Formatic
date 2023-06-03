@@ -72,7 +72,7 @@ struct PaywallView: View {
                             }
                         }
                     } label: {
-                        ProductView(storeKitManager: storeKitManager, product: pro, icon: getIconForProductID(.pro))
+                        ProductView(storeKitManager: storeKitManager, product: pro, icon: Image(systemName: Constants.fileIconName))
                     }
                     .buttonStyle(.plain)
                 }
@@ -104,21 +104,6 @@ struct PaywallView: View {
             Button(Strings.defaultAlertButtonDismissMessage, role: .cancel) {}
         })
     }
-    
-    func getIconForProductID(_ id: FormaticProductID) -> Image {
-        switch id {
-        case .lockForm:
-            return Image(systemName: Constants.lockIconName)
-        case .importExportFormatic:
-            return Image(systemName: Constants.fileIconName)
-        case .exportPdf:
-            return Image(systemName: Constants.docTextImageIconName)
-        case .exportCsv:
-            return Image(systemName: Constants.csvTableIconName)
-        case .pro:
-            return Image(systemName: Constants.fileIconName)
-        }
-    }
 }
 
 struct Paywall_Previews: PreviewProvider {
@@ -141,34 +126,81 @@ struct ProductView: View {
             purchasedProduct.id == product.id
         }
         
-        HStack {
-            icon
-                .customIcon(foregroundColor: .primary)
+        VStack(alignment: .leading) {
             
-            VStack(alignment: .leading) {
-                Text(product.displayName)
-                    .font(.title3)
-                Text(product.description)
-                    .foregroundColor(.gray)
+            HStack {
+                LottieView(name: Constants.diamondAnimationFileName, loopMode: .loop, animationSpeed: 0.5)
+                    .frame(width: 70, height: 70)
+                
+                VStack(alignment: .leading) {
+                    Text(product.displayName)
+                        .font(.title3)
+                    
+                    Text(product.description)
+                        .foregroundColor(.gray)
+                }
+                
+                Spacer()
+                
+                if purchased {
+                    Image(systemName: Constants.filledCircleCheckmarkIconName)
+                        .customIcon(foregroundColor: .green)
+                }
+                else {
+                    Text(product.displayPrice)
+                        .foregroundColor(.blue)
+                }
             }
             
-            Spacer()
-            
-            if purchased {
-                Image(systemName: Constants.filledCircleCheckmarkIconName)
-                    .customIcon(foregroundColor: .green)
-            }
-            else {
-                Text(product.displayPrice)
-                    .foregroundColor(.blue)
+            Divider()
+           
+            let productIDs: [FormaticProductID] = [.importExportFormatic, .exportPdf, .exportCsv, .lockForm]
+            ForEach(productIDs) { productID in
+                HStack {
+                    getIconForProductID(productID)
+                        .customIcon(foregroundColor: .primary)
+                    
+                    Text(getDescriptionForProductID(productID))
+                        .foregroundColor(.gray)
+                }
+                .padding(1)
             }
         }
-        .frame(alignment: .leading)
         .padding()
         .background {
             RoundedRectangle(cornerRadius: 10)
                 .stroke(.secondary)
         }
         .padding(.horizontal)
+    }
+    
+    func getDescriptionForProductID(_ id: FormaticProductID) -> String {
+        switch id {
+        case .lockForm:
+            return "Lock Forms"
+        case .importExportFormatic:
+            return "Import and Export as .formatic"
+        case .exportPdf:
+            return "Export as .pdf"
+        case .exportCsv:
+            return "Export as .csv"
+        case .pro:
+            return "Pro"
+        }
+    }
+    
+    func getIconForProductID(_ id: FormaticProductID) -> Image {
+        switch id {
+        case .lockForm:
+            return Image(systemName: Constants.lockIconName)
+        case .importExportFormatic:
+            return Image(systemName: Constants.fileIconName)
+        case .exportPdf:
+            return Image(systemName: Constants.docTextImageIconName)
+        case .exportCsv:
+            return Image(systemName: Constants.csvTableIconName)
+        case .pro:
+            return Image(systemName: Constants.fileIconName)
+        }
     }
 }
