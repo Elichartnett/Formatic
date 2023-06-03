@@ -58,9 +58,6 @@ struct FormListView: View {
                         .swipeActions {
                             SwipeActions(form: form)
                         }
-                        .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
-                            return -20
-                        }
                     }
                     .searchable(text: $searchText, placement: .navigationBarDrawer)
                     .scrollDismissesKeyboard(.interactively)

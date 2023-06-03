@@ -105,12 +105,9 @@ struct FormDetailView: View {
                             }
                         }
                         .id(Int(section.position))
-                        .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
-                            return -20
-                        }
-                        .listSectionSeparator(.hidden)
                     }
                     .listStyle(.plain)
+                    .scrollIndicators(.hidden)
                     .padding(.horizontal)
                     .scrollContentBackground(.hidden)
                     .scrollDismissesKeyboard(.interactively)
@@ -135,7 +132,7 @@ struct FormDetailView: View {
                                 SwiftUI.Section {
                                     VStack (spacing: 0) {
                                         SectionView(section: section, locked: $form.locked, forPDF: forPDF)
-                                            .padding(.vertical, 10)
+                                            .padding(.vertical, forPDF ? 0 : 10)
                                             .padding(.horizontal, 20)
                                             .background(Color.secondaryBackground).ignoresSafeArea()
                                     }
