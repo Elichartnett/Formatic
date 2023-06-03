@@ -53,10 +53,12 @@ struct ExportView: View {
                 return Strings.formUntitledLabel
             }
         }).formatted(.list(type: .and))
+        
         generatedFileURL = URL.temporaryDirectory.appending(path: "\(file).\(exportType == .pdf ? "pdf" : "csv")")
         if let generatedFileURL {
             DispatchQueue.main.async {
                 if exportType == .pdf {
+                    
                     let formData = Form.exportToPDF(forms: forms)
                     try? formData.write(to: generatedFileURL)
                     Analytics.logEvent(Constants.analyticsExportPDFEvent, parameters: nil)
@@ -84,6 +86,8 @@ struct WebViewRepresentable: UIViewRepresentable {
 
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
+        webView.scrollView.maximumZoomScale = 2
+        webView.scrollView.minimumZoomScale = 1
         webView.load(URLRequest(url: generatedFileURL))
         return webView
     }

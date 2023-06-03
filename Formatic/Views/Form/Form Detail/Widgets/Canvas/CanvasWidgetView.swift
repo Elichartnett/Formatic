@@ -10,6 +10,7 @@ import PencilKit
 
 struct CanvasWidgetView: View {
     
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var formModel: FormModel
     @Environment(\.editMode) var editMode
     
@@ -63,6 +64,9 @@ struct CanvasWidgetView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .foregroundColor(.primary)
+                                .onChange(of: colorScheme) { _ in
+                                    CanvasWidget.updateWidgetViewPreview(canvasWidget: canvasWidget, updatedData: canvasWidget.pkDrawing)
+                                }
                         }
                         .frame(width: WidgetViewHeight.large.rawValue)
                         .frame(maxHeight: .infinity)
