@@ -7,6 +7,7 @@
 
 import Foundation
 import PencilKit
+import SwiftUI
 
 extension CanvasWidget: Csv, Copyable {
     
@@ -36,17 +37,39 @@ extension CanvasWidget: Csv, Copyable {
         return copy
     }
     
-    static func updateWidgetViewPreview(canvasWidget: CanvasWidget, canvasView: PKCanvasView) {
-        canvasWidget.pkDrawing = canvasView.drawing.dataRepresentation()
+    static func updateWidgetViewPreview(canvasWidget: CanvasWidget, updatedData: Data?) {
+        let canvasView = CanvasWidget.createCanvasView(canvasWidget: canvasWidget)
+        canvasWidget.pkDrawing = updatedData
         canvasWidget.widgetViewPreview = canvasView.drawing.image(from: CGRect(origin: .zero, size: canvasView.frame.size), scale: UIScreen.main.scale).pngData()
     }
     
-    func setUpCanvas(canvasView: PKCanvasView, imageView: UIImageView, toolPicker: PKToolPicker? = nil, width: Double) {
+    static func createCanvasView(canvasWidget: CanvasWidget) -> PKCanvasView {
+        let width = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) - 100
+        let canvasView = PKCanvasView()
+        do {
+            if let data = canvasWidget.pkDrawing {
+                canvasView.drawing = try PKDrawing(data: data)
+            }
+        }
+        catch {
+            print(error)
+        }
         canvasView.frame = CGRect(origin: .zero, size: CGSize(width: width, height: width))
         canvasView.isOpaque = false
         canvasView.backgroundColor = .clear
         canvasView.minimumZoomScale = 1
         canvasView.maximumZoomScale = 5
+        return canvasView
+    }
+    
+    func setUpCanvas(canvasView: PKCanvasView, imageView: UIImageView, toolPicker: PKToolPicker? = nil, width: Double) {
+        let setupCanvasView = CanvasWidget.createCanvasView(canvasWidget: self)
+
+        canvasView.frame = setupCanvasView.frame
+        canvasView.isOpaque = setupCanvasView.isOpaque
+        canvasView.backgroundColor = setupCanvasView.backgroundColor
+        canvasView.minimumZoomScale = setupCanvasView.minimumZoomScale
+        canvasView.maximumZoomScale = setupCanvasView.maximumZoomScale
         
         imageView.frame = CGRect(origin: .zero, size: canvasView.frame.size)
         imageView.contentMode = .scaleAspectFit

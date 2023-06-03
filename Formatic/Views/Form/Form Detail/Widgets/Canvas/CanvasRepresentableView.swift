@@ -60,7 +60,8 @@ struct CanvasRepresentable: UIViewRepresentable {
         }
         
         func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
-            CanvasWidget.updateWidgetViewPreview(canvasWidget: parent.canvasWidget, canvasView: parent.canvasView)
+            parent.canvasWidget.pkDrawing = canvasView.drawing.dataRepresentation()
+            CanvasWidget.updateWidgetViewPreview(canvasWidget: parent.canvasWidget, updatedData: parent.canvasView.drawing.dataRepresentation())
         }
         
         func scrollViewDidZoom(_ scrollView: UIScrollView) {
