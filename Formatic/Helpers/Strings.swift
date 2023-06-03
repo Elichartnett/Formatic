@@ -81,6 +81,11 @@ struct Strings {
     static let purchasesRestored = String(localized: "purchasesRestored")
     static let formaticFileLabel = String(localized: "formaticFileLabel")
     static let failedToCreateMapAnnotationErrorMessage = String(localized: "failedToCreateMapAnnotationErrorMessage")
+    static let lockFormsLabel = String(localized: "lockFormsLabel")
+    static let importExportFormaticLabel = String(localized: "importExportFormaticLabel")
+    static let exportPdfLabel = String(localized: "exportPdfLabel")
+    static let exportCsvLabel = String(localized: "exportCsvLabel")
+    static let proLabel = String(localized: "proLabel")
     
     static let textFieldLabel = String(localized: "textFieldLabel")
     static let textLabel = String(localized: "textLabel")

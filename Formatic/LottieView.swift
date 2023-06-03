@@ -13,17 +13,24 @@ struct LottieView: UIViewRepresentable {
     var name: String
     var loopMode: LottieLoopMode = .playOnce
     var animationSpeed = 1.0
+    var reversed = false
     
-    var animationView = AnimationView()
+    var animationView = LottieAnimationView()
     
     func makeUIView(context: UIViewRepresentableContext<LottieView>) -> UIView {
         let view = UIView(frame: .zero)
         
-        animationView.animation = Animation.named(name)
+        animationView.animation = LottieAnimation.named(name)
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = loopMode
         animationView.animationSpeed = animationSpeed
-        animationView.play(fromProgress: 1.0, toProgress: 0.0)
+        
+        if reversed {
+            animationView.play(fromProgress: 1.0, toProgress: 0.0)
+        }
+        else {
+            animationView.play()
+        }
         
         animationView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(animationView)
