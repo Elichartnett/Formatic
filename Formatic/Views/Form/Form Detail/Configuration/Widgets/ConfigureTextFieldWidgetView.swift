@@ -23,7 +23,7 @@ struct ConfigureTextFieldWidgetView: View {
             
             ZStack (alignment: .topLeading) {
                 TextEditor(text: $text)
-                    .WidgetFrameStyle(isFocused: isFocused, height: .adaptive)
+                    .widgetFrameStyle(isFocused: isFocused, height: .adaptive)
                     .focused($isFocused)
                 
                 if text.isEmpty {

@@ -69,7 +69,7 @@ struct ConfigureDropdownSectionWidgetView: View {
                                     Rectangle().fill(.clear)
                                 }
                             }
-                            .WidgetFrameStyle(width: 40)
+                            .widgetFrameStyle(width: 40)
                         }
                         .buttonStyle(.plain)
                         

@@ -74,7 +74,7 @@ struct InputBox: View {
         }
         .foregroundColor(isValid ? .primary : .red)
         .padding(.leading)
-        .WidgetFrameStyle(isFocused: isFocused, height: axis == .vertical ? .adaptive : .regular)
+        .widgetFrameStyle(isFocused: isFocused, height: axis == .vertical ? .adaptive : .regular)
         .focused($isFocused)
     }
     

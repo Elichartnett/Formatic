@@ -48,7 +48,7 @@ struct DateFieldWidgetView: View {
                 date = newValue
             }
             .frame(maxWidth: .infinity)
-            .WidgetFrameStyle(height: .regular)
+            .widgetFrameStyle(height: .regular)
         }
         
         if formModel.isPhone {
