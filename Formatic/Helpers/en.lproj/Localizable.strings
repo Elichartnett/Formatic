@@ -76,6 +76,11 @@
 "purchasesRestored" = "Purchases restored";
 "formaticFileLabel" = "Formatic File";
 "failedToCreateMapAnnotationErrorMessage" = "Failed to create map annotation";
+"lockFormsLabel" = "Lock Forms";
+"importExportFormaticLabel" = "Import and Export as .formatic";
+"exportPdfLabel" = "Export as .pdf";
+"exportCsvLabel" = "Export as .csv";
+"proLabel" = "Pro";
 
 "textFieldLabel" = "Text Field";
 "textLabel" = "text";

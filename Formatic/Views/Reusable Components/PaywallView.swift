@@ -129,7 +129,7 @@ struct ProductView: View {
         VStack(alignment: .leading) {
             
             HStack {
-                LottieView(name: Constants.diamondAnimationFileName, loopMode: .loop, animationSpeed: 0.5)
+                LottieView(name: Constants.diamondAnimationFileName, loopMode: .loop, animationSpeed: 0.6, reversed: true)
                     .frame(width: 70, height: 70)
                 
                 VStack(alignment: .leading) {
@@ -177,15 +177,15 @@ struct ProductView: View {
     func getDescriptionForProductID(_ id: FormaticProductID) -> String {
         switch id {
         case .lockForm:
-            return "Lock Forms"
+            return Strings.lockFormsLabel
         case .importExportFormatic:
-            return "Import and Export as .formatic"
+            return Strings.importExportFormaticLabel
         case .exportPdf:
-            return "Export as .pdf"
+            return Strings.exportPdfLabel
         case .exportCsv:
-            return "Export as .csv"
+            return Strings.exportCsvLabel
         case .pro:
-            return "Pro"
+            return Strings.proLabel
         }
     }
     
