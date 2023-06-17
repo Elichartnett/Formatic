@@ -32,6 +32,130 @@
 		622A99DC281E0C5000BB5E12 /* Form+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622A99DA281E0C5000BB5E12 /* Form+CoreDataClass.swift */; };
 		622EFF29293868D300CF74F8 /* ReconfigureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EFF28293868D300CF74F8 /* ReconfigureButton.swift */; };
 		62315046293413CC00634E89 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62315045293413CC00634E89 /* WidgetView.swift */; };
+		6236F4FE2A3DD9A500D2D819 /* Formatic.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 620DD0932915CFA600EA54BB /* Formatic.entitlements */; };
+		6236F5002A3DD9A500D2D819 /* Formatic.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62FE6E6B28187058009D41FD /* Formatic.swift */; };
+		6236F5012A3DD9A500D2D819 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6A228BB03B70081A39D /* LaunchScreen.storyboard */; };
+		6236F5022A3DD9A500D2D819 /* LottieView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6B428BB080A0081A39D /* LottieView.swift */; };
+		6236F5032A3DD9A500D2D819 /* Home.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62FE6E6D28187058009D41FD /* Home.swift */; };
+		6236F5042A3DD9A500D2D819 /* FormListView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 629886F2281B92AA00C34782 /* FormListView.swift */; };
+		6236F5052A3DD9A500D2D819 /* ListViewToolbar.swift in Resources */ = {isa = PBXBuildFile; fileRef = 629886F6281C31C400C34782 /* ListViewToolbar.swift */; };
+		6236F5062A3DD9A500D2D819 /* FormDetailView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 629886FB281C36F700C34782 /* FormDetailView.swift */; };
+		6236F5072A3DD9A500D2D819 /* FormTitleView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62294F3528231D5E00226AF1 /* FormTitleView.swift */; };
+		6236F5082A3DD9A500D2D819 /* FormDetailViewToolbar.swift in Resources */ = {isa = PBXBuildFile; fileRef = 629886F8281C343500C34782 /* FormDetailViewToolbar.swift */; };
+		6236F5092A3DD9A500D2D819 /* ToggleLockView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62294F3A282580D900226AF1 /* ToggleLockView.swift */; };
+		6236F50A2A3DD9A500D2D819 /* SectionTitleView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62294F322822F0CC00226AF1 /* SectionTitleView.swift */; };
+		6236F50B2A3DD9A500D2D819 /* SectionView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 629886FE281C4DBF00C34782 /* SectionView.swift */; };
+		6236F50C2A3DD9A500D2D819 /* WidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62315045293413CC00634E89 /* WidgetView.swift */; };
+		6236F50D2A3DD9A500D2D819 /* TextFieldWidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62294F0F281F8C1C00226AF1 /* TextFieldWidgetView.swift */; };
+		6236F50E2A3DD9A500D2D819 /* TextFieldWidgetDetailView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62A8BFFB29297452005758BF /* TextFieldWidgetDetailView.swift */; };
+		6236F50F2A3DD9A500D2D819 /* NumberFieldWidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62294F11281F8C2800226AF1 /* NumberFieldWidgetView.swift */; };
+		6236F5102A3DD9A500D2D819 /* DateFieldWidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6238A174293BE997007C09A1 /* DateFieldWidgetView.swift */; };
+		6236F5112A3DD9A500D2D819 /* SliderWidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6238A176293BE9A8007C09A1 /* SliderWidgetView.swift */; };
+		6236F5122A3DD9A500D2D819 /* DropdownSectionWidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62294F15281F8C4800226AF1 /* DropdownSectionWidgetView.swift */; };
+		6236F5132A3DD9A500D2D819 /* CheckboxSectionWidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62294F17281F8C6B00226AF1 /* CheckboxSectionWidgetView.swift */; };
+		6236F5142A3DD9A500D2D819 /* CheckboxWidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62D7FE982826B8AF00FAA815 /* CheckboxWidgetView.swift */; };
+		6236F5152A3DD9A500D2D819 /* MapWidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62294F19281F8C7700226AF1 /* MapWidgetView.swift */; };
+		6236F5162A3DD9A500D2D819 /* MapWidgetDetailView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62F8FE6A282DAD49005C8D73 /* MapWidgetDetailView.swift */; };
+		6236F5172A3DD9A500D2D819 /* AddAnnotationsView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62F8FE65282CA814005C8D73 /* AddAnnotationsView.swift */; };
+		6236F5182A3DD9A500D2D819 /* MapView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62F8FE68282DAC9F005C8D73 /* MapView.swift */; };
+		6236F5192A3DD9A500D2D819 /* CanvasWidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62294F1D281F8CAA00226AF1 /* CanvasWidgetView.swift */; };
+		6236F51A2A3DD9A500D2D819 /* CanvasWidgetDetailView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6250E9602831632D00E6E6A0 /* CanvasWidgetDetailView.swift */; };
+		6236F51B2A3DD9A500D2D819 /* CanvasRepresentableView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6250E9622831649C00E6E6A0 /* CanvasRepresentableView.swift */; };
+		6236F51C2A3DD9A500D2D819 /* NewFormView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62294F06281F4F5B00226AF1 /* NewFormView.swift */; };
+		6236F51D2A3DD9A500D2D819 /* PasswordView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62294F3C282589CE00226AF1 /* PasswordView.swift */; };
+		6236F51E2A3DD9A500D2D819 /* ConfigureWidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6238A16B293B99DC007C09A1 /* ConfigureWidgetView.swift */; };
+		6236F51F2A3DD9A500D2D819 /* ConfigureTextFieldWidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6238A168293B99DB007C09A1 /* ConfigureTextFieldWidgetView.swift */; };
+		6236F5202A3DD9A500D2D819 /* ConfigureNumberFieldWidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6238A167293B99DB007C09A1 /* ConfigureNumberFieldWidgetView.swift */; };
+		6236F5212A3DD9A500D2D819 /* ConfigureDateFieldWidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6238A178293C294D007C09A1 /* ConfigureDateFieldWidgetView.swift */; };
+		6236F5222A3DD9A500D2D819 /* ConfigureSliderWidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6238A17A293C2963007C09A1 /* ConfigureSliderWidgetView.swift */; };
+		6236F5232A3DD9A500D2D819 /* ConfigureDropdownSectionWidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6238A169293B99DC007C09A1 /* ConfigureDropdownSectionWidgetView.swift */; };
+		6236F5242A3DD9A500D2D819 /* ConfigureCheckboxSectionWidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6238A166293B99DB007C09A1 /* ConfigureCheckboxSectionWidgetView.swift */; };
+		6236F5252A3DD9A500D2D819 /* ConfigureMapWidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6238A16C293B99DC007C09A1 /* ConfigureMapWidgetView.swift */; };
+		6236F5262A3DD9A500D2D819 /* ConfigureCanvasWidgetView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6238A16A293B99DC007C09A1 /* ConfigureCanvasWidgetView.swift */; };
+		6236F5272A3DD9A500D2D819 /* SettingsView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62D1B07729252EAA00712D85 /* SettingsView.swift */; };
+		6236F5282A3DD9A500D2D819 /* TutorialView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6208463E298FEE9B006130CC /* TutorialView.swift */; };
+		6236F5292A3DD9A500D2D819 /* EmailViewRepresentable.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62D1B096292670C500712D85 /* EmailViewRepresentable.swift */; };
+		6236F52A2A3DD9A500D2D819 /* InputBox.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62294F0B281F519C00226AF1 /* InputBox.swift */; };
+		6236F52B2A3DD9A500D2D819 /* SubmitButton.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62294F0D281F61B900226AF1 /* SubmitButton.swift */; };
+		6236F52C2A3DD9A500D2D819 /* PhotoTaker.swift in Resources */ = {isa = PBXBuildFile; fileRef = 627736FC28300F7D00F7B107 /* PhotoTaker.swift */; };
+		6236F52D2A3DD9A500D2D819 /* EditModeButton.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC486A292EEA0100B4DB4B /* EditModeButton.swift */; };
+		6236F52E2A3DD9A500D2D819 /* ExportView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62A8C004292B3863005758BF /* ExportView.swift */; };
+		6236F52F2A3DD9A500D2D819 /* ExportMenuButton.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC488A29315EA200B4DB4B /* ExportMenuButton.swift */; };
+		6236F5302A3DD9A500D2D819 /* FormaticToolbar.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC488E2931A3C800B4DB4B /* FormaticToolbar.swift */; };
+		6236F5312A3DD9A500D2D819 /* Labels.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC48922931ABAC00B4DB4B /* Labels.swift */; };
+		6236F5322A3DD9A500D2D819 /* ReconfigureButton.swift in Resources */ = {isa = PBXBuildFile; fileRef = 622EFF28293868D300CF74F8 /* ReconfigureButton.swift */; };
+		6236F5332A3DD9A500D2D819 /* PaywallView.swift in Resources */ = {isa = PBXBuildFile; fileRef = 620364EE2948333E0061B825 /* PaywallView.swift */; };
+		6236F5342A3DD9A500D2D819 /* FormModel.swift in Resources */ = {isa = PBXBuildFile; fileRef = 629886E0281B8F1000C34782 /* FormModel.swift */; };
+		6236F5352A3DD9A500D2D819 /* DataControllerModel.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6244311E281A130000E21B11 /* DataControllerModel.swift */; };
+		6236F5362A3DD9A500D2D819 /* LocationManager.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62E7F87A282EE1E4004A95EF /* LocationManager.swift */; };
+		6236F5372A3DD9A500D2D819 /* StoreKitManager.swift in Resources */ = {isa = PBXBuildFile; fileRef = 620364F1294836660061B825 /* StoreKitManager.swift */; };
+		6236F5392A3DD9A500D2D819 /* Form+CoreDataClass.swift in Resources */ = {isa = PBXBuildFile; fileRef = 622A99DA281E0C5000BB5E12 /* Form+CoreDataClass.swift */; };
+		6236F53A2A3DD9A500D2D819 /* Section+CoreDataClass.swift in Resources */ = {isa = PBXBuildFile; fileRef = 629886E2281B902800C34782 /* Section+CoreDataClass.swift */; };
+		6236F53B2A3DD9A500D2D819 /* Widget+CoreDataClass.swift in Resources */ = {isa = PBXBuildFile; fileRef = 622A99CA281E03B700BB5E12 /* Widget+CoreDataClass.swift */; };
+		6236F53C2A3DD9A500D2D819 /* TextFieldWidget+CoreDataClass.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62E6AB48281ECBEA009F568B /* TextFieldWidget+CoreDataClass.swift */; };
+		6236F53D2A3DD9A500D2D819 /* NumberFieldWidget+CoreDataClass.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6244313B281A152A00E21B11 /* NumberFieldWidget+CoreDataClass.swift */; };
+		6236F53E2A3DD9A500D2D819 /* DateFieldWidget+CoreDataClass.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6238A17C293C2ACD007C09A1 /* DateFieldWidget+CoreDataClass.swift */; };
+		6236F53F2A3DD9A500D2D819 /* SliderWidget+CoreDataClass.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6238A184293C2BDE007C09A1 /* SliderWidget+CoreDataClass.swift */; };
+		6236F5402A3DD9A500D2D819 /* DropdownSectionWidget+CoreDataClass.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6244315F281A1CA000E21B11 /* DropdownSectionWidget+CoreDataClass.swift */; };
+		6236F5412A3DD9A500D2D819 /* DropdownWidget+CoreDataClass.swift in Resources */ = {isa = PBXBuildFile; fileRef = 622A99CE281E053C00BB5E12 /* DropdownWidget+CoreDataClass.swift */; };
+		6236F5422A3DD9A500D2D819 /* CheckboxSectionWidget+CoreDataClass.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62A979BD28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataClass.swift */; };
+		6236F5432A3DD9A500D2D819 /* CheckboxWidget+CoreDataClass.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62A979BB28277BFF0067C0A3 /* CheckboxWidget+CoreDataClass.swift */; };
+		6236F5442A3DD9A500D2D819 /* MapWidget+CoreDataClass.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62988707281C791400C34782 /* MapWidget+CoreDataClass.swift */; };
+		6236F5452A3DD9A500D2D819 /* CanvasWidget+CoreDataClass.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62443139281A152A00E21B11 /* CanvasWidget+CoreDataClass.swift */; };
+		6236F5462A3DD9A500D2D819 /* Form+CoreDataProperties.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62E6AB46281E0ED6009F568B /* Form+CoreDataProperties.swift */; };
+		6236F5472A3DD9A500D2D819 /* Section+CoreDataProperties.swift in Resources */ = {isa = PBXBuildFile; fileRef = 629886E3281B902800C34782 /* Section+CoreDataProperties.swift */; };
+		6236F5482A3DD9A500D2D819 /* Widget+CoreDataProperties.swift in Resources */ = {isa = PBXBuildFile; fileRef = 622A99CB281E03B700BB5E12 /* Widget+CoreDataProperties.swift */; };
+		6236F5492A3DD9A500D2D819 /* TextFieldWidget+CoreDataProperties.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62E6AB49281ECBEA009F568B /* TextFieldWidget+CoreDataProperties.swift */; };
+		6236F54A2A3DD9A500D2D819 /* NumberFieldWidget+CoreDataProperties.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6244313C281A152A00E21B11 /* NumberFieldWidget+CoreDataProperties.swift */; };
+		6236F54B2A3DD9A500D2D819 /* DateFieldWidget+CoreDataProperties.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6238A17D293C2ACD007C09A1 /* DateFieldWidget+CoreDataProperties.swift */; };
+		6236F54C2A3DD9A500D2D819 /* SliderWidget+CoreDataProperties.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6238A185293C2BDE007C09A1 /* SliderWidget+CoreDataProperties.swift */; };
+		6236F54D2A3DD9A500D2D819 /* DropdownSectionWidget+CoreDataProperties.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62A979B828276E080067C0A3 /* DropdownSectionWidget+CoreDataProperties.swift */; };
+		6236F54E2A3DD9A500D2D819 /* DropdownWidget+CoreDataProperties.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62A979B428276D9C0067C0A3 /* DropdownWidget+CoreDataProperties.swift */; };
+		6236F54F2A3DD9A500D2D819 /* CheckboxSectionWidget+CoreDataProperties.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62A979BE28277BFF0067C0A3 /* CheckboxSectionWidget+CoreDataProperties.swift */; };
+		6236F5502A3DD9A500D2D819 /* CheckboxWidget+CoreDataProperties.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62A979BC28277BFF0067C0A3 /* CheckboxWidget+CoreDataProperties.swift */; };
+		6236F5512A3DD9A500D2D819 /* MapWidget+CoreDataProperties.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62988708281C791400C34782 /* MapWidget+CoreDataProperties.swift */; };
+		6236F5522A3DD9A500D2D819 /* CanvasWidget+CoreDataProperties.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6244313A281A152A00E21B11 /* CanvasWidget+CoreDataProperties.swift */; };
+		6236F5532A3DD9A500D2D819 /* EmailData.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62D1B0982926716F00712D85 /* EmailData.swift */; };
+		6236F5542A3DD9A500D2D819 /* Ext+Form.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC48A9293281C400B4DB4B /* Ext+Form.swift */; };
+		6236F5552A3DD9A500D2D819 /* Ext+Section.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC48AB293281D300B4DB4B /* Ext+Section.swift */; };
+		6236F5562A3DD9A500D2D819 /* Ext+Widget.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC48AD293281DB00B4DB4B /* Ext+Widget.swift */; };
+		6236F5572A3DD9A500D2D819 /* Ext+TextFieldWidget.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC48AF293281E600B4DB4B /* Ext+TextFieldWidget.swift */; };
+		6236F5582A3DD9A500D2D819 /* Ext+NumberFieldWidget.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC48B1293281FA00B4DB4B /* Ext+NumberFieldWidget.swift */; };
+		6236F5592A3DD9A500D2D819 /* Ext+DateFieldWidget.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6238A188293C2C3A007C09A1 /* Ext+DateFieldWidget.swift */; };
+		6236F55A2A3DD9A500D2D819 /* Ext+SliderWidget.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6238A18A293C2C4A007C09A1 /* Ext+SliderWidget.swift */; };
+		6236F55B2A3DD9A500D2D819 /* Ext+DropdownSectionWidget.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC48BF2932960500B4DB4B /* Ext+DropdownSectionWidget.swift */; };
+		6236F55C2A3DD9A500D2D819 /* Ext+DropdownWidget.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC48C12932964600B4DB4B /* Ext+DropdownWidget.swift */; };
+		6236F55D2A3DD9A500D2D819 /* Ext+CheckboxSectionWidget.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC48C32932968100B4DB4B /* Ext+CheckboxSectionWidget.swift */; };
+		6236F55E2A3DD9A500D2D819 /* Ext+CheckboxWidget.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC48C6293296BE00B4DB4B /* Ext+CheckboxWidget.swift */; };
+		6236F55F2A3DD9A500D2D819 /* Ext+MapWidget.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC48C82932970300B4DB4B /* Ext+MapWidget.swift */; };
+		6236F5602A3DD9A500D2D819 /* Ext+CanvasWidget.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC48CB2932AFA700B4DB4B /* Ext+CanvasWidget.swift */; };
+		6236F5612A3DD9A500D2D819 /* Ext+View.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC48972932801000B4DB4B /* Ext+View.swift */; };
+		6236F5622A3DD9A500D2D819 /* Ext+PreviewProvider.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC48992932801F00B4DB4B /* Ext+PreviewProvider.swift */; };
+		6236F5632A3DD9A500D2D819 /* Ext+UTType.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC489B2932802D00B4DB4B /* Ext+UTType.swift */; };
+		6236F5642A3DD9A500D2D819 /* Ext+String.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC489529327FFD00B4DB4B /* Ext+String.swift */; };
+		6236F5652A3DD9A500D2D819 /* Ext+Data.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC489D2932803C00B4DB4B /* Ext+Data.swift */; };
+		6236F5662A3DD9A500D2D819 /* Ext+Image.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC489F2932804B00B4DB4B /* Ext+Image.swift */; };
+		6236F5672A3DD9A500D2D819 /* Ext+Color.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC48A52932810A00B4DB4B /* Ext+Color.swift */; };
+		6236F5682A3DD9A500D2D819 /* Ext+UIColor.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC48A72932812E00B4DB4B /* Ext+UIColor.swift */; };
+		6236F5692A3DD9A500D2D819 /* Ext+Bundle.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC48A12932808300B4DB4B /* Ext+Bundle.swift */; };
+		6236F56A2A3DD9A500D2D819 /* Ext+URL.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC48A32932809600B4DB4B /* Ext+URL.swift */; };
+		6236F56B2A3DD9A500D2D819 /* Ext+Label.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6208463C298C84FF006130CC /* Ext+Label.swift */; };
+		6236F56C2A3DD9A500D2D819 /* Enums.swift in Resources */ = {isa = PBXBuildFile; fileRef = 629886DA281B578800C34782 /* Enums.swift */; };
+		6236F56D2A3DD9A500D2D819 /* ViewModifiers.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62E3FAFF28DA13DD00F5FE2B /* ViewModifiers.swift */; };
+		6236F56E2A3DD9A500D2D819 /* DeveloperPreview.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62E7F87C282EE713004A95EF /* DeveloperPreview.swift */; };
+		6236F56F2A3DD9A500D2D819 /* Protocols.swift in Resources */ = {isa = PBXBuildFile; fileRef = 72F9420C28C82B3F001E8A2A /* Protocols.swift */; };
+		6236F5702A3DD9A500D2D819 /* Constants.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62AC488C293170FF00B4DB4B /* Constants.swift */; };
+		6236F5712A3DD9A500D2D819 /* Strings.swift in Resources */ = {isa = PBXBuildFile; fileRef = 62D7D87A28F86623004C55C9 /* Strings.swift */; };
+		6236F5722A3DD9A500D2D819 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62D7D87928F86448004C55C9 /* Localizable.strings */; };
+		6236F5732A3DD9A500D2D819 /* Formatic.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 620364F0294834120061B825 /* Formatic.storekit */; };
+		6236F5742A3DD9A500D2D819 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62FE6E6F28187059009D41FD /* Assets.xcassets */; };
+		6236F5752A3DD9A500D2D819 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 62D1B09A2927370500712D85 /* GoogleService-Info.plist */; };
+		6236F5762A3DD9A500D2D819 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6236F47C2A3DD6C600D2D819 /* logo.png */; };
+		6236F5772A3DD9A500D2D819 /* logoAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6AD28BB06680081A39D /* logoAnimation.json */; };
+		6236F5782A3DD9A500D2D819 /* logo.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6AA28BB06630081A39D /* logo.svg */; };
+		6236F5792A3DD9A500D2D819 /* diamondAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 626A5EE72A2AD6C60032D743 /* diamondAnimation.json */; };
+		6236F57A2A3DD9A500D2D819 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62FE6E7228187059009D41FD /* Preview Assets.xcassets */; };
+		6236F57C2A3DD9A500D2D819 /* StoreKit.framework in Resources */ = {isa = PBXBuildFile; fileRef = 621DDB1B29497AE50023A6E2 /* StoreKit.framework */; };
 		6238A16D293B99DC007C09A1 /* ConfigureCheckboxSectionWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6238A166293B99DB007C09A1 /* ConfigureCheckboxSectionWidgetView.swift */; };
 		6238A16E293B99DC007C09A1 /* ConfigureNumberFieldWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6238A167293B99DB007C09A1 /* ConfigureNumberFieldWidgetView.swift */; };
 		6238A16F293B99DC007C09A1 /* ConfigureTextFieldWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6238A168293B99DB007C09A1 /* ConfigureTextFieldWidgetView.swift */; };
@@ -59,10 +183,6 @@
 		6250E9612831632D00E6E6A0 /* CanvasWidgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E9602831632D00E6E6A0 /* CanvasWidgetDetailView.swift */; };
 		6250E9632831649C00E6E6A0 /* CanvasRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E9622831649C00E6E6A0 /* CanvasRepresentableView.swift */; };
 		627736FD28300F7D00F7B107 /* PhotoTaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627736FC28300F7D00F7B107 /* PhotoTaker.swift */; };
-		6288C6A328BB03B70081A39D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6A228BB03B70081A39D /* LaunchScreen.storyboard */; };
-		6288C6AB28BB06640081A39D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6A928BB06630081A39D /* logo.png */; };
-		6288C6AC28BB06640081A39D /* logo.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6AA28BB06630081A39D /* logo.svg */; };
-		6288C6AE28BB06680081A39D /* logoAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6AD28BB06680081A39D /* logoAnimation.json */; };
 		6288C6B128BB06F60081A39D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 6288C6B028BB06F60081A39D /* Lottie */; };
 		6288C6B528BB080A0081A39D /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6288C6B428BB080A0081A39D /* LottieView.swift */; };
 		629886DB281B578800C34782 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629886DA281B578800C34782 /* Enums.swift */; };
@@ -113,7 +233,6 @@
 		62D1B07829252EAA00712D85 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D1B07729252EAA00712D85 /* SettingsView.swift */; };
 		62D1B097292670C500712D85 /* EmailViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D1B096292670C500712D85 /* EmailViewRepresentable.swift */; };
 		62D1B0992926716F00712D85 /* EmailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D1B0982926716F00712D85 /* EmailData.swift */; };
-		62D1B09B2927370500712D85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 62D1B09A2927370500712D85 /* GoogleService-Info.plist */; };
 		62D7D87B28F86623004C55C9 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D7D87A28F86623004C55C9 /* Strings.swift */; };
 		62D7FE992826B8AF00FAA815 /* CheckboxWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D7FE982826B8AF00FAA815 /* CheckboxWidgetView.swift */; };
 		62E3FB0028DA13DD00F5FE2B /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E3FAFF28DA13DD00F5FE2B /* ViewModifiers.swift */; };
@@ -163,6 +282,7 @@
 		622A99DA281E0C5000BB5E12 /* Form+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataClass.swift"; sourceTree = "<group>"; };
 		622EFF28293868D300CF74F8 /* ReconfigureButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconfigureButton.swift; sourceTree = "<group>"; };
 		62315045293413CC00634E89 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
+		6236F47C2A3DD6C600D2D819 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		6238A166293B99DB007C09A1 /* ConfigureCheckboxSectionWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureCheckboxSectionWidgetView.swift; sourceTree = "<group>"; };
 		6238A167293B99DB007C09A1 /* ConfigureNumberFieldWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureNumberFieldWidgetView.swift; sourceTree = "<group>"; };
 		6238A168293B99DB007C09A1 /* ConfigureTextFieldWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureTextFieldWidgetView.swift; sourceTree = "<group>"; };
@@ -346,6 +466,14 @@
 			path = Widgets;
 			sourceTree = "<group>";
 		};
+		6236F47B2A3DD5FF00D2D819 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				6288C6A928BB06630081A39D /* logo.png */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		6244311C281A12D400E21B11 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,6 +552,7 @@
 		6288C6A428BB06420081A39D /* FileAssets */ = {
 			isa = PBXGroup;
 			children = (
+				6236F47C2A3DD6C600D2D819 /* logo.png */,
 				6288C6AD28BB06680081A39D /* logoAnimation.json */,
 				6288C6AA28BB06630081A39D /* logo.svg */,
 				626A5EE72A2AD6C60032D743 /* diamondAnimation.json */,
@@ -554,6 +683,7 @@
 				62FE6E6A28187058009D41FD /* Formatic */,
 				62FE6E6928187058009D41FD /* Products */,
 				621DDB1A29497AE50023A6E2 /* Frameworks */,
+				6236F47B2A3DD5FF00D2D819 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -700,15 +830,130 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62FE6E7328187059009D41FD /* Preview Assets.xcassets in Resources */,
-				6288C6A328BB03B70081A39D /* LaunchScreen.storyboard in Resources */,
-				62D1B09B2927370500712D85 /* GoogleService-Info.plist in Resources */,
-				6288C6AB28BB06640081A39D /* logo.png in Resources */,
-				6288C6AE28BB06680081A39D /* logoAnimation.json in Resources */,
-				62D7D87728F86448004C55C9 /* Localizable.strings in Resources */,
-				6288C6AC28BB06640081A39D /* logo.svg in Resources */,
-				626A5EE82A2AD6C60032D743 /* diamondAnimation.json in Resources */,
-				62FE6E7028187059009D41FD /* Assets.xcassets in Resources */,
+				6236F4FE2A3DD9A500D2D819 /* Formatic.entitlements in Resources */,
+				6236F5002A3DD9A500D2D819 /* Formatic.swift in Resources */,
+				6236F5012A3DD9A500D2D819 /* LaunchScreen.storyboard in Resources */,
+				6236F5022A3DD9A500D2D819 /* LottieView.swift in Resources */,
+				6236F5032A3DD9A500D2D819 /* Home.swift in Resources */,
+				6236F5042A3DD9A500D2D819 /* FormListView.swift in Resources */,
+				6236F5052A3DD9A500D2D819 /* ListViewToolbar.swift in Resources */,
+				6236F5062A3DD9A500D2D819 /* FormDetailView.swift in Resources */,
+				6236F5072A3DD9A500D2D819 /* FormTitleView.swift in Resources */,
+				6236F5082A3DD9A500D2D819 /* FormDetailViewToolbar.swift in Resources */,
+				6236F5092A3DD9A500D2D819 /* ToggleLockView.swift in Resources */,
+				6236F50A2A3DD9A500D2D819 /* SectionTitleView.swift in Resources */,
+				6236F50B2A3DD9A500D2D819 /* SectionView.swift in Resources */,
+				6236F50C2A3DD9A500D2D819 /* WidgetView.swift in Resources */,
+				6236F50D2A3DD9A500D2D819 /* TextFieldWidgetView.swift in Resources */,
+				6236F50E2A3DD9A500D2D819 /* TextFieldWidgetDetailView.swift in Resources */,
+				6236F50F2A3DD9A500D2D819 /* NumberFieldWidgetView.swift in Resources */,
+				6236F5102A3DD9A500D2D819 /* DateFieldWidgetView.swift in Resources */,
+				6236F5112A3DD9A500D2D819 /* SliderWidgetView.swift in Resources */,
+				6236F5122A3DD9A500D2D819 /* DropdownSectionWidgetView.swift in Resources */,
+				6236F5132A3DD9A500D2D819 /* CheckboxSectionWidgetView.swift in Resources */,
+				6236F5142A3DD9A500D2D819 /* CheckboxWidgetView.swift in Resources */,
+				6236F5152A3DD9A500D2D819 /* MapWidgetView.swift in Resources */,
+				6236F5162A3DD9A500D2D819 /* MapWidgetDetailView.swift in Resources */,
+				6236F5172A3DD9A500D2D819 /* AddAnnotationsView.swift in Resources */,
+				6236F5182A3DD9A500D2D819 /* MapView.swift in Resources */,
+				6236F5192A3DD9A500D2D819 /* CanvasWidgetView.swift in Resources */,
+				6236F51A2A3DD9A500D2D819 /* CanvasWidgetDetailView.swift in Resources */,
+				6236F51B2A3DD9A500D2D819 /* CanvasRepresentableView.swift in Resources */,
+				6236F51C2A3DD9A500D2D819 /* NewFormView.swift in Resources */,
+				6236F51D2A3DD9A500D2D819 /* PasswordView.swift in Resources */,
+				6236F51E2A3DD9A500D2D819 /* ConfigureWidgetView.swift in Resources */,
+				6236F51F2A3DD9A500D2D819 /* ConfigureTextFieldWidgetView.swift in Resources */,
+				6236F5202A3DD9A500D2D819 /* ConfigureNumberFieldWidgetView.swift in Resources */,
+				6236F5212A3DD9A500D2D819 /* ConfigureDateFieldWidgetView.swift in Resources */,
+				6236F5222A3DD9A500D2D819 /* ConfigureSliderWidgetView.swift in Resources */,
+				6236F5232A3DD9A500D2D819 /* ConfigureDropdownSectionWidgetView.swift in Resources */,
+				6236F5242A3DD9A500D2D819 /* ConfigureCheckboxSectionWidgetView.swift in Resources */,
+				6236F5252A3DD9A500D2D819 /* ConfigureMapWidgetView.swift in Resources */,
+				6236F5262A3DD9A500D2D819 /* ConfigureCanvasWidgetView.swift in Resources */,
+				6236F5272A3DD9A500D2D819 /* SettingsView.swift in Resources */,
+				6236F5282A3DD9A500D2D819 /* TutorialView.swift in Resources */,
+				6236F5292A3DD9A500D2D819 /* EmailViewRepresentable.swift in Resources */,
+				6236F52A2A3DD9A500D2D819 /* InputBox.swift in Resources */,
+				6236F52B2A3DD9A500D2D819 /* SubmitButton.swift in Resources */,
+				6236F52C2A3DD9A500D2D819 /* PhotoTaker.swift in Resources */,
+				6236F52D2A3DD9A500D2D819 /* EditModeButton.swift in Resources */,
+				6236F52E2A3DD9A500D2D819 /* ExportView.swift in Resources */,
+				6236F52F2A3DD9A500D2D819 /* ExportMenuButton.swift in Resources */,
+				6236F5302A3DD9A500D2D819 /* FormaticToolbar.swift in Resources */,
+				6236F5312A3DD9A500D2D819 /* Labels.swift in Resources */,
+				6236F5322A3DD9A500D2D819 /* ReconfigureButton.swift in Resources */,
+				6236F5332A3DD9A500D2D819 /* PaywallView.swift in Resources */,
+				6236F5342A3DD9A500D2D819 /* FormModel.swift in Resources */,
+				6236F5352A3DD9A500D2D819 /* DataControllerModel.swift in Resources */,
+				6236F5362A3DD9A500D2D819 /* LocationManager.swift in Resources */,
+				6236F5372A3DD9A500D2D819 /* StoreKitManager.swift in Resources */,
+				6236F5392A3DD9A500D2D819 /* Form+CoreDataClass.swift in Resources */,
+				6236F53A2A3DD9A500D2D819 /* Section+CoreDataClass.swift in Resources */,
+				6236F53B2A3DD9A500D2D819 /* Widget+CoreDataClass.swift in Resources */,
+				6236F53C2A3DD9A500D2D819 /* TextFieldWidget+CoreDataClass.swift in Resources */,
+				6236F53D2A3DD9A500D2D819 /* NumberFieldWidget+CoreDataClass.swift in Resources */,
+				6236F53E2A3DD9A500D2D819 /* DateFieldWidget+CoreDataClass.swift in Resources */,
+				6236F53F2A3DD9A500D2D819 /* SliderWidget+CoreDataClass.swift in Resources */,
+				6236F5402A3DD9A500D2D819 /* DropdownSectionWidget+CoreDataClass.swift in Resources */,
+				6236F5412A3DD9A500D2D819 /* DropdownWidget+CoreDataClass.swift in Resources */,
+				6236F5422A3DD9A500D2D819 /* CheckboxSectionWidget+CoreDataClass.swift in Resources */,
+				6236F5432A3DD9A500D2D819 /* CheckboxWidget+CoreDataClass.swift in Resources */,
+				6236F5442A3DD9A500D2D819 /* MapWidget+CoreDataClass.swift in Resources */,
+				6236F5452A3DD9A500D2D819 /* CanvasWidget+CoreDataClass.swift in Resources */,
+				6236F5462A3DD9A500D2D819 /* Form+CoreDataProperties.swift in Resources */,
+				6236F5472A3DD9A500D2D819 /* Section+CoreDataProperties.swift in Resources */,
+				6236F5482A3DD9A500D2D819 /* Widget+CoreDataProperties.swift in Resources */,
+				6236F5492A3DD9A500D2D819 /* TextFieldWidget+CoreDataProperties.swift in Resources */,
+				6236F54A2A3DD9A500D2D819 /* NumberFieldWidget+CoreDataProperties.swift in Resources */,
+				6236F54B2A3DD9A500D2D819 /* DateFieldWidget+CoreDataProperties.swift in Resources */,
+				6236F54C2A3DD9A500D2D819 /* SliderWidget+CoreDataProperties.swift in Resources */,
+				6236F54D2A3DD9A500D2D819 /* DropdownSectionWidget+CoreDataProperties.swift in Resources */,
+				6236F54E2A3DD9A500D2D819 /* DropdownWidget+CoreDataProperties.swift in Resources */,
+				6236F54F2A3DD9A500D2D819 /* CheckboxSectionWidget+CoreDataProperties.swift in Resources */,
+				6236F5502A3DD9A500D2D819 /* CheckboxWidget+CoreDataProperties.swift in Resources */,
+				6236F5512A3DD9A500D2D819 /* MapWidget+CoreDataProperties.swift in Resources */,
+				6236F5522A3DD9A500D2D819 /* CanvasWidget+CoreDataProperties.swift in Resources */,
+				6236F5532A3DD9A500D2D819 /* EmailData.swift in Resources */,
+				6236F5542A3DD9A500D2D819 /* Ext+Form.swift in Resources */,
+				6236F5552A3DD9A500D2D819 /* Ext+Section.swift in Resources */,
+				6236F5562A3DD9A500D2D819 /* Ext+Widget.swift in Resources */,
+				6236F5572A3DD9A500D2D819 /* Ext+TextFieldWidget.swift in Resources */,
+				6236F5582A3DD9A500D2D819 /* Ext+NumberFieldWidget.swift in Resources */,
+				6236F5592A3DD9A500D2D819 /* Ext+DateFieldWidget.swift in Resources */,
+				6236F55A2A3DD9A500D2D819 /* Ext+SliderWidget.swift in Resources */,
+				6236F55B2A3DD9A500D2D819 /* Ext+DropdownSectionWidget.swift in Resources */,
+				6236F55C2A3DD9A500D2D819 /* Ext+DropdownWidget.swift in Resources */,
+				6236F55D2A3DD9A500D2D819 /* Ext+CheckboxSectionWidget.swift in Resources */,
+				6236F55E2A3DD9A500D2D819 /* Ext+CheckboxWidget.swift in Resources */,
+				6236F55F2A3DD9A500D2D819 /* Ext+MapWidget.swift in Resources */,
+				6236F5602A3DD9A500D2D819 /* Ext+CanvasWidget.swift in Resources */,
+				6236F5612A3DD9A500D2D819 /* Ext+View.swift in Resources */,
+				6236F5622A3DD9A500D2D819 /* Ext+PreviewProvider.swift in Resources */,
+				6236F5632A3DD9A500D2D819 /* Ext+UTType.swift in Resources */,
+				6236F5642A3DD9A500D2D819 /* Ext+String.swift in Resources */,
+				6236F5652A3DD9A500D2D819 /* Ext+Data.swift in Resources */,
+				6236F5662A3DD9A500D2D819 /* Ext+Image.swift in Resources */,
+				6236F5672A3DD9A500D2D819 /* Ext+Color.swift in Resources */,
+				6236F5682A3DD9A500D2D819 /* Ext+UIColor.swift in Resources */,
+				6236F5692A3DD9A500D2D819 /* Ext+Bundle.swift in Resources */,
+				6236F56A2A3DD9A500D2D819 /* Ext+URL.swift in Resources */,
+				6236F56B2A3DD9A500D2D819 /* Ext+Label.swift in Resources */,
+				6236F56C2A3DD9A500D2D819 /* Enums.swift in Resources */,
+				6236F56D2A3DD9A500D2D819 /* ViewModifiers.swift in Resources */,
+				6236F56E2A3DD9A500D2D819 /* DeveloperPreview.swift in Resources */,
+				6236F56F2A3DD9A500D2D819 /* Protocols.swift in Resources */,
+				6236F5702A3DD9A500D2D819 /* Constants.swift in Resources */,
+				6236F5712A3DD9A500D2D819 /* Strings.swift in Resources */,
+				6236F5722A3DD9A500D2D819 /* Localizable.strings in Resources */,
+				6236F5732A3DD9A500D2D819 /* Formatic.storekit in Resources */,
+				6236F5742A3DD9A500D2D819 /* Assets.xcassets in Resources */,
+				6236F5752A3DD9A500D2D819 /* GoogleService-Info.plist in Resources */,
+				6236F5762A3DD9A500D2D819 /* logo.png in Resources */,
+				6236F5772A3DD9A500D2D819 /* logoAnimation.json in Resources */,
+				6236F5782A3DD9A500D2D819 /* logo.svg in Resources */,
+				6236F5792A3DD9A500D2D819 /* diamondAnimation.json in Resources */,
+				6236F57A2A3DD9A500D2D819 /* Preview Assets.xcassets in Resources */,
+				6236F57C2A3DD9A500D2D819 /* StoreKit.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1023,7 +1268,7 @@
 				PRODUCT_NAME = Formatic;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1065,7 +1310,7 @@
 				PRODUCT_NAME = Formatic;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
