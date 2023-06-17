@@ -50,7 +50,7 @@
 		6238A189293C2C3A007C09A1 /* Ext+DateFieldWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6238A188293C2C3A007C09A1 /* Ext+DateFieldWidget.swift */; };
 		6238A18B293C2C4A007C09A1 /* Ext+SliderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6238A18A293C2C4A007C09A1 /* Ext+SliderWidget.swift */; };
 		6244311F281A130000E21B11 /* DataControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6244311E281A130000E21B11 /* DataControllerModel.swift */; };
-		62443122281A13A400E21B11 /* UTMConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 62443121281A13A400E21B11 /* UTMConversion */; };
+		62443122281A13A400E21B11 /* UTMConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 62443121281A13A400E21B11 /* UTMConversion */; settings = {ATTRIBUTES = (Weak, ); }; };
 		6244314F281A152A00E21B11 /* CanvasWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62443139281A152A00E21B11 /* CanvasWidget+CoreDataClass.swift */; };
 		62443150281A152A00E21B11 /* CanvasWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6244313A281A152A00E21B11 /* CanvasWidget+CoreDataProperties.swift */; };
 		62443151281A152A00E21B11 /* NumberFieldWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6244313B281A152A00E21B11 /* NumberFieldWidget+CoreDataClass.swift */; };
@@ -58,7 +58,6 @@
 		62443167281A1CA000E21B11 /* DropdownSectionWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6244315F281A1CA000E21B11 /* DropdownSectionWidget+CoreDataClass.swift */; };
 		6250E9612831632D00E6E6A0 /* CanvasWidgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E9602831632D00E6E6A0 /* CanvasWidgetDetailView.swift */; };
 		6250E9632831649C00E6E6A0 /* CanvasRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250E9622831649C00E6E6A0 /* CanvasRepresentableView.swift */; };
-		626A5EE82A2AD6C60032D743 /* diamondAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 626A5EE72A2AD6C60032D743 /* diamondAnimation.json */; };
 		627736FD28300F7D00F7B107 /* PhotoTaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627736FC28300F7D00F7B107 /* PhotoTaker.swift */; };
 		6288C6A328BB03B70081A39D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6A228BB03B70081A39D /* LaunchScreen.storyboard */; };
 		6288C6AB28BB06640081A39D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6A928BB06630081A39D /* logo.png */; };
@@ -115,7 +114,6 @@
 		62D1B097292670C500712D85 /* EmailViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D1B096292670C500712D85 /* EmailViewRepresentable.swift */; };
 		62D1B0992926716F00712D85 /* EmailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D1B0982926716F00712D85 /* EmailData.swift */; };
 		62D1B09B2927370500712D85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 62D1B09A2927370500712D85 /* GoogleService-Info.plist */; };
-		62D7D87728F86448004C55C9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62D7D87928F86448004C55C9 /* Localizable.strings */; };
 		62D7D87B28F86623004C55C9 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D7D87A28F86623004C55C9 /* Strings.swift */; };
 		62D7FE992826B8AF00FAA815 /* CheckboxWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D7FE982826B8AF00FAA815 /* CheckboxWidgetView.swift */; };
 		62E3FB0028DA13DD00F5FE2B /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E3FAFF28DA13DD00F5FE2B /* ViewModifiers.swift */; };
@@ -124,19 +122,17 @@
 		62E6AB4B281ECBEA009F568B /* TextFieldWidget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E6AB49281ECBEA009F568B /* TextFieldWidget+CoreDataProperties.swift */; };
 		62E7F87B282EE1E4004A95EF /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E7F87A282EE1E4004A95EF /* LocationManager.swift */; };
 		62E7F87D282EE713004A95EF /* DeveloperPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E7F87C282EE713004A95EF /* DeveloperPreview.swift */; };
-		62F537E02927E14500314E6A /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 62F537DF2927E14500314E6A /* FirebaseAnalytics */; };
-		62F537E22927E14500314E6A /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 62F537E12927E14500314E6A /* FirebaseAnalyticsOnDeviceConversion */; };
-		62F537E42927E14500314E6A /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 62F537E32927E14500314E6A /* FirebaseAnalyticsSwift */; };
-		62F537E62927E14500314E6A /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 62F537E52927E14500314E6A /* FirebaseAnalyticsWithoutAdIdSupport */; };
-		62F537E82927E14500314E6A /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 62F537E72927E14500314E6A /* FirebaseCrashlytics */; };
-		62F537EA2927E14500314E6A /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 62F537E92927E14500314E6A /* FirebasePerformance */; };
+		62F537E02927E14500314E6A /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 62F537DF2927E14500314E6A /* FirebaseAnalytics */; settings = {ATTRIBUTES = (Weak, ); }; };
+		62F537E22927E14500314E6A /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 62F537E12927E14500314E6A /* FirebaseAnalyticsOnDeviceConversion */; settings = {ATTRIBUTES = (Weak, ); }; };
+		62F537E42927E14500314E6A /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 62F537E32927E14500314E6A /* FirebaseAnalyticsSwift */; settings = {ATTRIBUTES = (Weak, ); }; };
+		62F537E62927E14500314E6A /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 62F537E52927E14500314E6A /* FirebaseAnalyticsWithoutAdIdSupport */; settings = {ATTRIBUTES = (Weak, ); }; };
+		62F537E82927E14500314E6A /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 62F537E72927E14500314E6A /* FirebaseCrashlytics */; settings = {ATTRIBUTES = (Weak, ); }; };
+		62F537EA2927E14500314E6A /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 62F537E92927E14500314E6A /* FirebasePerformance */; settings = {ATTRIBUTES = (Weak, ); }; };
 		62F8FE66282CA814005C8D73 /* AddAnnotationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8FE65282CA814005C8D73 /* AddAnnotationsView.swift */; };
 		62F8FE69282DAC9F005C8D73 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8FE68282DAC9F005C8D73 /* MapView.swift */; };
 		62F8FE6B282DAD49005C8D73 /* MapWidgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8FE6A282DAD49005C8D73 /* MapWidgetDetailView.swift */; };
 		62FE6E6C28187058009D41FD /* Formatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FE6E6B28187058009D41FD /* Formatic.swift */; };
 		62FE6E6E28187058009D41FD /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FE6E6D28187058009D41FD /* Home.swift */; };
-		62FE6E7028187059009D41FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62FE6E6F28187059009D41FD /* Assets.xcassets */; };
-		62FE6E7328187059009D41FD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62FE6E7228187059009D41FD /* Preview Assets.xcassets */; };
 		72F9420D28C82B3F001E8A2A /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F9420C28C82B3F001E8A2A /* Protocols.swift */; };
 /* End PBXBuildFile section */
 
@@ -430,7 +426,6 @@
 			children = (
 				6288C6AD28BB06680081A39D /* logoAnimation.json */,
 				6288C6AA28BB06630081A39D /* logo.svg */,
-				6288C6A928BB06630081A39D /* logo.png */,
 				626A5EE72A2AD6C60032D743 /* diamondAnimation.json */,
 			);
 			path = FileAssets;
@@ -1028,7 +1023,7 @@
 				PRODUCT_NAME = Formatic;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1070,7 +1065,7 @@
 				PRODUCT_NAME = Formatic;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
