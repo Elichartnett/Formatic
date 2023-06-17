@@ -1005,7 +1005,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 4.4.0;
+				MARKETING_VERSION = 4.4.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.elihartnett.Formatic;
 				PRODUCT_NAME = Formatic;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1047,7 +1047,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 4.4.0;
+				MARKETING_VERSION = 4.4.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.elihartnett.Formatic;
 				PRODUCT_NAME = Formatic;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
