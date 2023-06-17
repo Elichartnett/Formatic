@@ -155,7 +155,6 @@
 		6236F5782A3DD9A500D2D819 /* logo.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6AA28BB06630081A39D /* logo.svg */; };
 		6236F5792A3DD9A500D2D819 /* diamondAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 626A5EE72A2AD6C60032D743 /* diamondAnimation.json */; };
 		6236F57A2A3DD9A500D2D819 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62FE6E7228187059009D41FD /* Preview Assets.xcassets */; };
-		6236F57C2A3DD9A500D2D819 /* StoreKit.framework in Resources */ = {isa = PBXBuildFile; fileRef = 621DDB1B29497AE50023A6E2 /* StoreKit.framework */; };
 		6238A16D293B99DC007C09A1 /* ConfigureCheckboxSectionWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6238A166293B99DB007C09A1 /* ConfigureCheckboxSectionWidgetView.swift */; };
 		6238A16E293B99DC007C09A1 /* ConfigureNumberFieldWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6238A167293B99DB007C09A1 /* ConfigureNumberFieldWidgetView.swift */; };
 		6238A16F293B99DC007C09A1 /* ConfigureTextFieldWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6238A168293B99DB007C09A1 /* ConfigureTextFieldWidgetView.swift */; };
@@ -953,7 +952,6 @@
 				6236F5782A3DD9A500D2D819 /* logo.svg in Resources */,
 				6236F5792A3DD9A500D2D819 /* diamondAnimation.json in Resources */,
 				6236F57A2A3DD9A500D2D819 /* Preview Assets.xcassets in Resources */,
-				6236F57C2A3DD9A500D2D819 /* StoreKit.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
