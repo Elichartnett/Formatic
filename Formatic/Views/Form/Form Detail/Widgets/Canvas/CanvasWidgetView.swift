@@ -19,12 +19,12 @@ struct CanvasWidgetView: View {
     @State var title: String
     @State var reconfigureWidget = false
     @State var showAlert: Bool = false
-    @State var alertTitle: String = ""
+    @State var alertTitle: String = Constants.emptyString
     
     init(canvasWidget: CanvasWidget, locked: Binding<Bool>) {
         self.canvasWidget = canvasWidget
         self._locked = locked
-        self._title = State(initialValue: canvasWidget.title ?? "")
+        self._title = State(initialValue: canvasWidget.title ?? Constants.emptyString)
     }
     
     var body: some View {

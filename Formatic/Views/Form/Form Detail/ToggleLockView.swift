@@ -12,7 +12,7 @@ struct ToggleLockView: View {
     
     @Binding var showToggleLockView: Bool
     @State var form: Form
-    @State var enteredPassword = ""
+    @State var enteredPassword = Constants.emptyString
     @State var validPassword = false
     @State var removePassword = false
     

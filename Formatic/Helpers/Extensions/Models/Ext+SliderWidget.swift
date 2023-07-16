@@ -20,10 +20,10 @@ extension SliderWidget: Csv, Copyable {
     }
     
     func toCsv() -> String {
-        var csvString = ""
-        csvString += FormModel.formatAsCsv(section?.form?.title ?? "") + ","
-        csvString += FormModel.formatAsCsv(section?.title ?? "") + ","
-        csvString += FormModel.formatAsCsv(title ?? "") + ","
+        var csvString = Constants.emptyString
+        csvString += FormModel.formatAsCsv(section?.form?.title ?? Constants.emptyString) + ","
+        csvString += FormModel.formatAsCsv(section?.title ?? Constants.emptyString) + ","
+        csvString += FormModel.formatAsCsv(title ?? Constants.emptyString) + ","
         csvString += Strings.sliderLabel + ","
         csvString += FormModel.formatAsCsv("\(number!) (\(lowerBound!), \(upperBound!))") + ","
         csvString += String(repeating: ",", count: Strings.mapCSVColumns.filter({ character in

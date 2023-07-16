@@ -30,6 +30,7 @@
 		622A99CD281E03B700BB5E12 /* Widget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622A99CB281E03B700BB5E12 /* Widget+CoreDataProperties.swift */; };
 		622A99D0281E053C00BB5E12 /* DropdownWidget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622A99CE281E053C00BB5E12 /* DropdownWidget+CoreDataClass.swift */; };
 		622A99DC281E0C5000BB5E12 /* Form+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622A99DA281E0C5000BB5E12 /* Form+CoreDataClass.swift */; };
+		622CA3AE2A645B7D00ED745A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 622CA3AD2A645B7D00ED745A /* GoogleService-Info.plist */; };
 		622EFF29293868D300CF74F8 /* ReconfigureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EFF28293868D300CF74F8 /* ReconfigureButton.swift */; };
 		62315046293413CC00634E89 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62315045293413CC00634E89 /* WidgetView.swift */; };
 		6236F4FE2A3DD9A500D2D819 /* Formatic.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 620DD0932915CFA600EA54BB /* Formatic.entitlements */; };
@@ -278,6 +279,7 @@
 		622A99CB281E03B700BB5E12 /* Widget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		622A99CE281E053C00BB5E12 /* DropdownWidget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DropdownWidget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		622A99DA281E0C5000BB5E12 /* Form+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataClass.swift"; sourceTree = "<group>"; };
+		622CA3AD2A645B7D00ED745A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		622EFF28293868D300CF74F8 /* ReconfigureButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconfigureButton.swift; sourceTree = "<group>"; };
 		62315045293413CC00634E89 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
 		6236F47C2A3DD6C600D2D819 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
@@ -705,6 +707,7 @@
 				62FE6E7B28187505009D41FD /* Models */,
 				6244311C281A12D400E21B11 /* Helpers */,
 				62FE6E6F28187059009D41FD /* Assets.xcassets */,
+				622CA3AD2A645B7D00ED745A /* GoogleService-Info.plist */,
 				6288C6A428BB06420081A39D /* FileAssets */,
 				62FE6E7128187059009D41FD /* Preview Content */,
 			);
@@ -906,6 +909,7 @@
 				6236F54D2A3DD9A500D2D819 /* DropdownSectionWidget+CoreDataProperties.swift in Resources */,
 				6236F54E2A3DD9A500D2D819 /* DropdownWidget+CoreDataProperties.swift in Resources */,
 				6236F54F2A3DD9A500D2D819 /* CheckboxSectionWidget+CoreDataProperties.swift in Resources */,
+				622CA3AE2A645B7D00ED745A /* GoogleService-Info.plist in Resources */,
 				6236F5502A3DD9A500D2D819 /* CheckboxWidget+CoreDataProperties.swift in Resources */,
 				6236F5512A3DD9A500D2D819 /* MapWidget+CoreDataProperties.swift in Resources */,
 				6236F5522A3DD9A500D2D819 /* CanvasWidget+CoreDataProperties.swift in Resources */,

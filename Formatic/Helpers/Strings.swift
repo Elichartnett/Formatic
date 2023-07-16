@@ -42,6 +42,7 @@ struct Strings {
     static let resetLabel = String(localized: "resetLabel")
     static let recoverLabel = String(localized: "recoverLabel")
     static let importLabel = String(localized: "importLabel")
+    static let importCount = String(localized: "importCount")
     static let doneLabel = String(localized: "doneLabel")
     static let editLabel = String(localized: "editLabel")
     static let submitLabel = String(localized: "submitLabel")
@@ -129,6 +130,7 @@ struct Strings {
     static let selectPhotoLabel = String(localized: "selectPhotoLabel")
     static let takePhotoLabel = String(localized: "takePhotoLabel")
     
+    static let tutorial = String(localized: "tutorial")
     static let tutorialWelcomeLabel = String(localized: "Welcome to Formatic")
     static let tutorialIntroLabel = String(localized: "tutorialIntroLabel")
     static let tutorialSkipLabel = String(localized: "tutorialSkipLabel")

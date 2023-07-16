@@ -13,11 +13,11 @@ struct FormTitleView: View {
     @State var formTitle: String
     @FocusState var formTitleIsFocused: Bool
     @State var showAlert = false
-    @State var alertTitle = ""
+    @State var alertTitle = Constants.emptyString
     
     init(form: Form, formTitle: String?) {
         self.form = form
-        self.formTitle = formTitle ?? ""
+        self.formTitle = formTitle ?? Constants.emptyString
     }
     
     var body: some View {
@@ -29,7 +29,7 @@ struct FormTitleView: View {
                 .bold()
                 .focused($formTitleIsFocused)
                 .onAppear {
-                    formTitle = form.title ?? ""
+                    formTitle = form.title ?? Constants.emptyString
                 }
                 .onChange(of: formTitle) { _ in
                     form.title = formTitle

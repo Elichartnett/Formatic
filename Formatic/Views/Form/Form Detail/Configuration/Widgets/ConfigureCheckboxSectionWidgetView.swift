@@ -81,7 +81,7 @@ struct ConfigureCheckboxSectionWidgetView: View {
                                 .tint(.red)
                                 
                                 Button {
-                                    localCheckbox.title = ""
+                                    localCheckbox.title = Constants.emptyString
                                     localCheckbox.checked = false
                                 } label: {
                                     Labels.reset
@@ -137,7 +137,7 @@ struct ConfigureCheckboxSectionWidgetView: View {
             }
             
             for checkbox in checkboxesArray {
-                let newLocalCheckbox = LocalCheckboxWidget(title: checkbox.title ?? "", checked: checkbox.checked)
+                let newLocalCheckbox = LocalCheckboxWidget(title: checkbox.title ?? Constants.emptyString, checked: checkbox.checked)
                 localCheckboxes.append(newLocalCheckbox)
             }
         }
@@ -176,7 +176,7 @@ struct ConfigureCheckboxSectionWidgetView: View {
 
 struct LocalCheckboxWidget: Identifiable, Equatable {
     let id: UUID = UUID()
-    var title = ""
+    var title = Constants.emptyString
     var checked = false
 }
 

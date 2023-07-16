@@ -13,7 +13,7 @@ class StoreKitManager: ObservableObject {
     
     @Published var products: [Product] = []
     @Published var purchasedProducts: [Product] = []
-    @Published var errorMessage = ""
+    @Published var errorMessage = Constants.emptyString
     
     init() {
         Task {

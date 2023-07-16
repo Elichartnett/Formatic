@@ -19,7 +19,7 @@ struct TextFieldWidgetView: View {
     init(textFieldWidget: TextFieldWidget, locked: Binding<Bool>) {
         self.textFieldWidget = textFieldWidget
         self._locked = locked
-        self._title = State(initialValue: textFieldWidget.title ?? "")
+        self._title = State(initialValue: textFieldWidget.title ?? Constants.emptyString)
     }
     
     var body: some View {
@@ -28,7 +28,7 @@ struct TextFieldWidgetView: View {
             InputBox(placeholder: Strings.titleLabel, text: $title)
                 .titleFrameStyle(locked: $locked)
                 .onAppear {
-                    title = textFieldWidget.title ?? ""
+                    title = textFieldWidget.title ?? Constants.emptyString
                 }
                 .onChange(of: title) { _ in
                     textFieldWidget.title = title

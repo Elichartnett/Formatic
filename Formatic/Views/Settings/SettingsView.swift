@@ -10,7 +10,7 @@ import MessageUI
 
 struct SettingsView: View {
     
-    @AppStorage(Constants.numberFormsSettingsKey) var numberForms = false
+    @AppStorage(Constants.numberFormsSettingsStorageKey) var numberForms = false
     @Environment(\.openURL) private var openURL
     @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)], predicate: NSPredicate(format: Constants.predicateRecentlyDeletedEqualToTrue)) var recentlyDeletedForms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel
@@ -18,7 +18,7 @@ struct SettingsView: View {
     @State var showEmailVIew = false
     @State var expandRecentlyDeleted = false
     @State var selectedForms = Set<Form>()
-    @State var alertTitle = ""
+    @State var alertTitle = Constants.emptyString
     @State var showAlert = false
     @State var showPaywallView = false
     @State var showTutorialView = false
@@ -124,7 +124,7 @@ struct SettingsView: View {
         Button {
             showTutorialView = true
         } label: {
-            Text("Tutorial")
+            Text(Strings.tutorial)
         }
     }
     
@@ -241,7 +241,7 @@ struct SettingsView: View {
     
     var recentlyDeletedList: some View {
         ForEach(recentlyDeletedForms, id: \.self) { form in
-            Text(form.title ?? "")
+            Text(form.title ?? Constants.emptyString)
                 .swipeActions {
                     Button {
                         withAnimation {

@@ -63,7 +63,7 @@ extension Section: Codable, Identifiable, Csv, Copyable {
     }
     
     func toCsv() -> String {
-        var csvString = ""
+        var csvString = Constants.emptyString
         let allWidgets = (widgets ?? []).sorted { lhs, rhs in
             lhs.position < rhs.position
         }
@@ -117,7 +117,7 @@ extension Section: Codable, Identifiable, Csv, Copyable {
             csvString += "\n"
         }
 
-        if csvString != "" {
+        if csvString != Constants.emptyString {
             csvString.remove(at: csvString.index(before: csvString.endIndex))
         }
         return csvString

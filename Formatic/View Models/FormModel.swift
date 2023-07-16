@@ -20,7 +20,7 @@ class FormModel: ObservableObject {
     @Published var isPhone = UIDevice.current.userInterfaceIdiom == .phone
     
     static func formatAsCsv(_ string: String) -> String {
-        var csvString = ""
+        var csvString = Constants.emptyString
         
         // In case user *specifcally* used normal quotes in their text
         if string.contains("\""){

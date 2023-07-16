@@ -20,9 +20,9 @@ struct DateFieldWidgetView: View {
     
     init(dateFieldWidget: DateFieldWidget, locked: Binding<Bool>) {
         self.dateFieldWidget = dateFieldWidget
-        self._coreDataDateFieldWidget = FetchRequest<DateFieldWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "id == %@", dateFieldWidget.id as CVarArg))
+        self._coreDataDateFieldWidget = FetchRequest<DateFieldWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: Constants.predicateIDEqualTo, dateFieldWidget.id as CVarArg))
         self._locked = locked
-        self._title = State(initialValue: dateFieldWidget.title ?? "")
+        self._title = State(initialValue: dateFieldWidget.title ?? Constants.emptyString)
         self._date = State(initialValue: dateFieldWidget.date ?? Date())
     }
     
@@ -32,7 +32,7 @@ struct DateFieldWidgetView: View {
             InputBox(placeholder: Strings.titleLabel, text: $title)
                 .titleFrameStyle(locked: $locked)
                 .onAppear {
-                    title = dateFieldWidget.title ?? ""
+                    title = dateFieldWidget.title ?? Constants.emptyString
                 }
                 .onChange(of: title) { _ in
                     dateFieldWidget.title = title

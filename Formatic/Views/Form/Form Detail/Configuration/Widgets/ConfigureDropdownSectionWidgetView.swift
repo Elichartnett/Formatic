@@ -86,7 +86,7 @@ struct ConfigureDropdownSectionWidgetView: View {
                                 .tint(.red)
                                 
                                 Button {
-                                    localDropdown.title = ""
+                                    localDropdown.title = Constants.emptyString
                                     localDropdown.selected = false
                                 } label: {
                                     Labels.reset
@@ -143,7 +143,7 @@ struct ConfigureDropdownSectionWidgetView: View {
             }
             
             for dropdown in dropdownsArray {
-                var newLocalDropdown = LocalDropdownWidget(title: dropdown.title ?? "")
+                var newLocalDropdown = LocalDropdownWidget(title: dropdown.title ?? Constants.emptyString)
                 newLocalDropdown.selected = dropdownSectionWidget?.selectedDropdown?.id == dropdown.id
                 localDropdowns.append(newLocalDropdown)
             }
@@ -191,7 +191,7 @@ struct ConfigureDropdownSectionWidgetView: View {
 
 struct LocalDropdownWidget: Identifiable, Equatable {
     let id: UUID = UUID()
-    var title: String = ""
+    var title: String = Constants.emptyString
     var selected: Bool = false
 }
 

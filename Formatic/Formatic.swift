@@ -25,7 +25,7 @@ struct Formatic: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var formModel = FormModel()
-    @State var alertTitle = ""
+    @State var alertTitle = Constants.emptyString
     @State var showAlert = false
     
     var body: some Scene {

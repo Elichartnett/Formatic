@@ -39,6 +39,7 @@
 "resetLabel" = "Reset";
 "recoverLabel" = "Recover";
 "importLabel" = "Import";
+"importCount" = "Import Count";
 "doneLabel" = "Done";
 "editLabel" = "Edit";
 "submitLabel" = "Submit";
@@ -125,6 +126,7 @@
 "takePhotoLabel" = "Take photo";
 
 "tutorialWelcomeLabel" = "Welcome to Formatic";
+"tutorial" = "Tutorial";
 "tutorialIntroLabel" = "Please take a moment to complete this tutorial. Learning about the app will enhance your experience.";
 "tutorialSkipLabel" = "This tutorial will always be available in settings. To skip ahead, click here";
 "tutorialNextLabel" = "Next";

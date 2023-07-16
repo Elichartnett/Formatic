@@ -14,10 +14,10 @@ struct NewFormView: View {
     @EnvironmentObject var formModel: FormModel
     
     @Binding var showNewFormView: Bool
-    @State var title = ""
+    @State var title = Constants.emptyString
     @State var inRecentlyDeleted = false
     @State var showAlert = false
-    @State var alertTitle = ""
+    @State var alertTitle = Constants.emptyString
     
     var body: some View {
         

@@ -21,10 +21,10 @@ extension CanvasWidget: Csv, Copyable {
     }
     
     func toCsv() -> String {
-        var csvString = ""
-        csvString += FormModel.formatAsCsv(section?.form?.title ?? "") + ","
-        csvString += FormModel.formatAsCsv(self.section?.title ?? "") + ","
-        csvString += FormModel.formatAsCsv(self.title ?? "") + ","
+        var csvString = Constants.emptyString
+        csvString += FormModel.formatAsCsv(section?.form?.title ?? Constants.emptyString) + ","
+        csvString += FormModel.formatAsCsv(self.section?.title ?? Constants.emptyString) + ","
+        csvString += FormModel.formatAsCsv(self.title ?? Constants.emptyString) + ","
         csvString += Strings.canvasLabel + ","
         csvString += String(repeating: ",", count: Strings.mapCSVColumns.filter({ character in
             character == ","

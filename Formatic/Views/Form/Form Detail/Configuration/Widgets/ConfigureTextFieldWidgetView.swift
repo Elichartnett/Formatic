@@ -15,7 +15,7 @@ struct ConfigureTextFieldWidgetView: View {
     @Binding var title: String
     @FocusState var isFocused: Bool
     @State var section: Section
-    @State var text: String = ""
+    @State var text: String = Constants.emptyString
     
     var body: some View {
         

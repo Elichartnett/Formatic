@@ -14,7 +14,7 @@ extension Bundle {
             return result
         } else {
             assert(false)
-            return ""
+            return Constants.emptyString
         }
     }
     
@@ -23,7 +23,7 @@ extension Bundle {
             return result
         } else {
             assert(false)
-            return ""
+            return Constants.emptyString
         }
     }
     

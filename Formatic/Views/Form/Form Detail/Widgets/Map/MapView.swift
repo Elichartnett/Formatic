@@ -39,7 +39,7 @@ struct MapView: View {
             case .notDetermined:
                 manager.requestWhenInUseAuthorization()
             @unknown default:
-                fatalError("Unkown default")
+                fatalError(Constants.unknownDefault)
             }
         }
         .ignoresSafeArea()

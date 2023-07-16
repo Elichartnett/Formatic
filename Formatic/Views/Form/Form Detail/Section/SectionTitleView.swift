@@ -112,6 +112,6 @@ struct SectionTitleView: View {
 
 struct SectionTitleView_Previews: PreviewProvider {
     static var previews: some View {
-        SectionTitleView(section: dev.section, locked: .constant(dev.form.locked), sectionTitle: dev.section.title ?? "")
+        SectionTitleView(section: dev.section, locked: .constant(dev.form.locked), sectionTitle: dev.section.title ?? Constants.emptyString)
     }
 }

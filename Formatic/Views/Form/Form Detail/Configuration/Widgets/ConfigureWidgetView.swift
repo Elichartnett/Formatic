@@ -10,8 +10,8 @@ struct ConfigureWidgetView: View {
     
     let newWidgetType: WidgetType
     @ObservedObject var section: Section
-    @State var typeTitle: String = ""
-    @State var widgetTitle: String = ""
+    @State var typeTitle: String = Constants.emptyString
+    @State var widgetTitle: String = Constants.emptyString
     
     var body: some View {
         

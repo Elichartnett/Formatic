@@ -75,7 +75,7 @@ struct FormDetailView: View {
                                     }
                                 }
                                 
-                                SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
+                                SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? Constants.emptyString)
                                 
                                 if !form.locked {
                                     ZStack {
@@ -137,7 +137,7 @@ struct FormDetailView: View {
                                             .background(Color.secondaryBackground).ignoresSafeArea()
                                     }
                                 } header: {
-                                    SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? "")
+                                    SectionTitleView(section: section, locked: $form.locked, sectionTitle: section.title ?? Constants.emptyString)
                                         .padding(.top)
                                         .padding(.bottom, 10)
                                 }
@@ -176,7 +176,7 @@ struct FormDetailView: View {
                     List {
                         ForEach(sections) { section in
                             if form.sections?.contains(section) ?? false {
-                                Text(section.title ?? "")
+                                Text(section.title ?? Constants.emptyString)
                                     .swipeActions {
                                         Button {
                                             section.delete()

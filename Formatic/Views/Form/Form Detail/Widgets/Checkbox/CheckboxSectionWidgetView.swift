@@ -22,7 +22,7 @@ struct CheckboxSectionWidgetView: View {
         self._checkboxes = FetchRequest<CheckboxWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: Constants.predicateCheckboxSectionWidgetEqualTo, checkboxSectionWidget))
         self.checkboxSectionWidget = checkboxSectionWidget
         self._locked = locked
-        self._title = State(initialValue: checkboxSectionWidget.title ?? "")
+        self._title = State(initialValue: checkboxSectionWidget.title ?? Constants.emptyString)
     }
     
     var body: some View {

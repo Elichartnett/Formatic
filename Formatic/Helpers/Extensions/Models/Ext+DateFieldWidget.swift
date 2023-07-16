@@ -20,10 +20,10 @@ extension DateFieldWidget: Csv, Copyable {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .long
-        var csvString = ""
-        csvString += FormModel.formatAsCsv(section?.form?.title ?? "") + ","
-        csvString += FormModel.formatAsCsv(section?.title ?? "") + ","
-        csvString += FormModel.formatAsCsv(title ?? "") + ","
+        var csvString = Constants.emptyString
+        csvString += FormModel.formatAsCsv(section?.form?.title ?? Constants.emptyString) + ","
+        csvString += FormModel.formatAsCsv(section?.title ?? Constants.emptyString) + ","
+        csvString += FormModel.formatAsCsv(title ?? Constants.emptyString) + ","
         csvString += Strings.dateFieldLabel + ","
         csvString += FormModel.formatAsCsv(dateFormatter.string(from: date!)) + ","
         csvString += String(repeating: ",", count: Strings.mapCSVColumns.filter({ character in

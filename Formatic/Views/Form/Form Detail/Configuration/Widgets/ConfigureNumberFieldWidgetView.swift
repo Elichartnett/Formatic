@@ -14,7 +14,7 @@ struct ConfigureNumberFieldWidgetView: View {
     
     @Binding var title: String
     @State var section: Section
-    @State var number: String = ""
+    @State var number: String = Constants.emptyString
     @State var isNegative = false
     var range: ClosedRange<Double>?
     @State var isValid: Bool = true

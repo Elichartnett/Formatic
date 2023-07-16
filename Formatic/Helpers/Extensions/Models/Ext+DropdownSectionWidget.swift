@@ -25,7 +25,7 @@ extension DropdownSectionWidget: Csv, Copyable {
     }
     
     func toCsv() -> String {
-        var csvString = ""
+        var csvString = Constants.emptyString
         
         if var dropdownWidgets = self.dropdownWidgets?.map( {$0 as! DropdownWidget}) {
             dropdownWidgets = dropdownWidgets.sorted { lhs, rhs in
@@ -33,11 +33,11 @@ extension DropdownSectionWidget: Csv, Copyable {
             }
             
             for dropdownWidget in dropdownWidgets {
-                csvString += FormModel.formatAsCsv(section?.form?.title ?? "") + ","
-                csvString += FormModel.formatAsCsv(section?.title ?? "") + ","
-                csvString += FormModel.formatAsCsv(title ?? "") + ","
+                csvString += FormModel.formatAsCsv(section?.form?.title ?? Constants.emptyString) + ","
+                csvString += FormModel.formatAsCsv(section?.title ?? Constants.emptyString) + ","
+                csvString += FormModel.formatAsCsv(title ?? Constants.emptyString) + ","
                 csvString += Strings.dropdownMenuLabel + ","
-                csvString += FormModel.formatAsCsv(dropdownWidget.title ?? "") + ","
+                csvString += FormModel.formatAsCsv(dropdownWidget.title ?? Constants.emptyString) + ","
                 if self.selectedDropdown == dropdownWidget {
                     csvString += "True"
                 }
@@ -49,7 +49,7 @@ extension DropdownSectionWidget: Csv, Copyable {
                 }).count) + ",\n"
             }
             
-            if csvString != "" {
+            if csvString != Constants.emptyString {
                 csvString.remove(at: csvString.index(before: csvString.endIndex))
             }
         }

@@ -18,14 +18,14 @@ struct MapWidgetView: View {
     @State var title: String
     @State var reconfigureWidget = false
     @State var widgetViewPreviewSize = CGSize.zero
-    @State var localCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.0902, longitude: -95.7129), span: MKCoordinateSpan(latitudeDelta: 90, longitudeDelta: 90))
+    @State var localCoordinateRegion = Constants.defaultMKCoordinateRegion
     var forPDF: Bool
     @State var showReconfigureButton = false
     
     init(mapWidget: MapWidget, locked: Binding<Bool>, forPDF: Bool) {
         self.mapWidget = mapWidget
         self._locked = locked
-        self._title = State(initialValue: mapWidget.title ?? "")
+        self._title = State(initialValue: mapWidget.title ?? Constants.emptyString)
         self.forPDF = forPDF
         self._localCoordinateRegion = State(initialValue: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: mapWidget.coordinateRegionCenterLat, longitude: mapWidget.coordinateRegionCenterLon), span: MKCoordinateSpan(latitudeDelta: mapWidget.coordinateSpanLatDelta, longitudeDelta: mapWidget.coordinateSpanLonDelta)))
     }

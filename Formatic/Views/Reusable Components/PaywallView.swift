@@ -17,7 +17,7 @@ struct PaywallView: View {
     @State var purchasePending = false
     @State var isLoading = false
     @State var showAlert = false
-    @State var alertTitle = ""
+    @State var alertTitle = Constants.emptyString
     @State var alertButtonDismissMessage = Strings.defaultAlertButtonDismissMessage
     
     var body: some View {

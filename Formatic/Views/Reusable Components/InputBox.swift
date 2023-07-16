@@ -60,7 +60,7 @@ struct InputBox: View {
                                             text = String(textDouble * -1)
                                         }
                                     } label: {
-                                        Image(systemName: "plusminus")
+                                        Image(systemName: Constants.plusMinusIconName)
                                             .customIcon()
                                     }
                                 }
@@ -124,6 +124,6 @@ struct InputBox: View {
 
 struct InputBox_Previews: PreviewProvider {
     static var previews: some View {
-        InputBox(placeholder: "Placeholder...", text: .constant(""), inputType: .number)
+        InputBox(placeholder: "Placeholder...", text: .constant(Constants.emptyString), inputType: .number)
     }
 }

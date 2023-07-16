@@ -11,7 +11,7 @@ struct CanvasWidgetDetailView: View {
     
     @ObservedObject var canvasWidget: CanvasWidget
     @State var showAlert: Bool = false
-    @State var alertTitle: String = ""
+    @State var alertTitle: String = Constants.emptyString
     let width = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) - 100
     
     var body: some View {
@@ -19,7 +19,7 @@ struct CanvasWidgetDetailView: View {
             .frame(width: width, height: width)
             .border(.secondary)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle(canvasWidget.title ?? "")
+            .navigationTitle(canvasWidget.title ?? Constants.emptyString)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.primaryBackground).ignoresSafeArea()
             .alert(alertTitle, isPresented: $showAlert, actions: {

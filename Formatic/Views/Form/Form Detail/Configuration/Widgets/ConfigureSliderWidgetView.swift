@@ -18,15 +18,15 @@ struct ConfigureSliderWidgetView: View {
     @State var number: Double = 0
     let lowerBoundDefault: Double = 0
     @State var lowerBound: Double = 0
-    @State var lowerBoundInput = ""
+    @State var lowerBoundInput = Constants.emptyString
     @State var validLowerBoundInput = true
     let upperBoundDefault: Double = 10
     @State var upperBound: Double = 10
-    @State var upperBoundInput = ""
+    @State var upperBoundInput = Constants.emptyString
     @State var validUpperBoundInput = true
     let stepDefault: Double = 1
     @State var step: Double = 1
-    @State var stepInput = ""
+    @State var stepInput = Constants.emptyString
     @State var validStepInput = true
     let maxInput: Double = 1000000
     
@@ -98,9 +98,9 @@ struct ConfigureSliderWidgetView: View {
         .padding(.top)
         .onAppear {
             if let sliderWidget = sliderWidget {
-                lowerBoundInput = sliderWidget.lowerBound ?? ""
-                upperBoundInput = sliderWidget.upperBound ?? ""
-                stepInput = sliderWidget.step ?? ""
+                lowerBoundInput = sliderWidget.lowerBound ?? Constants.emptyString
+                upperBoundInput = sliderWidget.upperBound ?? Constants.emptyString
+                stepInput = sliderWidget.step ?? Constants.emptyString
                 number = Double(sliderWidget.number!) ?? 0
             }
         }

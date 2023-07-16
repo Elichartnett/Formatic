@@ -8,9 +8,9 @@
 import Foundation
 
 struct EmailData {
-    var subject: String = ""
+    var subject: String = Constants.emptyString
     var recipients: [String]?
-    var body: String = ""
+    var body: String = Constants.emptyString
     var isBodyHTML = false
     var attachments = [AttachmentData]()
     

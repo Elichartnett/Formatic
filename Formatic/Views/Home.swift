@@ -13,7 +13,7 @@ struct Home: View {
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     @State var time = 0.0
     @State var finishedLaunching = false
-    @AppStorage("tutorialComplete") var tutorialComplete: Bool = false
+    @AppStorage(Constants.tutorialCompleteStorageKey) var tutorialComplete: Bool = false
 
     var body: some View {
         

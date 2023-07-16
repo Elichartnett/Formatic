@@ -52,17 +52,17 @@ extension MapWidget: Csv, Copyable {
     }
     
     func toCsv() -> String {
-        var csvString = ""
+        var csvString = Constants.emptyString
         
         for annotation in annotations ?? [] {
             let coordinate = CLLocationCoordinate2D(latitude: annotation.latitude, longitude: annotation.longitude)
             let utm = coordinate.utmCoordinate()
             
-            csvString += FormModel.formatAsCsv(section?.form?.title ?? "") + ","
-            csvString += FormModel.formatAsCsv(section?.title ?? "") + ","
-            csvString += FormModel.formatAsCsv(title ?? "") + ","
+            csvString += FormModel.formatAsCsv(section?.form?.title ?? Constants.emptyString) + ","
+            csvString += FormModel.formatAsCsv(section?.title ?? Constants.emptyString) + ","
+            csvString += FormModel.formatAsCsv(title ?? Constants.emptyString) + ","
             csvString += Strings.mapLabel + ","
-            csvString += FormModel.formatAsCsv(annotation.name ?? "") + ",,"
+            csvString += FormModel.formatAsCsv(annotation.name ?? Constants.emptyString) + ",,"
             csvString += String(annotation.latitude) + ","
             csvString += String(annotation.longitude) + ","
             csvString += String(utm.easting) + ","
@@ -75,7 +75,7 @@ extension MapWidget: Csv, Copyable {
             csvString += "\n"
         }
         
-        if csvString != "" {
+        if csvString != Constants.emptyString {
             csvString.remove(at: csvString.index(before: csvString.endIndex))
         }
         

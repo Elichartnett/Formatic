@@ -75,7 +75,7 @@ extension Form: Codable, Identifiable, Transferable, Csv, Copyable {
     }
     
     func toCsv() -> String {
-        var csvString = ""
+        var csvString = Constants.emptyString
         for section in sortedSectionsArray() {
             csvString += section.toCsv()
             csvString += "\n\n"

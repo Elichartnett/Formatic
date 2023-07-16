@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MapKit
 
 struct Constants {
     static let appID = "1643318765"
@@ -14,10 +15,16 @@ struct Constants {
     
     static let sortDescriptorDateCreated = "dateCreated"
     static let sortDescriptorTitle = "title"
-    static let numberFormsSettingsKey = "numberFormsSettingsKey"
+    static let numberFormsSettingsStorageKey = "numberFormsSettingsKey"
+    static let tutorialCompleteStorageKey = "tutorialComplete"
+    static let emptyString = ""
+    static let unknownDefault = "Unknown default"
+    static let defaultMKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.0902, longitude: -95.7129), span: MKCoordinateSpan(latitudeDelta: 90, longitudeDelta: 90))
+
     
     static let predicateTrue = "true"
     static let predicateFalse = "false"
+    static let predicateIDEqualTo = "id == %@"
     static let predicateFormEqualTo = "form == %@"
     static let predicateSectionEqualTo = "section == %@"
     static let predicateDropdownSectionWidgetEqualTo = "dropdownSectionWidget == %@"
@@ -66,6 +73,7 @@ struct Constants {
     static let supportFilledIconName = "questionmark.bubble.fill"
     static let supportIconName = "questionmark.bubble"
     static let starFilledIconName = "star.fill"
+    static let plusMinusIconName = "plusminus"
     
     static let logoAnimationFileName = "logoAnimation"
     static let diamondAnimationFileName = "diamondAnimation"

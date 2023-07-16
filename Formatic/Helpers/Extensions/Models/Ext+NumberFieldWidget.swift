@@ -17,12 +17,12 @@ extension NumberFieldWidget: Csv, Copyable {
     }
     
     func toCsv() -> String {
-        var csvString = ""
-        csvString += FormModel.formatAsCsv(section?.form?.title ?? "") + ","
-        csvString += FormModel.formatAsCsv(section?.title ?? "") + ","
-        csvString += FormModel.formatAsCsv(title ?? "") + ","
+        var csvString = Constants.emptyString
+        csvString += FormModel.formatAsCsv(section?.form?.title ?? Constants.emptyString) + ","
+        csvString += FormModel.formatAsCsv(section?.title ?? Constants.emptyString) + ","
+        csvString += FormModel.formatAsCsv(title ?? Constants.emptyString) + ","
         csvString += Strings.numberFieldLabel + ","
-        csvString += FormModel.formatAsCsv(number ?? "") + ","
+        csvString += FormModel.formatAsCsv(number ?? Constants.emptyString) + ","
         csvString += String(repeating: ",", count: Strings.mapCSVColumns.filter({ character in
             character == ","
         }).count) + ","
@@ -30,7 +30,7 @@ extension NumberFieldWidget: Csv, Copyable {
     }
     
     func createCopy() -> Any {
-        let copy = NumberFieldWidget(title: title, position: Int(position), number: number ?? "")
+        let copy = NumberFieldWidget(title: title, position: Int(position), number: number ?? Constants.emptyString)
         return copy
     }
     

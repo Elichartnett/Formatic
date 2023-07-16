@@ -10,7 +10,7 @@ import SwiftUI
 struct CheckboxWidgetView: View {
     
     @ObservedObject var checkbox: CheckboxWidget
-    @State var description: String = ""
+    @State var description: String = Constants.emptyString
     @FocusState var isFocused: Bool
     
     var body: some View {
@@ -39,7 +39,7 @@ struct CheckboxWidgetView: View {
             TextField(Strings.descriptionLabel, text: $description)
                 .focused($isFocused)
                 .onAppear {
-                    description = checkbox.title ?? ""
+                    description = checkbox.title ?? Constants.emptyString
                 }
                 .onChange(of: description) { _ in
                     checkbox.title = description

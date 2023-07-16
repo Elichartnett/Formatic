@@ -19,7 +19,7 @@ struct FormDetailViewToolbar: View {
     @State var exportType: UTType?
     @State var showExportView = false
     @State var showPaywallView = false
-    @State var alertTitle = ""
+    @State var alertTitle = Constants.emptyString
     @State var showAlert = false
     
     var body: some View {

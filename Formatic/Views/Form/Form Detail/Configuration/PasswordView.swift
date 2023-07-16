@@ -12,7 +12,7 @@ struct PasswordView: View {
     @Binding var validPassword: Bool
     @Binding var password: String
     @State var showPasswordConfirmation: Bool = false
-    @State var passwordConfirmation: String = ""
+    @State var passwordConfirmation: String = Constants.emptyString
     
     var body: some View {
         
@@ -51,6 +51,6 @@ struct PasswordView: View {
 
 struct PasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        PasswordView(validPassword: .constant(true), password: .constant(""))
+        PasswordView(validPassword: .constant(true), password: .constant(Constants.emptyString))
     }
 }

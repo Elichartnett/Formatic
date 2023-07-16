@@ -24,7 +24,7 @@ struct SliderWidgetView: View {
     init(sliderWidget: SliderWidget, locked: Binding<Bool>) {
         self.sliderWidget = sliderWidget
         self._locked = locked
-        self._title = State(initialValue: sliderWidget.title ?? "")
+        self._title = State(initialValue: sliderWidget.title ?? Constants.emptyString)
         self._number = State(initialValue: Double(sliderWidget.number!) ?? 0)
         self._lowerBound = State(initialValue: Double(sliderWidget.lowerBound!) ?? 0)
         self._upperBound = State(initialValue: Double(sliderWidget.upperBound!) ?? 0)
@@ -51,7 +51,7 @@ struct SliderWidgetView: View {
                 
                 HStack {
                     VStack {
-                        Text("\(Strings.valueLabel): \(sliderWidget.number ?? "")")
+                        Text("\(Strings.valueLabel): \(sliderWidget.number ?? Constants.emptyString)")
                         
                         HStack {
                             Text(lowerBound.formatted())

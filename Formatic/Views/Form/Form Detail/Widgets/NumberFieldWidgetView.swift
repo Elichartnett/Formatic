@@ -21,10 +21,10 @@ struct NumberFieldWidgetView: View {
     
     init(numberFieldWidget: NumberFieldWidget, locked: Binding<Bool>, range: ClosedRange<Double>? = nil) {
         self.numberFieldWidget = numberFieldWidget
-        self._coreDataNumberFieldWidget = FetchRequest<NumberFieldWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: "id == %@", numberFieldWidget.id as CVarArg))
+        self._coreDataNumberFieldWidget = FetchRequest<NumberFieldWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: Constants.predicateIDEqualTo, numberFieldWidget.id as CVarArg))
         self._locked = locked
-        self._title = State(initialValue: numberFieldWidget.title ?? "")
-        self._number = State(initialValue: numberFieldWidget.number ?? "")
+        self._title = State(initialValue: numberFieldWidget.title ?? Constants.emptyString)
+        self._number = State(initialValue: numberFieldWidget.number ?? Constants.emptyString)
         self.range = range
         self.isValid = isValid
     }
@@ -46,7 +46,7 @@ struct NumberFieldWidgetView: View {
                     }
                     numberFieldWidget.number = number
                 }
-                .onChange(of: coreDataNumberFieldWidget.first?.number ?? "") { newValue in
+                .onChange(of: coreDataNumberFieldWidget.first?.number ?? Constants.emptyString) { newValue in
                     number = newValue
                 }
         }

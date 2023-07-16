@@ -16,7 +16,7 @@ struct ConfigureMapWidgetView: View {
     @State var mapWidget: MapWidget?
     @Binding var title: String
     @State var section: Section
-    @State var coordinateRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.0902, longitude: -95.7129), span: MKCoordinateSpan(latitudeDelta: 90, longitudeDelta: 90))
+    @State var coordinateRegion: MKCoordinateRegion = Constants.defaultMKCoordinateRegion
     var widgetViewPreviewSize = CGSize.zero
     
     var body: some View {

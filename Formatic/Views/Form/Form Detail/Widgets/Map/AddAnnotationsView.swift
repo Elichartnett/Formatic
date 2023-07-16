@@ -16,18 +16,18 @@ struct AddAnnotationsView: View {
     @ObservedObject var mapWidget: MapWidget
     @Binding var localCoordinateRegion: MKCoordinateRegion
     @Binding var coordinateType: CoordinateType
-    @State var latitude: String = ""
-    @State var longitude: String = ""
+    @State var latitude: String = Constants.emptyString
+    @State var longitude: String = Constants.emptyString
     @State var validLatitude: Bool = false
     @State var validLongitude: Bool = false
-    @State var easting: String = ""
-    @State var northing: String = ""
-    @State var zone: String = ""
+    @State var easting: String = Constants.emptyString
+    @State var northing: String = Constants.emptyString
+    @State var zone: String = Constants.emptyString
     @State var hemisphere: UTMHemisphere = .northern
     @State var validEasting: Bool = false
     @State var validNorthing: Bool = false
     @State var validZone: Bool = false
-    @State var alertTitle = ""
+    @State var alertTitle = Constants.emptyString
     @State var showAlert = false
     
     var body: some View {
@@ -80,8 +80,8 @@ struct AddAnnotationsView: View {
                             annotation.latitude = latitudeDouble
                             annotation.longitude = longitudeDouble
                             mapWidget.addToAnnotations(annotation)
-                            latitude = ""
-                            longitude = ""
+                            latitude = Constants.emptyString
+                            longitude = Constants.emptyString
                         }
                         else {
                             alertTitle = Strings.failedToCreateMapAnnotationErrorMessage
@@ -98,9 +98,9 @@ struct AddAnnotationsView: View {
                             annotation.latitude = latitude
                             annotation.longitude = longitude
                             mapWidget.addToAnnotations(annotation)
-                            easting = ""
-                            northing = ""
-                            zone = ""
+                            easting = Constants.emptyString
+                            northing = Constants.emptyString
+                            zone = Constants.emptyString
                         }
                         else {
                             alertTitle = Strings.failedToCreateMapAnnotationErrorMessage
@@ -137,7 +137,7 @@ struct AddAnnotationsView: View {
 
 struct AddAnnotationsView_Previews: PreviewProvider {
     static var previews: some View {
-        AddAnnotationsView(mapWidget: dev.mapWidget, localCoordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: dev.mapWidget.coordinateRegionCenterLat, longitude: dev.mapWidget.coordinateRegionCenterLon), span: MKCoordinateSpan(latitudeDelta: dev.mapWidget.coordinateSpanLatDelta, longitudeDelta: dev.mapWidget.coordinateSpanLonDelta))), coordinateType: .constant(.latLon), latitude: String(dev.annotation.latitude), longitude: String(dev.annotation.longitude), validLatitude: true, validLongitude: true, easting: "", northing: "", zone: "", validEasting: true, validNorthing: true, validZone: true)
+        AddAnnotationsView(mapWidget: dev.mapWidget, localCoordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: dev.mapWidget.coordinateRegionCenterLat, longitude: dev.mapWidget.coordinateRegionCenterLon), span: MKCoordinateSpan(latitudeDelta: dev.mapWidget.coordinateSpanLatDelta, longitudeDelta: dev.mapWidget.coordinateSpanLonDelta))), coordinateType: .constant(.latLon), latitude: String(dev.annotation.latitude), longitude: String(dev.annotation.longitude), validLatitude: true, validLongitude: true, easting: Constants.emptyString, northing: Constants.emptyString, zone: Constants.emptyString, validEasting: true, validNorthing: true, validZone: true)
             .environmentObject(FormModel())
     }
 }

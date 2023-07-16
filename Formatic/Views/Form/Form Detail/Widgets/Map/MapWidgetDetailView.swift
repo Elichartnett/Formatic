@@ -38,7 +38,7 @@ struct MapWidgetDetailView: View {
                 }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle(mapWidget.title ?? "")
+        .navigationTitle(mapWidget.title ?? Constants.emptyString)
     }
 }
 

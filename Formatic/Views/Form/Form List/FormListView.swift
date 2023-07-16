@@ -11,7 +11,7 @@ import UniformTypeIdentifiers
 
 struct FormListView: View {
     
-    @AppStorage(Constants.numberFormsSettingsKey) var numberForms = false
+    @AppStorage(Constants.numberFormsSettingsStorageKey) var numberForms = false
     @FetchRequest(sortDescriptors: [SortDescriptor(\.dateCreated)], predicate: NSPredicate(format: Constants.predicateRecentlyDeletedEqualToFalse)) var forms: FetchedResults<Form>
     @EnvironmentObject var formModel: FormModel
     
@@ -20,7 +20,7 @@ struct FormListView: View {
     @State var exportType: UTType?
     @State var showExportView = false
     @State var showMultiFormSelectionToolBar = false
-    @State var searchText = ""
+    @State var searchText = Constants.emptyString
     @State var showNewFormView = false
     @State var importCount = "1"
     @State var currentFormURL: URL?
@@ -31,11 +31,11 @@ struct FormListView: View {
     @State var showPaywallView = false
     @State var showImportAlert = false
     @State var showAlert = false
-    @State var alertTitle = ""
+    @State var alertTitle = Constants.emptyString
     @State var alertButtonDismissMessage = Strings.defaultAlertButtonDismissMessage
     var sortedSelectedForm: [Form] {
         selectedForms.sorted(by: {
-            sortMethod == .dateCreated ? $0.dateCreated < $1.dateCreated : $0.title ?? "" < $1.title ?? "" })
+            sortMethod == .dateCreated ? $0.dateCreated < $1.dateCreated : $0.title ?? Constants.emptyString < $1.title ?? Constants.emptyString })
     }
     
     var body: some View {
@@ -52,7 +52,7 @@ struct FormListView: View {
                         Button {
                             formModel.navigationPath.append(form)
                         } label: {
-                            Text("\(numberForms ? ((forms.firstIndex(of: form) ?? 0).description + ". ") : "")\(form.title ?? "")")
+                            Text("\(numberForms ? ((forms.firstIndex(of: form) ?? 0).description + ". ") : Constants.emptyString)\(form.title ?? Constants.emptyString)")
                                 .foregroundColor(.primary)
                         }
                         .swipeActions {
@@ -88,7 +88,7 @@ struct FormListView: View {
                                 if !form.recentlyDeleted { filteredForms.append(form) }
                             }
                             else {
-                                let title = form.title ?? ""
+                                let title = form.title ?? Constants.emptyString
                                 if !form.recentlyDeleted && title.contains(searchText) { filteredForms.append(form) }
                             }
                         }
@@ -168,7 +168,7 @@ struct FormListView: View {
             Button(alertButtonDismissMessage, role: .cancel) {}
         })
         .alert(alertTitle, isPresented: $showImportAlert, actions: {
-            TextField("Import Count", text: $importCount)
+            TextField(Strings.importCount, text: $importCount)
                 .keyboardType(.numberPad)
             
             Button(Strings.importLabel) { importForm() }

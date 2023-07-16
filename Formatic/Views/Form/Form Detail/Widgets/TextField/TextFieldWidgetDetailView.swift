@@ -10,7 +10,7 @@ import SwiftUI
 struct TextFieldWidgetDetailView: View {
     
     @ObservedObject var textFieldWidget: TextFieldWidget
-    @State var text: String = ""
+    @State var text: String = Constants.emptyString
     @FocusState var isFocused: Bool
     
     var body: some View {
@@ -19,7 +19,7 @@ struct TextFieldWidgetDetailView: View {
             TextField(Strings.textLabel, text: $text, axis: .vertical)
                 .focused($isFocused)
                 .onAppear {
-                    text = textFieldWidget.text ?? ""
+                    text = textFieldWidget.text ?? Constants.emptyString
                 }
                 .onChange(of: text) { _ in
                     textFieldWidget.text = text
@@ -39,7 +39,7 @@ struct TextFieldWidgetDetailView: View {
         }
         .padding()
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle(textFieldWidget.title ?? "")
+        .navigationTitle(textFieldWidget.title ?? Constants.emptyString)
         .background(Color.primaryBackground.ignoresSafeArea())
         .toolbar {
             FormaticToolbar()

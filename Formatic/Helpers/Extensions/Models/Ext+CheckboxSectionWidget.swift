@@ -24,7 +24,7 @@ extension CheckboxSectionWidget: Csv, Copyable {
     }
     
     func toCsv() -> String {
-        var csvString = ""
+        var csvString = Constants.emptyString
         
         if var checkboxWidgets = self.checkboxWidgets?.map( {$0 as! CheckboxWidget}) {
             checkboxWidgets = checkboxWidgets.sorted { lhs, rhs in
@@ -32,11 +32,11 @@ extension CheckboxSectionWidget: Csv, Copyable {
             }
             
             for checkboxWidget in checkboxWidgets {
-                csvString += FormModel.formatAsCsv(section?.form?.title ?? "") + ","
-                csvString += FormModel.formatAsCsv(section?.title ?? "") + ","
-                csvString += FormModel.formatAsCsv(title ?? "") + ","
+                csvString += FormModel.formatAsCsv(section?.form?.title ?? Constants.emptyString) + ","
+                csvString += FormModel.formatAsCsv(section?.title ?? Constants.emptyString) + ","
+                csvString += FormModel.formatAsCsv(title ?? Constants.emptyString) + ","
                 csvString += Strings.checkboxMenuLabel + ","
-                csvString += FormModel.formatAsCsv(checkboxWidget.title ?? "") + ","
+                csvString += FormModel.formatAsCsv(checkboxWidget.title ?? Constants.emptyString) + ","
                 if checkboxWidget.checked == true {
                     csvString += Strings.trueLabel
                 }
@@ -48,7 +48,7 @@ extension CheckboxSectionWidget: Csv, Copyable {
                 }).count) + ",\n"
             }
             
-            if csvString != "" {
+            if csvString != Constants.emptyString {
                 csvString.remove(at: csvString.index(before: csvString.endIndex))
             }
         }

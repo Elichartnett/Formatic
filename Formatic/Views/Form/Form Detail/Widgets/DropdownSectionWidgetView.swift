@@ -22,7 +22,7 @@ struct DropdownSectionWidgetView: View {
         self._dropdowns = FetchRequest<DropdownWidget>(sortDescriptors: [SortDescriptor(\.position)], predicate: NSPredicate(format: Constants.predicateDropdownSectionWidgetEqualTo, dropdownSectionWidget))
         self.dropdownSectionWidget = dropdownSectionWidget
         self._locked = locked
-        self._title = State(initialValue: dropdownSectionWidget.title ?? "")
+        self._title = State(initialValue: dropdownSectionWidget.title ?? Constants.emptyString)
     }
     
     var body: some View {
