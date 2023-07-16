@@ -149,7 +149,6 @@
 		6236F5722A3DD9A500D2D819 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62D7D87928F86448004C55C9 /* Localizable.strings */; };
 		6236F5732A3DD9A500D2D819 /* Formatic.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 620364F0294834120061B825 /* Formatic.storekit */; };
 		6236F5742A3DD9A500D2D819 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62FE6E6F28187059009D41FD /* Assets.xcassets */; };
-		6236F5752A3DD9A500D2D819 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 62D1B09A2927370500712D85 /* GoogleService-Info.plist */; };
 		6236F5762A3DD9A500D2D819 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6236F47C2A3DD6C600D2D819 /* logo.png */; };
 		6236F5772A3DD9A500D2D819 /* logoAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6AD28BB06680081A39D /* logoAnimation.json */; };
 		6236F5782A3DD9A500D2D819 /* logo.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6288C6AA28BB06630081A39D /* logo.svg */; };
@@ -364,7 +363,6 @@
 		62D1B07729252EAA00712D85 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		62D1B096292670C500712D85 /* EmailViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewRepresentable.swift; sourceTree = "<group>"; };
 		62D1B0982926716F00712D85 /* EmailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailData.swift; sourceTree = "<group>"; };
-		62D1B09A2927370500712D85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		62D7D87828F86448004C55C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		62D7D87A28F86623004C55C9 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		62D7FE982826B8AF00FAA815 /* CheckboxWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxWidgetView.swift; sourceTree = "<group>"; };
@@ -707,7 +705,6 @@
 				62FE6E7B28187505009D41FD /* Models */,
 				6244311C281A12D400E21B11 /* Helpers */,
 				62FE6E6F28187059009D41FD /* Assets.xcassets */,
-				62D1B09A2927370500712D85 /* GoogleService-Info.plist */,
 				6288C6A428BB06420081A39D /* FileAssets */,
 				62FE6E7128187059009D41FD /* Preview Content */,
 			);
@@ -946,7 +943,6 @@
 				6236F5722A3DD9A500D2D819 /* Localizable.strings in Resources */,
 				6236F5732A3DD9A500D2D819 /* Formatic.storekit in Resources */,
 				6236F5742A3DD9A500D2D819 /* Assets.xcassets in Resources */,
-				6236F5752A3DD9A500D2D819 /* GoogleService-Info.plist in Resources */,
 				6236F5762A3DD9A500D2D819 /* logo.png in Resources */,
 				6236F5772A3DD9A500D2D819 /* logoAnimation.json in Resources */,
 				6236F5782A3DD9A500D2D819 /* logo.svg in Resources */,
